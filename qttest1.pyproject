@@ -1,0 +1,10 @@
+{
+    "files": [
+        "widget.py",
+        "form.ui",
+        "tableTest.py",
+        "stringModule.py",
+        "commandparser.py",
+        "timedChart.py"
+    ]
+}
