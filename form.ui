@@ -577,7 +577,7 @@
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab_stringModule">
     <attribute name="title">
@@ -1107,20 +1107,23 @@
        <string>Bow motor voltage</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="comboBoxActuatorPreset">
       <property name="geometry">
        <rect>
-        <x>725</x>
+        <x>605</x>
         <y>110</y>
         <width>191</width>
         <height>25</height>
        </rect>
       </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
      </widget>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>670</x>
+        <x>550</x>
         <y>110</y>
         <width>51</width>
         <height>17</height>
@@ -1130,10 +1133,10 @@
        <string>Preset</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_9">
+     <widget class="QPushButton" name="pushButtonActuatorSave">
       <property name="geometry">
        <rect>
-        <x>930</x>
+        <x>810</x>
         <y>110</y>
         <width>89</width>
         <height>25</height>
@@ -1143,7 +1146,20 @@
        <string>Save</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_10">
+     <widget class="QPushButton" name="pushButtonActuatorLoad">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>110</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Load</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonActuatorDelete">
       <property name="geometry">
        <rect>
         <x>1030</x>
@@ -1153,7 +1169,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Load</string>
+       <string>Delete</string>
       </property>
      </widget>
     </widget>

@@ -254,6 +254,15 @@ def processInformationReturn(inSerialHandler, infoReturn):
                 print("module data " + str(stringModules[currentSerialModule].getCV(0)))
                 mainWidget.updateContinuousStringModuleData()
 
+            case "bac":
+                print("bac " + str(i.argument[0]))
+                mainWidget.ui.comboBoxActuatorPreset.clear()
+                for a in range(0, int(i.argument[0])):
+                    serialHandler.write("rqi:bad:" + str(a))
+
+            case "bad":
+                mainWidget.ui.comboBoxActuatorPreset.addItem(i.argument[4], i.argument[0])
+
             case _:
                 processed = processed | False
 
@@ -319,6 +328,7 @@ def requestStringModuleData():
     serialHandler.write("rqi:sbn")
     serialHandler.write("rqi:ssxf")
     serialHandler.write("rqi:ssif")
+    serialHandler.write("rqi:bac")
     serialHandler.write("help")
 
 def requestBaseData():
@@ -845,6 +855,24 @@ class MainWidget(QWidget):
         mainWidget.ui.plainTextEditCMVDescription.clear()
         mainWidget.ui.plainTextEditCMVDescription.insertPlainText(current.data(Qt.UserRole))
 
+    def find_item(self, combo_box, item_text):
+        for index in range(combo_box.count()):
+            if combo_box.itemText(index) == item_text:
+                return index
+        return -1
+
+    def pushButtonActuatorSavePressed(self):
+        comboIndex = self.find_item(mainWidget.ui.comboBoxActuatorPreset, mainWidget.ui.comboBoxActuatorPreset.currentText())
+        if comboIndex == -1:
+            comboIndex = mainWidget.ui.comboBoxActuatorPreset.count()
+            serialHandler.write("baa")
+        serialHandler.write("bas:" + str(comboIndex) + ",bav,bai:'" + mainWidget.ui.comboBoxActuatorPreset.currentText() + "',bac")
+
+    def pushButtonActuatorLoadPressed(self):
+        comboIndex = self.find_item(mainWidget.ui.comboBoxActuatorPreset, mainWidget.ui.comboBoxActuatorPreset.currentText())
+        if comboIndex == -1:
+            return
+        serialHandler.write("bas:" + str(comboIndex) + ",bal,rqi:bxp,rqi:bip,rqi:brp")
 
 #harmonicSeriesList = [,
 #    [1, 1.059463094, 1.122462048, 1.189207115, 1.25992105, 1.334839854, 1.414213562, 1.498307077, 1.587401052, 1.681792831, 1.781797436, 1.887748625]]
@@ -940,7 +968,8 @@ if __name__ == "__main__":
     mainWidget.ui.spinBoxLimitLines.valueChanged.connect(mainWidget.spinBoxLimitLinesValueChanged)
 
     mainWidget.ui.checkBoxLimitLines.setCheckState(Qt.CheckState.Checked)
-
+    mainWidget.ui.pushButtonActuatorSave.pressed.connect(mainWidget.pushButtonActuatorSavePressed)
+    mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
 # data table test
 
 #    data1 = [ 1, 1.06667, 1.125, 1.2, 1.25, 1.3333, 1.40625, 1.5, 1.6, 1.66667, 1.8, 1.875 ]
