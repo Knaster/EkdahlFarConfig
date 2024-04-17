@@ -1831,6 +1831,29 @@
       </property>
      </widget>
     </widget>
+    <widget class="QLabel" name="label_36">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>11</y>
+       <width>91</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>MIDI Channel</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBoxMidiChannel">
+     <property name="geometry">
+      <rect>
+       <x>640</x>
+       <y>10</y>
+       <width>86</width>
+       <height>25</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_cvmapping">
     <property name="enabled">
@@ -2400,9 +2423,9 @@
   <widget class="QPushButton" name="pushButtonLoadFromModule">
    <property name="geometry">
     <rect>
-     <x>1140</x>
+     <x>1150</x>
      <y>10</y>
-     <width>141</width>
+     <width>71</width>
      <height>25</height>
     </rect>
    </property>
@@ -2695,7 +2718,7 @@
   <widget class="QCheckBox" name="checkBoxContinuousSMData">
    <property name="geometry">
     <rect>
-     <x>1300</x>
+     <x>1230</x>
      <y>10</y>
      <width>151</width>
      <height>31</height>
@@ -2708,20 +2731,20 @@
   <widget class="QPushButton" name="pushButtonReadSMData">
    <property name="geometry">
     <rect>
-     <x>1460</x>
+     <x>1390</x>
      <y>10</y>
-     <width>151</width>
+     <width>181</width>
      <height>25</height>
     </rect>
    </property>
    <property name="text">
-    <string>Refresh data</string>
+    <string>Refresh continuous data</string>
    </property>
   </widget>
   <widget class="QCheckBox" name="checkBox">
    <property name="geometry">
     <rect>
-     <x>1630</x>
+     <x>1590</x>
      <y>10</y>
      <width>161</width>
      <height>23</height>
@@ -2763,7 +2786,7 @@
   <widget class="Line" name="line_5">
    <property name="geometry">
     <rect>
-     <x>1280</x>
+     <x>1130</x>
      <y>10</y>
      <width>21</width>
      <height>31</height>
@@ -2779,7 +2802,7 @@
   <widget class="Line" name="line_6">
    <property name="geometry">
     <rect>
-     <x>1610</x>
+     <x>1570</x>
      <y>10</y>
      <width>21</width>
      <height>31</height>

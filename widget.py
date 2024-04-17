@@ -848,33 +848,32 @@ class MainWidget(QWidget):
             mainWidget.ui.tableViewScale.model().setDataNR((c - 1), float(self.harmonicPresets[b][c]))
 
     def lineEditMidiEventCommandFinished(self):
-        print("UPDATE! this function isn't updating the GUI correctly")
         commandSelected = mainWidget.ui.listWidgetMidiEvents.currentItem().text()
         commandSequence = mainWidget.ui.lineEditMidiEventCommand.text()
 
         match (commandSelected):
             case "Note On":
                 setStr = "noteon"
-                InstrumentMaster.evNoteOn = commandSequence
+                instrumentMaster.evNoteOn = commandSequence
             case "Note Off":
                 setStr = "noteoff"
-                InstrumentMaster.evNoteOff = commandSequence
+                instrumentMaster.evNoteOff = commandSequence
             case "Poly Aftertouch":
                 setStr = "pat"
-                InstrumentMaster.evPolyAftertouch = commandSequence
+                instrumentMaster.evPolyAftertouch = commandSequence
             case "Channel Aftertouch":
                 setStr = "cat"
-                InstrumentMaster.evChannelAftertouch = commandSequence
+                instrumentMaster.evChannelAftertouch = commandSequence
             case "Program change":
                 setStr = "pc"
-                InstrumentMaster.evProgramChange = commandSequence
+                instrumentMaster.evProgramChange = commandSequence
             case "Pitchbend":
                 setStr = "pb"
-                InstrumentMaster.evPitchbend = commandSequence
+                instrumentMaster.evPitchbend = commandSequence
             case _:
                 if commandSelected[:2] == "CC":
                     setStr = "cc:" + commandSelected[3:]
-                    item = InstrumentMaster.getCC(InstrumentMaster, int(commandSelected[3:]))
+                    item = instrumentMaster.getCC(instrumentMaster, int(commandSelected[3:]))
                     item.command = commandSequence
 
                 else:
@@ -906,6 +905,12 @@ class MainWidget(QWidget):
         if comboIndex == -1:
             return
         serialHandler.write("bas:" + str(comboIndex) + ",bal,rqi:bxp,rqi:bip,rqi:brp")
+    def pushButtonAcutatorDeletePreset(self):
+        comboIndex = self.find_item(mainWidget.ui.comboBoxActuatorPreset, mainWidget.ui.comboBoxActuatorPreset.currentText())
+        if comboIndex == -1:
+            return
+        mainWidget.ui.comboBoxActuatorPreset.removeItem(comboIndex)
+        serialHandler.write("bar:" + str(comboIndex) + ",bal,rqi:bxp,rqi:bip,rqi:brp")
 
 #harmonicSeriesList = [,
 #    [1, 1.059463094, 1.122462048, 1.189207115, 1.25992105, 1.334839854, 1.414213562, 1.498307077, 1.587401052, 1.681792831, 1.781797436, 1.887748625]]
@@ -1007,6 +1012,7 @@ if __name__ == "__main__":
 
     mainWidget.ui.pushButtonActuatorSave.pressed.connect(mainWidget.pushButtonActuatorSavePressed)
     mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
+    mainWidget.ui.pushButtonActuatorDelete.pressed.connect(mainWidget.pushButtonAcutatorDeletePreset)
 ## Tab Midi settings
     mainWidget.ui.listWidgetMidiEvents.currentItemChanged.connect(mainWidget.listWidgetMidiEventscurrentItemChanged)
     mainWidget.ui.comboBoxBaseNote.currentIndexChanged.connect(mainWidget.comboBoxBaseNotePressed)
