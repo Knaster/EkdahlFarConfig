@@ -7,7 +7,7 @@ global serialStream
 serialStream = None
 
 from PySide6.QtWidgets import QApplication, QWidget, QDoubleSpinBox, QListWidgetItem
-from PySide6.QtCore import QThread, Signal, QTimer, QModelIndex, Qt
+from PySide6.QtCore import QThread, Signal, QTimer, QModelIndex, Qt, QObject
 
 from PySide6.QtGui import QTextBlock, QTextCursor, QTextBlockFormat, QColor
 
@@ -80,191 +80,201 @@ def processInformationReturn(inSerialHandler, infoReturn):
     global updatingFromModule
     updatingFromModule = True
 
-    processed = False
+    processed = True
 
     for i in commandList.commands:
-        processed = processInformationForChart(inSerialHandler, i)
+        #processed = processInformationForChart(inSerialHandler, i)
+        processInformationForChart(inSerialHandler, i)
 
-        match i.command:
-            case "m":
-                currentSerialModule = int(i.argument[0])
-                addModulesIfNeeded(currentSerialModule)
-                print ("setting current serial module to " + i.argument[0])
-            case "b":
-                currentBow = i.argument[0]
-                print ("setting current serial bow to " + i.argument[0])
-            case "mc":
-                global moduleCount
-                moduleCount = int(i.argument[0])
-                addModulesIfNeeded(moduleCount - 1)
-                print ("setting module count to " + i.argument[0])
-            case "u":
-                stringModules[currentSerialModule].setFundamentalFrequency(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting fundamental frequency to " + str(stringModules[currentSerialModule].getFundamentalFrequency()))
-            case "bv":
-                stringModules[currentSerialModule].setMotorVoltage(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting bow motor voltage to " + str(stringModules[currentSerialModule].getMotorVoltage()))
-            case "kp":
-                stringModules[currentSerialModule].setPIDKp(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting bow PID Kp to " + str(stringModules[currentSerialModule].getPIDKp()))
-            case "ki":
-                stringModules[currentSerialModule].setPIDKi(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting bow PID Ki to " + str(stringModules[currentSerialModule].getPIDKi()))
-            case "kd":
-                stringModules[currentSerialModule].setPIDKd(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting bow PID Kd to " + str(stringModules[currentSerialModule].getPIDKd()))
-            case "ie":
-                stringModules[currentSerialModule].setIntegratorError(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting bow PID integrator error to " + str(stringModules[currentSerialModule].getIntegratorError()))
-            case "sbt":
-                stringModules[currentSerialModule].setBowTimeOut(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting bow timeout to " + str(stringModules[currentSerialModule].getBowTimeOut()))
-            case "mfmp":
-                stringModules[currentSerialModule].setMuteFullMutePosition(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting mute full mute position to " + str(stringModules[currentSerialModule].getMuteFullMutePosition()))
-            case "mhmp":
-                stringModules[currentSerialModule].setMuteHalfMutePosition(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting mute half mute position to " + str(stringModules[currentSerialModule].getMuteHalfMutePosition()))
-            case "mrp":
-                stringModules[currentSerialModule].setMuteRestPosition(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting mute rest position to " + str(stringModules[currentSerialModule].getMuteRestPosition()))
-            case "bxs":
-                stringModules[currentSerialModule].setBowMotorMaxSpeed(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting bow motor max speed to " + str(stringModules[currentSerialModule].getBowMotorMaxSpeed()))
-            case "bis":
-                stringModules[currentSerialModule].setBowMotorMinSpeed(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting bow motor min speed to " + str(stringModules[currentSerialModule].getBowMotorMinSpeed()))
-            case "bxp":
-                stringModules[currentSerialModule].setBowMaxPressure(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting bow max pressure to " + str(stringModules[currentSerialModule].getBowMaxPressure()))
-            case "bip":
-                stringModules[currentSerialModule].setBowMinPressure(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting bow min pressure to " + str(stringModules[currentSerialModule].getBowMinPressure()))
-            case "brp":
-                stringModules[currentSerialModule].setBowRestPosition(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting bow rest position to " + str(stringModules[currentSerialModule].getBowRestPosition()))
-            case "hl":
-                hl = i.argument[0]
-                print(hl)
-                print(len(stringModules[currentSerialModule].harmonicData))
-                if (int(hl) != len(stringModules[currentSerialModule].harmonicData)):
-                    print("Error, harmonic list is broken")
-                    return
-                hs = []
-                hsi = 1
-                while (hsi < len(i.argument)):
-                    print("Adding value " + str(i.argument[hsi]))
-                    hs.append(i.argument[hsi])
-                    hsi += 1
-                stringModules[currentSerialModule].harmonicData.append(hs)
-                print("Added harmonic list " + str(stringModules[currentSerialModule].harmonicData))
+        try:
+            match i.command:
+                case "m":
+                    currentSerialModule = int(i.argument[0])
+                    addModulesIfNeeded(currentSerialModule)
+                    print ("setting current serial module to " + i.argument[0])
+                case "b":
+                    currentBow = i.argument[0]
+                    print ("setting current serial bow to " + i.argument[0])
+                case "mc":
+                    global moduleCount
+                    moduleCount = int(i.argument[0])
+                    addModulesIfNeeded(moduleCount - 1)
+                    print ("setting module count to " + i.argument[0])
+                case "u":
+                    stringModules[currentSerialModule].setFundamentalFrequency(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting fundamental frequency to " + str(stringModules[currentSerialModule].getFundamentalFrequency()))
+                case "bv":
+                    stringModules[currentSerialModule].setMotorVoltage(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting bow motor voltage to " + str(stringModules[currentSerialModule].getMotorVoltage()))
+                case "kp":
+                    stringModules[currentSerialModule].setPIDKp(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting bow PID Kp to " + str(stringModules[currentSerialModule].getPIDKp()))
+                case "ki":
+                    stringModules[currentSerialModule].setPIDKi(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting bow PID Ki to " + str(stringModules[currentSerialModule].getPIDKi()))
+                case "kd":
+                    stringModules[currentSerialModule].setPIDKd(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting bow PID Kd to " + str(stringModules[currentSerialModule].getPIDKd()))
+                case "ie":
+                    stringModules[currentSerialModule].setIntegratorError(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting bow PID integrator error to " + str(stringModules[currentSerialModule].getIntegratorError()))
+                case "sbt":
+                    stringModules[currentSerialModule].setBowTimeOut(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting bow timeout to " + str(stringModules[currentSerialModule].getBowTimeOut()))
+                case "mfmp":
+                    stringModules[currentSerialModule].setMuteFullMutePosition(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting mute full mute position to " + str(stringModules[currentSerialModule].getMuteFullMutePosition()))
+                case "mhmp":
+                    stringModules[currentSerialModule].setMuteHalfMutePosition(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting mute half mute position to " + str(stringModules[currentSerialModule].getMuteHalfMutePosition()))
+                case "mrp":
+                    stringModules[currentSerialModule].setMuteRestPosition(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting mute rest position to " + str(stringModules[currentSerialModule].getMuteRestPosition()))
+                case "bxs":
+                    stringModules[currentSerialModule].setBowMotorMaxSpeed(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting bow motor max speed to " + str(stringModules[currentSerialModule].getBowMotorMaxSpeed()))
+                case "bis":
+                    stringModules[currentSerialModule].setBowMotorMinSpeed(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting bow motor min speed to " + str(stringModules[currentSerialModule].getBowMotorMinSpeed()))
+                case "bxp":
+                    stringModules[currentSerialModule].setBowMaxPressure(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting bow max pressure to " + str(stringModules[currentSerialModule].getBowMaxPressure()))
+                case "bip":
+                    stringModules[currentSerialModule].setBowMinPressure(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting bow min pressure to " + str(stringModules[currentSerialModule].getBowMinPressure()))
+                case "brp":
+                    stringModules[currentSerialModule].setBowRestPosition(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting bow rest position to " + str(stringModules[currentSerialModule].getBowRestPosition()))
+                case "hl":
+                    hl = i.argument[0]
+                    print(hl)
+                    print(len(stringModules[currentSerialModule].harmonicData))
+                    if (int(hl) != len(stringModules[currentSerialModule].harmonicData)):
+                        print("Error, harmonic list is broken")
+                        return
+                    hs = []
+                    hsi = 1
+                    while (hsi < len(i.argument)):
+                        print("Adding value " + str(i.argument[hsi]))
+                        hs.append(i.argument[hsi])
+                        hsi += 1
+                    stringModules[currentSerialModule].harmonicData.append(hs)
+                    print("Added harmonic list " + str(stringModules[currentSerialModule].harmonicData))
 
-            case "hc":
-                mainWidget.ui.comboBoxHarmonicList.clear()
-                hl = 0
-                while (hl < int(i.argument[0])):
-                    mainWidget.ui.comboBoxHarmonicList.addItem(str(hl))
-                    hl += 1
-                mainWidget.ui.comboBoxHarmonicList.setCurrentIndex(0)
-            case "ev":
-                match i.argument[0]:
-                    case "noteon":
-                        instrumentMaster.evNoteOn = i.argument[1]
-                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note On"))
-                        print("Setting NoteOn to " + str(instrumentMaster.evNoteOn))
-                    case "noteoff":
-                        instrumentMaster.evNoteOff = i.argument[1]
-                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note Off"))
-                        print("Setting NoteOff to " + str(instrumentMaster.evNoteOff))
-                    case "cc":
-                        instrumentMaster.addCC(int(i.argument[1]), str(i.argument[2]))
-                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("CC " + str(i.argument[1])))
-                        print("Setting CC " + i.argument[1] + " to " + str(i.argument[2]))
-                    case "pat":
-                        instrumentMaster.evPolyAftertouch = i.argument[1]
-                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Poly Aftertouch"))
-                        print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPolyAftertouch))
-                    case "pb":
-                        instrumentMaster.evPitchbend = i.argument[1]
-                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Pitchbend"))
-                        print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPitchbend))
-                    case "cat":
-                        instrumentMaster.evChannelAftertouch = i.argument[1]
-                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Channel Aftertouch"))
-                        print("Setting polyphonic aftertouch to " + str(instrumentMaster.evChannelAftertouch))
-                    case "pc":
-                        instrumentMaster.evProgramChange = i.argument[1]
-                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Program change"))
-                        print("Setting polyphonic aftertouch to " + str(instrumentMaster.evProgramChange))
+                case "hc":
+                    mainWidget.ui.comboBoxHarmonicList.clear()
+                    hl = 0
+                    while (hl < int(i.argument[0])):
+                        mainWidget.ui.comboBoxHarmonicList.addItem(str(hl))
+                        hl += 1
+                    mainWidget.ui.comboBoxHarmonicList.setCurrentIndex(0)
+                case "ev":
+                    match i.argument[0]:
+                        case "noteon":
+                            instrumentMaster.evNoteOn = i.argument[1]
+                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note On"))
+                            print("Setting NoteOn to " + str(instrumentMaster.evNoteOn))
+                        case "noteoff":
+                            instrumentMaster.evNoteOff = i.argument[1]
+                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note Off"))
+                            print("Setting NoteOff to " + str(instrumentMaster.evNoteOff))
+                        case "cc":
+                            instrumentMaster.addCC(int(i.argument[1]), str(i.argument[2]))
+                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("CC " + str(i.argument[1])))
+                            print("Setting CC " + i.argument[1] + " to " + str(i.argument[2]))
+                        case "pat":
+                            instrumentMaster.evPolyAftertouch = i.argument[1]
+                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Poly Aftertouch"))
+                            print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPolyAftertouch))
+                        case "pb":
+                            instrumentMaster.evPitchbend = i.argument[1]
+                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Pitchbend"))
+                            print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPitchbend))
+                        case "cat":
+                            instrumentMaster.evChannelAftertouch = i.argument[1]
+                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Channel Aftertouch"))
+                            print("Setting polyphonic aftertouch to " + str(instrumentMaster.evChannelAftertouch))
+                        case "pc":
+                            instrumentMaster.evProgramChange = i.argument[1]
+                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Program change"))
+                            print("Setting polyphonic aftertouch to " + str(instrumentMaster.evProgramChange))
 
-            case "sf":
-                stringModules[currentSerialModule].stringFrequency = float(i.argument[0])
-                mainWidget.updateContinuousStringModuleData()
-                print("Setting string frequency to " + str(stringModules[currentSerialModule].stringFrequency))
+                case "sf":
+                    stringModules[currentSerialModule].stringFrequency = float(i.argument[0])
+                    mainWidget.updateContinuousStringModuleData()
+                    print("Setting string frequency to " + str(stringModules[currentSerialModule].stringFrequency))
 
-            case "bf":
-                stringModules[currentSerialModule].bowFrequency = float(i.argument[0])
-                mainWidget.updateContinuousStringModuleData()
-                print("Setting bow frequency to " + str(stringModules[currentSerialModule].stringFrequency))
+                case "bf":
+                    stringModules[currentSerialModule].bowFrequency = float(i.argument[0])
+                    mainWidget.updateContinuousStringModuleData()
+                    print("Setting bow frequency to " + str(stringModules[currentSerialModule].stringFrequency))
 
-            case "sbn":
-                for a in range(1, mainWidget.ui.comboBoxBaseNote.count()):
-                    if int(mainWidget.ui.comboBoxBaseNote.itemData(a)) == int(i.argument[0]):
-                        mainWidget.ui.comboBoxBaseNote.setCurrentIndex(a)
-                print("setting base note to " + str(i.argument[0]))
+                case "sbn":
+                    for a in range(1, mainWidget.ui.comboBoxBaseNote.count()):
+                        if int(mainWidget.ui.comboBoxBaseNote.itemData(a)) == int(i.argument[0]):
+                            mainWidget.ui.comboBoxBaseNote.setCurrentIndex(a)
+                    print("setting base note to " + str(i.argument[0]))
 
-            case "bc":
-                stringModules[currentSerialModule].bowCurrent = float(i.argument[0])
-                mainWidget.updateContinuousStringModuleData()
-                print("Setting bow current to " + str(stringModules[currentSerialModule].bowCurrent))
+                case "bc":
+                    stringModules[currentSerialModule].bowCurrent = float(i.argument[0])
+                    mainWidget.updateContinuousStringModuleData()
+                    print("Setting bow current to " + str(stringModules[currentSerialModule].bowCurrent))
 
-            case "ssxf":
-                stringModules[currentSerialModule].setSolenoidMaxForce(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting solenoid max force to " + str(stringModules[currentSerialModule].getSolenoidMaxForce()))
+                case "ssxf":
+                    stringModules[currentSerialModule].setSolenoidMaxForce(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting solenoid max force to " + str(stringModules[currentSerialModule].getSolenoidMaxForce()))
 
-            case "ssif":
-                stringModules[currentSerialModule].setSolenoidMinForce(i.argument[0])
-                mainWidget.updateStringModuleData()
-                print("Setting solenoid min force to " + str(stringModules[currentSerialModule].getSolenoidMinForce()))
+                case "ssif":
+                    stringModules[currentSerialModule].setSolenoidMinForce(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting solenoid min force to " + str(stringModules[currentSerialModule].getSolenoidMinForce()))
 
-            case "f":
-                stringModules[currentSerialModule].setSetFrequency(i.argument[0])
-                mainWidget.updateContinuousStringModuleData()
-                print("Setting set frequency to " + str(stringModules[currentSerialModule].setFrequency))
+                case "f":
+                    stringModules[currentSerialModule].setSetFrequency(i.argument[0])
+                    mainWidget.updateContinuousStringModuleData()
+                    print("Setting set frequency to " + str(stringModules[currentSerialModule].setFrequency))
 
-            case "adcr":
-                print("adcr " + str(i.argument[0]) + ":" + str(i.argument[1]))
-                stringModules[currentSerialModule].setCV(int(i.argument[0]), int(i.argument[1]))
-                print("module data " + str(stringModules[currentSerialModule].getCV(0)))
-                mainWidget.updateContinuousStringModuleData()
+                case "adcr":
+                    print("adcr " + str(i.argument[0]) + ":" + str(i.argument[1]))
+                    stringModules[currentSerialModule].setCV(int(i.argument[0]), int(i.argument[1]))
+                    print("module data " + str(stringModules[currentSerialModule].getCV(0)))
+                    mainWidget.updateContinuousStringModuleData()
 
-            case "bac":
-                print("bac " + str(i.argument[0]))
-                mainWidget.ui.comboBoxActuatorPreset.clear()
-                for a in range(0, int(i.argument[0])):
-                    serialHandler.write("rqi:bad:" + str(a))
+                case "bac":
+                    print("bac " + str(i.argument[0]))
+                    mainWidget.ui.comboBoxActuatorPreset.clear()
+                    for a in range(0, int(i.argument[0])):
+                        serialHandler.write("rqi:bad:" + str(a))
 
-            case "bad":
-                mainWidget.ui.comboBoxActuatorPreset.addItem(i.argument[4], i.argument[0])
+                case "bad":
+                    print("bad")
+                    if (len(i.argument) < 5):
+                        break
+                    if (i.argument[4]) == "":
+                        break
+                    mainWidget.ui.comboBoxActuatorPreset.addItem(i.argument[4], i.argument[0])
 
-            case _:
-                processed = processed | False
+                case _:
+                    processed = processed | False
+                    #processed = False
+        except:
+            pass
 
     updatingFromModule = False
     return processed
@@ -335,9 +345,14 @@ def requestBaseData():
     serialHandler.write("rqi:mc")
 
 class serialHandler(QThread):
-    dataAvaliable = Signal(str)
+#    dataAvaliable = Signal(str)
+    dataAvaliable = Signal(object, str)
     disconnectSignal = Signal()
     chartDataSignal = Signal(str, float, timedChart.seriesType) # float, float)
+
+#    def __init__(self):
+#        #QThread.__init__(self)
+#        pass
 
     def run(self) -> None:
         #for index in range(20):
@@ -351,17 +366,14 @@ class serialHandler(QThread):
                     if serialStream.inWaiting() != 0:
                         receivedText = serialStream.readline().decode('ascii').strip()
                         print("Received '" + receivedText + "'")
-                        if (receivedText[:5] == "[irq]"):
-                            processed = processInformationReturn(self, receivedText[5:])
-                        elif (receivedText[:5] == "[hlp]"):
-                            processed = processHelpReturn(receivedText[5:])
-
-                        if (not processed):
-                            self.dataAvaliable.emit("<si< " + receivedText)
-
-#                    currentTime = process_time()
-#                    if (currentTime - 0.1) > connectionTimeout:
-#                        print("Alive " + str(alive))
+#                        if (receivedText[:5] == "[irq]"):
+#                            processed = processInformationReturn(self, receivedText[5:])
+#                        elif (receivedText[:5] == "[hlp]"):
+#                            processed = processHelpReturn(receivedText[5:])
+#
+#                        if (not processed):
+#                            self.dataAvaliable.emit("<si< " + receivedText)
+                        self.dataAvaliable.emit(self, receivedText)
 
             except Exception as e:
                 serialStream = None
@@ -425,9 +437,16 @@ class MainWidget(QWidget):
         self.serialThread.wait()
         print("close")
 
-    def dataAvaliable(self, v):
-        self.addToDebugWindow(v + "\n")
+    def dataAvaliable(self, inSerialHandler, v):
+#        self.addToDebugWindow(v + "\n")
+        receivedText = v
+        if (receivedText[:5] == "[irq]"):
+            processed = processInformationReturn(inSerialHandler, receivedText[5:])
+        elif (receivedText[:5] == "[hlp]"):
+            processed = processHelpReturn(receivedText[5:])
 
+        #if (not processed):
+        self.addToDebugWindow("<si< " + receivedText + "\n")
 
     def addToDebugWindow(self, text):
         dpdir = text[1:3]
@@ -492,6 +511,14 @@ class MainWidget(QWidget):
         self.ui.checkBoxFilterDebug.setEnabled(state)
         self.ui.tabWidgetMain.setEnabled(state)
 
+    def updateUIData(self):
+        self.ui.listWidgetMidiEvents.clear()
+        self.ui.listWidgetCommands.clear()
+        self.ui.comboBoxActuatorPreset.clear()
+        self.ui.comboBoxHarmonicList.clear()
+        requestBaseData()
+        requestStringModuleData()
+
     def connectDisconnect(self):
         if mainWidget.ui.pushButtonConnectDisconnect.text() == "Connect":
             selectedPort = mainWidget.ui.comboBoxSerialPorts.currentText()
@@ -507,10 +534,7 @@ class MainWidget(QWidget):
                     mainWidget.ui.pushButtonConnectDisconnect.setText("Disconnect")
 
                     self.setUIEnabled(True)
-                    self.ui.listWidgetMidiEvents.clear()
-
-                    requestBaseData()
-                    requestStringModuleData()
+                    self.updateUIData()
 
                     self.ui.checkBoxFilterCommAck.setChecked(True)
                     self.ui.checkBoxFilterDebug.setChecked(True)
@@ -579,6 +603,11 @@ class MainWidget(QWidget):
         self.ui.horizontalSliderStringFrequency.setValue(int(freq))
         if (freq > 0):
             ret = getBaseNoteFromFrequency(freq, scaleDataJust)
+            self.ui.labelAnalyzeNote.setText(ret[3] + str(ret[0]))
+            self.ui.labelAnalyzeCents.setText(str(round(ret[2])))
+            self.ui.dialAnalyzeCents.setValue(round(ret[2]))
+            self.ui.labelAnalyzeFreq.setText(str(round(freq,1)))
+            self.ui.dialAnalyzeFreq.setValue(round(freq,1))
             self.ui.labelStringFrequency.setText(ret[3] + str(ret[0]) + ":" + str(round(ret[2])) + " / " + str(round(freq,1)) + "Hz")
 
         freq = float(stringModules[currentShowingModule].bowFrequency)
@@ -730,6 +759,10 @@ class MainWidget(QWidget):
     def spinBoxLimitLinesValueChanged(self, value):
         self.updateLineLimit()
 
+    def pushButtonSaveToModulePressed(self):
+        serialHandler.write("sap")
+    def pushButtonLoadFromModulePressed(self):
+        self.updateUIData()
 
     eventDescription = [[ "Note On", "Note on message, sent when a key has been depressed. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n note - note number (0-127) \n velocity - key velocity (0-127)" ],
         [ "Note Off", "Note off message, sent when a key has been released. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n note - note number (0-127) \n velocity - key velocity (0-127)" ],
@@ -771,7 +804,7 @@ class MainWidget(QWidget):
 
     def setContinuousSMReadings(self, state):
         if state == True:
-            self.updateTimer.start(10)
+            self.updateTimer.start(100)
         else:
             self.updateTimer.stop()
 
@@ -928,10 +961,19 @@ if __name__ == "__main__":
     mainWidget = MainWidget()
     mainWidget.show()
 
+    mainWidget.ui.listWidgetCommands.setSortingEnabled(True)
+## Hiding old
+    mainWidget.ui.horizontalSliderStringFrequency.setVisible(False)
+    mainWidget.ui.labelStringFrequency.setVisible(False)
+    mainWidget.ui.horizontalSliderBowCurrent.setVisible(False)
+    mainWidget.ui.horizontalSliderBowFrequency.setVisible(False)
+## Global commands
     mainWidget.ui.pushButtonConnectDisconnect.pressed.connect(mainWidget.connectDisconnect)
-    mainWidget.ui.lineEditSend.editingFinished.connect(mainWidget.lineEditSend)
-    mainWidget.ui.pushButtonClear.pressed.connect(mainWidget.debugClear)
-
+    mainWidget.ui.pushButtonSaveToModule.pressed.connect(mainWidget.pushButtonSaveToModulePressed)
+    mainWidget.ui.pushButtonLoadFromModule.pressed.connect(mainWidget.pushButtonLoadFromModulePressed)
+    mainWidget.ui.pushButtonReadSMData.pressed.connect(mainWidget.readSMData)
+    mainWidget.ui.checkBoxContinuousSMData.toggled.connect(mainWidget.checkBoxContinuousSMDataToggled)
+## Debug console
     mainWidget.ui.checkBoxFilterCommAck.toggled.connect(mainWidget.checkBoxFilterCommAckToggled)
     mainWidget.ui.checkBoxFilterDebug.toggled.connect(mainWidget.checkBoxFilterDebugToggled)
     mainWidget.ui.checkBoxFilterError.toggled.connect(mainWidget.checkBoxFilterErrorToggled)
@@ -941,7 +983,13 @@ if __name__ == "__main__":
     mainWidget.ui.checkBoxFilterPriority.toggled.connect(mainWidget.checkBoxFilterPriorityToggled)
     mainWidget.ui.checkBoxFilterUSB.toggled.connect(mainWidget.checkBoxFilterUSBToggled)
     mainWidget.ui.checkBoxFilterUndefined.toggled.connect(mainWidget.checkBoxFilterUndefinedToggled)
+    mainWidget.ui.lineEditSend.editingFinished.connect(mainWidget.lineEditSend)
+    mainWidget.ui.pushButtonClear.pressed.connect(mainWidget.debugClear)
+    mainWidget.ui.checkBoxLimitLines.stateChanged.connect(mainWidget.checkBoxLimitLinesStateChanged)
+    mainWidget.ui.spinBoxLimitLines.valueChanged.connect(mainWidget.spinBoxLimitLinesValueChanged)
+    mainWidget.ui.checkBoxLimitLines.setCheckState(Qt.CheckState.Checked)
 
+## Tab Module settings
     mainWidget.ui.comboBoxCurrentlySelectedModule.currentIndexChanged.connect(mainWidget.comboBoxCurrentSelectedModuleIndexChanged)
     mainWidget.ui.doubleSpinBoxFundamentalFrequency.valueChanged.connect(mainWidget.doubleSpinBoxFundamentalFrequencyValueChanged)
     mainWidget.ui.doubleSpinBoxBowMotorVoltage.valueChanged.connect(mainWidget.doubleSpinBoxBowMotorVoltageValueChanged)
@@ -952,30 +1000,19 @@ if __name__ == "__main__":
     mainWidget.ui.doubleSpinBoxMuteHalfMutePosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteHalfMutePositionValueChanged)
     mainWidget.ui.doubleSpinBoxMuteRestPosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteRestPositionValueChanged)
     mainWidget.ui.comboBoxHarmonicList.currentIndexChanged.connect(mainWidget.comboBoxHarmonicListCurrentIndexChanged)
-
-    mainWidget.ui.listWidgetMidiEvents.currentItemChanged.connect(mainWidget.listWidgetMidiEventscurrentItemChanged)
-    mainWidget.ui.pushButtonReadSMData.pressed.connect(mainWidget.readSMData)
-    mainWidget.ui.checkBoxContinuousSMData.toggled.connect(mainWidget.checkBoxContinuousSMDataToggled)
-    mainWidget.ui.comboBoxBaseNote.currentIndexChanged.connect(mainWidget.comboBoxBaseNotePressed)
     mainWidget.ui.pushButtonLoadHarmonicPreset.pressed.connect(mainWidget.pushButtonLoadHarmonicPresetPressed)
-    mainWidget.ui.lineEditMidiEventCommand.editingFinished.connect(mainWidget.lineEditMidiEventCommandFinished)
-    mainWidget.ui.listWidgetCommands.currentItemChanged.connect(mainWidget.listWidgetCommandsCurrentItemChanged)
 
     mainWidget.ui.doubleSpinBoxSolenoidMaxForce.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidMaxForceValueChanged)
     mainWidget.ui.doubleSpinBoxSolenoidMinForce.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidMinForceValueChanged)
 
-    mainWidget.ui.checkBoxLimitLines.stateChanged.connect(mainWidget.checkBoxLimitLinesStateChanged)
-    mainWidget.ui.spinBoxLimitLines.valueChanged.connect(mainWidget.spinBoxLimitLinesValueChanged)
-
-    mainWidget.ui.checkBoxLimitLines.setCheckState(Qt.CheckState.Checked)
     mainWidget.ui.pushButtonActuatorSave.pressed.connect(mainWidget.pushButtonActuatorSavePressed)
     mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
-# data table test
-
-#    data1 = [ 1, 1.06667, 1.125, 1.2, 1.25, 1.3333, 1.40625, 1.5, 1.6, 1.66667, 1.8, 1.875 ]
-#    data2 = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
-#    data = [data1, data2]
-#    mainWidget.ui.tableViewScale.setModel(tableTest.CustomTableModel(data))
+## Tab Midi settings
+    mainWidget.ui.listWidgetMidiEvents.currentItemChanged.connect(mainWidget.listWidgetMidiEventscurrentItemChanged)
+    mainWidget.ui.comboBoxBaseNote.currentIndexChanged.connect(mainWidget.comboBoxBaseNotePressed)
+    mainWidget.ui.lineEditMidiEventCommand.editingFinished.connect(mainWidget.lineEditMidiEventCommandFinished)
+    mainWidget.ui.listWidgetCommands.currentItemChanged.connect(mainWidget.listWidgetCommandsCurrentItemChanged)
+## Tab Debugging
     mainWidget.ui.tableViewScale.setModel(tableTest.CustomTableModel())
     delegate = tableTest.SpinBoxDelegate()
     mainWidget.ui.tableViewScale.setItemDelegateForRow(0, delegate)
