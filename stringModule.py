@@ -44,7 +44,7 @@ class stringModule:
 
     def updateRequest(self):
         request = "m:" + str(self.moduleIndex)
-        request = "rqi:u"
+        request = "rqi:bowcontrolfundamental"
         return request
 
     def retrieveUsingFormat(formatString):
