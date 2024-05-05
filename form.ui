@@ -577,7 +577,7 @@
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_stringModule">
     <attribute name="title">
@@ -686,7 +686,7 @@
        <x>10</x>
        <y>220</y>
        <width>1131</width>
-       <height>201</height>
+       <height>231</height>
       </rect>
      </property>
      <property name="title">
@@ -753,7 +753,7 @@
      <widget class="QDoubleSpinBox" name="doubleSpinBoxBowMaxPressure">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>140</x>
         <y>80</y>
         <width>91</width>
         <height>26</height>
@@ -768,31 +768,31 @@
        <rect>
         <x>10</x>
         <y>80</y>
-        <width>161</width>
+        <width>131</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>Bow max/stall pressure</string>
+       <string>Bow stall pressure</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_20">
       <property name="geometry">
        <rect>
-        <x>420</x>
+        <x>400</x>
         <y>80</y>
-        <width>181</width>
+        <width>131</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>Bow min contact pressure</string>
+       <string>Bow min pressure</string>
       </property>
      </widget>
      <widget class="QDoubleSpinBox" name="doubleSpinBoxBowMinPressure">
       <property name="geometry">
        <rect>
-        <x>620</x>
+        <x>530</x>
         <y>80</y>
         <width>91</width>
         <height>26</height>
@@ -805,20 +805,20 @@
      <widget class="QLabel" name="label_21">
       <property name="geometry">
        <rect>
-        <x>830</x>
+        <x>800</x>
         <y>80</y>
-        <width>201</width>
+        <width>121</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>Bow rest/no contact position</string>
+       <string>Bow rest position</string>
       </property>
      </widget>
      <widget class="QDoubleSpinBox" name="doubleSpinBoxBowRestPosition">
       <property name="geometry">
        <rect>
-        <x>1030</x>
+        <x>930</x>
         <y>80</y>
         <width>91</width>
         <height>26</height>
@@ -864,7 +864,7 @@
       <property name="geometry">
        <rect>
         <x>605</x>
-        <y>160</y>
+        <y>190</y>
         <width>191</width>
         <height>25</height>
        </rect>
@@ -877,7 +877,7 @@
       <property name="geometry">
        <rect>
         <x>550</x>
-        <y>160</y>
+        <y>190</y>
         <width>51</width>
         <height>17</height>
        </rect>
@@ -890,7 +890,7 @@
       <property name="geometry">
        <rect>
         <x>810</x>
-        <y>160</y>
+        <y>190</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -903,7 +903,7 @@
       <property name="geometry">
        <rect>
         <x>920</x>
-        <y>160</y>
+        <y>190</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -916,7 +916,7 @@
       <property name="geometry">
        <rect>
         <x>1030</x>
-        <y>160</y>
+        <y>190</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -925,43 +925,43 @@
        <string>Delete</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButtonSetStallPressureToCurrent">
+     <widget class="QPushButton" name="pushButtonStallPressureUseCurrent">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>110</y>
-        <width>291</width>
+        <x>240</x>
+        <y>80</y>
+        <width>91</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
-       <string>Use current position as stall pressure</string>
+       <string>Use current</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButtonSetEngagePressureToCurrent">
+     <widget class="QPushButton" name="pushButtonEngagePressureUseCurrent">
       <property name="geometry">
        <rect>
-        <x>420</x>
-        <y>110</y>
-        <width>291</width>
+        <x>630</x>
+        <y>80</y>
+        <width>91</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
-       <string>Use current position as min. pressure</string>
+       <string>Use current</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButtonSetRestPressureToCurrent">
       <property name="geometry">
        <rect>
-        <x>830</x>
-        <y>110</y>
-        <width>291</width>
+        <x>1030</x>
+        <y>80</y>
+        <width>91</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
-       <string>Use current position as rest position</string>
+       <string>Use current</string>
       </property>
      </widget>
      <widget class="Line" name="line_3">
@@ -981,7 +981,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>140</y>
+        <y>160</y>
         <width>1111</width>
         <height>20</height>
        </rect>
@@ -1007,13 +1007,48 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>160</y>
+        <y>190</y>
         <width>141</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
        <string>Calibrate pressure</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="horizontalSliderTestPressure">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>140</y>
+        <width>1111</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>65535</number>
+      </property>
+      <property name="singleStep">
+       <number>10</number>
+      </property>
+      <property name="pageStep">
+       <number>1000</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_39">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>121</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Test pressure</string>
       </property>
      </widget>
     </widget>
@@ -1078,7 +1113,7 @@
        <number>90</number>
       </attribute>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="pushButtonAddHarmonic">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1091,7 +1126,7 @@
        <string>+</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="pushButtonRemoveHarmonic">
       <property name="geometry">
        <rect>
         <x>50</x>
@@ -1145,7 +1180,7 @@
        <rect>
         <x>110</x>
         <y>26</y>
-        <width>141</width>
+        <width>221</width>
         <height>25</height>
        </rect>
       </property>
@@ -1163,10 +1198,10 @@
        <string>Harmonic list</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="pushButtonAddHarmonicList">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>340</x>
         <y>30</y>
         <width>31</width>
         <height>21</height>
@@ -1176,10 +1211,10 @@
        <string>+</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="pushButtonRemoveHarmonicList">
       <property name="geometry">
        <rect>
-        <x>300</x>
+        <x>380</x>
         <y>30</y>
         <width>31</width>
         <height>21</height>
@@ -1194,9 +1229,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>530</y>
+       <y>460</y>
        <width>1131</width>
-       <height>71</height>
+       <height>101</height>
       </rect>
      </property>
      <property name="title">
@@ -1231,7 +1266,7 @@
      <widget class="QLabel" name="label_26">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>310</x>
         <y>30</y>
         <width>121</width>
         <height>21</height>
@@ -1244,7 +1279,7 @@
      <widget class="QDoubleSpinBox" name="doubleSpinBoxMuteFullMutePosition">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>440</x>
         <y>30</y>
         <width>65</width>
         <height>26</height>
@@ -1257,7 +1292,7 @@
      <widget class="QDoubleSpinBox" name="doubleSpinBoxMuteHalfMutePosition">
       <property name="geometry">
        <rect>
-        <x>550</x>
+        <x>770</x>
         <y>30</y>
         <width>65</width>
         <height>26</height>
@@ -1270,7 +1305,7 @@
      <widget class="QLabel" name="label_27">
       <property name="geometry">
        <rect>
-        <x>420</x>
+        <x>640</x>
         <y>30</y>
         <width>131</width>
         <height>21</height>
@@ -1280,14 +1315,127 @@
        <string>Half mute position</string>
       </property>
      </widget>
+     <widget class="QSlider" name="horizontalSliderTestMute">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>1111</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>65535</number>
+      </property>
+      <property name="singleStep">
+       <number>10</number>
+      </property>
+      <property name="pageStep">
+       <number>1000</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_40">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>121</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Test mute</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonMuteRestUseCurrent">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>30</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Use current</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonHalfMuteUseCurrent">
+      <property name="geometry">
+       <rect>
+        <x>840</x>
+        <y>30</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Use current</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonFullMuteUseCurrent">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>30</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Use current</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_42">
+      <property name="geometry">
+       <rect>
+        <x>960</x>
+        <y>30</y>
+        <width>61</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Back off</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxMuteRestPosition_2">
+      <property name="geometry">
+       <rect>
+        <x>1020</x>
+        <y>30</y>
+        <width>65</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <double>65536.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_43">
+      <property name="geometry">
+       <rect>
+        <x>1090</x>
+        <y>30</y>
+        <width>21</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ms</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QGroupBox" name="groupBoxSolenoidParameters">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>610</y>
+       <y>580</y>
        <width>1131</width>
-       <height>71</height>
+       <height>101</height>
       </rect>
      </property>
      <property name="title">
@@ -1322,7 +1470,7 @@
      <widget class="QLabel" name="label_33">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>330</x>
         <y>30</y>
         <width>111</width>
         <height>21</height>
@@ -1335,7 +1483,7 @@
      <widget class="QDoubleSpinBox" name="doubleSpinBoxSolenoidMaxForce">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>450</x>
         <y>30</y>
         <width>65</width>
         <height>26</height>
@@ -1343,6 +1491,80 @@
       </property>
       <property name="maximum">
        <double>65536.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_41">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>121</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Test force</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="horizontalSliderTestForce">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>1111</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>65535</number>
+      </property>
+      <property name="singleStep">
+       <number>10</number>
+      </property>
+      <property name="pageStep">
+       <number>1000</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>998</x>
+        <y>50</y>
+        <width>121</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Engage hammer</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonSolenoidMinForceUseCurrent">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>30</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Use current</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonSolenoidMaxForceUseCurrent">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>30</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Use current</string>
       </property>
      </widget>
     </widget>
@@ -1401,7 +1623,7 @@
       <rect>
        <x>340</x>
        <y>60</y>
-       <width>321</width>
+       <width>541</width>
        <height>141</height>
       </rect>
      </property>
@@ -1554,6 +1776,29 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QLabel" name="label_37">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>30</y>
+        <width>161</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Tuning scheme</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="listWidgetTuningscheme">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>50</y>
+        <width>171</width>
+        <height>81</height>
+       </rect>
+      </property>
+     </widget>
      <zorder>dialAnalyzeFreq</zorder>
      <zorder>dialAnalyzeCents</zorder>
      <zorder>label_35</zorder>
@@ -1562,13 +1807,15 @@
      <zorder>labelAnalyzeCents</zorder>
      <zorder>label_15</zorder>
      <zorder>label_9</zorder>
+     <zorder>label_37</zorder>
+     <zorder>listWidgetTuningscheme</zorder>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_midiSettings">
     <attribute name="title">
      <string>MIDI settings</string>
     </attribute>
-    <widget class="QComboBox" name="comboBoxCurrentlySelectedModule_2">
+    <widget class="QComboBox" name="comboBoxConfiguration">
      <property name="geometry">
       <rect>
        <x>110</x>
@@ -1591,10 +1838,10 @@
       <string>Configuration</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_8">
+    <widget class="QPushButton" name="pushButtonConfigurationRemove">
      <property name="geometry">
       <rect>
-       <x>482</x>
+       <x>582</x>
        <y>10</y>
        <width>31</width>
        <height>25</height>
@@ -1604,10 +1851,10 @@
       <string>-</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="pushButtonConfigurationAdd">
      <property name="geometry">
       <rect>
-       <x>440</x>
+       <x>540</x>
        <y>10</y>
        <width>31</width>
        <height>25</height>
@@ -1621,19 +1868,19 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>40</y>
-       <width>1081</width>
-       <height>601</height>
+       <y>60</y>
+       <width>1141</width>
+       <height>641</height>
       </rect>
      </property>
      <property name="title">
-      <string>Configuration parameters</string>
+      <string>Configuration MIDI settings</string>
      </property>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>40</y>
+        <y>80</y>
         <width>171</width>
         <height>17</height>
        </rect>
@@ -1646,17 +1893,17 @@
       <property name="geometry">
        <rect>
         <x>12</x>
-        <y>60</y>
-        <width>191</width>
+        <y>100</y>
+        <width>251</width>
         <height>431</height>
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_7">
+     <widget class="QPushButton" name="pushButtonCCRemove">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>500</y>
+        <x>230</x>
+        <y>540</y>
         <width>31</width>
         <height>25</height>
        </rect>
@@ -1665,11 +1912,11 @@
        <string>-</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="pushButtonCCAdd">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>500</y>
+        <y>540</y>
         <width>31</width>
         <height>25</height>
        </rect>
@@ -1682,7 +1929,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>540</y>
+        <y>580</y>
         <width>121</width>
         <height>17</height>
        </rect>
@@ -1695,8 +1942,8 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>560</y>
-        <width>1061</width>
+        <y>600</y>
+        <width>1121</width>
         <height>25</height>
        </rect>
       </property>
@@ -1704,8 +1951,8 @@
      <widget class="QListWidget" name="listWidgetCommands">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>61</y>
+        <x>590</x>
+        <y>101</y>
         <width>251</width>
         <height>281</height>
        </rect>
@@ -1720,8 +1967,8 @@
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>40</y>
+        <x>590</x>
+        <y>80</y>
         <width>151</width>
         <height>17</height>
        </rect>
@@ -1733,8 +1980,8 @@
      <widget class="QLabel" name="label_11">
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>40</y>
+        <x>290</x>
+        <y>80</y>
         <width>171</width>
         <height>17</height>
        </rect>
@@ -1749,8 +1996,8 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>60</y>
+        <x>290</x>
+        <y>100</y>
         <width>241</width>
         <height>431</height>
        </rect>
@@ -1759,8 +2006,8 @@
      <widget class="Line" name="line_2">
       <property name="geometry">
        <rect>
-        <x>483</x>
-        <y>40</y>
+        <x>543</x>
+        <y>80</y>
         <width>31</width>
         <height>481</height>
        </rect>
@@ -1778,8 +2025,8 @@
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
-        <x>810</x>
-        <y>39</y>
+        <x>870</x>
+        <y>79</y>
         <width>251</width>
         <height>17</height>
        </rect>
@@ -1791,8 +2038,8 @@
      <widget class="QListWidget" name="listWidgetModifiersVariables">
       <property name="geometry">
        <rect>
-        <x>810</x>
-        <y>60</y>
+        <x>870</x>
+        <y>100</y>
         <width>251</width>
         <height>281</height>
        </rect>
@@ -1810,8 +2057,8 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>380</y>
+        <x>590</x>
+        <y>420</y>
         <width>531</width>
         <height>111</height>
        </rect>
@@ -1820,8 +2067,8 @@
      <widget class="QLabel" name="label_31">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>360</y>
+        <x>590</x>
+        <y>400</y>
         <width>171</width>
         <height>17</height>
        </rect>
@@ -1830,28 +2077,103 @@
        <string>Description</string>
       </property>
      </widget>
+     <widget class="QComboBox" name="comboBoxMidiChannel">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>40</y>
+        <width>51</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_36">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>41</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>MIDI Channel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonCCAddLearn">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>540</y>
+        <width>71</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>+ Learn</string>
+      </property>
+     </widget>
     </widget>
-    <widget class="QLabel" name="label_36">
+    <widget class="QLabel" name="label_38">
      <property name="geometry">
       <rect>
-       <x>540</x>
-       <y>11</y>
-       <width>91</width>
-       <height>20</height>
+       <x>670</x>
+       <y>10</y>
+       <width>121</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="text">
-      <string>MIDI Channel</string>
+      <string>MIDI Learn device</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBoxMidiChannel">
+    <widget class="QComboBox" name="comboBoxMIDILearnDevice">
      <property name="geometry">
       <rect>
-       <x>640</x>
+       <x>800</x>
        <y>10</y>
-       <width>86</width>
+       <width>351</width>
        <height>25</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButtonConfigurationName">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>10</y>
+       <width>89</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Set Name</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_10">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>10</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="Line" name="line_11">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>1141</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </widget>

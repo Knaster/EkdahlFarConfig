@@ -6,9 +6,8 @@ serialPorts = serial.tools.list_ports.comports()
 global serialStream
 serialStream = None
 
-from PySide6.QtWidgets import QApplication, QWidget, QDoubleSpinBox, QListWidgetItem
-from PySide6.QtCore import QThread, Signal, QTimer, QModelIndex, Qt, QObject
-
+from PySide6.QtWidgets import QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit
+from PySide6.QtCore import QThread, Signal, QTimer, QModelIndex, Qt, QObject, QDir, Slot
 from PySide6.QtGui import QTextBlock, QTextCursor, QTextBlockFormat, QColor
 
 import re
@@ -24,12 +23,14 @@ from ui_form import Ui_Widget
 
 from time import process_time
 
-import rtmidi
+import mido
 
 import tableTest
 from commandparser import CommandItem, CommandList
 
 import timedChart
+
+import midihandler
 
 from stringModule import stringModule, CC, InstrumentMaster
 stringModules = []
@@ -270,6 +271,14 @@ def processInformationReturn(inSerialHandler, infoReturn):
                         break
                     mainWidget.ui.comboBoxActuatorPreset.addItem(i.argument[4], i.argument[0])
 
+                case "mcfc":
+                    mainWidget.ui.comboBoxConfiguration.clear()
+                    for a in range(0, int(i.argument[0])):
+                        serialHandler.write("rqi:mcfn:" + str(a))
+
+                case "mcfn":
+                        mainWidget.ui.comboBoxConfiguration.insertItem(int(i.argument[0]), str(i.argument[1]))
+
                 case _:
                     processed = processed | False
                     #processed = False
@@ -339,6 +348,7 @@ def requestStringModuleData():
     serialHandler.write("rqi:solenoidmaxforce")
     serialHandler.write("rqi:solenoidminforce")
     serialHandler.write("rqi:bowactuatorcount")
+    serialHandler.write("rqi:midiconfigurationcount")
     serialHandler.write("help")
 
 def requestBaseData():
@@ -403,6 +413,7 @@ def setReportFeedback(reportType, state):
     serialHandler.write("debugprint:" + reportType + ":" + out)
 
 class MainWidget(QWidget):
+    midiDataAvaliableSignal = Signal(str, str)
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = Ui_Widget()
@@ -423,6 +434,10 @@ class MainWidget(QWidget):
         self.ui.gridLayoutChart.addWidget(self.debugTimedChart._chart_view)
         self.serialThread.chartDataSignal.connect(self.addData)
 
+        self.midiHandlerC = midihandler.MidiHandler(self.midiDataAvaliableSignal) #self.addToDebugWindow)
+        self.midiHandlerC.updateMIDIInDevices(self.ui.comboBoxMIDILearnDevice)
+        self.midiDataAvaliableSignal.connect(self.midiDataAvaliable)
+
     def addData(self, seriesID, value, inSeriesType): # min, max):
         self.debugTimedChart.addData(seriesID, value, inSeriesType) # min, max)
                 #str(i.command + i.argument[0]) i.argument[1]
@@ -436,6 +451,12 @@ class MainWidget(QWidget):
         self.serialThread.quit()
         self.serialThread.wait()
         print("close")
+
+    @Slot(str)
+    def midiDataAvaliable(self, device, msg):
+        self.addToDebugWindow("<mi<" + str(msg) + "\n")
+        # + str(device) + "<"
+        pass
 
     def dataAvaliable(self, inSerialHandler, v):
 #        self.addToDebugWindow(v + "\n")
@@ -475,6 +496,8 @@ class MainWidget(QWidget):
                 case "irq":
                     color = "rgb(215,200,255)"
                     qcolor = QColor(215,200,255)
+        elif dpdir == "mi":
+                qcolor = QColor(00,200,200)
         else:
             color = "rgb(230,200,160)"
 
@@ -873,7 +896,8 @@ class MainWidget(QWidget):
             case _:
                 if commandSelected[:2] == "CC":
                     setStr = "cc:" + commandSelected[3:]
-                    item = instrumentMaster.getCC(instrumentMaster, int(commandSelected[3:]))
+                    cc = int(commandSelected[3:])
+                    item = instrumentMaster.getCC(cc)
                     item.command = commandSequence
 
                 else:
@@ -917,6 +941,36 @@ class MainWidget(QWidget):
 
     def pushButtonCalibratePressurePressed(self):
         serialHandler.write("bowcalibratepressure")
+
+    def configurationSetName(self):
+        defText = mainWidget.ui.comboBoxConfiguration.currentText()
+        text, ok = QInputDialog().getText(self, "Configuration name",
+                                          "Configuration name:", QLineEdit.Normal, defText)
+        conf = mainWidget.ui.comboBoxConfiguration.currentIndex()
+        if ok and text and (conf > -1):
+            serialHandler.write("midiconfiguration:" + str(conf) + ",midiconfigurationname:" + text)
+            mainWidget.ui.comboBoxConfiguration.setItemText(conf, text)
+
+    def selectMIDIDevice(self, Index):
+        if mainWidget.ui.comboBoxMIDILearnDevice.currentIndex() == -1:
+            return
+        # midiIn = mido.open_input(mainWidget.ui.comboBoxMIDILearnDevice.currentText())
+        self.midiHandlerC.connecToMIDIIn(mainWidget.ui.comboBoxMIDILearnDevice.currentText())
+
+    def ccAdd(self):
+        cc, ok = QInputDialog.getInt(self, "CC Number", "CC Number")
+        if ok and (cc > -1 and cc < 128):
+            serialHandler.write("mev:cc:" + str(cc) + ":''")
+            self.updateUIData()
+
+    def ccRemove(self):
+        if (mainWidget.ui.listWidgetMidiEvents.currentIndex() == -1):
+            return
+        if (mainWidget.ui.listWidgetMidiEvents.currentItem().text()[0:2] != "CC"):
+            return
+        text = mainWidget.ui.listWidgetMidiEvents.currentItem().text()
+        serialHandler.write("mevcr:" + text[3:len(text)])
+        self.updateUIData()
 
 #harmonicSeriesList = [,
 #    [1, 1.059463094, 1.122462048, 1.189207115, 1.25992105, 1.334839854, 1.414213562, 1.498307077, 1.587401052, 1.681792831, 1.781797436, 1.887748625]]
@@ -1027,10 +1081,15 @@ if __name__ == "__main__":
     mainWidget.ui.pushButtonActuatorSave.pressed.connect(mainWidget.pushButtonActuatorSavePressed)
     mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
     mainWidget.ui.pushButtonActuatorDelete.pressed.connect(mainWidget.pushButtonAcutatorDeletePreset)
+
 ## Tab Midi settings
+    mainWidget.ui.pushButtonConfigurationName.pressed.connect(mainWidget.configurationSetName)
     mainWidget.ui.listWidgetMidiEvents.currentItemChanged.connect(mainWidget.listWidgetMidiEventscurrentItemChanged)
     mainWidget.ui.lineEditMidiEventCommand.editingFinished.connect(mainWidget.lineEditMidiEventCommandFinished)
     mainWidget.ui.listWidgetCommands.currentItemChanged.connect(mainWidget.listWidgetCommandsCurrentItemChanged)
+    mainWidget.ui.comboBoxMIDILearnDevice.currentIndexChanged.connect(mainWidget.selectMIDIDevice)
+    mainWidget.ui.pushButtonCCAdd.pressed.connect(mainWidget.ccAdd)
+    mainWidget.ui.pushButtonCCRemove.pressed.connect(mainWidget.ccRemove)
 ## Tab Debugging
     mainWidget.ui.tableViewScale.setModel(tableTest.CustomTableModel())
     delegate = tableTest.SpinBoxDelegate()
@@ -1047,6 +1106,8 @@ if __name__ == "__main__":
 #    strm.setFundamentalFrequency(230)
 #    print(stringModules[0].getFundamentalFrequency())
 #    print(stringModules[0].updateRequest())
+
+#midi
 
 #various tests
 #    commandItem = CommandItem("")
