@@ -1,0 +1,10 @@
+This is the Ekdahl FAR Configuration software
+
+Please be adviced that the organization and structure of this code is TERRIBLE since i am not a Qt/Python guy and i
+only learned as much as i needed to get everything working. Cleanup and restructuring is most certainly necessary.
+
+This code has been developed using the Community version of PyCharm 2023.3.4, forms have been compiled with
+QT Creator 12.0.1
+
+Please see dependencies.txt for libraries needed to run this code, by default this code will essentially do nothing
+until connected to a Teensy 4.0 with the Ekdahl FAR firmware

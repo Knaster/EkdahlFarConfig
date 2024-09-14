@@ -1,0 +1,112 @@
+2024-09-10 18:17:20,897 - <si< [hlp][str]:bowpressurepositionengage|bppe:0-65535:"Bow pressure touch/minimum position"
+2024-09-10 18:17:20,906 - <si< [hlp][str]:bowpressurepositionrest|bppr:0-65535:"Bow pressure rest position"
+2024-09-10 18:17:20,907 - <si< [hlp][str]:bowpressureengagespeed|bpes:1 - 100?:"Bow pressure movement speed when engaging or disengaging"
+2024-09-10 18:17:20,907 - <si< [hlp][str]:bowpressuremodulationspeed|bpms:0.1 - 10:"Bow pressure movement speed while engaged"
+2024-09-10 18:17:20,908 - <si< [hlp][str]:bowpressurehold|bph:0|1:"Sets bow hold on/off"
+2024-09-10 18:17:20,908 - <si< [hlp][str]:solenoid|so:int:"Sets the currently selected solenoid"
+2024-09-10 18:17:20,908 - <si< [hlp][str]:solenoidengage|se:0-65535:"Sets the solenoid engagement of the current bow using the 1st argument as hardness"
+2024-09-10 18:17:20,909 - <si< [hlp][str]:solenoiddisengage|sd:0-1:"Sets the solenoid disengagement of the current bow, an argument of '0' will leave the solenoid at its current state while any other value will disengage the solenoid"
+2024-09-10 18:17:20,909 - <si< [hlp][str]:solenoidmaxforce|sxf:0 - 65535:"Set solenoid maximum usable force"
+2024-09-10 18:17:20,910 - <si< [hlp][str]:solenoidminforce|sif:0 - 65535:"Set solenoid minimum usable force"
+2024-09-10 18:17:20,910 - <si< [hlp][str]:solenoidforcemultiplier|sfm:0 - 1:"Set solenoid force multiplier"
+2024-09-10 18:17:20,910 - <si< [hlp][str]:solenoidengageduration|sed:uS:"Sets the duration of the solenoid hit in uS, if a value of 0 is set the solenoid will not disengage until a solenoiddisengage command has been given"
+2024-09-10 18:17:20,910 - <si< [hlp][str]:mutesetposition|msp:0-65535:"Set mute position"
+2024-09-10 18:17:20,911 - <si< [hlp][str]:mutefullmute|mfm:1|0:"Put mute in full mute position (conditional)"
+2024-09-10 18:17:20,911 - <si< [hlp][str]:mutehalfmute|mhm:1|0:"Put mute in half mute position (conditional)"
+2024-09-10 18:17:20,911 - <si< [hlp][str]:muterest|mr:1|0:"Put mute in rest position (conditional)"
+2024-09-10 18:17:20,912 - <si< [hlp][str]:mutesavefull|msf:1|0:"Save current mute position as full mute position (conditional)"
+2024-09-10 18:17:20,912 - <si< [hlp][str]:mutesavehalf|msh:1|0:"Save current mute position as half mute position (conditional)"
+2024-09-10 18:17:20,912 - <si< [hlp][str]:mutesaverest|msr:1|0:"Save current mute position as mute rest position (conditional)"
+2024-09-10 18:17:20,913 - <si< [hlp][str]:mutefullmuteposition|mfmp:0-65535:"Mute full mute position"
+2024-09-10 18:17:20,913 - <si< [hlp][str]:mutehalfmuteposition|mhmp:0-65535:"Mute half mute position"
+2024-09-10 18:17:20,914 - <si< [hlp][str]:muterestposition|mrp:0-65535:"Mute rest position"
+2024-09-10 18:17:20,914 - <si< [hlp][str]:mutesustain|ms:0|1:"Setting sustain on (1) or off (0)"
+2024-09-10 18:17:20,915 - <si< [hlp][str]:mutebackoff|mbo:0-65535:"Setting the time that the mute stays in the mutefullmute position before automatically going into rest, set in mS"
+2024-09-10 18:17:20,915 - <si< [hlp][str]:mutehome|mh:-:"Rehome mute"
+2024-09-10 18:17:20,915 - <si< [hlp][str]:mutecalibrate|mca:-:"Calibrate mute settings"
+2024-09-10 18:17:20,915 - <si< [hlp][str]:bowactuatoradd|baa:-:"Add new bow actuator"
+2024-09-10 18:17:20,916 - <si< [hlp][str]:bowactuatorremove|bar:actuator:"Remove bow actuator"
+2024-09-10 18:17:20,916 - <si< [hlp][str]:bowactuatorset|bas:actuator:"Set current bow actuator"
+2024-09-10 18:17:20,916 - <si< [hlp][str]:bowactuatorload|bal:-:"Load parameters from current bow actuator"
+2024-09-10 18:17:20,917 - <si< [hlp][str]:bowactuatorsave|bav:-:"Save current bow parameters into currently selected bow actuator"
+2024-09-10 18:17:21,043 - <si< [hlp][str]:bowactuatordata|bad:actuator:engagepressure:stallpressure:resposition:id:"Set data of bow actuator [actuator]"
+2024-09-10 18:17:21,044 - <si< [hlp][str]:bowactuatorcount|bac:-:"Returns the amount of saved bow actuators"
+2024-09-10 18:17:21,044 - <si< [hlp][str]:bowactuatorid|bai:-:"Sets the ID of the current bow actuator"
+2024-09-10 18:17:21,044 - <si< [hlp][str]:bowactuatorsavestall|bass:-:"Save current position as bow actuator stall position"
+2024-09-10 18:17:21,045 - <si< [hlp][str]:bowactuatorsavefirsttouch|basft:-:"Save current position as bow actuator first touch position"
+2024-09-10 18:17:21,045 - <si< [hlp][str]:bowactuatorsaverest|basr:-:"Save current position as bow actuator rest position"
+2024-09-10 18:17:21,045 - <si< [cmd]Setting error echo to 1
+2024-09-10 18:17:21,046 - <si< [cmd]Setting expressionparser echo to 0
+2024-09-10 18:17:21,046 - <si< [cmd]Setting debug echo to 0
+2024-09-10 18:17:21,046 - <si< [cmd]Setting hardware echo to 0
+2024-09-10 18:17:21,046 - <si< [cmd]Setting priority echo to 1
+2024-09-10 18:17:21,047 - <si< [cmd]Setting undefined echo to 1
+2024-09-10 18:17:21,047 - <si< [cmd]Setting usb echo to 1
+2024-09-10 18:17:21,047 - <si< [cmd]Setting command echo to 1
+2024-09-10 18:17:21,047 - <si< [cmd]Setting inforequest echo to 1
+2024-09-10 18:17:21,047 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,048 - <si< [cmd]m:0,Setting fundamental frequency to 44.00
+2024-09-10 18:17:21,048 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,048 - <si< [cmd]m:0,Setting full mute position to 0
+2024-09-10 18:17:21,048 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,048 - <si< [cmd]m:0,Setting half mute position to 0
+2024-09-10 18:17:21,048 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,049 - <si< [cmd]m:0,Setting rest position to 0
+2024-09-10 18:17:21,049 - <si< [cmd]m:0,Mute backoff set to 0
+2024-09-10 18:17:21,049 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,049 - <si< [cmd]m:0,Setting max bow pressure to 0
+2024-09-10 18:17:21,049 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,050 - <si< [cmd]m:0,Setting min bow pressure to 0
+2024-09-10 18:17:21,050 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,050 - <si< [cmd]m:0,Setting bow rest position 0
+2024-09-10 18:17:21,050 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,050 - <si< [cmd]m:0,Setting solenoid max force to 0
+2024-09-10 18:17:21,050 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,051 - <si< [cmd]m:0,Setting solenoid min force to 0
+2024-09-10 18:17:21,051 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,051 - <si< [cmd]m:0,Setting solenoid engage duration to 0
+2024-09-10 18:17:21,051 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,051 - <si< [cmd]m:0,Setting bow voltage to 6.60
+2024-09-10 18:17:21,051 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,052 - <si< [cmd]m:0,Setting motor timeout to 2
+2024-09-10 18:17:21,052 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,052 - <si< [cmd]m:0,Setting full mute position to 48600
+2024-09-10 18:17:21,052 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,052 - <si< [cmd]m:0,Setting half mute position to 24300
+2024-09-10 18:17:21,053 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,053 - <si< [cmd]m:0,Setting rest position to 20000
+2024-09-10 18:17:21,053 - <si< [cmd]m:0,Mute backoff set to 300
+2024-09-10 18:17:21,053 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,053 - <si< [cmd]m:0,Setting max bow pressure to 49888
+2024-09-10 18:17:21,054 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,054 - <si< [cmd]m:0,Setting min bow pressure to 24238
+2024-09-10 18:17:21,054 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,054 - <si< [cmd]m:0,Setting bow rest position 21238
+2024-09-10 18:17:21,054 - <si< [cmd]m:0,Setting base note to 53
+2024-09-10 18:17:21,055 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,055 - <si< [cmd]m:0,Setting solenoid max force to 65535
+2024-09-10 18:17:21,055 - <si< [cmd]Setting current string module to 0
+2024-09-10 18:17:21,055 - <si< [cmd]m:0,Setting solenoid engage duration to 15000
+2024-09-10 18:17:21,056 - <si< [irq]m:0,bad:0:24238:49888:21238:'first touch'
+2024-09-10 18:17:21,056 - <si< [irq]mcfn:0:default
+2024-09-10 19:17:43,252 - >so> debugprint:usb:1
+2024-09-10 19:17:43,252 - >so> debugprint:command:1
+2024-09-10 19:17:43,252 - >so> debugprint:priority:1
+2024-09-10 19:17:43,253 - >so> debugprint:error:1
+2024-09-10 19:17:43,253 - >so> debugprint:undefined:1
+2024-09-10 19:17:43,253 - >so> m:0,bowcontrolfundamental:27.5
+2024-09-10 19:17:43,254 - Initialized
+2024-09-10 19:17:52,709 - >so> debugprint:usb:1
+2024-09-10 19:17:52,709 - >so> debugprint:command:1
+2024-09-10 19:17:52,709 - >so> debugprint:priority:1
+2024-09-10 19:17:52,709 - >so> debugprint:error:1
+2024-09-10 19:17:52,709 - >so> debugprint:undefined:1
+2024-09-10 19:17:52,709 - >so> m:0,bowcontrolfundamental:27.5
+2024-09-10 19:17:52,710 - Initialized
+2024-09-13 22:06:44,306 - >so> debugprint:usb:1
+2024-09-13 22:06:44,306 - >so> debugprint:command:1
+2024-09-13 22:06:44,307 - >so> debugprint:priority:1
+2024-09-13 22:06:44,307 - >so> debugprint:error:1
+2024-09-13 22:06:44,307 - >so> debugprint:undefined:1
+2024-09-13 22:06:44,307 - >so> m:0,bowcontrolfundamental:27.5
+2024-09-13 22:06:44,307 - Initialized

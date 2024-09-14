@@ -1,3 +1,22 @@
+#
+#  This file is part of The Ekdahl FAR firmware.
+#
+#  The Ekdahl FAR firmware is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  The Ekdahl FAR firmware is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with The Ekdahl FAR firmware. If not, see <https://www.gnu.org/licenses/>.
+#
+# Copyright (C) 2024 Karl Ekdahl
+#
+
 # This Python file uses the following encoding: utf-8
 
 # if __name__ == "__main__":
@@ -80,7 +99,7 @@ class timedChart(QWidget):
 
         self.axisYHz = QLogValueAxis();
         self.axisYHz.setBase(2)
-        self.axisYHz.setRange(1, 1024)
+        self.axisYHz.setRange(1, 2048)
         self.axisYHz.setTitleText("Frequency (Hz)")
         self.axisYHz.setTitleVisible(True)
         self.chart.addAxis(self.axisYHz, Qt.AlignRight)
@@ -136,7 +155,11 @@ class timedChart(QWidget):
         s.append(self.timeStamper.getCurrent(), float(value))
 
         #self.chart.createDefaultAxes()
-
         #self.chart.axisX(s).setRange(self.timeStamper.getCurrent() - self.timeStamper.overflow, self.timeStamper.getCurrent())
         self.axisX.setRange(self.timeStamper.getCurrent() - self.timeStamper.overflow, self.timeStamper.getCurrent())
+
+#        points_within_range = [point for point in s.pointsVector() if x_min <= point.x() <= x_max]
+        for point in s.pointsVector():
+            if point.x() < (self.timeStamper.getCurrent() - self.timeStamper.overflow):
+                s.remove(point)
 #        self.chart.axisY(s).setRange(min, max)

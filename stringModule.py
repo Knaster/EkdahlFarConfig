@@ -1,5 +1,25 @@
+#
+#  This file is part of The Ekdahl FAR firmware.
+#
+#  The Ekdahl FAR firmware is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  The Ekdahl FAR firmware is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with The Ekdahl FAR firmware. If not, see <https://www.gnu.org/licenses/>.
+#
+# Copyright (C) 2024 Karl Ekdahl
+#
+
 # This Python file uses the following encoding: utf-8
 
+from commandparser import CommandItem, CommandList
 
 class stringModule:
     def __init__(self):
@@ -17,6 +37,7 @@ class stringModule:
         self.muteFullMutePosition = float(-1)
         self.muteHalfMutePosition = float(-1)
         self.muteRestPosition = float(-1)
+        self.muteBackoff = float(-1)
         self.bowMotorMaxSpeed = float(-1)
         self.bowMotorMinSpeed = float(-1)
         self.bowMaxPressure = float(-1)
@@ -31,6 +52,7 @@ class stringModule:
 
         self.solenoidMinForce = float(-1)
         self.solenoidMaxForce = float(-1)
+        self.solenoidEngageDuration = float(-1)
 
         self.cv0 = float(-1)
         self.cv1 = float(-1)
@@ -98,6 +120,12 @@ class stringModule:
     def setMuteFullMutePosition(self, position):
         self.muteFullMutePosition = position;
 
+    def getMuteBackoff(self):
+        return self.muteBackoff
+
+    def setMuteBackoff(self, backoff):
+        self.muteBackoff = backoff
+
     def getBowTimeOut(self):
         return self.bowTimeOut
 
@@ -155,27 +183,33 @@ class stringModule:
     def setSetFrequency(self, freq):
         self.setFrequency = freq
 
+    def getSolenoidEngageDuration(self):
+        return self.solenoidEngageDuration
+
+    def setSolenoidEngageDuration(self, duration):
+        self.solenoidEngageDuration = duration
+
     def getSetFrequency(self):
         return self.setFrequency
 
-    def setCV(self, ch, freq):
+    def setCV(self, ch, value):
         match ch:
             case 0:
-                self.cv0 = freq
+                self.cv0 = value
             case 1:
-                self.cv1 = freq
+                self.cv1 = value
             case 2:
-                self.cv2 = freq
+                self.cv2 = value
             case 3:
-                self.cv3 = freq
+                self.cv3 = value
             case 4:
-                self.cv4 = freq
+                self.cv4 = value
             case 5:
-                self.cv5 = freq
+                self.cv5 = value
             case 6:
-                self.cv6 = freq
+                self.cv6 = value
             case 7:
-                self.cv7 = freq
+                self.cv7 = value
 
     def getCV(self, ch):
         match ch:
@@ -210,6 +244,13 @@ class InstrumentMaster:
         self.evChannelAftertouch = ""
         self.evPitchbend = ""
         self.evCC = []
+
+        self.cmdNoteOn = CommandList()
+        self.cmdNoteOff = CommandList()
+        self.cmdPolyAftertouch = CommandList()
+        self.cmdPitchbend = CommandList()
+        self.cmdSustain = CommandList()
+        self.cmdChannelAftertouch = CommandList()
 
     def getCC(self, control):
         for i in self.evCC:

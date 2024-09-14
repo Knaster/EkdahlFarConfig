@@ -1,16 +1,45 @@
+#
+#  This file is part of The Ekdahl FAR firmware.
+#
+#  The Ekdahl FAR firmware is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  The Ekdahl FAR firmware is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with The Ekdahl FAR firmware. If not, see <https://www.gnu.org/licenses/>.
+#
+# Copyright (C) 2024 Karl Ekdahl
+#
+
 # This Python file uses the following encoding: utf-8
 import sys
 
 import serial.tools.list_ports
-serialPorts = serial.tools.list_ports.comports()
-global serialStream
-serialStream = None
 
 from PySide6.QtWidgets import QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit
 from PySide6.QtCore import QThread, Signal, QTimer, QModelIndex, Qt, QObject, QDir, Slot
 from PySide6.QtGui import QTextBlock, QTextCursor, QTextBlockFormat, QColor
 
 import re
+import equationParsingHelpers
+
+import logging
+from logging.handlers import RotatingFileHandler
+#logging.basicConfig(filename="farconfig.log", filemode="a", format='%(asctime)s - %(message)s',level=logging.DEBUG)
+log_formatter = logging.Formatter('%(asctime)s - %(message)s')
+log_file = "farconfig.log"
+log_handler = RotatingFileHandler(log_file, mode='w', maxBytes=1024*1024, backupCount=1, encoding=None, delay=0)
+log_handler.setFormatter(log_formatter)
+log_handler.setLevel(logging.DEBUG)
+log_app = logging.getLogger('root')
+log_app.setLevel(logging.DEBUG)
+log_app.addHandler(log_handler)
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -33,6 +62,11 @@ import timedChart
 import midihandler
 
 from stringModule import stringModule, CC, InstrumentMaster
+
+serialPorts = serial.tools.list_ports.comports()
+global serialStream
+#serialStream = None
+
 stringModules = []
 instrumentMaster = InstrumentMaster()
 
@@ -56,16 +90,20 @@ def addModulesIfNeeded(needed):
 def processInformationForChart(inSerialHandler, command):
     match command.command:
         case "adcr":
-            inSerialHandler.chartDataSignal.emit("Adc ch#" + str(command.argument[0]), float(command.argument[1]), timedChart.seriesType.integer) #0, 65535)
+            inSerialHandler.chartDataSignal.emit("Adc#" + str(command.argument[0]), float(command.argument[1]), timedChart.seriesType.integer) #0, 65535)
         case "bcf":
-            inSerialHandler.chartDataSignal.emit("Target Freq", float(command.argument[0]), timedChart.seriesType.frequency) # 0, 65535)
+            inSerialHandler.chartDataSignal.emit("Targ.Freq", float(command.argument[0]), timedChart.seriesType.frequency) # 0, 65535)
         case "bmf":
-            inSerialHandler.chartDataSignal.emit("Motor Freq", float(command.argument[0]), timedChart.seriesType.frequency) #0, 65535)
+            inSerialHandler.chartDataSignal.emit("Mot.Freq", float(command.argument[0]), timedChart.seriesType.frequency) #0, 65535)
         case "psf":
             if (float(command.argument[0]) > 0):
-                inSerialHandler.chartDataSignal.emit("String Freq", float(command.argument[0]), timedChart.seriesType.frequency) #0, 65535)
+                inSerialHandler.chartDataSignal.emit("FFT Freq", float(command.argument[0]), timedChart.seriesType.frequency) #0, 65535)
+        case "pap":
+            inSerialHandler.chartDataSignal.emit("Aud.peak", float(command.argument[0])*65535, timedChart.seriesType.integer)  # 0, 65535)
+        case "par":
+            inSerialHandler.chartDataSignal.emit("Aud.RMS", float(command.argument[0])*65535, timedChart.seriesType.integer)  # 0, 65535)
         case "bpperr":
-            inSerialHandler.chartDataSignal.emit("PID peak error", float(command.argument[0]), timedChart.seriesType.frequency) #0, 65535)
+            inSerialHandler.chartDataSignal.emit("PIDPeakErr", float(command.argument[0]), timedChart.seriesType.frequency) #0, 65535)
         case _:
             return False
     return True
@@ -78,8 +116,8 @@ def processInformationReturn(inSerialHandler, infoReturn):
     global stringModules
     global currentSerialModule
     global currentBow
-    global updatingFromModule
-    updatingFromModule = True
+#    global updatingFromModule
+    mainWidget.updatingFromModule = True
 
     processed = True
 
@@ -141,6 +179,10 @@ def processInformationReturn(inSerialHandler, infoReturn):
                     stringModules[currentSerialModule].setMuteRestPosition(i.argument[0])
                     mainWidget.updateStringModuleData()
                     print("Setting mute rest position to " + str(stringModules[currentSerialModule].getMuteRestPosition()))
+                case "mbo":
+                    stringModules[currentSerialModule].setMuteBackoff(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting mute backoff to " + str(stringModules[currentSerialModule].getMuteBackoff()))
                 case "bmsx":
                     stringModules[currentSerialModule].setBowMotorMaxSpeed(i.argument[0])
                     mainWidget.updateStringModuleData()
@@ -189,10 +231,62 @@ def processInformationReturn(inSerialHandler, infoReturn):
                         case "noteon":
                             instrumentMaster.evNoteOn = i.argument[1]
                             mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note On"))
+
+#                            mainWidget.ui.midiNoteOnVelToHammer.blockSignals(True)
+#                            mainWidget.ui.midiNoteOnHammerStaccato.blockSignals(True)
+#                            mainWidget.ui.midiNoteOnSendMuteRest.blockSignals(True)
+#                            mainWidget.ui.midiNoteOnOther.blockSignals(True)
+
+                            instrumentMaster.cmdNoteOn.clear()
+                            instrumentMaster.cmdNoteOn.addCommands(i.argument[1])
+                            offset, multiplier = equationParsingHelpers.getVariable(instrumentMaster.cmdNoteOn.getCommandAttribute("se", 0),"velocity")
+                            mainWidget.ui.midiNoteOnVelToHammer.setValue(multiplier)
+
+                            if equationParsingHelpers.isVariableInEquation(instrumentMaster.cmdNoteOn.getCommandAttribute("se", 0), "notecount"):
+                                mainWidget.ui.midiNoteOnHammerStaccato.setChecked(True)
+                            else:
+                                mainWidget.ui.midiNoteOnHammerStaccato.setChecked(False)
+
+                            if not instrumentMaster.cmdNoteOn.getCommandAttribute("mr", 0) == "":
+                                mainWidget.ui.midiNoteOnSendMuteRest.setChecked(True)
+                            else:
+                                mainWidget.ui.midiNoteOnSendMuteRest.setChecked(False)
+
+                            mainWidget.ui.midiNoteOnOther.setText(instrumentMaster.evNoteOn)
+
+#                            mainWidget.ui.midiNoteOnVelToHammer.blockSignals(False)
+#                            mainWidget.ui.midiNoteOnHammerStaccato.blockSignals(False)
+#                            mainWidget.ui.midiNoteOnSendMuteRest.blockSignals(False)
+#                            mainWidget.ui.midiNoteOnOther.blockSignals(False)
+
                             print("Setting NoteOn to " + str(instrumentMaster.evNoteOn))
                         case "noteoff":
                             instrumentMaster.evNoteOff = i.argument[1]
                             mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note Off"))
+
+#                            mainWidget.ui.midiNoteOffSendFullMute.blockSignals(True)
+#                            mainWidget.ui.midiNoteOffMotorOff.blockSignals(True)
+#                            mainWidget.ui.midiNoteOffOther.blockSignals(True)
+
+                            instrumentMaster.cmdNoteOff.clear()
+                            instrumentMaster.cmdNoteOff.addCommands(i.argument[1])
+
+                            if not instrumentMaster.cmdNoteOff.getCommandAttribute("mfm", 0) == "":
+                                mainWidget.ui.midiNoteOffSendFullMute.setChecked(True)
+                            else:
+                                mainWidget.ui.midiNoteOffSendFullMute.setChecked(False)
+
+                            if not instrumentMaster.cmdNoteOff.getCommandAttribute("bmr", 0) == "":
+                                mainWidget.ui.midiNoteOffMotorOff.setChecked(True)
+                            else:
+                                mainWidget.ui.midiNoteOffMotorOff.setChecked(False)
+
+                            mainWidget.ui.midiNoteOffOther.setText(instrumentMaster.evNoteOff)
+
+ #                           mainWidget.ui.midiNoteOffSendFullMute.blockSignals(False)
+ #                           mainWidget.ui.midiNoteOffMotorOff.blockSignals(False)
+ #                           mainWidget.ui.midiNoteOffOther.blockSignals(False)
+
                             print("Setting NoteOff to " + str(instrumentMaster.evNoteOff))
                         case "cc":
                             instrumentMaster.addCC(int(i.argument[1]), str(i.argument[2]))
@@ -201,10 +295,35 @@ def processInformationReturn(inSerialHandler, infoReturn):
                         case "pat":
                             instrumentMaster.evPolyAftertouch = i.argument[1]
                             mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Poly Aftertouch"))
+
+#                            mainWidget.ui.midiPolyATSend.blockSignals(True)
+#                            mainWidget.ui.midiPolyATRatio.blockSignals(True)
+
+                            instrumentMaster.cmdPolyAftertouch.clear()
+                            instrumentMaster.cmdPolyAftertouch.addCommands(i.argument[1])
+
+                            selectSendDestinationAndRatio(mainWidget.ui.midiPolyATSend, instrumentMaster.cmdPolyAftertouch, mainWidget.ui.midiPolyATRatio, "pressure")
+
+#                            mainWidget.ui.midiPolyATSend.blockSignals(False)
+#                            mainWidget.ui.midiPolyATRatio.blockSignals(False)
+
                             print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPolyAftertouch))
                         case "pb":
                             instrumentMaster.evPitchbend = i.argument[1]
                             mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Pitchbend"))
+
+                            mainWidget.ui.midiPitchbendSend.blockSignals(True)
+                            mainWidget.ui.midiPitchbendRatio.blockSignals(True)
+
+                            instrumentMaster.cmdPitchbend.clear()
+                            instrumentMaster.cmdPitchbend.addCommands(i.argument[1])
+
+                            selectSendDestinationAndRatio(mainWidget.ui.midiPitchbendSend, instrumentMaster.cmdPitchbend,
+                                                          mainWidget.ui.midiPitchbendRatio, "pitch")
+
+                            mainWidget.ui.midiPitchbendSend.blockSignals(False)
+                            mainWidget.ui.midiPitchbendRatio.blockSignals(False)
+
                             print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPitchbend))
                         case "cat":
                             instrumentMaster.evChannelAftertouch = i.argument[1]
@@ -246,6 +365,11 @@ def processInformationReturn(inSerialHandler, infoReturn):
                     mainWidget.updateStringModuleData()
                     print("Setting solenoid min force to " + str(stringModules[currentSerialModule].getSolenoidMinForce()))
 
+                case "sed":
+                    stringModules[currentSerialModule].setSolenoidEngageDuration(i.argument[0])
+                    mainWidget.updateStringModuleData()
+                    print("Setting solenoid engage duration to " + str(stringModules[currentSerialModule].getSolenoidEngageDuration()))
+
                 case "bcf":
                     stringModules[currentSerialModule].setSetFrequency(i.argument[0])
                     mainWidget.updateContinuousStringModuleData()
@@ -279,18 +403,49 @@ def processInformationReturn(inSerialHandler, infoReturn):
                 case "mcfn":
                         mainWidget.ui.comboBoxConfiguration.insertItem(int(i.argument[0]), str(i.argument[1]))
 
+                case "bcp":
+                    mainWidget.updateUIData()
+
+                case "mrc":
+                    mainWidget.ui.comboBoxMidiChannel.blockSignals(True)
+                    ch = int (i.argument[0])
+                    if ((ch < 1) or (ch >16)):
+                        find = "Omni"
+                    else:
+                        find = str(ch)
+
+                    for a in range(0, mainWidget.ui.comboBoxMidiChannel.count()):
+                        if find == mainWidget.ui.comboBoxMidiChannel.itemText(a):
+                            mainWidget.ui.comboBoxMidiChannel.setCurrentIndex(a)
+                            break
+                    mainWidget.ui.comboBoxMidiChannel.blockSignals(False)
+
                 case _:
                     processed = processed | False
                     #processed = False
         except:
             pass
 
-    updatingFromModule = False
+    mainWidget.updatingFromModule = False
     return processed
+
+def messageBox(title, message):
+    msgBox = QMessageBox()
+    msgBox.setIcon(QMessageBox.Information)
+    msgBox.setText(message)
+    msgBox.setWindowTitle(title)
+    msgBox.setStandardButtons(QMessageBox.Ok) # | QMessageBox.Cancel)
+    #msgBox.buttonClicked.connect(msgButtonClick)
+
+    returnValue = msgBox.exec()
+    if returnValue == QMessageBox.Ok:
+        print('OK clicked')
 
 def processHelpReturn(infoReturn):
     commandList = CommandList()
-    commandList.addCommands(infoReturn)
+    if not commandList.addCommands(infoReturn):
+        messageBox("ERROR", "Error parsing help return string")
+        return
 
     for i in commandList.commands:
         prefix = i.command
@@ -319,10 +474,10 @@ def processHelpReturn(infoReturn):
             if x != -1:
                 command = command[:x]
 
-            commandItem = QListWidgetItem()
-            commandItem.setText(command)
-            commandItem.setData(Qt.UserRole, help)
-            mainWidget.ui.listWidgetCommands.addItem(commandItem)
+            commandItemHelp = QListWidgetItem()
+            commandItemHelp.setText(command)
+            commandItemHelp.setData(Qt.UserRole, help)
+            mainWidget.ui.listWidgetCommands.addItem(commandItemHelp)
             print(help)
 
 def requestStringModuleData():
@@ -336,6 +491,7 @@ def requestStringModuleData():
     serialHandler.write("rqi:mutefullmuteposition")
     serialHandler.write("rqi:mutehalfmuteposition")
     serialHandler.write("rqi:muterestposition")
+    serialHandler.write("rqi:mutebackoff")
     serialHandler.write("rqi:bowmotorspeedmax")
     serialHandler.write("rqi:bowmotorspeedmin")
     serialHandler.write("rqi:bowpressurepositionmax")
@@ -347,8 +503,10 @@ def requestStringModuleData():
     serialHandler.write("rqi:bowcontrolharmonicbasenote")
     serialHandler.write("rqi:solenoidmaxforce")
     serialHandler.write("rqi:solenoidminforce")
+    serialHandler.write("rqi:solenoidengageduration")
     serialHandler.write("rqi:bowactuatorcount")
     serialHandler.write("rqi:midiconfigurationcount")
+    serialHandler.write("rqi:mrc")
     serialHandler.write("help")
 
 def requestBaseData():
@@ -399,6 +557,8 @@ class serialHandler(QThread):
     def write(str):
         mainWidget.addToDebugWindow(">so> " + str + "\n")
         str = str  + "\n\r"
+        if serialStream == None:
+            return
         serialStream.write(str.encode('ascii'))
 
     def writeI(self, str):
@@ -411,6 +571,46 @@ def setReportFeedback(reportType, state):
     else:
         out = "0"
     serialHandler.write("debugprint:" + reportType + ":" + out)
+
+def selectSendDestinationAndRatio(comboBox, commandList, ratio, variable):
+    comboBox.blockSignals(True)
+
+    find = ""
+    for a in commandList.commands:
+        match a.command:
+            case "bpm":
+                find = "Pressure modifier"
+                break
+            case "bpb":
+                find = "Pressure baseline"
+                break
+            case "msp":
+                find = "Mute position"
+                break
+            case "sfm":
+                find = "Solenoid force multiplier"
+                break
+            case "bchsh":
+                find = "Harmonic shift"
+                break
+
+    if find == "":
+        find = "Nothing"
+
+    for b in range(0, comboBox.count()):
+        if find == comboBox.itemText(b):
+            comboBox.setCurrentIndex(b)
+            break
+
+    if find != "Nothing":
+        try:
+            offset, multiplier = equationParsingHelpers.getVariable(a.argument[0], variable)
+            ratio.setValue(multiplier)
+        except:
+            pass
+
+
+    comboBox.blockSignals(False)
 
 class MainWidget(QWidget):
     midiDataAvaliableSignal = Signal(str, str)
@@ -437,6 +637,8 @@ class MainWidget(QWidget):
         self.midiHandlerC = midihandler.MidiHandler(self.midiDataAvaliableSignal) #self.addToDebugWindow)
         self.midiHandlerC.updateMIDIInDevices(self.ui.comboBoxMIDILearnDevice)
         self.midiDataAvaliableSignal.connect(self.midiDataAvaliable)
+
+        self.updatingFromModule = False
 
     def addData(self, seriesID, value, inSeriesType): # min, max):
         self.debugTimedChart.addData(seriesID, value, inSeriesType) # min, max)
@@ -471,7 +673,7 @@ class MainWidget(QWidget):
 
     def addToDebugWindow(self, text):
         dpdir = text[1:3]
-
+        ignoreMessage = False
         dptype = ""
         qcolor = QColor(255, 255, 255)
         if dpdir == "si":
@@ -496,8 +698,17 @@ class MainWidget(QWidget):
                 case "irq":
                     color = "rgb(215,200,255)"
                     qcolor = QColor(215,200,255)
+                    if self.filterHideInfoRequest:
+                        ignoreMessage = True
+                case "txi":
+                    color = "rgb(100,100,255)"
+                    qcolor = QColor(100, 100, 255)
         elif dpdir == "mi":
                 qcolor = QColor(00,200,200)
+        elif dpdir == "so":
+                qcolor = QColor(127,127,127)
+                if self.filterHideOutput:
+                    ignoreMessage = True
         else:
             color = "rgb(230,200,160)"
 
@@ -512,15 +723,15 @@ class MainWidget(QWidget):
         tbf.setBackground(qcolor)
 
         tc.setBlockFormat(tbf)
-        tc.insertText(text)
-
-        tb = QTextBlock()
-
-
+        if not ignoreMessage:
+            tc.insertText(text)
+#        tb = QTextBlock()
 #        self.ui.plainTextEditSerialOutput.appendHtml("<div class='" + dptype + "' dir='" + dpdir + "' style='background-color: " + color + ";'>" + far + "</div>")
+            if self.debugCursorFollow:
+                scrollBar = self.ui.plainTextEditSerialOutput.verticalScrollBar()
+                scrollBar.setValue(scrollBar.maximum())
 
-        scrollBar = self.ui.plainTextEditSerialOutput.verticalScrollBar()
-        scrollBar.setValue(scrollBar.maximum())
+        logging.error(text.rstrip("\n"))
 
     def setUIEnabled(self, state):
         self.ui.checkBoxFilterCommAck.setEnabled(state)
@@ -532,6 +743,7 @@ class MainWidget(QWidget):
         self.ui.checkBoxFilterInfoRequest.setEnabled(state)
         self.ui.checkBoxFilterExpressionParser.setEnabled(state)
         self.ui.checkBoxFilterDebug.setEnabled(state)
+        self.ui.checkBoxFilterOutput.setEnabled(state)
         self.ui.tabWidgetMain.setEnabled(state)
 
     def updateUIData(self):
@@ -559,15 +771,25 @@ class MainWidget(QWidget):
                     self.setUIEnabled(True)
                     self.updateUIData()
 
-                    self.ui.checkBoxFilterCommAck.setChecked(True)
-                    self.ui.checkBoxFilterDebug.setChecked(True)
-                    self.ui.checkBoxFilterError.setChecked(True)
-                    self.ui.checkBoxFilterExpressionParser.setChecked(True)
-                    self.ui.checkBoxFilterHardware.setChecked(True)
-                    self.ui.checkBoxFilterInfoRequest.setChecked(True)
-                    self.ui.checkBoxFilterPriority.setChecked(True)
-                    self.ui.checkBoxFilterUSB.setChecked(True)
-                    self.ui.checkBoxFilterUndefined.setChecked(True)
+                    self.checkBoxFilterErrorToggled()
+                    self.checkBoxFilterExpressionParserToggled()
+                    self.checkBoxFilterDebugToggled()
+                    self.checkBoxFilterHardwareToggled()
+                    self.checkBoxFilterPriorityToggled()
+                    self.checkBoxFilterUndefinedToggled()
+                    self.checkBoxFilterUSBToggled()
+                    self.checkBoxFilterCommAckToggled()
+                    serialHandler.write("debugprint:inforequest:1")
+
+                    #self.ui.checkBoxFilterCommAck.setChecked(True)
+                    #self.ui.checkBoxFilterDebug.setChecked(True)
+                    #self.ui.checkBoxFilterError.setChecked(True)
+                    #self.ui.checkBoxFilterExpressionParser.setChecked(True)
+                    #self.ui.checkBoxFilterHardware.setChecked(True)
+                    #self.ui.checkBoxFilterInfoRequest.setChecked(True)
+                    #self.ui.checkBoxFilterPriority.setChecked(True)
+                    #self.ui.checkBoxFilterUSB.setChecked(True)
+                    #self.ui.checkBoxFilterUndefined.setChecked(True)
 
                 except (OSError, serial.SerialException):
                     print("Connection issue")
@@ -606,9 +828,11 @@ class MainWidget(QWidget):
         global currentShowingModule
         self.ui.doubleSpinBoxFundamentalFrequency.setValue(float(stringModules[currentShowingModule].getFundamentalFrequency()))
         self.ui.doubleSpinBoxBowMotorVoltage.setValue(float(stringModules[currentShowingModule].getMotorVoltage()))
+        self.ui.doubleSpinBoxBowMotorTimeout.setValue(float(stringModules[currentShowingModule].getBowTimeOut()))
         self.ui.doubleSpinBoxMuteFullMutePosition.setValue(float(stringModules[currentShowingModule].getMuteFullMutePosition()))
         self.ui.doubleSpinBoxMuteHalfMutePosition.setValue(float(stringModules[currentShowingModule].getMuteHalfMutePosition()))
         self.ui.doubleSpinBoxMuteRestPosition.setValue(float(stringModules[currentShowingModule].getMuteRestPosition()))
+        self.ui.doubleSpinBoxMuteBackoff.setValue(float(stringModules[currentShowingModule].getMuteBackoff()))
         self.ui.doubleSpinBoxBowMotorMaxSpeed.setValue(float(stringModules[currentShowingModule].getBowMotorMaxSpeed()))
         self.ui.doubleSpinBoxBowMotorMinSpeed.setValue(float(stringModules[currentShowingModule].getBowMotorMinSpeed()))
         self.ui.doubleSpinBoxBowMaxPressure.setValue(float(stringModules[currentShowingModule].getBowMaxPressure()))
@@ -620,12 +844,21 @@ class MainWidget(QWidget):
 
         self.ui.doubleSpinBoxSolenoidMaxForce.setValue(float(stringModules[currentShowingModule].getSolenoidMaxForce()))
         self.ui.doubleSpinBoxSolenoidMinForce.setValue(float(stringModules[currentShowingModule].getSolenoidMinForce()))
+        self.ui.doubleSpinBoxSolenoidEngageDuration.setValue(float(stringModules[currentShowingModule].getSolenoidEngageDuration()))
 
-    def updateContinuousStringModuleData(self):
+    def updateContinuousStringModuleData(self): 
         freq = float(stringModules[currentShowingModule].stringFrequency)
         self.ui.horizontalSliderStringFrequency.setValue(int(freq))
         if (freq > 0):
-            ret = getBaseNoteFromFrequency(freq, scaleDataJust)
+            if (self.ui.listWidgetTuningscheme.currentItem() != None):
+                print(self.ui.listWidgetTuningscheme.currentItem().text())
+                if ((self.ui.listWidgetTuningscheme.currentItem().text()) == "Equal temperament"):
+                    ret = getBaseNoteFromFrequency(freq, scaleDataEqual)
+                else:
+                    ret = getBaseNoteFromFrequency(freq, scaleDataJust)
+            else:
+                ret = getBaseNoteFromFrequency(freq, scaleDataJust)
+
             self.ui.labelAnalyzeNote.setText(ret[3] + str(ret[0]))
             self.ui.labelAnalyzeCents.setText(str(round(ret[2])))
             self.ui.dialAnalyzeCents.setValue(round(ret[2]))
@@ -636,7 +869,16 @@ class MainWidget(QWidget):
         freq = float(stringModules[currentShowingModule].bowFrequency)
         mainWidget.ui.horizontalSliderBowFrequency.setValue(int(freq))
         if (freq > 0):
-            ret = getBaseNoteFromFrequency(freq, scaleDataJust)
+            #ret = getBaseNoteFromFrequency(freq, scaleDataJust)
+            if (self.ui.listWidgetTuningscheme.currentItem() != None):
+                print(self.ui.listWidgetTuningscheme.currentItem().text())
+                if ((self.ui.listWidgetTuningscheme.currentItem().text()) == "Equal temperament"):
+                    ret = getBaseNoteFromFrequency(freq, scaleDataEqual)
+                else:
+                    ret = getBaseNoteFromFrequency(freq, scaleDataJust)
+            else:
+                ret = getBaseNoteFromFrequency(freq, scaleDataJust)
+
             mainWidget.ui.labelBowFrequency.setText(ret[3] + str(ret[0]) + ":" + str(round(ret[2])) + " / " + str(round(freq,1)) + "Hz")
 
         current = float(stringModules[currentShowingModule].bowCurrent)
@@ -646,32 +888,32 @@ class MainWidget(QWidget):
         freq = float(stringModules[currentShowingModule].setFrequency)
         mainWidget.ui.labelSetFrequency.setText(str(freq) + " Hz")
 
-        for cv in range(0,7):
+        for cv in range(0,8):
             match cv:
                 case 0:
-                    dial = mainWidget.ui.dialCV1
-                    label = mainWidget.ui.labelCV1
+                    dial = mainWidget.ui.dialCVHarmonic
+                    label = mainWidget.ui.labelCVHarmonic
                 case 1:
-                    dial = mainWidget.ui.dialCV2
-                    label = mainWidget.ui.labelCV2
+                    dial = mainWidget.ui.dialCVHarmonicShift
+                    label = mainWidget.ui.labelCVHarmonicShift
                 case 2:
-                    dial = mainWidget.ui.dialCV3
-                    label = mainWidget.ui.labelCV3
+                    dial = mainWidget.ui.dialCVFineTune
+                    label = mainWidget.ui.labelCVFineTune
                 case 3:
-                    dial = mainWidget.ui.dialCV4
-                    label = mainWidget.ui.labelCV4
+                    dial = mainWidget.ui.dialCVPressure
+                    label = mainWidget.ui.labelCVPressure
                 case 4:
-                    dial = mainWidget.ui.dialCV5
-                    label = mainWidget.ui.labelCV5
+                    dial = mainWidget.ui.dialCVHammerTrigger
+                    label = mainWidget.ui.labelCVHammerTrigger
                 case 5:
-                    dial = mainWidget.ui.dialCV6
-                    label = mainWidget.ui.labelCV6
+                    dial = mainWidget.ui.dialCVGate
+                    label = mainWidget.ui.labelCVGate
                 case 6:
-                    dial = mainWidget.ui.dialCV7
-                    label = mainWidget.ui.labelCV7
+                    dial = mainWidget.ui.dialCVHammerScale
+                    label = mainWidget.ui.labelCVHammerScale
                 case 7:
-                    dial = mainWidget.ui.dialCV8
-                    label = mainWidget.ui.labelCV8
+                    dial = mainWidget.ui.dialCVMute
+                    label = mainWidget.ui.labelCVMute
 
             dial.setValue( int(stringModules[currentShowingModule].getCV(cv)) )
             label.setText(str(stringModules[currentShowingModule].getCV(cv)) )
@@ -695,7 +937,11 @@ class MainWidget(QWidget):
         setReportFeedback("hardware", self.ui.checkBoxFilterHardware.isChecked())
 
     def checkBoxFilterInfoRequestToggled(self):
-        setReportFeedback("inforequest", self.ui.checkBoxFilterInfoRequest.isChecked())
+        #setReportFeedback("inforequest", self.ui.checkBoxFilterInfoRequest.isChecked())
+        if (self.ui.checkBoxFilterInfoRequest.isChecked()):
+            self.filterHideInfoRequest = False
+        else:
+            self.filterHideInfoRequest = True
 
     def checkBoxFilterPriorityToggled(self):
         setReportFeedback("priority", self.ui.checkBoxFilterPriority.isChecked())
@@ -705,6 +951,18 @@ class MainWidget(QWidget):
 
     def checkBoxFilterUndefinedToggled(self):
         setReportFeedback("undefined", self.ui.checkBoxFilterUndefined.isChecked())
+
+    def checkBoxFilterOutputToggled(self):
+        if (self.ui.checkBoxFilterOutput.isChecked()):
+            self.filterHideOutput = False
+        else:
+            self.filterHideOutput = True
+
+    def checkBoxDebugCursorFollowToggled(self):
+        if (self.ui.checkBoxDebugCursorFollow.isChecked()):
+            self.debugCursorFollow = True
+        else:
+            self.debugCursorFollow = False
 
     def comboBoxCurrentSelectedModuleIndexChanged(self, index):
         global currentShowingModule
@@ -718,6 +976,12 @@ class MainWidget(QWidget):
 
     def doubleSpinBoxBowMotorVoltageValueChanged(value):
         out = "m:" + str(currentShowingModule) + ",bowmotorvoltage:" + str(mainWidget.ui.doubleSpinBoxBowMotorVoltage.value())
+        serialHandler.write(out)
+        print(out)
+
+    def doubleSpinBoxBowMotorTimeoutValueChanged(self):
+        out = "m:" + str(currentShowingModule) + ",bowmotortimeout:" + str(
+            mainWidget.ui.doubleSpinBoxBowMotorTimeout.value())
         serialHandler.write(out)
         print(out)
 
@@ -751,6 +1015,12 @@ class MainWidget(QWidget):
         serialHandler.write(out)
         print(out)
 
+    def doubleSpinBoxMuteBackoffValueChanged(self):
+        serialHandler.write("mutebackoff:" + str(mainWidget.ui.doubleSpinBoxMuteBackoff.value()))
+
+    def pushButtonCalibrateMutePressed(self):
+        serialHandler.write("mutecalibrate")
+
     def tableViewScaleDataChanged(self, topLeft, bottomRight, role):
         print("edited " + str(topLeft.column()) + ":" + str(topLeft.data()))
         serialHandler.write("m:" + str(currentSerialModule) + ",bowcontrolharmonicratio:" + str(topLeft.column()) + ":" + str(topLeft.data()))
@@ -769,6 +1039,12 @@ class MainWidget(QWidget):
         out = "m:" + str(currentShowingModule) + ",solenoidminforce:" + str(mainWidget.ui.doubleSpinBoxSolenoidMinForce.value())
         serialHandler.write(out)
         print(out)
+
+    def doubleSpinBoxSolenoidEngageDurationValueChanged(self):
+        out = "m:" + str(currentShowingModule) + ",solenoidengageduration:" + str(mainWidget.ui.doubleSpinBoxSolenoidEngageDuration.value())
+        serialHandler.write(out)
+        print(out)
+
 
     def updateLineLimit(self):
         if (self.ui.checkBoxLimitLines.checkState() == Qt.CheckState.Checked):
@@ -798,6 +1074,8 @@ class MainWidget(QWidget):
 
     def listWidgetMidiEventscurrentItemChanged(self, current, previous):
         self.ui.plainTextEditEventDescription.clear()
+        if current is None:
+            return
         match (current.text()):
             case "Note On":
                 mainWidget.ui.lineEditMidiEventCommand.setText(str(instrumentMaster.evNoteOn))
@@ -833,6 +1111,8 @@ class MainWidget(QWidget):
 
     def readSMData(self):
         serialHandler.write("rqi:pickupstringfrequency")
+        serialHandler.write("rqi:pickupaudiopeak")
+        serialHandler.write("rqi:pickupaudiorms")
         serialHandler.write("rqi:bowmotorfrequency")
         serialHandler.write("rqi:bowmotorcurrent")
         serialHandler.write("rqi:bowcontrolfrequency")
@@ -842,7 +1122,7 @@ class MainWidget(QWidget):
     def checkBoxContinuousSMDataToggled(self):
         self.setContinuousSMReadings(self.ui.checkBoxContinuousSMData.isChecked())
 
-    midiKeys = ["C-", "C#", "D-", "D#", "E-", "F-", "F#", "G", "G#", "A-", "A#", "B-"]
+    midiKeys = ["C-", "C#", "D-", "D#", "E-", "F-", "F#", "G-", "G#", "A-", "A#", "B-"]
 
     def populateComboBoxBaseNote(self):
         for octave in range(0,3):
@@ -871,6 +1151,8 @@ class MainWidget(QWidget):
             mainWidget.ui.tableViewScale.model().setDataNR((c - 1), float(self.harmonicPresets[b][c]))
 
     def lineEditMidiEventCommandFinished(self):
+        if mainWidget.ui.listWidgetMidiEvents.currentItem() == None:
+            return
         commandSelected = mainWidget.ui.listWidgetMidiEvents.currentItem().text()
         commandSequence = mainWidget.ui.lineEditMidiEventCommand.text()
 
@@ -909,7 +1191,8 @@ class MainWidget(QWidget):
 
     def listWidgetCommandsCurrentItemChanged(self, current, previous):
         mainWidget.ui.plainTextEditCMVDescription.clear()
-        mainWidget.ui.plainTextEditCMVDescription.insertPlainText(current.data(Qt.UserRole))
+        if current is not None:
+            mainWidget.ui.plainTextEditCMVDescription.insertPlainText(current.data(Qt.UserRole))
 
     def find_item(self, combo_box, item_text):
         for index in range(combo_box.count()):
@@ -957,6 +1240,9 @@ class MainWidget(QWidget):
         # midiIn = mido.open_input(mainWidget.ui.comboBoxMIDILearnDevice.currentText())
         self.midiHandlerC.connecToMIDIIn(mainWidget.ui.comboBoxMIDILearnDevice.currentText())
 
+    def pushButtonMidiRestoreDefaults(self):
+        serialHandler.write("mcfd")
+
     def ccAdd(self):
         cc, ok = QInputDialog.getInt(self, "CC Number", "CC Number")
         if ok and (cc > -1 and cc < 128):
@@ -972,6 +1258,72 @@ class MainWidget(QWidget):
         serialHandler.write("mevcr:" + text[3:len(text)])
         self.updateUIData()
 
+    def cmdNoteOnUpdate(self):
+        if self.updatingFromModule:
+            return
+
+        cl = CommandList(self.ui.midiNoteOnOther.text())
+        cmd = cl.buildCommandString({"se", "mr"})
+
+        if self.ui.midiNoteOnVelToHammer.value() > 0:
+            cmd += ",se:(velocity*" + str(self.ui.midiNoteOnVelToHammer.value()) + ")"
+            if self.ui.midiNoteOnHammerStaccato.checkState() == Qt.CheckState.Checked:
+                cmd += "*(1-notecount)"
+        if self.ui.midiNoteOnSendMuteRest.checkState() == Qt.CheckState.Checked:
+            cmd += ",mr:1"
+        serialString = "mev:noteon:\"" + cmd + "\""
+        serialHandler.write(serialString)
+        self.updateUIData()
+
+    def cmdNoteOffUpdate(self):
+        cl = CommandList(self.ui.midiNoteOffOther.text())
+        cmd = cl.buildCommandString({"mfm", "bmr"})
+
+        if self.ui.midiNoteOffSendFullMute.checkState() == Qt.CheckState.Checked:
+            cmd += ",mfm:1"
+        if self.ui.midiNoteOffMotorOff.checkState() == Qt.CheckState.Checked:
+            cmd += ",bmr:1"
+        serialString = "mev:noteoff:\"" + cmd + "\""
+        serialHandler.write(serialString)
+        self.updateUIData()
+
+    def addTuningSchemes(self):
+        mainWidget.ui.listWidgetTuningscheme.addItem("Just intonation")
+        mainWidget.ui.listWidgetTuningscheme.addItem("Equal temperament")
+
+    def tuningSchemeChanged(self, current, previous):
+        mainWidget.populateFundamentalComboBox()
+        pass
+
+    def comboBoxMidiChannelIndexChanged(self):
+        if mainWidget.ui.comboBoxMidiChannel.currentText() == "Omni":
+            ch = 0
+        else:
+            ch = int(mainWidget.ui.comboBoxMidiChannel.currentText())
+        serialHandler.write("mrc:" + str(ch))
+
+    def populateFundamentalComboBox(self):
+        mainWidget.ui.comboBoxFundamentalFrequency.clear()
+
+        try:
+            if ((self.ui.listWidgetTuningscheme.currentItem().text()) == "Equal temperament"):
+                noteDataArray = scaleDataEqual
+            else:
+                noteDataArray = scaleDataJust
+        except:
+            noteDataArray = scaleDataJust
+
+        base = 110 / 4
+        for octave in range(0, 3):
+            for note in range (0, 11):
+                mainWidget.ui.comboBoxFundamentalFrequency.addItem(noteDataArray[2][note] + " " + str(round((pow(2, octave)*base) * noteDataArray[1][note], 2)))
+
+    def comboBoxFundamentalFrequencyIndexChanged(self):
+        text = mainWidget.ui.comboBoxFundamentalFrequency.currentText()
+        if text == "":
+            return
+        mainWidget.ui.doubleSpinBoxFundamentalFrequency.setValue(float(mainWidget.ui.comboBoxFundamentalFrequency.currentText()[3:len(text)]))
+
 #harmonicSeriesList = [,
 #    [1, 1.059463094, 1.122462048, 1.189207115, 1.25992105, 1.334839854, 1.414213562, 1.498307077, 1.587401052, 1.681792831, 1.781797436, 1.887748625]]
 #currentHarmonicSeries = 0
@@ -979,7 +1331,10 @@ class MainWidget(QWidget):
 import math
 
 # Base note at octave 5
-scaleDataJust = [440, [1, 1.06667, 1.125, 1.2, 1.25, 1.3333, 1.40625, 1.5, 1.6, 1.66667, 1.8, 1.875], ["A-", "A#", "B-", "C-", "C#", "D-", "D#", "E-", "F-", "F#", "G", "G#"]]
+scaleDataJust = [440, [1, 1.06667, 1.125, 1.2, 1.25, 1.3333, 1.40625, 1.5, 1.6, 1.66667, 1.8, 1.875],
+                 ["A-", "A#", "B-", "C-", "C#", "D-", "D#", "E-", "F-", "F#", "G-", "G#"]]
+scaleDataEqual = [440, [1, 1.059463094, 1.122462048, 1.189207115, 1.259921050, 1.334839854, 1.414213562, 1.498307077, 1.587401052, 1.681792831, 1.781797436, 1.887748625],
+                  ["A-", "A#", "B-", "C-", "C#", "D-", "D#", "E-", "F-", "F#", "G-", "G#"]]
 
 def getBaseNoteFromFrequency(frequency, noteDataArray):
     oct0f = noteDataArray[0] / 32
@@ -1027,11 +1382,13 @@ if __name__ == "__main__":
     mainWidget.show()
 
     mainWidget.ui.listWidgetCommands.setSortingEnabled(True)
+    #mainWidget.ui.comboBoxFundamentalFrequency
 ## Hiding old
     mainWidget.ui.horizontalSliderStringFrequency.setVisible(False)
     mainWidget.ui.labelStringFrequency.setVisible(False)
     mainWidget.ui.horizontalSliderBowCurrent.setVisible(False)
     mainWidget.ui.horizontalSliderBowFrequency.setVisible(False)
+
 ## Global commands
     mainWidget.ui.pushButtonConnectDisconnect.pressed.connect(mainWidget.connectDisconnect)
     mainWidget.ui.pushButtonSaveToModule.pressed.connect(mainWidget.pushButtonSaveToModulePressed)
@@ -1048,19 +1405,23 @@ if __name__ == "__main__":
     mainWidget.ui.checkBoxFilterPriority.toggled.connect(mainWidget.checkBoxFilterPriorityToggled)
     mainWidget.ui.checkBoxFilterUSB.toggled.connect(mainWidget.checkBoxFilterUSBToggled)
     mainWidget.ui.checkBoxFilterUndefined.toggled.connect(mainWidget.checkBoxFilterUndefinedToggled)
+    mainWidget.ui.checkBoxFilterOutput.toggled.connect(mainWidget.checkBoxFilterOutputToggled)
     mainWidget.ui.lineEditSend.editingFinished.connect(mainWidget.lineEditSend)
+    mainWidget.ui.checkBoxDebugCursorFollow.toggled.connect(mainWidget.checkBoxDebugCursorFollowToggled)
     mainWidget.ui.pushButtonClear.pressed.connect(mainWidget.debugClear)
     mainWidget.ui.checkBoxLimitLines.stateChanged.connect(mainWidget.checkBoxLimitLinesStateChanged)
     mainWidget.ui.spinBoxLimitLines.valueChanged.connect(mainWidget.spinBoxLimitLinesValueChanged)
-    mainWidget.ui.checkBoxLimitLines.setCheckState(Qt.CheckState.Checked)
 
 ## Tab Module settings
     mainWidget.ui.comboBoxCurrentlySelectedModule.currentIndexChanged.connect(mainWidget.comboBoxCurrentSelectedModuleIndexChanged)
 
     mainWidget.ui.doubleSpinBoxFundamentalFrequency.valueChanged.connect(mainWidget.doubleSpinBoxFundamentalFrequencyValueChanged)
     mainWidget.ui.comboBoxBaseNote.currentIndexChanged.connect(mainWidget.comboBoxBaseNotePressed)
+    mainWidget.ui.comboBoxFundamentalFrequency.currentIndexChanged.connect(mainWidget.comboBoxFundamentalFrequencyIndexChanged)
+    mainWidget.ui.listWidgetTuningscheme.currentItemChanged.connect(mainWidget.tuningSchemeChanged)
 
     mainWidget.ui.doubleSpinBoxBowMotorVoltage.valueChanged.connect(mainWidget.doubleSpinBoxBowMotorVoltageValueChanged)
+    mainWidget.ui.doubleSpinBoxBowMotorTimeout.valueChanged.connect(mainWidget.doubleSpinBoxBowMotorTimeoutValueChanged)
     mainWidget.ui.pushButtonCalibrateMotorSpeed.pressed.connect(mainWidget.pushButtonCalibrateSpeedPressed)
 
     mainWidget.ui.doubleSpinBoxBowMaxPressure.valueChanged.connect(mainWidget.doubleSpinBoxBowMaxPressureValueChanged)
@@ -1071,18 +1432,34 @@ if __name__ == "__main__":
     mainWidget.ui.doubleSpinBoxMuteFullMutePosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteFullMutePositionValueChanged)
     mainWidget.ui.doubleSpinBoxMuteHalfMutePosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteHalfMutePositionValueChanged)
     mainWidget.ui.doubleSpinBoxMuteRestPosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteRestPositionValueChanged)
+    mainWidget.ui.doubleSpinBoxMuteBackoff.valueChanged.connect(mainWidget.doubleSpinBoxMuteBackoffValueChanged)
+    mainWidget.ui.pushButtonCalibrateMute.pressed.connect(mainWidget.pushButtonCalibrateMutePressed)
 
     mainWidget.ui.comboBoxHarmonicList.currentIndexChanged.connect(mainWidget.comboBoxHarmonicListCurrentIndexChanged)
     mainWidget.ui.pushButtonLoadHarmonicPreset.pressed.connect(mainWidget.pushButtonLoadHarmonicPresetPressed)
 
     mainWidget.ui.doubleSpinBoxSolenoidMaxForce.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidMaxForceValueChanged)
     mainWidget.ui.doubleSpinBoxSolenoidMinForce.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidMinForceValueChanged)
+    mainWidget.ui.doubleSpinBoxSolenoidEngageDuration.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidEngageDurationValueChanged)
 
     mainWidget.ui.pushButtonActuatorSave.pressed.connect(mainWidget.pushButtonActuatorSavePressed)
     mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
     mainWidget.ui.pushButtonActuatorDelete.pressed.connect(mainWidget.pushButtonAcutatorDeletePreset)
 
 ## Tab Midi settings
+    mainWidget.ui.comboBoxMidiChannel.currentIndexChanged.connect(mainWidget.comboBoxMidiChannelIndexChanged)
+
+    mainWidget.ui.pushButtonMidiRestoreDefaults.pressed.connect(mainWidget.pushButtonMidiRestoreDefaults)
+
+    mainWidget.ui.midiNoteOnVelToHammer.valueChanged.connect(mainWidget.cmdNoteOnUpdate)
+    mainWidget.ui.midiNoteOnHammerStaccato.stateChanged.connect(mainWidget.cmdNoteOnUpdate)
+    mainWidget.ui.midiNoteOnSendMuteRest.stateChanged.connect(mainWidget.cmdNoteOnUpdate)
+    mainWidget.ui.midiNoteOnOther.editingFinished.connect(mainWidget.cmdNoteOnUpdate)
+
+    mainWidget.ui.midiNoteOffOther.editingFinished.connect(mainWidget.cmdNoteOffUpdate)
+    mainWidget.ui.midiNoteOffSendFullMute.stateChanged.connect(mainWidget.cmdNoteOffUpdate)
+    mainWidget.ui.midiNoteOffMotorOff.stateChanged.connect(mainWidget.cmdNoteOffUpdate)
+
     mainWidget.ui.pushButtonConfigurationName.pressed.connect(mainWidget.configurationSetName)
     mainWidget.ui.listWidgetMidiEvents.currentItemChanged.connect(mainWidget.listWidgetMidiEventscurrentItemChanged)
     mainWidget.ui.lineEditMidiEventCommand.editingFinished.connect(mainWidget.lineEditMidiEventCommandFinished)
@@ -1095,6 +1472,28 @@ if __name__ == "__main__":
     delegate = tableTest.SpinBoxDelegate()
     mainWidget.ui.tableViewScale.setItemDelegateForRow(0, delegate)
     mainWidget.ui.tableViewScale.model().dataChanged.connect(mainWidget.tableViewScaleDataChanged)
+
+## Default settings
+    mainWidget.addTuningSchemes()
+    mainWidget.ui.spinBoxLimitLines.setValue(2500)
+    mainWidget.setUIEnabled(True)
+    mainWidget.ui.checkBoxLimitLines.setCheckState(Qt.CheckState.Checked)
+
+    mainWidget.ui.checkBoxFilterInfoRequest.setCheckState(Qt.CheckState.Unchecked)
+    mainWidget.ui.checkBoxFilterOutput.setCheckState(Qt.CheckState.Unchecked)
+    mainWidget.checkBoxFilterInfoRequestToggled()
+    mainWidget.checkBoxFilterOutputToggled()
+    mainWidget.ui.checkBoxFilterUSB.setCheckState(Qt.CheckState.Checked)
+    mainWidget.ui.checkBoxFilterHardware.setCheckState(Qt.CheckState.Unchecked)
+    mainWidget.ui.checkBoxFilterExpressionParser.setCheckState(Qt.CheckState.Unchecked)
+    mainWidget.ui.checkBoxFilterCommAck.setCheckState(Qt.CheckState.Checked)
+    mainWidget.ui.checkBoxFilterDebug.setCheckState(Qt.CheckState.Unchecked)
+    mainWidget.ui.checkBoxFilterPriority.setCheckState(Qt.CheckState.Checked)
+    mainWidget.ui.checkBoxFilterError.setCheckState(Qt.CheckState.Checked)
+    mainWidget.ui.checkBoxFilterUndefined.setCheckState(Qt.CheckState.Checked)
+    mainWidget.checkBoxDebugCursorFollowToggled()
+
+    mainWidget.ui.plainTextEditSerialOutput.setUndoRedoEnabled(False)
 
 #    print(str(len(data)) + ":" + str(len(data[0])))
 # various tests
@@ -1122,6 +1521,7 @@ if __name__ == "__main__":
 #    print("noteName " + str(ret[3]))
 
 # pre-start inits
+    mainWidget.populateFundamentalComboBox()
     mainWidget.populateSerialPorts()
     mainWidget.addToDebugWindow("Initialized\n")
     sys.exit(app.exec())
