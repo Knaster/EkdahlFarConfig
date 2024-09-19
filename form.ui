@@ -577,7 +577,7 @@
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab_stringModule">
     <attribute name="title">
@@ -1357,7 +1357,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Ms</string>
+       <string>mS</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButtonCalibrateMute">
@@ -1373,9 +1373,9 @@
        <string>Calibrate mute</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="pushButtonMuteRestTest">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -1430,9 +1430,9 @@
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="pushButtonMuteFullTest">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -1449,9 +1449,9 @@
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="pushButtonMuteHalfTest">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -1583,7 +1583,7 @@
        <double>65535.000000000000000</double>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="pushButtonEngageHammer">
       <property name="geometry">
        <rect>
         <x>1000</x>
@@ -1713,7 +1713,7 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>730</x>
+        <x>750</x>
         <y>30</y>
         <width>16</width>
         <height>25</height>
@@ -1732,7 +1732,7 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>710</x>
+        <x>730</x>
         <y>30</y>
         <width>16</width>
         <height>25</height>
@@ -1743,6 +1743,19 @@
       </property>
       <property name="flat">
        <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_62">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>30</y>
+        <width>21</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>uS</string>
       </property>
      </widget>
     </widget>
@@ -3567,7 +3580,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_4">
+     <widget class="QLineEdit" name="lineEditCVHarmonicShiftCommands">
       <property name="enabled">
        <bool>false</bool>
       </property>
@@ -3689,7 +3702,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_5">
+     <widget class="QLineEdit" name="lineEditCVMuteCommands">
       <property name="enabled">
        <bool>false</bool>
       </property>
@@ -3798,7 +3811,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_6">
+     <widget class="QLineEdit" name="lineEditCVPressureCommands">
       <property name="enabled">
        <bool>false</bool>
       </property>
@@ -3907,7 +3920,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_7">
+     <widget class="QLineEdit" name="lineEditCVHammerTriggerCommands">
       <property name="enabled">
        <bool>false</bool>
       </property>
@@ -4016,7 +4029,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_8">
+     <widget class="QLineEdit" name="lineEditCVGateCommands">
       <property name="enabled">
        <bool>false</bool>
       </property>
@@ -4125,7 +4138,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_9">
+     <widget class="QLineEdit" name="lineEditCVFineTuneCommands">
       <property name="enabled">
        <bool>false</bool>
       </property>
@@ -4291,7 +4304,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_10">
+     <widget class="QLineEdit" name="lineEditCVHammerScaleCommands">
       <property name="enabled">
        <bool>false</bool>
       </property>

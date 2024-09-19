@@ -22,7 +22,7 @@ import sys
 
 import serial.tools.list_ports
 
-from PySide6.QtWidgets import QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit, QComboBox
+from PySide6.QtWidgets import QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit, QComboBox, QSlider
 from PySide6.QtCore import QThread, Signal, QTimer, QModelIndex, Qt, QObject, QDir, Slot
 from PySide6.QtGui import QTextBlock, QTextCursor, QTextBlockFormat, QColor
 
@@ -113,9 +113,6 @@ def processInformationReturn(inSerialHandler, infoReturn):
                     currentSerialModule = int(i.argument[0])
                     addModulesIfNeeded(currentSerialModule)
                     print ("setting current serial module to " + i.argument[0])
-#                case "b":
-#                    currentBow = i.argument[0]
-#                    print ("setting current serial bow to " + i.argument[0])
                 case "mc":
                     global moduleCount
                     moduleCount = int(i.argument[0])
@@ -123,14 +120,8 @@ def processInformationReturn(inSerialHandler, infoReturn):
                     print ("setting module count to " + i.argument[0])
                 case "b" | "bcu" | "bmv" | "bmt" | "bpkp" | "bpki" | "bpkd" | "bpie" | "mfmp" | "mhmp" | "mrp" | "mbo" | \
                      "bmsx" | "bmsi" | "bppx" | "bppe" | "bppr" | "bmf" | "psf" | "bmc" | "sxf" | "sif" | "sed" | "bcf":
-                    #stringModules[currentSerialModule].setFundamentalFrequency(i.argument[0])
                     stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
                     mainWidget.updateStringModuleData()
-#                case "psf":
-#                    if i.argument[0] == -1:
-#                        break
-#                    stringModules[currentSerialModule].setCommandValue(i.command, i.argument[0])
-#                    mainWidget.updateStringModuleData()
                 case "bchl":
                     hl = i.argument[0]
                     print(hl)
@@ -238,51 +229,16 @@ def processInformationReturn(inSerialHandler, infoReturn):
                             mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Program change"))
                             print("Setting polyphonic aftertouch to " + str(instrumentMaster.evProgramChange))
 
-                #case "psf":
-                #    stringModules[currentSerialModule].stringFrequency = float(i.argument[0])
-                #    mainWidget.updateContinuousStringModuleData()
-                #    print("Setting string frequency to " + str(stringModules[currentSerialModule].stringFrequency))
-
-                #case "bmf":
-                #    stringModules[currentSerialModule].bowFrequency = float(i.argument[0])
-                #    mainWidget.updateContinuousStringModuleData()
-                #    print("Setting bow frequency to " + str(stringModules[currentSerialModule].stringFrequency))
-
                 case "bchbn":
                     for a in range(1, mainWidget.ui.comboBoxBaseNote.count()):
                         if int(mainWidget.ui.comboBoxBaseNote.itemData(a)) == int(i.argument[0]):
                             mainWidget.ui.comboBoxBaseNote.setCurrentIndex(a)
                     print("setting base note to " + str(i.argument[0]))
 
-                #case "bmc":
-                #    stringModules[currentSerialModule].bowCurrent = float(i.argument[0])
-                #    mainWidget.updateContinuousStringModuleData()
-                #    print("Setting bow current to " + str(stringModules[currentSerialModule].bowCurrent))
-
-                #case "sxf":
-                #    stringModules[currentSerialModule].setSolenoidMaxForce(i.argument[0])
-                #    mainWidget.updateStringModuleData()
-                #    print("Setting solenoid max force to " + str(stringModules[currentSerialModule].getSolenoidMaxForce()))
-
-                #case "sif":
-                #    stringModules[currentSerialModule].setSolenoidMinForce(i.argument[0])
-                #    mainWidget.updateStringModuleData()
-                #    print("Setting solenoid min force to " + str(stringModules[currentSerialModule].getSolenoidMinForce()))
-
-                #case "sed":
-                #    stringModules[currentSerialModule].setSolenoidEngageDuration(i.argument[0])
-                #    mainWidget.updateStringModuleData()
-                #    print("Setting solenoid engage duration to " + str(stringModules[currentSerialModule].getSolenoidEngageDuration()))
-
-                #case "bcf":
-                #    stringModules[currentSerialModule].setSetFrequency(i.argument[0])
-                #    mainWidget.updateContinuousStringModuleData()
-                #    print("Setting set frequency to " + str(stringModules[currentSerialModule].setFrequency))
-
                 case "adcr":
                     print("adcr " + str(i.argument[0]) + ":" + str(i.argument[1]))
-                    stringModules[currentSerialModule].setCV(int(i.argument[0]), int(i.argument[1]))
-                    print("module data " + str(stringModules[currentSerialModule].getCV(0)))
+                    stringModules[currentSerialModule].setCVValue(int(i.argument[0]), int(i.argument[1]))
+                    print("module data " + str(stringModules[currentSerialModule].getCVValue(0)))
                     mainWidget.updateContinuousStringModuleData()
 
                 case "bac":
@@ -417,7 +373,6 @@ def requestBaseData():
     serialHandler.write("rqi:modulecount")
 
 class serialHandler(QThread):
-#    dataAvaliable = Signal(str)
     dataAvaliable = Signal(object, str)
     disconnectSignal = Signal()
     chartDataSignal = Signal(str, float, timedChart.seriesType) # float, float)
@@ -428,9 +383,6 @@ class serialHandler(QThread):
 #        pass
 
     def run(self) -> None:
-        #for index in range(20):
-#        connectionTimeout = process_time()
-#        alive = 0
         while self.isRunning:
             processed = False
             global serialStream
@@ -439,18 +391,10 @@ class serialHandler(QThread):
                     if serialStream.inWaiting() != 0:
                         receivedText = serialStream.readline().decode('ascii').strip()
                         print("Received '" + receivedText + "'")
-#                        if (receivedText[:5] == "[irq]"):
-#                            processed = processInformationReturn(self, receivedText[5:])
-#                        elif (receivedText[:5] == "[hlp]"):
-#                            processed = processHelpReturn(receivedText[5:])
-#
-#                        if (not processed):
-#                            self.dataAvaliable.emit("<si< " + receivedText)
                         self.dataAvaliable.emit(self, receivedText)
 
             except Exception as e:
                 serialStream = None
-#                mainWidget.serialDisconnect()
                 self.disconnectSignal.emit()
                 print("Error in serialStream")
                 print(e)
@@ -513,7 +457,6 @@ def selectSendDestinationAndRatio(comboBox, commandList, ratio, variable):
             ratio.setValue(multiplier)
         except:
             pass
-
 
     comboBox.blockSignals(False)
 
@@ -690,16 +633,6 @@ class MainWidget(QWidget):
                     self.checkBoxFilterCommAckToggled()
                     serialHandler.write("debugprint:inforequest:1")
 
-                    #self.ui.checkBoxFilterCommAck.setChecked(True)
-                    #self.ui.checkBoxFilterDebug.setChecked(True)
-                    #self.ui.checkBoxFilterError.setChecked(True)
-                    #self.ui.checkBoxFilterExpressionParser.setChecked(True)
-                    #self.ui.checkBoxFilterHardware.setChecked(True)
-                    #self.ui.checkBoxFilterInfoRequest.setChecked(True)
-                    #self.ui.checkBoxFilterPriority.setChecked(True)
-                    #self.ui.checkBoxFilterUSB.setChecked(True)
-                    #self.ui.checkBoxFilterUndefined.setChecked(True)
-
                 except (OSError, serial.SerialException):
                     print("Connection issue")
                     pass
@@ -725,25 +658,19 @@ class MainWidget(QWidget):
     def lineEditSend(self):
         if serialStream is not None:
             tempText = mainWidget.ui.lineEditSend.text()
-            #+ "\r\n"
-    #        serialStream.write(tempText.encode('ascii'))
             serialHandler.write(tempText)
             print("sending " + str(tempText.encode()))
             mainWidget.ui.lineEditSend.clear()
-        #print(widget.ui.lineEditSend.text())
 
     def updateStringModuleData(self):
         global stringModules
         global currentShowingModule
-        #self.ui.doubleSpinBoxFundamentalFrequency.setValue(float(stringModules[currentShowingModule].getFundamentalFrequency()))
         self.ui.doubleSpinBoxFundamentalFrequency.setValue(
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxFundamentalFrequency.command)))
         self.ui.doubleSpinBoxBowMotorVoltage.setValue(
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorVoltage.command)))
         self.ui.doubleSpinBoxBowMotorTimeout.setValue(
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorTimeout.command)))
-#        self.ui.doubleSpinBoxBowMotorVoltage.setValue(float(stringModules[currentShowingModule].getMotorVoltage()))
-#        self.ui.doubleSpinBoxBowMotorTimeout.setValue(float(stringModules[currentShowingModule].getBowTimeOut()))
         self.ui.doubleSpinBoxMuteFullMutePosition.setValue(
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteFullMutePosition.command)))
         self.ui.doubleSpinBoxMuteHalfMutePosition.setValue(
@@ -752,38 +679,24 @@ class MainWidget(QWidget):
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteRestPosition.command)))
         self.ui.doubleSpinBoxMuteBackoff.setValue(
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteBackoff.command)))
-#        self.ui.doubleSpinBoxMuteFullMutePosition.setValue(float(stringModules[currentShowingModule].getMuteFullMutePosition()))
-#        self.ui.doubleSpinBoxMuteHalfMutePosition.setValue(float(stringModules[currentShowingModule].getMuteHalfMutePosition()))
-#        self.ui.doubleSpinBoxMuteRestPosition.setValue(float(stringModules[currentShowingModule].getMuteRestPosition()))
-#        self.ui.doubleSpinBoxMuteBackoff.setValue(float(stringModules[currentShowingModule].getMuteBackoff()))
         self.ui.doubleSpinBoxBowMotorMaxSpeed.setValue(
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorMaxSpeed.command)))
         self.ui.doubleSpinBoxBowMotorMinSpeed.setValue(
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorMinSpeed.command)))
-#        self.ui.doubleSpinBoxBowMotorMaxSpeed.setValue(float(stringModules[currentShowingModule].getBowMotorMaxSpeed()))
-#        self.ui.doubleSpinBoxBowMotorMinSpeed.setValue(float(stringModules[currentShowingModule].getBowMotorMinSpeed()))
         self.ui.doubleSpinBoxBowMaxPressure.setValue(
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMaxPressure.command)))
         self.ui.doubleSpinBoxBowMinPressure.setValue(
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMinPressure.command)))
         self.ui.doubleSpinBoxBowRestPosition.setValue(
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowRestPosition.command)))
-#        self.ui.doubleSpinBoxBowMaxPressure.setValue(float(stringModules[currentShowingModule].getBowMaxPressure()))
-#        self.ui.doubleSpinBoxBowMinPressure.setValue(float(stringModules[currentShowingModule].getBowMinPressure()))
-#        self.ui.doubleSpinBoxBowRestPosition.setValue(float(stringModules[currentShowingModule].getBowRestPosition()))
-
-#        self.ui.horizontalSliderBowFrequency.setMaximum(int(float(stringModules[currentShowingModule].getBowMotorMaxSpeed()) ))
-        self.updateContinuousStringModuleData()
-
         self.ui.doubleSpinBoxSolenoidMaxForce.setValue(
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidMaxForce.command)))
         self.ui.doubleSpinBoxSolenoidMinForce.setValue(
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidMinForce.command)))
         self.ui.doubleSpinBoxSolenoidEngageDuration.setValue(
             float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidEngageDuration.command)))
-#        self.ui.doubleSpinBoxSolenoidMaxForce.setValue(float(stringModules[currentShowingModule].getSolenoidMaxForce()))
-#        self.ui.doubleSpinBoxSolenoidMinForce.setValue(float(stringModules[currentShowingModule].getSolenoidMinForce()))
-#        self.ui.doubleSpinBoxSolenoidEngageDuration.setValue(float(stringModules[currentShowingModule].getSolenoidEngageDuration()))
+
+        self.updateContinuousStringModuleData()
 
     def updateContinuousStringModuleData(self): 
         #freq = float(stringModules[currentShowingModule].stringFrequency)
@@ -862,11 +775,34 @@ class MainWidget(QWidget):
                     dial = mainWidget.ui.dialCVMute
                     label = mainWidget.ui.labelCVMute
 
-            dial.setValue( int(stringModules[currentShowingModule].getCV(cv)) )
-            label.setText(str(stringModules[currentShowingModule].getCV(cv)) )
+            dial.setValue(int(stringModules[currentShowingModule].getCVValue(cv)) )
+            label.setText(str(stringModules[currentShowingModule].getCVValue(cv)) )
 
     def debugClear(self):
         self.ui.plainTextEditSerialOutput.clear()
+
+    def assignFeedbackReportItem(self, qtObject, reportType):
+        qtObject.reportType = reportType
+        qtObject.toggled.connect(self.feedbackReportToggled)
+
+    def feedbackReportToggled(self):
+        sender = self.sender()
+        if (sender.reportType == "inforequest"):
+            if (sender.isChecked()):
+                self.filterHideInfoRequest = False
+            else:
+                self.filterHideInfoRequest = True
+        elif (sender.reportType == "output"):
+            if (sender.isChecked()):
+                self.filterHideOutput = False
+            else:
+                self.filterHideOutput = True
+        else:
+            if (sender.isChecked()):
+                out = "1"
+            else:
+                out = "0"
+            serialHandler.write("debugprint:" + sender.reportType + ":" + out)
 
     def checkBoxFilterCommAckToggled(self):
         setReportFeedback("command", self.ui.checkBoxFilterCommAck.isChecked())
@@ -920,87 +856,18 @@ class MainWidget(QWidget):
         qtObject.command = command
         qtObject.valueChanged.connect(self.basicChangedSignal)
 
-    def assignIndexChanged(self, qtObject, command):
-        qtObject.command = command
-        qtObject.currentIndexChanged.connect(self.basicChangedSignal)
-
     def basicChangedSignal(self, value):
         sender = self.sender()
         out = "m:" + str(currentShowingModule) + "," + sender.command + ":" + str(value)
         stringModules[currentShowingModule].setCommandValue(sender.command, float(value))
         serialHandler.write(out)
 
-    def doubleSpinBoxBowMotorVoltageValueChanged(value):
-        out = "m:" + str(currentShowingModule) + ",bowmotorvoltage:" + str(mainWidget.ui.doubleSpinBoxBowMotorVoltage.value())
-        stringModules[currentShowingModule].setMotorVoltage(mainWidget.ui.doubleSpinBoxBowMotorVoltage.value())
-        serialHandler.write(out)
-        print(out)
-
-    def doubleSpinBoxBowMotorTimeoutValueChanged(self):
-        out = "m:" + str(currentShowingModule) + ",bowmotortimeout:" + str(
-            mainWidget.ui.doubleSpinBoxBowMotorTimeout.value())
-        stringModules[currentShowingModule].setBowTimeOut(mainWidget.ui.doubleSpinBoxBowMotorTimeout.value())
-        serialHandler.write(out)
-        print(out)
-
-    def doubleSpinBoxBowMaxPressureValueChanged(value):
-        out = "m:" + str(currentShowingModule) + ",bowpressurepositionmax:" + str(mainWidget.ui.doubleSpinBoxBowMaxPressure.value())
-        stringModules[currentShowingModule].setBowMaxPressure(mainWidget.ui.doubleSpinBoxBowMaxPressure.value())
-        serialHandler.write(out)
-        print(out)
-
-    def doubleSpinBoxBowMinPressureValueChanged(value):
-        out = "m:" + str(currentShowingModule) + ",bowpressurepositionengage:" + str(mainWidget.ui.doubleSpinBoxBowMinPressure.value())
-        stringModules[currentShowingModule].setBowMinPressure(mainWidget.ui.doubleSpinBoxBowMinPressure.value())
-        serialHandler.write(out)
-        print(out)
-
-    def doubleSpinBoxBowRestPositionValueChanged(value):
-        out = "m:" + str(currentShowingModule) + ",bowpressurepositionrest:" + str(mainWidget.ui.doubleSpinBoxBowRestPosition.value())
-        stringModules[currentShowingModule].setBowRestPosition(mainWidget.ui.doubleSpinBoxBowRestPosition.value())
-        serialHandler.write(out)
-        print(out)
-
-    def doubleSpinBoxMuteFullMutePositionValueChanged(value):
-        out = "m:" + str(currentShowingModule) + ",mutefullmuteposition:" + str(mainWidget.ui.doubleSpinBoxMuteFullMutePosition.value())
-        stringModules[currentShowingModule].setMuteFullMutePosition(mainWidget.ui.doubleSpinBoxMuteFullMutePosition.value())
-        serialHandler.write(out)
-        print(out)
-
-    def doubleSpinBoxMuteHalfMutePositionValueChanged(value):
-        out = "m:" + str(currentShowingModule) + ",mutehalfmuteposition:" + str(mainWidget.ui.doubleSpinBoxMuteHalfMutePosition.value())
-        stringModules[currentShowingModule].setMuteHalfMutePosition(mainWidget.ui.doubleSpinBoxMuteHalfMutePosition.value())
-        serialHandler.write(out)
-        print(out)
-
-    def doubleSpinBoxMuteRestPositionValueChanged(value):
-        out = "m:" + str(currentShowingModule) + ",muterestposition:" + str(mainWidget.ui.doubleSpinBoxMuteRestPosition.value())
-        stringModules[currentShowingModule].setMuteRestPosition(mainWidget.ui.doubleSpinBoxMuteRestPosition.value())
-        serialHandler.write(out)
-        print(out)
-
-    def doubleSpinBoxMuteBackoffValueChanged(self):
-        out = "m:" + str(currentShowingModule) + ",mutebackoff:" + str(mainWidget.ui.doubleSpinBoxMuteBackoff.value())
-        stringModules[currentShowingModule].setMuteBackoff(mainWidget.ui.doubleSpinBoxMuteBackoff.value())
-        serialHandler.write(out)
-
-    def doubleSpinBoxSolenoidMaxForceValueChanged(self, value):
-        out = "m:" + str(currentShowingModule) + ",solenoidmaxforce:" + str(mainWidget.ui.doubleSpinBoxSolenoidMaxForce.value())
-        stringModules[currentShowingModule].setSolenoidMaxForce(mainWidget.ui.doubleSpinBoxSolenoidMaxForce.value())
-        serialHandler.write(out)
-        print(out)
-
-    def doubleSpinBoxSolenoidMinForceValueChanged(self, value):
-        out = "m:" + str(currentShowingModule) + ",solenoidminforce:" + str(mainWidget.ui.doubleSpinBoxSolenoidMinForce.value())
-        stringModules[currentShowingModule].setSolenoidMinForce(mainWidget.ui.doubleSpinBoxSolenoidMinForce.value())
-        serialHandler.write(out)
-        print(out)
-
-    def doubleSpinBoxSolenoidEngageDurationValueChanged(self):
-        out = "m:" + str(currentShowingModule) + ",solenoidengageduration:" + str(mainWidget.ui.doubleSpinBoxSolenoidEngageDuration.value())
-        stringModules[currentShowingModule].setSolenoidEngageDuration(mainWidget.ui.doubleSpinBoxSolenoidEngageDuration.value())
-        serialHandler.write(out)
-        print(out)
+    def assignButtonPressCommandIssue(self, qtObject, command):
+        qtObject.command = command
+        qtObject.pressed.connect(self.buttonPressIssueCommand)
+    def buttonPressIssueCommand(self):
+        sender = self.sender()
+        serialHandler.write(sender.command)
 
     def checkBoxChartToggled(self):
         checkbox = self.sender()
@@ -1016,8 +883,9 @@ class MainWidget(QWidget):
         qtobject.seriesCommand = seriesCommand
         qtobject.seriesType = seriesType
 
-    def pushButtonCalibrateMutePressed(self):
-        serialHandler.write("mutecalibrate")
+
+#    def pushButtonCalibrateMutePressed(self):
+#        serialHandler.write("mutecalibrate")
 
     def tableViewScaleDataChanged(self, topLeft, bottomRight, role):
         print("edited " + str(topLeft.column()) + ":" + str(topLeft.data()))
@@ -1040,8 +908,8 @@ class MainWidget(QWidget):
     def spinBoxLimitLinesValueChanged(self, value):
         self.updateLineLimit()
 
-    def pushButtonSaveToModulePressed(self):
-        serialHandler.write("globalsaveallparameters")
+#    def pushButtonSaveToModulePressed(self):
+#        serialHandler.write("globalsaveallparameters")
     def pushButtonLoadFromModulePressed(self):
         self.updateUIData()
 
@@ -1201,36 +1069,23 @@ class MainWidget(QWidget):
         mainWidget.ui.comboBoxActuatorPreset.removeItem(comboIndex)
         serialHandler.write("bar:" + str(comboIndex) + ",bal,rqi:bxp,rqi:bip,rqi:brp")
 
-    def pushButtonCalibrateSpeedPressed(self):
-        serialHandler.write("bowcalibratespeed")
+#    def pushButtonCalibrateSpeedPressed(self):
+#        serialHandler.write("bowcalibratespeed")
 
-    def pushButtonCalibratePressurePressed(self):
-        serialHandler.write("bowcalibratepressure")
+#    def pushButtonCalibratePressurePressed(self):
+#        serialHandler.write("bowcalibratepressure")
 
-    def pushButtonBowMaxPressureTestPressed(self):
-        out = "m:" + str(currentShowingModule) + ",bowpressurepositionmax:" + str(mainWidget.ui.doubleSpinBoxBowMaxPressure.value()) + \
-            ",bowpressuremodifier:0,bowpressurebaseline:65535"
+    def assignButtonTest(self, qtObject, command, valuePointer, commandPost):
+        qtObject.command = command
+        qtObject.valuePointer = valuePointer
+        qtObject.commandPost = commandPost
+        qtObject.pressed.connect(self.testSignal)
+
+    def testSignal(self):
+        sender = self.sender()
+        #out = "m:" + str(currentShowingModule) + "," + sender.command + ":" + str(sender.valuePointer.value()) + "," + sender.commandPost
+        out = "m:" + str(currentShowingModule) + "," + sender.commandPost
         serialHandler.write(out)
-    def pushButtonBowEngagePressureTestPressed(self):
-        out = "m:" + str(currentShowingModule) + ",bowpressurepositionengage:" + str(mainWidget.ui.doubleSpinBoxBowMinPressure.value()) + \
-            ",bowpressuremodifier:0,bowpressurebaseline:0,bowpressureengage:1"
-        serialHandler.write(out)
-
-    def pushButtonBowRestPressureTestPressed(self):
-        out = "m:" + str(currentShowingModule) + ",bowpressurepositionrest:" + str(mainWidget.ui.doubleSpinBoxBowRestPosition.value()) + \
-            ",bowpressuremodifier:0,bowpressurebaseline:0,bowpressurerest:1"
-        serialHandler.write(out)
-
-    def pushButtonSolenoidMaxForceTestPressed(self):
-        out = "m:" + str(currentShowingModule) + ",solenoidmaxforce:" + str(mainWidget.ui.doubleSpinBoxSolenoidMaxForce.value()) + \
-            ",solenoidforcemultiplier:1,se:65535"
-        serialHandler.write(out)
-
-    def pushButtonSolenoidMinForceTestPressed(self):
-        out = "m:" + str(currentShowingModule) + ",solenoidminforce:" + str(mainWidget.ui.doubleSpinBoxSolenoidMinForce.value()) + \
-            ",solenoidforcemultiplier:1,se:1"
-        serialHandler.write(out)
-
 
     def configurationSetName(self):
         defText = mainWidget.ui.comboBoxConfiguration.currentText()
@@ -1247,8 +1102,8 @@ class MainWidget(QWidget):
         # midiIn = mido.open_input(mainWidget.ui.comboBoxMIDILearnDevice.currentText())
         self.midiHandlerC.connecToMIDIIn(mainWidget.ui.comboBoxMIDILearnDevice.currentText())
 
-    def pushButtonMidiRestoreDefaults(self):
-        serialHandler.write("mcfd")
+#    def pushButtonMidiRestoreDefaults(self):
+#        serialHandler.write("mcfd")
 
     def ccAdd(self):
         cc, ok = QInputDialog.getInt(self, "CC Number", "CC Number")
@@ -1331,6 +1186,17 @@ class MainWidget(QWidget):
             return
         mainWidget.ui.doubleSpinBoxFundamentalFrequency.setValue(float(mainWidget.ui.comboBoxFundamentalFrequency.currentText()[3:len(text)]))
 
+    def mouseReleaseEventIntermediate(self, event, widget):
+        widget.mouseReleaseFunction()
+        #if widget is QSlider:
+        if type(widget) == QSlider:
+            QSlider.mouseReleaseEvent(widget, event)
+        #super(MainWidget, self).mouseReleaseEvent(event)
+
+    def assignMouseReleaseEvent(self, qtObject, function):
+        qtObject.mouseReleaseEvent = lambda event: self.mouseReleaseEventIntermediate(event, qtObject)
+        qtObject.mouseReleaseFunction = function
+
 #harmonicSeriesList = [,
 #    [1, 1.059463094, 1.122462048, 1.189207115, 1.25992105, 1.334839854, 1.414213562, 1.498307077, 1.587401052, 1.681792831, 1.781797436, 1.887748625]]
 #currentHarmonicSeries = 0
@@ -1398,21 +1264,23 @@ if __name__ == "__main__":
 
 ## Global commands
     mainWidget.ui.pushButtonConnectDisconnect.pressed.connect(mainWidget.connectDisconnect)
-    mainWidget.ui.pushButtonSaveToModule.pressed.connect(mainWidget.pushButtonSaveToModulePressed)
+    #mainWidget.ui.pushButtonSaveToModule.pressed.connect(mainWidget.pushButtonSaveToModulePressed)
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonSaveToModule, "globalsaveallparameters")
     mainWidget.ui.pushButtonLoadFromModule.pressed.connect(mainWidget.pushButtonLoadFromModulePressed)
     mainWidget.ui.pushButtonReadSMData.pressed.connect(mainWidget.readSMData)
     mainWidget.ui.checkBoxContinuousSMData.toggled.connect(mainWidget.checkBoxContinuousSMDataToggled)
 ## Debug console
-    mainWidget.ui.checkBoxFilterCommAck.toggled.connect(mainWidget.checkBoxFilterCommAckToggled)
-    mainWidget.ui.checkBoxFilterDebug.toggled.connect(mainWidget.checkBoxFilterDebugToggled)
-    mainWidget.ui.checkBoxFilterError.toggled.connect(mainWidget.checkBoxFilterErrorToggled)
-    mainWidget.ui.checkBoxFilterExpressionParser.toggled.connect(mainWidget.checkBoxFilterExpressionParserToggled)
-    mainWidget.ui.checkBoxFilterHardware.toggled.connect(mainWidget.checkBoxFilterHardwareToggled)
-    mainWidget.ui.checkBoxFilterInfoRequest.toggled.connect(mainWidget.checkBoxFilterInfoRequestToggled)
-    mainWidget.ui.checkBoxFilterPriority.toggled.connect(mainWidget.checkBoxFilterPriorityToggled)
-    mainWidget.ui.checkBoxFilterUSB.toggled.connect(mainWidget.checkBoxFilterUSBToggled)
-    mainWidget.ui.checkBoxFilterUndefined.toggled.connect(mainWidget.checkBoxFilterUndefinedToggled)
-    mainWidget.ui.checkBoxFilterOutput.toggled.connect(mainWidget.checkBoxFilterOutputToggled)
+    mainWidget.assignFeedbackReportItem(mainWidget.ui.checkBoxFilterCommAck, "command")
+    mainWidget.assignFeedbackReportItem(mainWidget.ui.checkBoxFilterDebug, "debug")
+    mainWidget.assignFeedbackReportItem(mainWidget.ui.checkBoxFilterError, "error")
+    mainWidget.assignFeedbackReportItem(mainWidget.ui.checkBoxFilterExpressionParser, "expressionparser")
+    mainWidget.assignFeedbackReportItem(mainWidget.ui.checkBoxFilterHardware, "hardware")
+    mainWidget.assignFeedbackReportItem(mainWidget.ui.checkBoxFilterInfoRequest, "inforequest")
+    mainWidget.assignFeedbackReportItem(mainWidget.ui.checkBoxFilterPriority, "priority")
+    mainWidget.assignFeedbackReportItem(mainWidget.ui.checkBoxFilterUSB, "usb")
+    mainWidget.assignFeedbackReportItem(mainWidget.ui.checkBoxFilterUndefined, "undefined")
+    mainWidget.assignFeedbackReportItem(mainWidget.ui.checkBoxFilterOutput, "output")
+
     mainWidget.ui.lineEditSend.editingFinished.connect(mainWidget.lineEditSend)
     mainWidget.ui.checkBoxDebugCursorFollow.toggled.connect(mainWidget.checkBoxDebugCursorFollowToggled)
     mainWidget.ui.pushButtonClear.pressed.connect(mainWidget.debugClear)
@@ -1423,7 +1291,6 @@ if __name__ == "__main__":
     mainWidget.ui.comboBoxCurrentlySelectedModule.currentIndexChanged.connect(mainWidget.comboBoxCurrentSelectedModuleIndexChanged)
 
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxFundamentalFrequency, "bcu")
-#    mainWidget.ui.doubleSpinBoxFundamentalFrequency.valueChanged.connect(mainWidget.doubleSpinBoxFundamentalFrequencyValueChanged)
     mainWidget.ui.comboBoxBaseNote.currentIndexChanged.connect(mainWidget.comboBoxBaseNotePressed)
     mainWidget.ui.comboBoxFundamentalFrequency.currentIndexChanged.connect(mainWidget.comboBoxFundamentalFrequencyIndexChanged)
     mainWidget.ui.listWidgetTuningscheme.currentItemChanged.connect(mainWidget.tuningSchemeChanged)
@@ -1432,27 +1299,25 @@ if __name__ == "__main__":
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorMinSpeed, "bmsi")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorVoltage, "bmv")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorTimeout, "bmt")
-#    mainWidget.ui.doubleSpinBoxBowMotorVoltage.valueChanged.connect(mainWidget.doubleSpinBoxBowMotorVoltageValueChanged)
-#    mainWidget.ui.doubleSpinBoxBowMotorTimeout.valueChanged.connect(mainWidget.doubleSpinBoxBowMotorTimeoutValueChanged)
-    mainWidget.ui.pushButtonCalibrateMotorSpeed.pressed.connect(mainWidget.pushButtonCalibrateSpeedPressed)
+    #mainWidget.ui.pushButtonCalibrateMotorSpeed.pressed.connect(mainWidget.pushButtonCalibrateSpeedPressed)
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonCalibrateMotorSpeed, "bowcalibratespeed")
 
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMaxPressure, "bppx")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMinPressure, "bppe")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowRestPosition, "bppr")
-#    mainWidget.ui.doubleSpinBoxBowMaxPressure.valueChanged.connect(mainWidget.doubleSpinBoxBowMaxPressureValueChanged)
-#    mainWidget.ui.doubleSpinBoxBowMinPressure.valueChanged.connect(mainWidget.doubleSpinBoxBowMinPressureValueChanged)
-#    mainWidget.ui.doubleSpinBoxBowRestPosition.valueChanged.connect(mainWidget.doubleSpinBoxBowRestPositionValueChanged)
-    mainWidget.ui.pushButtonCalibratePressure.pressed.connect(mainWidget.pushButtonCalibratePressurePressed)
+    #mainWidget.ui.pushButtonCalibratePressure.pressed.connect(mainWidget.pushButtonCalibratePressurePressed)
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonCalibratePressure, "bowcalibratepressure")
 
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteFullMutePosition, "mfmp")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteHalfMutePosition, "mhmp")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteRestPosition, "mrp")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteBackoff, "mbo")
-    #mainWidget.ui.doubleSpinBoxMuteFullMutePosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteFullMutePositionValueChanged)
-    #mainWidget.ui.doubleSpinBoxMuteHalfMutePosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteHalfMutePositionValueChanged)
-    #mainWidget.ui.doubleSpinBoxMuteRestPosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteRestPositionValueChanged)
-    #mainWidget.ui.doubleSpinBoxMuteBackoff.valueChanged.connect(mainWidget.doubleSpinBoxMuteBackoffValueChanged)
-    mainWidget.ui.pushButtonCalibrateMute.pressed.connect(mainWidget.pushButtonCalibrateMutePressed)
+    #mainWidget.ui.pushButtonCalibrateMute.pressed.connect(mainWidget.pushButtonCalibrateMutePressed)
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonCalibrateMute, "mutecalibrate")
+
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteFullTest, "mutefullmute:1")
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteHalfTest, "mutehalfmute:1")
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteRestTest, "muterest:1")
 
     mainWidget.ui.comboBoxHarmonicList.currentIndexChanged.connect(mainWidget.comboBoxHarmonicListCurrentIndexChanged)
     mainWidget.ui.pushButtonLoadHarmonicPreset.pressed.connect(mainWidget.pushButtonLoadHarmonicPresetPressed)
@@ -1461,26 +1326,28 @@ if __name__ == "__main__":
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidMinForce, "sif")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidEngageDuration, "sed")
 
-#    mainWidget.ui.doubleSpinBoxSolenoidMaxForce.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidMaxForceValueChanged)
-#    mainWidget.ui.doubleSpinBoxSolenoidMinForce.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidMinForceValueChanged)
-#    mainWidget.ui.doubleSpinBoxSolenoidEngageDuration.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidEngageDurationValueChanged)
-
     mainWidget.ui.pushButtonActuatorSave.pressed.connect(mainWidget.pushButtonActuatorSavePressed)
     mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
     mainWidget.ui.pushButtonActuatorDelete.pressed.connect(mainWidget.pushButtonAcutatorDeletePreset)
 
-    mainWidget.ui.pushButtonBowMaxPressureTest.pressed.connect(mainWidget.pushButtonBowMaxPressureTestPressed)
-    mainWidget.ui.pushButtonBowEngagePressureTest.pressed.connect(mainWidget.pushButtonBowEngagePressureTestPressed)
-    mainWidget.ui.pushButtonBowRestPressureTest.pressed.connect(mainWidget.pushButtonBowRestPressureTestPressed)
-    mainWidget.ui.pushButtonSolenoidMaxForceTest.pressed.connect(mainWidget.pushButtonSolenoidMaxForceTestPressed)
-    mainWidget.ui.pushButtonSolenoidMinForceTest.pressed.connect(mainWidget.pushButtonSolenoidMinForceTestPressed)
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowMaxPressureTest, "bowpressuremodifier:0,bowpressurebaseline:65535")
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowEngagePressureTest, "bowpressuremodifier:0,bowpressurebaseline:0,bowpressureengage:1")
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowRestPressureTest, "bowpressuremodifier:0,bowpressurebaseline:0,bowpressurerest:1")
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonSolenoidMaxForceTest, "solenoidforcemultiplier:1,se:65535")
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonSolenoidMinForceTest, "solenoidforcemultiplier:1,se:1")
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonEngageHammer, "se:65535")
 
 ## Tab Midi settings
     mainWidget.ui.comboBoxMidiChannel.currentIndexChanged.connect(mainWidget.comboBoxMidiChannelIndexChanged)
 
-    mainWidget.ui.pushButtonMidiRestoreDefaults.pressed.connect(mainWidget.pushButtonMidiRestoreDefaults)
+    #mainWidget.ui.pushButtonMidiRestoreDefaults.pressed.connect(mainWidget.pushButtonMidiRestoreDefaults)
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMidiRestoreDefaults, "mcfd")
 
-    mainWidget.ui.midiNoteOnVelToHammer.valueChanged.connect(mainWidget.cmdNoteOnUpdate)
+    #mainWidget.ui.midiNoteOnVelToHammer.valueChanged.connect(mainWidget.cmdNoteOnUpdate)
+#    mainWidget.ui.midiNoteOnVelToHammer.sliderReleased.connect(mainWidget.cmdNoteOnUpdate)
+    mainWidget.assignMouseReleaseEvent(mainWidget.ui.midiNoteOnVelToHammer, mainWidget.cmdNoteOnUpdate)
+# mainWidget.ui.midiNoteOnVelToHammer.mouseReleaseEvent = lambda event: mainWidget.mouseReleaseEventIntermediate(event, mainWidget.ui.midiNoteOnVelToHammer)
+
     mainWidget.ui.midiNoteOnHammerStaccato.stateChanged.connect(mainWidget.cmdNoteOnUpdate)
     mainWidget.ui.midiNoteOnSendMuteRest.stateChanged.connect(mainWidget.cmdNoteOnUpdate)
     mainWidget.ui.midiNoteOnOther.editingFinished.connect(mainWidget.cmdNoteOnUpdate)
