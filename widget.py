@@ -27,6 +27,8 @@ from PySide6.QtCore import QThread, Signal, QTimer, QModelIndex, Qt, QObject, QD
 from PySide6.QtGui import QTextBlock, QTextCursor, QTextBlockFormat, QColor
 
 import re
+
+import commandparser
 import equationParsingHelpers
 
 import logging
@@ -80,33 +82,14 @@ currentShowingModule = 0
 
 def addModulesIfNeeded(needed):
     global stringModules
-    print("has " + str(len(stringModules)) + " modules, looking for module " + str(needed))
     while len(stringModules) <= needed:
-        print("Adding a module")
         stringModules.append(stringModule())
     while (mainWidget.ui.comboBoxCurrentlySelectedModule.count() <= needed):
         mainWidget.ui.comboBoxCurrentlySelectedModule.addItem(str(mainWidget.ui.comboBoxCurrentlySelectedModule.count() + 1))
 
 def processInformationForChart(inSerialHandler, command):
-    match command.command:
-        case "adcr":
-            inSerialHandler.chartDataSignal.emit("Adc#" + str(command.argument[0]), float(command.argument[1]), timedChart.seriesType.integer) #0, 65535)
-        case "bcf":
-            inSerialHandler.chartDataSignal.emit("Targ.Freq", float(command.argument[0]), timedChart.seriesType.frequency) # 0, 65535)
-        case "bmf":
-            inSerialHandler.chartDataSignal.emit("Mot.Freq", float(command.argument[0]), timedChart.seriesType.frequency) #0, 65535)
-        case "psf":
-            if (float(command.argument[0]) > 0):
-                inSerialHandler.chartDataSignal.emit("FFT Freq", float(command.argument[0]), timedChart.seriesType.frequency) #0, 65535)
-        case "pap":
-            inSerialHandler.chartDataSignal.emit("Aud.peak", float(command.argument[0])*65535, timedChart.seriesType.integer)  # 0, 65535)
-        case "par":
-            inSerialHandler.chartDataSignal.emit("Aud.RMS", float(command.argument[0])*65535, timedChart.seriesType.integer)  # 0, 65535)
-        case "bpperr":
-            inSerialHandler.chartDataSignal.emit("PIDPeakErr", float(command.argument[0]), timedChart.seriesType.frequency) #0, 65535)
-        case _:
-            return False
-    return True
+    inSerialHandler.chartCommandSignal.emit(command)
+    return
 
 def processInformationReturn(inSerialHandler, infoReturn):
     print("processInformationReturn")
@@ -116,7 +99,6 @@ def processInformationReturn(inSerialHandler, infoReturn):
     global stringModules
     global currentSerialModule
     global currentBow
-#    global updatingFromModule
     mainWidget.updatingFromModule = True
 
     processed = True
@@ -517,6 +499,7 @@ class serialHandler(QThread):
     dataAvaliable = Signal(object, str)
     disconnectSignal = Signal()
     chartDataSignal = Signal(str, float, timedChart.seriesType) # float, float)
+    chartCommandSignal = Signal(commandparser.CommandItem)
 
 #    def __init__(self):
 #        #QThread.__init__(self)
@@ -633,6 +616,7 @@ class MainWidget(QWidget):
         self.debugTimedChart = timedChart.timedChart()
         self.ui.gridLayoutChart.addWidget(self.debugTimedChart._chart_view)
         self.serialThread.chartDataSignal.connect(self.addData)
+        self.serialThread.chartCommandSignal.connect(self.chartCommand)
 
         self.midiHandlerC = midihandler.MidiHandler(self.midiDataAvaliableSignal) #self.addToDebugWindow)
         self.midiHandlerC.updateMIDIInDevices(self.ui.comboBoxMIDILearnDevice)
@@ -644,6 +628,9 @@ class MainWidget(QWidget):
         self.debugTimedChart.addData(seriesID, value, inSeriesType) # min, max)
                 #str(i.command + i.argument[0]) i.argument[1]
 #        self.addData("adcr0", 5)
+
+    def chartCommand(self, command):
+        self.debugTimedChart.processCommand(command)
 
     def timerUpdateControl(self):
         self.readSMData()
@@ -971,52 +958,91 @@ class MainWidget(QWidget):
 
     def doubleSpinBoxFundamentalFrequencyValueChanged(value):
         out = "m:" + str(currentShowingModule) + ",bowcontrolfundamental:" + str(mainWidget.ui.doubleSpinBoxFundamentalFrequency.value())
+        stringModules[currentShowingModule].setFundamentalFrequency(mainWidget.ui.doubleSpinBoxFundamentalFrequency.value())
         serialHandler.write(out)
         print(out)
 
     def doubleSpinBoxBowMotorVoltageValueChanged(value):
         out = "m:" + str(currentShowingModule) + ",bowmotorvoltage:" + str(mainWidget.ui.doubleSpinBoxBowMotorVoltage.value())
+        stringModules[currentShowingModule].setMotorVoltage(mainWidget.ui.doubleSpinBoxBowMotorVoltage.value())
         serialHandler.write(out)
         print(out)
 
     def doubleSpinBoxBowMotorTimeoutValueChanged(self):
         out = "m:" + str(currentShowingModule) + ",bowmotortimeout:" + str(
             mainWidget.ui.doubleSpinBoxBowMotorTimeout.value())
+        stringModules[currentShowingModule].setBowTimeOut(mainWidget.ui.doubleSpinBoxBowMotorTimeout.value())
         serialHandler.write(out)
         print(out)
 
     def doubleSpinBoxBowMaxPressureValueChanged(value):
         out = "m:" + str(currentShowingModule) + ",bowpressurepositionmax:" + str(mainWidget.ui.doubleSpinBoxBowMaxPressure.value())
+        stringModules[currentShowingModule].setBowMaxPressure(mainWidget.ui.doubleSpinBoxBowMaxPressure.value())
         serialHandler.write(out)
         print(out)
 
     def doubleSpinBoxBowMinPressureValueChanged(value):
         out = "m:" + str(currentShowingModule) + ",bowpressurepositionengage:" + str(mainWidget.ui.doubleSpinBoxBowMinPressure.value())
+        stringModules[currentShowingModule].setBowMinPressure(mainWidget.ui.doubleSpinBoxBowMinPressure.value())
         serialHandler.write(out)
         print(out)
 
     def doubleSpinBoxBowRestPositionValueChanged(value):
         out = "m:" + str(currentShowingModule) + ",bowpressurepositionrest:" + str(mainWidget.ui.doubleSpinBoxBowRestPosition.value())
+        stringModules[currentShowingModule].setBowRestPosition(mainWidget.ui.doubleSpinBoxBowRestPosition.value())
         serialHandler.write(out)
         print(out)
 
     def doubleSpinBoxMuteFullMutePositionValueChanged(value):
         out = "m:" + str(currentShowingModule) + ",mutefullmuteposition:" + str(mainWidget.ui.doubleSpinBoxMuteFullMutePosition.value())
+        stringModules[currentShowingModule].setMuteFullMutePosition(mainWidget.ui.doubleSpinBoxMuteFullMutePosition.value())
         serialHandler.write(out)
         print(out)
 
     def doubleSpinBoxMuteHalfMutePositionValueChanged(value):
         out = "m:" + str(currentShowingModule) + ",mutehalfmuteposition:" + str(mainWidget.ui.doubleSpinBoxMuteHalfMutePosition.value())
+        stringModules[currentShowingModule].setMuteHalfMutePosition(mainWidget.ui.doubleSpinBoxMuteHalfMutePosition.value())
         serialHandler.write(out)
         print(out)
 
     def doubleSpinBoxMuteRestPositionValueChanged(value):
         out = "m:" + str(currentShowingModule) + ",muterestposition:" + str(mainWidget.ui.doubleSpinBoxMuteRestPosition.value())
+        stringModules[currentShowingModule].setMuteRestPosition(mainWidget.ui.doubleSpinBoxMuteRestPosition.value())
         serialHandler.write(out)
         print(out)
 
     def doubleSpinBoxMuteBackoffValueChanged(self):
-        serialHandler.write("mutebackoff:" + str(mainWidget.ui.doubleSpinBoxMuteBackoff.value()))
+        out = "m:" + str(currentShowingModule) + ",mutebackoff:" + str(mainWidget.ui.doubleSpinBoxMuteBackoff.value())
+        stringModules[currentShowingModule].setMuteBackoff(mainWidget.ui.doubleSpinBoxMuteBackoff.value())
+        serialHandler.write(out)
+
+    def doubleSpinBoxSolenoidMaxForceValueChanged(self, value):
+        out = "m:" + str(currentShowingModule) + ",solenoidmaxforce:" + str(mainWidget.ui.doubleSpinBoxSolenoidMaxForce.value())
+        stringModules[currentShowingModule].setSolenoidMaxForce(mainWidget.ui.doubleSpinBoxSolenoidMaxForce.value())
+        serialHandler.write(out)
+        print(out)
+
+    def doubleSpinBoxSolenoidMinForceValueChanged(self, value):
+        out = "m:" + str(currentShowingModule) + ",solenoidminforce:" + str(mainWidget.ui.doubleSpinBoxSolenoidMinForce.value())
+        stringModules[currentShowingModule].setSolenoidMinForce(mainWidget.ui.doubleSpinBoxSolenoidMinForce.value())
+        serialHandler.write(out)
+        print(out)
+
+    def doubleSpinBoxSolenoidEngageDurationValueChanged(self):
+        out = "m:" + str(currentShowingModule) + ",solenoidengageduration:" + str(mainWidget.ui.doubleSpinBoxSolenoidEngageDuration.value())
+        stringModules[currentShowingModule].setSolenoidEngageDuration(mainWidget.ui.doubleSpinBoxSolenoidEngageDuration.value())
+        serialHandler.write(out)
+        print(out)
+
+    def checkBoxChartToggled(self):
+        checkbox = self.sender()
+        if (checkbox.isChecked()):
+            visible = True
+        else:
+            visible = False
+        #mainWidget.debugTimedChart.setSeriesVisible(checkbox.seriesName, checkbox.seriesType, visible)
+        mainWidget.debugTimedChart.setSeriesVisibleCommand(checkbox.seriesCommand, visible)
+
 
     def pushButtonCalibrateMutePressed(self):
         serialHandler.write("mutecalibrate")
@@ -1029,22 +1055,6 @@ class MainWidget(QWidget):
         currentHarmonicListSelected = int(index)
         mainWidget.ui.tableViewScale.setModel(tableTest.CustomTableModel(stringModules[currentSerialModule].harmonicData[currentHarmonicListSelected]))
         mainWidget.ui.tableViewScale.model().dataChanged.connect(mainWidget.tableViewScaleDataChanged)
-
-    def doubleSpinBoxSolenoidMaxForceValueChanged(self, value):
-        out = "m:" + str(currentShowingModule) + ",solenoidmaxforce:" + str(mainWidget.ui.doubleSpinBoxSolenoidMaxForce.value())
-        serialHandler.write(out)
-        print(out)
-
-    def doubleSpinBoxSolenoidMinForceValueChanged(self, value):
-        out = "m:" + str(currentShowingModule) + ",solenoidminforce:" + str(mainWidget.ui.doubleSpinBoxSolenoidMinForce.value())
-        serialHandler.write(out)
-        print(out)
-
-    def doubleSpinBoxSolenoidEngageDurationValueChanged(self):
-        out = "m:" + str(currentShowingModule) + ",solenoidengageduration:" + str(mainWidget.ui.doubleSpinBoxSolenoidEngageDuration.value())
-        serialHandler.write(out)
-        print(out)
-
 
     def updateLineLimit(self):
         if (self.ui.checkBoxLimitLines.checkState() == Qt.CheckState.Checked):
@@ -1224,6 +1234,31 @@ class MainWidget(QWidget):
 
     def pushButtonCalibratePressurePressed(self):
         serialHandler.write("bowcalibratepressure")
+
+    def pushButtonBowMaxPressureTestPressed(self):
+        out = "m:" + str(currentShowingModule) + ",bowpressurepositionmax:" + str(mainWidget.ui.doubleSpinBoxBowMaxPressure.value()) + \
+            ",bowpressuremodifier:0,bowpressurebaseline:65535"
+        serialHandler.write(out)
+    def pushButtonBowEngagePressureTestPressed(self):
+        out = "m:" + str(currentShowingModule) + ",bowpressurepositionengage:" + str(mainWidget.ui.doubleSpinBoxBowMinPressure.value()) + \
+            ",bowpressuremodifier:0,bowpressurebaseline:0,bowpressureengage:1"
+        serialHandler.write(out)
+
+    def pushButtonBowRestPressureTestPressed(self):
+        out = "m:" + str(currentShowingModule) + ",bowpressurepositionrest:" + str(mainWidget.ui.doubleSpinBoxBowRestPosition.value()) + \
+            ",bowpressuremodifier:0,bowpressurebaseline:0,bowpressurerest:1"
+        serialHandler.write(out)
+
+    def pushButtonSolenoidMaxForceTestPressed(self):
+        out = "m:" + str(currentShowingModule) + ",solenoidmaxforce:" + str(mainWidget.ui.doubleSpinBoxSolenoidMaxForce.value()) + \
+            ",solenoidforcemultiplier:1,se:65535"
+        serialHandler.write(out)
+
+    def pushButtonSolenoidMinForceTestPressed(self):
+        out = "m:" + str(currentShowingModule) + ",solenoidminforce:" + str(mainWidget.ui.doubleSpinBoxSolenoidMinForce.value()) + \
+            ",solenoidforcemultiplier:1,se:1"
+        serialHandler.write(out)
+
 
     def configurationSetName(self):
         defText = mainWidget.ui.comboBoxConfiguration.currentText()
@@ -1446,6 +1481,12 @@ if __name__ == "__main__":
     mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
     mainWidget.ui.pushButtonActuatorDelete.pressed.connect(mainWidget.pushButtonAcutatorDeletePreset)
 
+    mainWidget.ui.pushButtonBowMaxPressureTest.pressed.connect(mainWidget.pushButtonBowMaxPressureTestPressed)
+    mainWidget.ui.pushButtonBowEngagePressureTest.pressed.connect(mainWidget.pushButtonBowEngagePressureTestPressed)
+    mainWidget.ui.pushButtonBowRestPressureTest.pressed.connect(mainWidget.pushButtonBowRestPressureTestPressed)
+    mainWidget.ui.pushButtonSolenoidMaxForceTest.pressed.connect(mainWidget.pushButtonSolenoidMaxForceTestPressed)
+    mainWidget.ui.pushButtonSolenoidMinForceTest.pressed.connect(mainWidget.pushButtonSolenoidMinForceTestPressed)
+
 ## Tab Midi settings
     mainWidget.ui.comboBoxMidiChannel.currentIndexChanged.connect(mainWidget.comboBoxMidiChannelIndexChanged)
 
@@ -1472,6 +1513,66 @@ if __name__ == "__main__":
     delegate = tableTest.SpinBoxDelegate()
     mainWidget.ui.tableViewScale.setItemDelegateForRow(0, delegate)
     mainWidget.ui.tableViewScale.model().dataChanged.connect(mainWidget.tableViewScaleDataChanged)
+
+    mainWidget.ui.checkBoxChartA0.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA0.seriesCommand = "adcr0"   #mainWidget.ui.checkBoxChartA0.seriesName = "Adc#0"
+    mainWidget.ui.checkBoxChartA0.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA1.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA1.seriesCommand = "adcr1"   #mainWidget.ui.checkBoxChartA1.seriesName = "adcr1" #Adc#1"
+    mainWidget.ui.checkBoxChartA1.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA2.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA2.seriesCommand = "adcr2"   #mainWidget.ui.checkBoxChartA2.seriesName = "Adc#2"
+    mainWidget.ui.checkBoxChartA2.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA3.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA3.seriesCommand = "adcr3"   #mainWidget.ui.checkBoxChartA3.seriesName = "Adc#3"
+    mainWidget.ui.checkBoxChartA3.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA4.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA4.seriesCommand = "adcr4"   #mainWidget.ui.checkBoxChartA4.seriesName = "Adc#4"
+    mainWidget.ui.checkBoxChartA4.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA5.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA5.seriesCommand = "adcr5"   #mainWidget.ui.checkBoxChartA5.seriesName = "Adc#5"
+    mainWidget.ui.checkBoxChartA5.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA6.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA6.seriesCommand = "adcr6"   #mainWidget.ui.checkBoxChartA6.seriesName = "Adc#6"
+    mainWidget.ui.checkBoxChartA6.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA7.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA7.seriesCommand = "adcr7"   #mainWidget.ui.checkBoxChartA7.seriesName = "Adc#7"
+    mainWidget.ui.checkBoxChartA7.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartAudPk.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartAudPk.seriesCommand = "pap"  #mainWidget.ui.checkBoxChartAudPk.seriesName = "Aud.peak"
+    mainWidget.ui.checkBoxChartAudPk.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartAudRMS.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartAudRMS.seriesCommand = "par" #mainWidget.ui.checkBoxChartAudRMS.seriesName = "Aud.RMS"
+    mainWidget.ui.checkBoxChartAudRMS.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartAudFFT.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartAudFFT.seriesCommand = "psf" #mainWidget.ui.checkBoxChartAudFFT.seriesName = "FFT Freq"
+    mainWidget.ui.checkBoxChartAudFFT.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartMotFreq.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartMotFreq.seriesCommand = "bmf"    #mainWidget.ui.checkBoxChartMotFreq.seriesName = "Mot.Freq"
+    mainWidget.ui.checkBoxChartMotFreq.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartReadFreq.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartReadFreq.seriesCommand = "bcf"   #mainWidget.ui.checkBoxChartReadFreq.seriesName = "Targ.Freq"
+    mainWidget.ui.checkBoxChartReadFreq.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartPeakErr.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartPeakErr.seriesCommand = "bpperr" #mainWidget.ui.checkBoxChartPeakErr.seriesName = "PIDPeakErr"
+    mainWidget.ui.checkBoxChartPeakErr.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartMotCurr.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartMotCurr.seriesCommand = "bmc"    #mainWidget.ui.checkBoxChartMotCurr.seriesName = "Mot.Curr"
+    mainWidget.ui.checkBoxChartMotCurr.seriesType = timedChart.seriesType.integer
 
 ## Default settings
     mainWidget.addTuningSchemes()

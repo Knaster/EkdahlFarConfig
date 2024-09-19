@@ -32,6 +32,9 @@ from PySide6.QtGui import QImage, QColor
 from PySide6.QtCore import Qt
 #import rc_markers  # noqa: F401
 
+from dataclasses import dataclass
+
+
 def rectangle(point_type, image_size):
     image = QImage(image_size, image_size, QImage.Format_RGB32)
     painter = QPainter()
@@ -85,8 +88,35 @@ class seriesType(Enum):
     frequency = 1
     integer = 2
 
+@dataclass
+class chartMatchData:
+    seriesType: seriesType
+    description: str
+
+
 class timedChart(QWidget):
+    chartMatchArr = {"adcr0": chartMatchData(seriesType.integer, "Harmonic (A0)"),
+                     "adcr1": chartMatchData(seriesType.integer, "Harmonic shift (A1)"),
+                     "adcr2": chartMatchData(seriesType.integer, "Fine tuning (A2)"),
+                     "adcr3": chartMatchData(seriesType.integer, "Pressure (A3)"),
+                     "adcr4": chartMatchData(seriesType.integer, "Hammer trig (A4)"),
+                     "adcr5": chartMatchData(seriesType.integer, "Gate (A5)"),
+                     "adcr6": chartMatchData(seriesType.integer, "Hammer scale (A6)"),
+                     "adcr7": chartMatchData(seriesType.integer, "Mute (A7)"),
+                     "bcf": chartMatchData(seriesType.frequency, "Set motor frequency"),
+                     "bmf": chartMatchData(seriesType.frequency, "Read motor frequency"),
+                     "psf": chartMatchData(seriesType.frequency, "Audio frequency"),
+                     "pap": chartMatchData(seriesType.integer, "Audio peak"),
+                     "par": chartMatchData(seriesType.integer, "Audio RMS"),
+                     "bpperr": chartMatchData(seriesType.frequency, "PID Error"),
+                     "bmc": chartMatchData(seriesType.integer, "Motor current (x6k)")
+                     }
+
+    for poo in chartMatchArr:
+        print(chartMatchArr[poo].description)
+
     def __init__(self):
+        ## Array of all the series classes in the chart
         self.seriesArr = []
 
         self.chart = QChart()
@@ -120,38 +150,48 @@ class timedChart(QWidget):
         if ((inSeriesType == seriesType.frequency) and (value <= 0)):
             return
 
-        sFound = False
-        for s in self.seriesArr:
-            if (s.name == seriesID):
-                sFound = True
-#                print("Found series")
-                break
+        ## find series data index in array
+#        sFound = False
+#        for s in self.seriesArr:
+#            if (s.name == seriesID):
+#                sFound = True
+#                break
 
-        if (not sFound):
-#            print("Creating new series")
-            s = QLineSeries()
-            s.name = seriesID
-            s.setName(seriesID)
+        s = self.getSeries(seriesID)
+        if s is None:
+            s = self.addSeries(seriesID, inSeriesType)
+            if s is None:
+                return
+            sFound = True
 
-            s.setPointLabelsColor(QColor("blue"))
-            s.setPointLabelsFormat("@yPoint")
-            s.setPointLabelsClipping(True)
-            #s.setPointLabelsVisible(True)
+#        if (not sFound):
+##            print("Creating new series")
+#            s = QLineSeries()
+#            s.name = seriesID
+#            s.setName(seriesID)
+#
+#            s.setPointLabelsColor(QColor("blue"))
+#            s.setPointLabelsFormat("@yPoint")
+#            s.setPointLabelsClipping(True)
+#            #s.setPointLabelsVisible(True)
+#
+#            #s.setMarkerSize(5)
+#            #s.setLightMarker(default_light_marker(5))
+#
+#            # Add the newly created series class to the local series array seriesArr
+#            self.seriesArr.append(s)
+#            self.chart.addSeries(s)
+#
+#            s.attachAxis(self.axisX)
+#            if (inSeriesType == seriesType.integer):
+#                s.attachAxis(self.axisYInt)
+#            elif (inSeriesType == seriesType.frequency):
+#                s.attachAxis(self.axisYHz)
+#            else:
+#                print("ERROR")
 
-            #s.setMarkerSize(5)
-            #s.setLightMarker(default_light_marker(5))
-
-            self.seriesArr.append(s)
-            self.chart.addSeries(s)
-
-            s.attachAxis(self.axisX)
-            if (inSeriesType == seriesType.integer):
-                s.attachAxis(self.axisYInt)
-            elif (inSeriesType == seriesType.frequency):
-                s.attachAxis(self.axisYHz)
-            else:
-                print("ERROR")
-
+        print(s.isVisible())
+        #s.setVisible(True)
         s.append(self.timeStamper.getCurrent(), float(value))
 
         #self.chart.createDefaultAxes()
@@ -163,3 +203,81 @@ class timedChart(QWidget):
             if point.x() < (self.timeStamper.getCurrent() - self.timeStamper.overflow):
                 s.remove(point)
 #        self.chart.axisY(s).setRange(min, max)
+
+    def getSeries(self, seriesID):
+#        for s in self.chart.series():
+        for s in self.seriesArr:
+            if (s.name == seriesID):
+                return s
+
+        return None
+
+    def addSeries(self, seriesID, inSeriesType):
+        s = QLineSeries()
+        s.name = seriesID
+        s.setName(seriesID)
+
+        s.setPointLabelsColor(QColor("blue"))
+        s.setPointLabelsFormat("@yPoint")
+        s.setPointLabelsClipping(True)
+#        s.setVisible(False)
+        # s.setPointLabelsVisible(True)
+
+        # s.setMarkerSize(5)
+        # s.setLightMarker(default_light_marker(5))
+
+        self.seriesArr.append(s)
+        self.chart.addSeries(s)
+
+        s.attachAxis(self.axisX)
+        if inSeriesType == seriesType.integer:
+            s.attachAxis(self.axisYInt)
+        elif inSeriesType == seriesType.frequency:
+            s.attachAxis(self.axisYHz)
+        else:
+            print("ERROR")
+            return None
+        return s
+
+    def setSeriesVisibleCommand(self, command, visible):
+        try:
+            seriesID = self.chartMatchArr[command].description
+            s = self.getSeries(seriesID)
+        except:
+            print("Error in setSeriesVisibleCommand")
+            return
+
+        if s is None:
+            s = self.addSeries(seriesID, self.chartMatchArr[command].seriesType)
+            if s is None:
+                return
+
+        s.setVisible(visible)
+
+    def processCommand(self, command):
+        key = command.command
+        try:
+            value = float(command.argument[0])
+
+            #if command.command == "adcr":
+            match command.command:
+                case "adcr":
+                    key += command.argument[0]
+                    value = float(command.argument[1])
+                case "pap" | "par":
+                    value *= 65535
+                case "bmc":
+                    value *= 60000
+
+            series = self.chartMatchArr[key]
+            #print("Found a chart!")
+            self.addData(series.description, value, series.seriesType)
+
+        except:
+            #print("no series for command " + str(key) )
+            pass
+
+# mainWidget.debugTimedChart.setSeriesVisible(chartMatchArr[checkbox.seriesName].description, chartMatchArr[checkbox.seriesName].seriesType, visible)
+
+
+# Match commands that are going on the chart, these commands may be processed further by processInformationReturn

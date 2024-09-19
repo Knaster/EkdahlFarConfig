@@ -1,0 +1,34 @@
+def processInformationForChart(inSerialHandler, command):
+    inSerialHandler.chartCommandSignal.emit(command)
+    return
+
+    match command.command:
+        case "adcr":
+            inSerialHandler.chartDataSignal.emit("Adc#" + str(command.argument[0]), float(command.argument[1]), timedChart.seriesType.integer) #0, 65535)
+        case "bcf":
+            inSerialHandler.chartDataSignal.emit("Targ.Freq", float(command.argument[0]), timedChart.seriesType.frequency) # 0, 65535)
+        case "bmf":
+            inSerialHandler.chartDataSignal.emit("Mot.Freq", float(command.argument[0]), timedChart.seriesType.frequency) #0, 65535)
+        case "psf":
+            if (float(command.argument[0]) > 0):
+                inSerialHandler.chartDataSignal.emit("FFT Freq", float(command.argument[0]), timedChart.seriesType.frequency) #0, 65535)
+        case "pap":
+            inSerialHandler.chartDataSignal.emit("Aud.peak", float(command.argument[0])*65535, timedChart.seriesType.integer)  # 0, 65535)
+        case "par":
+            inSerialHandler.chartDataSignal.emit("Aud.RMS", float(command.argument[0])*65535, timedChart.seriesType.integer)  # 0, 65535)
+        case "bpperr":
+            inSerialHandler.chartDataSignal.emit("PIDPeakErr", float(command.argument[0]), timedChart.seriesType.frequency) #0, 65535)
+        case _:
+            return False
+    return True
+
+def setSeriesVisible(self, seriesID, inSeriesType, visible):
+s = self.getSeries(seriesID)
+
+if s is None:
+    s = self.addSeries(seriesID, inSeriesType)
+    if s is None:
+        return
+
+s.setVisible(visible)
+#s.setVisible(True)
