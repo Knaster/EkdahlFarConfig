@@ -32,3 +32,65 @@ if s is None:
 
 s.setVisible(visible)
 #s.setVisible(True)
+
+""""
+    mainWidget.ui.checkBoxChartA0.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA0.seriesCommand = "adcr0"   #mainWidget.ui.checkBoxChartA0.seriesName = "Adc#0"
+    mainWidget.ui.checkBoxChartA0.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA1.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA1.seriesCommand = "adcr1"   #mainWidget.ui.checkBoxChartA1.seriesName = "adcr1" #Adc#1"
+    mainWidget.ui.checkBoxChartA1.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA2.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA2.seriesCommand = "adcr2"   #mainWidget.ui.checkBoxChartA2.seriesName = "Adc#2"
+    mainWidget.ui.checkBoxChartA2.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA3.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA3.seriesCommand = "adcr3"   #mainWidget.ui.checkBoxChartA3.seriesName = "Adc#3"
+    mainWidget.ui.checkBoxChartA3.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA4.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA4.seriesCommand = "adcr4"   #mainWidget.ui.checkBoxChartA4.seriesName = "Adc#4"
+    mainWidget.ui.checkBoxChartA4.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA5.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA5.seriesCommand = "adcr5"   #mainWidget.ui.checkBoxChartA5.seriesName = "Adc#5"
+    mainWidget.ui.checkBoxChartA5.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA6.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA6.seriesCommand = "adcr6"   #mainWidget.ui.checkBoxChartA6.seriesName = "Adc#6"
+    mainWidget.ui.checkBoxChartA6.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartA7.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartA7.seriesCommand = "adcr7"   #mainWidget.ui.checkBoxChartA7.seriesName = "Adc#7"
+    mainWidget.ui.checkBoxChartA7.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartAudPk.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartAudPk.seriesCommand = "pap"  #mainWidget.ui.checkBoxChartAudPk.seriesName = "Aud.peak"
+    mainWidget.ui.checkBoxChartAudPk.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartAudRMS.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartAudRMS.seriesCommand = "par" #mainWidget.ui.checkBoxChartAudRMS.seriesName = "Aud.RMS"
+    mainWidget.ui.checkBoxChartAudRMS.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartAudFFT.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartAudFFT.seriesCommand = "psf" #mainWidget.ui.checkBoxChartAudFFT.seriesName = "FFT Freq"
+    mainWidget.ui.checkBoxChartAudFFT.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartMotFreq.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartMotFreq.seriesCommand = "bmf"    #mainWidget.ui.checkBoxChartMotFreq.seriesName = "Mot.Freq"
+    mainWidget.ui.checkBoxChartMotFreq.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartReadFreq.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartReadFreq.seriesCommand = "bcf"   #mainWidget.ui.checkBoxChartReadFreq.seriesName = "Targ.Freq"
+    mainWidget.ui.checkBoxChartReadFreq.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartPeakErr.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartPeakErr.seriesCommand = "bpperr" #mainWidget.ui.checkBoxChartPeakErr.seriesName = "PIDPeakErr"
+    mainWidget.ui.checkBoxChartPeakErr.seriesType = timedChart.seriesType.integer
+
+    mainWidget.ui.checkBoxChartMotCurr.toggled.connect(mainWidget.checkBoxChartToggled)
+    mainWidget.ui.checkBoxChartMotCurr.seriesCommand = "bmc"    #mainWidget.ui.checkBoxChartMotCurr.seriesName = "Mot.Curr"
+    mainWidget.ui.checkBoxChartMotCurr.seriesType = timedChart.seriesType.integer
+"""""

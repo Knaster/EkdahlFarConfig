@@ -22,7 +22,7 @@ import sys
 
 import serial.tools.list_ports
 
-from PySide6.QtWidgets import QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit
+from PySide6.QtWidgets import QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit, QComboBox
 from PySide6.QtCore import QThread, Signal, QTimer, QModelIndex, Qt, QObject, QDir, Slot
 from PySide6.QtGui import QTextBlock, QTextCursor, QTextBlockFormat, QColor
 
@@ -113,78 +113,24 @@ def processInformationReturn(inSerialHandler, infoReturn):
                     currentSerialModule = int(i.argument[0])
                     addModulesIfNeeded(currentSerialModule)
                     print ("setting current serial module to " + i.argument[0])
-                case "b":
-                    currentBow = i.argument[0]
-                    print ("setting current serial bow to " + i.argument[0])
+#                case "b":
+#                    currentBow = i.argument[0]
+#                    print ("setting current serial bow to " + i.argument[0])
                 case "mc":
                     global moduleCount
                     moduleCount = int(i.argument[0])
                     addModulesIfNeeded(moduleCount - 1)
                     print ("setting module count to " + i.argument[0])
-                case "bcu":
-                    stringModules[currentSerialModule].setFundamentalFrequency(i.argument[0])
+                case "b" | "bcu" | "bmv" | "bmt" | "bpkp" | "bpki" | "bpkd" | "bpie" | "mfmp" | "mhmp" | "mrp" | "mbo" | \
+                     "bmsx" | "bmsi" | "bppx" | "bppe" | "bppr" | "bmf" | "psf" | "bmc" | "sxf" | "sif" | "sed" | "bcf":
+                    #stringModules[currentSerialModule].setFundamentalFrequency(i.argument[0])
+                    stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
                     mainWidget.updateStringModuleData()
-                    print("Setting fundamental frequency to " + str(stringModules[currentSerialModule].getFundamentalFrequency()))
-                case "bmv":
-                    stringModules[currentSerialModule].setMotorVoltage(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting bow motor voltage to " + str(stringModules[currentSerialModule].getMotorVoltage()))
-                case "bpkp":
-                    stringModules[currentSerialModule].setPIDKp(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting bow PID Kp to " + str(stringModules[currentSerialModule].getPIDKp()))
-                case "bpki":
-                    stringModules[currentSerialModule].setPIDKi(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting bow PID Ki to " + str(stringModules[currentSerialModule].getPIDKi()))
-                case "bpkd":
-                    stringModules[currentSerialModule].setPIDKd(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting bow PID Kd to " + str(stringModules[currentSerialModule].getPIDKd()))
-                case "bpie":
-                    stringModules[currentSerialModule].setIntegratorError(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting bow PID integrator error to " + str(stringModules[currentSerialModule].getIntegratorError()))
-                case "bmt":
-                    stringModules[currentSerialModule].setBowTimeOut(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting bow timeout to " + str(stringModules[currentSerialModule].getBowTimeOut()))
-                case "mfmp":
-                    stringModules[currentSerialModule].setMuteFullMutePosition(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting mute full mute position to " + str(stringModules[currentSerialModule].getMuteFullMutePosition()))
-                case "mhmp":
-                    stringModules[currentSerialModule].setMuteHalfMutePosition(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting mute half mute position to " + str(stringModules[currentSerialModule].getMuteHalfMutePosition()))
-                case "mrp":
-                    stringModules[currentSerialModule].setMuteRestPosition(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting mute rest position to " + str(stringModules[currentSerialModule].getMuteRestPosition()))
-                case "mbo":
-                    stringModules[currentSerialModule].setMuteBackoff(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting mute backoff to " + str(stringModules[currentSerialModule].getMuteBackoff()))
-                case "bmsx":
-                    stringModules[currentSerialModule].setBowMotorMaxSpeed(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting bow motor max speed to " + str(stringModules[currentSerialModule].getBowMotorMaxSpeed()))
-                case "bmsi":
-                    stringModules[currentSerialModule].setBowMotorMinSpeed(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting bow motor min speed to " + str(stringModules[currentSerialModule].getBowMotorMinSpeed()))
-                case "bppx":
-                    stringModules[currentSerialModule].setBowMaxPressure(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting bow max pressure to " + str(stringModules[currentSerialModule].getBowMaxPressure()))
-                case "bppe":
-                    stringModules[currentSerialModule].setBowMinPressure(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting bow min pressure to " + str(stringModules[currentSerialModule].getBowMinPressure()))
-                case "bppr":
-                    stringModules[currentSerialModule].setBowRestPosition(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting bow rest position to " + str(stringModules[currentSerialModule].getBowRestPosition()))
+#                case "psf":
+#                    if i.argument[0] == -1:
+#                        break
+#                    stringModules[currentSerialModule].setCommandValue(i.command, i.argument[0])
+#                    mainWidget.updateStringModuleData()
                 case "bchl":
                     hl = i.argument[0]
                     print(hl)
@@ -214,11 +160,6 @@ def processInformationReturn(inSerialHandler, infoReturn):
                             instrumentMaster.evNoteOn = i.argument[1]
                             mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note On"))
 
-#                            mainWidget.ui.midiNoteOnVelToHammer.blockSignals(True)
-#                            mainWidget.ui.midiNoteOnHammerStaccato.blockSignals(True)
-#                            mainWidget.ui.midiNoteOnSendMuteRest.blockSignals(True)
-#                            mainWidget.ui.midiNoteOnOther.blockSignals(True)
-
                             instrumentMaster.cmdNoteOn.clear()
                             instrumentMaster.cmdNoteOn.addCommands(i.argument[1])
                             offset, multiplier = equationParsingHelpers.getVariable(instrumentMaster.cmdNoteOn.getCommandAttribute("se", 0),"velocity")
@@ -236,19 +177,10 @@ def processInformationReturn(inSerialHandler, infoReturn):
 
                             mainWidget.ui.midiNoteOnOther.setText(instrumentMaster.evNoteOn)
 
-#                            mainWidget.ui.midiNoteOnVelToHammer.blockSignals(False)
-#                            mainWidget.ui.midiNoteOnHammerStaccato.blockSignals(False)
-#                            mainWidget.ui.midiNoteOnSendMuteRest.blockSignals(False)
-#                            mainWidget.ui.midiNoteOnOther.blockSignals(False)
-
                             print("Setting NoteOn to " + str(instrumentMaster.evNoteOn))
                         case "noteoff":
                             instrumentMaster.evNoteOff = i.argument[1]
                             mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note Off"))
-
-#                            mainWidget.ui.midiNoteOffSendFullMute.blockSignals(True)
-#                            mainWidget.ui.midiNoteOffMotorOff.blockSignals(True)
-#                            mainWidget.ui.midiNoteOffOther.blockSignals(True)
 
                             instrumentMaster.cmdNoteOff.clear()
                             instrumentMaster.cmdNoteOff.addCommands(i.argument[1])
@@ -265,10 +197,6 @@ def processInformationReturn(inSerialHandler, infoReturn):
 
                             mainWidget.ui.midiNoteOffOther.setText(instrumentMaster.evNoteOff)
 
- #                           mainWidget.ui.midiNoteOffSendFullMute.blockSignals(False)
- #                           mainWidget.ui.midiNoteOffMotorOff.blockSignals(False)
- #                           mainWidget.ui.midiNoteOffOther.blockSignals(False)
-
                             print("Setting NoteOff to " + str(instrumentMaster.evNoteOff))
                         case "cc":
                             instrumentMaster.addCC(int(i.argument[1]), str(i.argument[2]))
@@ -278,16 +206,10 @@ def processInformationReturn(inSerialHandler, infoReturn):
                             instrumentMaster.evPolyAftertouch = i.argument[1]
                             mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Poly Aftertouch"))
 
-#                            mainWidget.ui.midiPolyATSend.blockSignals(True)
-#                            mainWidget.ui.midiPolyATRatio.blockSignals(True)
-
                             instrumentMaster.cmdPolyAftertouch.clear()
                             instrumentMaster.cmdPolyAftertouch.addCommands(i.argument[1])
 
                             selectSendDestinationAndRatio(mainWidget.ui.midiPolyATSend, instrumentMaster.cmdPolyAftertouch, mainWidget.ui.midiPolyATRatio, "pressure")
-
-#                            mainWidget.ui.midiPolyATSend.blockSignals(False)
-#                            mainWidget.ui.midiPolyATRatio.blockSignals(False)
 
                             print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPolyAftertouch))
                         case "pb":
@@ -316,15 +238,15 @@ def processInformationReturn(inSerialHandler, infoReturn):
                             mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Program change"))
                             print("Setting polyphonic aftertouch to " + str(instrumentMaster.evProgramChange))
 
-                case "psf":
-                    stringModules[currentSerialModule].stringFrequency = float(i.argument[0])
-                    mainWidget.updateContinuousStringModuleData()
-                    print("Setting string frequency to " + str(stringModules[currentSerialModule].stringFrequency))
+                #case "psf":
+                #    stringModules[currentSerialModule].stringFrequency = float(i.argument[0])
+                #    mainWidget.updateContinuousStringModuleData()
+                #    print("Setting string frequency to " + str(stringModules[currentSerialModule].stringFrequency))
 
-                case "bmf":
-                    stringModules[currentSerialModule].bowFrequency = float(i.argument[0])
-                    mainWidget.updateContinuousStringModuleData()
-                    print("Setting bow frequency to " + str(stringModules[currentSerialModule].stringFrequency))
+                #case "bmf":
+                #    stringModules[currentSerialModule].bowFrequency = float(i.argument[0])
+                #    mainWidget.updateContinuousStringModuleData()
+                #    print("Setting bow frequency to " + str(stringModules[currentSerialModule].stringFrequency))
 
                 case "bchbn":
                     for a in range(1, mainWidget.ui.comboBoxBaseNote.count()):
@@ -332,30 +254,30 @@ def processInformationReturn(inSerialHandler, infoReturn):
                             mainWidget.ui.comboBoxBaseNote.setCurrentIndex(a)
                     print("setting base note to " + str(i.argument[0]))
 
-                case "bmc":
-                    stringModules[currentSerialModule].bowCurrent = float(i.argument[0])
-                    mainWidget.updateContinuousStringModuleData()
-                    print("Setting bow current to " + str(stringModules[currentSerialModule].bowCurrent))
+                #case "bmc":
+                #    stringModules[currentSerialModule].bowCurrent = float(i.argument[0])
+                #    mainWidget.updateContinuousStringModuleData()
+                #    print("Setting bow current to " + str(stringModules[currentSerialModule].bowCurrent))
 
-                case "sxf":
-                    stringModules[currentSerialModule].setSolenoidMaxForce(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting solenoid max force to " + str(stringModules[currentSerialModule].getSolenoidMaxForce()))
+                #case "sxf":
+                #    stringModules[currentSerialModule].setSolenoidMaxForce(i.argument[0])
+                #    mainWidget.updateStringModuleData()
+                #    print("Setting solenoid max force to " + str(stringModules[currentSerialModule].getSolenoidMaxForce()))
 
-                case "sif":
-                    stringModules[currentSerialModule].setSolenoidMinForce(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting solenoid min force to " + str(stringModules[currentSerialModule].getSolenoidMinForce()))
+                #case "sif":
+                #    stringModules[currentSerialModule].setSolenoidMinForce(i.argument[0])
+                #    mainWidget.updateStringModuleData()
+                #    print("Setting solenoid min force to " + str(stringModules[currentSerialModule].getSolenoidMinForce()))
 
-                case "sed":
-                    stringModules[currentSerialModule].setSolenoidEngageDuration(i.argument[0])
-                    mainWidget.updateStringModuleData()
-                    print("Setting solenoid engage duration to " + str(stringModules[currentSerialModule].getSolenoidEngageDuration()))
+                #case "sed":
+                #    stringModules[currentSerialModule].setSolenoidEngageDuration(i.argument[0])
+                #    mainWidget.updateStringModuleData()
+                #    print("Setting solenoid engage duration to " + str(stringModules[currentSerialModule].getSolenoidEngageDuration()))
 
-                case "bcf":
-                    stringModules[currentSerialModule].setSetFrequency(i.argument[0])
-                    mainWidget.updateContinuousStringModuleData()
-                    print("Setting set frequency to " + str(stringModules[currentSerialModule].setFrequency))
+                #case "bcf":
+                #    stringModules[currentSerialModule].setSetFrequency(i.argument[0])
+                #    mainWidget.updateContinuousStringModuleData()
+                #    print("Setting set frequency to " + str(stringModules[currentSerialModule].setFrequency))
 
                 case "adcr":
                     print("adcr " + str(i.argument[0]) + ":" + str(i.argument[1]))
@@ -813,67 +735,105 @@ class MainWidget(QWidget):
     def updateStringModuleData(self):
         global stringModules
         global currentShowingModule
-        self.ui.doubleSpinBoxFundamentalFrequency.setValue(float(stringModules[currentShowingModule].getFundamentalFrequency()))
-        self.ui.doubleSpinBoxBowMotorVoltage.setValue(float(stringModules[currentShowingModule].getMotorVoltage()))
-        self.ui.doubleSpinBoxBowMotorTimeout.setValue(float(stringModules[currentShowingModule].getBowTimeOut()))
-        self.ui.doubleSpinBoxMuteFullMutePosition.setValue(float(stringModules[currentShowingModule].getMuteFullMutePosition()))
-        self.ui.doubleSpinBoxMuteHalfMutePosition.setValue(float(stringModules[currentShowingModule].getMuteHalfMutePosition()))
-        self.ui.doubleSpinBoxMuteRestPosition.setValue(float(stringModules[currentShowingModule].getMuteRestPosition()))
-        self.ui.doubleSpinBoxMuteBackoff.setValue(float(stringModules[currentShowingModule].getMuteBackoff()))
-        self.ui.doubleSpinBoxBowMotorMaxSpeed.setValue(float(stringModules[currentShowingModule].getBowMotorMaxSpeed()))
-        self.ui.doubleSpinBoxBowMotorMinSpeed.setValue(float(stringModules[currentShowingModule].getBowMotorMinSpeed()))
-        self.ui.doubleSpinBoxBowMaxPressure.setValue(float(stringModules[currentShowingModule].getBowMaxPressure()))
-        self.ui.doubleSpinBoxBowMinPressure.setValue(float(stringModules[currentShowingModule].getBowMinPressure()))
-        self.ui.doubleSpinBoxBowRestPosition.setValue(float(stringModules[currentShowingModule].getBowRestPosition()))
+        #self.ui.doubleSpinBoxFundamentalFrequency.setValue(float(stringModules[currentShowingModule].getFundamentalFrequency()))
+        self.ui.doubleSpinBoxFundamentalFrequency.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxFundamentalFrequency.command)))
+        self.ui.doubleSpinBoxBowMotorVoltage.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorVoltage.command)))
+        self.ui.doubleSpinBoxBowMotorTimeout.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorTimeout.command)))
+#        self.ui.doubleSpinBoxBowMotorVoltage.setValue(float(stringModules[currentShowingModule].getMotorVoltage()))
+#        self.ui.doubleSpinBoxBowMotorTimeout.setValue(float(stringModules[currentShowingModule].getBowTimeOut()))
+        self.ui.doubleSpinBoxMuteFullMutePosition.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteFullMutePosition.command)))
+        self.ui.doubleSpinBoxMuteHalfMutePosition.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteHalfMutePosition.command)))
+        self.ui.doubleSpinBoxMuteRestPosition.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteRestPosition.command)))
+        self.ui.doubleSpinBoxMuteBackoff.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteBackoff.command)))
+#        self.ui.doubleSpinBoxMuteFullMutePosition.setValue(float(stringModules[currentShowingModule].getMuteFullMutePosition()))
+#        self.ui.doubleSpinBoxMuteHalfMutePosition.setValue(float(stringModules[currentShowingModule].getMuteHalfMutePosition()))
+#        self.ui.doubleSpinBoxMuteRestPosition.setValue(float(stringModules[currentShowingModule].getMuteRestPosition()))
+#        self.ui.doubleSpinBoxMuteBackoff.setValue(float(stringModules[currentShowingModule].getMuteBackoff()))
+        self.ui.doubleSpinBoxBowMotorMaxSpeed.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorMaxSpeed.command)))
+        self.ui.doubleSpinBoxBowMotorMinSpeed.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorMinSpeed.command)))
+#        self.ui.doubleSpinBoxBowMotorMaxSpeed.setValue(float(stringModules[currentShowingModule].getBowMotorMaxSpeed()))
+#        self.ui.doubleSpinBoxBowMotorMinSpeed.setValue(float(stringModules[currentShowingModule].getBowMotorMinSpeed()))
+        self.ui.doubleSpinBoxBowMaxPressure.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMaxPressure.command)))
+        self.ui.doubleSpinBoxBowMinPressure.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMinPressure.command)))
+        self.ui.doubleSpinBoxBowRestPosition.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowRestPosition.command)))
+#        self.ui.doubleSpinBoxBowMaxPressure.setValue(float(stringModules[currentShowingModule].getBowMaxPressure()))
+#        self.ui.doubleSpinBoxBowMinPressure.setValue(float(stringModules[currentShowingModule].getBowMinPressure()))
+#        self.ui.doubleSpinBoxBowRestPosition.setValue(float(stringModules[currentShowingModule].getBowRestPosition()))
 
-        self.ui.horizontalSliderBowFrequency.setMaximum(int(float(stringModules[currentShowingModule].getBowMotorMaxSpeed()) ))
+#        self.ui.horizontalSliderBowFrequency.setMaximum(int(float(stringModules[currentShowingModule].getBowMotorMaxSpeed()) ))
         self.updateContinuousStringModuleData()
 
-        self.ui.doubleSpinBoxSolenoidMaxForce.setValue(float(stringModules[currentShowingModule].getSolenoidMaxForce()))
-        self.ui.doubleSpinBoxSolenoidMinForce.setValue(float(stringModules[currentShowingModule].getSolenoidMinForce()))
-        self.ui.doubleSpinBoxSolenoidEngageDuration.setValue(float(stringModules[currentShowingModule].getSolenoidEngageDuration()))
+        self.ui.doubleSpinBoxSolenoidMaxForce.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidMaxForce.command)))
+        self.ui.doubleSpinBoxSolenoidMinForce.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidMinForce.command)))
+        self.ui.doubleSpinBoxSolenoidEngageDuration.setValue(
+            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidEngageDuration.command)))
+#        self.ui.doubleSpinBoxSolenoidMaxForce.setValue(float(stringModules[currentShowingModule].getSolenoidMaxForce()))
+#        self.ui.doubleSpinBoxSolenoidMinForce.setValue(float(stringModules[currentShowingModule].getSolenoidMinForce()))
+#        self.ui.doubleSpinBoxSolenoidEngageDuration.setValue(float(stringModules[currentShowingModule].getSolenoidEngageDuration()))
 
     def updateContinuousStringModuleData(self): 
-        freq = float(stringModules[currentShowingModule].stringFrequency)
-        self.ui.horizontalSliderStringFrequency.setValue(int(freq))
-        if (freq > 0):
-            if (self.ui.listWidgetTuningscheme.currentItem() != None):
-                print(self.ui.listWidgetTuningscheme.currentItem().text())
-                if ((self.ui.listWidgetTuningscheme.currentItem().text()) == "Equal temperament"):
-                    ret = getBaseNoteFromFrequency(freq, scaleDataEqual)
+        #freq = float(stringModules[currentShowingModule].stringFrequency)
+        freq = stringModules[currentShowingModule].getCommandValue("psf")
+        if not freq is None:
+            self.ui.horizontalSliderStringFrequency.setValue(int(freq))
+            if (freq > 0):
+                if (self.ui.listWidgetTuningscheme.currentItem() != None):
+                    print(self.ui.listWidgetTuningscheme.currentItem().text())
+                    if ((self.ui.listWidgetTuningscheme.currentItem().text()) == "Equal temperament"):
+                        ret = getBaseNoteFromFrequency(freq, scaleDataEqual)
+                    else:
+                        ret = getBaseNoteFromFrequency(freq, scaleDataJust)
                 else:
                     ret = getBaseNoteFromFrequency(freq, scaleDataJust)
-            else:
-                ret = getBaseNoteFromFrequency(freq, scaleDataJust)
 
-            self.ui.labelAnalyzeNote.setText(ret[3] + str(ret[0]))
-            self.ui.labelAnalyzeCents.setText(str(round(ret[2])))
-            self.ui.dialAnalyzeCents.setValue(round(ret[2]))
-            self.ui.labelAnalyzeFreq.setText(str(round(freq,1)))
-            self.ui.dialAnalyzeFreq.setValue(round(freq,1))
-            self.ui.labelStringFrequency.setText(ret[3] + str(ret[0]) + ":" + str(round(ret[2])) + " / " + str(round(freq,1)) + "Hz")
+                self.ui.labelAnalyzeNote.setText(ret[3] + str(ret[0]))
+                self.ui.labelAnalyzeCents.setText(str(round(ret[2])))
+                self.ui.dialAnalyzeCents.setValue(round(ret[2]))
+                self.ui.labelAnalyzeFreq.setText(str(round(freq,1)))
+                self.ui.dialAnalyzeFreq.setValue(round(freq,1))
+                self.ui.labelStringFrequency.setText(ret[3] + str(ret[0]) + ":" + str(round(ret[2])) + " / " + str(round(freq,1)) + "Hz")
 
-        freq = float(stringModules[currentShowingModule].bowFrequency)
-        mainWidget.ui.horizontalSliderBowFrequency.setValue(int(freq))
-        if (freq > 0):
-            #ret = getBaseNoteFromFrequency(freq, scaleDataJust)
-            if (self.ui.listWidgetTuningscheme.currentItem() != None):
-                print(self.ui.listWidgetTuningscheme.currentItem().text())
-                if ((self.ui.listWidgetTuningscheme.currentItem().text()) == "Equal temperament"):
-                    ret = getBaseNoteFromFrequency(freq, scaleDataEqual)
+        #freq = float(stringModules[currentShowingModule].bowFrequency)
+        freq = stringModules[currentShowingModule].getCommandValue("bmf")
+        if not freq is None:
+            mainWidget.ui.horizontalSliderBowFrequency.setValue(int(freq))
+            if (freq > 0):
+                #ret = getBaseNoteFromFrequency(freq, scaleDataJust)
+                if (self.ui.listWidgetTuningscheme.currentItem() != None):
+                    print(self.ui.listWidgetTuningscheme.currentItem().text())
+                    if ((self.ui.listWidgetTuningscheme.currentItem().text()) == "Equal temperament"):
+                        ret = getBaseNoteFromFrequency(freq, scaleDataEqual)
+                    else:
+                        ret = getBaseNoteFromFrequency(freq, scaleDataJust)
                 else:
                     ret = getBaseNoteFromFrequency(freq, scaleDataJust)
-            else:
-                ret = getBaseNoteFromFrequency(freq, scaleDataJust)
 
-            mainWidget.ui.labelBowFrequency.setText(ret[3] + str(ret[0]) + ":" + str(round(ret[2])) + " / " + str(round(freq,1)) + "Hz")
+                mainWidget.ui.labelBowFrequency.setText(ret[3] + str(ret[0]) + ":" + str(round(ret[2])) + " / " + str(round(freq,1)) + "Hz")
 
-        current = float(stringModules[currentShowingModule].bowCurrent)
-        mainWidget.ui.horizontalSliderBowCurrent.setValue(int(current * 10))
-        mainWidget.ui.labelBowCurrent.setText(str(current) + " A")
+        #current = float(stringModules[currentShowingModule].bowCurrent)
+        current = stringModules[currentShowingModule].getCommandValue("bmc")
+        if not current is None:
+            mainWidget.ui.horizontalSliderBowCurrent.setValue(int(current * 10))
+            mainWidget.ui.labelBowCurrent.setText(str(current) + " A")
 
-        freq = float(stringModules[currentShowingModule].setFrequency)
-        mainWidget.ui.labelSetFrequency.setText(str(freq) + " Hz")
+        #freq = float(stringModules[currentShowingModule].setFrequency)
+        freq = stringModules[currentShowingModule].getCommandValue("bcf")
+        if not freq is None:
+            mainWidget.ui.labelSetFrequency.setText(str(freq) + " Hz")
 
         for cv in range(0,8):
             match cv:
@@ -956,11 +916,19 @@ class MainWidget(QWidget):
         currentShowingModule = index
         print("Setting currently showing module to " + str(currentShowingModule))
 
-    def doubleSpinBoxFundamentalFrequencyValueChanged(value):
-        out = "m:" + str(currentShowingModule) + ",bowcontrolfundamental:" + str(mainWidget.ui.doubleSpinBoxFundamentalFrequency.value())
-        stringModules[currentShowingModule].setFundamentalFrequency(mainWidget.ui.doubleSpinBoxFundamentalFrequency.value())
+    def assignValueChanged(self, qtObject, command):
+        qtObject.command = command
+        qtObject.valueChanged.connect(self.basicChangedSignal)
+
+    def assignIndexChanged(self, qtObject, command):
+        qtObject.command = command
+        qtObject.currentIndexChanged.connect(self.basicChangedSignal)
+
+    def basicChangedSignal(self, value):
+        sender = self.sender()
+        out = "m:" + str(currentShowingModule) + "," + sender.command + ":" + str(value)
+        stringModules[currentShowingModule].setCommandValue(sender.command, float(value))
         serialHandler.write(out)
-        print(out)
 
     def doubleSpinBoxBowMotorVoltageValueChanged(value):
         out = "m:" + str(currentShowingModule) + ",bowmotorvoltage:" + str(mainWidget.ui.doubleSpinBoxBowMotorVoltage.value())
@@ -1043,6 +1011,10 @@ class MainWidget(QWidget):
         #mainWidget.debugTimedChart.setSeriesVisible(checkbox.seriesName, checkbox.seriesType, visible)
         mainWidget.debugTimedChart.setSeriesVisibleCommand(checkbox.seriesCommand, visible)
 
+    def checkBoxChartAssign(self, qtobject, seriesCommand, seriesType):
+        qtobject.toggled.connect(mainWidget.checkBoxChartToggled)
+        qtobject.seriesCommand = seriesCommand
+        qtobject.seriesType = seriesType
 
     def pushButtonCalibrateMutePressed(self):
         serialHandler.write("mutecalibrate")
@@ -1450,32 +1422,48 @@ if __name__ == "__main__":
 ## Tab Module settings
     mainWidget.ui.comboBoxCurrentlySelectedModule.currentIndexChanged.connect(mainWidget.comboBoxCurrentSelectedModuleIndexChanged)
 
-    mainWidget.ui.doubleSpinBoxFundamentalFrequency.valueChanged.connect(mainWidget.doubleSpinBoxFundamentalFrequencyValueChanged)
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxFundamentalFrequency, "bcu")
+#    mainWidget.ui.doubleSpinBoxFundamentalFrequency.valueChanged.connect(mainWidget.doubleSpinBoxFundamentalFrequencyValueChanged)
     mainWidget.ui.comboBoxBaseNote.currentIndexChanged.connect(mainWidget.comboBoxBaseNotePressed)
     mainWidget.ui.comboBoxFundamentalFrequency.currentIndexChanged.connect(mainWidget.comboBoxFundamentalFrequencyIndexChanged)
     mainWidget.ui.listWidgetTuningscheme.currentItemChanged.connect(mainWidget.tuningSchemeChanged)
 
-    mainWidget.ui.doubleSpinBoxBowMotorVoltage.valueChanged.connect(mainWidget.doubleSpinBoxBowMotorVoltageValueChanged)
-    mainWidget.ui.doubleSpinBoxBowMotorTimeout.valueChanged.connect(mainWidget.doubleSpinBoxBowMotorTimeoutValueChanged)
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorMaxSpeed, "bmsx")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorMinSpeed, "bmsi")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorVoltage, "bmv")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorTimeout, "bmt")
+#    mainWidget.ui.doubleSpinBoxBowMotorVoltage.valueChanged.connect(mainWidget.doubleSpinBoxBowMotorVoltageValueChanged)
+#    mainWidget.ui.doubleSpinBoxBowMotorTimeout.valueChanged.connect(mainWidget.doubleSpinBoxBowMotorTimeoutValueChanged)
     mainWidget.ui.pushButtonCalibrateMotorSpeed.pressed.connect(mainWidget.pushButtonCalibrateSpeedPressed)
 
-    mainWidget.ui.doubleSpinBoxBowMaxPressure.valueChanged.connect(mainWidget.doubleSpinBoxBowMaxPressureValueChanged)
-    mainWidget.ui.doubleSpinBoxBowMinPressure.valueChanged.connect(mainWidget.doubleSpinBoxBowMinPressureValueChanged)
-    mainWidget.ui.doubleSpinBoxBowRestPosition.valueChanged.connect(mainWidget.doubleSpinBoxBowRestPositionValueChanged)
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMaxPressure, "bppx")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMinPressure, "bppe")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowRestPosition, "bppr")
+#    mainWidget.ui.doubleSpinBoxBowMaxPressure.valueChanged.connect(mainWidget.doubleSpinBoxBowMaxPressureValueChanged)
+#    mainWidget.ui.doubleSpinBoxBowMinPressure.valueChanged.connect(mainWidget.doubleSpinBoxBowMinPressureValueChanged)
+#    mainWidget.ui.doubleSpinBoxBowRestPosition.valueChanged.connect(mainWidget.doubleSpinBoxBowRestPositionValueChanged)
     mainWidget.ui.pushButtonCalibratePressure.pressed.connect(mainWidget.pushButtonCalibratePressurePressed)
 
-    mainWidget.ui.doubleSpinBoxMuteFullMutePosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteFullMutePositionValueChanged)
-    mainWidget.ui.doubleSpinBoxMuteHalfMutePosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteHalfMutePositionValueChanged)
-    mainWidget.ui.doubleSpinBoxMuteRestPosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteRestPositionValueChanged)
-    mainWidget.ui.doubleSpinBoxMuteBackoff.valueChanged.connect(mainWidget.doubleSpinBoxMuteBackoffValueChanged)
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteFullMutePosition, "mfmp")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteHalfMutePosition, "mhmp")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteRestPosition, "mrp")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteBackoff, "mbo")
+    #mainWidget.ui.doubleSpinBoxMuteFullMutePosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteFullMutePositionValueChanged)
+    #mainWidget.ui.doubleSpinBoxMuteHalfMutePosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteHalfMutePositionValueChanged)
+    #mainWidget.ui.doubleSpinBoxMuteRestPosition.valueChanged.connect(mainWidget.doubleSpinBoxMuteRestPositionValueChanged)
+    #mainWidget.ui.doubleSpinBoxMuteBackoff.valueChanged.connect(mainWidget.doubleSpinBoxMuteBackoffValueChanged)
     mainWidget.ui.pushButtonCalibrateMute.pressed.connect(mainWidget.pushButtonCalibrateMutePressed)
 
     mainWidget.ui.comboBoxHarmonicList.currentIndexChanged.connect(mainWidget.comboBoxHarmonicListCurrentIndexChanged)
     mainWidget.ui.pushButtonLoadHarmonicPreset.pressed.connect(mainWidget.pushButtonLoadHarmonicPresetPressed)
 
-    mainWidget.ui.doubleSpinBoxSolenoidMaxForce.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidMaxForceValueChanged)
-    mainWidget.ui.doubleSpinBoxSolenoidMinForce.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidMinForceValueChanged)
-    mainWidget.ui.doubleSpinBoxSolenoidEngageDuration.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidEngageDurationValueChanged)
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidMaxForce, "sxf")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidMinForce, "sif")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidEngageDuration, "sed")
+
+#    mainWidget.ui.doubleSpinBoxSolenoidMaxForce.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidMaxForceValueChanged)
+#    mainWidget.ui.doubleSpinBoxSolenoidMinForce.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidMinForceValueChanged)
+#    mainWidget.ui.doubleSpinBoxSolenoidEngageDuration.valueChanged.connect(mainWidget.doubleSpinBoxSolenoidEngageDurationValueChanged)
 
     mainWidget.ui.pushButtonActuatorSave.pressed.connect(mainWidget.pushButtonActuatorSavePressed)
     mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
@@ -1514,65 +1502,21 @@ if __name__ == "__main__":
     mainWidget.ui.tableViewScale.setItemDelegateForRow(0, delegate)
     mainWidget.ui.tableViewScale.model().dataChanged.connect(mainWidget.tableViewScaleDataChanged)
 
-    mainWidget.ui.checkBoxChartA0.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartA0.seriesCommand = "adcr0"   #mainWidget.ui.checkBoxChartA0.seriesName = "Adc#0"
-    mainWidget.ui.checkBoxChartA0.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartA1.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartA1.seriesCommand = "adcr1"   #mainWidget.ui.checkBoxChartA1.seriesName = "adcr1" #Adc#1"
-    mainWidget.ui.checkBoxChartA1.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartA2.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartA2.seriesCommand = "adcr2"   #mainWidget.ui.checkBoxChartA2.seriesName = "Adc#2"
-    mainWidget.ui.checkBoxChartA2.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartA3.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartA3.seriesCommand = "adcr3"   #mainWidget.ui.checkBoxChartA3.seriesName = "Adc#3"
-    mainWidget.ui.checkBoxChartA3.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartA4.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartA4.seriesCommand = "adcr4"   #mainWidget.ui.checkBoxChartA4.seriesName = "Adc#4"
-    mainWidget.ui.checkBoxChartA4.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartA5.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartA5.seriesCommand = "adcr5"   #mainWidget.ui.checkBoxChartA5.seriesName = "Adc#5"
-    mainWidget.ui.checkBoxChartA5.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartA6.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartA6.seriesCommand = "adcr6"   #mainWidget.ui.checkBoxChartA6.seriesName = "Adc#6"
-    mainWidget.ui.checkBoxChartA6.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartA7.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartA7.seriesCommand = "adcr7"   #mainWidget.ui.checkBoxChartA7.seriesName = "Adc#7"
-    mainWidget.ui.checkBoxChartA7.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartAudPk.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartAudPk.seriesCommand = "pap"  #mainWidget.ui.checkBoxChartAudPk.seriesName = "Aud.peak"
-    mainWidget.ui.checkBoxChartAudPk.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartAudRMS.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartAudRMS.seriesCommand = "par" #mainWidget.ui.checkBoxChartAudRMS.seriesName = "Aud.RMS"
-    mainWidget.ui.checkBoxChartAudRMS.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartAudFFT.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartAudFFT.seriesCommand = "psf" #mainWidget.ui.checkBoxChartAudFFT.seriesName = "FFT Freq"
-    mainWidget.ui.checkBoxChartAudFFT.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartMotFreq.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartMotFreq.seriesCommand = "bmf"    #mainWidget.ui.checkBoxChartMotFreq.seriesName = "Mot.Freq"
-    mainWidget.ui.checkBoxChartMotFreq.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartReadFreq.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartReadFreq.seriesCommand = "bcf"   #mainWidget.ui.checkBoxChartReadFreq.seriesName = "Targ.Freq"
-    mainWidget.ui.checkBoxChartReadFreq.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartPeakErr.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartPeakErr.seriesCommand = "bpperr" #mainWidget.ui.checkBoxChartPeakErr.seriesName = "PIDPeakErr"
-    mainWidget.ui.checkBoxChartPeakErr.seriesType = timedChart.seriesType.integer
-
-    mainWidget.ui.checkBoxChartMotCurr.toggled.connect(mainWidget.checkBoxChartToggled)
-    mainWidget.ui.checkBoxChartMotCurr.seriesCommand = "bmc"    #mainWidget.ui.checkBoxChartMotCurr.seriesName = "Mot.Curr"
-    mainWidget.ui.checkBoxChartMotCurr.seriesType = timedChart.seriesType.integer
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA0, "adcr0", timedChart.seriesType.integer)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA1, "adcr1", timedChart.seriesType.integer)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA2, "adcr2", timedChart.seriesType.integer)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA3, "adcr3", timedChart.seriesType.integer)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA4, "adcr4", timedChart.seriesType.integer)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA5, "adcr5", timedChart.seriesType.integer)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA6, "adcr6", timedChart.seriesType.integer)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA7, "adcr7", timedChart.seriesType.integer)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartAudPk, "pap", timedChart.seriesType.integer)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartAudRMS, "par", timedChart.seriesType.integer)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartAudFFT, "psf", timedChart.seriesType.frequency)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartMotFreq, "bmf", timedChart.seriesType.frequency)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartReadFreq, "bcf", timedChart.seriesType.frequency)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartPeakErr, "bpperr", timedChart.seriesType.frequency)
+    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartMotCurr, "bmc", timedChart.seriesType.integer)
 
 ## Default settings
     mainWidget.addTuningSchemes()

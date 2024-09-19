@@ -27,13 +27,15 @@ class stringModule:
         self.retrieveFromHW = True
         self.updateHW = True
 
-        self.fundamentalFrequency = float(-1)
-        self.bowMotorVoltage = float(-1)
+        self.commandValues = {}
+
+#        self.fundamentalFrequency = float(-1)
+#        self.bowMotorVoltage = float(-1)
         self.pidKp = float(-1)
         self.pidKi = float(-1)
         self.pidKd = float(-1)
         self.integratorError = float(-1)
-        self.bowTimeOut = float(-1)
+#        self.bowTimeOut = float(-1)
         self.muteFullMutePosition = float(-1)
         self.muteHalfMutePosition = float(-1)
         self.muteRestPosition = float(-1)
@@ -126,11 +128,11 @@ class stringModule:
     def setMuteBackoff(self, backoff):
         self.muteBackoff = backoff
 
-    def getBowTimeOut(self):
-        return self.bowTimeOut
+#    def getBowTimeOut(self):
+#        return self.bowTimeOut
 
-    def setBowTimeOut(self, timeOut):
-        self.bowTimeOut = timeOut;
+#    def setBowTimeOut(self, timeOut):
+#        self.bowTimeOut = timeOut;
 
     def getIntegratorError(self):
         return self.integratorError
@@ -156,17 +158,17 @@ class stringModule:
     def setPIDKd(self, Kd):
         self.pidKd = Kd
 
-    def getMotorVoltage(self):
-        return self.bowMotorVoltage
+#    def getMotorVoltage(self):
+#        return self.bowMotorVoltage
 
-    def setMotorVoltage(self, inVoltage):
-        self.bowMotorVoltage = inVoltage
+#    def setMotorVoltage(self, inVoltage):
+#        self.bowMotorVoltage = inVoltage
 
-    def getFundamentalFrequency(self):
-        return self.fundamentalFrequency
+#    def getFundamentalFrequency(self):
+#        return self.fundamentalFrequency
 
-    def setFundamentalFrequency(self, inFundamentalFrequency):
-        self.fundamentalFrequency = float(inFundamentalFrequency)
+#    def setFundamentalFrequency(self, inFundamentalFrequency):
+#        self.fundamentalFrequency = float(inFundamentalFrequency)
 
     def setSolenoidMaxForce(self, maxForce):
         self.solenoidMaxForce = maxForce
@@ -229,6 +231,18 @@ class stringModule:
                 return self.cv6
             case 7:
                 return self.cv7
+    def setCommandValue(self, command, value):
+        #if command in self.commandValues:
+#        if command == "psf":
+#            if value != -1:
+#                oop = 3
+        self.commandValues[command] = value
+
+    def getCommandValue(self, command):
+        if command in self.commandValues:
+            return self.commandValues[command]
+        else:
+            return None
 
 class CC:
     def __init__(self):
