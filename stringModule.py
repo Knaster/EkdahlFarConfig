@@ -32,6 +32,7 @@ class stringModule:
 
         self.adcValue = [0,0,0,0,0,0,0,0]
         self.adcCommand = ["","","","","","","",""]
+        self.adcCommandLists = [CommandList(),CommandList(),CommandList(),CommandList(),CommandList(),CommandList(),CommandList(),CommandList()]
         pass
 
     def updateRequest(self):
@@ -46,6 +47,8 @@ class stringModule:
     def getCVValue(self, ch):
         return self.adcValue[int(ch)]
 
+    # This function will add any single value instrument data to the commandValues dictionary
+    # where the key is the associated command
     def setCommandValue(self, command, value):
         self.commandValues[command] = value
 
@@ -53,7 +56,20 @@ class stringModule:
         if command in self.commandValues:
             return self.commandValues[command]
         else:
-            return None
+            return -1
+
+    def setCVCommand(self, channel, command):
+        channel = int(channel)
+        self.adcCommandLists[channel] = CommandList(command)
+        self.adcCommand[channel] = command
+
+    def getCVCommand(self, channel):
+        channel = int(channel)
+        return self.adcCommand[channel]
+
+    def getCVCommandList(self, channel):
+        channel = int(channel)
+        return self.adcCommandLists[channel]
 
 class CC:
     def __init__(self):

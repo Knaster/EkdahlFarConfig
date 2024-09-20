@@ -91,6 +91,7 @@ def processInformationForChart(inSerialHandler, command):
     inSerialHandler.chartCommandSignal.emit(command)
     return
 
+# processInformationReturn updates both the stringModule attached and the GUI
 def processInformationReturn(inSerialHandler, infoReturn):
     print("processInformationReturn")
     commandList = CommandList()
@@ -107,184 +108,210 @@ def processInformationReturn(inSerialHandler, infoReturn):
         #processed = processInformationForChart(inSerialHandler, i)
         processInformationForChart(inSerialHandler, i)
 
-        try:
-            match i.command:
-                case "m":
-                    currentSerialModule = int(i.argument[0])
-                    addModulesIfNeeded(currentSerialModule)
-                    print ("setting current serial module to " + i.argument[0])
-                case "mc":
-                    global moduleCount
-                    moduleCount = int(i.argument[0])
-                    addModulesIfNeeded(moduleCount - 1)
-                    print ("setting module count to " + i.argument[0])
-                case "b" | "bcu" | "bmv" | "bmt" | "bpkp" | "bpki" | "bpkd" | "bpie" | "mfmp" | "mhmp" | "mrp" | "mbo" | \
-                     "bmsx" | "bmsi" | "bppx" | "bppe" | "bppr" | "bmf" | "psf" | "bmc" | "sxf" | "sif" | "sed" | "bcf":
-                    stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
-                    mainWidget.updateStringModuleData()
-                case "bchl":
-                    hl = i.argument[0]
-                    print(hl)
-                    print(len(stringModules[currentSerialModule].harmonicData))
-                    if (int(hl) != len(stringModules[currentSerialModule].harmonicData)):
-                        print("Error, harmonic list is broken")
+        #try:
+        match i.command:
+            case "m":
+                currentSerialModule = int(i.argument[0])
+                addModulesIfNeeded(currentSerialModule)
+                print ("setting current serial module to " + i.argument[0])
+            case "mc":
+                global moduleCount
+                moduleCount = int(i.argument[0])
+                addModulesIfNeeded(moduleCount - 1)
+                print ("setting module count to " + i.argument[0])
+            case "b" | "bcu" | "bmv" | "bmt" | "bpkp" | "bpki" | "bpkd" | "bpie" | "mfmp" | "mhmp" | "mrp" | "mbo" | \
+                 "bmsx" | "bmsi" | "bppx" | "bppe" | "bppr" | "bmf" | "psf" | "bmc" | "sxf" | "sif" | "sed" | "bcf":
+                stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
+                mainWidget.updateStringModuleData()
+            case "bchl":
+                hl = i.argument[0]
+                print(hl)
+                print(len(stringModules[currentSerialModule].harmonicData))
+                if (int(hl) != len(stringModules[currentSerialModule].harmonicData)):
+                    print("Error, harmonic list is broken")
+                    return
+                hs = []
+                hsi = 1
+                while (hsi < len(i.argument)):
+                    print("Adding value " + str(i.argument[hsi]))
+                    hs.append(i.argument[hsi])
+                    hsi += 1
+                stringModules[currentSerialModule].harmonicData.append(hs)
+                print("Added harmonic list " + str(stringModules[currentSerialModule].harmonicData))
+
+            case "bchc":
+                mainWidget.ui.comboBoxHarmonicList.clear()
+                hl = 0
+                while (hl < int(i.argument[0])):
+                    mainWidget.ui.comboBoxHarmonicList.addItem(str(hl))
+                    hl += 1
+                mainWidget.ui.comboBoxHarmonicList.setCurrentIndex(0)
+            case "mev":
+                match i.argument[0]:
+                    case "noteon":
+                        instrumentMaster.evNoteOn = i.argument[1]
+                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note On"))
+
+                        instrumentMaster.cmdNoteOn.clear()
+                        instrumentMaster.cmdNoteOn.addCommands(i.argument[1])
+                        offset, multiplier = equationParsingHelpers.getVariable(instrumentMaster.cmdNoteOn.getCommandAttribute("se", 0),"velocity")
+                        mainWidget.ui.midiNoteOnVelToHammer.setValue(multiplier)
+
+                        if equationParsingHelpers.isVariableInEquation(instrumentMaster.cmdNoteOn.getCommandAttribute("se", 0), "notecount"):
+                            mainWidget.ui.midiNoteOnHammerStaccato.setChecked(True)
+                        else:
+                            mainWidget.ui.midiNoteOnHammerStaccato.setChecked(False)
+
+                        if not instrumentMaster.cmdNoteOn.getCommandAttribute("mr", 0) == "":
+                            mainWidget.ui.midiNoteOnSendMuteRest.setChecked(True)
+                        else:
+                            mainWidget.ui.midiNoteOnSendMuteRest.setChecked(False)
+
+                        mainWidget.ui.midiNoteOnOther.setText(instrumentMaster.evNoteOn)
+
+                        print("Setting NoteOn to " + str(instrumentMaster.evNoteOn))
+                    case "noteoff":
+                        instrumentMaster.evNoteOff = i.argument[1]
+                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note Off"))
+
+                        instrumentMaster.cmdNoteOff.clear()
+                        instrumentMaster.cmdNoteOff.addCommands(i.argument[1])
+
+                        if not instrumentMaster.cmdNoteOff.getCommandAttribute("mfm", 0) == "":
+                            mainWidget.ui.midiNoteOffSendFullMute.setChecked(True)
+                        else:
+                            mainWidget.ui.midiNoteOffSendFullMute.setChecked(False)
+
+                        if not instrumentMaster.cmdNoteOff.getCommandAttribute("bmr", 0) == "":
+                            mainWidget.ui.midiNoteOffMotorOff.setChecked(True)
+                        else:
+                            mainWidget.ui.midiNoteOffMotorOff.setChecked(False)
+
+                        mainWidget.ui.midiNoteOffOther.setText(instrumentMaster.evNoteOff)
+
+                        print("Setting NoteOff to " + str(instrumentMaster.evNoteOff))
+                    case "cc":
+                        instrumentMaster.addCC(int(i.argument[1]), str(i.argument[2]))
+                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("CC " + str(i.argument[1])))
+                        print("Setting CC " + i.argument[1] + " to " + str(i.argument[2]))
+                    case "pat":
+                        instrumentMaster.evPolyAftertouch = i.argument[1]
+                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Poly Aftertouch"))
+
+                        instrumentMaster.cmdPolyAftertouch.clear()
+                        instrumentMaster.cmdPolyAftertouch.addCommands(i.argument[1])
+
+                        selectSendDestinationAndRatio(mainWidget.ui.midiPolyATSend, instrumentMaster.cmdPolyAftertouch, mainWidget.ui.midiPolyATRatio, "pressure")
+
+                        print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPolyAftertouch))
+                    case "pb":
+                        instrumentMaster.evPitchbend = i.argument[1]
+                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Pitchbend"))
+
+                        mainWidget.ui.midiPitchbendSend.blockSignals(True)
+                        mainWidget.ui.midiPitchbendRatio.blockSignals(True)
+
+                        instrumentMaster.cmdPitchbend.clear()
+                        instrumentMaster.cmdPitchbend.addCommands(i.argument[1])
+
+                        selectSendDestinationAndRatio(mainWidget.ui.midiPitchbendSend, instrumentMaster.cmdPitchbend,
+                                                      mainWidget.ui.midiPitchbendRatio, "pitch")
+
+                        mainWidget.ui.midiPitchbendSend.blockSignals(False)
+                        mainWidget.ui.midiPitchbendRatio.blockSignals(False)
+
+                        print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPitchbend))
+                    case "cat":
+                        instrumentMaster.evChannelAftertouch = i.argument[1]
+                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Channel Aftertouch"))
+                        print("Setting polyphonic aftertouch to " + str(instrumentMaster.evChannelAftertouch))
+                    case "pc":
+                        instrumentMaster.evProgramChange = i.argument[1]
+                        mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Program change"))
+                        print("Setting polyphonic aftertouch to " + str(instrumentMaster.evProgramChange))
+
+            case "bchbn":
+                for a in range(1, mainWidget.ui.comboBoxBaseNote.count()):
+                    if int(mainWidget.ui.comboBoxBaseNote.itemData(a)) == int(i.argument[0]):
+                        mainWidget.ui.comboBoxBaseNote.setCurrentIndex(a)
+                print("setting base note to " + str(i.argument[0]))
+
+            case "adcr":
+                print("adcr " + str(i.argument[0]) + ":" + str(i.argument[1]))
+                stringModules[currentSerialModule].setCVValue(int(i.argument[0]), int(i.argument[1]))
+                print("module data " + str(stringModules[currentSerialModule].getCVValue(0)))
+                mainWidget.updateContinuousStringModuleData()
+
+            case "bac":
+                print("bac " + str(i.argument[0]))
+                mainWidget.ui.comboBoxActuatorPreset.clear()
+                for a in range(0, int(i.argument[0])):
+                    serialHandler.write("rqi:bad:" + str(a))
+
+            case "bad":
+                print("bad")
+                if (len(i.argument) < 5):
+                    break
+                if (i.argument[4]) == "":
+                    break
+                mainWidget.ui.comboBoxActuatorPreset.addItem(i.argument[4], i.argument[0])
+
+            case "mcfc":
+                mainWidget.ui.comboBoxConfiguration.clear()
+                for a in range(0, int(i.argument[0])):
+                    serialHandler.write("rqi:mcfn:" + str(a))
+
+            case "mcfn":
+                    mainWidget.ui.comboBoxConfiguration.insertItem(int(i.argument[0]), str(i.argument[1]))
+
+            case "bcp":
+                mainWidget.updateUIData()
+
+            case "mrc":
+                mainWidget.ui.comboBoxMidiChannel.blockSignals(True)
+                ch = int (i.argument[0])
+                if ((ch < 1) or (ch >16)):
+                    find = "Omni"
+                else:
+                    find = str(ch)
+
+                for a in range(0, mainWidget.ui.comboBoxMidiChannel.count()):
+                    if find == mainWidget.ui.comboBoxMidiChannel.itemText(a):
+                        mainWidget.ui.comboBoxMidiChannel.setCurrentIndex(a)
+                        break
+                mainWidget.ui.comboBoxMidiChannel.blockSignals(False)
+
+            case "acm":
+                match int(i.argument[0]):
+                    case 0:
+                        widget = mainWidget.ui.plainTextEditCVHarmonicCommands
+                    case 1:
+                        widget = mainWidget.ui.plainTextEditCVHarmonicShiftCommands
+                    case 2:
+                        widget = mainWidget.ui.plainTextEditCVFineTuneCommands
+                    case 3:
+                        widget = mainWidget.ui.plainTextEditCVPressureCommands
+                    case 4:
+                        widget = mainWidget.ui.plainTextEditCVHammerTriggerCommands
+                    case 5:
+                        widget = mainWidget.ui.plainTextEditCVGateCommands
+                    case 6:
+                        widget = mainWidget.ui.plainTextEditCVHammerScaleCommands
+                    case 7:
+                        widget = mainWidget.ui.plainTextEditCVMuteCommands
+                    case _:
+                        messageBox("ADC Command error", "ADC Command error")
                         return
-                    hs = []
-                    hsi = 1
-                    while (hsi < len(i.argument)):
-                        print("Adding value " + str(i.argument[hsi]))
-                        hs.append(i.argument[hsi])
-                        hsi += 1
-                    stringModules[currentSerialModule].harmonicData.append(hs)
-                    print("Added harmonic list " + str(stringModules[currentSerialModule].harmonicData))
 
-                case "bchc":
-                    mainWidget.ui.comboBoxHarmonicList.clear()
-                    hl = 0
-                    while (hl < int(i.argument[0])):
-                        mainWidget.ui.comboBoxHarmonicList.addItem(str(hl))
-                        hl += 1
-                    mainWidget.ui.comboBoxHarmonicList.setCurrentIndex(0)
-                case "mev":
-                    match i.argument[0]:
-                        case "noteon":
-                            instrumentMaster.evNoteOn = i.argument[1]
-                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note On"))
+                widget.setPlainText(i.argument[1])
+                stringModules[currentSerialModule].setCVCommand(i.argument[0], i.argument[1])
+                mainWidget.updateCVData()
 
-                            instrumentMaster.cmdNoteOn.clear()
-                            instrumentMaster.cmdNoteOn.addCommands(i.argument[1])
-                            offset, multiplier = equationParsingHelpers.getVariable(instrumentMaster.cmdNoteOn.getCommandAttribute("se", 0),"velocity")
-                            mainWidget.ui.midiNoteOnVelToHammer.setValue(multiplier)
-
-                            if equationParsingHelpers.isVariableInEquation(instrumentMaster.cmdNoteOn.getCommandAttribute("se", 0), "notecount"):
-                                mainWidget.ui.midiNoteOnHammerStaccato.setChecked(True)
-                            else:
-                                mainWidget.ui.midiNoteOnHammerStaccato.setChecked(False)
-
-                            if not instrumentMaster.cmdNoteOn.getCommandAttribute("mr", 0) == "":
-                                mainWidget.ui.midiNoteOnSendMuteRest.setChecked(True)
-                            else:
-                                mainWidget.ui.midiNoteOnSendMuteRest.setChecked(False)
-
-                            mainWidget.ui.midiNoteOnOther.setText(instrumentMaster.evNoteOn)
-
-                            print("Setting NoteOn to " + str(instrumentMaster.evNoteOn))
-                        case "noteoff":
-                            instrumentMaster.evNoteOff = i.argument[1]
-                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note Off"))
-
-                            instrumentMaster.cmdNoteOff.clear()
-                            instrumentMaster.cmdNoteOff.addCommands(i.argument[1])
-
-                            if not instrumentMaster.cmdNoteOff.getCommandAttribute("mfm", 0) == "":
-                                mainWidget.ui.midiNoteOffSendFullMute.setChecked(True)
-                            else:
-                                mainWidget.ui.midiNoteOffSendFullMute.setChecked(False)
-
-                            if not instrumentMaster.cmdNoteOff.getCommandAttribute("bmr", 0) == "":
-                                mainWidget.ui.midiNoteOffMotorOff.setChecked(True)
-                            else:
-                                mainWidget.ui.midiNoteOffMotorOff.setChecked(False)
-
-                            mainWidget.ui.midiNoteOffOther.setText(instrumentMaster.evNoteOff)
-
-                            print("Setting NoteOff to " + str(instrumentMaster.evNoteOff))
-                        case "cc":
-                            instrumentMaster.addCC(int(i.argument[1]), str(i.argument[2]))
-                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("CC " + str(i.argument[1])))
-                            print("Setting CC " + i.argument[1] + " to " + str(i.argument[2]))
-                        case "pat":
-                            instrumentMaster.evPolyAftertouch = i.argument[1]
-                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Poly Aftertouch"))
-
-                            instrumentMaster.cmdPolyAftertouch.clear()
-                            instrumentMaster.cmdPolyAftertouch.addCommands(i.argument[1])
-
-                            selectSendDestinationAndRatio(mainWidget.ui.midiPolyATSend, instrumentMaster.cmdPolyAftertouch, mainWidget.ui.midiPolyATRatio, "pressure")
-
-                            print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPolyAftertouch))
-                        case "pb":
-                            instrumentMaster.evPitchbend = i.argument[1]
-                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Pitchbend"))
-
-                            mainWidget.ui.midiPitchbendSend.blockSignals(True)
-                            mainWidget.ui.midiPitchbendRatio.blockSignals(True)
-
-                            instrumentMaster.cmdPitchbend.clear()
-                            instrumentMaster.cmdPitchbend.addCommands(i.argument[1])
-
-                            selectSendDestinationAndRatio(mainWidget.ui.midiPitchbendSend, instrumentMaster.cmdPitchbend,
-                                                          mainWidget.ui.midiPitchbendRatio, "pitch")
-
-                            mainWidget.ui.midiPitchbendSend.blockSignals(False)
-                            mainWidget.ui.midiPitchbendRatio.blockSignals(False)
-
-                            print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPitchbend))
-                        case "cat":
-                            instrumentMaster.evChannelAftertouch = i.argument[1]
-                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Channel Aftertouch"))
-                            print("Setting polyphonic aftertouch to " + str(instrumentMaster.evChannelAftertouch))
-                        case "pc":
-                            instrumentMaster.evProgramChange = i.argument[1]
-                            mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Program change"))
-                            print("Setting polyphonic aftertouch to " + str(instrumentMaster.evProgramChange))
-
-                case "bchbn":
-                    for a in range(1, mainWidget.ui.comboBoxBaseNote.count()):
-                        if int(mainWidget.ui.comboBoxBaseNote.itemData(a)) == int(i.argument[0]):
-                            mainWidget.ui.comboBoxBaseNote.setCurrentIndex(a)
-                    print("setting base note to " + str(i.argument[0]))
-
-                case "adcr":
-                    print("adcr " + str(i.argument[0]) + ":" + str(i.argument[1]))
-                    stringModules[currentSerialModule].setCVValue(int(i.argument[0]), int(i.argument[1]))
-                    print("module data " + str(stringModules[currentSerialModule].getCVValue(0)))
-                    mainWidget.updateContinuousStringModuleData()
-
-                case "bac":
-                    print("bac " + str(i.argument[0]))
-                    mainWidget.ui.comboBoxActuatorPreset.clear()
-                    for a in range(0, int(i.argument[0])):
-                        serialHandler.write("rqi:bad:" + str(a))
-
-                case "bad":
-                    print("bad")
-                    if (len(i.argument) < 5):
-                        break
-                    if (i.argument[4]) == "":
-                        break
-                    mainWidget.ui.comboBoxActuatorPreset.addItem(i.argument[4], i.argument[0])
-
-                case "mcfc":
-                    mainWidget.ui.comboBoxConfiguration.clear()
-                    for a in range(0, int(i.argument[0])):
-                        serialHandler.write("rqi:mcfn:" + str(a))
-
-                case "mcfn":
-                        mainWidget.ui.comboBoxConfiguration.insertItem(int(i.argument[0]), str(i.argument[1]))
-
-                case "bcp":
-                    mainWidget.updateUIData()
-
-                case "mrc":
-                    mainWidget.ui.comboBoxMidiChannel.blockSignals(True)
-                    ch = int (i.argument[0])
-                    if ((ch < 1) or (ch >16)):
-                        find = "Omni"
-                    else:
-                        find = str(ch)
-
-                    for a in range(0, mainWidget.ui.comboBoxMidiChannel.count()):
-                        if find == mainWidget.ui.comboBoxMidiChannel.itemText(a):
-                            mainWidget.ui.comboBoxMidiChannel.setCurrentIndex(a)
-                            break
-                    mainWidget.ui.comboBoxMidiChannel.blockSignals(False)
-
-                case _:
-                    processed = processed | False
+            case _:
+                processed = processed | False
                     #processed = False
-        except:
-            pass
+        #except Exception as e:
+        #    pass
 
     mainWidget.updatingFromModule = False
     return processed
@@ -368,6 +395,14 @@ def requestStringModuleData():
     serialHandler.write("rqi:midiconfigurationcount")
     serialHandler.write("rqi:mrc")
     serialHandler.write("help")
+    serialHandler.write("rqi:acm:0")
+    serialHandler.write("rqi:acm:1")
+    serialHandler.write("rqi:acm:2")
+    serialHandler.write("rqi:acm:3")
+    serialHandler.write("rqi:acm:4")
+    serialHandler.write("rqi:acm:5")
+    serialHandler.write("rqi:acm:6")
+    serialHandler.write("rqi:acm:7")
 
 def requestBaseData():
     serialHandler.write("rqi:modulecount")
@@ -778,6 +813,13 @@ class MainWidget(QWidget):
             dial.setValue(int(stringModules[currentShowingModule].getCVValue(cv)) )
             label.setText(str(stringModules[currentShowingModule].getCVValue(cv)) )
 
+    def updateCVData(self):
+        #offset, multiplier = equationParsingHelpers.getVariable(instrumentMaster.cmdNoteOn.getCommandAttribute("se", 0), "velocity")
+        cl = stringModules[currentSerialModule].getCVCommandList(0)
+        attr = cl.getCommandAttribute("bch",0)
+        offset, multiplier = equationParsingHelpers.getVariable(attr, "value")
+        pass
+
     def debugClear(self):
         self.ui.plainTextEditSerialOutput.clear()
 
@@ -1069,12 +1111,6 @@ class MainWidget(QWidget):
         mainWidget.ui.comboBoxActuatorPreset.removeItem(comboIndex)
         serialHandler.write("bar:" + str(comboIndex) + ",bal,rqi:bxp,rqi:bip,rqi:brp")
 
-#    def pushButtonCalibrateSpeedPressed(self):
-#        serialHandler.write("bowcalibratespeed")
-
-#    def pushButtonCalibratePressurePressed(self):
-#        serialHandler.write("bowcalibratepressure")
-
     def assignButtonTest(self, qtObject, command, valuePointer, commandPost):
         qtObject.command = command
         qtObject.valuePointer = valuePointer
@@ -1101,9 +1137,6 @@ class MainWidget(QWidget):
             return
         # midiIn = mido.open_input(mainWidget.ui.comboBoxMIDILearnDevice.currentText())
         self.midiHandlerC.connecToMIDIIn(mainWidget.ui.comboBoxMIDILearnDevice.currentText())
-
-#    def pushButtonMidiRestoreDefaults(self):
-#        serialHandler.write("mcfd")
 
     def ccAdd(self):
         cc, ok = QInputDialog.getInt(self, "CC Number", "CC Number")
