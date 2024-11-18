@@ -1,0 +1,76 @@
+\hypertarget{widget_8py}{}\doxysection{widget.\+py File Reference}
+\label{widget_8py}\index{widget.py@{widget.py}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classwidget_1_1serialHandler}{widget.\+serial\+Handler}}
+\item 
+class \mbox{\hyperlink{classwidget_1_1MainWidget}{widget.\+Main\+Widget}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacewidget}{widget}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacewidget_a07468e8b086a27658191b056443b0431}{widget.\+add\+Modules\+If\+Needed}} (needed)
+\item 
+def \mbox{\hyperlink{namespacewidget_a663b4d9d4abef07d0342732e7aa6d972}{widget.\+process\+Information\+For\+Chart}} (in\+Serial\+Handler, command)
+\item 
+def \mbox{\hyperlink{namespacewidget_a6d2f4fb00d2064d395fa224d8ed0da63}{widget.\+process\+Information\+Return}} (in\+Serial\+Handler, info\+Return)
+\item 
+def \mbox{\hyperlink{namespacewidget_a3a95badc25576a600d4001dc3ad39c37}{widget.\+message\+Box}} (title, message)
+\item 
+def \mbox{\hyperlink{namespacewidget_a8a92113a5b12e7fc24ae9096f672fd37}{widget.\+process\+Help\+Return}} (info\+Return)
+\item 
+def \mbox{\hyperlink{namespacewidget_aa70736a343a6d878e208177c3394f403}{widget.\+request\+String\+Module\+Data}} ()
+\item 
+def \mbox{\hyperlink{namespacewidget_ab4ecab8f3998af482b02bec087893587}{widget.\+request\+Base\+Data}} ()
+\item 
+def \mbox{\hyperlink{namespacewidget_a3df9869c213664ce9d5cf7e7b1433365}{widget.\+set\+Report\+Feedback}} (report\+Type, state)
+\item 
+def \mbox{\hyperlink{namespacewidget_afed51f4b008fa5dbd3b157a4a5e8ea4e}{widget.\+select\+Send\+Destination\+And\+Ratio}} (combo\+Box, command\+List, ratio, variable)
+\item 
+def \mbox{\hyperlink{namespacewidget_a18760383e328bfaccfd29bb0dc467f00}{widget.\+get\+Base\+Note\+From\+Frequency}} (frequency, note\+Data\+Array)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacewidget_a0c1965f3d25b8cdace0ee70f41a9fb5d}{widget.\+log\+\_\+formatter}} = logging.\+Formatter(\textquotesingle{}\%(asctime)s -\/ \%(message)s\textquotesingle{})
+\item 
+string \mbox{\hyperlink{namespacewidget_a720cee55f2090745d04431647131064b}{widget.\+log\+\_\+file}} = \char`\"{}farconfig.\+log\char`\"{}
+\item 
+\mbox{\hyperlink{namespacewidget_a9b8c589d706116c2ee2f272eb08a8726}{widget.\+log\+\_\+handler}} = Rotating\+File\+Handler(log\+\_\+file, mode=\textquotesingle{}w\textquotesingle{}, max\+Bytes=1024$\ast$1024, backup\+Count=1, encoding=None, delay=0)
+\item 
+\mbox{\hyperlink{namespacewidget_afbd86150f94be45f54e6e7bd635c6e5e}{widget.\+log\+\_\+app}} = logging.\+get\+Logger(\textquotesingle{}root\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespacewidget_a2f30b83a173ee4a911a7c651137bff17}{widget.\+serial\+Ports}} = serial.\+tools.\+list\+\_\+ports.\+comports()
+\item 
+list \mbox{\hyperlink{namespacewidget_a5bd9a3486b385cbfc68a32bd3642fafc}{widget.\+string\+Modules}} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{namespacewidget_a5111729096f5d031d98c893ffe719684}{widget.\+instrument\+Master}} = Instrument\+Master()
+\item 
+int \mbox{\hyperlink{namespacewidget_a9daf5b13ff32ef056546c44b3a1e13ab}{widget.\+current\+Serial\+Module}} = 0
+\item 
+int \mbox{\hyperlink{namespacewidget_aebeef1e370a3006e2653b01113beb545}{widget.\+current\+Bow}} = 0
+\item 
+int \mbox{\hyperlink{namespacewidget_a9d1b5de93002ebc9c463461903601241}{widget.\+module\+Count}} = 0
+\item 
+int \mbox{\hyperlink{namespacewidget_ae1cbfc06bb2e979f87a68ce32f936102}{widget.\+current\+Harmonic\+List\+Selected}} = 0
+\item 
+int \mbox{\hyperlink{namespacewidget_a37b8c7d414048d520f9ade86c92d8d1f}{widget.\+current\+Showing\+Module}} = 0
+\item 
+list \mbox{\hyperlink{namespacewidget_ab2226b1870324b6b9f21bf74f451656b}{widget.\+scale\+Data\+Just}}
+\item 
+list \mbox{\hyperlink{namespacewidget_a7fcdd4d86a9fd56737c511b59cd5a4c0}{widget.\+scale\+Data\+Equal}}
+\item 
+\mbox{\hyperlink{namespacewidget_acd5e8198166b2e7593187163f2d8e9d7}{widget.\+app}} = QApplication(sys.\+argv)
+\item 
+\mbox{\hyperlink{namespacewidget_ace4fb383ffc8f467f64c9b852dde503c}{widget.\+main\+Widget}} = Main\+Widget()
+\item 
+\mbox{\hyperlink{namespacewidget_ab5ae3673ed9b9a172ec1780f16f547e2}{widget.\+delegate}} = table\+Test.\+Spin\+Box\+Delegate()
+\begin{DoxyCompactList}\small\item\em Hiding old. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacewidget_a4c481630cb5dad46120a8538dd336328}{widget.\+strm}} = string\+Module()
+\begin{DoxyCompactList}\small\item\em Default settings. \end{DoxyCompactList}\end{DoxyCompactItemize}

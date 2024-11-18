@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['scaledataequal_158',['scaleDataEqual',['../namespacewidget.html#a7fcdd4d86a9fd56737c511b59cd5a4c0',1,'widget']]],
+  ['scaledatajust_159',['scaleDataJust',['../namespacewidget.html#ab2226b1870324b6b9f21bf74f451656b',1,'widget']]],
+  ['selectmididevice_160',['selectMIDIDevice',['../classwidget_1_1MainWidget.html#aa02f6404d81488aee488eaaf23f1c340',1,'widget::MainWidget']]],
+  ['selectsenddestinationandratio_161',['selectSendDestinationAndRatio',['../namespacewidget.html#afed51f4b008fa5dbd3b157a4a5e8ea4e',1,'widget']]],
+  ['serialdisconnect_162',['serialDisconnect',['../classwidget_1_1MainWidget.html#a79b034234dea57e10d36087229c1f1df',1,'widget::MainWidget']]],
+  ['serialhandler_163',['serialHandler',['../classwidget_1_1serialHandler.html',1,'widget']]],
+  ['serialports_164',['serialPorts',['../namespacewidget.html#a2f30b83a173ee4a911a7c651137bff17',1,'widget']]],
+  ['serialthread_165',['serialThread',['../classwidget_1_1MainWidget.html#a470497813685d242cfa7b703398d06f5',1,'widget::MainWidget']]],
+  ['seriesarr_166',['seriesArr',['../classtimedChart_1_1timedChart.html#a2c3440c7d9d4f9ea0f41f25d6bec8192',1,'timedChart::timedChart']]],
+  ['seriestype_167',['seriesType',['../classtimedChart_1_1seriesType.html',1,'timedChart']]],
+  ['setcommandvalue_168',['setCommandValue',['../classstringModule_1_1stringModule.html#a54b0800366bfc2b7610bf07aa4dc55e3',1,'stringModule::stringModule']]],
+  ['setcontinuoussmreadings_169',['setContinuousSMReadings',['../classwidget_1_1MainWidget.html#affbdbf4fd5e3454dfd26f88c054b89e5',1,'widget::MainWidget']]],
+  ['setcvcommand_170',['setCVCommand',['../classstringModule_1_1stringModule.html#acf9b2890b418cc18ce7381f57032313c',1,'stringModule::stringModule']]],
+  ['setcvvalue_171',['setCVValue',['../classstringModule_1_1stringModule.html#ac0c61b9245022bf5296ecb79f97251e4',1,'stringModule::stringModule']]],
+  ['setreportfeedback_172',['setReportFeedback',['../namespacewidget.html#a3df9869c213664ce9d5cf7e7b1433365',1,'widget']]],
+  ['setseriesvisiblecommand_173',['setSeriesVisibleCommand',['../namespacetimedChart.html#af7e2253a55edcfe8c33d5c1dd76e43b7',1,'timedChart']]],
+  ['setuienabled_174',['setUIEnabled',['../classwidget_1_1MainWidget.html#afd12f21f8a8702484bcbc1fff7a2d009',1,'widget::MainWidget']]],
+  ['spinboxlimitlinesvaluechanged_175',['spinBoxLimitLinesValueChanged',['../classwidget_1_1MainWidget.html#a020f178abd1dce44f67dc1bac8e98b60',1,'widget::MainWidget']]],
+  ['stop_176',['stop',['../classwidget_1_1serialHandler.html#a8bc1bf7d617c66be1754a3f101233706',1,'widget::serialHandler']]],
+  ['stringmodule_177',['stringModule',['../namespacestringModule.html',1,'stringModule'],['../classstringModule_1_1stringModule.html',1,'stringModule.stringModule']]],
+  ['stringmodule_2epy_178',['stringModule.py',['../stringModule_8py.html',1,'']]],
+  ['stringmodules_179',['stringModules',['../namespacewidget.html#a5bd9a3486b385cbfc68a32bd3642fafc',1,'widget']]],
+  ['strm_180',['strm',['../namespacewidget.html#a4c481630cb5dad46120a8538dd336328',1,'widget']]]
+];

@@ -30,6 +30,7 @@ import re
 
 import commandparser
 import equationParsingHelpers
+import averager
 
 import logging
 from logging.handlers import RotatingFileHandler
@@ -80,6 +81,8 @@ currentHarmonicListSelected = 0
 currentShowingModule = 0
 #updatingFromModule = False
 
+adcAverages = [averager.Averager() for i in range(8)]
+
 def addModulesIfNeeded(needed):
     global stringModules
     while len(stringModules) <= needed:
@@ -93,7 +96,7 @@ def processInformationForChart(inSerialHandler, command):
 
 # processInformationReturn updates both the stringModule attached and the GUI
 def processInformationReturn(inSerialHandler, infoReturn):
-    print("processInformationReturn")
+    #print("processInformationReturn")
     commandList = CommandList()
     commandList.addCommands(infoReturn)
 
@@ -120,12 +123,13 @@ def processInformationReturn(inSerialHandler, infoReturn):
                 addModulesIfNeeded(moduleCount - 1)
                 print ("setting module count to " + i.argument[0])
             case "b" | "bcu" | "bmv" | "bmt" | "bpkp" | "bpki" | "bpkd" | "bpie" | "mfmp" | "mhmp" | "mrp" | "mbo" | \
-                 "bmsx" | "bmsi" | "bppx" | "bppe" | "bppr" | "bmf" | "psf" | "bmc" | "sxf" | "sif" | "sed" | "bcf":
+                 "bmsx" | "bmsi" | "bppx" | "bppe" | "bppr" | "bmf" | "psf" | "bmc" | "sxf" | "sif" | "sed" | "bcf" | \
+                 "bpkp" | "bpki" | "bkpd" | "bpie" | "bpme":
                 stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
                 mainWidget.updateStringModuleData()
             case "bchl":
                 hl = i.argument[0]
-                print(hl)
+                #print(hl)
                 print(len(stringModules[currentSerialModule].harmonicData))
                 if (int(hl) != len(stringModules[currentSerialModule].harmonicData)):
                     print("Error, harmonic list is broken")
@@ -201,15 +205,13 @@ def processInformationReturn(inSerialHandler, infoReturn):
                         instrumentMaster.cmdPolyAftertouch.clear()
                         instrumentMaster.cmdPolyAftertouch.addCommands(i.argument[1])
 
-                        selectSendDestinationAndRatio(mainWidget.ui.midiPolyATSend, instrumentMaster.cmdPolyAftertouch, mainWidget.ui.midiPolyATRatio, "pressure")
+                        selectSendDestinationAndRatio(mainWidget.ui.midiPolyATSend, instrumentMaster.cmdPolyAftertouch,
+                                                      mainWidget.ui.midiPolyATRatio, "pressure")
 
                         print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPolyAftertouch))
                     case "pb":
                         instrumentMaster.evPitchbend = i.argument[1]
                         mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Pitchbend"))
-
-                        mainWidget.ui.midiPitchbendSend.blockSignals(True)
-                        mainWidget.ui.midiPitchbendRatio.blockSignals(True)
 
                         instrumentMaster.cmdPitchbend.clear()
                         instrumentMaster.cmdPitchbend.addCommands(i.argument[1])
@@ -217,17 +219,22 @@ def processInformationReturn(inSerialHandler, infoReturn):
                         selectSendDestinationAndRatio(mainWidget.ui.midiPitchbendSend, instrumentMaster.cmdPitchbend,
                                                       mainWidget.ui.midiPitchbendRatio, "pitch")
 
-                        mainWidget.ui.midiPitchbendSend.blockSignals(False)
-                        mainWidget.ui.midiPitchbendRatio.blockSignals(False)
-
                         print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPitchbend))
                     case "cat":
                         instrumentMaster.evChannelAftertouch = i.argument[1]
                         mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Channel Aftertouch"))
+
+                        instrumentMaster.cmdChannelAftertouch.clear()
+                        instrumentMaster.cmdChannelAftertouch.addCommands(i.argument[1])
+
+                        selectSendDestinationAndRatio(mainWidget.ui.midiChannelATSend, instrumentMaster.cmdChannelAftertouch,
+                                                      mainWidget.ui.midiChannelATRatio, "pitch")
+
                         print("Setting polyphonic aftertouch to " + str(instrumentMaster.evChannelAftertouch))
                     case "pc":
                         instrumentMaster.evProgramChange = i.argument[1]
                         mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Program change"))
+
                         print("Setting polyphonic aftertouch to " + str(instrumentMaster.evProgramChange))
 
             case "bchbn":
@@ -237,10 +244,12 @@ def processInformationReturn(inSerialHandler, infoReturn):
                 print("setting base note to " + str(i.argument[0]))
 
             case "adcr":
-                print("adcr " + str(i.argument[0]) + ":" + str(i.argument[1]))
+                #print("adcr " + str(i.argument[0]) + ":" + str(i.argument[1]))
                 stringModules[currentSerialModule].setCVValue(int(i.argument[0]), int(i.argument[1]))
-                print("module data " + str(stringModules[currentSerialModule].getCVValue(0)))
+                #print("module data " + str(stringModules[currentSerialModule].getCVValue(0)))
                 mainWidget.updateContinuousStringModuleData()
+                adcAverages[int(i.argument[0])].addValue(i.argument[1])
+                mainWidget.updateAverages()
 
             case "bac":
                 print("bac " + str(i.argument[0]))
@@ -403,6 +412,11 @@ def requestStringModuleData():
     serialHandler.write("rqi:acm:5")
     serialHandler.write("rqi:acm:6")
     serialHandler.write("rqi:acm:7")
+    serialHandler.write("rqi:bpkp")
+    serialHandler.write("rqi:bpki")
+    serialHandler.write("rqi:bpkd")
+    serialHandler.write("rqi:bpie")
+    serialHandler.write("rqi:bpme")
 
 def requestBaseData():
     serialHandler.write("rqi:modulecount")
@@ -425,7 +439,7 @@ class serialHandler(QThread):
                 if serialStream is not None:                   
                     if serialStream.inWaiting() != 0:
                         receivedText = serialStream.readline().decode('ascii').strip()
-                        print("Received '" + receivedText + "'")
+                        #print("Received '" + receivedText + "'")
                         self.dataAvaliable.emit(self, receivedText)
 
             except Exception as e:
@@ -456,8 +470,11 @@ def setReportFeedback(reportType, state):
         out = "0"
     serialHandler.write("debugprint:" + reportType + ":" + out)
 
+# Finds the first destination command in commandList and selects it in the Combo Box given in comboBox
+# Sets the slider given in ratio to the multiplier value used in combination with the string literal variable given in variable
 def selectSendDestinationAndRatio(comboBox, commandList, ratio, variable):
     comboBox.blockSignals(True)
+    ratio.blockSignals(True)
 
     find = ""
     for a in commandList.commands:
@@ -494,6 +511,7 @@ def selectSendDestinationAndRatio(comboBox, commandList, ratio, variable):
             pass
 
     comboBox.blockSignals(False)
+    ratio.blockSignals(False)
 
 class MainWidget(QWidget):
     midiDataAvaliableSignal = Signal(str, str)
@@ -523,6 +541,8 @@ class MainWidget(QWidget):
         self.midiDataAvaliableSignal.connect(self.midiDataAvaliable)
 
         self.updatingFromModule = False
+
+        self.timeStamper = self.debugTimedChart.timeStamper #timedChart.timeStamp()
 
     def addData(self, seriesID, value, inSeriesType): # min, max):
         self.debugTimedChart.addData(seriesID, value, inSeriesType) # min, max)
@@ -598,6 +618,8 @@ class MainWidget(QWidget):
                     ignoreMessage = True
         else:
             color = "rgb(230,200,160)"
+
+        text = str(round(self.timeStamper.getCurrent(), 1)) + " : " + text
 
         far = text
         far = re.sub('[\u003c]', '&lt;', far)
@@ -700,36 +722,28 @@ class MainWidget(QWidget):
     def updateStringModuleData(self):
         global stringModules
         global currentShowingModule
-        self.ui.doubleSpinBoxFundamentalFrequency.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxFundamentalFrequency.command)))
-        self.ui.doubleSpinBoxBowMotorVoltage.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorVoltage.command)))
-        self.ui.doubleSpinBoxBowMotorTimeout.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorTimeout.command)))
-        self.ui.doubleSpinBoxMuteFullMutePosition.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteFullMutePosition.command)))
-        self.ui.doubleSpinBoxMuteHalfMutePosition.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteHalfMutePosition.command)))
-        self.ui.doubleSpinBoxMuteRestPosition.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteRestPosition.command)))
-        self.ui.doubleSpinBoxMuteBackoff.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteBackoff.command)))
-        self.ui.doubleSpinBoxBowMotorMaxSpeed.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorMaxSpeed.command)))
-        self.ui.doubleSpinBoxBowMotorMinSpeed.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorMinSpeed.command)))
-        self.ui.doubleSpinBoxBowMaxPressure.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMaxPressure.command)))
-        self.ui.doubleSpinBoxBowMinPressure.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMinPressure.command)))
-        self.ui.doubleSpinBoxBowRestPosition.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowRestPosition.command)))
-        self.ui.doubleSpinBoxSolenoidMaxForce.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidMaxForce.command)))
-        self.ui.doubleSpinBoxSolenoidMinForce.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidMinForce.command)))
-        self.ui.doubleSpinBoxSolenoidEngageDuration.setValue(
-            float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidEngageDuration.command)))
+        self.ui.doubleSpinBoxFundamentalFrequency.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxFundamentalFrequency.command)))
+
+        self.ui.doubleSpinBoxBowMotorPIDKp.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorPIDKp.command)))
+        self.ui.doubleSpinBoxBowMotorPIDKi.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorPIDKi.command)))
+        self.ui.doubleSpinBoxBowMotorPIDKd.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorPIDKd.command)))
+        self.ui.doubleSpinBoxBowMotorPIDie.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorPIDie.command)))
+        self.ui.doubleSpinBoxBowMotorMaxError.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorMaxError.command)))
+
+        self.ui.doubleSpinBoxBowMotorVoltage.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorVoltage.command)))
+        self.ui.doubleSpinBoxBowMotorTimeout.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorTimeout.command)))
+        self.ui.doubleSpinBoxMuteFullMutePosition.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteFullMutePosition.command)))
+        self.ui.doubleSpinBoxMuteHalfMutePosition.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteHalfMutePosition.command)))
+        self.ui.doubleSpinBoxMuteRestPosition.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteRestPosition.command)))
+        self.ui.doubleSpinBoxMuteBackoff.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxMuteBackoff.command)))
+        self.ui.doubleSpinBoxBowMotorMaxSpeed.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorMaxSpeed.command)))
+        self.ui.doubleSpinBoxBowMotorMinSpeed.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMotorMinSpeed.command)))
+        self.ui.doubleSpinBoxBowMaxPressure.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMaxPressure.command)))
+        self.ui.doubleSpinBoxBowMinPressure.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowMinPressure.command)))
+        self.ui.doubleSpinBoxBowRestPosition.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxBowRestPosition.command)))
+        self.ui.doubleSpinBoxSolenoidMaxForce.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidMaxForce.command)))
+        self.ui.doubleSpinBoxSolenoidMinForce.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidMinForce.command)))
+        self.ui.doubleSpinBoxSolenoidEngageDuration.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidEngageDuration.command)))
 
         self.updateContinuousStringModuleData()
 
@@ -819,6 +833,50 @@ class MainWidget(QWidget):
         attr = cl.getCommandAttribute("bch",0)
         offset, multiplier = equationParsingHelpers.getVariable(attr, "value")
         pass
+
+    def updateAverages(self):
+        self.ui.labelADC0Avg.setText(str(adcAverages[0].average))
+        self.ui.labelADC0Max.setText(str(adcAverages[0].max))
+        self.ui.labelADC0Min.setText(str(adcAverages[0].min))
+        self.ui.labelADC0Diff.setText(str(adcAverages[0].max - adcAverages[0].min))
+        self.ui.labelADC1Avg.setText(str(adcAverages[1].average))
+        self.ui.labelADC1Max.setText(str(adcAverages[1].max))
+        self.ui.labelADC1Min.setText(str(adcAverages[1].min))
+        self.ui.labelADC1Diff.setText(str(adcAverages[1].max - adcAverages[1].min))
+        self.ui.labelADC2Avg.setText(str(adcAverages[2].average))
+        self.ui.labelADC2Max.setText(str(adcAverages[2].max))
+        self.ui.labelADC2Min.setText(str(adcAverages[2].min))
+        self.ui.labelADC2Diff.setText(str(adcAverages[2].max - adcAverages[2].min))
+        self.ui.labelADC3Avg.setText(str(adcAverages[3].average))
+        self.ui.labelADC3Max.setText(str(adcAverages[3].max))
+        self.ui.labelADC3Min.setText(str(adcAverages[3].min))
+        self.ui.labelADC3Diff.setText(str(adcAverages[3].max - adcAverages[3].min))
+        self.ui.labelADC4Avg.setText(str(adcAverages[4].average))
+        self.ui.labelADC4Max.setText(str(adcAverages[4].max))
+        self.ui.labelADC4Min.setText(str(adcAverages[4].min))
+        self.ui.labelADC4Diff.setText(str(adcAverages[4].max - adcAverages[4].min))
+        self.ui.labelADC5Avg.setText(str(adcAverages[5].average))
+        self.ui.labelADC5Max.setText(str(adcAverages[5].max))
+        self.ui.labelADC5Min.setText(str(adcAverages[5].min))
+        self.ui.labelADC5Diff.setText(str(adcAverages[5].max - adcAverages[5].min))
+        self.ui.labelADC6Avg.setText(str(adcAverages[6].average))
+        self.ui.labelADC6Max.setText(str(adcAverages[6].max))
+        self.ui.labelADC6Min.setText(str(adcAverages[6].min))
+        self.ui.labelADC6Diff.setText(str(adcAverages[6].max - adcAverages[6].min))
+        self.ui.labelADC7Avg.setText(str(adcAverages[7].average))
+        self.ui.labelADC7Max.setText(str(adcAverages[7].max))
+        self.ui.labelADC7Min.setText(str(adcAverages[7].min))
+        self.ui.labelADC7Diff.setText(str(adcAverages[7].max - adcAverages[7].min))
+
+    def averagesClear(self):
+        for a in adcAverages:
+            a.clear()
+        self.updateAverages()
+
+    def averagesTest(self):
+        for i in range(8):
+            serialHandler.write("adcs:" + str(i) + ":1:1:2:10")
+
 
     def debugClear(self):
         self.ui.plainTextEditSerialOutput.clear()
@@ -1330,6 +1388,13 @@ if __name__ == "__main__":
 
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorMaxSpeed, "bmsx")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorMinSpeed, "bmsi")
+
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorPIDKp, "bpkp")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorPIDKi, "bpki")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorPIDKd, "bpkd")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorPIDie, "bpie")
+    mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorMaxError, "bpme")
+
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorVoltage, "bmv")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorTimeout, "bmt")
     #mainWidget.ui.pushButtonCalibrateMotorSpeed.pressed.connect(mainWidget.pushButtonCalibrateSpeedPressed)
@@ -1418,6 +1483,9 @@ if __name__ == "__main__":
     mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartPeakErr, "bpperr", timedChart.seriesType.frequency)
     mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartMotCurr, "bmc", timedChart.seriesType.integer)
 
+    mainWidget.ui.pushButtonClearAverages.pressed.connect(mainWidget.averagesClear)
+    mainWidget.ui.pushButtonTestAverages.pressed.connect(mainWidget.averagesTest)
+
 ## Default settings
     mainWidget.addTuningSchemes()
     mainWidget.ui.spinBoxLimitLines.setValue(2500)
@@ -1447,6 +1515,7 @@ if __name__ == "__main__":
 #stringModule inits
     strm = stringModule()
     stringModules.append(strm)
+
 #    strm.setFundamentalFrequency(230)
 #    print(stringModules[0].getFundamentalFrequency())
 #    print(stringModules[0].updateRequest())

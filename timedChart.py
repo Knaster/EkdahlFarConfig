@@ -112,8 +112,8 @@ class timedChart(QWidget):
                      "bmc": chartMatchData(seriesType.integer, "Motor current (x6k)")
                      }
 
-    for poo in chartMatchArr:
-        print(chartMatchArr[poo].description)
+    #for poo in chartMatchArr:
+    #    print(chartMatchArr[poo].description)
 
     def __init__(self):
         ## Array of all the series classes in the chart
@@ -146,63 +146,30 @@ class timedChart(QWidget):
 
         self.timeStamper = timeStamp()
 
+    lastClean = 0
+
     def addData(self, seriesID, value, inSeriesType): #min, max,): #
         if ((inSeriesType == seriesType.frequency) and (value <= 0)):
             return
 
-        ## find series data index in array
-#        sFound = False
-#        for s in self.seriesArr:
-#            if (s.name == seriesID):
-#                sFound = True
-#                break
-
         s = self.getSeries(seriesID)
         if s is None:
             s = self.addSeries(seriesID, inSeriesType)
+            s.setUseOpenGL(True)
             if s is None:
                 return
             sFound = True
 
-#        if (not sFound):
-##            print("Creating new series")
-#            s = QLineSeries()
-#            s.name = seriesID
-#            s.setName(seriesID)
-#
-#            s.setPointLabelsColor(QColor("blue"))
-#            s.setPointLabelsFormat("@yPoint")
-#            s.setPointLabelsClipping(True)
-#            #s.setPointLabelsVisible(True)
-#
-#            #s.setMarkerSize(5)
-#            #s.setLightMarker(default_light_marker(5))
-#
-#            # Add the newly created series class to the local series array seriesArr
-#            self.seriesArr.append(s)
-#            self.chart.addSeries(s)
-#
-#            s.attachAxis(self.axisX)
-#            if (inSeriesType == seriesType.integer):
-#                s.attachAxis(self.axisYInt)
-#            elif (inSeriesType == seriesType.frequency):
-#                s.attachAxis(self.axisYHz)
-#            else:
-#                print("ERROR")
-
-        print(s.isVisible())
-        #s.setVisible(True)
         s.append(self.timeStamper.getCurrent(), float(value))
 
-        #self.chart.createDefaultAxes()
-        #self.chart.axisX(s).setRange(self.timeStamper.getCurrent() - self.timeStamper.overflow, self.timeStamper.getCurrent())
         self.axisX.setRange(self.timeStamper.getCurrent() - self.timeStamper.overflow, self.timeStamper.getCurrent())
 
-#        points_within_range = [point for point in s.pointsVector() if x_min <= point.x() <= x_max]
-        for point in s.pointsVector():
-            if point.x() < (self.timeStamper.getCurrent() - self.timeStamper.overflow):
-                s.remove(point)
-#        self.chart.axisY(s).setRange(min, max)
+# Only clean up every [overflow] so that this doesn't detract
+        if (self.timeStamper.getCurrent() - self.lastClean > self.timeStamper.overflow):
+            self.lastClean = self.timeStamper.getCurrent()
+            for point in s.pointsVector():
+                if point.x() < (self.timeStamper.getCurrent() - self.timeStamper.overflow):
+                    s.remove(point)
 
     def getSeries(self, seriesID):
 #        for s in self.chart.series():
@@ -258,26 +225,58 @@ class timedChart(QWidget):
         key = command.command
         try:
             value = float(command.argument[0])
+        except:
+            return
 
-            #if command.command == "adcr":
-            match command.command:
-                case "adcr":
-                    key += command.argument[0]
-                    value = float(command.argument[1])
-                case "pap" | "par":
-                    value *= 65535
-                case "bmc":
-                    value *= 60000
+        #if command.command == "adcr":
+        match command.command:
+            case "adcr":
+                key += command.argument[0]
+                value = float(command.argument[1])
+            case "pap" | "par":
+                value *= 65535
+            case "bmc":
+                value *= 60000
 
+        try:
             series = self.chartMatchArr[key]
             #print("Found a chart!")
-            self.addData(series.description, value, series.seriesType)
-
         except:
             #print("no series for command " + str(key) )
-            pass
+            return
+
+        self.addData(series.description, value, series.seriesType)
 
 # mainWidget.debugTimedChart.setSeriesVisible(chartMatchArr[checkbox.seriesName].description, chartMatchArr[checkbox.seriesName].seriesType, visible)
 
 
 # Match commands that are going on the chart, these commands may be processed further by processInformationReturn
+
+#        if (not sFound):
+##            print("Creating new series")
+#            s = QLineSeries()
+#            s.name = seriesID
+#            s.setName(seriesID)
+#
+#            s.setPointLabelsColor(QColor("blue"))
+#            s.setPointLabelsFormat("@yPoint")
+#            s.setPointLabelsClipping(True)
+#            #s.setPointLabelsVisible(True)
+#
+#            #s.setMarkerSize(5)
+#            #s.setLightMarker(default_light_marker(5))
+#
+#            # Add the newly created series class to the local series array seriesArr
+#            self.seriesArr.append(s)
+#            self.chart.addSeries(s)
+#
+#            s.attachAxis(self.axisX)
+#            if (inSeriesType == seriesType.integer):
+#                s.attachAxis(self.axisYInt)
+#            elif (inSeriesType == seriesType.frequency):
+#                s.attachAxis(self.axisYHz)
+#            else:
+#                print("ERROR")
+
+#        print(s.isVisible())
+        #s.setVisible(True)
