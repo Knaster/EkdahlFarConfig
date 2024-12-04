@@ -577,7 +577,7 @@
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab_stringModule">
     <attribute name="title">
@@ -1088,25 +1088,25 @@
        <rect>
         <x>10</x>
         <y>150</y>
-        <width>31</width>
+        <width>101</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>+</string>
+       <string>Add ratio</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButtonRemoveHarmonic">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>120</x>
         <y>150</y>
-        <width>31</width>
+        <width>101</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>-</string>
+       <string>Remove ratio</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButtonLoadHarmonicPreset">
@@ -1171,27 +1171,66 @@
      <widget class="QPushButton" name="pushButtonAddHarmonicList">
       <property name="geometry">
        <rect>
-        <x>340</x>
+        <x>540</x>
         <y>30</y>
-        <width>31</width>
+        <width>91</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>+</string>
+       <string>Add new list</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButtonRemoveHarmonicList">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>640</x>
         <y>30</y>
-        <width>31</width>
+        <width>91</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>-</string>
+       <string>Remove list</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonSaveCurrentHarmonicList">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>30</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Save current</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonSaveNewHarmonicList">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>30</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Save as new</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonAddHarmonicListFile">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>30</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add list file</string>
       </property>
      </widget>
     </widget>

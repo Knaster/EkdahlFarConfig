@@ -21,7 +21,7 @@
 
 class CommandItem:
     def startOfQuote(self, inCommandString, index, quote):
-#        print("Start of quote " + inCommandString[index:])
+                                                #        print("Start of quote " + inCommandString[index:])
         while index < len(inCommandString):
             if inCommandString[index] == quote:
                 return index
@@ -47,7 +47,7 @@ class CommandItem:
         foundIndex += 1
         startIndex = foundIndex
         while foundIndex < len(inCommandString):
-            if inCommandString[foundIndex] == ":":
+            if (inCommandString[foundIndex] == ":") and (startIndex != foundIndex):
 #                print("adding argument " + inCommandString[startIndex:foundIndex])
                 self.argument.append(str(inCommandString[startIndex:foundIndex]))
                 startIndex = foundIndex + 1

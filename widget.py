@@ -124,32 +124,40 @@ def processInformationReturn(inSerialHandler, infoReturn):
                 print ("setting module count to " + i.argument[0])
             case "b" | "bcu" | "bmv" | "bmt" | "bpkp" | "bpki" | "bpkd" | "bpie" | "mfmp" | "mhmp" | "mrp" | "mbo" | \
                  "bmsx" | "bmsi" | "bppx" | "bppe" | "bppr" | "bmf" | "psf" | "bmc" | "sxf" | "sif" | "sed" | "bcf" | \
-                 "bpkp" | "bpki" | "bkpd" | "bpie" | "bpme":
+                 "bpkp" | "bpki" | "bkpd" | "bpie" | "bpme" | "bhs":
                 stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
                 mainWidget.updateStringModuleData()
-            case "bchl":
-                hl = i.argument[0]
-                #print(hl)
-                print(len(stringModules[currentSerialModule].harmonicData))
-                if (int(hl) != len(stringModules[currentSerialModule].harmonicData)):
-                    print("Error, harmonic list is broken")
-                    return
-                hs = []
-                hsi = 1
-                while (hsi < len(i.argument)):
-                    print("Adding value " + str(i.argument[hsi]))
-                    hs.append(i.argument[hsi])
-                    hsi += 1
-                stringModules[currentSerialModule].harmonicData.append(hs)
-                print("Added harmonic list " + str(stringModules[currentSerialModule].harmonicData))
+            case "bhsl":
+                try:
+                    hl = i.argument[0]
+                    #print(hl)
+                    print(len(stringModules[currentSerialModule].harmonicData))
+    #                if (int(hl) != len(stringModules[currentSerialModule].harmonicData)):
+    #                    print("Error, harmonic list is broken")
+    #                    return
+    #                hs = []
+                    stringModules[currentSerialModule].harmonicData.clear()
+    #                hsi = 1
+                    hsi = 0
+                    while (hsi < len(i.argument)):
+                        print("Adding value " + str(i.argument[hsi]))
+     #                   hs.append(i.argument[hsi])
+                        stringModules[currentSerialModule].harmonicData.append(i.argument[hsi])
+                        hsi += 1
+    #                stringModules[currentSerialModule].harmonicData.append(hs)
+                    mainWidget.updateHarmonicTable()
+                    print("Added harmonic list " + str(stringModules[currentSerialModule].harmonicData))
+                except:
+                    messageBox("Problem! Yes!", "Oh no")
 
-            case "bchc":
+            case "bhsc":
                 mainWidget.ui.comboBoxHarmonicList.clear()
                 hl = 0
                 while (hl < int(i.argument[0])):
-                    mainWidget.ui.comboBoxHarmonicList.addItem(str(hl))
+                    #mainWidget.ui.comboBoxHarmonicList.addItem(str(hl))
+                    mainWidget.ui.comboBoxHarmonicList.addItem(str(i.argument[hl + 1]))
                     hl += 1
-                mainWidget.ui.comboBoxHarmonicList.setCurrentIndex(0)
+                mainWidget.ui.comboBoxHarmonicList.setCurrentIndex(stringModules[currentSerialModule].getCommandValue("bhs"))
             case "mev":
                 match i.argument[0]:
                     case "noteon":
@@ -337,6 +345,13 @@ def messageBox(title, message):
     if returnValue == QMessageBox.Ok:
         print('OK clicked')
 
+def inputBox(title, message):
+    text, ok = QInputDialog().getText(mainWidget, title, message, QLineEdit.Normal)
+    if ok and text:
+        return text
+    else:
+        return None
+
 def processHelpReturn(infoReturn):
     commandList = CommandList()
     if not commandList.addCommands(infoReturn):
@@ -393,8 +408,13 @@ def requestStringModuleData():
     serialHandler.write("rqi:bowpressurepositionmax")
     serialHandler.write("rqi:bowpressurepositionengage")
     serialHandler.write("rqi:bowpressurepositionrest")
-    serialHandler.write("rqi:bowcontrolharmoniclist")
-    serialHandler.write("rqi:bowcontrolharmoniccount")
+#    serialHandler.write("rqi:bowcontrolharmoniclist")
+#    serialHandler.write("rqi:bowcontrolharmoniccount")
+
+    serialHandler.write("rqi:bowharmonicseriescount")
+    serialHandler.write("rqi:bowharmonicserieslist")
+    serialHandler.write("rqi:bowharmonicseries")
+
     serialHandler.write("rqi:midieventhandler")
     serialHandler.write("rqi:bowcontrolharmonicbasenote")
     serialHandler.write("rqi:solenoidmaxforce")
@@ -989,12 +1009,70 @@ class MainWidget(QWidget):
 
     def tableViewScaleDataChanged(self, topLeft, bottomRight, role):
         print("edited " + str(topLeft.column()) + ":" + str(topLeft.data()))
-        serialHandler.write("m:" + str(currentSerialModule) + ",bowcontrolharmonicratio:" + str(topLeft.column()) + ":" + str(topLeft.data()))
+#        serialHandler.write("m:" + str(currentSerialModule) + ",bowcontrolharmonicratio:" + str(topLeft.column()) + ":" + str(topLeft.data()))
+        serialHandler.write("m:" + str(currentSerialModule) + ",bowharmonicseriesratio:" + str(topLeft.column()) + ":" + str(topLeft.data()))
 
     def comboBoxHarmonicListCurrentIndexChanged(self, index):
         currentHarmonicListSelected = int(index)
-        mainWidget.ui.tableViewScale.setModel(tableTest.CustomTableModel(stringModules[currentSerialModule].harmonicData[currentHarmonicListSelected]))
+        if (currentHarmonicListSelected != -1):
+            send = "bhs:" + str(currentHarmonicListSelected) + ","
+        else:
+            send = ""
+        if not self.updatingFromModule:
+            serialHandler.write(send + "rqi:bhsl,rqi:bhs")
+#        if (currentHarmonicListSelected < len(stringModules[currentSerialModule].harmonicData)):
+#        mainWidget.ui.tableViewScale.setModel(tableTest.CustomTableModel(stringModules[currentSerialModule].harmonicData[currentHarmonicListSelected]))
+#        mainWidget.ui.tableViewScale.model().dataChanged.connect(mainWidget.tableViewScaleDataChanged)
+        self.updateHarmonicTable()
+
+    def pushButtonAddHarmonicPressed(self):
+        serialHandler.write("bhsr:" + str(len(stringModules[currentSerialModule].harmonicData)) + ":1")
+        self.updateUIData()
+        pass
+
+    def pushButtonRemoveHarmonicPressed(self):
+        selected = int(mainWidget.ui.tableViewScale.currentIndex().column())
+        if (selected < 0):
+            messageBox("Error", "Incorrect selection");
+        serialHandler.write("bhsrr:" + str(selected))
+        self.updateUIData()
+        pass
+
+    def pushButtonSaveCurrentHarmonicListPressed(self):
+        try:
+            harmonicList = stringModules[currentSerialModule].getCommandValue("bhs")
+            listID = mainWidget.ui.comboBoxHarmonicList.currentText()
+            serialHandler.write("bhss:'" + listID + "':" + str(harmonicList))
+        except:
+            messageBox("Error", "Error saving list")
+
+    def pushButtonSaveNewHarmonicListPressed(self):
+        listID = inputBox("List name", "List name")
+        if listID is None:
+            return
+        newIndex = mainWidget.ui.comboBoxHarmonicList.count()
+        serialHandler.write("bhss:'" + listID + "':" + str(newIndex))
+        mainWidget.updateUIData()
+    def pushButtonAddHarmonicListPressed(self):
+        listID = inputBox("List name", "List name")
+        if listID is None:
+            return
+        newIndex = mainWidget.ui.comboBoxHarmonicList.count()
+        serialHandler.write("bhsl:" + str(newIndex) + ":'" + listID + "':1")
+        mainWidget.updateUIData()
+    def pushButtonAddHarmonicListFilePressed(self):
+        pass
+    def pushButtonRemoveHarmonicListPressed(self):
+        try:
+            harmonicList = stringModules[currentSerialModule].getCommandValue("bhs")
+            serialHandler.write("bhsrm:" + str(harmonicList))
+        except:
+            messageBox("Error", "Error saving list")
+        mainWidget.updateUIData()
+    def updateHarmonicTable(self):
+        mainWidget.ui.tableViewScale.setModel(tableTest.CustomTableModel(stringModules[currentSerialModule].harmonicData))
         mainWidget.ui.tableViewScale.model().dataChanged.connect(mainWidget.tableViewScaleDataChanged)
+
 
     def updateLineLimit(self):
         if (self.ui.checkBoxLimitLines.checkState() == Qt.CheckState.Checked):
@@ -1096,9 +1174,10 @@ class MainWidget(QWidget):
             return
 
         for c in range(1,len(self.harmonicPresets[b])):
-            #print(self.harmonicPresets[b][c])
-            #d = tableTest.QAbstractTableModel.createIndex(tableTest.QAbstractTableModel, 0, c - 1)
-            mainWidget.ui.tableViewScale.model().setDataNR((c - 1), float(self.harmonicPresets[b][c]))
+#            mainWidget.ui.tableViewScale.model().setDataNR((c - 1), float(self.harmonicPresets[b][c]))
+            serialHandler.write("bhsr:" + str(c - 1) + ":" + str(self.harmonicPresets[b][c]))
+
+        self.updateUIData()
 
     def lineEditMidiEventCommandFinished(self):
         if mainWidget.ui.listWidgetMidiEvents.currentItem() == None:
@@ -1235,7 +1314,7 @@ class MainWidget(QWidget):
         if self.ui.midiNoteOffSendFullMute.checkState() == Qt.CheckState.Checked:
             cmd += ",mfm:1"
         if self.ui.midiNoteOffMotorOff.checkState() == Qt.CheckState.Checked:
-            cmd += ",bmr:1"
+            cmd += ",bmr:0"
         serialString = "mev:noteoff:\"" + cmd + "\""
         serialHandler.write(serialString)
         self.updateUIData()
@@ -1352,6 +1431,8 @@ if __name__ == "__main__":
     mainWidget.ui.labelStringFrequency.setVisible(False)
     mainWidget.ui.horizontalSliderBowCurrent.setVisible(False)
     mainWidget.ui.horizontalSliderBowFrequency.setVisible(False)
+## Hiding until implemented
+    mainWidget.ui.pushButtonAddHarmonicListFile.setVisible(False)
 
 ## Global commands
     mainWidget.ui.pushButtonConnectDisconnect.pressed.connect(mainWidget.connectDisconnect)
@@ -1418,7 +1499,14 @@ if __name__ == "__main__":
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteRestTest, "muterest:1")
 
     mainWidget.ui.comboBoxHarmonicList.currentIndexChanged.connect(mainWidget.comboBoxHarmonicListCurrentIndexChanged)
+    mainWidget.ui.pushButtonAddHarmonic.pressed.connect(mainWidget.pushButtonAddHarmonicPressed)
+    mainWidget.ui.pushButtonRemoveHarmonic.pressed.connect(mainWidget.pushButtonRemoveHarmonicPressed)
     mainWidget.ui.pushButtonLoadHarmonicPreset.pressed.connect(mainWidget.pushButtonLoadHarmonicPresetPressed)
+    mainWidget.ui.pushButtonSaveCurrentHarmonicList.pressed.connect(mainWidget.pushButtonSaveCurrentHarmonicListPressed)
+    mainWidget.ui.pushButtonSaveNewHarmonicList.pressed.connect(mainWidget.pushButtonSaveNewHarmonicListPressed)
+    mainWidget.ui.pushButtonAddHarmonicList.pressed.connect(mainWidget.pushButtonAddHarmonicListPressed)
+    mainWidget.ui.pushButtonAddHarmonicListFile.pressed.connect(mainWidget.pushButtonAddHarmonicListFilePressed)
+    mainWidget.ui.pushButtonRemoveHarmonicList.pressed.connect(mainWidget.pushButtonRemoveHarmonicListPressed)
 
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidMaxForce, "sxf")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidMinForce, "sif")

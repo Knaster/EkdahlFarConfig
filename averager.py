@@ -1,7 +1,7 @@
 class Averager:
     def __init__(self):
         self.averages = []
-        self.maxCount = 100
+        self.maxCount = 1
         self.max = 0
         self.min = 0
         self.average = 0

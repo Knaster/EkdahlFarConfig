@@ -155,7 +155,7 @@ class timedChart(QWidget):
         s = self.getSeries(seriesID)
         if s is None:
             s = self.addSeries(seriesID, inSeriesType)
-            s.setUseOpenGL(True)
+            #s.setUseOpenGL(True)
             if s is None:
                 return
             sFound = True

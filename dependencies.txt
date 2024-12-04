@@ -2,3 +2,4 @@ pyside6
 pyserial
 mido
 python-rtmidi
+sympy
