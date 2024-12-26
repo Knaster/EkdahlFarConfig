@@ -119,9 +119,12 @@ def processInformationReturn(inSerialHandler, infoReturn):
                 print ("setting current serial module to " + i.argument[0])
             case "mc":
                 global moduleCount
-                moduleCount = int(i.argument[0])
-                addModulesIfNeeded(moduleCount - 1)
-                print ("setting module count to " + i.argument[0])
+                try:
+                    moduleCount = int(i.argument[0])
+                    addModulesIfNeeded(moduleCount - 1)
+                    print("setting module count to " + i.argument[0])
+                except:
+                    messageBox("Error", "Error retreiving module count!")
             case "b" | "bcu" | "bmv" | "bmt" | "bpkp" | "bpki" | "bpkd" | "bpie" | "mfmp" | "mhmp" | "mrp" | "mbo" | \
                  "bmsx" | "bmsi" | "bppx" | "bppe" | "bppr" | "bmf" | "psf" | "bmc" | "sxf" | "sif" | "sed" | "bcf" | \
                  "bpkp" | "bpki" | "bkpd" | "bpie" | "bpme" | "bhs":
