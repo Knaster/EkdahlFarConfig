@@ -58,7 +58,7 @@ class CustomTableModel(QAbstractTableModel):
         if orientation == Qt.Horizontal:
             header = []
             for i in range(1, len(self.dataset) + 1):
-                header.append("Harmonic " + str(i - 1))
+                header.append("" + str(i - 1))
             return (header)[section]
         else:
             return

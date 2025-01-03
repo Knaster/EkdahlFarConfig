@@ -5,6 +5,7 @@
         "tableTest.py",
         "stringModule.py",
         "commandparser.py",
-        "timedChart.py"
+        "timedChart.py",
+        "prompt.ui"
     ]
 }

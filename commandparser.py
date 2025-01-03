@@ -125,6 +125,7 @@ class CommandList:
         for i in self.commands:
             i.print()
 
+    # buildCommandString will strip all commands in ignoreCommands from the command list
     def buildCommandString(self, ignoreCommands):
         commandString = ""
         for i in self.commands:
