@@ -31,12 +31,39 @@
   <property name="palette">
    <palette>
     <active>
+     <colorrole role="WindowText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </colorrole>
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
         <red>255</red>
         <green>255</green>
         <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Text">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ButtonText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
        </color>
       </brush>
      </colorrole>
@@ -55,17 +82,53 @@
         <red>255</red>
         <green>255</green>
         <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="PlaceholderText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="128">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
        </color>
       </brush>
      </colorrole>
     </active>
     <inactive>
+     <colorrole role="WindowText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </colorrole>
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
         <red>255</red>
         <green>255</green>
         <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Text">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ButtonText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
        </color>
       </brush>
      </colorrole>
@@ -84,17 +147,53 @@
         <red>255</red>
         <green>255</green>
         <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="PlaceholderText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="128">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
        </color>
       </brush>
      </colorrole>
     </inactive>
     <disabled>
+     <colorrole role="WindowText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </colorrole>
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
         <red>255</red>
         <green>255</green>
         <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Text">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ButtonText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
        </color>
       </brush>
      </colorrole>
@@ -113,6 +212,15 @@
         <red>255</red>
         <green>255</green>
         <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="PlaceholderText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="128">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
        </color>
       </brush>
      </colorrole>
@@ -130,6 +238,7 @@
 	background-color: white;
 	font-family: cantarell;
 	font-size: 13px;
+	color: black;
 }
 
 QLabel {
@@ -2596,6 +2705,19 @@ QSlider::handle:horizontal {
        <double>1327.000000000000000</double>
       </property>
      </widget>
+     <widget class="QPushButton" name="pushButtonCVHarmonicShiftZeroCalibrate">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>40</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Calibrate</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QGroupBox" name="groupBoxCV1_3">
      <property name="geometry">
@@ -3344,6 +3466,19 @@ QSlider::handle:horizontal {
       </property>
       <property name="maximum">
        <double>5000.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonCVFinetuneCalibrate">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>40</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Calibrate</string>
       </property>
      </widget>
     </widget>
@@ -6664,7 +6799,7 @@ QSlider::handle:horizontal {
     <string>Show console</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButtonShowConsole_2">
+  <widget class="QPushButton" name="pushButtonShowReference">
    <property name="geometry">
     <rect>
      <x>1140</x>
@@ -6684,7 +6819,7 @@ QSlider::handle:horizontal {
   <zorder>checkBoxContinuousSMData</zorder>
   <zorder>tabWidgetMain</zorder>
   <zorder>pushButtonShowConsole</zorder>
-  <zorder>pushButtonShowConsole_2</zorder>
+  <zorder>pushButtonShowReference</zorder>
  </widget>
  <resources/>
  <connections/>

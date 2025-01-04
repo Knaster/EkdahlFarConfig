@@ -23,7 +23,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(529, 336)
+        Form.resize(821, 336)
         Form.setMinimumSize(QSize(529, 336))
         Form.setStyleSheet(u"QWidget {\n"
 "	background-color: white;\n"

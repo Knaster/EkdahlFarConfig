@@ -6,6 +6,7 @@
         "stringModule.py",
         "commandparser.py",
         "timedChart.py",
-        "prompt.ui"
+        "prompt.ui",
+        "reference.ui"
     ]
 }

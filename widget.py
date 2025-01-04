@@ -19,7 +19,7 @@
 
 # This Python file uses the following encoding: utf-8
 import sys
-
+import time
 import serial.tools.list_ports
 
 from PySide6.QtWidgets import (QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit,
@@ -52,6 +52,7 @@ log_app.addHandler(log_handler)
 #     pyside2-uic form.ui -o ui_form.py
 from ui_form import Ui_Widget
 from serialWidget import SerialWidget as SerialWidget
+from commandReference import commandReference as CommandReference
 
 #def except_hook(cls, exception, traceback):
 #    sys.__excepthook__(cls, exception, traceback)
@@ -69,7 +70,6 @@ import midihandler
 
 from stringModule import stringModule, CC, InstrumentMaster
 
-serialPorts = serial.tools.list_ports.comports()
 global serialStream
 #serialStream = None
 
@@ -375,25 +375,34 @@ def processHelpReturn(infoReturn):
         match prefix:
             case "[glo]":
                 scopeText = "This is a global command"
+                scope = "Global"
             case "[str]":
                 scopeText = "This command is dependent on the currently selected module, bow and/or solenoid"
+                scope = "Local"
             case _:
                 skip = True
                 print("Unknown " + i.command)
 
         if not skip:
             x = command.find("|")
-            help = scopeText + "\n"
-            help += "command: " + command + "\n"
-            help += "data: "
+            help = scopeText + "\n\n"
+            help += "command: \n" + command + "\n\n"
+            help += "parameters: \n"
             for j in range(1,len(i.argument) - 1):
                 help += i.argument[j]
                 if (j < (len(i.argument)-2)):
                     help += ":"
-            help += "\nDescription: " + i.argument[len(i.argument) - 1]
+            help += "\n\nDescription: \n" + i.argument[len(i.argument) - 1]
 
             if x != -1:
+                short = command[x+1:]
                 command = command[:x]
+            else:
+                short = ""
+
+            #commandReference.add_row([command, short, scope, i.argument[1], i.argument[2]])
+
+            commandReference.addCommand(command, help)
 
             commandItemHelp = QListWidgetItem()
             commandItemHelp.setText(command)
@@ -448,6 +457,7 @@ def requestStringModuleData():
     serialHandler.write("rqi:bpme")
 
 def requestHelp():
+    commandReference.ui.listWidgetCommands.clear()
     serialHandler.write("help")
 
 def requestBaseData():
@@ -562,9 +572,9 @@ class MainWidget(QWidget):
         self.serialThread.chartDataSignal.connect(self.addData)
         self.serialThread.chartCommandSignal.connect(self.chartCommand)
 
-        self.midiHandlerC = midihandler.MidiHandler(self.midiDataAvaliableSignal) #self.addToDebugWindow)
-        self.midiHandlerC.updateMIDIInDevices(self.ui.comboBoxMIDILearnDevice)
-        self.midiDataAvaliableSignal.connect(self.midiDataAvaliable)
+#        self.midiHandlerC = midihandler.MidiHandler(self.midiDataAvaliableSignal) #self.addToDebugWindow)
+#        self.midiHandlerC.updateMIDIInDevices(self.ui.comboBoxMIDILearnDevice)
+#        self.midiDataAvaliableSignal.connect(self.midiDataAvaliable)
 
         self.updatingFromModule = False
 
@@ -818,9 +828,13 @@ class MainWidget(QWidget):
         self.setUIEnabled(False)
 
     def populateSerialPorts(self):
+        itemSelected = mainWidget.ui.comboBoxSerialPorts.currentIndex()
+        mainWidget.ui.comboBoxSerialPorts.clear()
+        serialPorts = serial.tools.list_ports.comports()
         for port, desc, hwid in sorted(serialPorts):
                 print("{}: {}".format(port, desc))
                 mainWidget.ui.comboBoxSerialPorts.addItem(port + " - " + desc)
+        mainWidget.ui.comboBoxSerialPorts.setCurrentIndex(itemSelected)
 
     def updateStringModuleData(self):
         global stringModules
@@ -1275,7 +1289,7 @@ class MainWidget(QWidget):
         if mainWidget.ui.comboBoxMIDILearnDevice.currentIndex() == -1:
             return
         # midiIn = mido.open_input(mainWidget.ui.comboBoxMIDILearnDevice.currentText())
-        self.midiHandlerC.connecToMIDIIn(mainWidget.ui.comboBoxMIDILearnDevice.currentText())
+#        self.midiHandlerC.connecToMIDIIn(mainWidget.ui.comboBoxMIDILearnDevice.currentText())
 
     def ccAdd(self):
         cc, ok = QInputDialog.getInt(self, "CC Number", "CC Number")
@@ -1487,9 +1501,6 @@ class MainWidget(QWidget):
         cmd = widget.text()
         cmd = "acm:" + str (widget.CVcontrol) + ":'" + cmd + "'"
         serialHandler.write(cmd)
-#        self.updatingFromModule = True
-#        self.updateCVData()
-#        self.updatingFromModule = False
         pass
     def connectCVTextWidgets(self, CVcontrol, widget):
         widget.CVcontrol = CVcontrol
@@ -1622,6 +1633,47 @@ class MainWidget(QWidget):
     def resetAllSettings(self):
         pass
 
+    def waitForSerialResponse(self, command, timeout = 5000):
+        self.waitForCommand = command
+        self.isWaitingForCommand = True
+        startTime = time.monotonic()
+        while(self.isWaitingForCommand):
+
+            if time.monotonic() - starTime > (timeout / 1000):
+                break
+        if not self.isWaitingForCommand:
+            self.isWaitingForCommand = True
+            return False
+        return True
+
+    def CVFinetuneCalibrate(self):
+        messageBox("CV fine tuning center calibration",
+                   "Turn the 'Harmonic shift'-knob all the way to the left, then turn it to the center.\nPress OK when you are done")
+        serialHandler.write("rqi:adcr:2")
+        QTimer.singleShot(1000, self.CVFinetuneCalibrateContinue)
+
+    def CVFinetuneCalibrateContinue(self):
+        self.firstCv = stringModules[currentSerialModule].getCVValue(2)
+        messageBox("CV fine tuning center calibration",
+                   "Now turn the 'Harmonic shift'-knob all the way to the right, then turn it to the center.\nPress OK when you are done")
+        serialHandler.write("rqi:adcr:2")
+        QTimer.singleShot(1000, self.CVFinetuneCalibrateFinish)
+
+    def CVFinetuneCalibrateFinish(self):
+        offset = self.firstCv - stringModules[currentSerialModule].getCVValue(2)
+        mainWidget.ui.dialCVFineTuneCenter.setValue(offset)
+        pass
+
+    def CVHarmonicShiftZeroCalibrate(self):
+        messageBox("Harmonic shift zero calibation", "Turn the 'Harmonic shift modulation'-knob all the way to the right, then turn it all the way to the left.\nPress OK when you are done")
+        serialHandler.write("rqi:adcr:1")
+        QTimer.singleShot(1000, self.CVHarmonicShiftZeroCalibrateContinue)
+
+    def CVHarmonicShiftZeroCalibrateContinue(self):
+        cv = stringModules[currentSerialModule].getCVValue(1)
+        mainWidget.ui.dialCVHarmonicShiftZero.setValue(32767 - cv)
+
+
 #harmonicSeriesList = [,
 #    [1, 1.059463094, 1.122462048, 1.189207115, 1.25992105, 1.334839854, 1.414213562, 1.498307077, 1.587401052, 1.681792831, 1.781797436, 1.887748625]]
 #currentHarmonicSeries = 0
@@ -1708,6 +1760,9 @@ def save_settings():
     settings.setValue("chartAudFFT", mainWidget.ui.checkBoxChartAudFFT.checkState())
     settings.setValue("chartAudRMS", mainWidget.ui.checkBoxChartAudRMS.checkState())
 
+    settings.setValue("referenceGeometry", commandReference.saveGeometry())
+    settings.setValue("referenceWindowVisible", commandReference.isVisible())
+
 def loadCheckState(settings, name, checkBox):
     state = settings.value(name)
     if state == Qt.CheckState.Checked or state == 'Checked':
@@ -1762,6 +1817,14 @@ def load_settings():
     loadCheckState(settings, "chartPeakErr", mainWidget.ui.checkBoxChartPeakErr)
     loadCheckState(settings, "chartMotFreq", mainWidget.ui.checkBoxChartMotFreq)
 
+    referenceGeometry = settings.value("referenceGeometry")
+    if referenceGeometry:
+        commandReference.restoreGeometry(referenceGeometry)
+    referenceWindowVisible = settings.value("referenceWindowVisible")
+    if referenceWindowVisible == 'false' or referenceWindowVisible is False:
+        commandReference.hide()
+    else:
+        commandReference.show()
 
 if __name__ == "__main__":
 #    sys.excepthook = except_hook
@@ -1771,6 +1834,8 @@ if __name__ == "__main__":
     mainWidget = MainWidget()
 
     serialWidget = SerialWidget(serialHandler, mainWidget.timeStamper, logging)
+
+    commandReference = CommandReference()
 
     mainWidget.show()
 
@@ -1794,6 +1859,7 @@ if __name__ == "__main__":
     mainWidget.ui.pushButtonReadSMData.pressed.connect(mainWidget.readSMData)
     mainWidget.ui.checkBoxContinuousSMData.toggled.connect(mainWidget.checkBoxContinuousSMDataToggled)
     mainWidget.ui.pushButtonShowConsole.pressed.connect(serialWidget.show)
+    mainWidget.ui.pushButtonShowReference.pressed.connect(commandReference.show)
 ## Debug console
 #    serialWidget.assignFeedbackReportItem(serialWidget.ui.checkBoxFilterCommAck, "command")
 #    serialWidget.assignFeedbackReportItem(serialWidget.ui.checkBoxFilterDebug, "debug")
@@ -1866,9 +1932,11 @@ if __name__ == "__main__":
 
     mainWidget.connectCVMappingModifiers(1, { mainWidget.ui.dialCVHarmonicShiftScale, mainWidget.ui.dialCVHarmonicShiftZero })
     mainWidget.connectCVTextWidgets(1, mainWidget.ui.plainTextEditCVHarmonicShiftCommands)
+    mainWidget.ui.pushButtonCVHarmonicShiftZeroCalibrate.pressed.connect(mainWidget.CVHarmonicShiftZeroCalibrate)
 
     mainWidget.connectCVMappingModifiers(2, { mainWidget.ui.dialCVFineTuneCenter })
     mainWidget.connectCVTextWidgets(2, mainWidget.ui.plainTextEditCVFineTuneCommands)
+    mainWidget.ui.pushButtonCVFinetuneCalibrate.pressed.connect(mainWidget.CVFinetuneCalibrate)
 
     mainWidget.connectCVTextWidgets(3, mainWidget.ui.plainTextEditCVPressureCommands)
     mainWidget.connectCVTextWidgets(4, mainWidget.ui.plainTextEditCVHammerTriggerCommands)
@@ -1925,6 +1993,7 @@ if __name__ == "__main__":
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonSolenoidMaxForceTest, "solenoidforcemultiplier:1,se:65535")
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonSolenoidMinForceTest, "solenoidforcemultiplier:1,se:1")
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonEngageHammer, "se:65535")
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonHammerDurationTest, "sfm:1,se:65535")
 
     mainWidget.assignValueChanged(mainWidget.ui.spinBoxHarmonicShiftRange, "bchsr")
     mainWidget.ui.comboBoxCurrentlySelectedModule.currentIndexChanged.connect(mainWidget.comboBoxCurrentSelectedModuleIndexChanged)
@@ -1962,6 +2031,8 @@ if __name__ == "__main__":
     mainWidget.setUIEnabled(True)
     mainWidget.ui.tabWidgetMain.setCurrentIndex(0)
 
+## Console widget
+
     serialWidget.ui.spinBoxLimitLines.setValue(2500)
     serialWidget.ui.checkBoxLimitLines.setCheckState(Qt.CheckState.Checked)
     serialWidget.ui.checkBoxFilterInfoRequest.setCheckState(Qt.CheckState.Unchecked)
@@ -1980,6 +2051,8 @@ if __name__ == "__main__":
 
     serialWidget.ui.plainTextEditSerialOutput.setUndoRedoEnabled(False)
 
+# Command reference form
+
 #stringModule inits
     strm = stringModule()
     stringModules.append(strm)
@@ -1988,7 +2061,11 @@ if __name__ == "__main__":
     load_settings()
     mainWidget.destroyed.connect(mainWidget.closeEvent)
     mainWidget.populateFundamentalComboBox()
-    mainWidget.populateSerialPorts()
+    #mainWidget.populateSerialPorts()
+    mainWidget.USBRefreshTimer = QTimer()
+    mainWidget.USBRefreshTimer.timeout.connect(mainWidget.populateSerialPorts)
+    mainWidget.USBRefreshTimer.start(1000)
+
     serialWidget.addToDebugWindow("Initialized\n")
 #    app.lastWindowClosed.connect(app.quit)
     sys.exit(app.exec())
