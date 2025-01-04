@@ -24,6 +24,12 @@ class Ui_Form(object):
         if not Form.objectName():
             Form.setObjectName(u"Form")
         Form.resize(1000, 602)
+        Form.setStyleSheet(u"QWidget {\n"
+"	background-color: white;\n"
+"	font-family: cantarell;\n"
+"	font-size: 13px;\n"
+"	color: black;\n"
+"}")
         self.horizontalLayout = QHBoxLayout(Form)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.gridLayout = QGridLayout()

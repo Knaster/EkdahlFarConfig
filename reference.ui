@@ -15,6 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget {
+	background-color: white;
 	font-family: cantarell;
 	font-size: 13px;
 	color: black;

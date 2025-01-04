@@ -3650,3 +3650,423 @@
 2025-01-04 10:09:53,686 - 3.5 : <si< [irq]m:0,bad:0:26000:65535:24000:
 2025-01-04 10:09:53,689 - 3.5 : <si< [irq]m:0,bad:1:0:65535:0:
 2025-01-04 10:09:53,691 - 3.5 : <si< [irq]mcfn:0:default
+2025-01-04 10:17:52,334 - 0.0 : >so> debugprint:usb:1
+2025-01-04 10:17:52,334 - 0.0 : >so> debugprint:command:1
+2025-01-04 10:17:52,334 - 0.0 : >so> debugprint:priority:1
+2025-01-04 10:17:52,334 - 0.0 : >so> debugprint:error:1
+2025-01-04 10:17:52,335 - 0.0 : >so> debugprint:undefined:1
+2025-01-04 10:17:52,339 - 0.0 : >so> debugprint:hardware:1
+2025-01-04 10:17:52,339 - 0.0 : >so> debugprint:usb:0
+2025-01-04 10:17:52,339 - 0.0 : >so> debugprint:debug:1
+2025-01-04 10:17:52,343 - 0.0 : >so> m:0,bcu:27.5
+2025-01-04 10:17:52,343 - 0.0 : Initialized
+2025-01-04 10:17:58,747 - 6.4 : Connected to /dev/ttyACM0
+2025-01-04 10:17:58,748 - 6.4 : >so> rqi:modulecount
+2025-01-04 10:17:58,749 - 6.4 : >so> rqi:bowcontrolfundamental
+2025-01-04 10:17:58,749 - 6.4 : >so> rqi:bmv
+2025-01-04 10:17:58,749 - 6.4 : >so> rqi:bowpidki
+2025-01-04 10:17:58,750 - 6.4 : >so> rqi:bowpidkp
+2025-01-04 10:17:58,750 - 6.4 : >so> rqi:bowpidkd
+2025-01-04 10:17:58,750 - 6.4 : >so> rqi:bowpidintegratorerror
+2025-01-04 10:17:58,751 - 6.4 : >so> rqi:bowmotortimeout
+2025-01-04 10:17:58,751 - 6.4 : >so> rqi:mutefullmuteposition
+2025-01-04 10:17:58,751 - 6.4 : >so> rqi:mutehalfmuteposition
+2025-01-04 10:17:58,751 - 6.4 : >so> rqi:muterestposition
+2025-01-04 10:17:58,751 - 6.4 : >so> rqi:mutebackoff
+2025-01-04 10:17:58,752 - 6.4 : >so> rqi:bowmotorspeedmax
+2025-01-04 10:17:58,752 - 6.4 : >so> rqi:bowmotorspeedmin
+2025-01-04 10:17:58,752 - 6.4 : >so> rqi:bowpressurepositionmax
+2025-01-04 10:17:58,752 - 6.4 : >so> rqi:bowpressurepositionengage
+2025-01-04 10:17:58,752 - 6.4 : >so> rqi:bowpressurepositionrest
+2025-01-04 10:17:58,752 - 6.4 : >so> rqi:bowharmonicseriescount
+2025-01-04 10:17:58,753 - 6.4 : >so> rqi:bowharmonicserieslist
+2025-01-04 10:17:58,753 - 6.4 : >so> rqi:bowharmonicseries
+2025-01-04 10:17:58,753 - 6.4 : >so> rqi:midieventhandler
+2025-01-04 10:17:58,753 - 6.4 : >so> rqi:bowcontrolharmonicbasenote
+2025-01-04 10:17:58,753 - 6.4 : >so> rqi:solenoidmaxforce
+2025-01-04 10:17:58,754 - 6.4 : >so> rqi:solenoidminforce
+2025-01-04 10:17:58,754 - 6.4 : >so> rqi:solenoidengageduration
+2025-01-04 10:17:58,754 - 6.4 : >so> rqi:bowactuatorcount
+2025-01-04 10:17:58,754 - 6.4 : >so> rqi:midiconfigurationcount
+2025-01-04 10:17:58,755 - 6.4 : >so> rqi:mrc
+2025-01-04 10:17:58,755 - 6.4 : >so> rqi:acm:0
+2025-01-04 10:17:58,755 - 6.4 : >so> rqi:acm:1
+2025-01-04 10:17:58,755 - 6.4 : >so> rqi:acm:2
+2025-01-04 10:17:58,755 - 6.4 : >so> rqi:acm:3
+2025-01-04 10:17:58,756 - 6.4 : >so> rqi:acm:4
+2025-01-04 10:17:58,756 - 6.4 : >so> rqi:acm:5
+2025-01-04 10:17:58,756 - 6.4 : >so> rqi:acm:6
+2025-01-04 10:17:58,756 - 6.4 : >so> rqi:acm:7
+2025-01-04 10:17:58,757 - 6.4 : >so> rqi:bpkp
+2025-01-04 10:17:58,757 - 6.4 : >so> rqi:bpki
+2025-01-04 10:17:58,757 - 6.4 : >so> rqi:bpkd
+2025-01-04 10:17:58,757 - 6.4 : >so> rqi:bpie
+2025-01-04 10:17:58,758 - 6.4 : >so> rqi:bpme
+2025-01-04 10:17:58,758 - 6.4 : >so> help
+2025-01-04 10:17:58,758 - 6.4 : >so> nop
+2025-01-04 10:17:58,761 - 6.4 : <si< [irq]mc:1
+2025-01-04 10:17:58,761 - 6.4 : >so> m:0,bcu:82.5
+2025-01-04 10:17:58,762 - 6.4 : >so> m:0,mfmp:0.0
+2025-01-04 10:17:58,762 - 6.4 : >so> m:0,mhmp:0.0
+2025-01-04 10:17:58,763 - 6.4 : >so> m:0,mrp:0.0
+2025-01-04 10:17:58,763 - 6.4 : >so> m:0,mbo:0.0
+2025-01-04 10:17:58,764 - 6.4 : >so> m:0,bppx:0.0
+2025-01-04 10:17:58,764 - 6.4 : >so> m:0,bppe:0.0
+2025-01-04 10:17:58,765 - 6.4 : >so> m:0,bppr:0.0
+2025-01-04 10:17:58,765 - 6.4 : >so> m:0,sxf:0.0
+2025-01-04 10:17:58,766 - 6.4 : >so> m:0,sif:0.0
+2025-01-04 10:17:58,766 - 6.4 : >so> m:0,sed:0.0
+2025-01-04 10:17:58,767 - 6.4 : <si< [irq]m:0,bcu:82.50
+2025-01-04 10:17:58,768 - 6.4 : >so> m:0,bmv:6.6
+2025-01-04 10:17:58,768 - 6.4 : <si< [irq]m:0,bmv:6.60
+2025-01-04 10:17:58,780 - 6.4 : >so> m:0,bpki:7.0
+2025-01-04 10:17:58,781 - 6.4 : <si< [irq]m:0,bpki:7.00
+2025-01-04 10:17:58,782 - 6.4 : >so> m:0,bpkp:500.0
+2025-01-04 10:17:58,782 - 6.4 : <si< [irq]m:0,bpkp:500.00
+2025-01-04 10:17:58,783 - 6.5 : >so> m:0,bpkd:200.0
+2025-01-04 10:17:58,783 - 6.5 : <si< [irq]m:0,bpkd:200.00
+2025-01-04 10:17:58,784 - 6.5 : >so> m:0,bpie:0.1
+2025-01-04 10:17:58,784 - 6.5 : <si< [irq]m:0,bpie:0.10
+2025-01-04 10:17:58,785 - 6.5 : >so> m:0,bmt:1000.0
+2025-01-04 10:17:58,785 - 6.5 : <si< [irq]m:0,bmt:1000
+2025-01-04 10:17:58,788 - 6.5 : >so> m:0,mfmp:48200.0
+2025-01-04 10:17:58,788 - 6.5 : <si< [irq]m:0,mfmp:48200
+2025-01-04 10:17:58,789 - 6.5 : >so> m:0,mhmp:24100.0
+2025-01-04 10:17:58,789 - 6.5 : <si< [irq]m:0,mhmp:24100
+2025-01-04 10:17:58,792 - 6.5 : <si< [irq]m:0,mrp:0
+2025-01-04 10:17:58,793 - 6.5 : >so> m:0,mbo:500.0
+2025-01-04 10:17:58,794 - 6.5 : <si< [irq]m:0,mbo:500
+2025-01-04 10:17:58,798 - 6.5 : >so> m:0,bmsx:539.49
+2025-01-04 10:17:58,798 - 6.5 : <si< [irq]m:0,bmsx:539.49
+2025-01-04 10:17:58,800 - 6.5 : >so> m:0,bmsi:19.05
+2025-01-04 10:17:58,801 - 6.5 : <si< [irq]m:0,bmsi:19.05
+2025-01-04 10:17:58,804 - 6.5 : >so> m:0,bppx:65535.0
+2025-01-04 10:17:58,804 - 6.5 : <si< [irq]m:0,bppx:65535
+2025-01-04 10:17:58,808 - 6.5 : >so> m:0,bppe:26000.0
+2025-01-04 10:17:58,809 - 6.5 : <si< [irq]m:0,bppe:26000
+2025-01-04 10:17:58,812 - 6.5 : >so> m:0,bppr:24000.0
+2025-01-04 10:17:58,812 - 6.5 : <si< [irq]m:0,bppr:24000
+2025-01-04 10:17:58,818 - 6.5 : <si< [irq]m:0,bhsc:3:just intonation:equal temperament:harmonic
+2025-01-04 10:17:58,822 - 6.5 : <si< [irq]m:0,bhsl:1.0000:1.0707:1.1290:1.2140:1.2540:1.3333:1.4092:1.5000:1.6030:1.6737:1.7990:1.8700
+2025-01-04 10:17:58,826 - 6.5 : <si< [irq]m:0,bhs:2
+2025-01-04 10:17:59,001 - 6.7 : <si< [irq]mev:noteon:'m:0,b:0,bchb:note,bmr:1,bpid:1,bpe:1,bcsm:0,se:(velocity*502)*(1-notecount)',mev:noteoff:'m:0,b:0,bpr:ibool(notecount),bcsm:0',mev:cc:64:'midisustain:bool(value)',mev:cc:123:'midiallnotesoff:1',mev:pat:'',mev:pb:'m:0,b:0,bchsh:pitch*4',mev:cat:'m:0,b:0,bpm:(pressure*512)',mev:pc:'',
+2025-01-04 10:17:59,002 - 6.7 : >so> bowcontrolharmonicbasenote:64
+2025-01-04 10:17:59,003 - 6.7 : <si< [irq]m:0,bchbn:64
+2025-01-04 10:17:59,004 - 6.7 : >so> m:0,sxf:54535.0
+2025-01-04 10:17:59,005 - 6.7 : <si< [irq]m:0,sxf:54535
+2025-01-04 10:17:59,006 - 6.7 : >so> m:0,sif:18000.0
+2025-01-04 10:17:59,006 - 6.7 : <si< [irq]m:0,sif:18000
+2025-01-04 10:17:59,007 - 6.7 : >so> m:0,sed:15000.0
+2025-01-04 10:17:59,008 - 6.7 : <si< [irq]m:0,sed:15000
+2025-01-04 10:17:59,009 - 6.7 : >so> rqi:bad:0
+2025-01-04 10:17:59,009 - 6.7 : >so> rqi:bad:1
+2025-01-04 10:17:59,009 - 6.7 : <si< [irq]m:0,bac:2
+2025-01-04 10:17:59,010 - 6.7 : >so> rqi:mcfn:0
+2025-01-04 10:17:59,010 - 6.7 : <si< [irq]mcfc:1
+2025-01-04 10:17:59,010 - 6.7 : <si< [irq]mrc:1
+2025-01-04 10:17:59,013 - 6.7 : <si< [irq]acm:0:'bcha:(value-300.0)/1289.0453077669902+(-12.0)'
+2025-01-04 10:17:59,014 - 6.7 : <si< [irq]acm:1:'bchs5:"deadband(value-32232.0, 20)/2.2166361974405846"'
+2025-01-04 10:17:59,016 - 6.7 : <si< [irq]acm:2:'bchsh:"deadband(value-33065.0, 250)*0.49064"'
+2025-01-04 10:17:59,016 - 6.7 : <si< [irq]acm:3:'bpb:value'
+2025-01-04 10:17:59,020 - 6.7 : <si< [irq]acm:4:'se:value'
+2025-01-04 10:17:59,022 - 6.7 : <si< [irq]acm:5:'bmr:1,bpid:1,bcsm:0,bpe:bool(value-2000.0),bpr:ibool(value-2000.0),bph:ibool(value-2000.0)'
+2025-01-04 10:17:59,023 - 6.7 : <si< [irq]acm:6:'sfm:"deadband(1/65535*value,0.002)"'
+2025-01-04 10:17:59,024 - 6.7 : <si< [irq]acm:7:'msp:value'
+2025-01-04 10:17:59,025 - 6.7 : <si< [irq]m:0,bpkp:500.00
+2025-01-04 10:17:59,025 - 6.7 : <si< [irq]m:0,bpki:7.00
+2025-01-04 10:17:59,026 - 6.7 : <si< [irq]m:0,bpkd:200.00
+2025-01-04 10:17:59,027 - 6.7 : <si< [irq]m:0,bpie:0.10
+2025-01-04 10:17:59,027 - 6.7 : >so> m:0,bpme:50.0
+2025-01-04 10:17:59,028 - 6.7 : <si< [irq]m:0,bpme:50.00
+2025-01-04 10:17:59,030 - 6.7 : <si< [hlp]:"Below is a list of avaliable commands given in both short and long form, either works. The number and type(s) of arguments are listed afterwards and a brief description. Command usage: command:argument1:argument2 [etc]"
+2025-01-04 10:17:59,031 - 6.7 : <si< [hlp][glo]:requestinfo|rqi:command:"Retrives rather than sets data associated with a command, if appliccable"
+2025-01-04 10:17:59,033 - 6.7 : <si< [hlp][glo]:module|m:0-15:"Sets the currently active string module"
+2025-01-04 10:17:59,034 - 6.7 : <si< [hlp][glo]:modulecount|mc:-:"Returns the number of string modules detected"
+2025-01-04 10:17:59,039 - 6.7 : <si< [hlp][glo]:debugprint|dp:command|usb|hardware|undefined|priority|error|inforequest|expressionparser|debug:1|0:"Turns on or off serial feedback for the given item"
+2025-01-04 10:17:59,039 - 6.7 : <si< [hlp][glo]:version|ver:-:"Gets the current firmware version"
+2025-01-04 10:17:59,040 - 6.7 : <si< [hlp][glo]:globalsaveallparameters|gsap:-:"Saves all avaliable parameters"
+2025-01-04 10:17:59,040 - 6.7 : <si< [hlp][glo]:globalloadallparameters|glap:-:"Loads all avaliable parameters"
+2025-01-04 10:17:59,041 - 6.7 : <si< [hlp][glo]:globalresetallparameters|grap:-:"Resets all saved parameters"
+2025-01-04 10:17:59,043 - 6.7 : <si< [hlp][glo]:globaluservariable|guv:variable(0-9):value:"Set user variable 0-9 to value"
+2025-01-04 10:17:59,043 - 6.7 : <si< [hlp][glo]:midiconfiguration|mcf:int:"Sets the current MIDI configuration"
+2025-01-04 10:17:59,043 - 6.7 : <si< [hlp][glo]:midiconfigurationadd|mcfa:-:"Adds a new MIDI configuration"
+2025-01-04 10:17:59,045 - 6.7 : <si< [hlp][glo]:midiconfigurationremove|mcfr:int:"Remove the specified MIDI configuration"
+2025-01-04 10:17:59,048 - 6.7 : <si< [hlp][glo]:midiconfigurationcount|mcfc:-:"Returns the number of MIDI configurations"
+2025-01-04 10:17:59,049 - 6.7 : <si< [hlp][glo]:midiconfigurationname|mcfn:string:"Set the name of the MIDI configuration (for request, argument is index of configuration to return name for (optional))"
+2025-01-04 10:17:59,051 - 6.7 : <si< [hlp][glo]:midieventhandler|mev:noteon|noteoff|pat|cc:(0-127)|cat|pb|pc:"Set the MIDI event handling string in the current configuration"
+2025-01-04 10:17:59,054 - 6.7 : <si< [hlp][glo]:midieventhandlerccremove|mevcr:cc(0-127):"remove CC from list"
+2025-01-04 10:17:59,055 - 6.7 : <si< [hlp][glo]:midiconfigurationdefaults|mcfd:-:"Reverts the current configuration to default values and CCs"
+2025-01-04 10:17:59,055 - 6.7 : <si< [hlp][glo]:midireceivechannel|mrc:-:"Sets the MIDI receive channel of the current configuration. 1-16 sets specific channel, any other value for OMNI"
+2025-01-04 10:17:59,056 - 6.7 : <si< [hlp][glo]:midiallnotesoff|mano:1|0:"Clear the entire buffer of MIDI notes held"
+2025-01-04 10:17:59,060 - 6.7 : <si< [hlp][glo]:adccommandmap|acm:channel:command string:"Sets the command string invoked when the value on ADC channel [channel] changes"
+2025-01-04 10:17:59,060 - 6.7 : <si< [hlp][glo]:adcdefaults|acd:Reverts all ADC command strings to default values:""
+2025-01-04 10:17:59,061 - 6.7 : <si< [hlp][glo]:adcread|adcr:channel:value:"Sent when a new value is presented on one of the ADC channels, cannot be invoked"
+2025-01-04 10:17:59,062 - 6.7 : <si< [hlp][glo]:adcsettings|adcs:channel:averages:interrupterrorthreshold:continuouserrorthreshold:continuoustimeout:"Explain ADC settings here"
+2025-01-04 10:17:59,066 - 6.7 : <si< [hlp][glo]:expressionparserevaluate|epev:expression:"Evaluates an arithmetric expression and sends back the output"
+2025-01-04 10:17:59,066 - 6.7 : <si< [hlp][glo]:expressionparserdeadbandthreshold|epdbt:float:"Sets the threshold for the deadband function in the expression parser"
+2025-01-04 10:17:59,067 - 6.7 : <si< [hlp][glo]:testadclatency|tal:0-65535:"Test ADC Latency"
+2025-01-04 10:17:59,067 - 6.7 : <si< [hlp][glo]:testadclatencyreturn|talr:-:"Return from test"
+2025-01-04 10:17:59,069 - 6.7 : <si< [hlp][glo]:testadcminmax|tamm:channel:"Measure min/max value for a given channel and resets the counter"
+2025-01-04 10:17:59,069 - 6.7 : <si< [hlp]:"These commands are specific for the currently selected string module"
+2025-01-04 10:17:59,073 - 6.7 : <si< [hlp][str]:bow|b:0-15:"Sets the currently selected bow"
+2025-01-04 10:17:59,073 - 6.7 : <si< [hlp][str]:bowpid|bpid:1|0:"Sets the bow PID on/off"
+2025-01-04 10:17:59,074 - 6.7 : <si< [hlp][str]:bowpidki|bpki:float:"Sets the Ki parameter of the PID of the selected bow"
+2025-01-04 10:17:59,074 - 6.7 : <si< [hlp][str]:bowpidkp|bpkp:float:"Sets the Kp parameter of the PID of the selected bow"
+2025-01-04 10:17:59,076 - 6.7 : <si< [hlp][str]:bowpidkd|bpkd:float:"Sets the Kd parameter of the PID of the selected bow"
+2025-01-04 10:17:59,080 - 6.7 : <si< [hlp][str]:bowpidintegratorerror|bpie:float:"Sets the lower threshold of error values for the PID integrator to ignore of the selected bow"
+2025-01-04 10:17:59,080 - 6.7 : <si< [hlp][str]:bowpidr|bpir:-:"Resets the PID of the selected bow"
+2025-01-04 10:17:59,081 - 6.7 : <si< [hlp][str]:bowpidmaxerror|bpme:float:"Maximum error to correct in each PID loop, essentially sets acceleration"
+2025-01-04 10:17:59,081 - 6.7 : <si< [hlp][str]:bowpidpeakerror|bpperr:float:"Get latest PID peak error"
+2025-01-04 10:17:59,082 - 6.7 : <si< [hlp][str]:bowcontrolfrequency|bcf:float:"Bow motor speed frequency in hertz, requires that PID is turned on"
+2025-01-04 10:17:59,083 - 6.8 : <si< [hlp][str]:bowcontrolfundamental|bcu:float:"Bow fundamental frequency, all harmonics are calculated from this number"
+2025-01-04 10:17:59,088 - 6.8 : <si< [hlp][str]:bowcontrolharmonic|bch:int:"Bow motor speed in terms of a harmonic number. A ratio is taken from the given harmonic in the current harmonic list, the ratio is then multiplied by the bow fundamental frequency"
+2025-01-04 10:17:59,088 - 6.8 : <si< [hlp][str]:bowcontrolharmonicadd|bcha:int:"Additative version of bowcontrolharmonic, the number is given is added to the harmonic given"
+2025-01-04 10:17:59,089 - 6.8 : <si< [hlp][str]:bowcontrolharmonicbase|bchb:int:"Same as bowcontrolharmonic but where the harmonic number is based on a MIDI note given by bowcontrolbasenote"
+2025-01-04 10:17:59,094 - 6.8 : <si< [hlp][str]:bowcontrolharmonicbasenote|bchbn:0-127:"Sets the MIDI base note of the string, used in conjunction with bowcontrolharmonicbase"
+2025-01-04 10:17:59,095 - 6.8 : <si< [hlp][str]:bowcontrolharmonicshift|bchsh:-32767-32767:"Setting shift from the currently playing harmonic where 32767 equals the entire harmonic shift range shifted up"
+2025-01-04 10:17:59,095 - 6.8 : <si< [hlp][str]:bowcontrolharmonicshiftrange|bchsr:0-36:"Set the number of harmonic numbers that constitutes the entire harmonic shift"
+2025-01-04 10:17:59,098 - 6.8 : <si< [hlp][str]:bowcontrolharmonicshift5|bchs5:-32767-32767:"Setting shift from the currently playing harmonic over 5 octaves where 32767 equals 5 octaves shift up from the fundamental"
+2025-01-04 10:17:59,099 - 6.8 : <si< [hlp][str]:bowcontrolspeedmode|bcsm:0|1:"Bow motor speed mode, 0 = Automatic and 1 = Manual"
+2025-01-04 10:17:59,100 - 6.8 : <si< [hlp][str]:bowharmonicseries|bhs:int:"Get/set the current harmonic series"
+2025-01-04 10:17:59,104 - 6.8 : <si< [hlp][str]:bowharmonicserieslist|bhsl:slot:name:ratios:"Get/set the harmonic ratios and name in the given slot"
+2025-01-04 10:17:59,105 - 6.8 : <si< [hlp][str]:bowharmonicseriesratio|bhsr:harmonic:ratio:"Sets the ratio of the given harmonic in current harmonic series, will increase the list size if needed to adress the harmonic"
+2025-01-04 10:17:59,105 - 6.8 : <si< [hlp][str]:bowharmonicseriesratioremove|bhsrr:ratio:"Remove the harmmonic ratio given in the current series and shift any ratios accordingly. Cannot remove all ratios"
+2025-01-04 10:17:59,107 - 6.8 : <si< [hlp][str]:bowharmonicseriescount|bhsc:-:"Returns the number of harmonic series in the list and their IDs"
+2025-01-04 10:17:59,112 - 6.8 : <si< [hlp][str]:bowharmonicseriessave|bhss:name:series:"Saves the current harmonic series in the slot given, or if the slot is out of range, creates a new one at the end of the list"
+2025-01-04 10:17:59,113 - 6.8 : <si< [hlp][str]:bowharmonicseriesremove|bhsrm:series:"Remove the series given and shift any series accordingly. Cannot remove all series"
+2025-01-04 10:17:59,113 - 6.8 : <si< [hlp][str]:bowstatus|bs:-:"Prints status information for the selected bow"
+2025-01-04 10:17:59,114 - 6.8 : <si< [hlp][str]:pickupstringfrequency|psf:-:"Returns the fundamental tone calculated from the current audio signal if appliccable"
+2025-01-04 10:17:59,114 - 6.8 : <si< [hlp][str]:pickupaudiopeak|pap:-:"Returns the peak amplitude of the current audio signal"
+2025-01-04 10:17:59,115 - 6.8 : <si< [hlp][str]:pickupaudiorms|par:-:"Returns the RMS amplitude of the current audio signal"
+2025-01-04 10:17:59,117 - 6.8 : <si< [hlp][str]:bowdebugmeasuretimetotarget|bdmtt:float:"Measure the time it takes to change from the current frequency to the target frequency"
+2025-01-04 10:17:59,121 - 6.8 : <si< [hlp][str]:bowhome|bh:-:"Homing bow, used at startup and in case of the bow loosing position"
+2025-01-04 10:17:59,121 - 6.8 : <si< [hlp][str]:bowcalibrateall|bca:-:"Performs all calibration routines on the selected bow, see below for routines performed"
+2025-01-04 10:17:59,122 - 6.8 : <si< [hlp][str]:bowcalibratespeed|bcs:-:"Finds the minimum and maximum bow speed of the selected bow"
+2025-01-04 10:17:59,122 - 6.8 : <si< [hlp][str]:bowcalibratespeedpid|bcsp:-:"Finds the minimum and maximum bow speed of the selected bow using the PID"
+2025-01-04 10:17:59,123 - 6.8 : <si< [hlp][str]:bowcalibratepressure|bcp:-:"Finds the minimum and maximum bow pressure of the selected bow"
+2025-01-04 10:17:59,124 - 6.8 : <si< [hlp][str]:bowcalibratestablethreshold|bcst:float:"Sets the timeout value for the bow frequency stability check for the selected bow"
+2025-01-04 10:17:59,128 - 6.8 : <si< [hlp][str]:bowmotorrun|bmr:1|0:"Set bow motor run on/off"
+2025-01-04 10:17:59,129 - 6.8 : <si< [hlp][str]:bowmotordirectpwm|bmdp:0-65535:"Bow motor direct power in 16-bit PWM values, requires that the PID is turned off"
+2025-01-04 10:17:59,129 - 6.8 : <si< [hlp][str]:bowmotortimeout|bmt:ms(0-65535):"Bow motor shutdown timeout after bow having been put into the rest position"
+2025-01-04 10:17:59,130 - 6.8 : <si< [hlp][str]:bowmotorspeedmax|bmsx:0-65535:"Bow motor maximum speed limit"
+2025-01-04 10:17:59,130 - 6.8 : <si< [hlp][str]:bowmotorspeedmin|bmsi:0-65535:"Bow motor minimum speed limit"
+2025-01-04 10:17:59,132 - 6.8 : <si< [hlp][str]:bowmotorvoltage|bmv:1.2-9:"Bow motor voltage"
+2025-01-04 10:17:59,132 - 6.8 : <si< [hlp][str]:bowmotorfrequency|bmf:-:"Bow motor reported frequency"
+2025-01-04 10:17:59,133 - 6.8 : <si< [hlp][str]:bowmotorcurrent|bmc:0-3:"Bow motor reported current use"
+2025-01-04 10:17:59,137 - 6.8 : <si< [hlp][str]:bowmotorcurrentlimit|bmcl:0-3:"Bow motor current limit (A)- !WARNING! Can ruin your instrument if changed"
+2025-01-04 10:17:59,138 - 6.8 : <si< [hlp][str]:bowmotorpowerlimit|bmpl:0-255:"Bow motor power limit (W) - !WARNING! Can ruin your instrument if changed"
+2025-01-04 10:17:59,138 - 6.8 : <si< [hlp][str]:bowmotorfaultcommands|bmfc:command list:"Commands to execute when a motor fault is tripped - !WARNING! Can ruin your instrument if changed"
+2025-01-04 10:17:59,140 - 6.8 : <si< [hlp][str]:bowmotoroverpowercommands|bmopc:command list:"Commands to execute when motor is over the power limit - !WARNING! Can ruin your instrument if changed"
+2025-01-04 10:17:59,141 - 6.8 : <si< [hlp][str]:bowmotormininertialpwm|bmmip:0 - 65535:"Bow minimal PWM to keep inertia"
+2025-01-04 10:17:59,146 - 6.8 : <si< [hlp][str]:bowpressurebaseline|bpb:0-65535:"Bow pressure baseline, modulation is added to this point upward"
+2025-01-04 10:17:59,146 - 6.8 : <si< [hlp][str]:bowpressuremodifier|bpm:0-65535:"Bow pressure modulation, added to the baseline"
+2025-01-04 10:17:59,147 - 6.8 : <si< [hlp][str]:bowpressurerest|bpr:0|1:"Puts the bow pressure in the resting position (conditional)"
+2025-01-04 10:17:59,147 - 6.8 : <si< [hlp][str]:bowpressureengage|bpe:0|1:"Puts the bow pressure in the engage position (conditional)"
+2025-01-04 10:17:59,148 - 6.8 : <si< [hlp][str]:bowpressurepositionmax|bppx:0-65535:"Bow pressure stall/maximum position"
+2025-01-04 10:17:59,150 - 6.8 : <si< [hlp][str]:bowpressurepositionengage|bppe:0-65535:"Bow pressure touch/minimum position"
+2025-01-04 10:17:59,151 - 6.8 : <si< [hlp][str]:bowpressurepositionrest|bppr:0-65535:"Bow pressure rest position"
+2025-01-04 10:17:59,151 - 6.8 : <si< [hlp][str]:bowpressureengagespeed|bpes:1 - 100?:"Bow pressure movement speed when engaging or disengaging"
+2025-01-04 10:17:59,156 - 6.8 : <si< [hlp][str]:bowpressuremodulationspeed|bpms:0.1 - 10:"Bow pressure movement speed while engaged"
+2025-01-04 10:17:59,156 - 6.8 : <si< [hlp][str]:bowpressurehold|bph:0|1:"Sets bow hold on/off"
+2025-01-04 10:17:59,157 - 6.8 : <si< [hlp][str]:solenoid|so:int:"Sets the currently selected solenoid"
+2025-01-04 10:17:59,157 - 6.8 : <si< [hlp][str]:solenoidengage|se:0-65535:"Sets the solenoid engagement of the current bow using the 1st argument as hardness"
+2025-01-04 10:17:59,158 - 6.8 : <si< [hlp][str]:solenoiddisengage|sd:0-1:"Sets the solenoid disengagement of the current bow, an argument of '0' will leave the solenoid at its current state while any other value will disengage the solenoid"
+2025-01-04 10:17:59,160 - 6.8 : <si< [hlp][str]:solenoidmaxforce|sxf:0 - 65535:"Set solenoid maximum usable force"
+2025-01-04 10:17:59,161 - 6.8 : <si< [hlp][str]:solenoidminforce|sif:0 - 65535:"Set solenoid minimum usable force"
+2025-01-04 10:17:59,162 - 6.8 : <si< [hlp][str]:solenoidforcemultiplier|sfm:0 - 1:"Set solenoid force multiplier"
+2025-01-04 10:17:59,165 - 6.8 : <si< [hlp][str]:solenoidengageduration|sed:uS:"Sets the duration of the solenoid hit in uS, if a value of 0 is set the solenoid will not disengage until a solenoiddisengage command has been given"
+2025-01-04 10:17:59,166 - 6.8 : <si< [hlp][str]:mutesetposition|msp:0-65535:"Set mute position"
+2025-01-04 10:17:59,167 - 6.8 : <si< [hlp][str]:mutefullmute|mfm:1|0:"Put mute in full mute position (conditional)"
+2025-01-04 10:17:59,168 - 6.8 : <si< [hlp][str]:mutehalfmute|mhm:1|0:"Put mute in half mute position (conditional)"
+2025-01-04 10:17:59,168 - 6.8 : <si< [hlp][str]:muterest|mr:1|0:"Put mute in rest position (conditional)"
+2025-01-04 10:17:59,169 - 6.8 : <si< [hlp][str]:mutesavefull|msf:1|0:"Save current mute position as full mute position (conditional)"
+2025-01-04 10:17:59,169 - 6.8 : <si< [hlp][str]:mutesavehalf|msh:1|0:"Save current mute position as half mute position (conditional)"
+2025-01-04 10:17:59,171 - 6.8 : <si< [hlp][str]:mutesaverest|msr:1|0:"Save current mute position as mute rest position (conditional)"
+2025-01-04 10:17:59,172 - 6.8 : <si< [hlp][str]:mutefullmuteposition|mfmp:0-65535:"Mute full mute position"
+2025-01-04 10:17:59,172 - 6.8 : <si< [hlp][str]:mutehalfmuteposition|mhmp:0-65535:"Mute half mute position"
+2025-01-04 10:17:59,173 - 6.8 : <si< [hlp][str]:muterestposition|mrp:0-65535:"Mute rest position"
+2025-01-04 10:17:59,177 - 6.8 : <si< [hlp][str]:mutesustain|ms:0|1:"Setting sustain on (1) or off (0)"
+2025-01-04 10:17:59,178 - 6.8 : <si< [hlp][str]:mutebackoff|mbo:0-65535:"Setting the time that the mute stays in the mutefullmute position before automatically going into rest, set in mS"
+2025-01-04 10:17:59,179 - 6.8 : <si< [hlp][str]:mutehome|mh:-:"Rehome mute"
+2025-01-04 10:17:59,179 - 6.8 : <si< [hlp][str]:mutecalibrate|mca:-:"Calibrate mute settings"
+2025-01-04 10:17:59,180 - 6.8 : <si< [hlp][str]:bowactuatoradd|baa:-:"Add new bow actuator"
+2025-01-04 10:17:59,180 - 6.8 : <si< [hlp][str]:bowactuatorremove|bar:actuator:"Remove bow actuator"
+2025-01-04 10:17:59,181 - 6.8 : <si< [hlp][str]:bowactuatorset|bas:actuator:"Set current bow actuator"
+2025-01-04 10:17:59,182 - 6.8 : <si< [hlp][str]:bowactuatorload|bal:-:"Load parameters from current bow actuator"
+2025-01-04 10:17:59,183 - 6.9 : <si< [hlp][str]:bowactuatorsave|bav:-:"Save current bow parameters into currently selected bow actuator"
+2025-01-04 10:17:59,183 - 6.9 : <si< [hlp][str]:bowactuatordata|bad:actuator:engagepressure:stallpressure:resposition:id:"Set data of bow actuator [actuator]"
+2025-01-04 10:17:59,188 - 6.9 : <si< [hlp][str]:bowactuatorcount|bac:-:"Returns the amount of saved bow actuators"
+2025-01-04 10:17:59,189 - 6.9 : <si< [hlp][str]:bowactuatorid|bai:-:"Sets the ID of the current bow actuator"
+2025-01-04 10:17:59,189 - 6.9 : <si< [hlp][str]:bowactuatorsavestall|bass:-:"Save current position as bow actuator stall position"
+2025-01-04 10:17:59,190 - 6.9 : <si< [hlp][str]:bowactuatorsavefirsttouch|basft:-:"Save current position as bow actuator first touch position"
+2025-01-04 10:17:59,190 - 6.9 : <si< [hlp][str]:bowactuatorsaverest|basr:-:"Save current position as bow actuator rest position"
+2025-01-04 10:17:59,191 - 6.9 : <si< [hlp][str]:nooperation|nop:-:"Do absolutely, positively, nothing"
+2025-01-04 10:17:59,194 - 6.9 : >so> rqi:modulecount
+2025-01-04 10:17:59,194 - 6.9 : >so> rqi:bowcontrolfundamental
+2025-01-04 10:17:59,194 - 6.9 : >so> rqi:bmv
+2025-01-04 10:17:59,195 - 6.9 : >so> rqi:bowpidki
+2025-01-04 10:17:59,195 - 6.9 : >so> rqi:bowpidkp
+2025-01-04 10:17:59,195 - 6.9 : >so> rqi:bowpidkd
+2025-01-04 10:17:59,195 - 6.9 : >so> rqi:bowpidintegratorerror
+2025-01-04 10:17:59,196 - 6.9 : >so> rqi:bowmotortimeout
+2025-01-04 10:17:59,196 - 6.9 : >so> rqi:mutefullmuteposition
+2025-01-04 10:17:59,196 - 6.9 : >so> rqi:mutehalfmuteposition
+2025-01-04 10:17:59,197 - 6.9 : >so> rqi:muterestposition
+2025-01-04 10:17:59,197 - 6.9 : >so> rqi:mutebackoff
+2025-01-04 10:17:59,197 - 6.9 : >so> rqi:bowmotorspeedmax
+2025-01-04 10:17:59,197 - 6.9 : >so> rqi:bowmotorspeedmin
+2025-01-04 10:17:59,198 - 6.9 : >so> rqi:bowpressurepositionmax
+2025-01-04 10:17:59,199 - 6.9 : >so> rqi:bowpressurepositionengage
+2025-01-04 10:17:59,199 - 6.9 : >so> rqi:bowpressurepositionrest
+2025-01-04 10:17:59,200 - 6.9 : >so> rqi:bowharmonicseriescount
+2025-01-04 10:17:59,200 - 6.9 : >so> rqi:bowharmonicserieslist
+2025-01-04 10:17:59,200 - 6.9 : >so> rqi:bowharmonicseries
+2025-01-04 10:17:59,201 - 6.9 : >so> rqi:midieventhandler
+2025-01-04 10:17:59,201 - 6.9 : >so> rqi:bowcontrolharmonicbasenote
+2025-01-04 10:17:59,202 - 6.9 : >so> rqi:solenoidmaxforce
+2025-01-04 10:17:59,202 - 6.9 : >so> rqi:solenoidminforce
+2025-01-04 10:17:59,203 - 6.9 : >so> rqi:solenoidengageduration
+2025-01-04 10:17:59,203 - 6.9 : >so> rqi:bowactuatorcount
+2025-01-04 10:17:59,204 - 6.9 : >so> rqi:midiconfigurationcount
+2025-01-04 10:17:59,204 - 6.9 : >so> rqi:mrc
+2025-01-04 10:17:59,204 - 6.9 : >so> rqi:acm:0
+2025-01-04 10:17:59,205 - 6.9 : >so> rqi:acm:1
+2025-01-04 10:17:59,205 - 6.9 : >so> rqi:acm:2
+2025-01-04 10:17:59,206 - 6.9 : >so> rqi:acm:3
+2025-01-04 10:17:59,206 - 6.9 : >so> rqi:acm:4
+2025-01-04 10:17:59,207 - 6.9 : >so> rqi:acm:5
+2025-01-04 10:17:59,207 - 6.9 : >so> rqi:acm:6
+2025-01-04 10:17:59,207 - 6.9 : >so> rqi:acm:7
+2025-01-04 10:17:59,208 - 6.9 : >so> rqi:bpkp
+2025-01-04 10:17:59,208 - 6.9 : >so> rqi:bpki
+2025-01-04 10:17:59,208 - 6.9 : >so> rqi:bpkd
+2025-01-04 10:17:59,209 - 6.9 : >so> rqi:bpie
+2025-01-04 10:17:59,209 - 6.9 : >so> rqi:bpme
+2025-01-04 10:17:59,210 - 6.9 : <si< [irq]m:0,nop
+2025-01-04 10:17:59,210 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,211 - 6.9 : <si< [cmd]m:0,Setting fundamental frequency to 82.50
+2025-01-04 10:17:59,214 - 6.9 : >so> debugprint:error:1
+2025-01-04 10:17:59,215 - 6.9 : >so> debugprint:expressionparser:0
+2025-01-04 10:17:59,215 - 6.9 : >so> debugprint:debug:1
+2025-01-04 10:17:59,215 - 6.9 : >so> debugprint:hardware:1
+2025-01-04 10:17:59,216 - 6.9 : >so> debugprint:priority:1
+2025-01-04 10:17:59,217 - 6.9 : >so> debugprint:undefined:1
+2025-01-04 10:17:59,218 - 6.9 : >so> debugprint:usb:0
+2025-01-04 10:17:59,218 - 6.9 : >so> debugprint:command:1
+2025-01-04 10:17:59,218 - 6.9 : >so> debugprint:inforequest:1
+2025-01-04 10:17:59,219 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,220 - 6.9 : <si< [cmd]m:0,Setting full mute position to 0
+2025-01-04 10:17:59,221 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,221 - 6.9 : <si< [cmd]m:0,Setting half mute position to 0
+2025-01-04 10:17:59,221 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,222 - 6.9 : <si< [cmd]m:0,Setting rest position to 0
+2025-01-04 10:17:59,223 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,223 - 6.9 : <si< [cmd]m:0,Mute backoff set to 0
+2025-01-04 10:17:59,224 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,224 - 6.9 : <si< [cmd]m:0,Setting max bow pressure to 0
+2025-01-04 10:17:59,225 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,225 - 6.9 : <si< [cmd]m:0,Setting min bow pressure to 0
+2025-01-04 10:17:59,225 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,226 - 6.9 : <si< [cmd]m:0,Setting bow rest position 0
+2025-01-04 10:17:59,226 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,226 - 6.9 : <si< [cmd]m:0,Setting solenoid max force to 0
+2025-01-04 10:17:59,227 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,227 - 6.9 : <si< [cmd]m:0,Setting solenoid min force to 0
+2025-01-04 10:17:59,231 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,231 - 6.9 : <si< [cmd]m:0,Setting solenoid engage duration to 0
+2025-01-04 10:17:59,232 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,232 - 6.9 : <si< [cmd]m:0,Setting bow voltage to 6.60
+2025-01-04 10:17:59,233 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,233 - 6.9 : <si< [cmd]m:0,Setting PID Ki value to 7.00
+2025-01-04 10:17:59,234 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,234 - 6.9 : <si< [cmd]m:0,Setting PID Kp value to 500.00
+2025-01-04 10:17:59,234 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,235 - 6.9 : <si< [cmd]m:0,Setting PID Kd value to 200.00
+2025-01-04 10:17:59,237 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,237 - 6.9 : <si< [cmd]m:0,Setting error ignore to 0.10
+2025-01-04 10:17:59,238 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,240 - 6.9 : <si< [cmd]m:0,Setting motor timeout to 1000
+2025-01-04 10:17:59,240 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,241 - 6.9 : <si< [cmd]m:0,Setting full mute position to 48200
+2025-01-04 10:17:59,243 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,243 - 6.9 : <si< [cmd]m:0,Setting half mute position to 24100
+2025-01-04 10:17:59,244 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,245 - 6.9 : <si< [cmd]m:0,Mute backoff set to 500
+2025-01-04 10:17:59,246 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,246 - 6.9 : <si< [cmd]m:0,Setting max bow frequency to 539.49
+2025-01-04 10:17:59,248 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,248 - 6.9 : <si< [cmd]m:0,Setting min bow frequency to 19.05
+2025-01-04 10:17:59,251 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,251 - 6.9 : <si< [cmd]m:0,Setting max bow pressure to 65535
+2025-01-04 10:17:59,252 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,252 - 6.9 : <si< [cmd]m:0,Setting min bow pressure to 26000
+2025-01-04 10:17:59,252 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,254 - 6.9 : <si< [cmd]m:0,Setting bow rest position 24000
+2025-01-04 10:17:59,255 - 6.9 : <si< [cmd]m:0,Setting base note to 64
+2025-01-04 10:17:59,256 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,257 - 6.9 : <si< [cmd]m:0,Setting solenoid max force to 54535
+2025-01-04 10:17:59,258 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,258 - 6.9 : <si< [cmd]m:0,Setting solenoid min force to 18000
+2025-01-04 10:17:59,260 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,261 - 6.9 : <si< [cmd]m:0,Setting solenoid engage duration to 15000
+2025-01-04 10:17:59,262 - 6.9 : <si< [irq]m:0,bad:0:26000:65535:24000:
+2025-01-04 10:17:59,264 - 6.9 : <si< [irq]m:0,bad:1:0:65535:0:
+2025-01-04 10:17:59,265 - 6.9 : <si< [irq]mcfn:0:default
+2025-01-04 10:17:59,266 - 6.9 : <si< [cmd]Setting current string module to 0
+2025-01-04 10:17:59,266 - 6.9 : <si< [cmd]m:0,Setting pid max error to 50.00
+2025-01-04 10:17:59,267 - 6.9 : <si< [irq]mc:1
+2025-01-04 10:17:59,267 - 6.9 : <si< [irq]m:0,bcu:82.50
+2025-01-04 10:17:59,270 - 6.9 : <si< [irq]m:0,bmv:6.60
+2025-01-04 10:17:59,271 - 6.9 : <si< [irq]m:0,bpki:7.00
+2025-01-04 10:17:59,272 - 6.9 : <si< [irq]m:0,bpkp:500.00
+2025-01-04 10:17:59,272 - 6.9 : <si< [irq]m:0,bpkd:200.00
+2025-01-04 10:17:59,273 - 6.9 : <si< [irq]m:0,bpie:0.10
+2025-01-04 10:17:59,274 - 6.9 : <si< [irq]m:0,bmt:1000
+2025-01-04 10:17:59,275 - 6.9 : <si< [irq]m:0,mfmp:48200
+2025-01-04 10:17:59,277 - 6.9 : <si< [irq]m:0,mhmp:24100
+2025-01-04 10:17:59,278 - 6.9 : <si< [irq]m:0,mrp:0
+2025-01-04 10:17:59,278 - 6.9 : <si< [irq]m:0,mbo:500
+2025-01-04 10:17:59,279 - 6.9 : <si< [irq]m:0,bmsx:539.49
+2025-01-04 10:17:59,280 - 6.9 : <si< [irq]m:0,bmsi:19.05
+2025-01-04 10:17:59,281 - 6.9 : <si< [irq]m:0,bppx:65535
+2025-01-04 10:17:59,282 - 6.9 : <si< [irq]m:0,bppe:26000
+2025-01-04 10:17:59,283 - 6.9 : <si< [irq]m:0,bppr:24000
+2025-01-04 10:17:59,286 - 7.0 : <si< [irq]m:0,bhsc:3:just intonation:equal temperament:harmonic
+2025-01-04 10:17:59,288 - 7.0 : <si< [irq]m:0,bhsl:1.0000:1.0707:1.1290:1.2140:1.2540:1.3333:1.4092:1.5000:1.6030:1.6737:1.7990:1.8700
+2025-01-04 10:17:59,288 - 7.0 : <si< [irq]m:0,bhs:2
+2025-01-04 10:17:59,299 - 7.0 : <si< [irq]mev:noteon:'m:0,b:0,bchb:note,bmr:1,bpid:1,bpe:1,bcsm:0,se:(velocity*502)*(1-notecount)',mev:noteoff:'m:0,b:0,bpr:ibool(notecount),bcsm:0',mev:cc:64:'midisustain:bool(value)',mev:cc:123:'midiallnotesoff:1',mev:pat:'',mev:pb:'m:0,b:0,bchsh:pitch*4',mev:cat:'m:0,b:0,bpm:(pressure*512)',mev:pc:'',
+2025-01-04 10:17:59,300 - 7.0 : <si< [irq]m:0,bchbn:64
+2025-01-04 10:17:59,301 - 7.0 : <si< [irq]m:0,sxf:54535
+2025-01-04 10:17:59,301 - 7.0 : <si< [irq]m:0,sif:18000
+2025-01-04 10:17:59,302 - 7.0 : <si< [irq]m:0,sed:15000
+2025-01-04 10:17:59,302 - 7.0 : >so> rqi:bad:0
+2025-01-04 10:17:59,303 - 7.0 : >so> rqi:bad:1
+2025-01-04 10:17:59,303 - 7.0 : <si< [irq]m:0,bac:2
+2025-01-04 10:17:59,305 - 7.0 : >so> rqi:mcfn:0
+2025-01-04 10:17:59,306 - 7.0 : <si< [irq]mcfc:1
+2025-01-04 10:17:59,307 - 7.0 : <si< [irq]mrc:1
+2025-01-04 10:17:59,308 - 7.0 : <si< [irq]acm:0:'bcha:(value-300.0)/1289.0453077669902+(-12.0)'
+2025-01-04 10:17:59,310 - 7.0 : <si< [irq]acm:1:'bchs5:"deadband(value-32232.0, 20)/2.2166361974405846"'
+2025-01-04 10:17:59,311 - 7.0 : <si< [irq]acm:2:'bchsh:"deadband(value-33065.0, 250)*0.49064"'
+2025-01-04 10:17:59,314 - 7.0 : <si< [irq]acm:3:'bpb:value'
+2025-01-04 10:17:59,315 - 7.0 : <si< [irq]acm:4:'se:value'
+2025-01-04 10:17:59,318 - 7.0 : <si< [irq]acm:5:'bmr:1,bpid:1,bcsm:0,bpe:bool(value-2000.0),bpr:ibool(value-2000.0),bph:ibool(value-2000.0)'
+2025-01-04 10:17:59,321 - 7.0 : <si< [irq]acm:6:'sfm:"deadband(1/65535*value,0.002)"'
+2025-01-04 10:17:59,325 - 7.0 : <si< [irq]acm:7:'msp:value'
+2025-01-04 10:17:59,328 - 7.0 : <si< [irq]m:0,bpkp:500.00
+2025-01-04 10:17:59,332 - 7.0 : <si< [irq]m:0,bpki:7.00
+2025-01-04 10:17:59,335 - 7.0 : <si< [irq]m:0,bpkd:200.00
+2025-01-04 10:17:59,340 - 7.0 : <si< [irq]m:0,bpie:0.10
+2025-01-04 10:17:59,343 - 7.0 : <si< [irq]m:0,bpme:50.00
+2025-01-04 10:17:59,346 - 7.0 : <si< [cmd]Setting error echo to 1
+2025-01-04 10:17:59,349 - 7.0 : <si< [cmd]Setting expressionparser echo to 0
+2025-01-04 10:17:59,352 - 7.0 : <si< [cmd]Setting debug echo to 1
+2025-01-04 10:17:59,356 - 7.0 : <si< [cmd]Setting hardware echo to 1
+2025-01-04 10:17:59,360 - 7.0 : <si< [cmd]Setting priority echo to 1
+2025-01-04 10:17:59,364 - 7.0 : <si< [cmd]Setting undefined echo to 1
+2025-01-04 10:17:59,367 - 7.0 : <si< [cmd]Setting usb echo to 0
+2025-01-04 10:17:59,369 - 7.0 : <si< [cmd]Setting command echo to 1
+2025-01-04 10:17:59,372 - 7.0 : <si< [cmd]Setting inforequest echo to 1
+2025-01-04 10:17:59,377 - 7.0 : <si< [irq]m:0,bad:0:26000:65535:24000:
+2025-01-04 10:17:59,381 - 7.0 : <si< [irq]m:0,bad:1:0:65535:0:
+2025-01-04 10:17:59,384 - 7.1 : <si< [irq]mcfn:0:default
