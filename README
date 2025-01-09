@@ -10,3 +10,21 @@ Please see dependencies.txt for libraries needed to run this code, by default th
 until connected to a Teensy 4.0 with the Ekdahl FAR firmware
 
 This software should be considered to be in Alpha stage as it is missing much functionality
+
+---------------------
+
+Dependencies
+
+The software requires Python 3.10 or higher, it can be downloaded for all platforms on https://www.python.org
+
+Just download it and install
+
+The software also requires a number of python packages;
+
+pyside6
+pyserial
+mido
+python-rtmidi
+sympy
+
+https://github.com/Knaster/EkdahlFarConfig/archive/refs/heads/master.zip
