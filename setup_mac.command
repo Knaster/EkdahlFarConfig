@@ -18,18 +18,16 @@ echo "Creating $MACOS_DIR"
 mkdir -p "$MACOS_DIR"
 
 cp -r . "$MACOS_DIR"
-cd "$MACOS_DIR"
 chmod +x "run_mac.command"
 
 # Create a simple executable to run the script
-cat > "$MACOS_DIR/$APP_NAME" << EOF
-#!/bin/bash
-DIR=\$(dirname "\$0")
-\$DIR/run_mac.command
-EOF
+#cat > "$MACOS_DIR/$APP_NAME" << EOF
+#DIR=\$(dirname "\$0")
+#\$DIR/run_mac.command
+#EOF
 
 # Make the executable run script
-chmod +x "$MACOS_DIR/$APP_NAME"
+#chmod +x "$MACOS_DIR/$APP_NAME"
 
 # Create the Info.plist file
 cat > "$CONTENTS_DIR/Info.plist" << EOF
@@ -94,21 +92,30 @@ if ! echo "$PATH" | grep -q "/usr/local/bin"; then
 	echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
 fi
 
+#Echo "Python version"
+#$python_path --version
+
 source ~/.bash_profile
 source ~/.zshrc
 
-if [ ! -d "./venv" ]; then
+cd "$MACOS_DIR"
+echo "Current directory"
+echo $(dirname "$0")
+#$python_path --version
+
+#if [ ! -d "$MACOS_DIR/venv" ]; then
 	echo "Creating python virtual environment"
-	$python_path -m venv ./venv
-fi
-source ./venv/bin/activate
+	$python_path -m venv "$MACOS_DIR/venv"
+#fi
+
+source "$MACOS_DIR/venv/bin/activate"
 
 echo "Installing python packages"
 
 ./venv/bin/pip install pyserial
-./venv/bin/pip install pyside6 
+./venv/bin/pip install pyside6
 ./venv/bin/pip install pyserial 
-./venv/bin/pip install mido 
+./venv/bin/pip install mido
 ./venv/bin/pip install python-rtmidi
 ./venv/bin/pip install sympy
 
