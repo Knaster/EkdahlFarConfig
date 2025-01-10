@@ -16,7 +16,9 @@ CONTENTS_DIR="$APP_DIR/Contents"
 MACOS_DIR="$CONTENTS_DIR/MacOS"
 echo "Creating $MACOS_DIR"
 mkdir -p "$MACOS_DIR"
+mkdir -p "$CONTENTS_DIR/Resources"
 
+cp ./resources/far_icon.icns "$CONTENTS_DIR/Resources/far_icon.icns"
 cp -r . "$MACOS_DIR"
 chmod +x "run_mac.command"
 
@@ -37,6 +39,8 @@ cat > "$CONTENTS_DIR/Info.plist" << EOF
 <dict>
     <key>CFBundleExecutable</key>
     <string>run_mac.command</string>
+    <key>CFBundleIconFile</key>
+    <string>far_icon</string>
     <key>CFBundleIdentifier</key>
     <string>com.example.$APP_NAME</string>
     <key>CFBundleName</key>
