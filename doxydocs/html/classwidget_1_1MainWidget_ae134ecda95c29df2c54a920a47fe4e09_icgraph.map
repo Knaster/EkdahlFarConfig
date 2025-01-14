@@ -1,9 +1,17 @@
 <map id="widget.MainWidget.updateUIData" name="widget.MainWidget.updateUIData">
-<area shape="rect" id="node1" title=" " alt="" coords="280,141,477,182"/>
-<area shape="rect" id="node2" href="$classwidget_1_1MainWidget.html#a621e12c689b9fff5ecd57949d36dc79c" title=" " alt="" coords="23,5,214,32"/>
-<area shape="rect" id="node3" href="$classwidget_1_1MainWidget.html#a0371134859cd50409719e90f1fdc5f7f" title=" " alt="" coords="9,56,229,83"/>
-<area shape="rect" id="node4" href="$classwidget_1_1MainWidget.html#a6a8919f88c2cf2b885a0431605c6c110" title=" " alt="" coords="13,107,224,149"/>
-<area shape="rect" id="node5" href="$classwidget_1_1MainWidget.html#a81b749d24876958c726858d1efdf861e" title=" " alt="" coords="13,173,224,214"/>
-<area shape="rect" id="node6" href="$classwidget_1_1MainWidget.html#af333e982999846d71cb27003979d38e2" title=" " alt="" coords="17,238,220,279"/>
-<area shape="rect" id="node7" href="$classwidget_1_1MainWidget.html#a04cc9091ff4d081b5bcd6491ed694af7" title=" " alt="" coords="5,303,232,345"/>
+<area shape="rect" id="node1" title=" " alt="" coords="780,304,977,345"/>
+<area shape="rect" id="node2" href="$classwidget_1_1MainWidget.html#ad8ae6f8b2ddeae64c642faa2d78a4828" title=" " alt="" coords="521,5,716,47"/>
+<area shape="rect" id="node4" href="$classwidget_1_1MainWidget.html#a621e12c689b9fff5ecd57949d36dc79c" title=" " alt="" coords="523,71,714,98"/>
+<area shape="rect" id="node5" href="$classwidget_1_1MainWidget.html#a0371134859cd50409719e90f1fdc5f7f" title=" " alt="" coords="509,122,729,149"/>
+<area shape="rect" id="node6" href="$classwidget_1_1MainWidget.html#a6a8919f88c2cf2b885a0431605c6c110" title=" " alt="" coords="513,173,724,215"/>
+<area shape="rect" id="node7" href="$classwidget_1_1MainWidget.html#af2c69cddcd356fdf0866c8a6a3da9747" title=" " alt="" coords="513,239,724,280"/>
+<area shape="rect" id="node8" href="$classwidget_1_1MainWidget.html#af333e982999846d71cb27003979d38e2" title=" " alt="" coords="517,304,720,345"/>
+<area shape="rect" id="node9" href="$classwidget_1_1MainWidget.html#af7a0a5a1d21d79d68e7cdfd9fdd83044" title=" " alt="" coords="505,369,732,411"/>
+<area shape="rect" id="node10" href="$classwidget_1_1MainWidget.html#a04cc9091ff4d081b5bcd6491ed694af7" title=" " alt="" coords="505,435,732,476"/>
+<area shape="rect" id="node11" href="$classwidget_1_1MainWidget.html#a6345a6de1253686740091aae738b7ead" title=" " alt="" coords="505,500,732,541"/>
+<area shape="rect" id="node12" href="$classwidget_1_1MainWidget.html#ab3b2790ad0f5e88ac3552f4b9f92cbfe" title=" " alt="" coords="505,565,732,607"/>
+<area shape="rect" id="node13" href="$classwidget_1_1MainWidget.html#a101483ef19288ebd69a58b941050c24f" title=" " alt="" coords="521,631,717,672"/>
+<area shape="rect" id="node3" href="$classwidget_1_1MainWidget.html#af4fe209b84f9117702a5cc6a788a9db4" title=" " alt="" coords="256,5,457,47"/>
+<area shape="rect" id="node14" href="$classwidget_1_1MainWidget.html#a3b9cb61985a2af27d09400292355d8d3" title=" " alt="" coords="5,631,208,672"/>
+<area shape="rect" id="node15" href="$classwidget_1_1MainWidget.html#a183d2760af42bce4bed92b7596828b4a" title=" " alt="" coords="259,660,455,701"/>
 </map>

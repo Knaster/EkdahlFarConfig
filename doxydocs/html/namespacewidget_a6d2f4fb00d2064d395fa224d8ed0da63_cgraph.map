@@ -1,9 +1,8 @@
 <map id="widget.processInformationReturn" name="widget.processInformationReturn">
-<area shape="rect" id="node1" title=" " alt="" coords="5,137,201,178"/>
-<area shape="rect" id="node2" href="$namespacewidget.html#a07468e8b086a27658191b056443b0431" title=" " alt="" coords="253,5,461,32"/>
-<area shape="rect" id="node3" href="$namespaceequationParsingHelpers.html#aa6cd88d5316bf7965cf38220c50020ba" title=" " alt="" coords="513,170,715,211"/>
-<area shape="rect" id="node4" href="$namespaceequationParsingHelpers.html#a3501d349a711e7068415fe3471253f76" title=" " alt="" coords="262,107,453,149"/>
-<area shape="rect" id="node5" href="$namespacewidget.html#a3a95badc25576a600d4001dc3ad39c37" title=" " alt="" coords="280,173,435,200"/>
-<area shape="rect" id="node6" href="$namespacewidget.html#a663b4d9d4abef07d0342732e7aa6d972" title=" " alt="" coords="259,225,455,266"/>
-<area shape="rect" id="node7" href="$namespacewidget.html#afed51f4b008fa5dbd3b157a4a5e8ea4e" title=" " alt="" coords="249,290,465,331"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,122,201,163"/>
+<area shape="rect" id="node2" href="$namespacewidget.html#a07468e8b086a27658191b056443b0431" title=" " alt="" coords="249,5,457,32"/>
+<area shape="rect" id="node3" href="$namespaceequationParsingHelpers.html#aa6cd88d5316bf7965cf38220c50020ba" title=" " alt="" coords="253,57,454,98"/>
+<area shape="rect" id="node4" href="$namespaceequationParsingHelpers.html#a3501d349a711e7068415fe3471253f76" title=" " alt="" coords="258,122,449,163"/>
+<area shape="rect" id="node5" href="$namespacewidget.html#a3a95badc25576a600d4001dc3ad39c37" title=" " alt="" coords="276,188,431,215"/>
+<area shape="rect" id="node6" href="$namespacewidget.html#a663b4d9d4abef07d0342732e7aa6d972" title=" " alt="" coords="255,239,451,281"/>
 </map>

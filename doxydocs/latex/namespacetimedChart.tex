@@ -21,14 +21,6 @@ def \mbox{\hyperlink{namespacetimedChart_ab57b6311655280a816d2357ee5e97736}{tria
 def \mbox{\hyperlink{namespacetimedChart_a204222f20210dd32b6db6ca8cfe585c0}{circle}} (point\+\_\+type, image\+\_\+size)
 \item 
 def \mbox{\hyperlink{namespacetimedChart_a00a1e6bd2fe8d50f860712b46e0b13ae}{default\+\_\+light\+\_\+marker}} (image\+\_\+size)
-\item 
-def \mbox{\hyperlink{namespacetimedChart_a40028fcc86811d98bffb785607738879}{get\+Series}} (self, series\+ID)
-\begin{DoxyCompactList}\small\item\em print(\char`\"{}\+Creating new series\char`\"{}) s = QLine\+Series() s.\+name = series\+ID s.\+set\+Name(series\+ID) \end{DoxyCompactList}\item 
-def \mbox{\hyperlink{namespacetimedChart_a7d392d4a97e6b337c6ab38833e395743}{add\+Series}} (self, series\+ID, in\+Series\+Type)
-\item 
-def \mbox{\hyperlink{namespacetimedChart_af7e2253a55edcfe8c33d5c1dd76e43b7}{set\+Series\+Visible\+Command}} (self, command, visible)
-\item 
-def \mbox{\hyperlink{namespacetimedChart_ac1d8d833b97d901e5bb157cfe5e5c7bc}{process\+Command}} (self, command)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -38,20 +30,13 @@ list \mbox{\hyperlink{namespacetimedChart_affc75b6132ce450f06a480b158a3a388}{\+\
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{namespacetimedChart_a7d392d4a97e6b337c6ab38833e395743}\label{namespacetimedChart_a7d392d4a97e6b337c6ab38833e395743}} 
-\index{timedChart@{timedChart}!addSeries@{addSeries}}
-\index{addSeries@{addSeries}!timedChart@{timedChart}}
-\doxysubsubsection{\texorpdfstring{addSeries()}{addSeries()}}
-{\footnotesize\ttfamily def timed\+Chart.\+add\+Series (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{series\+ID,  }\item[{}]{in\+Series\+Type }\end{DoxyParamCaption})}
-
 \mbox{\Hypertarget{namespacetimedChart_a204222f20210dd32b6db6ca8cfe585c0}\label{namespacetimedChart_a204222f20210dd32b6db6ca8cfe585c0}} 
 \index{timedChart@{timedChart}!circle@{circle}}
 \index{circle@{circle}!timedChart@{timedChart}}
 \doxysubsubsection{\texorpdfstring{circle()}{circle()}}
 {\footnotesize\ttfamily def timed\+Chart.\+circle (\begin{DoxyParamCaption}\item[{}]{point\+\_\+type,  }\item[{}]{image\+\_\+size }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -64,41 +49,11 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{default\_light\_marker()}{default\_light\_marker()}}
 {\footnotesize\ttfamily def timed\+Chart.\+default\+\_\+light\+\_\+marker (\begin{DoxyParamCaption}\item[{}]{image\+\_\+size }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=326pt]{namespacetimedChart_a00a1e6bd2fe8d50f860712b46e0b13ae_cgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{namespacetimedChart_a40028fcc86811d98bffb785607738879}\label{namespacetimedChart_a40028fcc86811d98bffb785607738879}} 
-\index{timedChart@{timedChart}!getSeries@{getSeries}}
-\index{getSeries@{getSeries}!timedChart@{timedChart}}
-\doxysubsubsection{\texorpdfstring{getSeries()}{getSeries()}}
-{\footnotesize\ttfamily def timed\+Chart.\+get\+Series (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{series\+ID }\end{DoxyParamCaption})}
-
-
-
-print(\char`\"{}\+Creating new series\char`\"{}) s = QLine\+Series() s.\+name = series\+ID s.\+set\+Name(series\+ID) 
-
-s.\+set\+Point\+Labels\+Color(QColor(\char`\"{}blue\char`\"{})) s.\+set\+Point\+Labels\+Format(\char`\"{}@y\+Point\char`\"{}) s.\+set\+Point\+Labels\+Clipping(\+True) \#s.\+set\+Point\+Labels\+Visible(\+True)
-
-\#s.\+set\+Marker\+Size(5) \#s.\+set\+Light\+Marker(default\+\_\+light\+\_\+marker(5))\hypertarget{namespacetimedChart_autotoc_md0}{}\doxysubsection{Add the newly created series class to the local series array series\+Arr}\label{namespacetimedChart_autotoc_md0}
-self.\+series\+Arr.\+append(s) self.\+chart.\+add\+Series(s)
-
-s.\+attach\+Axis(self.\+axisX) if (in\+Series\+Type == \mbox{\hyperlink{classtimedChart_1_1seriesType_a990c21bd047c564ad4b82509959be49e}{series\+Type.\+integer}})\+: s.\+attach\+Axis(self.\+axis\+YInt) elif (in\+Series\+Type == \mbox{\hyperlink{classtimedChart_1_1seriesType_ad03636fe303f3811a390d13661e6a9d4}{series\+Type.\+frequency}})\+: s.\+attach\+Axis(self.\+axis\+YHz) else\+: print(\char`\"{}\+ERROR\char`\"{}) \mbox{\Hypertarget{namespacetimedChart_ac1d8d833b97d901e5bb157cfe5e5c7bc}\label{namespacetimedChart_ac1d8d833b97d901e5bb157cfe5e5c7bc}} 
-\index{timedChart@{timedChart}!processCommand@{processCommand}}
-\index{processCommand@{processCommand}!timedChart@{timedChart}}
-\doxysubsubsection{\texorpdfstring{processCommand()}{processCommand()}}
-{\footnotesize\ttfamily def timed\+Chart.\+process\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command }\end{DoxyParamCaption})}
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacetimedChart_ac1d8d833b97d901e5bb157cfe5e5c7bc_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacetimedChart_a110e4c90bbaf18597d9b9a4ed9c8a703}\label{namespacetimedChart_a110e4c90bbaf18597d9b9a4ed9c8a703}} 
@@ -106,12 +61,6 @@ Here is the caller graph for this function\+:
 \index{rectangle@{rectangle}!timedChart@{timedChart}}
 \doxysubsubsection{\texorpdfstring{rectangle()}{rectangle()}}
 {\footnotesize\ttfamily def timed\+Chart.\+rectangle (\begin{DoxyParamCaption}\item[{}]{point\+\_\+type,  }\item[{}]{image\+\_\+size }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{namespacetimedChart_af7e2253a55edcfe8c33d5c1dd76e43b7}\label{namespacetimedChart_af7e2253a55edcfe8c33d5c1dd76e43b7}} 
-\index{timedChart@{timedChart}!setSeriesVisibleCommand@{setSeriesVisibleCommand}}
-\index{setSeriesVisibleCommand@{setSeriesVisibleCommand}!timedChart@{timedChart}}
-\doxysubsubsection{\texorpdfstring{setSeriesVisibleCommand()}{setSeriesVisibleCommand()}}
-{\footnotesize\ttfamily def timed\+Chart.\+set\+Series\+Visible\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command,  }\item[{}]{visible }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{namespacetimedChart_ab57b6311655280a816d2357ee5e97736}\label{namespacetimedChart_ab57b6311655280a816d2357ee5e97736}} 
 \index{timedChart@{timedChart}!triangle@{triangle}}

@@ -1492,7 +1492,7 @@ class MainWidget(QWidget):
             if isinstance(widget, QDoubleSpinBox):
                 widget.valueChanged.connect(self.widgetCVMappingCallback)
             if isinstance(widget, QCheckBox):
-                widget.checkStateChanged.connect(self.widgetCVMappingCallback)
+                widget.stateChanged.connect(self.widgetCVMappingCallback)
 
         pass
 

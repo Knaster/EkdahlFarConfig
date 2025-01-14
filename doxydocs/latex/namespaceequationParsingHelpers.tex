@@ -6,10 +6,64 @@
 def \mbox{\hyperlink{namespaceequationParsingHelpers_aa6cd88d5316bf7965cf38220c50020ba}{get\+Variable}} (equation\+\_\+str, variable\+\_\+str)
 \item 
 def \mbox{\hyperlink{namespaceequationParsingHelpers_a3501d349a711e7068415fe3471253f76}{is\+Variable\+In\+Equation}} (equation\+\_\+str, variable\+\_\+str)
+\item 
+def \mbox{\hyperlink{namespaceequationParsingHelpers_a0bdbbf0b0ecf7f2d0c588f6be75cd2e8}{remove\+Function}} (equation\+\_\+str, function\+\_\+str)
+\item 
+def \mbox{\hyperlink{namespaceequationParsingHelpers_aaca201de2c1216932117b8840ec155bf}{extract\+Value\+Offset\+And\+Divisor}} (equation\+\_\+str)
+\item 
+def \mbox{\hyperlink{namespaceequationParsingHelpers_a145cda97ef2983cb682699aef161dced}{extract\+Value\+Offset\+And\+Multiplier}} (equation\+\_\+str)
+\item 
+def \mbox{\hyperlink{namespaceequationParsingHelpers_ae3b84a2fc123cabe6c32268f8494f842}{extract\+Zero\+Coefficient\+Offset}} (equation)
+\item 
+def \mbox{\hyperlink{namespaceequationParsingHelpers_aca76e9da04059aace2c2860edc765d91}{strip\+Bool\+IBool}} (expression)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceequationParsingHelpers_aaca201de2c1216932117b8840ec155bf}\label{namespaceequationParsingHelpers_aaca201de2c1216932117b8840ec155bf}} 
+\index{equationParsingHelpers@{equationParsingHelpers}!extractValueOffsetAndDivisor@{extractValueOffsetAndDivisor}}
+\index{extractValueOffsetAndDivisor@{extractValueOffsetAndDivisor}!equationParsingHelpers@{equationParsingHelpers}}
+\doxysubsubsection{\texorpdfstring{extractValueOffsetAndDivisor()}{extractValueOffsetAndDivisor()}}
+{\footnotesize\ttfamily def equation\+Parsing\+Helpers.\+extract\+Value\+Offset\+And\+Divisor (\begin{DoxyParamCaption}\item[{}]{equation\+\_\+str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceequationParsingHelpers_a145cda97ef2983cb682699aef161dced}\label{namespaceequationParsingHelpers_a145cda97ef2983cb682699aef161dced}} 
+\index{equationParsingHelpers@{equationParsingHelpers}!extractValueOffsetAndMultiplier@{extractValueOffsetAndMultiplier}}
+\index{extractValueOffsetAndMultiplier@{extractValueOffsetAndMultiplier}!equationParsingHelpers@{equationParsingHelpers}}
+\doxysubsubsection{\texorpdfstring{extractValueOffsetAndMultiplier()}{extractValueOffsetAndMultiplier()}}
+{\footnotesize\ttfamily def equation\+Parsing\+Helpers.\+extract\+Value\+Offset\+And\+Multiplier (\begin{DoxyParamCaption}\item[{}]{equation\+\_\+str }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceequationParsingHelpers_a145cda97ef2983cb682699aef161dced_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceequationParsingHelpers_ae3b84a2fc123cabe6c32268f8494f842}\label{namespaceequationParsingHelpers_ae3b84a2fc123cabe6c32268f8494f842}} 
+\index{equationParsingHelpers@{equationParsingHelpers}!extractZeroCoefficientOffset@{extractZeroCoefficientOffset}}
+\index{extractZeroCoefficientOffset@{extractZeroCoefficientOffset}!equationParsingHelpers@{equationParsingHelpers}}
+\doxysubsubsection{\texorpdfstring{extractZeroCoefficientOffset()}{extractZeroCoefficientOffset()}}
+{\footnotesize\ttfamily def equation\+Parsing\+Helpers.\+extract\+Zero\+Coefficient\+Offset (\begin{DoxyParamCaption}\item[{}]{equation }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parses an equation to extract zeroPosition, coefficient, and offset,
+ensuring correct differentiation between components and retaining their signs.
+
+Args:
+    equation (str): The equation as a string.
+
+Returns:
+    dict: A dictionary with keys 'zeroPosition', 'coefficient', and 'offset'.
+          Missing zeroPosition and offset default to 0, coefficient defaults to 1.
+\end{DoxyVerb}
+ Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceequationParsingHelpers_ae3b84a2fc123cabe6c32268f8494f842_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{namespaceequationParsingHelpers_aa6cd88d5316bf7965cf38220c50020ba}\label{namespaceequationParsingHelpers_aa6cd88d5316bf7965cf38220c50020ba}} 
 \index{equationParsingHelpers@{equationParsingHelpers}!getVariable@{getVariable}}
 \index{getVariable@{getVariable}!equationParsingHelpers@{equationParsingHelpers}}
@@ -30,11 +84,47 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{isVariableInEquation()}{isVariableInEquation()}}
 {\footnotesize\ttfamily def equation\+Parsing\+Helpers.\+is\+Variable\+In\+Equation (\begin{DoxyParamCaption}\item[{}]{equation\+\_\+str,  }\item[{}]{variable\+\_\+str }\end{DoxyParamCaption})}
 
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceequationParsingHelpers_a3501d349a711e7068415fe3471253f76_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceequationParsingHelpers_a0bdbbf0b0ecf7f2d0c588f6be75cd2e8}\label{namespaceequationParsingHelpers_a0bdbbf0b0ecf7f2d0c588f6be75cd2e8}} 
+\index{equationParsingHelpers@{equationParsingHelpers}!removeFunction@{removeFunction}}
+\index{removeFunction@{removeFunction}!equationParsingHelpers@{equationParsingHelpers}}
+\doxysubsubsection{\texorpdfstring{removeFunction()}{removeFunction()}}
+{\footnotesize\ttfamily def equation\+Parsing\+Helpers.\+remove\+Function (\begin{DoxyParamCaption}\item[{}]{equation\+\_\+str,  }\item[{}]{function\+\_\+str }\end{DoxyParamCaption})}
+
 Here is the caller graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceequationParsingHelpers_a3501d349a711e7068415fe3471253f76_icgraph}
+\includegraphics[width=350pt]{namespaceequationParsingHelpers_a0bdbbf0b0ecf7f2d0c588f6be75cd2e8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceequationParsingHelpers_aca76e9da04059aace2c2860edc765d91}\label{namespaceequationParsingHelpers_aca76e9da04059aace2c2860edc765d91}} 
+\index{equationParsingHelpers@{equationParsingHelpers}!stripBoolIBool@{stripBoolIBool}}
+\index{stripBoolIBool@{stripBoolIBool}!equationParsingHelpers@{equationParsingHelpers}}
+\doxysubsubsection{\texorpdfstring{stripBoolIBool()}{stripBoolIBool()}}
+{\footnotesize\ttfamily def equation\+Parsing\+Helpers.\+strip\+Bool\+IBool (\begin{DoxyParamCaption}\item[{}]{expression }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Extracts the numerical value from an expression like "bool(value-2000)" or "ibool(value-25000)".
+Strips everything except the numerical value inside the parentheses.
+
+Args:
+    expression (str): The expression to extract the number from.
+
+Returns:
+    float: The numerical value inside the parentheses.
+\end{DoxyVerb}
+ Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceequationParsingHelpers_aca76e9da04059aace2c2860edc765d91_icgraph}
 \end{center}
 \end{figure}

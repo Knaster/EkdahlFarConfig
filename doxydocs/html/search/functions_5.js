@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['feedbackreporttoggled_274',['feedbackReportToggled',['../classwidget_1_1MainWidget.html#ac60b2bd2c26fd9e8fa571a8fe2f42818',1,'widget::MainWidget']]],
-  ['find_5fitem_275',['find_item',['../classwidget_1_1MainWidget.html#ac61135ab101082a592815f9c3203bd6c',1,'widget::MainWidget']]]
+  ['extractvalueoffsetanddivisor_311',['extractValueOffsetAndDivisor',['../namespaceequationParsingHelpers.html#aaca201de2c1216932117b8840ec155bf',1,'equationParsingHelpers']]],
+  ['extractvalueoffsetandmultiplier_312',['extractValueOffsetAndMultiplier',['../namespaceequationParsingHelpers.html#a145cda97ef2983cb682699aef161dced',1,'equationParsingHelpers']]],
+  ['extractzerocoefficientoffset_313',['extractZeroCoefficientOffset',['../namespaceequationParsingHelpers.html#ae3b84a2fc123cabe6c32268f8494f842',1,'equationParsingHelpers']]]
 ];

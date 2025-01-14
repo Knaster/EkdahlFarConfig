@@ -1,4 +1,8 @@
 <map id="widget.MainWidget.updateCVData" name="widget.MainWidget.updateCVData">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,203,47"/>
-<area shape="rect" id="node2" href="$namespaceequationParsingHelpers.html#aa6cd88d5316bf7965cf38220c50020ba" title=" " alt="" coords="251,5,452,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,129,203,171"/>
+<area shape="rect" id="node2" href="$namespaceequationParsingHelpers.html#a145cda97ef2983cb682699aef161dced" title=" " alt="" coords="253,5,479,47"/>
+<area shape="rect" id="node3" href="$namespaceequationParsingHelpers.html#ae3b84a2fc123cabe6c32268f8494f842" title=" " alt="" coords="253,71,479,112"/>
+<area shape="rect" id="node4" href="$namespacewidget.html#a3a95badc25576a600d4001dc3ad39c37" title=" " alt="" coords="289,137,443,163"/>
+<area shape="rect" id="node5" href="$namespaceequationParsingHelpers.html#a0bdbbf0b0ecf7f2d0c588f6be75cd2e8" title=" " alt="" coords="251,188,481,229"/>
+<area shape="rect" id="node6" href="$namespaceequationParsingHelpers.html#aca76e9da04059aace2c2860edc765d91" title=" " alt="" coords="261,253,471,295"/>
 </map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['stringmodule_218',['stringModule',['../namespacestringModule.html',1,'']]]
+  ['stringmodule_256',['stringModule',['../namespacestringModule.html',1,'']]]
 ];

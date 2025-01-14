@@ -1,7 +1,12 @@
 <map id="widget.messageBox" name="widget.messageBox">
-<area shape="rect" id="node1" title=" " alt="" coords="768,35,923,61"/>
-<area shape="rect" id="node2" href="$namespacewidget.html#a8a92113a5b12e7fc24ae9096f672fd37" title=" " alt="" coords="525,5,719,32"/>
-<area shape="rect" id="node5" href="$namespacewidget.html#a6d2f4fb00d2064d395fa224d8ed0da63" title=" " alt="" coords="524,57,720,98"/>
-<area shape="rect" id="node3" href="$classwidget_1_1MainWidget.html#aede62ee5cab0d5cf89ebbc615965c9af" title=" " alt="" coords="235,35,476,61"/>
-<area shape="rect" id="node4" href="$classwidget_1_1serialHandler.html#af2bcc5d337c20d782256ec7010d7a655" title=" " alt="" coords="5,35,187,61"/>
+<area shape="rect" id="node1" title=" " alt="" coords="811,195,965,222"/>
+<area shape="rect" id="node2" href="$classwidget_1_1MainWidget.html#a524f68df2e53d583420ae424494e3b80" title=" " alt="" coords="530,5,757,47"/>
+<area shape="rect" id="node3" href="$classwidget_1_1MainWidget.html#ae761649e8b382814d5319c4703d3c17f" title=" " alt="" coords="527,71,760,112"/>
+<area shape="rect" id="node4" href="$namespacewidget.html#a8a92113a5b12e7fc24ae9096f672fd37" title=" " alt="" coords="547,137,740,163"/>
+<area shape="rect" id="node7" href="$namespacewidget.html#a6d2f4fb00d2064d395fa224d8ed0da63" title=" " alt="" coords="545,188,741,229"/>
+<area shape="rect" id="node8" href="$classwidget_1_1MainWidget.html#ab3b2790ad0f5e88ac3552f4b9f92cbfe" title=" " alt="" coords="530,253,757,295"/>
+<area shape="rect" id="node9" href="$classwidget_1_1MainWidget.html#a8dc1cb323b0a48a2616e9283c69dbb4b" title=" " alt="" coords="524,319,763,360"/>
+<area shape="rect" id="node10" href="$classwidget_1_1MainWidget.html#a8246e5ba7e6dc1b3e8f6cdccb9b3092b" title=" " alt="" coords="545,384,742,425"/>
+<area shape="rect" id="node5" href="$classwidget_1_1MainWidget.html#aede62ee5cab0d5cf89ebbc615965c9af" title=" " alt="" coords="235,166,476,193"/>
+<area shape="rect" id="node6" href="$classwidget_1_1serialHandler.html#af2bcc5d337c20d782256ec7010d7a655" title=" " alt="" coords="5,166,187,193"/>
 </map>

@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['evcc_371',['evCC',['../classstringModule_1_1InstrumentMaster.html#a7e3a4af5b70fb0965554a6c6ffa19785',1,'stringModule::InstrumentMaster']]],
-  ['evchannelaftertouch_372',['evChannelAftertouch',['../classstringModule_1_1InstrumentMaster.html#afd6a1a1116205ad0ac49c1b4c7a637c2',1,'stringModule::InstrumentMaster']]],
-  ['eventdescription_373',['eventDescription',['../classwidget_1_1MainWidget.html#aa6c703627aa63f9e64b7b04642c7e9f3',1,'widget::MainWidget']]],
-  ['evnoteoff_374',['evNoteOff',['../classstringModule_1_1InstrumentMaster.html#ae9ea57b84e4943fc1d39b3967d0484cf',1,'stringModule::InstrumentMaster']]],
-  ['evnoteon_375',['evNoteOn',['../classstringModule_1_1InstrumentMaster.html#a7a881e361beaab7e5d2bddb60f65ec63',1,'stringModule::InstrumentMaster']]],
-  ['evpitchbend_376',['evPitchbend',['../classstringModule_1_1InstrumentMaster.html#aa18374aabb9479965810c88d93bfc698',1,'stringModule::InstrumentMaster']]],
-  ['evpolyaftertouch_377',['evPolyAftertouch',['../classstringModule_1_1InstrumentMaster.html#adf216629fdfb7d8f53b5bff2476f7e53',1,'stringModule::InstrumentMaster']]],
-  ['evprogramchange_378',['evProgramChange',['../classstringModule_1_1InstrumentMaster.html#ab7595b5e9f362ab9bc346f66775755d1',1,'stringModule::InstrumentMaster']]]
+  ['dataavaliable_432',['dataAvaliable',['../classwidget_1_1serialHandler.html#a729a497300551267206f8f2bc74c706c',1,'widget::serialHandler']]],
+  ['datasignaler_433',['dataSignaler',['../classmidihandler_1_1MidiHandler.html#a365c77d697b508476f1ffea8750b4d91',1,'midihandler::MidiHandler']]],
+  ['debugtimedchart_434',['debugTimedChart',['../classwidget_1_1MainWidget.html#ae256e022e74d5842a6368033274d5aaf',1,'widget::MainWidget']]],
+  ['delegate_435',['delegate',['../namespacewidget.html#ab5ae3673ed9b9a172ec1780f16f547e2',1,'widget']]],
+  ['devicename_436',['deviceName',['../classmidihandler_1_1MidiHandler.html#a74f74c4ac390817d9a466c34c4864269',1,'midihandler::MidiHandler']]],
+  ['disconnectsignal_437',['disconnectSignal',['../classwidget_1_1serialHandler.html#a8ded2b9e9b84a671bada13a10378e82c',1,'widget::serialHandler']]]
 ];

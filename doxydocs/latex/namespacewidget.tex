@@ -5,6 +5,8 @@
 \item 
 class \mbox{\hyperlink{classwidget_1_1serialHandler}{serial\+Handler}}
 \item 
+class \mbox{\hyperlink{classwidget_1_1VerticalIconTabBar}{Vertical\+Icon\+Tab\+Bar}}
+\item 
 class \mbox{\hyperlink{classwidget_1_1MainWidget}{Main\+Widget}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
@@ -18,17 +20,23 @@ def \mbox{\hyperlink{namespacewidget_a6d2f4fb00d2064d395fa224d8ed0da63}{process\
 \item 
 def \mbox{\hyperlink{namespacewidget_a3a95badc25576a600d4001dc3ad39c37}{message\+Box}} (title, message)
 \item 
+def \mbox{\hyperlink{namespacewidget_aa8bf85cdd0af3ad69ad5d1937e8f2c52}{input\+Box}} (title, message)
+\item 
 def \mbox{\hyperlink{namespacewidget_a8a92113a5b12e7fc24ae9096f672fd37}{process\+Help\+Return}} (info\+Return)
 \item 
 def \mbox{\hyperlink{namespacewidget_aa70736a343a6d878e208177c3394f403}{request\+String\+Module\+Data}} ()
 \item 
+def \mbox{\hyperlink{namespacewidget_abcad9bdbb9885d5f1ead6567e09068b3}{request\+Help}} ()
+\item 
 def \mbox{\hyperlink{namespacewidget_ab4ecab8f3998af482b02bec087893587}{request\+Base\+Data}} ()
 \item 
-def \mbox{\hyperlink{namespacewidget_a3df9869c213664ce9d5cf7e7b1433365}{set\+Report\+Feedback}} (report\+Type, state)
-\item 
-def \mbox{\hyperlink{namespacewidget_afed51f4b008fa5dbd3b157a4a5e8ea4e}{select\+Send\+Destination\+And\+Ratio}} (combo\+Box, command\+List, ratio, variable)
-\item 
 def \mbox{\hyperlink{namespacewidget_a18760383e328bfaccfd29bb0dc467f00}{get\+Base\+Note\+From\+Frequency}} (frequency, note\+Data\+Array)
+\item 
+def \mbox{\hyperlink{namespacewidget_aa2d8589f42b7642a0ba6bfa8d7131072}{save\+\_\+settings}} ()
+\item 
+def \mbox{\hyperlink{namespacewidget_a1d96cd7b6b10f14859848ca84b151de8}{load\+Check\+State}} (settings, name, check\+Box)
+\item 
+def \mbox{\hyperlink{namespacewidget_a3de9a0bbc32aa47185b9b9d938dda860}{load\+\_\+settings}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -40,8 +48,6 @@ string \mbox{\hyperlink{namespacewidget_a720cee55f2090745d04431647131064b}{log\+
 \mbox{\hyperlink{namespacewidget_a9b8c589d706116c2ee2f272eb08a8726}{log\+\_\+handler}} = Rotating\+File\+Handler(\mbox{\hyperlink{namespacewidget_a720cee55f2090745d04431647131064b}{log\+\_\+file}}, mode=\textquotesingle{}w\textquotesingle{}, max\+Bytes=1024$\ast$1024, backup\+Count=1, encoding=None, delay=0)
 \item 
 \mbox{\hyperlink{namespacewidget_afbd86150f94be45f54e6e7bd635c6e5e}{log\+\_\+app}} = logging.\+get\+Logger(\textquotesingle{}root\textquotesingle{})
-\item 
-\mbox{\hyperlink{namespacewidget_a2f30b83a173ee4a911a7c651137bff17}{serial\+Ports}} = serial.\+tools.\+list\+\_\+ports.\+comports()
 \item 
 list \mbox{\hyperlink{namespacewidget_a5bd9a3486b385cbfc68a32bd3642fafc}{string\+Modules}} = \mbox{[}$\,$\mbox{]}
 \item 
@@ -57,6 +63,8 @@ int \mbox{\hyperlink{namespacewidget_ae1cbfc06bb2e979f87a68ce32f936102}{current\
 \item 
 int \mbox{\hyperlink{namespacewidget_a37b8c7d414048d520f9ade86c92d8d1f}{current\+Showing\+Module}} = 0
 \item 
+list \mbox{\hyperlink{namespacewidget_a2cf9c5f8844866fe5a5f206b3dcbd017}{adc\+Averages}} = \mbox{[}averager.\+Averager() for i in range(8)\mbox{]}
+\item 
 list \mbox{\hyperlink{namespacewidget_ab2226b1870324b6b9f21bf74f451656b}{scale\+Data\+Just}}
 \item 
 list \mbox{\hyperlink{namespacewidget_a7fcdd4d86a9fd56737c511b59cd5a4c0}{scale\+Data\+Equal}}
@@ -65,10 +73,16 @@ list \mbox{\hyperlink{namespacewidget_a7fcdd4d86a9fd56737c511b59cd5a4c0}{scale\+
 \item 
 \mbox{\hyperlink{namespacewidget_ace4fb383ffc8f467f64c9b852dde503c}{main\+Widget}} = \mbox{\hyperlink{classwidget_1_1MainWidget}{Main\+Widget}}()
 \item 
+\mbox{\hyperlink{namespacewidget_a7a43923568a5cdc387f2cc223d0dbf6f}{serial\+Widget}} = Serial\+Widget(\mbox{\hyperlink{classwidget_1_1serialHandler}{serial\+Handler}}, main\+Widget.\+time\+Stamper, logging)
+\item 
+\mbox{\hyperlink{namespacewidget_a375c2d0a1e788d6bea16e84dcaa3ece9}{command\+Reference}} = Command\+Reference()
+\item 
 \mbox{\hyperlink{namespacewidget_ab5ae3673ed9b9a172ec1780f16f547e2}{delegate}} = table\+Test.\+Spin\+Box\+Delegate()
-\begin{DoxyCompactList}\small\item\em Hiding old. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Hiding old main\+Widget.\+ui.\+horizontal\+Slider\+String\+Frequency.\+set\+Visible(\+False) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespacewidget_a4c481630cb5dad46120a8538dd336328}{strm}} = \mbox{\hyperlink{classstringModule_1_1stringModule}{string\+Module}}()
-\begin{DoxyCompactList}\small\item\em Default settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Default settings. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacewidget_a56f9e522f4f263c269f6b0dda86c7990}{USBRefresh\+Timer}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -78,8 +92,7 @@ list \mbox{\hyperlink{namespacewidget_a7fcdd4d86a9fd56737c511b59cd5a4c0}{scale\+
 \doxysubsubsection{\texorpdfstring{addModulesIfNeeded()}{addModulesIfNeeded()}}
 {\footnotesize\ttfamily def widget.\+add\+Modules\+If\+Needed (\begin{DoxyParamCaption}\item[{}]{needed }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -92,12 +105,53 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{getBaseNoteFromFrequency()}{getBaseNoteFromFrequency()}}
 {\footnotesize\ttfamily def widget.\+get\+Base\+Note\+From\+Frequency (\begin{DoxyParamCaption}\item[{}]{frequency,  }\item[{}]{note\+Data\+Array }\end{DoxyParamCaption})}
 
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacewidget_a18760383e328bfaccfd29bb0dc467f00_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacewidget_aa8bf85cdd0af3ad69ad5d1937e8f2c52}\label{namespacewidget_aa8bf85cdd0af3ad69ad5d1937e8f2c52}} 
+\index{widget@{widget}!inputBox@{inputBox}}
+\index{inputBox@{inputBox}!widget@{widget}}
+\doxysubsubsection{\texorpdfstring{inputBox()}{inputBox()}}
+{\footnotesize\ttfamily def widget.\+input\+Box (\begin{DoxyParamCaption}\item[{}]{title,  }\item[{}]{message }\end{DoxyParamCaption})}
+
 Here is the caller graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacewidget_a18760383e328bfaccfd29bb0dc467f00_icgraph}
+\includegraphics[width=350pt]{namespacewidget_aa8bf85cdd0af3ad69ad5d1937e8f2c52_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacewidget_a3de9a0bbc32aa47185b9b9d938dda860}\label{namespacewidget_a3de9a0bbc32aa47185b9b9d938dda860}} 
+\index{widget@{widget}!load\_settings@{load\_settings}}
+\index{load\_settings@{load\_settings}!widget@{widget}}
+\doxysubsubsection{\texorpdfstring{load\_settings()}{load\_settings()}}
+{\footnotesize\ttfamily def widget.\+load\+\_\+settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacewidget_a3de9a0bbc32aa47185b9b9d938dda860_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacewidget_a1d96cd7b6b10f14859848ca84b151de8}\label{namespacewidget_a1d96cd7b6b10f14859848ca84b151de8}} 
+\index{widget@{widget}!loadCheckState@{loadCheckState}}
+\index{loadCheckState@{loadCheckState}!widget@{widget}}
+\doxysubsubsection{\texorpdfstring{loadCheckState()}{loadCheckState()}}
+{\footnotesize\ttfamily def widget.\+load\+Check\+State (\begin{DoxyParamCaption}\item[{}]{settings,  }\item[{}]{name,  }\item[{}]{check\+Box }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacewidget_a1d96cd7b6b10f14859848ca84b151de8_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacewidget_a3a95badc25576a600d4001dc3ad39c37}\label{namespacewidget_a3a95badc25576a600d4001dc3ad39c37}} 
@@ -120,16 +174,14 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{processHelpReturn()}{processHelpReturn()}}
 {\footnotesize\ttfamily def widget.\+process\+Help\+Return (\begin{DoxyParamCaption}\item[{}]{info\+Return }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacewidget_a8a92113a5b12e7fc24ae9096f672fd37_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -142,8 +194,7 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{processInformationForChart()}{processInformationForChart()}}
 {\footnotesize\ttfamily def widget.\+process\+Information\+For\+Chart (\begin{DoxyParamCaption}\item[{}]{in\+Serial\+Handler,  }\item[{}]{command }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -164,8 +215,7 @@ Here is the call graph for this function\+:
 \includegraphics[width=350pt]{namespacewidget_a6d2f4fb00d2064d395fa224d8ed0da63_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -186,6 +236,20 @@ Here is the caller graph for this function\+:
 \includegraphics[width=350pt]{namespacewidget_ab4ecab8f3998af482b02bec087893587_icgraph}
 \end{center}
 \end{figure}
+\mbox{\Hypertarget{namespacewidget_abcad9bdbb9885d5f1ead6567e09068b3}\label{namespacewidget_abcad9bdbb9885d5f1ead6567e09068b3}} 
+\index{widget@{widget}!requestHelp@{requestHelp}}
+\index{requestHelp@{requestHelp}!widget@{widget}}
+\doxysubsubsection{\texorpdfstring{requestHelp()}{requestHelp()}}
+{\footnotesize\ttfamily def widget.\+request\+Help (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacewidget_abcad9bdbb9885d5f1ead6567e09068b3_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{namespacewidget_aa70736a343a6d878e208177c3394f403}\label{namespacewidget_aa70736a343a6d878e208177c3394f403}} 
 \index{widget@{widget}!requestStringModuleData@{requestStringModuleData}}
 \index{requestStringModuleData@{requestStringModuleData}!widget@{widget}}
@@ -200,50 +264,40 @@ Here is the caller graph for this function\+:
 \includegraphics[width=350pt]{namespacewidget_aa70736a343a6d878e208177c3394f403_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacewidget_afed51f4b008fa5dbd3b157a4a5e8ea4e}\label{namespacewidget_afed51f4b008fa5dbd3b157a4a5e8ea4e}} 
-\index{widget@{widget}!selectSendDestinationAndRatio@{selectSendDestinationAndRatio}}
-\index{selectSendDestinationAndRatio@{selectSendDestinationAndRatio}!widget@{widget}}
-\doxysubsubsection{\texorpdfstring{selectSendDestinationAndRatio()}{selectSendDestinationAndRatio()}}
-{\footnotesize\ttfamily def widget.\+select\+Send\+Destination\+And\+Ratio (\begin{DoxyParamCaption}\item[{}]{combo\+Box,  }\item[{}]{command\+List,  }\item[{}]{ratio,  }\item[{}]{variable }\end{DoxyParamCaption})}
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacewidget_afed51f4b008fa5dbd3b157a4a5e8ea4e_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacewidget_afed51f4b008fa5dbd3b157a4a5e8ea4e_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{namespacewidget_a3df9869c213664ce9d5cf7e7b1433365}\label{namespacewidget_a3df9869c213664ce9d5cf7e7b1433365}} 
-\index{widget@{widget}!setReportFeedback@{setReportFeedback}}
-\index{setReportFeedback@{setReportFeedback}!widget@{widget}}
-\doxysubsubsection{\texorpdfstring{setReportFeedback()}{setReportFeedback()}}
-{\footnotesize\ttfamily def widget.\+set\+Report\+Feedback (\begin{DoxyParamCaption}\item[{}]{report\+Type,  }\item[{}]{state }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{namespacewidget_aa2d8589f42b7642a0ba6bfa8d7131072}\label{namespacewidget_aa2d8589f42b7642a0ba6bfa8d7131072}} 
+\index{widget@{widget}!save\_settings@{save\_settings}}
+\index{save\_settings@{save\_settings}!widget@{widget}}
+\doxysubsubsection{\texorpdfstring{save\_settings()}{save\_settings()}}
+{\footnotesize\ttfamily def widget.\+save\+\_\+settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Here is the caller graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacewidget_a3df9869c213664ce9d5cf7e7b1433365_icgraph}
+\includegraphics[width=350pt]{namespacewidget_aa2d8589f42b7642a0ba6bfa8d7131072_icgraph}
 \end{center}
 \end{figure}
 
 
 \doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacewidget_a2cf9c5f8844866fe5a5f206b3dcbd017}\label{namespacewidget_a2cf9c5f8844866fe5a5f206b3dcbd017}} 
+\index{widget@{widget}!adcAverages@{adcAverages}}
+\index{adcAverages@{adcAverages}!widget@{widget}}
+\doxysubsubsection{\texorpdfstring{adcAverages}{adcAverages}}
+{\footnotesize\ttfamily list widget.\+adc\+Averages = \mbox{[}averager.\+Averager() for i in range(8)\mbox{]}}
+
 \mbox{\Hypertarget{namespacewidget_acd5e8198166b2e7593187163f2d8e9d7}\label{namespacewidget_acd5e8198166b2e7593187163f2d8e9d7}} 
 \index{widget@{widget}!app@{app}}
 \index{app@{app}!widget@{widget}}
 \doxysubsubsection{\texorpdfstring{app}{app}}
 {\footnotesize\ttfamily widget.\+app = QApplication(sys.\+argv)}
+
+\mbox{\Hypertarget{namespacewidget_a375c2d0a1e788d6bea16e84dcaa3ece9}\label{namespacewidget_a375c2d0a1e788d6bea16e84dcaa3ece9}} 
+\index{widget@{widget}!commandReference@{commandReference}}
+\index{commandReference@{commandReference}!widget@{widget}}
+\doxysubsubsection{\texorpdfstring{commandReference}{commandReference}}
+{\footnotesize\ttfamily widget.\+command\+Reference = Command\+Reference()}
 
 \mbox{\Hypertarget{namespacewidget_aebeef1e370a3006e2653b01113beb545}\label{namespacewidget_aebeef1e370a3006e2653b01113beb545}} 
 \index{widget@{widget}!currentBow@{currentBow}}
@@ -277,15 +331,21 @@ Here is the caller graph for this function\+:
 
 
 
-Hiding old. 
+Hiding old main\+Widget.\+ui.\+horizontal\+Slider\+String\+Frequency.\+set\+Visible(\+False) 
+
+Hiding until implemented
 
 Global commands
 
-Debug console
+Debug console serial\+Widget.\+assign\+Feedback\+Report\+Item(serial\+Widget.\+ui.\+check\+Box\+Filter\+Comm\+Ack, \char`\"{}command\char`\"{}) serial\+Widget.\+assign\+Feedback\+Report\+Item(serial\+Widget.\+ui.\+check\+Box\+Filter\+Debug, \char`\"{}debug\char`\"{}) serial\+Widget.\+assign\+Feedback\+Report\+Item(serial\+Widget.\+ui.\+check\+Box\+Filter\+Error, \char`\"{}error\char`\"{}) serial\+Widget.\+assign\+Feedback\+Report\+Item(serial\+Widget.\+ui.\+check\+Box\+Filter\+Expression\+Parser, \char`\"{}expressionparser\char`\"{}) serial\+Widget.\+assign\+Feedback\+Report\+Item(serial\+Widget.\+ui.\+check\+Box\+Filter\+Hardware, \char`\"{}hardware\char`\"{}) serial\+Widget.\+assign\+Feedback\+Report\+Item(serial\+Widget.\+ui.\+check\+Box\+Filter\+Info\+Request, \char`\"{}inforequest\char`\"{}) serial\+Widget.\+assign\+Feedback\+Report\+Item(serial\+Widget.\+ui.\+check\+Box\+Filter\+Priority, \char`\"{}priority\char`\"{}) serial\+Widget.\+assign\+Feedback\+Report\+Item(serial\+Widget.\+ui.\+check\+Box\+Filter\+USB, \char`\"{}usb\char`\"{}) serial\+Widget.\+assign\+Feedback\+Report\+Item(serial\+Widget.\+ui.\+check\+Box\+Filter\+Undefined, \char`\"{}undefined\char`\"{}) serial\+Widget.\+assign\+Feedback\+Report\+Item(serial\+Widget.\+ui.\+check\+Box\+Filter\+Output, \char`\"{}output\char`\"{})
 
 Tab Module settings
 
 Tab Midi settings
+
+Tab CV Mapping
+
+Tab Adanced
 
 Tab Debugging \mbox{\Hypertarget{namespacewidget_a5111729096f5d031d98c893ffe719684}\label{namespacewidget_a5111729096f5d031d98c893ffe719684}} 
 \index{widget@{widget}!instrumentMaster@{instrumentMaster}}
@@ -353,11 +413,11 @@ Tab Debugging \mbox{\Hypertarget{namespacewidget_a5111729096f5d031d98c893ffe7196
 \DoxyCodeLine{2                  [\textcolor{stringliteral}{"{}A-\/"{}}, \textcolor{stringliteral}{"{}A\#"{}}, \textcolor{stringliteral}{"{}B-\/"{}}, \textcolor{stringliteral}{"{}C-\/"{}}, \textcolor{stringliteral}{"{}C\#"{}}, \textcolor{stringliteral}{"{}D-\/"{}}, \textcolor{stringliteral}{"{}D\#"{}}, \textcolor{stringliteral}{"{}E-\/"{}}, \textcolor{stringliteral}{"{}F-\/"{}}, \textcolor{stringliteral}{"{}F\#"{}}, \textcolor{stringliteral}{"{}G-\/"{}}, \textcolor{stringliteral}{"{}G\#"{}}]]}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{namespacewidget_a2f30b83a173ee4a911a7c651137bff17}\label{namespacewidget_a2f30b83a173ee4a911a7c651137bff17}} 
-\index{widget@{widget}!serialPorts@{serialPorts}}
-\index{serialPorts@{serialPorts}!widget@{widget}}
-\doxysubsubsection{\texorpdfstring{serialPorts}{serialPorts}}
-{\footnotesize\ttfamily widget.\+serial\+Ports = serial.\+tools.\+list\+\_\+ports.\+comports()}
+\mbox{\Hypertarget{namespacewidget_a7a43923568a5cdc387f2cc223d0dbf6f}\label{namespacewidget_a7a43923568a5cdc387f2cc223d0dbf6f}} 
+\index{widget@{widget}!serialWidget@{serialWidget}}
+\index{serialWidget@{serialWidget}!widget@{widget}}
+\doxysubsubsection{\texorpdfstring{serialWidget}{serialWidget}}
+{\footnotesize\ttfamily widget.\+serial\+Widget = Serial\+Widget(\mbox{\hyperlink{classwidget_1_1serialHandler}{serial\+Handler}}, main\+Widget.\+time\+Stamper, logging)}
 
 \mbox{\Hypertarget{namespacewidget_a5bd9a3486b385cbfc68a32bd3642fafc}\label{namespacewidget_a5bd9a3486b385cbfc68a32bd3642fafc}} 
 \index{widget@{widget}!stringModules@{stringModules}}
@@ -374,4 +434,10 @@ Tab Debugging \mbox{\Hypertarget{namespacewidget_a5111729096f5d031d98c893ffe7196
 
 
 Default settings. 
+
+Console widget \mbox{\Hypertarget{namespacewidget_a56f9e522f4f263c269f6b0dda86c7990}\label{namespacewidget_a56f9e522f4f263c269f6b0dda86c7990}} 
+\index{widget@{widget}!USBRefreshTimer@{USBRefreshTimer}}
+\index{USBRefreshTimer@{USBRefreshTimer}!widget@{widget}}
+\doxysubsubsection{\texorpdfstring{USBRefreshTimer}{USBRefreshTimer}}
+{\footnotesize\ttfamily widget.\+USBRefresh\+Timer}
 

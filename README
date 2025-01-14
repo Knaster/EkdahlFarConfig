@@ -1,15 +1,35 @@
 This is the Ekdahl FAR Configuration software
 
+This software has been tested on Linux, Windows and Mac. 
+It should be considered to be in beta stage as 99% of intial functionality is there but it needs to be thoroughly tested.
+
+Initial installation procedures has been added but further testing is required.
+
 Please be adviced that the organization and structure of this code is TERRIBLE since i am not a Qt/Python guy and i
 only learned as much as i needed to get everything working. Cleanup and restructuring is most certainly necessary.
-
-This code has been developed using the Community version of PyCharm 2023.3.4, forms have been compiled with
-QT Creator 12.0.1
-
-Please see dependencies.txt for libraries needed to run this code, by default this code will essentially do nothing
+The code has been developed using the Community version of PyCharm 2023.3.4, forms have been compiled with
+QT Creator 12.0.1. Please see dependencies.txt for libraries needed to run this code, by default this code will essentially do nothing
 until connected to a Teensy 4.0 with the Ekdahl FAR firmware
 
-This software should be considered to be in Alpha stage as it is missing much functionality
+---------------------
+
+Installation:
+---------------------
+All OS's
+	An internet connection will be required during setup of the software.
+	Python 3.10 or later is required for ALL operating systems, some installers may attempt to install it if not found
+	- Download and extract the files from the github repository
+
+MacOS
+	- run 'setup_mac.command' from finder
+	This will install Handbrake (if not present) which in turn will install Python 3.10 or later and the required python dependencies.
+	It will also copy the program files to '/Applications/The Ekdahl FAR Configuration Utility' and create the launcher
+	
+Windows
+	- click on 'setup_win.bat' in the directory where the files have been extracted and click on 'properties', 
+	  
+	- run setup_win.bat
+
 
 ---------------------
 

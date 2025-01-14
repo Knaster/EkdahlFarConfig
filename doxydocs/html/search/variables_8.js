@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['log_5fapp_388',['log_app',['../namespacewidget.html#afbd86150f94be45f54e6e7bd635c6e5e',1,'widget']]],
-  ['log_5ffile_389',['log_file',['../namespacewidget.html#a720cee55f2090745d04431647131064b',1,'widget']]],
-  ['log_5fformatter_390',['log_formatter',['../namespacewidget.html#a0c1965f3d25b8cdace0ee70f41a9fb5d',1,'widget']]],
-  ['log_5fhandler_391',['log_handler',['../namespacewidget.html#a9b8c589d706116c2ee2f272eb08a8726',1,'widget']]]
+  ['initvalue_450',['initValue',['../classtimedChart_1_1timeStamp.html#ad58f07de9a39ed3f59bdb2bdac647763',1,'timedChart::timeStamp']]],
+  ['instrumentmaster_451',['instrumentMaster',['../namespacewidget.html#a5111729096f5d031d98c893ffe719684',1,'widget']]],
+  ['integer_452',['integer',['../classtimedChart_1_1seriesType.html#a990c21bd047c564ad4b82509959be49e',1,'timedChart::seriesType']]],
+  ['isrunning_453',['isRunning',['../classwidget_1_1serialHandler.html#ab331e3669bc5979a830c4e76de2fbeaf',1,'widget::serialHandler']]],
+  ['iswaitingforcommand_454',['isWaitingForCommand',['../classwidget_1_1MainWidget.html#afba42eea3075785739d104d6009d05a1',1,'widget::MainWidget']]],
+  ['itemdata_455',['itemData',['../classwidget_1_1MainWidget.html#a9f658cf829b0fabc173c45dd4b2c52bb',1,'widget::MainWidget']]]
 ];

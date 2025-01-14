@@ -1,12 +1,10 @@
 <map id="widget.MainWidget.dataAvaliable" name="widget.MainWidget.dataAvaliable">
-<area shape="rect" id="node1" title=" " alt="" coords="5,71,247,98"/>
-<area shape="rect" id="node2" href="$classwidget_1_1MainWidget.html#ac1d098ea31a08a18fb8b3bec840a2804" title=" " alt="" coords="295,5,527,47"/>
-<area shape="rect" id="node3" href="$namespacewidget.html#a8a92113a5b12e7fc24ae9096f672fd37" title=" " alt="" coords="314,71,507,98"/>
-<area shape="rect" id="node5" href="$namespacewidget.html#a6d2f4fb00d2064d395fa224d8ed0da63" title=" " alt="" coords="313,144,509,185"/>
-<area shape="rect" id="node4" href="$namespacewidget.html#a3a95badc25576a600d4001dc3ad39c37" title=" " alt="" coords="605,50,760,77"/>
-<area shape="rect" id="node6" href="$namespacewidget.html#a07468e8b086a27658191b056443b0431" title=" " alt="" coords="579,101,787,127"/>
-<area shape="rect" id="node7" href="$namespaceequationParsingHelpers.html#aa6cd88d5316bf7965cf38220c50020ba" title=" " alt="" coords="839,239,1040,280"/>
-<area shape="rect" id="node8" href="$namespaceequationParsingHelpers.html#a3501d349a711e7068415fe3471253f76" title=" " alt="" coords="587,203,778,244"/>
-<area shape="rect" id="node9" href="$namespacewidget.html#a663b4d9d4abef07d0342732e7aa6d972" title=" " alt="" coords="585,268,781,309"/>
-<area shape="rect" id="node10" href="$namespacewidget.html#afed51f4b008fa5dbd3b157a4a5e8ea4e" title=" " alt="" coords="575,333,791,375"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,60,247,87"/>
+<area shape="rect" id="node2" href="$namespacewidget.html#a8a92113a5b12e7fc24ae9096f672fd37" title=" " alt="" coords="296,19,489,45"/>
+<area shape="rect" id="node4" href="$namespacewidget.html#a6d2f4fb00d2064d395fa224d8ed0da63" title=" " alt="" coords="295,82,491,123"/>
+<area shape="rect" id="node3" href="$namespacewidget.html#a3a95badc25576a600d4001dc3ad39c37" title=" " alt="" coords="565,5,720,32"/>
+<area shape="rect" id="node5" href="$namespacewidget.html#a07468e8b086a27658191b056443b0431" title=" " alt="" coords="539,56,747,83"/>
+<area shape="rect" id="node6" href="$namespaceequationParsingHelpers.html#aa6cd88d5316bf7965cf38220c50020ba" title=" " alt="" coords="542,107,743,149"/>
+<area shape="rect" id="node7" href="$namespaceequationParsingHelpers.html#a3501d349a711e7068415fe3471253f76" title=" " alt="" coords="547,173,738,214"/>
+<area shape="rect" id="node8" href="$namespacewidget.html#a663b4d9d4abef07d0342732e7aa6d972" title=" " alt="" coords="545,238,741,279"/>
 </map>

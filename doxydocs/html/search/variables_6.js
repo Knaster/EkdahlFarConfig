@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['harmonicdata_382',['harmonicData',['../classstringModule_1_1stringModule.html#ade147f6399912af9ff25499d26117679',1,'stringModule::stringModule']]],
-  ['harmonicpresets_383',['harmonicPresets',['../classwidget_1_1MainWidget.html#a03277ef41493fbd79492a6708b5c1707',1,'widget::MainWidget']]]
+  ['firstcv_446',['firstCv',['../classwidget_1_1MainWidget.html#af38f3c6c7d70a64eef264f3b15e74797',1,'widget::MainWidget']]],
+  ['frequency_447',['frequency',['../classtimedChart_1_1seriesType.html#ad03636fe303f3811a390d13661e6a9d4',1,'timedChart::seriesType']]]
 ];

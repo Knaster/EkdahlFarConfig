@@ -2,8 +2,7 @@
 \label{classtimedChart_1_1timedChart}\index{timedChart.timedChart@{timedChart.timedChart}}
 
 
-Inheritance diagram for timed\+Chart.\+timed\+Chart\+:
-\nopagebreak
+Inheritance diagram for timed\+Chart.\+timed\+Chart\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for timed\+Chart.\+timed\+Chart\+:
 \end{figure}
 
 
-Collaboration diagram for timed\+Chart.\+timed\+Chart\+:
-\nopagebreak
+Collaboration diagram for timed\+Chart.\+timed\+Chart\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,6 +24,14 @@ Collaboration diagram for timed\+Chart.\+timed\+Chart\+:
 def \mbox{\hyperlink{classtimedChart_1_1timedChart_af073ccfb975ad749f6f6fe616ad08cdb}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
 \item 
 def \mbox{\hyperlink{classtimedChart_1_1timedChart_aa56d271a31f6476755b3ffbccd570b93}{add\+Data}} (self, series\+ID, value, in\+Series\+Type)
+\item 
+def \mbox{\hyperlink{classtimedChart_1_1timedChart_ae28db630d4247d9128a4954592d88253}{get\+Series}} (self, series\+ID)
+\item 
+def \mbox{\hyperlink{classtimedChart_1_1timedChart_a4f2f89343f9e0014727c4c0ebcacff50}{add\+Series}} (self, series\+ID, in\+Series\+Type)
+\item 
+def \mbox{\hyperlink{classtimedChart_1_1timedChart_aef35c20cda7bf756052b62e93c6eb2ba}{set\+Series\+Visible\+Command}} (self, command, visible)
+\item 
+def \mbox{\hyperlink{classtimedChart_1_1timedChart_a4c26f1dc6f637921778d82eab42e5399}{process\+Command}} (self, command)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -41,11 +47,15 @@ def \mbox{\hyperlink{classtimedChart_1_1timedChart_aa56d271a31f6476755b3ffbccd57
 \mbox{\hyperlink{classtimedChart_1_1timedChart_a192980673d503c6a1c0bcac7c171ad01}{axis\+YInt}}
 \item 
 \mbox{\hyperlink{classtimedChart_1_1timedChart_af879fa0f1071cff7c19b42845fac7e30}{time\+Stamper}}
+\item 
+\mbox{\hyperlink{classtimedChart_1_1timedChart_a94616f545394649965946c396bf649fa}{last\+Clean}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 dictionary \mbox{\hyperlink{classtimedChart_1_1timedChart_a4202e18ed58cedcc7a3d10f3ecbec5f7}{chart\+Match\+Arr}}
+\item 
+int \mbox{\hyperlink{classtimedChart_1_1timedChart_a77db1bb79e9dc9af4c2b3bdb1b972bb0}{last\+Clean}} = 0
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -70,6 +80,78 @@ dictionary \mbox{\hyperlink{classtimedChart_1_1timedChart_a4202e18ed58cedcc7a3d1
 \doxysubsubsection{\texorpdfstring{addData()}{addData()}}
 {\footnotesize\ttfamily def timed\+Chart.\+timed\+Chart.\+add\+Data (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{series\+ID,  }\item[{}]{value,  }\item[{}]{in\+Series\+Type }\end{DoxyParamCaption})}
 
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtimedChart_1_1timedChart_aa56d271a31f6476755b3ffbccd570b93_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtimedChart_1_1timedChart_aa56d271a31f6476755b3ffbccd570b93_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classtimedChart_1_1timedChart_a4f2f89343f9e0014727c4c0ebcacff50}\label{classtimedChart_1_1timedChart_a4f2f89343f9e0014727c4c0ebcacff50}} 
+\index{timedChart.timedChart@{timedChart.timedChart}!addSeries@{addSeries}}
+\index{addSeries@{addSeries}!timedChart.timedChart@{timedChart.timedChart}}
+\doxysubsubsection{\texorpdfstring{addSeries()}{addSeries()}}
+{\footnotesize\ttfamily def timed\+Chart.\+timed\+Chart.\+add\+Series (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{series\+ID,  }\item[{}]{in\+Series\+Type }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtimedChart_1_1timedChart_a4f2f89343f9e0014727c4c0ebcacff50_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classtimedChart_1_1timedChart_ae28db630d4247d9128a4954592d88253}\label{classtimedChart_1_1timedChart_ae28db630d4247d9128a4954592d88253}} 
+\index{timedChart.timedChart@{timedChart.timedChart}!getSeries@{getSeries}}
+\index{getSeries@{getSeries}!timedChart.timedChart@{timedChart.timedChart}}
+\doxysubsubsection{\texorpdfstring{getSeries()}{getSeries()}}
+{\footnotesize\ttfamily def timed\+Chart.\+timed\+Chart.\+get\+Series (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{series\+ID }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtimedChart_1_1timedChart_ae28db630d4247d9128a4954592d88253_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classtimedChart_1_1timedChart_a4c26f1dc6f637921778d82eab42e5399}\label{classtimedChart_1_1timedChart_a4c26f1dc6f637921778d82eab42e5399}} 
+\index{timedChart.timedChart@{timedChart.timedChart}!processCommand@{processCommand}}
+\index{processCommand@{processCommand}!timedChart.timedChart@{timedChart.timedChart}}
+\doxysubsubsection{\texorpdfstring{processCommand()}{processCommand()}}
+{\footnotesize\ttfamily def timed\+Chart.\+timed\+Chart.\+process\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtimedChart_1_1timedChart_a4c26f1dc6f637921778d82eab42e5399_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classtimedChart_1_1timedChart_aef35c20cda7bf756052b62e93c6eb2ba}\label{classtimedChart_1_1timedChart_aef35c20cda7bf756052b62e93c6eb2ba}} 
+\index{timedChart.timedChart@{timedChart.timedChart}!setSeriesVisibleCommand@{setSeriesVisibleCommand}}
+\index{setSeriesVisibleCommand@{setSeriesVisibleCommand}!timedChart.timedChart@{timedChart.timedChart}}
+\doxysubsubsection{\texorpdfstring{setSeriesVisibleCommand()}{setSeriesVisibleCommand()}}
+{\footnotesize\ttfamily def timed\+Chart.\+timed\+Chart.\+set\+Series\+Visible\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command,  }\item[{}]{visible }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtimedChart_1_1timedChart_aef35c20cda7bf756052b62e93c6eb2ba_cgraph}
+\end{center}
+\end{figure}
 
 
 \doxysubsection{Member Data Documentation}
@@ -129,6 +211,18 @@ dictionary \mbox{\hyperlink{classtimedChart_1_1timedChart_a4202e18ed58cedcc7a3d1
 \DoxyCodeLine{                     \}}
 
 \end{DoxyCode}
+\mbox{\Hypertarget{classtimedChart_1_1timedChart_a77db1bb79e9dc9af4c2b3bdb1b972bb0}\label{classtimedChart_1_1timedChart_a77db1bb79e9dc9af4c2b3bdb1b972bb0}} 
+\index{timedChart.timedChart@{timedChart.timedChart}!lastClean@{lastClean}}
+\index{lastClean@{lastClean}!timedChart.timedChart@{timedChart.timedChart}}
+\doxysubsubsection{\texorpdfstring{lastClean}{lastClean}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int timed\+Chart.\+timed\+Chart.\+last\+Clean = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classtimedChart_1_1timedChart_a94616f545394649965946c396bf649fa}\label{classtimedChart_1_1timedChart_a94616f545394649965946c396bf649fa}} 
+\index{timedChart.timedChart@{timedChart.timedChart}!lastClean@{lastClean}}
+\index{lastClean@{lastClean}!timedChart.timedChart@{timedChart.timedChart}}
+\doxysubsubsection{\texorpdfstring{lastClean}{lastClean}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily timed\+Chart.\+timed\+Chart.\+last\+Clean}
+
 \mbox{\Hypertarget{classtimedChart_1_1timedChart_a2c3440c7d9d4f9ea0f41f25d6bec8192}\label{classtimedChart_1_1timedChart_a2c3440c7d9d4f9ea0f41f25d6bec8192}} 
 \index{timedChart.timedChart@{timedChart.timedChart}!seriesArr@{seriesArr}}
 \index{seriesArr@{seriesArr}!timedChart.timedChart@{timedChart.timedChart}}
