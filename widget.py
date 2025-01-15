@@ -1826,6 +1826,18 @@ def load_settings():
     else:
         commandReference.show()
 
+def showConsole():
+    serialWidget.show()
+    serialWidget.raise_()
+    serialWidget.activateWindow()
+    serialWidget.ui.lineEditSend.setFocus()
+
+def showReference():
+    commandReference.show()
+    commandReference.raise_()
+    commandReference.activateWindow()
+    commandReference.ui.listWidgetCommands.setFocus()
+
 if __name__ == "__main__":
 #    sys.excepthook = except_hook
 
@@ -1858,8 +1870,9 @@ if __name__ == "__main__":
     mainWidget.ui.pushButtonLoadFromModule.pressed.connect(mainWidget.pushButtonLoadFromModulePressed)
     mainWidget.ui.pushButtonReadSMData.pressed.connect(mainWidget.readSMData)
     mainWidget.ui.checkBoxContinuousSMData.toggled.connect(mainWidget.checkBoxContinuousSMDataToggled)
-    mainWidget.ui.pushButtonShowConsole.pressed.connect(serialWidget.show)
-    mainWidget.ui.pushButtonShowReference.pressed.connect(commandReference.show)
+    mainWidget.ui.pushButtonShowConsole.pressed.connect(showConsole)
+    mainWidget.ui.pushButtonShowReference.pressed.connect(showReference)
+
 ## Debug console
 #    serialWidget.assignFeedbackReportItem(serialWidget.ui.checkBoxFilterCommAck, "command")
 #    serialWidget.assignFeedbackReportItem(serialWidget.ui.checkBoxFilterDebug, "debug")

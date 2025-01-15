@@ -1,1 +1,1 @@
-python3 widget.py
+./venv/bin/python3 widget.py
