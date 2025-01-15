@@ -63,6 +63,19 @@ else
 	echo "Homebrew allready installed, skipping"
 fi
 
+if ! echo "$PATH" | grep -q "/opt/homebrew/bin"; then
+	echo "Updating PATH"
+	export PATH="/opt/homebrew/bin:$PATH"
+	echo 'export PATH="/opt/homebrew/bin:$PATH"' >> ~/.bash_profile
+	echo 'export PATH="/opt/homebrew/bin:$PATH"' >> ~/.zshrc
+fi
+if ! echo "$PATH" | grep -q "/usr/local/bin"; then
+	echo "Updating PATH"
+	export PATH="/usr/local/bin:$PATH"
+	echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bash_profile
+	echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
+fi
+
 brew update
 
 if which /usr/local/bin/python3 &> /dev/null; then
@@ -82,19 +95,6 @@ fi
 
 python_path=$(brew --prefix python)/libexec/bin/python
 pip_path=$(brew --prefix python)/libexec/bin/pip
-
-if ! echo "$PATH" | grep -q "/opt/homebrew/bin"; then
-	echo "Updating PATH"
-	export PATH="/opt/homebrew/bin:$PATH"
-	echo 'export PATH="/opt/homebrew/bin:$PATH"' >> ~/.bash_profile
-	echo 'export PATH="/opt/homebrew/bin:$PATH"' >> ~/.zshrc
-fi
-if ! echo "$PATH" | grep -q "/usr/local/bin"; then
-	echo "Updating PATH"
-	export PATH="/usr/local/bin:$PATH"
-	echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bash_profile
-	echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
-fi
 
 #Echo "Python version"
 #$python_path --version
