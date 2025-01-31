@@ -1,1 +1,1 @@
-./venv/bin/python3 widget.py
+farconfig/./venv/bin/python3 widget.py

@@ -66,7 +66,7 @@ from commandparser import CommandItem, CommandList
 
 import timedChart
 
-import midihandler
+#import midihandler
 
 from stringModule import stringModule, CC, InstrumentMaster
 
@@ -404,10 +404,10 @@ def processHelpReturn(infoReturn):
 
             commandReference.addCommand(command, help)
 
-            commandItemHelp = QListWidgetItem()
-            commandItemHelp.setText(command)
-            commandItemHelp.setData(Qt.UserRole, help)
-            mainWidget.ui.listWidgetCommands.addItem(commandItemHelp)
+            #commandItemHelp = QListWidgetItem()
+            #commandItemHelp.setText(command)
+            #commandItemHelp.setData(Qt.UserRole, help)
+            #mainWidget.ui.listWidgetCommands.addItem(commandItemHelp)
             print(help)
 
 def requestStringModuleData():
@@ -529,7 +529,7 @@ class VerticalIconTabBar(QTabBar):
             painter.drawPixmap(center_x, center_y, pixmap)
             painter.restore()
 
-class MainWidget(QWidget):
+class FarConfig(QWidget):
     midiDataAvaliableSignal = Signal(str, str)
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -753,6 +753,7 @@ class MainWidget(QWidget):
             processed = processInformationReturn(inSerialHandler, receivedText[5:])
         elif (receivedText[:5] == "[hlp]"):
             processed = processHelpReturn(receivedText[5:])
+            #pass
 
         #if (not processed):
         serialWidget.addToDebugWindow("<si< " + receivedText + "\n")
@@ -772,7 +773,7 @@ class MainWidget(QWidget):
 
     def updateUIData(self):
         self.ui.listWidgetMidiEvents.clear()
-        self.ui.listWidgetCommands.clear()
+        #self.ui.listWidgetCommands.clear()
         self.ui.comboBoxActuatorPreset.clear()
         self.ui.comboBoxHarmonicList.clear()
         requestBaseData()
@@ -1234,10 +1235,10 @@ class MainWidget(QWidget):
         serialString = "mev:" + setStr + ":\"" + commandSequence + "\""
         serialHandler.write(serialString)
 
-    def listWidgetCommandsCurrentItemChanged(self, current, previous):
-        mainWidget.ui.plainTextEditCMVDescription.clear()
-        if current is not None:
-            mainWidget.ui.plainTextEditCMVDescription.insertPlainText(current.data(Qt.UserRole))
+#    def listWidgetCommandsCurrentItemChanged(self, current, previous):
+#        mainWidget.ui.plainTextEditCMVDescription.clear()
+#        if current is not None:
+#            mainWidget.ui.plainTextEditCMVDescription.insertPlainText(current.data(Qt.UserRole))
 
     def find_item(self, combo_box, item_text):
         for index in range(combo_box.count()):
@@ -1285,11 +1286,9 @@ class MainWidget(QWidget):
             serialHandler.write("midiconfiguration:" + str(conf) + ",midiconfigurationname:" + text)
             mainWidget.ui.comboBoxConfiguration.setItemText(conf, text)
 
-    def selectMIDIDevice(self, Index):
-        if mainWidget.ui.comboBoxMIDILearnDevice.currentIndex() == -1:
-            return
-        # midiIn = mido.open_input(mainWidget.ui.comboBoxMIDILearnDevice.currentText())
-#        self.midiHandlerC.connecToMIDIIn(mainWidget.ui.comboBoxMIDILearnDevice.currentText())
+#    def selectMIDIDevice(self, Index):
+#        if mainWidget.ui.comboBoxMIDILearnDevice.currentIndex() == -1:
+#            return
 
     def ccAdd(self):
         cc, ok = QInputDialog.getInt(self, "CC Number", "CC Number")
@@ -1432,7 +1431,7 @@ class MainWidget(QWidget):
                 cmd = cl.buildCommandString({"bchs5"})
                 cvScale = str(2.425 / (self.ui.dialCVHarmonicShiftScale.value()))    #  / 1000
                 cvOffset = -(32767 - self.ui.dialCVHarmonicShiftZero.value())
-                cmd += "bchs5:\"deadband(value" + str(cvOffset) + ", 20)/" + str(cvScale) + "\""
+                cmd += "bchs5:\"deadband(value" + str(cvOffset) + ", 30)/" + str(cvScale) + "\""
             case 2:
                 cmd = cl.buildCommandString({"bchsh"})
                 cmd += "bchsh:\"deadband(value-" + str(32767 - self.ui.dialCVFineTuneCenter.value()) + ", 250)*0.49064\""
@@ -1843,7 +1842,7 @@ if __name__ == "__main__":
 
     app = QApplication(sys.argv)
 
-    mainWidget = MainWidget()
+    mainWidget = FarConfig()
 
     serialWidget = SerialWidget(serialHandler, mainWidget.timeStamper, logging)
 
@@ -1851,24 +1850,25 @@ if __name__ == "__main__":
 
     mainWidget.show()
 
-    mainWidget.ui.listWidgetCommands.setSortingEnabled(True)
+#    mainWidget.ui.listWidgetCommands.setSortingEnabled(True)
     #mainWidget.ui.comboBoxFundamentalFrequency
 ## Hiding old
     #mainWidget.ui.horizontalSliderStringFrequency.setVisible(False)
-    mainWidget.ui.labelStringFrequency.setVisible(False)
+#    mainWidget.ui.labelStringFrequency.setVisible(False)
     mainWidget.ui.horizontalSliderBowCurrent.setVisible(False)
     mainWidget.ui.horizontalSliderBowFrequency.setVisible(False)
 ## Hiding until implemented
     mainWidget.ui.pushButtonAddHarmonicListFile.setVisible(False)
     mainWidget.ui.pushButtonCCAddLearn.setVisible(False)
     mainWidget.ui.pushButtonDetectFundamental.setVisible(False)
+    mainWidget.ui.pushButtonCalibrateHammer.setVisible(False)
 
 ## Global commands
     mainWidget.ui.pushButtonConnectDisconnect.pressed.connect(mainWidget.connectDisconnect)
     mainWidget.ui.pushButtonSaveToModule.pressed.connect(mainWidget.pushButtonSaveToModulePressed)
     #mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonSaveToModule, "globalsaveallparameters")
     mainWidget.ui.pushButtonLoadFromModule.pressed.connect(mainWidget.pushButtonLoadFromModulePressed)
-    mainWidget.ui.pushButtonReadSMData.pressed.connect(mainWidget.readSMData)
+#    mainWidget.ui.pushButtonReadSMData.pressed.connect(mainWidget.readSMData)
     mainWidget.ui.checkBoxContinuousSMData.toggled.connect(mainWidget.checkBoxContinuousSMDataToggled)
     mainWidget.ui.pushButtonShowConsole.pressed.connect(showConsole)
     mainWidget.ui.pushButtonShowReference.pressed.connect(showReference)
@@ -1933,8 +1933,8 @@ if __name__ == "__main__":
     mainWidget.ui.pushButtonConfigurationName.pressed.connect(mainWidget.configurationSetName)
     mainWidget.ui.listWidgetMidiEvents.currentItemChanged.connect(mainWidget.listWidgetMidiEventscurrentItemChanged)
     mainWidget.ui.lineEditMidiEventCommand.editingFinished.connect(mainWidget.lineEditMidiEventCommandFinished)
-    mainWidget.ui.listWidgetCommands.currentItemChanged.connect(mainWidget.listWidgetCommandsCurrentItemChanged)
-    mainWidget.ui.comboBoxMIDILearnDevice.currentIndexChanged.connect(mainWidget.selectMIDIDevice)
+#    mainWidget.ui.listWidgetCommands.currentItemChanged.connect(mainWidget.listWidgetCommandsCurrentItemChanged)
+#    mainWidget.ui.comboBoxMIDILearnDevice.currentIndexChanged.connect(mainWidget.selectMIDIDevice)
     mainWidget.ui.pushButtonCCAdd.pressed.connect(mainWidget.ccAdd)
     mainWidget.ui.pushButtonCCRemove.pressed.connect(mainWidget.ccRemove)
 

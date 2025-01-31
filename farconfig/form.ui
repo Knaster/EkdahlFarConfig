@@ -361,7 +361,7 @@ QDial {
   <widget class="QCheckBox" name="checkBoxContinuousSMData">
    <property name="geometry">
     <rect>
-     <x>600</x>
+     <x>610</x>
      <y>8</y>
      <width>91</width>
      <height>31</height>
@@ -881,7 +881,7 @@ QDial {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>6</number>
    </property>
    <property name="iconSize">
     <size>
@@ -6212,577 +6212,221 @@ QSlider::handle:horizontal {
     <attribute name="title">
      <string>Temporary</string>
     </attribute>
-    <widget class="QDial" name="dialCVPressurex">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
+    <widget class="QGroupBox" name="groupBox_16">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>330</y>
-       <width>125</width>
-       <height>120</height>
+       <y>0</y>
+       <width>1161</width>
+       <height>361</height>
       </rect>
      </property>
-     <property name="maximum">
-      <number>65535</number>
-     </property>
-     <property name="singleStep">
-      <number>100</number>
-     </property>
-     <property name="pageStep">
-      <number>1000</number>
-     </property>
-     <property name="notchesVisible">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QDial" name="dialCVHammerScalex">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>640</y>
-       <width>125</width>
-       <height>120</height>
-      </rect>
-     </property>
-     <property name="maximum">
-      <number>65535</number>
-     </property>
-     <property name="singleStep">
-      <number>100</number>
-     </property>
-     <property name="pageStep">
-      <number>1000</number>
-     </property>
-     <property name="notchesVisible">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QDial" name="dialCVMutex">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>490</y>
-       <width>125</width>
-       <height>120</height>
-      </rect>
-     </property>
-     <property name="maximum">
-      <number>65535</number>
-     </property>
-     <property name="singleStep">
-      <number>100</number>
-     </property>
-     <property name="pageStep">
-      <number>1000</number>
-     </property>
-     <property name="notchesVisible">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QDial" name="dialCVHarmonicShiftx">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>180</y>
-       <width>125</width>
-       <height>125</height>
-      </rect>
-     </property>
-     <property name="maximum">
-      <number>65535</number>
-     </property>
-     <property name="singleStep">
-      <number>100</number>
-     </property>
-     <property name="pageStep">
-      <number>1000</number>
-     </property>
-     <property name="notchesVisible">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QDial" name="dialCVFineTunex">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>125</width>
-       <height>125</height>
-      </rect>
-     </property>
-     <property name="maximum">
-      <number>65535</number>
-     </property>
-     <property name="singleStep">
-      <number>100</number>
-     </property>
-     <property name="pageStep">
-      <number>1000</number>
-     </property>
-     <property name="invertedAppearance">
-      <bool>false</bool>
-     </property>
-     <property name="invertedControls">
-      <bool>false</bool>
-     </property>
-     <property name="notchesVisible">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_66">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>10</y>
-       <width>91</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>cantarell</family>
-       <pointsize>-1</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Fine tune</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_67">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>160</y>
-       <width>131</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>cantarell</family>
-       <pointsize>-1</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Harmonic shift</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_68">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>470</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>cantarell</family>
-       <pointsize>-1</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Mute</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_69">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>620</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>cantarell</family>
-       <pointsize>-1</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Hammer scale</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_70">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>310</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>cantarell</family>
-       <pointsize>-1</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Pressure</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="checkBox_2">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>30</y>
-       <width>101</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Persistance</string>
-     </property>
-    </widget>
-    <widget class="Line" name="line_5">
-     <property name="geometry">
-      <rect>
-       <x>530</x>
-       <y>30</y>
-       <width>20</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButtonLoadFromModule">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>30</y>
-       <width>71</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Refresh</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="checkBox">
-     <property name="geometry">
-      <rect>
-       <x>290</x>
-       <y>40</y>
-       <width>161</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Send data after edit</string>
-     </property>
-    </widget>
-    <widget class="Line" name="line_6">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>40</y>
-       <width>21</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
-    <widget class="QLabel" name="labelStringFrequency">
-     <property name="geometry">
-      <rect>
-       <x>280</x>
-       <y>100</y>
-       <width>111</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>110Hz / A2 - 0</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_9">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>180</y>
-       <width>41</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Note</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_14">
-     <property name="geometry">
-      <rect>
-       <x>260</x>
-       <y>190</y>
-       <width>21</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Hz</string>
-     </property>
-    </widget>
-    <widget class="Line" name="line_10">
-     <property name="geometry">
-      <rect>
-       <x>430</x>
-       <y>100</y>
-       <width>31</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_38">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>100</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>MIDI Learn device</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBoxMIDILearnDevice">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>130</y>
-       <width>231</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_5">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>170</y>
-       <width>51</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Device</string>
-     </property>
-    </widget>
-    <widget class="QDial" name="dialAnalyzeFreq">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>400</x>
-       <y>260</y>
-       <width>121</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="minimum">
-      <number>20</number>
-     </property>
-     <property name="maximum">
-      <number>600</number>
-     </property>
-     <property name="notchTarget">
-      <double>50.000000000000000</double>
-     </property>
-     <property name="notchesVisible">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QDial" name="dialAnalyzeCents">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>230</y>
-       <width>121</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="minimum">
-      <number>-50</number>
-     </property>
-     <property name="maximum">
-      <number>50</number>
-     </property>
-     <property name="notchTarget">
-      <double>10.000000000000000</double>
-     </property>
-     <property name="notchesVisible">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButtonReadSMData">
-     <property name="geometry">
-      <rect>
-       <x>760</x>
-       <y>160</y>
-       <width>181</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Refresh continuous data</string>
-     </property>
-    </widget>
-    <widget class="Line" name="line_2">
-     <property name="geometry">
-      <rect>
-       <x>543</x>
-       <y>240</y>
-       <width>31</width>
-       <height>291</height>
-      </rect>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <property name="lineWidth">
-      <number>3</number>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_6">
-     <property name="geometry">
-      <rect>
-       <x>590</x>
-       <y>240</y>
-       <width>151</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>FAR Commands</string>
-     </property>
-    </widget>
-    <widget class="QListWidget" name="listWidgetCommands">
-     <property name="geometry">
-      <rect>
-       <x>590</x>
-       <y>261</y>
-       <width>251</width>
-       <height>171</height>
-      </rect>
-     </property>
-     <property name="dragEnabled">
-      <bool>true</bool>
-     </property>
-     <property name="dragDropMode">
-      <enum>QAbstractItemView::DragOnly</enum>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_12">
-     <property name="geometry">
-      <rect>
-       <x>870</x>
-       <y>239</y>
-       <width>251</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Modifiers and variables</string>
-     </property>
-    </widget>
-    <widget class="QPlainTextEdit" name="plainTextEditCMVDescription">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>590</x>
-       <y>460</y>
-       <width>531</width>
-       <height>71</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QListWidget" name="listWidgetModifiersVariables">
-     <property name="geometry">
-      <rect>
-       <x>870</x>
-       <y>260</y>
-       <width>251</width>
-       <height>171</height>
-      </rect>
-     </property>
-     <property name="dragEnabled">
-      <bool>true</bool>
-     </property>
-     <property name="dragDropMode">
-      <enum>QAbstractItemView::DragOnly</enum>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_31">
-     <property name="geometry">
-      <rect>
-       <x>590</x>
-       <y>440</y>
-       <width>171</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Description</string>
-     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="title">
+      <string>Bow frequency</string>
+     </property>
+     <widget class="QProgressBar" name="progressBar">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>61</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QProgressBar {
+	color: black;
+	font-weight: bold;
+	text-align: center;
+}
+
+QProgressBar::chunk
+{
+    background-color: lightblue;
+}</string>
+      </property>
+      <property name="maximum">
+       <number>36</number>
+      </property>
+      <property name="value">
+       <number>6</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="format">
+       <string>%v</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>61</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>bch</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>61</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>bchb</string>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="progressBar_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>140</y>
+        <width>61</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QProgressBar {
+	color: black;
+	font-weight: bold;
+	text-align: center;
+}
+
+QProgressBar::chunk
+{
+    background-color: lightblue;
+}</string>
+      </property>
+      <property name="maximum">
+       <number>127</number>
+      </property>
+      <property name="value">
+       <number>48</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="format">
+       <string>%v</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>200</y>
+        <width>61</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>bchbn</string>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="progressBar_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>220</y>
+        <width>61</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QProgressBar {
+	color: black;
+	font-weight: bold;
+	text-align: center;
+}
+
+QProgressBar::chunk
+{
+    background-color: lightblue;
+}</string>
+      </property>
+      <property name="maximum">
+       <number>127</number>
+      </property>
+      <property name="value">
+       <number>48</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="format">
+       <string>%v</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>160</y>
+        <width>71</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>subtract</string>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="progressBar_4">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>180</y>
+        <width>61</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QProgressBar {
+	color: black;
+	font-weight: bold;
+	text-align: center;
+}
+
+QProgressBar::chunk
+{
+    background-color: lightblue;
+}</string>
+      </property>
+      <property name="maximum">
+       <number>127</number>
+      </property>
+      <property name="value">
+       <number>48</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="format">
+       <string>%v</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -6812,6 +6456,35 @@ QSlider::handle:horizontal {
     <string>Show reference</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButtonLoadFromModule">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>10</y>
+     <width>71</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Refresh</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_5">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>10</y>
+     <width>20</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
   <zorder>line_4</zorder>
   <zorder>comboBoxSerialPorts</zorder>
   <zorder>pushButtonConnectDisconnect</zorder>
@@ -6820,6 +6493,8 @@ QSlider::handle:horizontal {
   <zorder>tabWidgetMain</zorder>
   <zorder>pushButtonShowConsole</zorder>
   <zorder>pushButtonShowReference</zorder>
+  <zorder>pushButtonLoadFromModule</zorder>
+  <zorder>line_5</zorder>
  </widget>
  <resources/>
  <connections/>

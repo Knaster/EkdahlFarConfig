@@ -1,6 +1,6 @@
 {
     "files": [
-        "widget.py",
+        "farconfig.py",
         "form.ui",
         "tableTest.py",
         "stringModule.py",

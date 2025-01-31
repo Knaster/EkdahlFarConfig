@@ -2,5 +2,10 @@ venv/
 **/__pycache__/
 .qtcreator/
 .ropeproject/
-farconfig.log
-farconfig.log.1
+farconfig/farconfig.log
+farconfig/farconfig.log.1
+farconfig/__pycache__
+.idea
+.git
+farconfig/dist
+farconfig/build

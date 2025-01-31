@@ -1,0 +1,25 @@
+install xcode 12.4 (found at archive.org)
+install brew (/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
+- add it to path -
+brew install python
+
+brew install qt@6 (error when installing 'node', a dependency of qt6)
+
+brew install pyside6 (node error again)
+
+gcc is version 4.2.1
+trying 'brew install gcc' to update gcc
+new gcc in /usr/local/opt/gcc
+
+brew install node@20
+
+--- Monterey ---
+Installed brew
+Installed Python 3.13
+Downloading Xcode 14.2
+sudo xcode-select -s path-to-xcode/Xcode.app/Contents/Developer
+brew install qt@6
+brew install pyside
+
+-- install EFARCONFIG without python-rtmidi
+but then it installed python-rtmidi without issues??

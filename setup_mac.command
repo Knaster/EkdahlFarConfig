@@ -8,7 +8,8 @@ if [ "$response" != "y" ] ; then
 fi
 
 SCRIPT_DIR=$(dirname "$0")
-cd $SCRIPT_DIR 
+cd $SCRIPT_DIR
+cd farconfig 
 
 APP_NAME="Ekdahl FAR configuration utility"
 APP_DIR="/Applications/$APP_NAME.app"

@@ -14,6 +14,7 @@ pip3 install pyside6 pyserial mido python-rtmidi sympy pyqt6-charts
 
 mkdir "C:\Program Files\Ekdahl FAR Configuration Utility"
 cd "%~dp0"
+cd farconfig
 xcopy . "C:\Program Files\Ekdahl FAR Configuration Utility" /E /Y /O
 
 powershell -Command "dir 'C:\Program Files\Ekdahl FAR Configuration Utility\' -s | Unblock-File"
