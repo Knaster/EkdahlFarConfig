@@ -9,3 +9,4 @@ farconfig/__pycache__
 .git
 farconfig/dist
 farconfig/build
+farconfig/.venv

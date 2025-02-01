@@ -5,7 +5,7 @@ a = Analysis(
     ['farconfig.py'],
     pathex=[],
     binaries=[],
-    datas=[('resources', '.')],
+    datas=[('_internal/resources/*.png', 'resources')],
     hiddenimports=['pyserial'],
     hookspath=[],
     hooksconfig={},
@@ -42,3 +42,7 @@ coll = COLLECT(
     upx_exclude=[],
     name='farconfig',
 )
+app = BUNDLE(exe,
+         name='farconfig.app',
+         icon='_internal/resources/far_icon.icns',
+         bundle_identifier=None)
