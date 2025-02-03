@@ -42,7 +42,7 @@ coll = COLLECT(
     upx_exclude=[],
     name='farconfig',
 )
-app = BUNDLE(exe,
+app = BUNDLE(coll,
          name='farconfig.app',
          icon='_internal/resources/far_icon.icns',
          bundle_identifier=None)

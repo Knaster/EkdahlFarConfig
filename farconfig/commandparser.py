@@ -56,6 +56,7 @@ class CommandItem:
                 foundIndex = self.startOfQuote(inCommandString, foundIndex + 1, inCommandString[foundIndex])
                 self.argument.append(inCommandString[startIndex + 1:foundIndex])
 #                print("adding quoted string argument " + inCommandString[startIndex + 1:foundIndex])
+                foundIndex += 1
                 startIndex = foundIndex + 1
             foundIndex += 1
 

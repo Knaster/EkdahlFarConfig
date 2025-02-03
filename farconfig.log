@@ -1,0 +1,584 @@
+2025-02-01 17:02:40,006 - 0.0 : >so> debugprint:usb:1
+2025-02-01 17:02:40,007 - 0.0 : >so> debugprint:command:1
+2025-02-01 17:02:40,007 - 0.0 : >so> debugprint:priority:1
+2025-02-01 17:02:40,007 - 0.0 : >so> debugprint:error:1
+2025-02-01 17:02:40,007 - 0.0 : >so> debugprint:undefined:1
+2025-02-01 17:02:40,012 - 0.0 : >so> debugprint:hardware:1
+2025-02-01 17:02:40,012 - 0.0 : >so> debugprint:debug:1
+2025-02-01 17:02:40,016 - 0.0 : >so> m:0,bcu:27.5
+2025-02-01 17:02:40,016 - 0.0 : Initialized
+2025-02-01 17:02:42,776 - 2.8 : Connected to /dev/ttyACM0
+2025-02-01 17:02:42,778 - 2.8 : >so> rqi:modulecount
+2025-02-01 17:02:42,785 - 2.8 : >so> rqi:bowcontrolfundamental
+2025-02-01 17:02:42,786 - 2.8 : >so> rqi:bmv
+2025-02-01 17:02:42,786 - 2.8 : >so> rqi:bowpidki
+2025-02-01 17:02:42,786 - 2.8 : >so> rqi:bowpidkp
+2025-02-01 17:02:42,787 - 2.8 : >so> rqi:bowpidkd
+2025-02-01 17:02:42,787 - 2.8 : >so> rqi:bowpidintegratorerror
+2025-02-01 17:02:42,787 - 2.8 : >so> rqi:bowmotortimeout
+2025-02-01 17:02:42,787 - 2.8 : >so> rqi:mutefullmuteposition
+2025-02-01 17:02:42,787 - 2.8 : >so> rqi:mutehalfmuteposition
+2025-02-01 17:02:42,788 - 2.8 : >so> rqi:muterestposition
+2025-02-01 17:02:42,788 - 2.8 : >so> rqi:mutebackoff
+2025-02-01 17:02:42,788 - 2.8 : >so> rqi:bowmotorspeedmax
+2025-02-01 17:02:42,788 - 2.8 : >so> rqi:bowmotorspeedmin
+2025-02-01 17:02:42,789 - 2.8 : >so> rqi:bowpressurepositionmax
+2025-02-01 17:02:42,789 - 2.8 : >so> rqi:bowpressurepositionengage
+2025-02-01 17:02:42,789 - 2.8 : >so> rqi:bowpressurepositionrest
+2025-02-01 17:02:42,790 - 2.8 : >so> rqi:bowharmonicseriescount
+2025-02-01 17:02:42,790 - 2.8 : >so> rqi:bowharmonicserieslist
+2025-02-01 17:02:42,790 - 2.8 : >so> rqi:bowharmonicseries
+2025-02-01 17:02:42,791 - 2.8 : >so> rqi:midieventhandler
+2025-02-01 17:02:42,791 - 2.8 : >so> rqi:bowcontrolharmonicbasenote
+2025-02-01 17:02:42,791 - 2.8 : >so> rqi:solenoidmaxforce
+2025-02-01 17:02:42,792 - 2.8 : >so> rqi:solenoidminforce
+2025-02-01 17:02:42,792 - 2.8 : >so> rqi:solenoidengageduration
+2025-02-01 17:02:42,792 - 2.8 : >so> rqi:bowactuatorcount
+2025-02-01 17:02:42,793 - 2.8 : >so> rqi:midiconfigurationcount
+2025-02-01 17:02:42,793 - 2.8 : >so> rqi:mrc
+2025-02-01 17:02:42,793 - 2.8 : >so> rqi:acm:0
+2025-02-01 17:02:42,794 - 2.8 : >so> rqi:acm:1
+2025-02-01 17:02:42,794 - 2.8 : >so> rqi:acm:2
+2025-02-01 17:02:42,794 - 2.8 : >so> rqi:acm:3
+2025-02-01 17:02:42,795 - 2.8 : >so> rqi:acm:4
+2025-02-01 17:02:42,795 - 2.8 : >so> rqi:acm:5
+2025-02-01 17:02:42,795 - 2.8 : >so> rqi:acm:6
+2025-02-01 17:02:42,795 - 2.8 : >so> rqi:acm:7
+2025-02-01 17:02:42,796 - 2.8 : >so> rqi:bpkp
+2025-02-01 17:02:42,796 - 2.8 : >so> rqi:bpki
+2025-02-01 17:02:42,796 - 2.8 : >so> rqi:bpkd
+2025-02-01 17:02:42,796 - 2.8 : >so> rqi:bpie
+2025-02-01 17:02:42,797 - 2.8 : >so> rqi:bpme
+2025-02-01 17:02:42,797 - 2.8 : >so> help
+2025-02-01 17:02:42,797 - 2.8 : >so> nop
+2025-02-01 17:02:42,799 - 2.8 : <si< [dbg]Homing past steps threshold, reverting back to switch : stepID -1
+2025-02-01 17:02:42,800 - 2.8 : <si< [dbg]At homing switch, moving past : stepID -1
+2025-02-01 17:02:42,800 - 2.8 : <si< [dbg]Past homing switch, resuming home : stepID -1
+2025-02-01 17:02:42,800 - 2.8 : <si< [dbg]Setting first homing rising point 0 to 585 stepID -1
+2025-02-01 17:02:42,801 - 2.8 : <si< [dbg][firsthomerising] Next direction is 0, direction inversion is 1
+2025-02-01 17:02:42,801 - 2.8 : <si< [dbg]Setting second homing falling point 0 to 1522 : stepID -1
+2025-02-01 17:02:42,801 - 2.8 : <si< [dbg]Second home overstep 640
+2025-02-01 17:02:42,801 - 2.8 : <si< [dbg]Done over stepping, going to next step : stepID -1
+2025-02-01 17:02:42,802 - 2.8 : <si< [dbg][secondhomefalling] Next direction is 1, direction inversion is 1
+2025-02-01 17:02:42,802 - 2.8 : <si< [dbg]Setting second homing rising point 1 to 1495 : stepID -1
+2025-02-01 17:02:42,802 - 2.8 : <si< [dbg]Setting first homing falling point 1 to 554 : stepID -1
+2025-02-01 17:02:42,802 - 2.8 : <si< [dbg]Homed
+2025-02-01 17:02:42,803 - 2.8 : <si< [hw]Disengaging solenoid
+2025-02-01 17:02:42,803 - 2.8 : <si< [dbg]Starting home
+2025-02-01 17:02:42,803 - 2.8 : <si< [dbg]Homing direction 0 homing speed r 5 homing speed f 5 homing ofs. dir. 1
+2025-02-01 17:02:42,803 - 2.8 : <si< [dbg]Setting first homing rising point 0 to 585 stepID -1
+2025-02-01 17:02:42,804 - 2.8 : <si< [dbg][firsthomerising] Next direction is 0, direction inversion is 1
+2025-02-01 17:02:42,804 - 2.8 : <si< [dbg]Setting second homing falling point 0 to 1395 : stepID -1
+2025-02-01 17:02:42,804 - 2.8 : <si< [dbg]Second home overstep 640
+2025-02-01 17:02:42,805 - 2.8 : <si< [dbg]Done over stepping, going to next step : stepID -1
+2025-02-01 17:02:42,805 - 2.8 : <si< [dbg][secondhomefalling] Next direction is 1, direction inversion is 1
+2025-02-01 17:02:42,805 - 2.8 : <si< [dbg]Setting second homing rising point 1 to 1365 : stepID -1
+2025-02-01 17:02:42,806 - 2.8 : <si< [dbg]Setting first homing falling point 1 to 551 : stepID -1
+2025-02-01 17:02:42,806 - 2.8 : <si< [dbg]Homed
+2025-02-01 17:02:42,815 - 2.8 : <si< [hw]Setting mute tilt to 0, full mute position 65535
+2025-02-01 17:02:42,815 - 2.8 : <si< [dbg]Assigning ISR0
+2025-02-01 17:02:42,815 - 2.8 : <si< [dbg]*************************
+2025-02-01 17:02:42,816 - 2.8 : <si< [dbg]getSettings()
+2025-02-01 17:02:42,816 - 2.8 : <si< [dbg]settings.is_communicating = 1
+2025-02-01 17:02:42,816 - 2.8 : <si< [dbg]settings.is_setup = 0
+2025-02-01 17:02:42,816 - 2.8 : <si< [dbg]settings.software_enabled = 1
+2025-02-01 17:02:42,817 - 2.8 : <si< [dbg]settings.microsteps_per_step = 32
+2025-02-01 17:02:42,817 - 2.8 : <si< [dbg]settings.inverse_motor_direction_enabled = 0
+2025-02-01 17:02:42,817 - 2.8 : <si< [dbg]settings.stealth_chop_enabled = 1
+2025-02-01 17:02:42,818 - 2.8 : <si< [dbg]settings.standstill_mode =
+2025-02-01 17:02:42,818 - 2.8 : <si< [dbg]normal
+2025-02-01 17:02:42,818 - 2.8 : <si< [dbg]settings.irun_percent = 39
+2025-02-01 17:02:42,818 - 2.8 : <si< [dbg]settings.irun_register_value = 12
+2025-02-01 17:02:42,819 - 2.8 : <si< [dbg]settings.ihold_percent = 0
+2025-02-01 17:02:42,819 - 2.8 : <si< [dbg]settings.ihold_register_value = 0
+2025-02-01 17:02:42,819 - 2.8 : <si< [dbg]settings.iholddelay_percent = 7
+2025-02-01 17:02:42,819 - 2.8 : <si< [dbg]settings.iholddelay_register_value = 1
+2025-02-01 17:02:42,820 - 2.8 : <si< [dbg]settings.automatic_current_scaling_enabled = 0
+2025-02-01 17:02:42,820 - 2.8 : <si< [dbg]settings.automatic_gradient_adaptation_enabled = 0
+2025-02-01 17:02:42,820 - 2.8 : <si< [dbg]settings.pwm_offset = 0
+2025-02-01 17:02:42,820 - 2.8 : <si< [dbg]settings.pwm_gradient = 0
+2025-02-01 17:02:42,820 - 2.8 : <si< [dbg]settings.cool_step_enabled = 0
+2025-02-01 17:02:42,821 - 2.8 : <si< [dbg]settings.analog_current_scaling_enabled = 0
+2025-02-01 17:02:42,821 - 2.8 : <si< [dbg]settings.internal_sense_resistors_enabled = 0
+2025-02-01 17:02:42,824 - 2.8 : <si< [dbg]*************************
+2025-02-01 17:02:42,824 - 2.8 : <si< [dbg]
+2025-02-01 17:02:42,824 - 2.8 : <si< [dbg]*************************
+2025-02-01 17:02:42,825 - 2.8 : <si< [dbg]hardwareDisabled()
+2025-02-01 17:02:42,825 - 2.8 : <si< [dbg]hardware_disabled = 0[dbg]*************************
+2025-02-01 17:02:42,825 - 2.8 : <si< [dbg]
+2025-02-01 17:02:42,825 - 2.8 : <si< [dbg]*************************
+2025-02-01 17:02:42,826 - 2.8 : <si< [dbg]getStatus()
+2025-02-01 17:02:42,826 - 2.8 : <si< [dbg]status.over_temperature_warning = 0
+2025-02-01 17:02:42,826 - 2.8 : <si< [dbg]status.over_temperature_shutdown = 0
+2025-02-01 17:02:42,827 - 2.8 : <si< [dbg]status.short_to_ground_a = 0
+2025-02-01 17:02:42,841 - 2.8 : <si< [dbg]status.short_to_ground_b = 0
+2025-02-01 17:02:42,841 - 2.8 : <si< [dbg]status.low_side_short_a = 0
+2025-02-01 17:02:42,841 - 2.8 : <si< [dbg]status.low_side_short_b = 0
+2025-02-01 17:02:42,841 - 2.8 : <si< [dbg]status.open_load_a = 0
+2025-02-01 17:02:42,842 - 2.8 : <si< [dbg]status.open_load_b = 0
+2025-02-01 17:02:42,842 - 2.8 : <si< [dbg]status.over_temperature_120c = 0
+2025-02-01 17:02:42,843 - 2.8 : <si< [dbg]status.over_temperature_143c = 0
+2025-02-01 17:02:42,843 - 2.8 : <si< [dbg]status.over_temperature_150c = 0
+2025-02-01 17:02:42,843 - 2.8 : <si< [dbg]status.over_temperature_157c = 0
+2025-02-01 17:02:42,844 - 2.8 : <si< [dbg]status.current_scaling = 0
+2025-02-01 17:02:42,844 - 2.8 : <si< [dbg]status.stealth_chop_mode = 0
+2025-02-01 17:02:42,844 - 2.8 : <si< [dbg]status.standstill = 0
+2025-02-01 17:02:42,844 - 2.8 : <si< [dbg]*************************
+2025-02-01 17:02:42,844 - 2.8 : <si< [dbg]
+2025-02-01 17:02:42,845 - 2.8 : <si< [dbg]*************************
+2025-02-01 17:02:42,845 - 2.8 : <si< [dbg]getSettings()
+2025-02-01 17:02:42,845 - 2.8 : <si< [dbg]settings.is_communicating = 1
+2025-02-01 17:02:42,845 - 2.8 : <si< [dbg]settings.is_setup = 0
+2025-02-01 17:02:42,846 - 2.8 : <si< [dbg]settings.software_enabled = 1
+2025-02-01 17:02:42,846 - 2.8 : <si< [dbg]settings.microsteps_per_step = 32
+2025-02-01 17:02:42,846 - 2.8 : <si< [dbg]settings.inverse_motor_direction_enabled = 0
+2025-02-01 17:02:42,846 - 2.8 : <si< [dbg]settings.stealth_chop_enabled = 1
+2025-02-01 17:02:42,847 - 2.8 : <si< [dbg]settings.standstill_mode =
+2025-02-01 17:02:42,847 - 2.8 : <si< [dbg]normal
+2025-02-01 17:02:42,847 - 2.8 : <si< [dbg]settings.irun_percent = 39
+2025-02-01 17:02:42,848 - 2.8 : <si< [dbg]settings.irun_register_value = 12
+2025-02-01 17:02:42,848 - 2.8 : <si< [dbg]settings.ihold_percent = 10
+2025-02-01 17:02:42,848 - 2.8 : <si< [dbg]settings.ihold_register_value = 3
+2025-02-01 17:02:42,848 - 2.8 : <si< [dbg]settings.iholddelay_percent = 7
+2025-02-01 17:02:42,849 - 2.8 : <si< [dbg]settings.iholddelay_register_value = 1
+2025-02-01 17:02:42,849 - 2.8 : <si< [dbg]settings.automatic_current_scaling_enabled = 0
+2025-02-01 17:02:42,849 - 2.8 : <si< [dbg]settings.automatic_gradient_adaptation_enabled = 0
+2025-02-01 17:02:42,849 - 2.8 : <si< [dbg]settings.pwm_offset = 0
+2025-02-01 17:02:42,850 - 2.8 : <si< [dbg]settings.pwm_gradient = 0
+2025-02-01 17:02:42,850 - 2.8 : <si< [dbg]settings.cool_step_enabled = 0
+2025-02-01 17:02:42,850 - 2.8 : <si< [dbg]settings.analog_current_scaling_enabled = 0
+2025-02-01 17:02:42,850 - 2.8 : <si< [dbg]settings.internal_sense_resistors_enabled = 0
+2025-02-01 17:02:42,850 - 2.8 : <si< [dbg]*************************
+2025-02-01 17:02:42,851 - 2.8 : <si< [dbg]
+2025-02-01 17:02:42,851 - 2.8 : <si< [dbg]*************************
+2025-02-01 17:02:42,851 - 2.8 : <si< [dbg]hardwareDisabled()
+2025-02-01 17:02:42,851 - 2.8 : <si< [dbg]hardware_disabled = 0[dbg]*************************
+2025-02-01 17:02:42,852 - 2.8 : <si< [dbg]
+2025-02-01 17:02:42,852 - 2.8 : <si< [dbg]*************************
+2025-02-01 17:02:42,852 - 2.8 : <si< [dbg]getStatus()
+2025-02-01 17:02:42,852 - 2.8 : <si< [dbg]status.over_temperature_warning = 0
+2025-02-01 17:02:42,853 - 2.8 : <si< [dbg]status.over_temperature_shutdown = 0
+2025-02-01 17:02:42,853 - 2.8 : <si< [dbg]status.short_to_ground_a = 0
+2025-02-01 17:02:42,853 - 2.8 : <si< [dbg]status.short_to_ground_b = 0
+2025-02-01 17:02:42,854 - 2.8 : <si< [dbg]status.low_side_short_a = 0
+2025-02-01 17:02:42,854 - 2.8 : <si< [dbg]status.low_side_short_b = 0
+2025-02-01 17:02:42,854 - 2.8 : <si< [dbg]status.open_load_a = 0
+2025-02-01 17:02:42,855 - 2.8 : <si< [dbg]status.open_load_b = 0
+2025-02-01 17:02:42,855 - 2.9 : <si< [dbg]status.over_temperature_120c = 0
+2025-02-01 17:02:42,855 - 2.9 : <si< [dbg]status.over_temperature_143c = 0
+2025-02-01 17:02:42,856 - 2.9 : <si< [dbg]status.over_temperature_150c = 0
+2025-02-01 17:02:42,857 - 2.9 : <si< [dbg]status.over_temperature_157c = 0
+2025-02-01 17:02:42,857 - 2.9 : <si< [dbg]status.current_scaling = 12
+2025-02-01 17:02:42,857 - 2.9 : <si< [dbg]status.stealth_chop_mode = 0
+2025-02-01 17:02:42,858 - 2.9 : <si< [dbg]status.standstill = 1
+2025-02-01 17:02:42,859 - 2.9 : <si< [dbg]*************************
+2025-02-01 17:02:42,859 - 2.9 : <si< [dbg]
+2025-02-01 17:02:42,860 - 2.9 : <si< [dbg]ADS Initialized
+2025-02-01 17:02:42,868 - 2.9 : <si< [cmd]ver:0.1a20250126191016,mcf:0,mrc:0,mev:noteoff:'m:0,b:0,bpr:ibool(notecount),bcsm:0',mev:noteon:'m:0,b:0,bchb:note,bmr:1,bpid:1,bpe:1,se:(velocity*512)*(1-notecount),bcsm:0',mev:cat:'m:0,b:0,bpm:(pressure*512)',mev:pb:'m:0,b:0,bchsh:pitch*4',mev:cc:64:'midisustain:bool(value)',mev:cc:123:'midiallnotesoff:1',mcf:0,epdbt:250.00,acm:0:'bcha:value/1327.716667-20',adcs:0:1:60:2:10,acm:1:'bchs5:"deadband(value-32206.0, 30)/2.425"',adcs:1:1:10:2:10,acm:2:'bchsh:"deadband((value-32600)*0.49064, 250)"',adcs:2:1:50:2:10,acm:3:'bpb:value',adcs:3:1:50:2:10,acm:4:'se:value',adcs:4:1:40:2:10,acm:5:'bmr:1,bpid:1,bcsm:0,bpe:bool(value-1000),bpr:ibool(value-1000),bph:ibool(value-1000)',adcs:5:1:40:2:10,acm:6:'sfm:"deadband(1/65535*value,0.002)"',adcs:6:1:40:2:10,acm:7:'msp:value',adcs:7:1:40:2:10,m:0,bmsi:22.31,bmsx:623.91,bppe:2272,bppx:28169,bppr:0,bcu:82.50,bhsl:0:just intonation:1.00000:1.06667:1.12500:1.20000:1.25000:1.33330:1.40625:1.50000:1.60000:1.66667:1.80000:1.87500,bhsl:1:equal temperament:1.00000:1.05946:1.12246:1.18921:1.25992:1.33484:1.41421:1.49831:1.58740:1.68179:1.78180:1.88775,bhsl:2:harmonic:1.00000:1.06667:1.12900:1.20700:1.25400:1.33630:1.41020:1.50000:1.60600:1.66770:1.80600:1.88100,mfmp:60000,mhmp:17900,mrp:0,mbo:300,bpki:7.00,bpkp:500.00,bpkd:500.00,bpie:0.10,bchbn:64,bchsr:2,bpes:10.00,bpms:10.00,bmt:700,bhs:2,bmv:6.60,sxf:33535,sif:19000,bad:0:2272:28169:0:'first touch',bas:0,bal,nop
+2025-02-01 17:02:42,869 - 2.9 : <si< Loaded 1418 bytes of data
+2025-02-01 17:02:42,870 - 2.9 : <si< [irq]Initialized
+2025-02-01 17:02:42,870 - 2.9 : <si< [irq]This is a slave
+2025-02-01 17:02:42,871 - 2.9 : <si< [dbg]Current version is 0.1a20250126191016
+2025-02-01 17:02:42,871 - 2.9 : <si< [dbg]Data changed on ADS1, channel 0 to 27752 (13876)
+2025-02-01 17:02:42,875 - 2.9 : <si< [irq]adcr:0:27752:13876
+2025-02-01 17:02:42,879 - 2.9 : <si< [dbg]Stripping start & end quotes from -'m:0,b:0,bpr:ibool(notecount),bcsm:0'-
+2025-02-01 17:02:42,879 - 2.9 : <si< [dbg]Stripping start & end quotes from -'m:0,b:0,bchb:note,bmr:1,bpid:1,bpe:1,se:(velocity*512)*(1-notecount),bcsm:0'-
+2025-02-01 17:02:42,879 - 2.9 : <si< [dbg]Stripping start & end quotes from -'m:0,b:0,bpm:(pressure*512)'-
+2025-02-01 17:02:42,880 - 2.9 : <si< [dbg]Stripping start & end quotes from -'m:0,b:0,bchsh:pitch*4'-
+2025-02-01 17:02:42,880 - 2.9 : <si< [dbg]Stripping start & end quotes from -'midisustain:bool(value)'-
+2025-02-01 17:02:42,880 - 2.9 : <si< [dbg]Stripping start & end quotes from -'midiallnotesoff:1'-
+2025-02-01 17:02:42,881 - 2.9 : <si< [dbg]Stripping start & end quotes from -'bcha:value/1327.716667-20'-
+2025-02-01 17:02:42,882 - 2.9 : <si< [dbg]Stripping start & end quotes from -'bchs5:"deadband(value-32206.0, 30)/2.425"'-
+2025-02-01 17:02:42,882 - 2.9 : <si< [dbg]Stripping start & end quotes from -'bchsh:"deadband((value-32600)*0.49064, 250)"'-
+2025-02-01 17:02:42,883 - 2.9 : <si< [dbg]Stripping start & end quotes from -'bpb:value'-
+2025-02-01 17:02:42,884 - 2.9 : <si< [dbg]Stripping start & end quotes from -'se:value'-
+2025-02-01 17:02:42,885 - 2.9 : <si< [dbg]Stripping start & end quotes from -'bmr:1,bpid:1,bcsm:0,bpe:bool(value-1000),bpr:ibool(value-1000),bph:ibool(value-1000)'-
+2025-02-01 17:02:42,885 - 2.9 : <si< [dbg]Stripping start & end quotes from -'sfm:"deadband(1/65535*value,0.002)"'-
+2025-02-01 17:02:42,887 - 2.9 : <si< [dbg]Stripping start & end quotes from -'msp:value'-
+2025-02-01 17:02:42,887 - 2.9 : <si< [dbg]Stripping start & end quotes from -'first touch'-
+2025-02-01 17:02:42,887 - 2.9 : <si< [dbg]Current harmonic series is zero, reloading
+2025-02-01 17:02:42,888 - 2.9 : <si< [dbg]Setting harmonic data to 0 @ frequency 82.50
+2025-02-01 17:02:42,889 - 2.9 : <si< [dbg]Current freq 82.50 shifted freq 82.50 shifted freq 5 octaves 82.50
+2025-02-01 17:02:42,889 - 2.9 : <si< [hw]Setting PID target to 82.50
+2025-02-01 17:02:42,890 - 2.9 : <si< [dbg]Setting harmonic data to 0 @ frequency 82.50
+2025-02-01 17:02:42,891 - 2.9 : <si< [dbg]Current freq 82.50 shifted freq 82.50 shifted freq 5 octaves 82.50
+2025-02-01 17:02:42,891 - 2.9 : <si< [hw]Setting PID target to 82.50
+2025-02-01 17:02:42,892 - 2.9 : <si< [dbg]Setting harmonic data to 0 @ frequency 82.50
+2025-02-01 17:02:42,893 - 2.9 : <si< [dbg]Current freq 82.50 shifted freq 82.50 shifted freq 5 octaves 82.50
+2025-02-01 17:02:42,893 - 2.9 : <si< [hw]Setting PID target to 82.50
+2025-02-01 17:02:42,894 - 2.9 : <si< [dbg]Setting pressure speed to high
+2025-02-01 17:02:42,894 - 2.9 : <si< [hw]Setting stepper tilt to 0
+2025-02-01 17:02:42,894 - 2.9 : <si< [dbg]Setting harmonic data to 0 @ frequency 82.50
+2025-02-01 17:02:42,896 - 2.9 : <si< [dbg]Current freq 82.50 shifted freq 82.50 shifted freq 5 octaves 82.50
+2025-02-01 17:02:42,896 - 2.9 : <si< [hw]Setting PID target to 82.50
+2025-02-01 17:02:42,896 - 2.9 : <si< ~~
+2025-02-01 17:02:42,897 - 2.9 : <si< [irq]mc:1
+2025-02-01 17:02:42,898 - 2.9 : >so> m:0,bcu:82.5
+2025-02-01 17:02:42,898 - 2.9 : >so> m:0,mfmp:0.0
+2025-02-01 17:02:42,899 - 2.9 : >so> m:0,mhmp:0.0
+2025-02-01 17:02:42,899 - 2.9 : >so> m:0,mrp:0.0
+2025-02-01 17:02:42,899 - 2.9 : >so> m:0,mbo:0.0
+2025-02-01 17:02:42,900 - 2.9 : >so> m:0,bppx:0.0
+2025-02-01 17:02:42,900 - 2.9 : >so> m:0,bppe:0.0
+2025-02-01 17:02:42,900 - 2.9 : >so> m:0,bppr:0.0
+2025-02-01 17:02:42,901 - 2.9 : >so> m:0,sxf:0.0
+2025-02-01 17:02:42,901 - 2.9 : >so> m:0,sif:0.0
+2025-02-01 17:02:42,901 - 2.9 : >so> m:0,sed:0.0
+2025-02-01 17:02:42,902 - 2.9 : <si< [irq]m:0,bcu:82.50
+2025-02-01 17:02:42,902 - 2.9 : >so> m:0,bmv:6.6
+2025-02-01 17:02:42,903 - 2.9 : <si< [irq]m:0,bmv:6.60
+2025-02-01 17:02:42,903 - 2.9 : >so> m:0,bpki:7.0
+2025-02-01 17:02:42,903 - 2.9 : <si< [irq]m:0,bpki:7.00
+2025-02-01 17:02:42,904 - 2.9 : >so> m:0,bpkp:500.0
+2025-02-01 17:02:42,904 - 2.9 : <si< [irq]m:0,bpkp:500.00
+2025-02-01 17:02:42,905 - 2.9 : >so> m:0,bpkd:500.0
+2025-02-01 17:02:42,905 - 2.9 : <si< [irq]m:0,bpkd:500.00
+2025-02-01 17:02:42,905 - 2.9 : >so> m:0,bpie:0.1
+2025-02-01 17:02:42,906 - 2.9 : <si< [irq]m:0,bpie:0.10
+2025-02-01 17:02:42,906 - 2.9 : >so> m:0,bmt:700.0
+2025-02-01 17:02:42,906 - 2.9 : <si< [irq]m:0,bmt:700
+2025-02-01 17:02:42,907 - 2.9 : >so> m:0,mfmp:60000.0
+2025-02-01 17:02:42,907 - 2.9 : <si< [irq]m:0,mfmp:60000
+2025-02-01 17:02:42,909 - 2.9 : >so> m:0,mhmp:17900.0
+2025-02-01 17:02:42,910 - 2.9 : <si< [irq]m:0,mhmp:17900
+2025-02-01 17:02:42,910 - 2.9 : <si< [irq]m:0,mrp:0
+2025-02-01 17:02:42,911 - 2.9 : >so> m:0,mbo:300.0
+2025-02-01 17:02:42,911 - 2.9 : <si< [irq]m:0,mbo:300
+2025-02-01 17:02:42,912 - 2.9 : >so> m:0,bmsx:623.91
+2025-02-01 17:02:42,912 - 2.9 : <si< [irq]m:0,bmsx:623.91
+2025-02-01 17:02:42,912 - 2.9 : >so> m:0,bmsi:22.31
+2025-02-01 17:02:42,913 - 2.9 : <si< [irq]m:0,bmsi:22.31
+2025-02-01 17:02:42,913 - 2.9 : >so> m:0,bppx:28169.0
+2025-02-01 17:02:42,914 - 2.9 : <si< [irq]m:0,bppx:28169
+2025-02-01 17:02:42,914 - 2.9 : >so> m:0,bppe:2272.0
+2025-02-01 17:02:42,915 - 2.9 : <si< [irq]m:0,bppe:2272
+2025-02-01 17:02:42,915 - 2.9 : <si< [irq]m:0,bppr:0
+2025-02-01 17:02:42,918 - 2.9 : <si< [irq]m:0,bhsc:3:just intonation:equal temperament:harmonic
+2025-02-01 17:02:42,920 - 2.9 : <si< [irq]m:0,bhsl:1.0000:1.0667:1.1290:1.2070:1.2540:1.3363:1.4102:1.5000:1.6060:1.6677:1.8060:1.8810
+2025-02-01 17:02:42,920 - 2.9 : <si< [irq]m:0,bhs:2
+2025-02-01 17:02:43,098 - 3.1 : <si< [irq]mev:noteon:'m:0,b:0,bchb:note,bmr:1,bpid:1,bpe:1,se:(velocity*512)*(1-notecount),bcsm:0',mev:noteoff:'m:0,b:0,bpr:ibool(notecount),bcsm:0',mev:cc:64:'midisustain:bool(value)',mev:cc:123:'midiallnotesoff:1',mev:pat:'',mev:pb:'m:0,b:0,bchsh:pitch*4',mev:cat:'m:0,b:0,bpm:(pressure*512)',mev:pc:'',
+2025-02-01 17:02:43,099 - 3.1 : >so> bowcontrolharmonicbasenote:64
+2025-02-01 17:02:43,099 - 3.1 : <si< [irq]m:0,bchbn:64
+2025-02-01 17:02:43,100 - 3.1 : >so> m:0,sxf:33535.0
+2025-02-01 17:02:43,100 - 3.1 : <si< [irq]m:0,sxf:33535
+2025-02-01 17:02:43,101 - 3.1 : >so> m:0,sif:19000.0
+2025-02-01 17:02:43,101 - 3.1 : <si< [irq]m:0,sif:19000
+2025-02-01 17:02:43,101 - 3.1 : >so> m:0,sed:15000.0
+2025-02-01 17:02:43,102 - 3.1 : <si< [irq]m:0,sed:15000
+2025-02-01 17:02:43,102 - 3.1 : >so> rqi:bad:0
+2025-02-01 17:02:43,102 - 3.1 : <si< [irq]m:0,bac:1
+2025-02-01 17:02:43,103 - 3.1 : >so> rqi:mcfn:0
+2025-02-01 17:02:43,103 - 3.1 : <si< [irq]mcfc:1
+2025-02-01 17:02:43,103 - 3.1 : <si< [irq]mrc:0
+2025-02-01 17:02:43,105 - 3.1 : <si< [irq]acm:0:'bcha:value/1327.716667-20'
+2025-02-01 17:02:43,105 - 3.1 : <si< [irq]acm:1:'bchs5:"deadband(value-32206.0, 30)/2.425"'
+2025-02-01 17:02:43,107 - 3.1 : <si< [irq]acm:2:'bchsh:"deadband((value-32600)*0.49064, 250)"'
+2025-02-01 17:02:43,107 - 3.1 : <si< [irq]acm:3:'bpb:value'
+2025-02-01 17:02:43,108 - 3.1 : <si< [irq]acm:4:'se:value'
+2025-02-01 17:02:43,109 - 3.1 : <si< [irq]acm:5:'bmr:1,bpid:1,bcsm:0,bpe:bool(value-1000),bpr:ibool(value-1000),bph:ibool(value-1000)'
+2025-02-01 17:02:43,110 - 3.1 : <si< [irq]acm:6:'sfm:"deadband(1/65535*value,0.002)"'
+2025-02-01 17:02:43,110 - 3.1 : <si< [irq]acm:7:'msp:value'
+2025-02-01 17:02:43,111 - 3.1 : <si< [irq]m:0,bpkp:500.00
+2025-02-01 17:02:43,111 - 3.1 : <si< [irq]m:0,bpki:7.00
+2025-02-01 17:02:43,112 - 3.1 : <si< [irq]m:0,bpkd:500.00
+2025-02-01 17:02:43,112 - 3.1 : <si< [irq]m:0,bpie:0.10
+2025-02-01 17:02:43,113 - 3.1 : >so> m:0,bpme:50.0
+2025-02-01 17:02:43,113 - 3.1 : <si< [irq]m:0,bpme:50.00
+2025-02-01 17:02:43,116 - 3.1 : <si< [hlp]:"Below is a list of avaliable commands given in both short and long form, either works. The number and type(s) of arguments are listed afterwards and a brief description. Command usage: command:argument1:argument2 [etc]"
+2025-02-01 17:02:43,116 - 3.1 : <si< [hlp][glo]:requestinfo|rqi:command:"Retrives rather than sets data associated with a command, if appliccable"
+2025-02-01 17:02:43,120 - 3.1 : <si< [hlp][glo]:module|m:0-15:"Sets the currently active string module"
+2025-02-01 17:02:43,120 - 3.1 : <si< [hlp][glo]:modulecount|mc:-:"Returns the number of string modules detected"
+2025-02-01 17:02:43,121 - 3.1 : <si< [hlp][glo]:debugprint|dp:command|usb|hardware|undefined|priority|error|inforequest|expressionparser|debug:1|0:"Turns on or off serial feedback for the given item"
+2025-02-01 17:02:43,121 - 3.1 : <si< [hlp][glo]:version|ver:-:"Gets the current firmware version"
+2025-02-01 17:02:43,121 - 3.1 : <si< [hlp][glo]:globalsaveallparameters|gsap:-:"Saves all avaliable parameters"
+2025-02-01 17:02:43,122 - 3.1 : <si< [hlp][glo]:globalloadallparameters|glap:-:"Loads all avaliable parameters"
+2025-02-01 17:02:43,122 - 3.1 : <si< [hlp][glo]:globalresetallparameters|grap:-:"Resets all saved parameters"
+2025-02-01 17:02:43,123 - 3.1 : <si< [hlp][glo]:globaluservariable|guv:variable(0-9):value:"Set user variable 0-9 to value"
+2025-02-01 17:02:43,125 - 3.1 : <si< [hlp][glo]:midiconfiguration|mcf:int:"Sets the current MIDI configuration"
+2025-02-01 17:02:43,125 - 3.1 : <si< [hlp][glo]:midiconfigurationadd|mcfa:-:"Adds a new MIDI configuration"
+2025-02-01 17:02:43,127 - 3.1 : <si< [hlp][glo]:midiconfigurationremove|mcfr:int:"Remove the specified MIDI configuration"
+2025-02-01 17:02:43,129 - 3.1 : <si< [hlp][glo]:midiconfigurationcount|mcfc:-:"Returns the number of MIDI configurations"
+2025-02-01 17:02:43,130 - 3.1 : <si< [hlp][glo]:midiconfigurationname|mcfn:string:"Set the name of the MIDI configuration (for request, argument is index of configuration to return name for (optional))"
+2025-02-01 17:02:43,131 - 3.1 : <si< [hlp][glo]:midieventhandler|mev:noteon|noteoff|pat|cc:(0-127)|cat|pb|pc:"Set the MIDI event handling string in the current configuration"
+2025-02-01 17:02:43,132 - 3.1 : <si< [hlp][glo]:midieventhandlerccremove|mevcr:cc(0-127):"remove CC from list"
+2025-02-01 17:02:43,135 - 3.1 : <si< [hlp][glo]:midiconfigurationdefaults|mcfd:-:"Reverts the current configuration to default values and CCs"
+2025-02-01 17:02:43,135 - 3.1 : <si< [hlp][glo]:midireceivechannel|mrc:-:"Sets the MIDI receive channel of the current configuration. 1-16 sets specific channel, any other value for OMNI"
+2025-02-01 17:02:43,135 - 3.1 : <si< [hlp][glo]:midiallnotesoff|mano:1|0:"Clear the entire buffer of MIDI notes held"
+2025-02-01 17:02:43,139 - 3.1 : <si< [hlp][glo]:adccommandmap|acm:channel:command string:"Sets the command string invoked when the value on ADC channel [channel] changes"
+2025-02-01 17:02:43,140 - 3.1 : <si< [hlp][glo]:adcdefaults|acd:-Reverts all ADC command strings to default values:""
+2025-02-01 17:02:43,140 - 3.1 : <si< [hlp][glo]:adcread|adcr:channel:value:"Sent when a new value is presented on one of the ADC channels, cannot be invoked"
+2025-02-01 17:02:43,141 - 3.1 : <si< [hlp][glo]:adcsettings|adcs:channel:averages:interrupterrorthreshold:continuouserrorthreshold:continuoustimeout:"Explain ADC settings here"
+2025-02-01 17:02:43,165 - 3.2 : <si< [hlp][glo]:expressionparserevaluate|epev:expression:"Evaluates an arithmetric expression and sends back the output"
+2025-02-01 17:02:43,165 - 3.2 : <si< [hlp][glo]:testadclatency|tal:0-65535:"Test ADC Latency"
+2025-02-01 17:02:43,166 - 3.2 : <si< [hlp][glo]:testadclatencyreturn|talr:-:"Return from test"
+2025-02-01 17:02:43,166 - 3.2 : <si< [hlp][glo]:testadcminmax|tamm:channel:"Measure min/max value for a given channel and resets the counter"
+2025-02-01 17:02:43,168 - 3.2 : <si< [hlp]:"These commands are specific for the currently selected string module"
+2025-02-01 17:02:43,168 - 3.2 : <si< [hlp][str]:bow|b:0-15:"Sets the currently selected bow"
+2025-02-01 17:02:43,168 - 3.2 : <si< [hlp][str]:bowpid|bpid:1|0:"Sets the bow PID on/off"
+2025-02-01 17:02:43,171 - 3.2 : <si< [hlp][str]:bowpidki|bpki:float:"Sets the Ki parameter of the PID of the selected bow"
+2025-02-01 17:02:43,171 - 3.2 : <si< [hlp][str]:bowpidkp|bpkp:float:"Sets the Kp parameter of the PID of the selected bow"
+2025-02-01 17:02:43,172 - 3.2 : <si< [hlp][str]:bowpidkd|bpkd:float:"Sets the Kd parameter of the PID of the selected bow"
+2025-02-01 17:02:43,173 - 3.2 : <si< [hlp][str]:bowpidintegratorerror|bpie:float:"Sets the lower threshold of error values for the PID integrator to ignore of the selected bow"
+2025-02-01 17:02:43,173 - 3.2 : <si< [hlp][str]:bowpidr|bpir:-:"Resets the PID of the selected bow"
+2025-02-01 17:02:43,176 - 3.2 : <si< [hlp][str]:bowpidmaxerror|bpme:float:"Maximum error to correct in each PID loop, essentially sets acceleration"
+2025-02-01 17:02:43,176 - 3.2 : <si< [hlp][str]:bowpidpeakerror|bpperr:float:"Get latest PID peak error"
+2025-02-01 17:02:43,177 - 3.2 : <si< [hlp][str]:bowcontrolfrequency|bcf:float:"Bow motor speed frequency in hertz, requires that PID is turned on"
+2025-02-01 17:02:43,178 - 3.2 : <si< [hlp][str]:bowcontrolfundamental|bcu:float:"Bow fundamental frequency, all harmonics are calculated from this number"
+2025-02-01 17:02:43,181 - 3.2 : <si< [hlp][str]:bowcontrolharmonic|bch:int:"Bow motor speed in terms of a harmonic number. A ratio is taken from the given harmonic in the current harmonic list, the ratio is then multiplied by the bow fundamental frequency"
+2025-02-01 17:02:43,182 - 3.2 : <si< [hlp][str]:bowcontrolharmonicadd|bcha:int:"Additative version of bowcontrolharmonic, the number is given is added to the harmonic given"
+2025-02-01 17:02:43,185 - 3.2 : <si< [hlp][str]:bowcontrolharmonicbase|bchb:int:"Same as bowcontrolharmonic but where the harmonic number is based on a MIDI note given by bowcontrolbasenote"
+2025-02-01 17:02:43,186 - 3.2 : <si< [hlp][str]:bowcontrolharmonicbasenote|bchbn:0-127:"Sets the MIDI base note of the string, used in conjunction with bowcontrolharmonicbase"
+2025-02-01 17:02:43,186 - 3.2 : <si< [hlp][str]:bowcontrolharmonicshift|bchsh:-32767-32767:"Setting shift from the currently playing harmonic where 32767 equals the entire harmonic shift range shifted up"
+2025-02-01 17:02:43,187 - 3.2 : <si< [hlp][str]:bowcontrolharmonicshiftrange|bchsr:0-36:"Set the number of harmonic numbers that constitutes the entire harmonic shift"
+2025-02-01 17:02:43,192 - 3.2 : <si< [hlp][str]:bowcontrolharmonicshift5|bchs5:-32767-32767:"Setting shift from the currently playing harmonic over 5 octaves where 32767 equals 5 octaves shift up from the fundamental"
+2025-02-01 17:02:43,192 - 3.2 : <si< [hlp][str]:bowcontrolspeedmode|bcsm:0|1:"Bow motor speed mode, 0 = Automatic and 1 = Manual"
+2025-02-01 17:02:43,193 - 3.2 : <si< [hlp][str]:bowharmonicseries|bhs:int:"Get/set the current harmonic series"
+2025-02-01 17:02:43,193 - 3.2 : <si< [hlp][str]:bowharmonicserieslist|bhsl:slot:name:ratios:"Get/set the harmonic ratios and name in the given slot"
+2025-02-01 17:02:43,195 - 3.2 : <si< [hlp][str]:bowharmonicseriesratio|bhsr:harmonic:ratio:"Sets the ratio of the given harmonic in current harmonic series, will increase the list size if needed to adress the harmonic"
+2025-02-01 17:02:43,198 - 3.2 : <si< [hlp][str]:bowharmonicseriesratioremove|bhsrr:ratio:"Remove the harmmonic ratio given in the current series and shift any ratios accordingly. Cannot remove all ratios"
+2025-02-01 17:02:43,199 - 3.2 : <si< [hlp][str]:bowharmonicseriescount|bhsc:-:"Returns the number of harmonic series in the list and their IDs"
+2025-02-01 17:02:43,199 - 3.2 : <si< [hlp][str]:bowharmonicseriessave|bhss:name:series:"Saves the current harmonic series in the slot given, or if the slot is out of range, creates a new one at the end of the list"
+2025-02-01 17:02:43,199 - 3.2 : <si< [hlp][str]:bowharmonicseriesremove|bhsrm:series:"Remove the series given and shift any series accordingly. Cannot remove all series"
+2025-02-01 17:02:43,201 - 3.2 : <si< [hlp][str]:bowstatus|bs:-:"Prints status information for the selected bow"
+2025-02-01 17:02:43,205 - 3.2 : <si< [hlp][str]:pickupstringfrequency|psf:-:"Returns the fundamental tone calculated from the current audio signal if appliccable"
+2025-02-01 17:02:43,205 - 3.2 : <si< [hlp][str]:pickupaudiopeak|pap:-:"Returns the peak amplitude of the current audio signal"
+2025-02-01 17:02:43,205 - 3.2 : <si< [hlp][str]:pickupaudiorms|par:-:"Returns the RMS amplitude of the current audio signal"
+2025-02-01 17:02:43,206 - 3.2 : <si< [hlp][str]:bowdebugmeasuretimetotarget|bdmtt:float:"Measure the time it takes to change from the current frequency to the target frequency"
+2025-02-01 17:02:43,207 - 3.2 : <si< [hlp][str]:bowhome|bh:-:"Homing bow, used at startup and in case of the bow loosing position"
+2025-02-01 17:02:43,211 - 3.2 : <si< [hlp][str]:bowcalibrateall|bca:-:"Performs all calibration routines on the selected bow, see below for routines performed"
+2025-02-01 17:02:43,211 - 3.2 : <si< [hlp][str]:bowcalibratespeed|bcs:-:"Finds the minimum and maximum bow speed of the selected bow"
+2025-02-01 17:02:43,212 - 3.2 : <si< [hlp][str]:bowcalibratepressure|bcp:-:"Finds the minimum and maximum bow pressure of the selected bow"
+2025-02-01 17:02:43,212 - 3.2 : <si< [hlp][str]:bowmotorrun|bmr:1|0:"Set bow motor run on/off"
+2025-02-01 17:02:43,212 - 3.2 : <si< [hlp][str]:bowmotordirectpwm|bmdp:0-65535:"Bow motor direct power in 16-bit PWM values, requires that the PID is turned off"
+2025-02-01 17:02:43,214 - 3.2 : <si< [hlp][str]:bowmotortimeout|bmt:ms(0-65535):"Bow motor shutdown timeout after bow having been put into the rest position"
+2025-02-01 17:02:43,214 - 3.2 : <si< [hlp][str]:bowmotorspeedmax|bmsx:0-65535:"Bow motor maximum speed limit"
+2025-02-01 17:02:43,217 - 3.2 : <si< [hlp][str]:bowmotorspeedmin|bmsi:0-65535:"Bow motor minimum speed limit"
+2025-02-01 17:02:43,218 - 3.2 : <si< [hlp][str]:bowmotorvoltage|bmv:1.2-9:"Bow motor voltage"
+2025-02-01 17:02:43,218 - 3.2 : <si< [hlp][str]:bowmotorfrequency|bmf:-:"Bow motor reported frequency"
+2025-02-01 17:02:43,218 - 3.2 : <si< [hlp][str]:bowmotorcurrent|bmc:0-3:"Bow motor reported current use"
+2025-02-01 17:02:43,220 - 3.2 : <si< [hlp][str]:bowmotorcurrentlimit|bmcl:0-3:"Bow motor current limit (A)- !WARNING! Can ruin your instrument if changed"
+2025-02-01 17:02:43,220 - 3.2 : <si< [hlp][str]:bowmotorpowerlimit|bmpl:0-255:"Bow motor power limit (W) - !WARNING! Can ruin your instrument if changed"
+2025-02-01 17:02:43,224 - 3.2 : <si< [hlp][str]:bowmotorfaultcommands|bmfc:command list:"Commands to execute when a motor fault is tripped - !WARNING! Can ruin your instrument if changed"
+2025-02-01 17:02:43,224 - 3.2 : <si< [hlp][str]:bowmotoroverpowercommands|bmopc:command list:"Commands to execute when motor is over the power limit - !WARNING! Can ruin your instrument if changed"
+2025-02-01 17:02:43,225 - 3.2 : <si< [hlp][str]:bowpressurebaseline|bpb:0-65535:"Bow pressure baseline, modulation is added to this point upward"
+2025-02-01 17:02:43,226 - 3.2 : <si< [hlp][str]:bowpressuremodifier|bpm:0-65535:"Bow pressure modulation, added to the baseline"
+2025-02-01 17:02:43,227 - 3.2 : <si< [hlp][str]:bowpressurerest|bpr:0|1:"Puts the bow pressure in the resting position (conditional)"
+2025-02-01 17:02:43,230 - 3.2 : <si< [hlp][str]:bowpressureengage|bpe:0|1:"Puts the bow pressure in the engage position (conditional)"
+2025-02-01 17:02:43,230 - 3.2 : <si< [hlp][str]:bowpressurepositionmax|bppx:0-65535:"Bow pressure stall/maximum position"
+2025-02-01 17:02:43,230 - 3.2 : <si< [hlp][str]:bowpressurepositionengage|bppe:0-65535:"Bow pressure touch/minimum position"
+2025-02-01 17:02:43,231 - 3.2 : <si< [hlp][str]:bowpressurepositionrest|bppr:0-65535:"Bow pressure rest position"
+2025-02-01 17:02:43,231 - 3.2 : <si< [hlp][str]:bowpressureengagespeed|bpes:1 - 100?:"Bow pressure movement speed when engaging or disengaging"
+2025-02-01 17:02:43,233 - 3.2 : <si< [hlp][str]:bowpressuremodulationspeed|bpms:0.1 - 10:"Bow pressure movement speed while engaged"
+2025-02-01 17:02:43,234 - 3.2 : <si< [hlp][str]:bowpressurehold|bph:0|1:"Sets bow hold on/off"
+2025-02-01 17:02:43,234 - 3.2 : <si< [hlp][str]:solenoid|so:int:"Sets the currently selected solenoid"
+2025-02-01 17:02:43,238 - 3.2 : <si< [hlp][str]:solenoidengage|se:0-65535:"Sets the solenoid engagement of the current bow using the 1st argument as hardness"
+2025-02-01 17:02:43,238 - 3.2 : <si< [hlp][str]:solenoiddisengage|sd:0-1:"Sets the solenoid disengagement of the current bow, an argument of '0' will leave the solenoid at its current state while any other value will disengage the solenoid"
+2025-02-01 17:02:43,240 - 3.2 : <si< [hlp][str]:solenoidmaxforce|sxf:0 - 65535:"Set solenoid maximum usable force"
+2025-02-01 17:02:43,240 - 3.2 : <si< [hlp][str]:solenoidminforce|sif:0 - 65535:"Set solenoid minimum usable force"
+2025-02-01 17:02:43,241 - 3.2 : <si< [hlp][str]:solenoidforcemultiplier|sfm:0 - 1:"Set solenoid force multiplier"
+2025-02-01 17:02:43,244 - 3.2 : <si< [hlp][str]:solenoidengageduration|sed:uS:"Sets the duration of the solenoid hit in uS, if a value of 0 is set the solenoid will not disengage until a solenoiddisengage command has been given"
+2025-02-01 17:02:43,244 - 3.2 : <si< [hlp][str]:mutesetposition|msp:0-65535:"Set mute position"
+2025-02-01 17:02:43,245 - 3.2 : <si< [hlp][str]:mutefullmute|mfm:1|0:"Put mute in full mute position (conditional)"
+2025-02-01 17:02:43,245 - 3.2 : <si< [hlp][str]:mutehalfmute|mhm:1|0:"Put mute in half mute position (conditional)"
+2025-02-01 17:02:43,247 - 3.2 : <si< [hlp][str]:muterest|mr:1|0:"Put mute in rest position (conditional)"
+2025-02-01 17:02:43,247 - 3.2 : <si< [hlp][str]:mutesavefull|msf:1|0:"Save current mute position as full mute position (conditional)"
+2025-02-01 17:02:43,247 - 3.2 : <si< [hlp][str]:mutesavehalf|msh:1|0:"Save current mute position as half mute position (conditional)"
+2025-02-01 17:02:43,250 - 3.2 : <si< [hlp][str]:mutesaverest|msr:1|0:"Save current mute position as mute rest position (conditional)"
+2025-02-01 17:02:43,251 - 3.2 : <si< [hlp][str]:mutefullmuteposition|mfmp:0-65535:"Mute full mute position"
+2025-02-01 17:02:43,251 - 3.2 : <si< [hlp][str]:mutehalfmuteposition|mhmp:0-65535:"Mute half mute position"
+2025-02-01 17:02:43,252 - 3.2 : <si< [hlp][str]:muterestposition|mrp:0-65535:"Mute rest position"
+2025-02-01 17:02:43,252 - 3.2 : <si< [hlp][str]:mutesustain|ms:0|1:"Setting sustain on (1) or off (0)"
+2025-02-01 17:02:43,254 - 3.2 : <si< [hlp][str]:mutebackoff|mbo:0-65535:"Setting the time that the mute stays in the mutefullmute position before automatically going into rest, set in mS"
+2025-02-01 17:02:43,254 - 3.2 : <si< [hlp][str]:mutehome|mh:-:"Rehome mute"
+2025-02-01 17:02:43,254 - 3.2 : <si< [hlp][str]:mutecalibrate|mca:-:"Calibrate mute settings"
+2025-02-01 17:02:43,257 - 3.3 : <si< [hlp][str]:bowactuatoradd|baa:-:"Add new bow actuator"
+2025-02-01 17:02:43,258 - 3.3 : <si< [hlp][str]:bowactuatorremove|bar:actuator:"Remove bow actuator"
+2025-02-01 17:02:43,258 - 3.3 : <si< [hlp][str]:bowactuatorset|bas:actuator:"Set current bow actuator"
+2025-02-01 17:02:43,258 - 3.3 : <si< [hlp][str]:bowactuatorload|bal:-:"Load parameters from current bow actuator"
+2025-02-01 17:02:43,259 - 3.3 : <si< [hlp][str]:bowactuatorsave|bav:-:"Save current bow parameters into currently selected bow actuator"
+2025-02-01 17:02:43,260 - 3.3 : <si< [hlp][str]:bowactuatordata|bad:actuator:engagepressure:stallpressure:restposition:id:"Set data of bow actuator [actuator]"
+2025-02-01 17:02:43,261 - 3.3 : <si< [hlp][str]:bowactuatorcount|bac:-:"Returns the amount of saved bow actuators"
+2025-02-01 17:02:43,261 - 3.3 : <si< [hlp][str]:bowactuatorid|bai:id:"Sets the ID of the current bow actuator"
+2025-02-01 17:02:43,264 - 3.3 : <si< [hlp][str]:nooperation|nop:-:"Do absolutely, positively, nothing"
+2025-02-01 17:02:43,266 - 3.3 : >so> rqi:modulecount
+2025-02-01 17:02:43,266 - 3.3 : >so> rqi:bowcontrolfundamental
+2025-02-01 17:02:43,267 - 3.3 : >so> rqi:bmv
+2025-02-01 17:02:43,267 - 3.3 : >so> rqi:bowpidki
+2025-02-01 17:02:43,267 - 3.3 : >so> rqi:bowpidkp
+2025-02-01 17:02:43,267 - 3.3 : >so> rqi:bowpidkd
+2025-02-01 17:02:43,268 - 3.3 : >so> rqi:bowpidintegratorerror
+2025-02-01 17:02:43,268 - 3.3 : >so> rqi:bowmotortimeout
+2025-02-01 17:02:43,268 - 3.3 : >so> rqi:mutefullmuteposition
+2025-02-01 17:02:43,268 - 3.3 : >so> rqi:mutehalfmuteposition
+2025-02-01 17:02:43,269 - 3.3 : >so> rqi:muterestposition
+2025-02-01 17:02:43,269 - 3.3 : >so> rqi:mutebackoff
+2025-02-01 17:02:43,269 - 3.3 : >so> rqi:bowmotorspeedmax
+2025-02-01 17:02:43,269 - 3.3 : >so> rqi:bowmotorspeedmin
+2025-02-01 17:02:43,270 - 3.3 : >so> rqi:bowpressurepositionmax
+2025-02-01 17:02:43,270 - 3.3 : >so> rqi:bowpressurepositionengage
+2025-02-01 17:02:43,270 - 3.3 : >so> rqi:bowpressurepositionrest
+2025-02-01 17:02:43,271 - 3.3 : >so> rqi:bowharmonicseriescount
+2025-02-01 17:02:43,271 - 3.3 : >so> rqi:bowharmonicserieslist
+2025-02-01 17:02:43,271 - 3.3 : >so> rqi:bowharmonicseries
+2025-02-01 17:02:43,271 - 3.3 : >so> rqi:midieventhandler
+2025-02-01 17:02:43,272 - 3.3 : >so> rqi:bowcontrolharmonicbasenote
+2025-02-01 17:02:43,272 - 3.3 : >so> rqi:solenoidmaxforce
+2025-02-01 17:02:43,272 - 3.3 : >so> rqi:solenoidminforce
+2025-02-01 17:02:43,272 - 3.3 : >so> rqi:solenoidengageduration
+2025-02-01 17:02:43,273 - 3.3 : >so> rqi:bowactuatorcount
+2025-02-01 17:02:43,273 - 3.3 : >so> rqi:midiconfigurationcount
+2025-02-01 17:02:43,273 - 3.3 : >so> rqi:mrc
+2025-02-01 17:02:43,274 - 3.3 : >so> rqi:acm:0
+2025-02-01 17:02:43,274 - 3.3 : >so> rqi:acm:1
+2025-02-01 17:02:43,274 - 3.3 : >so> rqi:acm:2
+2025-02-01 17:02:43,275 - 3.3 : >so> rqi:acm:3
+2025-02-01 17:02:43,275 - 3.3 : >so> rqi:acm:4
+2025-02-01 17:02:43,275 - 3.3 : >so> rqi:acm:5
+2025-02-01 17:02:43,276 - 3.3 : >so> rqi:acm:6
+2025-02-01 17:02:43,276 - 3.3 : >so> rqi:acm:7
+2025-02-01 17:02:43,276 - 3.3 : >so> rqi:bpkp
+2025-02-01 17:02:43,276 - 3.3 : >so> rqi:bpki
+2025-02-01 17:02:43,277 - 3.3 : >so> rqi:bpkd
+2025-02-01 17:02:43,277 - 3.3 : >so> rqi:bpie
+2025-02-01 17:02:43,277 - 3.3 : >so> rqi:bpme
+2025-02-01 17:02:43,277 - 3.3 : <si< [irq]m:0,nop
+2025-02-01 17:02:43,278 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,278 - 3.3 : <si< [cmd]m:0,Setting fundamental frequency to 82.50
+2025-02-01 17:02:43,278 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,278 - 3.3 : <si< [cmd]m:0,Setting full mute position to 0
+2025-02-01 17:02:43,279 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,279 - 3.3 : <si< [cmd]m:0,Setting half mute position to 0
+2025-02-01 17:02:43,279 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,282 - 3.3 : >so> debugprint:error:1
+2025-02-01 17:02:43,282 - 3.3 : >so> debugprint:expressionparser:0
+2025-02-01 17:02:43,282 - 3.3 : >so> debugprint:debug:1
+2025-02-01 17:02:43,283 - 3.3 : >so> debugprint:hardware:1
+2025-02-01 17:02:43,283 - 3.3 : >so> debugprint:priority:1
+2025-02-01 17:02:43,283 - 3.3 : >so> debugprint:undefined:1
+2025-02-01 17:02:43,284 - 3.3 : >so> debugprint:usb:1
+2025-02-01 17:02:43,284 - 3.3 : >so> debugprint:command:1
+2025-02-01 17:02:43,284 - 3.3 : >so> debugprint:inforequest:1
+2025-02-01 17:02:43,285 - 3.3 : <si< [cmd]m:0,Setting rest position to 0
+2025-02-01 17:02:43,285 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,285 - 3.3 : <si< [cmd]m:0,Mute backoff set to 0
+2025-02-01 17:02:43,286 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,286 - 3.3 : <si< [cmd]m:0,Setting max bow pressure to 0
+2025-02-01 17:02:43,286 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,287 - 3.3 : <si< [cmd]m:0,Setting min bow pressure to 0
+2025-02-01 17:02:43,287 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,287 - 3.3 : <si< [cmd]m:0,Setting bow rest position 0
+2025-02-01 17:02:43,287 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,288 - 3.3 : <si< [cmd]m:0,Setting solenoid max force to 0
+2025-02-01 17:02:43,288 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,288 - 3.3 : <si< [cmd]m:0,Setting solenoid min force to 0
+2025-02-01 17:02:43,289 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,289 - 3.3 : <si< [cmd]m:0,Setting solenoid engage duration to 0
+2025-02-01 17:02:43,289 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,290 - 3.3 : <si< [cmd]m:0,Setting bow voltage to 6.60
+2025-02-01 17:02:43,290 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,290 - 3.3 : <si< [cmd]m:0,Setting PID Ki value to 7.00
+2025-02-01 17:02:43,290 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,291 - 3.3 : <si< [cmd]m:0,Setting PID Kp value to 500.00
+2025-02-01 17:02:43,291 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,306 - 3.3 : <si< [cmd]m:0,Setting PID Kd value to 500.00
+2025-02-01 17:02:43,307 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,307 - 3.3 : <si< [cmd]m:0,Setting error ignore to 0.10
+2025-02-01 17:02:43,308 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,309 - 3.3 : <si< [cmd]m:0,Setting motor timeout to 700
+2025-02-01 17:02:43,309 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,310 - 3.3 : <si< [cmd]m:0,Setting full mute position to 60000
+2025-02-01 17:02:43,310 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,310 - 3.3 : <si< [cmd]m:0,Setting half mute position to 17900
+2025-02-01 17:02:43,311 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,311 - 3.3 : <si< [cmd]m:0,Mute backoff set to 300
+2025-02-01 17:02:43,312 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,312 - 3.3 : <si< [cmd]m:0,Setting max bow frequency to 623.91
+2025-02-01 17:02:43,312 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,313 - 3.3 : <si< [cmd]m:0,Setting min bow frequency to 22.31
+2025-02-01 17:02:43,313 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,314 - 3.3 : <si< [cmd]m:0,Setting max bow pressure to 28169
+2025-02-01 17:02:43,314 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,315 - 3.3 : <si< [cmd]m:0,Setting min bow pressure to 2272
+2025-02-01 17:02:43,315 - 3.3 : <si< [cmd]m:0,Setting base note to 64
+2025-02-01 17:02:43,316 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,316 - 3.3 : <si< [cmd]m:0,Setting solenoid max force to 33535
+2025-02-01 17:02:43,317 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,317 - 3.3 : <si< [cmd]m:0,Setting solenoid min force to 19000
+2025-02-01 17:02:43,318 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,318 - 3.3 : <si< [cmd]m:0,Setting solenoid engage duration to 15000
+2025-02-01 17:02:43,319 - 3.3 : <si< [irq]m:0,bad:0:2272:28169:0:first touch
+2025-02-01 17:02:43,320 - 3.3 : <si< [irq]mcfn:0:default
+2025-02-01 17:02:43,320 - 3.3 : <si< [cmd]Setting current string module to 0
+2025-02-01 17:02:43,321 - 3.3 : <si< [cmd]m:0,Setting pid max error to 50.00
+2025-02-01 17:02:43,321 - 3.3 : <si< [irq]mc:1
+2025-02-01 17:02:43,322 - 3.3 : <si< [irq]m:0,bcu:82.50
+2025-02-01 17:02:43,323 - 3.3 : <si< [irq]m:0,bmv:6.60
+2025-02-01 17:02:43,325 - 3.3 : <si< [irq]m:0,bpki:7.00
+2025-02-01 17:02:43,325 - 3.3 : <si< [irq]m:0,bpkp:500.00
+2025-02-01 17:02:43,326 - 3.3 : <si< [irq]m:0,bpkd:500.00
+2025-02-01 17:02:43,327 - 3.3 : <si< [irq]m:0,bpie:0.10
+2025-02-01 17:02:43,328 - 3.3 : <si< [irq]m:0,bmt:700
+2025-02-01 17:02:43,329 - 3.3 : <si< [irq]m:0,mfmp:60000
+2025-02-01 17:02:43,329 - 3.3 : <si< [irq]m:0,mhmp:17900
+2025-02-01 17:02:43,331 - 3.3 : <si< [irq]m:0,mrp:0
+2025-02-01 17:02:43,331 - 3.3 : <si< [irq]m:0,mbo:300
+2025-02-01 17:02:43,332 - 3.3 : <si< [irq]m:0,bmsx:623.91
+2025-02-01 17:02:43,333 - 3.3 : <si< [irq]m:0,bmsi:22.31
+2025-02-01 17:02:43,334 - 3.3 : <si< [irq]m:0,bppx:28169
+2025-02-01 17:02:43,335 - 3.3 : <si< [irq]m:0,bppe:2272
+2025-02-01 17:02:43,336 - 3.3 : <si< [irq]m:0,bppr:0
+2025-02-01 17:02:43,339 - 3.3 : <si< [irq]m:0,bhsc:3:just intonation:equal temperament:harmonic
+2025-02-01 17:02:43,342 - 3.3 : <si< [irq]m:0,bhsl:1.0000:1.0667:1.1290:1.2070:1.2540:1.3363:1.4102:1.5000:1.6060:1.6677:1.8060:1.8810
+2025-02-01 17:02:43,353 - 3.3 : <si< [irq]m:0,bhs:2
+2025-02-01 17:02:43,361 - 3.4 : <si< [irq]mev:noteon:'m:0,b:0,bchb:note,bmr:1,bpid:1,bpe:1,se:(velocity*512)*(1-notecount),bcsm:0',mev:noteoff:'m:0,b:0,bpr:ibool(notecount),bcsm:0',mev:cc:64:'midisustain:bool(value)',mev:cc:123:'midiallnotesoff:1',mev:pat:'',mev:pb:'m:0,b:0,bchsh:pitch*4',mev:cat:'m:0,b:0,bpm:(pressure*512)',mev:pc:'',
+2025-02-01 17:02:43,361 - 3.4 : <si< [irq]m:0,bchbn:64
+2025-02-01 17:02:43,362 - 3.4 : <si< [irq]m:0,sxf:33535
+2025-02-01 17:02:43,362 - 3.4 : <si< [irq]m:0,sif:19000
+2025-02-01 17:02:43,363 - 3.4 : <si< [irq]m:0,sed:15000
+2025-02-01 17:02:43,363 - 3.4 : >so> rqi:bad:0
+2025-02-01 17:02:43,364 - 3.4 : <si< [irq]m:0,bac:1
+2025-02-01 17:02:43,366 - 3.4 : >so> rqi:mcfn:0
+2025-02-01 17:02:43,366 - 3.4 : <si< [irq]mcfc:1
+2025-02-01 17:02:43,366 - 3.4 : <si< [irq]mrc:0
+2025-02-01 17:02:43,367 - 3.4 : <si< [irq]acm:0:'bcha:value/1327.716667-20'
+2025-02-01 17:02:43,370 - 3.4 : <si< [irq]acm:1:'bchs5:"deadband(value-32206.0, 30)/2.425"'
+2025-02-01 17:02:43,374 - 3.4 : <si< [irq]acm:2:'bchsh:"deadband((value-32600)*0.49064, 250)"'
+2025-02-01 17:02:43,378 - 3.4 : <si< [irq]acm:3:'bpb:value'
+2025-02-01 17:02:43,381 - 3.4 : <si< [irq]acm:4:'se:value'
+2025-02-01 17:02:43,385 - 3.4 : <si< [irq]acm:5:'bmr:1,bpid:1,bcsm:0,bpe:bool(value-1000),bpr:ibool(value-1000),bph:ibool(value-1000)'
+2025-02-01 17:02:43,389 - 3.4 : <si< [irq]acm:6:'sfm:"deadband(1/65535*value,0.002)"'
+2025-02-01 17:02:43,393 - 3.4 : <si< [irq]acm:7:'msp:value'
+2025-02-01 17:02:43,396 - 3.4 : <si< [irq]m:0,bpkp:500.00
+2025-02-01 17:02:43,401 - 3.4 : <si< [irq]m:0,bpki:7.00
+2025-02-01 17:02:43,404 - 3.4 : <si< [irq]m:0,bpkd:500.00
+2025-02-01 17:02:43,408 - 3.4 : <si< [irq]m:0,bpie:0.10
+2025-02-01 17:02:43,411 - 3.4 : <si< [irq]m:0,bpme:50.00
+2025-02-01 17:02:43,415 - 3.4 : <si< [cmd]Setting error echo to 1
+2025-02-01 17:02:43,418 - 3.4 : <si< [cmd]Setting expressionparser echo to 0
+2025-02-01 17:02:43,421 - 3.4 : <si< [cmd]Setting debug echo to 1
+2025-02-01 17:02:43,424 - 3.4 : <si< [cmd]Setting hardware echo to 1
+2025-02-01 17:02:43,428 - 3.4 : <si< [cmd]Setting priority echo to 1
+2025-02-01 17:02:43,432 - 3.4 : <si< [cmd]Setting undefined echo to 1
+2025-02-01 17:02:43,435 - 3.4 : <si< [cmd]Setting usb echo to 1
+2025-02-01 17:02:43,439 - 3.4 : <si< [cmd]Setting command echo to 1
+2025-02-01 17:02:43,443 - 3.4 : <si< [cmd]Setting inforequest echo to 1
+2025-02-01 17:02:43,448 - 3.4 : <si< [irq]m:0,bad:0:2272:28169:0:first touch
+2025-02-01 17:02:43,451 - 3.4 : <si< [irq]mcfn:0:default
+2025-02-01 17:03:19,567 - 0.0 : >so> debugprint:usb:1
+2025-02-01 17:03:19,568 - 0.0 : >so> debugprint:command:1
+2025-02-01 17:03:19,568 - 0.0 : >so> debugprint:priority:1
+2025-02-01 17:03:19,568 - 0.0 : >so> debugprint:error:1
+2025-02-01 17:03:19,568 - 0.0 : >so> debugprint:undefined:1
+2025-02-01 17:03:19,573 - 0.0 : >so> debugprint:hardware:1
+2025-02-01 17:03:19,573 - 0.0 : >so> debugprint:debug:1
+2025-02-01 17:03:19,576 - 0.0 : >so> m:0,bcu:27.5
+2025-02-01 17:03:19,577 - 0.0 : Initialized
+2025-02-01 17:03:48,813 - 0.0 : >so> debugprint:usb:1
+2025-02-01 17:03:48,813 - 0.0 : >so> debugprint:command:1
+2025-02-01 17:03:48,813 - 0.0 : >so> debugprint:priority:1
+2025-02-01 17:03:48,813 - 0.0 : >so> debugprint:error:1
+2025-02-01 17:03:48,814 - 0.0 : >so> debugprint:undefined:1
+2025-02-01 17:03:48,818 - 0.0 : >so> debugprint:hardware:1
+2025-02-01 17:03:48,818 - 0.0 : >so> debugprint:debug:1
+2025-02-01 17:03:48,822 - 0.0 : >so> m:0,bcu:27.5
+2025-02-01 17:03:48,822 - 0.0 : Initialized

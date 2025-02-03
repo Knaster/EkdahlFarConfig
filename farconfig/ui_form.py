@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'form.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.0
+## Created by: Qt User Interface Compiler version 6.8.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -27,7 +27,7 @@ class Ui_Widget(object):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
         Widget.resize(1280, 680)
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Widget.sizePolicy().hasHeightForWidth())
@@ -69,7 +69,7 @@ class Ui_Widget(object):
         palette.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush2)
 #endif
         Widget.setPalette(palette)
-        Widget.setCursor(QCursor(Qt.ArrowCursor))
+        Widget.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
         Widget.setStyleSheet(u"QWidget {\n"
 "	background-color: white;\n"
 "	font-family: cantarell;\n"
@@ -175,7 +175,7 @@ class Ui_Widget(object):
         self.line_4.setObjectName(u"line_4")
         self.line_4.setGeometry(QRect(449, 7, 20, 31))
         self.line_4.setFrameShadow(QFrame.Plain)
-        self.line_4.setFrameShape(QFrame.VLine)
+        self.line_4.setFrameShape(QFrame.Shape.VLine)
         self.tabWidgetMain = QTabWidget(Widget)
         self.tabWidgetMain.setObjectName(u"tabWidgetMain")
         self.tabWidgetMain.setEnabled(True)
@@ -366,7 +366,7 @@ class Ui_Widget(object):
         self.line_7.setObjectName(u"line_7")
         self.line_7.setGeometry(QRect(123, 48, 20, 31))
         self.line_7.setFrameShadow(QFrame.Plain)
-        self.line_7.setFrameShape(QFrame.VLine)
+        self.line_7.setFrameShape(QFrame.Shape.VLine)
         self.pushButtonCalibrateHammer = QPushButton(self.groupBox_15)
         self.pushButtonCalibrateHammer.setObjectName(u"pushButtonCalibrateHammer")
         self.pushButtonCalibrateHammer.setGeometry(QRect(410, 50, 117, 25))
@@ -418,7 +418,7 @@ class Ui_Widget(object):
         self.line_20.setObjectName(u"line_20")
         self.line_20.setGeometry(QRect(309, 45, 20, 31))
         self.line_20.setFrameShadow(QFrame.Plain)
-        self.line_20.setFrameShape(QFrame.VLine)
+        self.line_20.setFrameShape(QFrame.Shape.VLine)
         self.tabWidgetMain.addTab(self.tab_basic, "")
         self.tab_midiSettings = QWidget()
         self.tab_midiSettings.setObjectName(u"tab_midiSettings")
@@ -471,8 +471,8 @@ class Ui_Widget(object):
         self.line_11 = QFrame(self.tab_midiSettings)
         self.line_11.setObjectName(u"line_11")
         self.line_11.setGeometry(QRect(10, 40, 1151, 16))
-        self.line_11.setFrameShape(QFrame.HLine)
-        self.line_11.setFrameShadow(QFrame.Sunken)
+        self.line_11.setFrameShape(QFrame.Shape.HLine)
+        self.line_11.setFrameShadow(QFrame.Shadow.Sunken)
         self.label_36 = QLabel(self.tab_midiSettings)
         self.label_36.setObjectName(u"label_36")
         self.label_36.setGeometry(QRect(10, 60, 111, 21))
@@ -635,8 +635,8 @@ class Ui_Widget(object):
         self.line_12 = QFrame(self.groupBoxCV1)
         self.line_12.setObjectName(u"line_12")
         self.line_12.setGeometry(QRect(90, 40, 21, 71))
-        self.line_12.setFrameShape(QFrame.VLine)
-        self.line_12.setFrameShadow(QFrame.Sunken)
+        self.line_12.setFrameShape(QFrame.Shape.VLine)
+        self.line_12.setFrameShadow(QFrame.Shadow.Sunken)
         self.labelCV1_2 = QLabel(self.groupBoxCV1)
         self.labelCV1_2.setObjectName(u"labelCV1_2")
         self.labelCV1_2.setGeometry(QRect(10, 33, 81, 20))
@@ -719,8 +719,8 @@ class Ui_Widget(object):
         self.line_13 = QFrame(self.groupBoxCV1_2)
         self.line_13.setObjectName(u"line_13")
         self.line_13.setGeometry(QRect(90, 40, 21, 71))
-        self.line_13.setFrameShape(QFrame.VLine)
-        self.line_13.setFrameShadow(QFrame.Sunken)
+        self.line_13.setFrameShape(QFrame.Shape.VLine)
+        self.line_13.setFrameShadow(QFrame.Shadow.Sunken)
         self.labelCV1_8 = QLabel(self.groupBoxCV1_2)
         self.labelCV1_8.setObjectName(u"labelCV1_8")
         self.labelCV1_8.setGeometry(QRect(10, 33, 81, 20))
@@ -788,8 +788,8 @@ class Ui_Widget(object):
         self.line_14 = QFrame(self.groupBoxCV1_3)
         self.line_14.setObjectName(u"line_14")
         self.line_14.setGeometry(QRect(90, 40, 21, 71))
-        self.line_14.setFrameShape(QFrame.VLine)
-        self.line_14.setFrameShadow(QFrame.Sunken)
+        self.line_14.setFrameShape(QFrame.Shape.VLine)
+        self.line_14.setFrameShadow(QFrame.Shadow.Sunken)
         self.labelCV1_14 = QLabel(self.groupBoxCV1_3)
         self.labelCV1_14.setObjectName(u"labelCV1_14")
         self.labelCV1_14.setGeometry(QRect(10, 33, 81, 20))
@@ -827,8 +827,8 @@ class Ui_Widget(object):
         self.line_15 = QFrame(self.groupBoxCV1_4)
         self.line_15.setObjectName(u"line_15")
         self.line_15.setGeometry(QRect(90, 39, 21, 71))
-        self.line_15.setFrameShape(QFrame.VLine)
-        self.line_15.setFrameShadow(QFrame.Sunken)
+        self.line_15.setFrameShape(QFrame.Shape.VLine)
+        self.line_15.setFrameShadow(QFrame.Shadow.Sunken)
         self.labelCV1_20 = QLabel(self.groupBoxCV1_4)
         self.labelCV1_20.setObjectName(u"labelCV1_20")
         self.labelCV1_20.setGeometry(QRect(10, 33, 81, 20))
@@ -874,8 +874,8 @@ class Ui_Widget(object):
         self.line_16 = QFrame(self.groupBoxCV1_5)
         self.line_16.setObjectName(u"line_16")
         self.line_16.setGeometry(QRect(90, 40, 21, 71))
-        self.line_16.setFrameShape(QFrame.VLine)
-        self.line_16.setFrameShadow(QFrame.Sunken)
+        self.line_16.setFrameShape(QFrame.Shape.VLine)
+        self.line_16.setFrameShadow(QFrame.Shadow.Sunken)
         self.labelCV1_26 = QLabel(self.groupBoxCV1_5)
         self.labelCV1_26.setObjectName(u"labelCV1_26")
         self.labelCV1_26.setGeometry(QRect(10, 33, 81, 20))
@@ -919,8 +919,8 @@ class Ui_Widget(object):
         self.line_17 = QFrame(self.groupBoxCV1_6)
         self.line_17.setObjectName(u"line_17")
         self.line_17.setGeometry(QRect(90, 40, 21, 111))
-        self.line_17.setFrameShape(QFrame.VLine)
-        self.line_17.setFrameShadow(QFrame.Sunken)
+        self.line_17.setFrameShape(QFrame.Shape.VLine)
+        self.line_17.setFrameShadow(QFrame.Shadow.Sunken)
         self.labelCV1_32 = QLabel(self.groupBoxCV1_6)
         self.labelCV1_32.setObjectName(u"labelCV1_32")
         self.labelCV1_32.setGeometry(QRect(10, 33, 81, 20))
@@ -984,8 +984,8 @@ class Ui_Widget(object):
         self.line_18 = QFrame(self.groupBoxCV1_7)
         self.line_18.setObjectName(u"line_18")
         self.line_18.setGeometry(QRect(90, 40, 21, 71))
-        self.line_18.setFrameShape(QFrame.VLine)
-        self.line_18.setFrameShadow(QFrame.Sunken)
+        self.line_18.setFrameShape(QFrame.Shape.VLine)
+        self.line_18.setFrameShadow(QFrame.Shadow.Sunken)
         self.labelCV1_15 = QLabel(self.groupBoxCV1_7)
         self.labelCV1_15.setObjectName(u"labelCV1_15")
         self.labelCV1_15.setGeometry(QRect(10, 33, 81, 20))
@@ -1041,8 +1041,8 @@ class Ui_Widget(object):
         self.line_19 = QFrame(self.groupBoxCV1_8)
         self.line_19.setObjectName(u"line_19")
         self.line_19.setGeometry(QRect(90, 40, 21, 71))
-        self.line_19.setFrameShape(QFrame.VLine)
-        self.line_19.setFrameShadow(QFrame.Sunken)
+        self.line_19.setFrameShape(QFrame.Shape.VLine)
+        self.line_19.setFrameShadow(QFrame.Shadow.Sunken)
         self.labelCV1_16 = QLabel(self.groupBoxCV1_8)
         self.labelCV1_16.setObjectName(u"labelCV1_16")
         self.labelCV1_16.setGeometry(QRect(10, 33, 81, 20))
@@ -1212,23 +1212,23 @@ class Ui_Widget(object):
         self.doubleSpinBoxBowRestPosition.setValue(65535.000000000000000)
         self.comboBoxActuatorPreset = QComboBox(self.groupBoxBowParameters)
         self.comboBoxActuatorPreset.setObjectName(u"comboBoxActuatorPreset")
-        self.comboBoxActuatorPreset.setGeometry(QRect(750, 40, 191, 25))
-        self.comboBoxActuatorPreset.setEditable(True)
+        self.comboBoxActuatorPreset.setGeometry(QRect(810, 40, 341, 25))
+        self.comboBoxActuatorPreset.setEditable(False)
         self.label_3 = QLabel(self.groupBoxBowParameters)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(690, 40, 51, 21))
+        self.label_3.setGeometry(QRect(750, 40, 51, 21))
         self.pushButtonActuatorSave = QPushButton(self.groupBoxBowParameters)
         self.pushButtonActuatorSave.setObjectName(u"pushButtonActuatorSave")
-        self.pushButtonActuatorSave.setGeometry(QRect(952, 40, 61, 25))
+        self.pushButtonActuatorSave.setGeometry(QRect(750, 80, 121, 25))
         self.pushButtonActuatorLoad = QPushButton(self.groupBoxBowParameters)
         self.pushButtonActuatorLoad.setObjectName(u"pushButtonActuatorLoad")
-        self.pushButtonActuatorLoad.setGeometry(QRect(1020, 40, 61, 25))
+        self.pushButtonActuatorLoad.setGeometry(QRect(750, 114, 61, 21))
         self.pushButtonActuatorDelete = QPushButton(self.groupBoxBowParameters)
         self.pushButtonActuatorDelete.setObjectName(u"pushButtonActuatorDelete")
-        self.pushButtonActuatorDelete.setGeometry(QRect(1090, 40, 61, 25))
-        self.pushButtonCalibratePressure_2 = QPushButton(self.groupBoxBowParameters)
-        self.pushButtonCalibratePressure_2.setObjectName(u"pushButtonCalibratePressure_2")
-        self.pushButtonCalibratePressure_2.setGeometry(QRect(310, 40, 171, 41))
+        self.pushButtonActuatorDelete.setGeometry(QRect(1030, 80, 121, 25))
+        self.pushButtonRestBow = QPushButton(self.groupBoxBowParameters)
+        self.pushButtonRestBow.setObjectName(u"pushButtonRestBow")
+        self.pushButtonRestBow.setGeometry(QRect(310, 40, 171, 41))
         self.pushButtonBowMaxPressureTest = QPushButton(self.groupBoxBowParameters)
         self.pushButtonBowMaxPressureTest.setObjectName(u"pushButtonBowMaxPressureTest")
         self.pushButtonBowMaxPressureTest.setEnabled(True)
@@ -1244,6 +1244,9 @@ class Ui_Widget(object):
         self.pushButtonBowRestPressureTest.setEnabled(True)
         self.pushButtonBowRestPressureTest.setGeometry(QRect(270, 100, 16, 25))
         self.pushButtonBowRestPressureTest.setFlat(False)
+        self.pushButonActuatorSaveNew = QPushButton(self.groupBoxBowParameters)
+        self.pushButonActuatorSaveNew.setObjectName(u"pushButonActuatorSaveNew")
+        self.pushButonActuatorSaveNew.setGeometry(QRect(890, 80, 121, 25))
         self.groupBoxMuteParameters = QGroupBox(self.tab_advanced)
         self.groupBoxMuteParameters.setObjectName(u"groupBoxMuteParameters")
         self.groupBoxMuteParameters.setGeometry(QRect(10, 320, 1151, 111))
@@ -1305,9 +1308,9 @@ class Ui_Widget(object):
         self.pushButtonMuteHalfTest.setEnabled(True)
         self.pushButtonMuteHalfTest.setGeometry(QRect(850, 40, 16, 25))
         self.pushButtonMuteHalfTest.setFlat(False)
-        self.pushButtonCalibrateMute_2 = QPushButton(self.groupBoxMuteParameters)
-        self.pushButtonCalibrateMute_2.setObjectName(u"pushButtonCalibrateMute_2")
-        self.pushButtonCalibrateMute_2.setGeometry(QRect(830, 80, 320, 25))
+        self.pushButtonRestMute = QPushButton(self.groupBoxMuteParameters)
+        self.pushButtonRestMute.setObjectName(u"pushButtonRestMute")
+        self.pushButtonRestMute.setGeometry(QRect(830, 80, 320, 25))
         self.groupBoxSolenoidParameters = QGroupBox(self.tab_advanced)
         self.groupBoxSolenoidParameters.setObjectName(u"groupBoxSolenoidParameters")
         self.groupBoxSolenoidParameters.setGeometry(QRect(10, 420, 1151, 71))
@@ -1426,7 +1429,7 @@ class Ui_Widget(object):
         self.line_8.setObjectName(u"line_8")
         self.line_8.setGeometry(QRect(210, 10, 21, 21))
         self.line_8.setFrameShadow(QFrame.Plain)
-        self.line_8.setFrameShape(QFrame.VLine)
+        self.line_8.setFrameShape(QFrame.Shape.VLine)
         self.label_30 = QLabel(self.tab_debugging)
         self.label_30.setObjectName(u"label_30")
         self.label_30.setGeometry(QRect(550, 10, 151, 21))
@@ -1449,7 +1452,7 @@ class Ui_Widget(object):
         self.line_9.setObjectName(u"line_9")
         self.line_9.setGeometry(QRect(520, 10, 21, 21))
         self.line_9.setFrameShadow(QFrame.Plain)
-        self.line_9.setFrameShape(QFrame.VLine)
+        self.line_9.setFrameShape(QFrame.Shape.VLine)
         self.groupBox_13 = QGroupBox(self.tab_debugging)
         self.groupBox_13.setObjectName(u"groupBox_13")
         self.groupBox_13.setGeometry(QRect(1000, 20, 161, 361))
@@ -1757,10 +1760,10 @@ class Ui_Widget(object):
         self.groupBox_16.setObjectName(u"groupBox_16")
         self.groupBox_16.setGeometry(QRect(10, 0, 1161, 361))
         self.groupBox_16.setStyleSheet(u"")
-        self.progressBar = QProgressBar(self.groupBox_16)
-        self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setGeometry(QRect(10, 60, 61, 51))
-        self.progressBar.setStyleSheet(u"QProgressBar {\n"
+        self.progressBar_bch = QProgressBar(self.groupBox_16)
+        self.progressBar_bch.setObjectName(u"progressBar_bch")
+        self.progressBar_bch.setGeometry(QRect(120, 60, 61, 51))
+        self.progressBar_bch.setStyleSheet(u"QProgressBar {\n"
 "	color: black;\n"
 "	font-weight: bold;\n"
 "	text-align: center;\n"
@@ -1770,21 +1773,22 @@ class Ui_Widget(object):
 "{\n"
 "    background-color: lightblue;\n"
 "}")
-        self.progressBar.setMaximum(36)
-        self.progressBar.setValue(6)
-        self.progressBar.setOrientation(Qt.Vertical)
+        self.progressBar_bch.setMinimum(-48)
+        self.progressBar_bch.setMaximum(48)
+        self.progressBar_bch.setValue(6)
+        self.progressBar_bch.setOrientation(Qt.Vertical)
         self.label_2 = QLabel(self.groupBox_16)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(10, 40, 61, 17))
+        self.label_2.setGeometry(QRect(120, 40, 61, 17))
         self.label_2.setStyleSheet(u"")
         self.label_4 = QLabel(self.groupBox_16)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setGeometry(QRect(10, 120, 61, 17))
         self.label_4.setStyleSheet(u"")
-        self.progressBar_2 = QProgressBar(self.groupBox_16)
-        self.progressBar_2.setObjectName(u"progressBar_2")
-        self.progressBar_2.setGeometry(QRect(10, 140, 61, 51))
-        self.progressBar_2.setStyleSheet(u"QProgressBar {\n"
+        self.progressBar_bchb = QProgressBar(self.groupBox_16)
+        self.progressBar_bchb.setObjectName(u"progressBar_bchb")
+        self.progressBar_bchb.setGeometry(QRect(10, 140, 61, 51))
+        self.progressBar_bchb.setStyleSheet(u"QProgressBar {\n"
 "	color: black;\n"
 "	font-weight: bold;\n"
 "	text-align: center;\n"
@@ -1794,17 +1798,17 @@ class Ui_Widget(object):
 "{\n"
 "    background-color: lightblue;\n"
 "}")
-        self.progressBar_2.setMaximum(127)
-        self.progressBar_2.setValue(48)
-        self.progressBar_2.setOrientation(Qt.Vertical)
+        self.progressBar_bchb.setMaximum(127)
+        self.progressBar_bchb.setValue(48)
+        self.progressBar_bchb.setOrientation(Qt.Vertical)
         self.label_5 = QLabel(self.groupBox_16)
         self.label_5.setObjectName(u"label_5")
         self.label_5.setGeometry(QRect(10, 200, 61, 17))
         self.label_5.setStyleSheet(u"")
-        self.progressBar_3 = QProgressBar(self.groupBox_16)
-        self.progressBar_3.setObjectName(u"progressBar_3")
-        self.progressBar_3.setGeometry(QRect(10, 220, 61, 51))
-        self.progressBar_3.setStyleSheet(u"QProgressBar {\n"
+        self.progressBar_bchbn = QProgressBar(self.groupBox_16)
+        self.progressBar_bchbn.setObjectName(u"progressBar_bchbn")
+        self.progressBar_bchbn.setGeometry(QRect(10, 220, 61, 51))
+        self.progressBar_bchbn.setStyleSheet(u"QProgressBar {\n"
 "	color: black;\n"
 "	font-weight: bold;\n"
 "	text-align: center;\n"
@@ -1814,17 +1818,17 @@ class Ui_Widget(object):
 "{\n"
 "    background-color: lightblue;\n"
 "}")
-        self.progressBar_3.setMaximum(127)
-        self.progressBar_3.setValue(48)
-        self.progressBar_3.setOrientation(Qt.Vertical)
+        self.progressBar_bchbn.setMaximum(127)
+        self.progressBar_bchbn.setValue(48)
+        self.progressBar_bchbn.setOrientation(Qt.Vertical)
         self.label_6 = QLabel(self.groupBox_16)
         self.label_6.setObjectName(u"label_6")
         self.label_6.setGeometry(QRect(120, 160, 71, 17))
         self.label_6.setStyleSheet(u"")
-        self.progressBar_4 = QProgressBar(self.groupBox_16)
-        self.progressBar_4.setObjectName(u"progressBar_4")
-        self.progressBar_4.setGeometry(QRect(120, 180, 61, 51))
-        self.progressBar_4.setStyleSheet(u"QProgressBar {\n"
+        self.progressBar_ar1 = QProgressBar(self.groupBox_16)
+        self.progressBar_ar1.setObjectName(u"progressBar_ar1")
+        self.progressBar_ar1.setGeometry(QRect(120, 180, 61, 51))
+        self.progressBar_ar1.setStyleSheet(u"QProgressBar {\n"
 "	color: black;\n"
 "	font-weight: bold;\n"
 "	text-align: center;\n"
@@ -1834,9 +1838,134 @@ class Ui_Widget(object):
 "{\n"
 "    background-color: lightblue;\n"
 "}")
-        self.progressBar_4.setMaximum(127)
-        self.progressBar_4.setValue(48)
-        self.progressBar_4.setOrientation(Qt.Vertical)
+        self.progressBar_ar1.setMinimum(-48)
+        self.progressBar_ar1.setMaximum(48)
+        self.progressBar_ar1.setValue(0)
+        self.progressBar_ar1.setOrientation(Qt.Vertical)
+        self.progressBar_bchsh = QProgressBar(self.groupBox_16)
+        self.progressBar_bchsh.setObjectName(u"progressBar_bchsh")
+        self.progressBar_bchsh.setGeometry(QRect(340, 220, 61, 51))
+        self.progressBar_bchsh.setStyleSheet(u"QProgressBar {\n"
+"	color: black;\n"
+"	font-weight: bold;\n"
+"	text-align: center;\n"
+"}\n"
+"\n"
+"QProgressBar::chunk\n"
+"{\n"
+"    background-color: lightblue;\n"
+"}")
+        self.progressBar_bchsh.setMinimum(-32737)
+        self.progressBar_bchsh.setMaximum(32767)
+        self.progressBar_bchsh.setValue(6)
+        self.progressBar_bchsh.setOrientation(Qt.Vertical)
+        self.label_9 = QLabel(self.groupBox_16)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setGeometry(QRect(340, 200, 61, 17))
+        self.label_9.setStyleSheet(u"")
+        self.progressBar_bchshr = QProgressBar(self.groupBox_16)
+        self.progressBar_bchshr.setObjectName(u"progressBar_bchshr")
+        self.progressBar_bchshr.setGeometry(QRect(340, 140, 61, 51))
+        self.progressBar_bchshr.setStyleSheet(u"QProgressBar {\n"
+"	color: black;\n"
+"	font-weight: bold;\n"
+"	text-align: center;\n"
+"}\n"
+"\n"
+"QProgressBar::chunk\n"
+"{\n"
+"    background-color: lightblue;\n"
+"}")
+        self.progressBar_bchshr.setMaximum(24)
+        self.progressBar_bchshr.setValue(6)
+        self.progressBar_bchshr.setOrientation(Qt.Vertical)
+        self.label_12 = QLabel(self.groupBox_16)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setGeometry(QRect(340, 120, 61, 17))
+        self.label_12.setStyleSheet(u"")
+        self.progressBar_bchs5 = QProgressBar(self.groupBox_16)
+        self.progressBar_bchs5.setObjectName(u"progressBar_bchs5")
+        self.progressBar_bchs5.setGeometry(QRect(450, 220, 61, 51))
+        self.progressBar_bchs5.setStyleSheet(u"QProgressBar {\n"
+"	color: black;\n"
+"	font-weight: bold;\n"
+"	text-align: center;\n"
+"}\n"
+"\n"
+"QProgressBar::chunk\n"
+"{\n"
+"    background-color: lightblue;\n"
+"}")
+        self.progressBar_bchs5.setMinimum(-32767)
+        self.progressBar_bchs5.setMaximum(32767)
+        self.progressBar_bchs5.setValue(6)
+        self.progressBar_bchs5.setOrientation(Qt.Vertical)
+        self.label_14 = QLabel(self.groupBox_16)
+        self.label_14.setObjectName(u"label_14")
+        self.label_14.setGeometry(QRect(450, 200, 61, 17))
+        self.label_14.setStyleSheet(u"")
+        self.label_24 = QLabel(self.groupBox_16)
+        self.label_24.setObjectName(u"label_24")
+        self.label_24.setGeometry(QRect(230, 160, 71, 17))
+        self.label_24.setStyleSheet(u"")
+        self.progressBar_bcha = QProgressBar(self.groupBox_16)
+        self.progressBar_bcha.setObjectName(u"progressBar_bcha")
+        self.progressBar_bcha.setGeometry(QRect(230, 180, 61, 51))
+        self.progressBar_bcha.setStyleSheet(u"QProgressBar {\n"
+"	color: black;\n"
+"	font-weight: bold;\n"
+"	text-align: center;\n"
+"}\n"
+"\n"
+"QProgressBar::chunk\n"
+"{\n"
+"    background-color: lightblue;\n"
+"}")
+        self.progressBar_bcha.setMinimum(-48)
+        self.progressBar_bcha.setMaximum(48)
+        self.progressBar_bcha.setValue(0)
+        self.progressBar_bcha.setOrientation(Qt.Vertical)
+        self.progressBar_ar2 = QProgressBar(self.groupBox_16)
+        self.progressBar_ar2.setObjectName(u"progressBar_ar2")
+        self.progressBar_ar2.setGeometry(QRect(230, 60, 61, 51))
+        self.progressBar_ar2.setStyleSheet(u"QProgressBar {\n"
+"	color: black;\n"
+"	font-weight: bold;\n"
+"	text-align: center;\n"
+"}\n"
+"\n"
+"QProgressBar::chunk\n"
+"{\n"
+"    background-color: lightblue;\n"
+"}")
+        self.progressBar_ar2.setMinimum(-48)
+        self.progressBar_ar2.setMaximum(48)
+        self.progressBar_ar2.setValue(0)
+        self.progressBar_ar2.setOrientation(Qt.Vertical)
+        self.label_31 = QLabel(self.groupBox_16)
+        self.label_31.setObjectName(u"label_31")
+        self.label_31.setGeometry(QRect(230, 40, 71, 17))
+        self.label_31.setStyleSheet(u"")
+        self.progressBar_ar3 = QProgressBar(self.groupBox_16)
+        self.progressBar_ar3.setObjectName(u"progressBar_ar3")
+        self.progressBar_ar3.setGeometry(QRect(450, 60, 61, 51))
+        self.progressBar_ar3.setStyleSheet(u"QProgressBar {\n"
+"	color: black;\n"
+"	font-weight: bold;\n"
+"	text-align: center;\n"
+"}\n"
+"\n"
+"QProgressBar::chunk\n"
+"{\n"
+"    background-color: lightblue;\n"
+"}")
+        self.progressBar_ar3.setMaximum(700)
+        self.progressBar_ar3.setValue(48)
+        self.progressBar_ar3.setOrientation(Qt.Vertical)
+        self.label_48 = QLabel(self.groupBox_16)
+        self.label_48.setObjectName(u"label_48")
+        self.label_48.setGeometry(QRect(450, 40, 71, 17))
+        self.label_48.setStyleSheet(u"")
         self.tabWidgetMain.addTab(self.tab_temporary, "")
         self.pushButtonShowConsole = QPushButton(Widget)
         self.pushButtonShowConsole.setObjectName(u"pushButtonShowConsole")
@@ -1851,7 +1980,7 @@ class Ui_Widget(object):
         self.line_5.setObjectName(u"line_5")
         self.line_5.setGeometry(QRect(590, 10, 20, 31))
         self.line_5.setFrameShadow(QFrame.Plain)
-        self.line_5.setFrameShape(QFrame.VLine)
+        self.line_5.setFrameShape(QFrame.Shape.VLine)
         self.line_4.raise_()
         self.comboBoxSerialPorts.raise_()
         self.pushButtonConnectDisconnect.raise_()
@@ -1865,7 +1994,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.tabWidgetMain.setCurrentIndex(6)
+        self.tabWidgetMain.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -1901,7 +2030,7 @@ class Ui_Widget(object):
         self.label_23.setText(QCoreApplication.translate("Widget", u"Preset", None))
         self.label_16.setText(QCoreApplication.translate("Widget", u"Saved series'", None))
         self.pushButtonAddHarmonicList.setText(QCoreApplication.translate("Widget", u"Add new", None))
-        self.pushButtonRemoveHarmonicList.setText(QCoreApplication.translate("Widget", u"Remove list", None))
+        self.pushButtonRemoveHarmonicList.setText(QCoreApplication.translate("Widget", u"Remove", None))
         self.pushButtonSaveCurrentHarmonicList.setText(QCoreApplication.translate("Widget", u"Save as current", None))
         self.pushButtonSaveNewHarmonicList.setText(QCoreApplication.translate("Widget", u"Save as new", None))
         self.pushButtonAddHarmonicListFile.setText(QCoreApplication.translate("Widget", u"Add from file", None))
@@ -2045,14 +2174,15 @@ class Ui_Widget(object):
         self.label_20.setText(QCoreApplication.translate("Widget", u"Bow engage position", None))
         self.label_21.setText(QCoreApplication.translate("Widget", u"Bow rest position", None))
         self.label_3.setText(QCoreApplication.translate("Widget", u"Preset", None))
-        self.pushButtonActuatorSave.setText(QCoreApplication.translate("Widget", u"Save", None))
+        self.pushButtonActuatorSave.setText(QCoreApplication.translate("Widget", u"Save as current", None))
         self.pushButtonActuatorLoad.setText(QCoreApplication.translate("Widget", u"Load", None))
         self.pushButtonActuatorDelete.setText(QCoreApplication.translate("Widget", u"Delete", None))
-        self.pushButtonCalibratePressure_2.setText(QCoreApplication.translate("Widget", u"Reset pressure rest \n"
+        self.pushButtonRestBow.setText(QCoreApplication.translate("Widget", u"Reset pressure rest \n"
 " and go to rest position", None))
         self.pushButtonBowMaxPressureTest.setText(QCoreApplication.translate("Widget", u"T", None))
         self.pushButtonBowEngagePressureTest.setText(QCoreApplication.translate("Widget", u"T", None))
         self.pushButtonBowRestPressureTest.setText(QCoreApplication.translate("Widget", u"T", None))
+        self.pushButonActuatorSaveNew.setText(QCoreApplication.translate("Widget", u"Save as new", None))
         self.groupBoxMuteParameters.setTitle(QCoreApplication.translate("Widget", u"Mute parameters", None))
         self.label_25.setText(QCoreApplication.translate("Widget", u"Rest position", None))
         self.label_26.setText(QCoreApplication.translate("Widget", u"Full mute position", None))
@@ -2062,7 +2192,7 @@ class Ui_Widget(object):
         self.pushButtonMuteRestTest.setText(QCoreApplication.translate("Widget", u"T", None))
         self.pushButtonMuteFullTest.setText(QCoreApplication.translate("Widget", u"T", None))
         self.pushButtonMuteHalfTest.setText(QCoreApplication.translate("Widget", u"T", None))
-        self.pushButtonCalibrateMute_2.setText(QCoreApplication.translate("Widget", u"Reset rest position and go to rest position", None))
+        self.pushButtonRestMute.setText(QCoreApplication.translate("Widget", u"Reset rest position and go to rest position", None))
         self.groupBoxSolenoidParameters.setTitle(QCoreApplication.translate("Widget", u"Hammer parameters", None))
         self.label_32.setText(QCoreApplication.translate("Widget", u"Minimum force", None))
         self.label_33.setText(QCoreApplication.translate("Widget", u"Maximum force", None))
@@ -2180,14 +2310,26 @@ class Ui_Widget(object):
         self.groupBox_11.setTitle(QCoreApplication.translate("Widget", u"Tuning scheme", None))
         self.tabWidgetMain.setTabText(self.tabWidgetMain.indexOf(self.tab_software), QCoreApplication.translate("Widget", u"Software settings", None))
         self.groupBox_16.setTitle(QCoreApplication.translate("Widget", u"Bow frequency", None))
-        self.progressBar.setFormat(QCoreApplication.translate("Widget", u"%v", None))
+        self.progressBar_bch.setFormat(QCoreApplication.translate("Widget", u"%v", None))
         self.label_2.setText(QCoreApplication.translate("Widget", u"bch", None))
         self.label_4.setText(QCoreApplication.translate("Widget", u"bchb", None))
-        self.progressBar_2.setFormat(QCoreApplication.translate("Widget", u"%v", None))
+        self.progressBar_bchb.setFormat(QCoreApplication.translate("Widget", u"%v", None))
         self.label_5.setText(QCoreApplication.translate("Widget", u"bchbn", None))
-        self.progressBar_3.setFormat(QCoreApplication.translate("Widget", u"%v", None))
-        self.label_6.setText(QCoreApplication.translate("Widget", u"subtract", None))
-        self.progressBar_4.setFormat(QCoreApplication.translate("Widget", u"%v", None))
+        self.progressBar_bchbn.setFormat(QCoreApplication.translate("Widget", u"%v", None))
+        self.label_6.setText(QCoreApplication.translate("Widget", u"Subtract", None))
+        self.progressBar_ar1.setFormat(QCoreApplication.translate("Widget", u"%v", None))
+        self.progressBar_bchsh.setFormat(QCoreApplication.translate("Widget", u"%v", None))
+        self.label_9.setText(QCoreApplication.translate("Widget", u"bchsh", None))
+        self.progressBar_bchshr.setFormat(QCoreApplication.translate("Widget", u"%v", None))
+        self.label_12.setText(QCoreApplication.translate("Widget", u"bchshr", None))
+        self.progressBar_bchs5.setFormat(QCoreApplication.translate("Widget", u"%v", None))
+        self.label_14.setText(QCoreApplication.translate("Widget", u"bchs5", None))
+        self.label_24.setText(QCoreApplication.translate("Widget", u"bcha", None))
+        self.progressBar_bcha.setFormat(QCoreApplication.translate("Widget", u"%v", None))
+        self.progressBar_ar2.setFormat(QCoreApplication.translate("Widget", u"%v", None))
+        self.label_31.setText(QCoreApplication.translate("Widget", u"Harmonic", None))
+        self.progressBar_ar3.setFormat(QCoreApplication.translate("Widget", u"%v", None))
+        self.label_48.setText(QCoreApplication.translate("Widget", u"T. Freq", None))
         self.tabWidgetMain.setTabText(self.tabWidgetMain.indexOf(self.tab_temporary), QCoreApplication.translate("Widget", u"Temporary", None))
         self.pushButtonShowConsole.setText(QCoreApplication.translate("Widget", u"Show console", None))
         self.pushButtonShowReference.setText(QCoreApplication.translate("Widget", u"Show reference", None))

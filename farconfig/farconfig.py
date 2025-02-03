@@ -16,7 +16,7 @@
 #
 # Copyright (C) 2024 Karl Ekdahl
 #
-
+import random
 # This Python file uses the following encoding: utf-8
 import sys
 import time
@@ -128,9 +128,13 @@ def processInformationReturn(inSerialHandler, infoReturn):
                     messageBox("Error", "Error retreiving module count!")
             case "b" | "bcu" | "bmv" | "bmt" | "bpkp" | "bpki" | "bpkd" | "bpie" | "mfmp" | "mhmp" | "mrp" | "mbo" | \
                  "bmsx" | "bmsi" | "bppx" | "bppe" | "bppr" | "bmf" | "psf" | "bmc" | "sxf" | "sif" | "sed" | "bcf" | \
-                 "bpkp" | "bpki" | "bkpd" | "bpie" | "bpme" | "bhs":
+                 "bpkp" | "bpki" | "bkpd" | "bpie" | "bpme" | "bhs" | "bch" | "bchb" | "bchshr" | "bchsh" | "bchs5" | \
+                 "ba" | "bcha" | "bchsr":
                 stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
                 mainWidget.updateStringModuleData()
+#            case "ba":
+#                stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
+#                mainWidget.updateStringModuleData()
             case "bhsl":
                 try:
                     hl = i.argument[0]
@@ -151,6 +155,20 @@ def processInformationReturn(inSerialHandler, infoReturn):
     #                stringModules[currentSerialModule].harmonicData.append(hs)
                     mainWidget.updateHarmonicTable()
                     print("Added harmonic list " + str(stringModules[currentSerialModule].harmonicData))
+                except  :
+                    messageBox("Problem! Yes!", "Oh no")
+            case "bhsd":
+                try:
+#                    hl = i.argument[0]
+                    print(len(stringModules[currentSerialModule].harmonicData))
+                    stringModules[currentSerialModule].harmonicData.clear()
+                    hsi = 2
+                    while (hsi < len(i.argument)):
+                        print("Adding value " + str(i.argument[hsi]))
+                        stringModules[currentSerialModule].harmonicData.append(i.argument[hsi])
+                        hsi += 1
+                    mainWidget.updateHarmonicTable()
+                    print("Added harmonic list " + str(stringModules[currentSerialModule].harmonicData))
                 except:
                     messageBox("Problem! Yes!", "Oh no")
 
@@ -160,6 +178,7 @@ def processInformationReturn(inSerialHandler, infoReturn):
                 while (hl < int(i.argument[0])):
                     #mainWidget.ui.comboBoxHarmonicList.addItem(str(hl))
                     mainWidget.ui.comboBoxHarmonicList.addItem(str(i.argument[hl + 1]))
+                    serialHandler.write("rqi:bhsd:" + str(hl))
                     hl += 1
                 mainWidget.ui.comboBoxHarmonicList.setCurrentIndex(stringModules[currentSerialModule].getCommandValue("bhs"))
             case "mev":
@@ -253,6 +272,8 @@ def processInformationReturn(inSerialHandler, infoReturn):
                 for a in range(1, mainWidget.ui.comboBoxBaseNote.count()):
                     if int(mainWidget.ui.comboBoxBaseNote.itemData(a)) == int(i.argument[0]):
                         mainWidget.ui.comboBoxBaseNote.setCurrentIndex(a)
+                #mainWidget.ui.progressBar_bchbn.setValue(int(i.argument[0]))
+                stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
                 print("setting base note to " + str(i.argument[0]))
 
             case "adcr":
@@ -274,8 +295,11 @@ def processInformationReturn(inSerialHandler, infoReturn):
                 if (len(i.argument) < 5):
                     break
                 if (i.argument[4]) == "":
-                    break
+                    i.argument[4] = "noname" + str(random.randrange(0,9999))
+                    #break
+
                 mainWidget.ui.comboBoxActuatorPreset.addItem(i.argument[4], i.argument[0])
+                mainWidget.ui.comboBoxActuatorPreset.setCurrentIndex(stringModules[currentSerialModule].getCommandValue("ba"))
 
             case "mcfc":
                 mainWidget.ui.comboBoxConfiguration.clear()
@@ -430,8 +454,17 @@ def requestStringModuleData():
 #    serialHandler.write("rqi:bowcontrolharmoniclist")
 #    serialHandler.write("rqi:bowcontrolharmoniccount")
 
+    serialHandler.write("rqi:bowcontrolharmonic")
+    serialHandler.write("rqi:bowcontrolharmonicbase")
+    serialHandler.write("rqi:bowcontrolharmonicbasenote")
+    serialHandler.write("rqi:bowcontrolharmonicadd")
+    serialHandler.write("rqi:bowcontrolharmonicshift")
+    serialHandler.write("rqi:bowcontrolharmonicshiftrange")
+    serialHandler.write("rqi:bowcontrolharmonicshift5")
+    serialHandler.write("rqi:bowcontrolfrequency")
+
     serialHandler.write("rqi:bowharmonicseriescount")
-    serialHandler.write("rqi:bowharmonicserieslist")
+    #serialHandler.write("rqi:bowharmonicseriesdata")
     serialHandler.write("rqi:bowharmonicseries")
 
     serialHandler.write("rqi:midieventhandler")
@@ -439,7 +472,10 @@ def requestStringModuleData():
     serialHandler.write("rqi:solenoidmaxforce")
     serialHandler.write("rqi:solenoidminforce")
     serialHandler.write("rqi:solenoidengageduration")
+
+    serialHandler.write("rqi:bowactuator")
     serialHandler.write("rqi:bowactuatorcount")
+
     serialHandler.write("rqi:midiconfigurationcount")
     serialHandler.write("rqi:mrc")
     serialHandler.write("rqi:acm:0")
@@ -450,6 +486,7 @@ def requestStringModuleData():
     serialHandler.write("rqi:acm:5")
     serialHandler.write("rqi:acm:6")
     serialHandler.write("rqi:acm:7")
+
     serialHandler.write("rqi:bpkp")
     serialHandler.write("rqi:bpki")
     serialHandler.write("rqi:bpkd")
@@ -862,6 +899,18 @@ class FarConfig(QWidget):
         self.ui.doubleSpinBoxSolenoidMaxForce.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidMaxForce.command)))
         self.ui.doubleSpinBoxSolenoidMinForce.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidMinForce.command)))
         self.ui.doubleSpinBoxSolenoidEngageDuration.setValue(float(stringModules[currentShowingModule].getCommandValue(self.ui.doubleSpinBoxSolenoidEngageDuration.command)))
+        self.ui.spinBoxHarmonicShiftRange.setValue(int(stringModules[currentShowingModule].getCommandValue(self.ui.spinBoxHarmonicShiftRange.command)))
+
+        self.ui.progressBar_bch.setValue(int(stringModules[currentShowingModule].getCommandValue("bch")))
+        self.ui.progressBar_bchb.setValue(int(stringModules[currentShowingModule].getCommandValue("bchb")))
+        self.ui.progressBar_bchbn.setValue(int(stringModules[currentShowingModule].getCommandValue("bchbn")))
+        self.ui.progressBar_bchshr.setValue(int(stringModules[currentShowingModule].getCommandValue("bchshr")))
+        self.ui.progressBar_bchsh.setValue(int(stringModules[currentShowingModule].getCommandValue("bchsh")))
+        self.ui.progressBar_bchs5.setValue(int(stringModules[currentShowingModule].getCommandValue("bchs5")))
+        self.ui.progressBar_bcha.setValue(int(stringModules[currentShowingModule].getCommandValue("bcha")))
+        self.ui.progressBar_ar1.setValue(self.ui.progressBar_bchb.value() - self.ui.progressBar_bchbn.value())
+        self.ui.progressBar_ar2.setValue(self.ui.progressBar_bch.value() + self.ui.progressBar_bcha.value())
+        self.ui.progressBar_ar3.setValue(int(stringModules[currentShowingModule].getCommandValue("bcf")))
 
         self.updateContinuousStringModuleData()
 
@@ -882,11 +931,11 @@ class FarConfig(QWidget):
 
                 self.ui.labelAnalyzeNote.setText(ret[3] + str(ret[0]))
                 self.ui.labelAnalyzeCents.setText(str(round(ret[2])))
-                self.ui.dialAnalyzeCents.setValue(round(ret[2]))
+#                self.ui.dialAnalyzeCents.setValue(round(ret[2]))
                 self.ui.horizontalSliderStringFrequency.setValue(round(ret[2]))
                 self.ui.labelAnalyzeFreq.setText(str(round(freq,1)))
-                self.ui.dialAnalyzeFreq.setValue(round(freq,1))
-                self.ui.labelStringFrequency.setText(ret[3] + str(ret[0]) + ":" + str(round(ret[2])) + " / " + str(round(freq,1)) + "Hz")
+#                self.ui.dialAnalyzeFreq.setValue(round(freq,1))
+#                self.ui.labelStringFrequency.setText(ret[3] + str(ret[0]) + ":" + str(round(ret[2])) + " / " + str(round(freq,1)) + "Hz")
 
         #freq = float(stringModules[currentShowingModule].bowFrequency)
         freq = stringModules[currentShowingModule].getCommandValue("bmf")
@@ -999,6 +1048,8 @@ class FarConfig(QWidget):
         qtObject.valueChanged.connect(self.basicChangedSignal)
 
     def basicChangedSignal(self, value):
+        if (mainWidget.updatingFromModule):
+            return
         sender = self.sender()
         out = "m:" + str(currentShowingModule) + "," + sender.command + ":" + str(value)
         stringModules[currentShowingModule].setCommandValue(sender.command, float(value))
@@ -1008,6 +1059,7 @@ class FarConfig(QWidget):
         qtObject.command = command
         qtObject.refresh = refresh
         qtObject.pressed.connect(self.buttonPressIssueCommand)
+
     def buttonPressIssueCommand(self):
         sender = self.sender()
         serialHandler.write(sender.command)
@@ -1044,10 +1096,8 @@ class FarConfig(QWidget):
         else:
             send = ""
         if not self.updatingFromModule:
-            serialHandler.write(send + "rqi:bhsl,rqi:bhs")
-#        if (currentHarmonicListSelected < len(stringModules[currentSerialModule].harmonicData)):
-#        mainWidget.ui.tableViewScale.setModel(tableTest.CustomTableModel(stringModules[currentSerialModule].harmonicData[currentHarmonicListSelected]))
-#        mainWidget.ui.tableViewScale.model().dataChanged.connect(mainWidget.tableViewScaleDataChanged)
+#            serialHandler.write(send + "rqi:bhsl,rqi:bhs")
+            serialHandler.write(send + "rqi:bhsd:" + str(currentHarmonicListSelected) + ",rqi:bhs")
         self.updateHarmonicTable()
 
     def pushButtonAddHarmonicPressed(self):
@@ -1067,7 +1117,8 @@ class FarConfig(QWidget):
         try:
             harmonicList = stringModules[currentSerialModule].getCommandValue("bhs")
             listID = mainWidget.ui.comboBoxHarmonicList.currentText()
-            serialHandler.write("bhss:'" + listID + "':" + str(harmonicList))
+            #serialHandler.write("bhss:'" + listID + "':" + str(harmonicList))
+            serialHandler.write("bhss:" + str(harmonicList) + ":'" + listID + "'")
         except:
             messageBox("Error", "Error saving list")
 
@@ -1076,14 +1127,17 @@ class FarConfig(QWidget):
         if listID is None:
             return
         newIndex = mainWidget.ui.comboBoxHarmonicList.count()
-        serialHandler.write("bhss:'" + listID + "':" + str(newIndex))
+#        serialHandler.write("bhss:'" + listID + "':" + str(newIndex))
+        serialHandler.write("bhss:" + str(newIndex) + ":'" + listID + "'")
         mainWidget.updateUIData()
+
     def pushButtonAddHarmonicListPressed(self):
         listID = inputBox("List name", "List name")
         if listID is None:
             return
         newIndex = mainWidget.ui.comboBoxHarmonicList.count()
-        serialHandler.write("bhsl:" + str(newIndex) + ":'" + listID + "':1")
+        #serialHandler.write("bhsl:" + str(newIndex) + ":'" + listID + "':1")
+        serialHandler.write("bhsd:" + str(newIndex) + ":'" + listID + "':1")
         mainWidget.updateUIData()
     def pushButtonAddHarmonicListFilePressed(self):
         pass
@@ -1246,24 +1300,43 @@ class FarConfig(QWidget):
                 return index
         return -1
 
+    def pushButonActuatorSaveNewPressed(self):
+        listID = inputBox("New actuator name", "Actuator name")
+        if listID is None:
+            return
+        newIndex = mainWidget.ui.comboBoxActuatorPreset.count()
+        #serialHandler.write("baa,bas:" + str(newIndex) + ",bav,bai:'" + listID + "',bac,bas:" + str(newIndex) + ",bal")
+        serialHandler.write("bas:" + str(newIndex) + ":'" + listID + "',ba:" + str(newIndex) + ",bac")
+        self.updatingFromModule = True
+        mainWidget.ui.comboBoxActuatorPreset.setCurrentIndex(newIndex)
+        self.updatingFromModule = False
+
     def pushButtonActuatorSavePressed(self):
         comboIndex = self.find_item(mainWidget.ui.comboBoxActuatorPreset, mainWidget.ui.comboBoxActuatorPreset.currentText())
         if comboIndex == -1:
-            comboIndex = mainWidget.ui.comboBoxActuatorPreset.count()
-            serialHandler.write("baa")
-        serialHandler.write("bas:" + str(comboIndex) + ",bav,bai:'" + mainWidget.ui.comboBoxActuatorPreset.currentText() + "',bac")
+            return
+            #comboIndex = mainWidget.ui.comboBoxActuatorPreset.count()
+            #serialHandler.write("baa")
+#        serialHandler.write("bas:" + str(comboIndex) + ",bav,bai:'" + mainWidget.ui.comboBoxActuatorPreset.currentText() + "',bac,bas:" + str(comboIndex) + ",bal")
+        serialHandler.write("bas:" + str(comboIndex) + ":'" + mainWidget.ui.comboBoxActuatorPreset.currentText() + "',ba:" + str(comboIndex) + ",bac")
 
     def pushButtonActuatorLoadPressed(self):
-        comboIndex = self.find_item(mainWidget.ui.comboBoxActuatorPreset, mainWidget.ui.comboBoxActuatorPreset.currentText())
-        if comboIndex == -1:
+        #comboIndex = self.find_item(mainWidget.ui.comboBoxActuatorPreset, mainWidget.ui.comboBoxActuatorPreset.currentText())
+        #if comboIndex == -1:
+        #    return
+        if (self.updatingFromModule):
             return
-        serialHandler.write("bas:" + str(comboIndex) + ",bal,rqi:bxp,rqi:bip,rqi:brp")
+        comboIndex = mainWidget.ui.comboBoxActuatorPreset.currentIndex()
+        #serialHandler.write("bas:" + str(comboIndex) + ",bal,rqi:bppx,rqi:bppe,rqi:bppr")
+        serialHandler.write("ba:" + str(comboIndex) + ",rqi:bppx,rqi:bppe,rqi:bppr")
+
     def pushButtonAcutatorDeletePreset(self):
         comboIndex = self.find_item(mainWidget.ui.comboBoxActuatorPreset, mainWidget.ui.comboBoxActuatorPreset.currentText())
         if comboIndex == -1:
             return
         mainWidget.ui.comboBoxActuatorPreset.removeItem(comboIndex)
-        serialHandler.write("bar:" + str(comboIndex) + ",bal,rqi:bxp,rqi:bip,rqi:brp")
+        #serialHandler.write("bar:" + str(comboIndex) + ",bal,rqi:bppx,rqi:bppe,rqi:bppr")
+        serialHandler.write("bar:" + str(comboIndex))
 
     def assignButtonTest(self, qtObject, command, valuePointer, commandPost):
         qtObject.command = command
@@ -1434,7 +1507,7 @@ class FarConfig(QWidget):
                 cmd += "bchs5:\"deadband(value" + str(cvOffset) + ", 30)/" + str(cvScale) + "\""
             case 2:
                 cmd = cl.buildCommandString({"bchsh"})
-                cmd += "bchsh:\"deadband(value-" + str(32767 - self.ui.dialCVFineTuneCenter.value()) + ", 250)*0.49064\""
+                cmd += "bchsh:\"deadband(value-" + str(32767 - self.ui.dialCVFineTuneCenter.value()) + ", 400)*0.49064\""
             case 5:
                 # 5 - bmr:1,bpid:1,bcsm:0,bpe:bool(value-1000),bpr:ibool(value-1000),bph:ibool(value-1000)
                 cmd = cl.buildCommandString({"bmr","bpid","bcsm","bpe","bpr","bph"})
@@ -1659,8 +1732,9 @@ class FarConfig(QWidget):
         QTimer.singleShot(1000, self.CVFinetuneCalibrateFinish)
 
     def CVFinetuneCalibrateFinish(self):
-        offset = self.firstCv - stringModules[currentSerialModule].getCVValue(2)
+        offset = (stringModules[currentSerialModule].getCVValue(2) - self.firstCv) / 2
         mainWidget.ui.dialCVFineTuneCenter.setValue(offset)
+        serialHandler.write("bchsh:0")
         pass
 
     def CVHarmonicShiftZeroCalibrate(self):
@@ -1671,6 +1745,7 @@ class FarConfig(QWidget):
     def CVHarmonicShiftZeroCalibrateContinue(self):
         cv = stringModules[currentSerialModule].getCVValue(1)
         mainWidget.ui.dialCVHarmonicShiftZero.setValue(32767 - cv)
+        serialHandler.write("bchs5:0")
 
 
 #harmonicSeriesList = [,
@@ -1857,11 +1932,13 @@ if __name__ == "__main__":
 #    mainWidget.ui.labelStringFrequency.setVisible(False)
     mainWidget.ui.horizontalSliderBowCurrent.setVisible(False)
     mainWidget.ui.horizontalSliderBowFrequency.setVisible(False)
+    mainWidget.ui.pushButtonActuatorLoad.setVisible(False)
 ## Hiding until implemented
     mainWidget.ui.pushButtonAddHarmonicListFile.setVisible(False)
     mainWidget.ui.pushButtonCCAddLearn.setVisible(False)
     mainWidget.ui.pushButtonDetectFundamental.setVisible(False)
     mainWidget.ui.pushButtonCalibrateHammer.setVisible(False)
+
 
 ## Global commands
     mainWidget.ui.pushButtonConnectDisconnect.pressed.connect(mainWidget.connectDisconnect)
@@ -1980,12 +2057,14 @@ if __name__ == "__main__":
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMaxPressure, "bppx")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMinPressure, "bppe")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowRestPosition, "bppr")
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonRestBow, "bppr:0,bpr:1")
     mainWidget.connectSignalToModalDialog(mainWidget.ui.pushButtonCalibratePressure, "bcp", "bcp")
 
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteFullMutePosition, "mfmp")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteHalfMutePosition, "mhmp")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteRestPosition, "mrp")
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteBackoff, "mbo")
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonRestMute, "mrp:0,mr:1")
     mainWidget.connectSignalToModalDialog(mainWidget.ui.pushButtonCalibrateMute, "mca", "mca")
 
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteFullTest, "mutefullmute:1")
@@ -1997,7 +2076,9 @@ if __name__ == "__main__":
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidEngageDuration, "sed")
 
     mainWidget.ui.pushButtonActuatorSave.pressed.connect(mainWidget.pushButtonActuatorSavePressed)
-    mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
+    mainWidget.ui.comboBoxActuatorPreset.currentIndexChanged.connect(mainWidget.pushButtonActuatorLoadPressed)
+    mainWidget.ui.pushButonActuatorSaveNew.pressed.connect(mainWidget.pushButonActuatorSaveNewPressed)
+   # mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
     mainWidget.ui.pushButtonActuatorDelete.pressed.connect(mainWidget.pushButtonAcutatorDeletePreset)
 
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowMaxPressureTest, "bowpressuremodifier:0,bowpressurebaseline:65535")
