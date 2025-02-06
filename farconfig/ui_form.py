@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDial,
     QHeaderView, QLabel, QLineEdit, QListWidget,
     QListWidgetItem, QPlainTextEdit, QProgressBar, QPushButton,
     QSizePolicy, QSlider, QSpinBox, QTabWidget,
-    QTableView, QWidget)
+    QTableView, QVBoxLayout, QWidget)
 
 class Ui_Widget(object):
     def setupUi(self, Widget):
@@ -359,9 +359,9 @@ class Ui_Widget(object):
         self.pushButtonCalibrateMute = QPushButton(self.groupBox_15)
         self.pushButtonCalibrateMute.setObjectName(u"pushButtonCalibrateMute")
         self.pushButtonCalibrateMute.setGeometry(QRect(280, 50, 117, 25))
-        self.pushButtonCalibratePressure_3 = QPushButton(self.groupBox_15)
-        self.pushButtonCalibratePressure_3.setObjectName(u"pushButtonCalibratePressure_3")
-        self.pushButtonCalibratePressure_3.setGeometry(QRect(0, 50, 117, 25))
+        self.pushButtonCalibrateAll = QPushButton(self.groupBox_15)
+        self.pushButtonCalibrateAll.setObjectName(u"pushButtonCalibrateAll")
+        self.pushButtonCalibrateAll.setGeometry(QRect(0, 50, 117, 25))
         self.line_7 = QFrame(self.groupBox_15)
         self.line_7.setObjectName(u"line_7")
         self.line_7.setGeometry(QRect(123, 48, 20, 31))
@@ -373,11 +373,6 @@ class Ui_Widget(object):
         self.groupBox_3 = QGroupBox(self.tab_basic)
         self.groupBox_3.setObjectName(u"groupBox_3")
         self.groupBox_3.setGeometry(QRect(20, 270, 1141, 201))
-        self.tableViewScale = QTableView(self.groupBox_3)
-        self.tableViewScale.setObjectName(u"tableViewScale")
-        self.tableViewScale.setGeometry(QRect(3, 80, 1041, 71))
-        self.tableViewScale.setStyleSheet(u"")
-        self.tableViewScale.horizontalHeader().setDefaultSectionSize(70)
         self.pushButtonAddHarmonic = QPushButton(self.groupBox_3)
         self.pushButtonAddHarmonic.setObjectName(u"pushButtonAddHarmonic")
         self.pushButtonAddHarmonic.setGeometry(QRect(1060, 80, 74, 21))
@@ -419,6 +414,19 @@ class Ui_Widget(object):
         self.line_20.setGeometry(QRect(309, 45, 20, 31))
         self.line_20.setFrameShadow(QFrame.Plain)
         self.line_20.setFrameShape(QFrame.Shape.VLine)
+        self.verticalLayoutWidget = QWidget(self.groupBox_3)
+        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
+        self.verticalLayoutWidget.setGeometry(QRect(0, 80, 1051, 71))
+        self.layoutHarmonicTable = QVBoxLayout(self.verticalLayoutWidget)
+        self.layoutHarmonicTable.setObjectName(u"layoutHarmonicTable")
+        self.layoutHarmonicTable.setContentsMargins(0, 0, 0, 0)
+        self.xtableViewScale = QTableView(self.verticalLayoutWidget)
+        self.xtableViewScale.setObjectName(u"xtableViewScale")
+        self.xtableViewScale.setStyleSheet(u"")
+        self.xtableViewScale.horizontalHeader().setDefaultSectionSize(70)
+
+        self.layoutHarmonicTable.addWidget(self.xtableViewScale)
+
         self.tabWidgetMain.addTab(self.tab_basic, "")
         self.tab_midiSettings = QWidget()
         self.tab_midiSettings.setObjectName(u"tab_midiSettings")
@@ -430,10 +438,10 @@ class Ui_Widget(object):
         self.label_29.setGeometry(QRect(10, 10, 101, 21))
         self.pushButtonConfigurationRemove = QPushButton(self.tab_midiSettings)
         self.pushButtonConfigurationRemove.setObjectName(u"pushButtonConfigurationRemove")
-        self.pushButtonConfigurationRemove.setGeometry(QRect(560, 10, 74, 25))
+        self.pushButtonConfigurationRemove.setGeometry(QRect(420, 10, 71, 25))
         self.pushButtonConfigurationAdd = QPushButton(self.tab_midiSettings)
         self.pushButtonConfigurationAdd.setObjectName(u"pushButtonConfigurationAdd")
-        self.pushButtonConfigurationAdd.setGeometry(QRect(470, 10, 74, 25))
+        self.pushButtonConfigurationAdd.setGeometry(QRect(330, 10, 71, 25))
         self.groupBox = QGroupBox(self.tab_midiSettings)
         self.groupBox.setObjectName(u"groupBox")
         self.groupBox.setGeometry(QRect(600, 100, 561, 511))
@@ -467,7 +475,7 @@ class Ui_Widget(object):
         self.pushButtonCCAddLearn.setGeometry(QRect(50, 340, 71, 25))
         self.pushButtonConfigurationName = QPushButton(self.tab_midiSettings)
         self.pushButtonConfigurationName.setObjectName(u"pushButtonConfigurationName")
-        self.pushButtonConfigurationName.setGeometry(QRect(330, 10, 124, 25))
+        self.pushButtonConfigurationName.setGeometry(QRect(510, 10, 71, 25))
         self.line_11 = QFrame(self.tab_midiSettings)
         self.line_11.setObjectName(u"line_11")
         self.line_11.setGeometry(QRect(10, 40, 1151, 16))
@@ -1994,7 +2002,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.tabWidgetMain.setCurrentIndex(3)
+        self.tabWidgetMain.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -2021,7 +2029,7 @@ class Ui_Widget(object):
         self.groupBox_15.setTitle(QCoreApplication.translate("Widget", u"Auto calibrations", None))
         self.pushButtonCalibratePressure.setText(QCoreApplication.translate("Widget", u"Cal. Pressure", None))
         self.pushButtonCalibrateMute.setText(QCoreApplication.translate("Widget", u"Cal. Mute", None))
-        self.pushButtonCalibratePressure_3.setText(QCoreApplication.translate("Widget", u"Calibrate all", None))
+        self.pushButtonCalibrateAll.setText(QCoreApplication.translate("Widget", u"Calibrate all", None))
         self.pushButtonCalibrateHammer.setText(QCoreApplication.translate("Widget", u"Cal. Hammer", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("Widget", u"Harmonic series", None))
         self.pushButtonAddHarmonic.setText(QCoreApplication.translate("Widget", u"Add", None))
@@ -2045,7 +2053,7 @@ class Ui_Widget(object):
         self.label_28.setText(QCoreApplication.translate("Widget", u"Event commands", None))
         self.label_11.setText(QCoreApplication.translate("Widget", u"Event Description", None))
         self.pushButtonCCAddLearn.setText(QCoreApplication.translate("Widget", u"+ Learn", None))
-        self.pushButtonConfigurationName.setText(QCoreApplication.translate("Widget", u"Set Name", None))
+        self.pushButtonConfigurationName.setText(QCoreApplication.translate("Widget", u"Rename", None))
         self.label_36.setText(QCoreApplication.translate("Widget", u"MIDI Channel", None))
         self.groupBox_10.setTitle(QCoreApplication.translate("Widget", u"Sustain pedal", None))
         self.midiSustainSend.setItemText(0, QCoreApplication.translate("Widget", u"Nothing", None))

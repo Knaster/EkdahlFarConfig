@@ -881,7 +881,7 @@ QDial {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <property name="iconSize">
     <size>
@@ -1211,7 +1211,7 @@ QSlider::handle:horizontal {
        <string>Cal. Mute</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButtonCalibratePressure_3">
+     <widget class="QPushButton" name="pushButtonCalibrateAll">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -1266,22 +1266,6 @@ QSlider::handle:horizontal {
      <property name="title">
       <string>Harmonic series</string>
      </property>
-     <widget class="QTableView" name="tableViewScale">
-      <property name="geometry">
-       <rect>
-        <x>3</x>
-        <y>80</y>
-        <width>1041</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>70</number>
-      </attribute>
-     </widget>
      <widget class="QPushButton" name="pushButtonAddHarmonic">
       <property name="geometry">
        <rect>
@@ -1448,6 +1432,28 @@ QSlider::handle:horizontal {
        <enum>Qt::Vertical</enum>
       </property>
      </widget>
+     <widget class="QWidget" name="verticalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>80</y>
+        <width>1051</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="layoutHarmonicTable">
+       <item>
+        <widget class="QTableView" name="xtableViewScale">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>70</number>
+         </attribute>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_midiSettings">
@@ -1480,9 +1486,9 @@ QSlider::handle:horizontal {
     <widget class="QPushButton" name="pushButtonConfigurationRemove">
      <property name="geometry">
       <rect>
-       <x>560</x>
+       <x>420</x>
        <y>10</y>
-       <width>74</width>
+       <width>71</width>
        <height>25</height>
       </rect>
      </property>
@@ -1493,9 +1499,9 @@ QSlider::handle:horizontal {
     <widget class="QPushButton" name="pushButtonConfigurationAdd">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>330</x>
        <y>10</y>
-       <width>74</width>
+       <width>71</width>
        <height>25</height>
       </rect>
      </property>
@@ -1630,14 +1636,14 @@ QSlider::handle:horizontal {
     <widget class="QPushButton" name="pushButtonConfigurationName">
      <property name="geometry">
       <rect>
-       <x>330</x>
+       <x>510</x>
        <y>10</y>
-       <width>124</width>
+       <width>71</width>
        <height>25</height>
       </rect>
      </property>
      <property name="text">
-      <string>Set Name</string>
+      <string>Rename</string>
      </property>
     </widget>
     <widget class="Line" name="line_11">

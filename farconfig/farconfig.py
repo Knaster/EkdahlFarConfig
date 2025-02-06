@@ -16,16 +16,18 @@
 #
 # Copyright (C) 2024 Karl Ekdahl
 #
+import platform
 import random
 # This Python file uses the following encoding: utf-8
 import sys
 import time
+import os
 import serial.tools.list_ports
 
 from PySide6.QtWidgets import (QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit,
                                QComboBox, QSlider, QTabBar, QTabWidget, QVBoxLayout, QCheckBox, QDial, QPushButton)
 from PySide6.QtCore import QThread, Signal, QTimer, QModelIndex, Qt, QObject, QDir, Slot, QSettings, QSize, QRect
-from PySide6.QtGui import QTextBlock, QTextCursor, QTextBlockFormat, QColor, QIcon, QPainter, QTransform
+from PySide6.QtGui import QTextBlock, QTextCursor, QTextBlockFormat, QColor, QIcon, QPainter, QTransform, QShortcut, QKeySequence
 
 import re
 
@@ -36,20 +38,13 @@ import waitdialog
 
 import logging
 from logging.handlers import RotatingFileHandler
-#logging.basicConfig(filename="farconfig.log", filemode="a", format='%(asctime)s - %(message)s',level=logging.DEBUG)
-log_formatter = logging.Formatter('%(asctime)s - %(message)s')
-log_file = "farconfig.log"
-log_handler = RotatingFileHandler(log_file, mode='w', maxBytes=1024*1024, backupCount=1, encoding=None, delay=0)
-log_handler.setFormatter(log_formatter)
-log_handler.setLevel(logging.DEBUG)
-log_app = logging.getLogger('root')
-log_app.setLevel(logging.DEBUG)
-log_app.addHandler(log_handler)
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
 #     pyside6-uic form.ui -o ui_form.py, or
 #     pyside2-uic form.ui -o ui_form.py
+import tableTest
+
 from ui_form import Ui_Widget
 from serialWidget import SerialWidget as SerialWidget
 from commandReference import commandReference as CommandReference
@@ -61,7 +56,6 @@ from time import process_time
 
 import mido
 
-import tableTest
 from commandparser import CommandItem, CommandList
 
 import timedChart
@@ -132,9 +126,6 @@ def processInformationReturn(inSerialHandler, infoReturn):
                  "ba" | "bcha" | "bchsr":
                 stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
                 mainWidget.updateStringModuleData()
-#            case "ba":
-#                stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
-#                mainWidget.updateStringModuleData()
             case "bhsl":
                 try:
                     hl = i.argument[0]
@@ -184,6 +175,7 @@ def processInformationReturn(inSerialHandler, infoReturn):
             case "mev":
                 match i.argument[0]:
                     case "noteon":
+                        mainWidget.remove_item(mainWidget.ui.listWidgetMidiEvents, "Note On")
                         instrumentMaster.evNoteOn = i.argument[1]
                         mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note On"))
 
@@ -206,6 +198,7 @@ def processInformationReturn(inSerialHandler, infoReturn):
 
                         print("Setting NoteOn to " + str(instrumentMaster.evNoteOn))
                     case "noteoff":
+                        mainWidget.remove_item(mainWidget.ui.listWidgetMidiEvents, "Note Off")
                         instrumentMaster.evNoteOff = i.argument[1]
                         mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note Off"))
 
@@ -226,10 +219,13 @@ def processInformationReturn(inSerialHandler, infoReturn):
 
                         print("Setting NoteOff to " + str(instrumentMaster.evNoteOff))
                     case "cc":
+                        mainWidget.remove_item(mainWidget.ui.listWidgetMidiEvents, "CC " + str(i.argument[1]))
+
                         instrumentMaster.addCC(int(i.argument[1]), str(i.argument[2]))
                         mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("CC " + str(i.argument[1])))
                         print("Setting CC " + i.argument[1] + " to " + str(i.argument[2]))
                     case "pat":
+                        mainWidget.remove_item(mainWidget.ui.listWidgetMidiEvents, "Poly Aftertouch")
                         instrumentMaster.evPolyAftertouch = i.argument[1]
                         mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Poly Aftertouch"))
 
@@ -241,6 +237,7 @@ def processInformationReturn(inSerialHandler, infoReturn):
 
                         print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPolyAftertouch))
                     case "pb":
+                        mainWidget.remove_item(mainWidget.ui.listWidgetMidiEvents, "Pitchbend")
                         instrumentMaster.evPitchbend = i.argument[1]
                         mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Pitchbend"))
 
@@ -252,6 +249,7 @@ def processInformationReturn(inSerialHandler, infoReturn):
 
                         print("Setting polyphonic aftertouch to " + str(instrumentMaster.evPitchbend))
                     case "cat":
+                        mainWidget.remove_item(mainWidget.ui.listWidgetMidiEvents, "Channel Aftertouch")
                         instrumentMaster.evChannelAftertouch = i.argument[1]
                         mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Channel Aftertouch"))
 
@@ -263,6 +261,7 @@ def processInformationReturn(inSerialHandler, infoReturn):
 
                         print("Setting polyphonic aftertouch to " + str(instrumentMaster.evChannelAftertouch))
                     case "pc":
+                        mainWidget.remove_item(mainWidget.ui.listWidgetMidiEvents, "Program change")
                         instrumentMaster.evProgramChange = i.argument[1]
                         mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Program change"))
 
@@ -301,13 +300,25 @@ def processInformationReturn(inSerialHandler, infoReturn):
                 mainWidget.ui.comboBoxActuatorPreset.addItem(i.argument[4], i.argument[0])
                 mainWidget.ui.comboBoxActuatorPreset.setCurrentIndex(stringModules[currentSerialModule].getCommandValue("ba"))
 
+            case  "mcf":
+                stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
+                mainWidget.updateStringModuleData()
+                mainWidget.ui.listWidgetMidiEvents.clear()
+                mainWidget.ui.comboBoxConfiguration.setCurrentIndex(int(stringModules[currentSerialModule].getCommandValue("mcf")))
+                serialHandler.write("rqi:mev")
+
             case "mcfc":
                 mainWidget.ui.comboBoxConfiguration.clear()
                 for a in range(0, int(i.argument[0])):
                     serialHandler.write("rqi:mcfn:" + str(a))
 
             case "mcfn":
-                    mainWidget.ui.comboBoxConfiguration.insertItem(int(i.argument[0]), str(i.argument[1]))
+#                mainWidget.remove_item(mainWidget.ui.comboBoxConfiguration, str(i.argument[1]))
+                index = mainWidget.find_item(mainWidget.ui.comboBoxConfiguration, str(i.argument[1]))
+                if (index != -1):
+                    mainWidget.ui.comboBoxConfiguration.removeItem(index)
+                mainWidget.ui.comboBoxConfiguration.insertItem(int(i.argument[0]), str(i.argument[1]))
+                mainWidget.ui.comboBoxConfiguration.setCurrentIndex(stringModules[currentSerialModule].getCommandValue("mcf"))
 
 #            case "bcp":
 #                if mainWidget.modalEvent == "bcp":
@@ -467,7 +478,10 @@ def requestStringModuleData():
     #serialHandler.write("rqi:bowharmonicseriesdata")
     serialHandler.write("rqi:bowharmonicseries")
 
-    serialHandler.write("rqi:midieventhandler")
+    serialHandler.write("rqi:midiconfigurationcount")
+    serialHandler.write("rqi:midiconfiguration")
+#    serialHandler.write("rqi:midieventhandler")
+
     serialHandler.write("rqi:bowcontrolharmonicbasenote")
     serialHandler.write("rqi:solenoidmaxforce")
     serialHandler.write("rqi:solenoidminforce")
@@ -476,7 +490,6 @@ def requestStringModuleData():
     serialHandler.write("rqi:bowactuator")
     serialHandler.write("rqi:bowactuatorcount")
 
-    serialHandler.write("rqi:midiconfigurationcount")
     serialHandler.write("rqi:mrc")
     serialHandler.write("rqi:acm:0")
     serialHandler.write("rqi:acm:1")
@@ -532,6 +545,8 @@ class serialHandler(QThread):
         self.isRunning = False
 
     def write(str):
+        if str == "rqi:mev":
+            pass
         serialWidget.addToDebugWindow(">so> " + str + "\n")
         str = str  + "\n\r"
         if serialStream == None:
@@ -573,17 +588,41 @@ class FarConfig(QWidget):
         self.ui = Ui_Widget()
         self.ui.setupUi(self)
 
-        self.ui.tabWidgetMain.setTabIcon(0, QIcon("_internal/resources/tuning_fork.png"))
+        scriptdir = os.path.dirname(os.path.realpath(__file__))
+
+        log_formatter = logging.Formatter('%(asctime)s - %(message)s')
+        log_file = scriptdir + "/farconfig.log"
+        log_handler = RotatingFileHandler(log_file, mode='w', maxBytes=1024 * 1024, backupCount=1, encoding=None, delay=0)
+        log_handler.setFormatter(log_formatter)
+        log_handler.setLevel(logging.DEBUG)
+        log_app = logging.getLogger('root')
+        log_app.setLevel(logging.DEBUG)
+        log_app.addHandler(log_handler)
+
+        icondir = ""
+        match(platform.system()):
+            case 'Darwin':
+                icondir = scriptdir + "/../Resources/resources/"
+                pass
+            case 'Linux':
+                icondir = scriptdir + "/_internal/resources/"
+                pass
+            case 'Windows':
+                pass
+
+        print(icondir)
+
+        self.ui.tabWidgetMain.setTabIcon(0, QIcon(icondir + "tuning_fork.png"))
         self.ui.tabWidgetMain.setTabText(0, "")
-        self.ui.tabWidgetMain.setTabIcon(1, QIcon("_internal/resources/midi.png"))
+        self.ui.tabWidgetMain.setTabIcon(1, QIcon(icondir + "midi.png"))
         self.ui.tabWidgetMain.setTabText(1, "")
-        self.ui.tabWidgetMain.setTabIcon(2, QIcon("_internal/resources/cv.png"))
+        self.ui.tabWidgetMain.setTabIcon(2, QIcon(icondir + "cv.png"))
         self.ui.tabWidgetMain.setTabText(2, "")
-        self.ui.tabWidgetMain.setTabIcon(3, QIcon("_internal/resources/advanced.png"))
+        self.ui.tabWidgetMain.setTabIcon(3, QIcon(icondir + "advanced.png"))
         self.ui.tabWidgetMain.setTabText(3, "")
-        self.ui.tabWidgetMain.setTabIcon(4, QIcon("_internal/resources/stats.png"))
+        self.ui.tabWidgetMain.setTabIcon(4, QIcon(icondir + "stats.png"))
         self.ui.tabWidgetMain.setTabText(4, "")
-        self.ui.tabWidgetMain.setTabIcon(5, QIcon("_internal/resources/software.png"))
+        self.ui.tabWidgetMain.setTabIcon(5, QIcon(icondir + "software.png"))
         self.ui.tabWidgetMain.setTabText(5, "")
 
         self.ui.tab_temporary.setVisible(False)
@@ -1097,7 +1136,7 @@ class FarConfig(QWidget):
             send = ""
         if not self.updatingFromModule:
 #            serialHandler.write(send + "rqi:bhsl,rqi:bhs")
-            serialHandler.write(send + "rqi:bhsd:" + str(currentHarmonicListSelected) + ",rqi:bhs")
+            serialHandler.write(send + "rqi:bhsd:" + str(currentHarmonicListSelected)) # + ",rqi:bhs")
         self.updateHarmonicTable()
 
     def pushButtonAddHarmonicPressed(self):
@@ -1126,9 +1165,13 @@ class FarConfig(QWidget):
         listID = inputBox("List name", "List name")
         if listID is None:
             return
+        if (mainWidget.find_item(mainWidget.ui.comboBoxHarmonicList, listID) != -1):
+            messageBox("Error", "Harmonic series already exists!")
+            return
         newIndex = mainWidget.ui.comboBoxHarmonicList.count()
 #        serialHandler.write("bhss:'" + listID + "':" + str(newIndex))
-        serialHandler.write("bhss:" + str(newIndex) + ":'" + listID + "'")
+        serialHandler.write("bhss:" + str(newIndex) + ":'" + listID + "',bhs:" + str(newIndex))
+        #mainWidget.ui.comboBoxHarmonicList.setCurrentIndex(newIndex)
         mainWidget.updateUIData()
 
     def pushButtonAddHarmonicListPressed(self):
@@ -1139,15 +1182,18 @@ class FarConfig(QWidget):
         #serialHandler.write("bhsl:" + str(newIndex) + ":'" + listID + "':1")
         serialHandler.write("bhsd:" + str(newIndex) + ":'" + listID + "':1")
         mainWidget.updateUIData()
+
     def pushButtonAddHarmonicListFilePressed(self):
         pass
+
     def pushButtonRemoveHarmonicListPressed(self):
         try:
             harmonicList = stringModules[currentSerialModule].getCommandValue("bhs")
-            serialHandler.write("bhsrm:" + str(harmonicList))
+            serialHandler.write("bhsrm:" + str(harmonicList) + ",rqi:bhs")
         except:
             messageBox("Error", "Error saving list")
         mainWidget.updateUIData()
+
     def updateHarmonicTable(self):
         mainWidget.ui.tableViewScale.setModel(tableTest.CustomTableModel(stringModules[currentSerialModule].harmonicData))
         mainWidget.ui.tableViewScale.model().dataChanged.connect(mainWidget.tableViewScaleDataChanged)
@@ -1300,9 +1346,17 @@ class FarConfig(QWidget):
                 return index
         return -1
 
+    def remove_item(self, widget, item_text):
+        index = widget.findItems(item_text, Qt.MatchFlag.MatchExactly)
+        if (len(index) != 0):
+            widget.takeItem(widget.row(index[0]))
+
     def pushButonActuatorSaveNewPressed(self):
         listID = inputBox("New actuator name", "Actuator name")
         if listID is None:
+            return
+        if (mainWidget.find_item(mainWidget.ui.comboBoxActuatorPreset, listID) != -1):
+            messageBox("Error", "Actuator already exists!")
             return
         newIndex = mainWidget.ui.comboBoxActuatorPreset.count()
         #serialHandler.write("baa,bas:" + str(newIndex) + ",bav,bai:'" + listID + "',bac,bas:" + str(newIndex) + ",bal")
@@ -1359,6 +1413,36 @@ class FarConfig(QWidget):
             serialHandler.write("midiconfiguration:" + str(conf) + ",midiconfigurationname:" + text)
             mainWidget.ui.comboBoxConfiguration.setItemText(conf, text)
 
+    def configurationAdd(self):
+        defText = mainWidget.ui.comboBoxConfiguration.currentText()
+        text, ok = QInputDialog().getText(self, "Configuration name","Configuration name:", QLineEdit.Normal, defText)
+        if ok and text:
+            if (mainWidget.find_item(mainWidget.ui.comboBoxConfiguration, text) != -1):
+                messageBox("Error", "Name already exists!")
+                return
+            serialHandler.write("midiconfigurationadd:" + str(text))
+            mainWidget.ui.comboBoxConfiguration.addItem(text)
+            serialHandler.write("midiconfiguration:" + str(mainWidget.ui.comboBoxConfiguration.count() - 1))
+
+
+    def configurationRemove(self):
+        config = int(mainWidget.ui.comboBoxConfiguration.currentIndex())
+        if (config < 0) or (mainWidget.ui.comboBoxConfiguration.count() == 0):
+            return
+        serialHandler.write("midiconfigurationremove:" + str(config) + ",rqi:mcfc,rqi:mcf")
+        #self.updateStringModuleData()
+        pass
+
+    def configurationSet(self):
+        if (self.updatingFromModule):
+            return
+        config = int(mainWidget.ui.comboBoxConfiguration.currentIndex())
+        if (config < 0) or (mainWidget.ui.comboBoxConfiguration.count() == 0):
+            return
+        serialHandler.write("midiconfiguration:" + str(config))
+        pass
+
+
 #    def selectMIDIDevice(self, Index):
 #        if mainWidget.ui.comboBoxMIDILearnDevice.currentIndex() == -1:
 #            return
@@ -1366,6 +1450,10 @@ class FarConfig(QWidget):
     def ccAdd(self):
         cc, ok = QInputDialog.getInt(self, "CC Number", "CC Number")
         if ok and (cc > -1 and cc < 128):
+            index = mainWidget.ui.listWidgetMidiEvents.findItems("CC " + str(cc), Qt.MatchFlag.MatchExactly)
+            if (len(index) != 0):
+                messageBox("Error", "Event already exists!")
+                return
             serialHandler.write("mev:cc:" + str(cc) + ":''")
             self.updateUIData()
 
@@ -1703,6 +1791,12 @@ class FarConfig(QWidget):
         pass
 
     def resetAllSettings(self):
+        msgBox = QMessageBox.warning(self, "WHOOPS COMPLETE RESET",
+                                     "This will reset ALL SETTINGS in your Ekdahl FAR and then restart the instrument, you sure?",
+                                     buttons=QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                                     defaultButton=QMessageBox.StandardButton.No)
+        if msgBox == QMessageBox.StandardButton.Yes:
+            serialHandler.write("grap,reset:1")
         pass
 
     def waitForSerialResponse(self, command, timeout = 5000):
@@ -1843,6 +1937,7 @@ def loadCheckState(settings, name, checkBox):
         checkBox.setCheckState(Qt.CheckState.Checked)
     else:
         checkBox.setCheckState(Qt.CheckState.Unchecked)
+
 def load_settings():
     # Load window geometry using QSettings
     settings = QSettings("Knas", "Ekdahl FAR Config")
@@ -1853,10 +1948,11 @@ def load_settings():
     if consoleGeometry:
         serialWidget.restoreGeometry(consoleGeometry)
     consoleWindowVisible = settings.value("consoleWindowVisible")
-    if consoleWindowVisible == 'false' or consoleWindowVisible is False:
-        serialWidget.hide()
-    else:
+
+    if consoleWindowVisible is True or consoleWindowVisible == 'true':
         serialWidget.show()
+    else:
+        serialWidget.hide()
     loadCheckState(settings, "filterHardware", serialWidget.ui.checkBoxFilterHardware)
     loadCheckState(settings, "filterUSB", serialWidget.ui.checkBoxFilterUSB)
     loadCheckState(settings, "filterDebug", serialWidget.ui.checkBoxFilterDebug)
@@ -1895,10 +1991,10 @@ def load_settings():
     if referenceGeometry:
         commandReference.restoreGeometry(referenceGeometry)
     referenceWindowVisible = settings.value("referenceWindowVisible")
-    if referenceWindowVisible == 'false' or referenceWindowVisible is False:
-        commandReference.hide()
-    else:
+    if referenceWindowVisible is True or referenceWindowVisible == 'true':
         commandReference.show()
+    else:
+        commandReference.hide()
 
 def showConsole():
     serialWidget.show()
@@ -1975,6 +2071,9 @@ if __name__ == "__main__":
     mainWidget.ui.comboBoxFundamentalFrequency.currentIndexChanged.connect(mainWidget.comboBoxFundamentalFrequencyIndexChanged)
     mainWidget.ui.listWidgetTuningscheme.currentItemChanged.connect(mainWidget.tuningSchemeChanged)
 
+
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonCalibrateAll, "bowcalibrateall", True)
+
     mainWidget.ui.comboBoxHarmonicList.currentIndexChanged.connect(mainWidget.comboBoxHarmonicListCurrentIndexChanged)
     mainWidget.ui.pushButtonAddHarmonic.pressed.connect(mainWidget.pushButtonAddHarmonicPressed)
     mainWidget.ui.pushButtonRemoveHarmonic.pressed.connect(mainWidget.pushButtonRemoveHarmonicPressed)
@@ -1987,6 +2086,13 @@ if __name__ == "__main__":
 
 ## Tab Midi settings
     mainWidget.ui.comboBoxMidiChannel.currentIndexChanged.connect(mainWidget.comboBoxMidiChannelIndexChanged)
+
+    mainWidget.ui.comboBoxConfiguration.currentIndexChanged.connect(mainWidget.configurationSet)
+    #mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonConfigurationAdd, "mcfa", True)
+    mainWidget.ui.pushButtonConfigurationAdd.pressed.connect(mainWidget.configurationAdd)
+    mainWidget.ui.pushButtonConfigurationRemove.pressed.connect(mainWidget.configurationRemove)
+    mainWidget.ui.pushButtonConfigurationName.pressed.connect(mainWidget.configurationSetName)
+
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMidiRestoreDefaults, "mcfd", True)
 
     mainWidget.assignMouseReleaseEvent(mainWidget.ui.midiNoteOnVelToHammer, mainWidget.cmdNoteOnUpdate)
@@ -2007,7 +2113,7 @@ if __name__ == "__main__":
     mainWidget.populateComboBoxSendBinary(mainWidget.ui.midiSustainSend)
     mainWidget.connectWidgetsToBinarySenders("sustain", { mainWidget.ui.midiSustainInvert, mainWidget.ui.midiSustainSend })
 
-    mainWidget.ui.pushButtonConfigurationName.pressed.connect(mainWidget.configurationSetName)
+    #mainWidget.ui.pushButtonConfigurationName.pressed.connect(mainWidget.configurationSetName)
     mainWidget.ui.listWidgetMidiEvents.currentItemChanged.connect(mainWidget.listWidgetMidiEventscurrentItemChanged)
     mainWidget.ui.lineEditMidiEventCommand.editingFinished.connect(mainWidget.lineEditMidiEventCommandFinished)
 #    mainWidget.ui.listWidgetCommands.currentItemChanged.connect(mainWidget.listWidgetCommandsCurrentItemChanged)
@@ -2096,8 +2202,17 @@ if __name__ == "__main__":
     mainWidget.ui.pushButtonResetAllSettings.pressed.connect(mainWidget.resetAllSettings)
 
 ## Tab Debugging
+#    mainWidget.msgSc = QShortcut(QKeySequence('Ctrl+M'), mainWidget.ui.tableViewScale)
+#    mainWidget.msgSc.activated.connect(lambda: QMessageBox.information(mainWidget.ui.tableViewScale,'Message', 'Ctrl + M initiated'))
+    mainWidget.ui.tableViewScale = tableTest.customTableView(mainWidget.ui.groupBox_3)
+    mainWidget.ui.tableViewScale.horizontalHeader().setDefaultSectionSize(70)
+    mainWidget.ui.tableViewScale.horizontalHeader().setMinimumSectionSize(18)
+    mainWidget.ui.tableViewScale.verticalHeader().setDefaultSectionSize(30)
+    mainWidget.ui.tableViewScale.verticalHeader().setMinimumSectionSize(22)
+    mainWidget.ui.layoutHarmonicTable.replaceWidget(mainWidget.ui.xtableViewScale, mainWidget.ui.tableViewScale)
     mainWidget.ui.tableViewScale.setModel(tableTest.CustomTableModel())
-    delegate = tableTest.SpinBoxDelegate()
+
+    delegate = tableTest.noneDelegate()
     mainWidget.ui.tableViewScale.setItemDelegateForRow(0, delegate)
     mainWidget.ui.tableViewScale.model().dataChanged.connect(mainWidget.tableViewScaleDataChanged)
 
