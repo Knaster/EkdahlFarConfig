@@ -21,7 +21,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name='farconfig',
+    name='Ekdahl FAR Configuration utility',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -40,9 +40,9 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='farconfig',
+    name='Ekdahl FAR Configuration utility',
 )
 app = BUNDLE(coll,
-         name='farconfig.app',
+         name='Ekdahl FAR Configuration utility.app',
          icon='_internal/resources/far_icon.icns',
          bundle_identifier=None)
