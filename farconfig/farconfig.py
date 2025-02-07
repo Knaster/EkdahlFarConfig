@@ -605,7 +605,7 @@ class FarConfig(QWidget):
                 icondir = scriptdir + "/../Resources/resources/"
                 pass
             case 'Linux':
-                icondir = scriptdir + "/_internal/resources/"
+                icondir = scriptdir + "/resources/"
                 pass
             case 'Windows':
                 icondir = scriptdir + "\\resources\\"
