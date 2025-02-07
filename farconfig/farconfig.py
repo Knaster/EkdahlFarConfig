@@ -602,7 +602,7 @@ class FarConfig(QWidget):
         icondir = ""
         match(platform.system()):
             case 'Darwin':
-                icondir = scriptdir + "/../Resources/resources/"
+                icondir = scriptdir + "/resources/"
                 pass
             case 'Linux':
                 icondir = scriptdir + "/resources/"
