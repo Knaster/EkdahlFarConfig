@@ -6,7 +6,7 @@ class ProgressDialog(QDialog):
     def __init__(self, duration=5000, title="Calibrating", parent=None):
         super().__init__(parent)
         self.setWindowTitle(title)
-        self.setWindowModality(Qt.WindowModality.ApplicationModal)
+        self.setWindowModality(Qt.WindowModality.NonModal)
         self.resize(300, 100)
 
         self.duration = duration  # Duration in milliseconds

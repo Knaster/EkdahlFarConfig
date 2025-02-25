@@ -462,8 +462,6 @@ def requestStringModuleData():
     serialHandler.write("rqi:bowpressurepositionmax")
     serialHandler.write("rqi:bowpressurepositionengage")
     serialHandler.write("rqi:bowpressurepositionrest")
-#    serialHandler.write("rqi:bowcontrolharmoniclist")
-#    serialHandler.write("rqi:bowcontrolharmoniccount")
 
     serialHandler.write("rqi:bowcontrolharmonic")
     serialHandler.write("rqi:bowcontrolharmonicbase")
@@ -475,12 +473,10 @@ def requestStringModuleData():
     serialHandler.write("rqi:bowcontrolfrequency")
 
     serialHandler.write("rqi:bowharmonicseriescount")
-    #serialHandler.write("rqi:bowharmonicseriesdata")
     serialHandler.write("rqi:bowharmonicseries")
 
     serialHandler.write("rqi:midiconfigurationcount")
     serialHandler.write("rqi:midiconfiguration")
-#    serialHandler.write("rqi:midieventhandler")
 
     serialHandler.write("rqi:bowcontrolharmonicbasenote")
     serialHandler.write("rqi:solenoidmaxforce")
@@ -587,6 +583,8 @@ class FarConfig(QWidget):
         super().__init__(parent)
         self.ui = Ui_Widget()
         self.ui.setupUi(self)
+        self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+        self.focusing = False
 
         scriptdir = os.path.dirname(os.path.realpath(__file__))
 
@@ -1842,6 +1840,45 @@ class FarConfig(QWidget):
         mainWidget.ui.dialCVHarmonicShiftZero.setValue(32767 - cv)
         serialHandler.write("bchs5:0")
 
+#    def activateAll(self):
+#        if (serialWidget.isVisible()):
+#            showConsole()
+#        if (commandReference.isVisible()):
+#            showReference()
+
+#    def onFocusChanged(self, old, new):
+#        if new is None:
+#            return
+#        window = new.window()
+#
+#        if window.objectName() != "main":
+#            return
+#        if self.focusing == True:
+#            return
+#        self.focusing = True
+#        self.activateAll()
+#        self.setFocus()
+#        self.focusing = False
+#        pass
+
+#    def showEvent(self, event):
+#        #event.accept()
+#        super().showEvent(event)
+#        pass
+
+#    def focusEvent(self, event):
+#        super().focusEvent(event)  # Make sure to call the base class event handler
+#        if event.type() == event.FocusIn:
+#            print("Window focus event triggered (FocusIn)")
+
+#    def focusInEvent(self, event):
+#        event.accept()
+#        pass
+#        self.parent.focusInEvent(event)
+
+#    def mousePressEvent(self, event):
+#        event.accept()
+#        print("Mouse clicked on the window")
 
 #harmonicSeriesList = [,
 #    [1, 1.059463094, 1.122462048, 1.189207115, 1.25992105, 1.334839854, 1.414213562, 1.498307077, 1.587401052, 1.681792831, 1.781797436, 1.887748625]]
@@ -2020,6 +2057,11 @@ if __name__ == "__main__":
 
     commandReference = CommandReference()
 
+#    app.focusChanged.connect(mainWidget.onFocusChanged)
+    mainWidget.setObjectName("main")
+    serialWidget.setObjectName("console")
+    serialWidget.setObjectName("reference")
+
     mainWidget.show()
 
 #    mainWidget.ui.listWidgetCommands.setSortingEnabled(True)
@@ -2073,7 +2115,7 @@ if __name__ == "__main__":
     mainWidget.ui.listWidgetTuningscheme.currentItemChanged.connect(mainWidget.tuningSchemeChanged)
 
 
-    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonCalibrateAll, "bowcalibrateall", True)
+    mainWidget.connectSignalToModalDialog(mainWidget.ui.pushButtonCalibrateAll, "bowcalibrateall", "bca")
 
     mainWidget.ui.comboBoxHarmonicList.currentIndexChanged.connect(mainWidget.comboBoxHarmonicListCurrentIndexChanged)
     mainWidget.ui.pushButtonAddHarmonic.pressed.connect(mainWidget.pushButtonAddHarmonicPressed)

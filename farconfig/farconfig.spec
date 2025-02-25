@@ -5,7 +5,7 @@ a = Analysis(
     ['farconfig.py'],
     pathex=[],
     binaries=[],
-    datas=[('_internal/resources', 'resources')],
+    datas=[('resources', 'resources')],
     hiddenimports=['pyserial'],
     hookspath=[],
     hooksconfig={},
