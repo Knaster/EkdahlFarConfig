@@ -124,7 +124,10 @@ def processInformationReturn(inSerialHandler, infoReturn):
                  "bmsx" | "bmsi" | "bppx" | "bppe" | "bppr" | "bmf" | "psf" | "bmc" | "sxf" | "sif" | "sed" | "bcf" | \
                  "bpkp" | "bpki" | "bkpd" | "bpie" | "bpme" | "bhs" | "bch" | "bchb" | "bchshr" | "bchsh" | "bchs5" | \
                  "ba" | "bcha" | "bchsr":
-                stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
+                try:
+                    stringModules[currentSerialModule].setCommandValue(i.command, float(i.argument[0]))
+                except:
+                    pass
                 mainWidget.updateStringModuleData()
             case "bhsl":
                 try:
@@ -297,7 +300,17 @@ def processInformationReturn(inSerialHandler, infoReturn):
                     i.argument[4] = "noname" + str(random.randrange(0,9999))
                     #break
 
-                mainWidget.ui.comboBoxActuatorPreset.addItem(i.argument[4], i.argument[0])
+                try:
+                    mainWidget.ui.comboBoxActuatorPreset.removeItem(int(i.argument[0]))
+                except:
+                    pass
+                mainWidget.ui.comboBoxActuatorPreset.insertItem(int(i.argument[0]), i.argument[4]) # , i.argument[0]
+#                while (int(i.argument[0]) >= mainWidget.ui.comboBoxActuatorPreset.count()):
+ #                   mainWidget.ui.comboBoxActuatorPreset.addItem("temp")
+  #              mainWidget.ui.comboBoxActuatorPreset.setEditable(True)
+   #             mainWidget.ui.comboBoxActuatorPreset.setItemData(int(i.argument[0]), i.argument[4])
+                #mainWidget.ui.comboBoxActuatorPreset.setEditable(False)
+
                 mainWidget.ui.comboBoxActuatorPreset.setCurrentIndex(stringModules[currentSerialModule].getCommandValue("ba"))
 
             case  "mcf":
@@ -868,6 +881,12 @@ class FarConfig(QWidget):
                     serialWidget.addToDebugWindow("Connected to " + serialStream.portstr + "\n")
                     mainWidget.ui.pushButtonConnectDisconnect.setText("Disconnect")
 
+                    mainWidget.ui.listWidgetMidiEvents.clear()
+                    mainWidget.ui.comboBoxHarmonicList.clear()
+                    mainWidget.ui.comboBoxConfiguration.clear()
+                    mainWidget.ui.comboBoxActuatorPreset.clear()
+                    commandReference.clear()
+
                     self.setUIEnabled(True)
                     self.updateUIData()
                     requestHelp()
@@ -1371,7 +1390,8 @@ class FarConfig(QWidget):
             #comboIndex = mainWidget.ui.comboBoxActuatorPreset.count()
             #serialHandler.write("baa")
 #        serialHandler.write("bas:" + str(comboIndex) + ",bav,bai:'" + mainWidget.ui.comboBoxActuatorPreset.currentText() + "',bac,bas:" + str(comboIndex) + ",bal")
-        serialHandler.write("bas:" + str(comboIndex) + ":'" + mainWidget.ui.comboBoxActuatorPreset.currentText() + "',ba:" + str(comboIndex) + ",bac")
+        test = "bas:" + str(comboIndex) + ":'" + mainWidget.ui.comboBoxActuatorPreset.currentText() + "',ba:" + str(comboIndex) + ",bac"
+        serialHandler.write(test)
 
     def pushButtonActuatorLoadPressed(self):
         #comboIndex = self.find_item(mainWidget.ui.comboBoxActuatorPreset, mainWidget.ui.comboBoxActuatorPreset.currentText())
@@ -1380,6 +1400,11 @@ class FarConfig(QWidget):
         if (self.updatingFromModule):
             return
         comboIndex = mainWidget.ui.comboBoxActuatorPreset.currentIndex()
+        if comboIndex == -1:
+            if (mainWidget.ui.comboBoxActuatorPreset.count() == 0):
+                return
+            mainWidget.ui.comboBoxActuatorPreset.setCurrentIndex(0)
+            ba = 0
         #serialHandler.write("bas:" + str(comboIndex) + ",bal,rqi:bppx,rqi:bppe,rqi:bppr")
         serialHandler.write("ba:" + str(comboIndex) + ",rqi:bppx,rqi:bppe,rqi:bppr")
 

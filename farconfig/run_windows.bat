@@ -1,5 +1,5 @@
 @echo off
 cd "%~dp0"
 cd farconfig
-pythonw widget.py
+pythonw farconfig.py
 exit
