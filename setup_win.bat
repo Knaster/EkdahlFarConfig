@@ -10,7 +10,7 @@ if %errorlevel% neq 0 (
 	exit /b
 )
 
-pip3 install pyside6 pyserial mido python-rtmidi sympy pyqt6-charts
+pip3 install pyside6 pyserial mido sympy pyqt6-charts
 
 mkdir "C:\Program Files\Ekdahl FAR Configuration Utility"
 cd "%~dp0"

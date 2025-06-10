@@ -117,7 +117,7 @@ source "$MACOS_DIR/venv/bin/activate"
 
 echo "Installing python packages"
 
-./venv/bin/pip install pyserial pyqt6-charts pyside6 pyserial mido python-rtmidi sympy
+./venv/bin/pip install pyserial pyqt6-charts pyside6 pyserial mido sympy
 
 read -p "All done! Press Enter to quit"
 
