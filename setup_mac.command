@@ -94,8 +94,12 @@ else
 	brew install python
 fi
 
-python_path=$(brew --prefix python)/libexec/bin/python
-pip_path=$(brew --prefix python)/libexec/bin/pip
+#broken in macos =>14
+#python_path=$(brew --prefix python)/libexec/bin/python
+#pip_path=$(brew --prefix python)/libexec/bin/pip
+#replacing with
+python_path="$(which python3)"
+pip_path="$(which pip3)"
 
 #Echo "Python version"
 #$python_path --version

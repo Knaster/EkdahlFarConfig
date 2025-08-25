@@ -1749,8 +1749,8 @@ class FarConfig(QWidget):
         except:
             noteDataArray = scaleDataJust
 
-        base = 110 / 4
-        for octave in range(0, 3):
+        base = 55 / 2   #110 / 4
+        for octave in range(0, 2):  #3
             for note in range (0, 11):
                 mainWidget.ui.comboBoxFundamentalFrequency.addItem(noteDataArray[2][note] + " " + str(round((pow(2, octave)*base) * noteDataArray[1][note], 2)))
 
