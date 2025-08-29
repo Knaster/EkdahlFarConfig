@@ -104,6 +104,9 @@ pip_path="$(which pip3)"
 #Echo "Python version"
 #$python_path --version
 
+touch ~/.bash_profile
+touch ~/.zshrc
+
 source ~/.bash_profile
 source ~/.zshrc
 
