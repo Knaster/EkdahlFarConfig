@@ -1,0 +1,325 @@
+mev:noteon:'m:0,b:0,bchb:note,bmr:1,bpid:1,bpe:1,se:(velocity*512)*(1-notecount),bcsm:0'
+	for each command
+		return symbols, numbers, functions of entire expression
+
+		connect_to_output[0].default = true
+		connect_to_output[0].= mainNode.command + argument[0] + "_trigger"
+			mev:noteon = "mev:noteon:_trigger"
+	
+		connect_to_output = 
+			if (symbols > 0) might override default, add ports of ROOT SYMBOLS only, functions and their data is not counted
+				m:0 -> (symbols == 0) - no override
+				b:0 -> (symbols == 0) - no override
+				bchb -> (symbols == 1) - might override -> root symbols: note (is mev:noteon and overrides) -> connect_to_output[0] = mev:noteon:note
+				bmr:1 -> (symbols == 0) - no override
+				bpid:1 -> (symbols == 0) - no override
+				bpe:1 -> (symbols == 0) - no override
+				se -> (symbols == 2) override -> root symbols: velocity (is mev:noteon and overrides), notecount (other basenode, would not override)
+					-> connect_to_output[0] = mev:noteon:velocity
+					-> connect_to_output[1] = variables:notecount
+				bcsm -> (symbols + functions == 0) - no override
+		connect_to_input
+			m -> none
+			b -> none
+			bchb -> control:bchb
+			bmr -> motor:run
+			bpid -> pid:on
+			bpe -> pressure:engage
+			se -> solenoid:engage
+			bcsm -> control:speedmode
+			
+		conclusion:
+			each node can be connected to several outputs (have several inputs)
+			each node can only be connected to one input (have one output)
+
+		if ((connect_to_input == none) and (!skip_input)) skip
+			-> m, b
+		each node:
+			count symbols, numbers, functions of root ONLY
+			
+			if ((symbols + functions + numbers) > 1)
+				create equation node with [symbols + functions] number of inputs
+				-> se | 2 symbols = equation2
+				for each symbol:
+					replace symbol with in[x] in equation
+					connect in[x] to connect_to_output[x]
+				-> se | (velocity * 512) * (1 - notecount) -> 
+						(in[0] * 512) * (1 - in[1])
+						connect equation2:in[0] to mev:noteon:velocity
+						connect equation2:in[1] to variables:notecount
+					connect out to connect_to_input
+						connect equation2:out to solenoid:engage					
+			else if (symbols == 1)
+				connect connect_to_input to connect_to_output
+				-> bchb | mev:noteon:note -> control:bchb
+			else if (numbers == 1)
+				create static value node, set value
+				connect static value _trigger to connect_to_output
+				connect static value out to connect_to_input
+				-> bmr | (mev:noteon:_trigger)->(_trigger:static(1):out)->(motor:run)
+				-> bpid, bpe, bcsm
+			else if (functions == 1)
+			
+			else
+				?
+				
+mev:noteoff:'bpr:ibool(notecount),bcsm:0'
+	for each command
+		return symbols, numbers, functions of entire expression
+	
+		connect_to_output = mev:noteoff->trigger = default
+			if (symbols > 0) might override default, add ports of ROOT SYMBOLS only, functions and their data is not counted
+				bpr -> (symbols == 0), ibool is_Function and is skipped, notecount is not in root and is skipped
+				bcms -> (symbols == 0)
+		if (!skip_input): connect_to_input 
+			bcms -> connect_to_input = control:speedmode
+		conclusion:
+			each node can be connected to several outputs (have several inputs)
+			each node can only be connected to one input (have one output)
+
+		if ((connect_to_input == none) and (!skip_input)) skip
+		each node:
+			count symbols, numbers, functions of root ONLY
+			
+			if ((symbols + functions + numbers) > 1)
+				create equation node with [symbols + functions] number of inputs
+				for each symbol:
+					replace symbol with in[x] in equation
+					connect in[x] to connect_to_output[x]
+				for each function:
+					parse sub expression with in[x] for the child to connect to
+			else if (symbols == 1))
+				if (!skip_input): 
+					connect connect_to_input to connect_to_output
+				else
+					return connect_to_output
+			else if (numbers == 1)
+				create static value node, set value
+					bcms -> static(0)
+				connect static value _trigger to connect_to_output
+					bcms -> (mev:noteoff:_trigger)->(_trigger:static(0))
+				connect static value out to connect_to_input
+					bcms -> (static(0):out)->control:speedmode
+			else if functions == 1)
+				add function
+					-> bpr -> add ibool
+				parse sub expression for what to set function:in to, default = connect_to_output[0] = mev:noteoff:_trigger, skip_input = TRUE
+					-> sub expression is (notecount), 
+						symbols > 0 : notecount, notecount is root but is not of mev:noteoff so only adds: connect_to_output[1] = variables:notecount
+						symbols == 1 : because skip_input == TRUE, gets 
+						connect_to_output[0] = mev:noteoff:_trigger
+						connect_to_output[1] = notecount
+
+
+				set function:out to connect_to_input
+					-> bpr -> (ibool:out)->pressure:rest
+
+				connect _trigger to _trigger if in connect_to_output
+					connect_to_output[0] = (mev:noteoff:_trigger) -> _trigger:ibool
+				connect non-trigger to in
+					connec_to_output[1] = (variables:notecount) -> in:ibool				
+			else
+			
+mev:cat:'bpm:(pressure*512)'
+	for each command
+		return symbols, numbers, functions of entire expression
+			bpm -> symbols:1, numbers:1, functions:0
+	
+		connect_to_output = mev:cat->trigger = default
+			if (symbols > 0) might override default, add ports of ROOT SYMBOLS only, functions and their data is not counted
+				bpm:pressure*512 -> (symbols == 1), pressure is part of mev:cat and overrides _trigger, connect_to_output[0] = mev:cat:pressure
+				
+		if (!skip_input): connect_to_input 
+			bpm -> connect_to_input = pressure:modifier
+		conclusion:
+			each node can be connected to several outputs (have several inputs)
+			each node can only be connected to one input (have one output)
+
+		if ((connect_to_input == none) and (!skip_input)) skip
+		each node:
+			count symbols, numbers, functions of root ONLY
+				bpm -> symbols:1, numbers:1, functions:0
+			
+			if ((symbols + functions + numbers) > 1)
+				create equation node with [symbols + functions] number of inputs
+					bpm -> create equation1
+				for each symbol:
+					replace symbol with in[x] in equation
+						bpm:pressure*512 -> bpm:in[0]*512
+					connect in[x] to connect_to_output[x]
+						bpm -> (connect_to_output[0] = mev:cat:pressure) -> in[0]:equation1(in[0]*512)
+					connect out to connect_to_input
+						bpm -> (equation1(in[0]*512):out -> pressure:modifier
+				for each function:
+					parse sub expression with in[x] for the child to connect to
+			else if (symbols == 1))
+				if (!skip_input): 
+					connect connect_to_input to connect_to_output
+				else
+					return connect_to_output
+			else if (numbers == 1)
+				create static value node, set value
+				connect static value _trigger to connect_to_output
+				connect static value out to connect_to_input
+			else if functions == 1)
+				add function
+				set function:out to connect_to_input
+				parse sub expression for what to set function:in to, default = connect_to_output[0] = mev:noteoff:_trigger, skip_input = TRUE
+				connect _trigger to _trigger
+				connect non-trigger to in
+			else
+
+add bool function with trigger for ->on/anything not 0 ->off/0 ->any and a switch set to the value if ->on or ->off are connected
+
+acm:0:'bcha:value/1327.716667-20'
+	for each command
+		return symbols, numbers, functions of entire expression
+			acm:0 (bcha) -> symbols: 1, numbers: 2?
+	
+		connect_to_output[0].default = true
+		connect_to_output[0].= mainNode.command + argument[0] + "_trigger"
+			acm:0 -> connec_to_output[0] = "acm:0:_trigger"
+	
+		connect_to_output:
+			if (symbols > 0) might override default, add ports of ROOT SYMBOLS only, functions and their data is not counted
+				bcha -> connect_to_output[0] = acm:value
+				
+		if (!skip_input): connect_to_input
+			bcha -> control:harmonicadd
+		conclusion:
+			each node can be connected to several outputs (have several inputs)
+			each node can only be connected to one input (have one output)
+
+		if ((connect_to_input == none) and (!skip_input)) skip
+		each node:
+			count symbols, numbers, functions of root ONLY
+				bcha (value / 1327.7 - 20) -> symbols: 1, numbers: 1?
+			if ((symbols + functions + numbers) > 1)
+				create equation node with [symbols + functions] number of inputs
+					bcha -> create equation1
+				for each symbol:
+					replace symbol with in[x] in equation
+						bcha -> (value / 1327.7 - 20) ->
+								(in[0] / 1327.7 - 20)
+					connect in[x] to connect_to_output[x]
+						bcha -> acm:value -> in[0]:acm:0:(in[0] / 1327.7 - 20)
+					connect out to connect_to_input
+						bcha -> acm:0:(in[0] / 1327.7 - 20):out -> control:harmonicadd
+				for each function:
+					parse sub expression with in[x] for the child to connect to
+				set equation expression
+					bcha -> expression = (in[0] / 1327.7 - 20)
+			else if (symbols == 1))
+				if (!skip_input): 
+					connect connect_to_input to connect_to_output
+				else
+					return connect_to_output
+			else if (numbers == 1)
+				create static value node, set value
+				connect static value _trigger to connect_to_output
+				connect static value out to connect_to_input
+			else if functions == 1)
+				add function
+				set function:out to connect_to_input
+				parse sub expression for what to set function:in to, default = connect_to_output[0] = mev:noteoff:_trigger, skip_input = TRUE
+				if only one input, and it's _trigger, connect _trigger to _trigger
+				connect non-trigger to in
+			else
+
+acm:1:'bchs5:"deadband(value-32236, 20)/2.425"'
+
+process(mainNode, equation_string, connect_to_output[0] = { True, None }, skip_input = False)
+	for each command
+		return symbols, numbers, functions of entire expression
+			acm:0 (bchs5) -> symbols: 1, numbers: 3?, functions: 1
+	
+		if (connect_to_output[0] is None):
+			connect_to_output[0].default = true
+			connect_to_output[0].= mainNode.command + argument[0] + "_trigger"
+				acm:0 -> connec_to_output[0] = "acm:0:_trigger"
+	
+		connect_to_output:
+			if (symbols > 0) might override default, add ports of ROOT SYMBOLS only, functions and their data is not counted
+				bchs5 -> no override
+				
+		if (!skip_input): connect_to_input
+			bchs5 -> control:harmonicshift5
+		conclusion:
+			each node can be connected to several outputs (have several inputs)
+			each node can only be connected to one input (have one output)
+
+		if ((connect_to_input == none) and (!skip_input)) skip
+		each node:
+			count symbols, numbers, functions of root ONLY
+				bchs5 -> functions:1, numbers: 1
+				
+			if ((symbols + functions + numbers) > 1)
+				create equation node with [symbols + functions] number of inputs
+					bchs5 -> create equation1
+				for each symbol:
+					replace symbol with in[x] in equation
+					connect in[x] to connect_to_output[x]
+				for each function:
+					get sub expression:
+						bchs5 -> deadband(value-32236, 20)
+					parse sub expression with in[x] for the child to connect to, use default = connect_to_output[0], skip_input = TRUE, connect_to_input = in[0]:equation1
+						bchs5 -> subexpression "deadband(value-32236, 20)", connect_to_output[0] = { True, "acm:0:_trigger" }, skip_input = TRUE, connect_to_input = in[0]
+							-> symbols: 1, numbers: 1
+							-> value does NOT overrides because it is not in root
+							-> skip input
+							-> expression "deadband(value-32236, 20)" ROOT only contains 1 function
+							-> add function deadband
+							-> deadband:out->in[0]:equation1
+								for each argument
+									-> sub sub  "value-32236", connect_to_output[0] = { True, "acm:0:_trigger" }, skip_input = TRUE, connect_to_input = in[0]:deadband
+									-> symbols: 1, numbers: 1
+									-> since symbols > 0 and value is part of mainNode, connect_to_output[0] = value
+									-> skip input
+									-> symbols + numbers = 2
+									-> create eqation1-2
+									-> "value - 32236" becomes "in[0] - 32236"
+									-> acm:value -> in[0]:equation1-2
+									-> equation1-2:out -> in[0]:deadband
+									
+									increase input port number each iteration
+									
+									-> sub sub "20", connect_to_output[0] = { True, "acm:0:_trigger" }, skip_input = TRUE, connect_to_input = in[1]:deadband
+									-> Number; no default override
+									-> skip_input
+									-> since number == 1
+									-> create static(20)
+									-> acm:0:_trigger->_trigger:static(20)
+									-> static(20):out->in[1]:deadband
+							-> acm:0:_trigger -> _trigger:deadbad( acm:value -> in[0]:equation1-2(in[0] - 32236), acm:0:_trigger->_trigger:static(20):out->in[0]:equation1
+				replace function with in[x] in equation
+					bchs5 -> deadband(value - 32236, 20) / 2.425
+							 x[0] / 2.45
+				set equation expression
+					bchs5 -> acm:0:_trigger -> _trigger:deadbad( acm:value -> in[0]:equation1-2(in[0] - 32236), acm:0:_trigger->_trigger:static(20):out->in[0]:equation1(in[0] / 2.45):out
+				connect out to connect_to_input
+					bchs5 -> acm:0:_trigger -> _trigger:deadbad( acm:value -> in[0]:equation1-2(in[0] - 32236), acm:0:_trigger->_trigger:static(20):out->in[0]:equation1(in[0] / 2.45):out -> control:harmonicshift5
+			else if (symbols == 1))
+				if (!skip_input): 
+					connect connect_to_input to connect_to_output
+				else
+					return connect_to_output
+			else if (numbers == 1)
+				create static value node, set value
+				connect static value _trigger to connect_to_output
+				connect static value out to connect_to_input
+			else if functions == 1)
+				add function
+				set function:out to connect_to_input
+				for each argument
+					parse sub expression for what to set function:in to, default = connect_to_output[0] = mev:noteoff:_trigger, skip_input = TRUE
+				connect _trigger to _trigger if in connect_to_output
+				connect non-trigger to in if in connect_to_output
+			else
+
+
+acm:2:'bchsh:"deadband((value-32600)*0.49064, 250)"'
+acm:3:'bpb:value'
+acm:4:'se:value'
+acm:5:'bmr:bool(value-10000),bpid:1,bcsm:0,bpe:bool(value-10000),bpr:ibool(value-10000),bph:ibool(value-10000)'
+acm:6:'sfm:"deadband(1/65535*value,0.002)"'
+acm:7:'msp:value'

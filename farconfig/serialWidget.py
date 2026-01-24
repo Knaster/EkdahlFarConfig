@@ -123,14 +123,14 @@ class SerialWidget(QWidget):
                 out = "1"
             else:
                 out = "0"
-            self.serialHandler.write("debugprint:" + sender.reportType + ":" + out)
+            #self.serialHandler.write("debugprint:" + sender.reportType + ":" + out)
 
     def setReportFeedback(self, reportType, state):
         if (state):
             out = "1"
         else:
             out = "0"
-        self.serialHandler.write("debugprint:" + reportType + ":" + out)
+        #self.serialHandler.write("debugprint:" + reportType + ":" + out)
 
     def checkBoxFilterCommAckToggled(self):
         self.setReportFeedback("command", self.ui.checkBoxFilterCommAck.isChecked())
@@ -148,7 +148,6 @@ class SerialWidget(QWidget):
         self.setReportFeedback("hardware", self.ui.checkBoxFilterHardware.isChecked())
 
     def checkBoxFilterInfoRequestToggled(self):
-        #setReportFeedback("inforequest", self.ui.checkBoxFilterInfoRequest.isChecked())
         if (self.ui.checkBoxFilterInfoRequest.isChecked()):
             self.filterHideInfoRequest = False
         else:
@@ -180,7 +179,7 @@ class SerialWidget(QWidget):
             out = "1"
         else:
             out = "0"
-        self.serialHandler.write("debugprint:" + reportType + ":" + out)
+        #self.serialHandler.write("debugprint:" + reportType + ":" + out)
 
     def updateLineLimit(self):
         if (self.ui.checkBoxLimitLines.checkState() == Qt.CheckState.Checked):

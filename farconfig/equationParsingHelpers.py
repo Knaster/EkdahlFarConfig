@@ -19,6 +19,14 @@
 
 import sympy as sp
 import re
+import graphassemblies
+
+from sympy.core.singleton import Singleton
+
+def calculateValue(equation_str):
+    equation = sp.sympify(equation_str)
+    value = equation.evalf()
+    return float(value)
 
 def getVariable(equation_str, variable_str):
     try:

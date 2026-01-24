@@ -19,7 +19,8 @@
 
 # This Python file uses the following encoding: utf-8
 
-from commandparser import CommandItem, CommandList
+from commandparser import derivedCommandList as CommandList
+from commandparser import derivedCommandItem as CommandItem
 
 class stringModule:
     def __init__(self):
@@ -36,7 +37,6 @@ class stringModule:
         pass
 
     def updateRequest(self):
-        request = "m:" + str(self.moduleIndex)
         request = "rqi:bowcontrolfundamental"
         return request
 
@@ -110,3 +110,11 @@ class InstrumentMaster:
         a.control = control
         self.evCC.append(a)
         print("adding new cc")
+
+class SimpleFARHandler:
+    stringModules = []
+    instrumentMaster = InstrumentMaster()
+    moduleCount = 0
+#    currentHarmonicListSelected = 0
+    currentShowingModule = 0
+    connected = False

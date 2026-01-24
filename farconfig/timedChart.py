@@ -34,6 +34,7 @@ from PySide6.QtCore import Qt
 
 from dataclasses import dataclass
 
+from CommandSets import CommandID, CommandSets
 
 def rectangle(point_type, image_size):
     image = QImage(image_size, image_size, QImage.Format_RGB32)
@@ -43,7 +44,6 @@ def rectangle(point_type, image_size):
     painter.fillRect(0, 0, image_size, image_size, point_type[2])
     painter.end()
     return image
-
 
 def triangle(point_type, image_size):
     return QImage(point_type[3]).scaled(image_size, image_size)
@@ -92,35 +92,38 @@ class seriesType(Enum):
 class chartMatchData:
     seriesType: seriesType
     description: str
+    index: int
+    commandID:CommandID
 
 
 class timedChart(QWidget):
-    chartMatchArr = {"adcr0": chartMatchData(seriesType.integer, "Harmonic (A0)"),
-                     "adcr1": chartMatchData(seriesType.integer, "Harmonic shift (A1)"),
-                     "adcr2": chartMatchData(seriesType.integer, "Fine tuning (A2)"),
-                     "adcr3": chartMatchData(seriesType.integer, "Pressure (A3)"),
-                     "adcr4": chartMatchData(seriesType.integer, "Hammer trig (A4)"),
-                     "adcr5": chartMatchData(seriesType.integer, "Gate (A5)"),
-                     "adcr6": chartMatchData(seriesType.integer, "Hammer scale (A6)"),
-                     "adcr7": chartMatchData(seriesType.integer, "Mute (A7)"),
-                     "bcf": chartMatchData(seriesType.frequency, "Set motor frequency"),
-                     "bmf": chartMatchData(seriesType.frequency, "Read motor frequency"),
-                     "psf": chartMatchData(seriesType.frequency, "Audio frequency"),
-                     "pap": chartMatchData(seriesType.integer, "Audio peak"),
-                     "par": chartMatchData(seriesType.integer, "Audio RMS"),
-                     "bpperr": chartMatchData(seriesType.frequency, "PID Error"),
-                     "bmc": chartMatchData(seriesType.integer, "Motor current (x6k)")
-                     }
+    chartMatchArr = [ chartMatchData(seriesType.integer, "Harmonic (A0)", 0, CommandID.controlBoxDataReturn),
+                      chartMatchData(seriesType.integer, "Harmonic shift (A1)", 1, CommandID.controlBoxDataReturn),
+                      chartMatchData(seriesType.integer, "Fine tuning (A2)", 2, CommandID.controlBoxDataReturn),
+                      chartMatchData(seriesType.integer, "Pressure (A3)", 3, CommandID.controlBoxDataReturn),
+                      chartMatchData(seriesType.integer, "Hammer trig (A4)", 4, CommandID.controlBoxDataReturn),
+                      chartMatchData(seriesType.integer, "Gate (A5)", 5, CommandID.controlBoxDataReturn),
+                      chartMatchData(seriesType.integer, "Hammer scale (A6)", 6, CommandID.controlBoxDataReturn),
+                      chartMatchData(seriesType.integer, "Mute (A7)", 7, CommandID.controlBoxDataReturn),
+                      chartMatchData(seriesType.frequency, "Set motor frequency", -1, CommandID.pidTargetFreq),
+                      chartMatchData(seriesType.frequency, "Read motor frequency", -1, CommandID.motorFrequency),
+                      chartMatchData(seriesType.frequency, "Audio frequency", -1, CommandID.pickupStringFrequency),
+                      chartMatchData(seriesType.integer, "Audio peak", -1, CommandID.pickupAudioPeak),
+                      chartMatchData(seriesType.integer, "Audio RMS", -1, CommandID.pickupAudioRMS),
+                      chartMatchData(seriesType.frequency, "PID Error", -1, CommandID.pidPeakError),
+                      chartMatchData(seriesType.integer, "Motor current (x6k)", -1, CommandID.motorCurrent) ]
 
-    #for poo in chartMatchArr:
-    #    print(chartMatchArr[poo].description)
+    def getChart(self, commandID, index):
+        for chart in self.chartMatchArr:
+            if (chart.commandID == commandID) and ((chart.index == -1) or (chart.index == index)):
+                return chart
+        return None
 
     def __init__(self):
         ## Array of all the series classes in the chart
         self.seriesArr = []
 
         self.chart = QChart()
-#        self.chart.createDefaultAxes()
 
         self.axisX = QValueAxis();
         self.axisX.setTitleText("Time (S)")
@@ -145,6 +148,8 @@ class timedChart(QWidget):
         self._chart_view.setRenderHint(QPainter.Antialiasing)
 
         self.timeStamper = timeStamp()
+
+        self.commandSet = None
 
     lastClean = 0
 
@@ -187,11 +192,6 @@ class timedChart(QWidget):
         s.setPointLabelsColor(QColor("blue"))
         s.setPointLabelsFormat("@yPoint")
         s.setPointLabelsClipping(True)
-#        s.setVisible(False)
-        # s.setPointLabelsVisible(True)
-
-        # s.setMarkerSize(5)
-        # s.setLightMarker(default_light_marker(5))
 
         self.seriesArr.append(s)
         self.chart.addSeries(s)
@@ -206,77 +206,44 @@ class timedChart(QWidget):
             return None
         return s
 
-    def setSeriesVisibleCommand(self, command, visible):
+    def setSeriesVisibleCommand(self, command, index, visible):
         try:
-            seriesID = self.chartMatchArr[command].description
+            #seriesID = self.chartMatchArr[command].description
+            seriesID = self.getChart(command, index).description
+            seriesType = self.getChart(command, index).seriesType
             s = self.getSeries(seriesID)
         except:
             print("Error in setSeriesVisibleCommand")
             return
 
         if s is None:
-            s = self.addSeries(seriesID, self.chartMatchArr[command].seriesType)
+            #s = self.addSeries(seriesID, self.chartMatchArr[command].seriesType)
+            s = self.addSeries(seriesID, seriesType)
             if s is None:
                 return
-
         s.setVisible(visible)
 
     def processCommand(self, command):
-        key = command.command
+        if self.commandSet is None: return
+        cId = self.commandSet.getCommandID(command)
+
         try:
             value = float(command.argument[0])
         except:
             return
 
-        #if command.command == "adcr":
-        match command.command:
-            case "adcr":
-                key += command.argument[0]
+        match cId:
+            case CommandID.controlBoxDataReturn:
                 value = float(command.argument[1])
-            case "pap" | "par":
+            case CommandID.pickupAudioPeak | CommandID.pickupAudioRMS:
                 value *= 65535
-            case "bmc":
+            case CommandID.motorCurrent:
                 value *= 60000
-
         try:
-            series = self.chartMatchArr[key]
-            #print("Found a chart!")
+            index = -1
+            if len(command.argument) > 2: index = int(command.argument[0])
+            series = self.getChart(cId, index)
         except:
-            #print("no series for command " + str(key) )
             return
-
-        self.addData(series.description, value, series.seriesType)
-
-# mainWidget.debugTimedChart.setSeriesVisible(chartMatchArr[checkbox.seriesName].description, chartMatchArr[checkbox.seriesName].seriesType, visible)
-
-
-# Match commands that are going on the chart, these commands may be processed further by processInformationReturn
-
-#        if (not sFound):
-##            print("Creating new series")
-#            s = QLineSeries()
-#            s.name = seriesID
-#            s.setName(seriesID)
-#
-#            s.setPointLabelsColor(QColor("blue"))
-#            s.setPointLabelsFormat("@yPoint")
-#            s.setPointLabelsClipping(True)
-#            #s.setPointLabelsVisible(True)
-#
-#            #s.setMarkerSize(5)
-#            #s.setLightMarker(default_light_marker(5))
-#
-#            # Add the newly created series class to the local series array seriesArr
-#            self.seriesArr.append(s)
-#            self.chart.addSeries(s)
-#
-#            s.attachAxis(self.axisX)
-#            if (inSeriesType == seriesType.integer):
-#                s.attachAxis(self.axisYInt)
-#            elif (inSeriesType == seriesType.frequency):
-#                s.attachAxis(self.axisYHz)
-#            else:
-#                print("ERROR")
-
-#        print(s.isVisible())
-        #s.setVisible(True)
+        if (series is not None):
+            self.addData(series.description, value, series.seriesType)

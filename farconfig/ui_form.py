@@ -17,23 +17,22 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDial,
     QDoubleSpinBox, QFrame, QGridLayout, QGroupBox,
-    QHeaderView, QLabel, QLineEdit, QListWidget,
-    QListWidgetItem, QPlainTextEdit, QProgressBar, QPushButton,
-    QSizePolicy, QSlider, QSpinBox, QTabWidget,
-    QTableView, QVBoxLayout, QWidget)
+    QHeaderView, QLabel, QLayout, QLineEdit,
+    QListWidget, QListWidgetItem, QPlainTextEdit, QProgressBar,
+    QPushButton, QSizePolicy, QSlider, QSpinBox,
+    QTabWidget, QTableView, QVBoxLayout, QWidget)
 
 class Ui_Widget(object):
     def setupUi(self, Widget):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
         Widget.resize(1280, 680)
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Widget.sizePolicy().hasHeightForWidth())
         Widget.setSizePolicy(sizePolicy)
         Widget.setMinimumSize(QSize(1280, 680))
-        Widget.setMaximumSize(QSize(1280, 680))
         palette = QPalette()
         brush = QBrush(QColor(0, 0, 0, 255))
         brush.setStyle(Qt.SolidPattern)
@@ -206,10 +205,8 @@ class Ui_Widget(object):
         brush7.setStyle(Qt.SolidPattern)
         palette1.setBrush(QPalette.Active, QPalette.ToolTipBase, brush7)
         palette1.setBrush(QPalette.Active, QPalette.ToolTipText, brush)
-        brush8 = QBrush(QColor(0, 0, 0, 127))
-        brush8.setStyle(Qt.SolidPattern)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Active, QPalette.PlaceholderText, brush8)
+        palette1.setBrush(QPalette.Active, QPalette.PlaceholderText, brush2)
 #endif
         palette1.setBrush(QPalette.Active, QPalette.Accent, brush3)
         palette1.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
@@ -228,28 +225,26 @@ class Ui_Widget(object):
         palette1.setBrush(QPalette.Inactive, QPalette.ToolTipBase, brush7)
         palette1.setBrush(QPalette.Inactive, QPalette.ToolTipText, brush)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush8)
+        palette1.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush2)
 #endif
         palette1.setBrush(QPalette.Inactive, QPalette.Accent, brush3)
-        palette1.setBrush(QPalette.Disabled, QPalette.WindowText, brush5)
+        palette1.setBrush(QPalette.Disabled, QPalette.WindowText, brush)
         palette1.setBrush(QPalette.Disabled, QPalette.Button, brush1)
         palette1.setBrush(QPalette.Disabled, QPalette.Light, brush3)
         palette1.setBrush(QPalette.Disabled, QPalette.Midlight, brush4)
         palette1.setBrush(QPalette.Disabled, QPalette.Dark, brush5)
         palette1.setBrush(QPalette.Disabled, QPalette.Mid, brush6)
-        palette1.setBrush(QPalette.Disabled, QPalette.Text, brush5)
+        palette1.setBrush(QPalette.Disabled, QPalette.Text, brush)
         palette1.setBrush(QPalette.Disabled, QPalette.BrightText, brush1)
-        palette1.setBrush(QPalette.Disabled, QPalette.ButtonText, brush5)
+        palette1.setBrush(QPalette.Disabled, QPalette.ButtonText, brush)
         palette1.setBrush(QPalette.Disabled, QPalette.Base, brush1)
         palette1.setBrush(QPalette.Disabled, QPalette.Window, brush1)
         palette1.setBrush(QPalette.Disabled, QPalette.Shadow, brush)
         palette1.setBrush(QPalette.Disabled, QPalette.AlternateBase, brush3)
         palette1.setBrush(QPalette.Disabled, QPalette.ToolTipBase, brush7)
         palette1.setBrush(QPalette.Disabled, QPalette.ToolTipText, brush)
-        brush9 = QBrush(QColor(102, 108, 98, 127))
-        brush9.setStyle(Qt.SolidPattern)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush9)
+        palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush2)
 #endif
         palette1.setBrush(QPalette.Disabled, QPalette.Accent, brush3)
         self.tabWidgetMain.setPalette(palette1)
@@ -1975,6 +1970,21 @@ class Ui_Widget(object):
         self.label_48.setGeometry(QRect(450, 40, 71, 17))
         self.label_48.setStyleSheet(u"")
         self.tabWidgetMain.addTab(self.tab_temporary, "")
+        self.tab_nodeeditor = QWidget()
+        self.tab_nodeeditor.setObjectName(u"tab_nodeeditor")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.tab_nodeeditor.sizePolicy().hasHeightForWidth())
+        self.tab_nodeeditor.setSizePolicy(sizePolicy1)
+        self.gridLayoutWidget_2 = QWidget(self.tab_nodeeditor)
+        self.gridLayoutWidget_2.setObjectName(u"gridLayoutWidget_2")
+        self.gridLayoutWidget_2.setGeometry(QRect(0, 0, 1541, 891))
+        self.nodeContainer = QGridLayout(self.gridLayoutWidget_2)
+        self.nodeContainer.setObjectName(u"nodeContainer")
+        self.nodeContainer.setSizeConstraint(QLayout.SetNoConstraint)
+        self.nodeContainer.setContentsMargins(0, 0, 0, 0)
+        self.tabWidgetMain.addTab(self.tab_nodeeditor, "")
         self.pushButtonShowConsole = QPushButton(Widget)
         self.pushButtonShowConsole.setObjectName(u"pushButtonShowConsole")
         self.pushButtonShowConsole.setGeometry(QRect(1000, 10, 120, 25))
@@ -2002,7 +2012,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.tabWidgetMain.setCurrentIndex(0)
+        self.tabWidgetMain.setCurrentIndex(7)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -2339,6 +2349,7 @@ class Ui_Widget(object):
         self.progressBar_ar3.setFormat(QCoreApplication.translate("Widget", u"%v", None))
         self.label_48.setText(QCoreApplication.translate("Widget", u"T. Freq", None))
         self.tabWidgetMain.setTabText(self.tabWidgetMain.indexOf(self.tab_temporary), QCoreApplication.translate("Widget", u"Temporary", None))
+        self.tabWidgetMain.setTabText(self.tabWidgetMain.indexOf(self.tab_nodeeditor), QCoreApplication.translate("Widget", u"Nodes", None))
         self.pushButtonShowConsole.setText(QCoreApplication.translate("Widget", u"Show console", None))
         self.pushButtonShowReference.setText(QCoreApplication.translate("Widget", u"Show reference", None))
         self.pushButtonLoadFromModule.setText(QCoreApplication.translate("Widget", u"Refresh", None))
