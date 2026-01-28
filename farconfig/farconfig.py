@@ -89,52 +89,46 @@ def processInformationReturn(inSerialHandler, infoReturn):
 
     mainWidget.updatingFromModule = True
 
-    processed = True
+    #processed = True
 
     for i in commandList.commands:
         commandType = commandSets.getCommandType(i)
         processInformationForChart(inSerialHandler, i)
 
-        match commandType:
-            case CommandType.simple:
-                id = commandSets.getCommandID(i)
-                try:
-                    value = float(i.argument[0])
-                except:
-                    print("Internal error")
-                    value = 0
-                simpleFARHandler.stringModules[0].setCommandValue(id, value)
-                mainWidget.updateStringModuleData()
+#match commandType:
+    #case CommandType.simple:
+        id = commandSets.getCommandID(i)
+        if (commandType == CommandType.simple):
+            try:
+                value = float(i.argument[0])
+            except:
+                print("Internal error")
+                value = 0
+            simpleFARHandler.stringModules[0].setCommandValue(id, value)
+            mainWidget.updateStringModuleData()
 
-            case _:
-                processed = processed | False
+    #case _:
+        #processed = processed | False
 
-                if (i.command == "ver"):
-                    commandSets.chooseCommandSet(i.argument[0])
-                    mainWidget.debugTimedChart.commandSet = commandSets.currentCommandSet
-                    simpleFARHandler.connected = True
+        if (i.command == "ver"):
+            commandSets.chooseCommandSet(i.argument[0])
+            mainWidget.debugTimedChart.commandSet = commandSets.currentCommandSet
+            simpleFARHandler.connected = True
 
-                if (commandSets.processMessages(i, commandSets, simpleFARHandler, mainWidget, serialHandler)):
-                    pass
-                else:
-                    match i.command:
-                        case "bcf":
-                            try:
-                                simpleFARHandler.stringModules[0].setCommandValue("bptf", float(i.argument[0]))
-                            except:
-                                pass
-                            mainWidget.updateStringModuleData()
-
-                        case mainWidget.modalEvent:
-                            mainWidget.modalDialog.stop()
-                            mainWidget.updateUIData()
+        if (commandSets.processMessages(i, commandSets, simpleFARHandler, mainWidget, serialHandler)):
+            pass
+        else:
+            match id:
+                case mainWidget.modalEvent:
+                    mainWidget.modalDialog.stop()
+                    mainWidget.updateUIData()
 
         if (localNodehandler):
             localNodehandler.parseCommand(i)
             localNodehandler.postBuildUpdate()
 
     mainWidget.updatingFromModule = False
-    return processed
+#    return processed
 
 def messageBox(title, message):
     msgBox = QMessageBox()
@@ -610,7 +604,7 @@ class FarConfig(QWidget):
         for a in range(1, mainWidget.ui.comboBoxBaseNote.count()):
             if int(mainWidget.ui.comboBoxBaseNote.itemData(a)) == int(note):
                 mainWidget.ui.comboBoxBaseNote.setCurrentIndex(a)
-        simpleFARHandler.stringModules[0].setCommandValue(commandItem.command, float(note))
+        simpleFARHandler.stringModules[0].setCommandValue(CommandID.bowHarmonicBaseNote, float(note))
 
     def handleActuatorData(self, index, name, rest, engage, stall):
         if (name) == "":
@@ -737,9 +731,9 @@ class FarConfig(QWidget):
 #        self.addToDebugWindow(v + "\n")
         receivedText = v
         if (receivedText[:5] == "[irq]"):
-            processed = processInformationReturn(inSerialHandler, receivedText[5:])
+            processInformationReturn(inSerialHandler, receivedText[5:])
         elif (receivedText[:5] == "[hlp]"):
-            processed = processHelpReturn(receivedText[5:])
+            processHelpReturn(receivedText[5:])
             #pass
 
         #if (not processed):
@@ -988,7 +982,7 @@ class FarConfig(QWidget):
     def comboBoxCurrentSelectedModuleIndexChanged(self, index):
         pass
 
-    def assignValueChanged(self, qtObject, command, selectionIndex = [0]):
+    def assignValueChanged(self, qtObject, command, selectionIndex = None):
         qtObject.command = command
         qtObject.selectionIndex = selectionIndex
         qtObject.valueChanged.connect(self.basicChangedSignal)
@@ -997,16 +991,21 @@ class FarConfig(QWidget):
         if (mainWidget.updatingFromModule or (not simpleFARHandler.connected)):
             return
         sender = self.sender()
+        commandID = sender.command
+        selection = None
+        stripIndex = False
         try:
-            commandID = sender.command
-            selection = sender.selectionIndex[0]
-            qualifiedShorts = commandSets.getQualifiedShortCommand(commandID)
-            out = ""
-            for qualifiedShort in qualifiedShorts:
-                if (out != ""): out += ","
-                out = qualifiedShort + ":" + str(value)
+            selection = sender.selectionIndex
         except Exception as e:
-            out = sender.command + ":" + str(value)
+            stripIndex = True
+            pass
+        if (selection == None): stripIndex = True
+        qualifiedShorts = commandSets.getQualifiedShortCommand(commandID, selection, stripIndex)
+        out = ""
+        for qualifiedShort in qualifiedShorts:
+            if (out != ""): out += ","
+            out = qualifiedShort + ":" + str(value)
+#            out = sender.command + ":" + str(value)
 
         simpleFARHandler.stringModules[0].setCommandValue(sender.command, float(value))
         serialHandler.write(out)
@@ -1075,6 +1074,7 @@ class FarConfig(QWidget):
             messageBox("Error", "Incorrect selection");
         commandSets.removeHarmonicSeriesRatio(self, serialHandler, simpleFARHandler, int(simpleFARHandler.stringModules[0].getCommandValue(CommandID.harmonicSeriesSelect)), selected)
 
+    '''
     def pushButtonSaveCurrentHarmonicListPressed(self):
         try:
             harmonicList = mainWidget.ui.comboBoxHarmonicList.currentIndex()
@@ -1082,7 +1082,7 @@ class FarConfig(QWidget):
             commandSets.saveHarmonicSeries(self, serialHandler, simpleFARHandler, harmonicList, listID, False)
         except:
             messageBox("Error", "Error saving list")
-
+    
     def pushButtonSaveNewHarmonicListPressed(self):
         listID = inputBox("List name", "List name")
         if listID is None:
@@ -1092,24 +1092,30 @@ class FarConfig(QWidget):
             return
         newIndex = mainWidget.ui.comboBoxHarmonicList.count()
         commandSets.saveHarmonicSeries(self, serialHandler, simpleFARHandler, newIndex, listID, True)
-
+    '''
     def pushButtonAddHarmonicListPressed(self):
         listID = inputBox("List name", "List name")
         if listID is None:
             return
         newIndex = mainWidget.ui.comboBoxHarmonicList.count()
         commandSets.addHarmonicSeries(self, serialHandler, simpleFARHandler, newIndex, listID, True)
+        self.ui.comboBoxHarmonicList.addItem(listID)
+
+    def pushButtonRenameHarmonicListPressed(self):
+        harmonicList = mainWidget.ui.comboBoxHarmonicList.currentIndex()
+        listName = inputBox("List name", "List name")
+        if listName is None:
+            return
+        commandSets.renameHarmonicSeries(self, serialHandler, simpleFARHandler, harmonicList, listName)
+        mainWidget.ui.comboBoxHarmonicList.setItemText(harmonicList, listName)
+
+    def pushButtonRemoveHarmonicListPressed(self):
+        harmonicList = mainWidget.ui.comboBoxHarmonicList.currentIndex()
+        commandSets.removeHarmonicSeries(self, serialHandler, simpleFARHandler, harmonicList)
+        self.ui.comboBoxHarmonicList.removeItem(harmonicList)
 
     def pushButtonAddHarmonicListFilePressed(self):
         pass
-
-    def pushButtonRemoveHarmonicListPressed(self):
-        try:
-            harmonicList = mainWidget.ui.comboBoxHarmonicList.currentIndex()
-            commandSets.removeHarmonicSeries(self, serialHandler, simpleFARHandler, harmonicList)
-        except:
-            messageBox("Error", "Error saving list")
-        self.ui.comboBoxHarmonicList.removeItem(harmonicList)
 
     def updateHarmonicTable(self):
         mainWidget.ui.tableViewScale.setModel(tableTest.CustomTableModel(simpleFARHandler.stringModules[0].harmonicData))
@@ -1269,30 +1275,42 @@ class FarConfig(QWidget):
         if (len(index) != 0):
             widget.takeItem(widget.row(index[0]))
 
-    def pushButonActuatorSaveNewPressed(self):
+    def pushButtonActuatorRenamePressed(self):
+        index = mainWidget.ui.comboBoxActuatorPreset.currentIndex()
+        if (index == -1): return
         listID = inputBox("New actuator name", "Actuator name")
         if listID is None:
             return
         if (self.find_item(mainWidget.ui.comboBoxActuatorPreset, listID) != -1):
             messageBox("Error", "Actuator already exists!")
             return
-        newIndex = mainWidget.ui.comboBoxActuatorPreset.count()
-        commandSets.saveActuator(self, serialHandler, simpleFARHandler, newIndex, listID, str(self.ui.doubleSpinBoxBowRestPosition.value()),
-                                 str(self.ui.doubleSpinBoxBowMinPressure.value()), str(self.ui.doubleSpinBoxBowMaxPressure.value()))
-        self.updatingFromModule = True
-        mainWidget.ui.comboBoxActuatorPreset.setCurrentIndex(newIndex)
-        self.updatingFromModule = False
+        mainWidget.ui.comboBoxActuatorPreset.setItemText(index, listID)
+        commandSets.renameActuator(self, serialHandler, simpleFARHandler, index, listID)
+
+        #newIndex = mainWidget.ui.comboBoxActuatorPreset.count()
+        #commandSets.saveActuator(self, serialHandler, simpleFARHandler, newIndex, listID, str(self.ui.doubleSpinBoxBowRestPosition.value()),
+        #                         str(self.ui.doubleSpinBoxBowMinPressure.value()), str(self.ui.doubleSpinBoxBowMaxPressure.value()))
+        #self.updatingFromModule = True
+        #mainWidget.ui.comboBoxActuatorPreset.setCurrentIndex(newIndex)
+        #self.updatingFromModule = False
 
 
-    def pushButtonActuatorSavePressed(self):
-        comboIndex = self.find_item(mainWidget.ui.comboBoxActuatorPreset, mainWidget.ui.comboBoxActuatorPreset.currentText())
-        if comboIndex == -1:
+    def pushButtonActuatorAddPressed(self):
+        #comboIndex = self.find_item(mainWidget.ui.comboBoxActuatorPreset, mainWidget.ui.comboBoxActuatorPreset.currentText())
+        #if comboIndex == -1:
+        #    return
+        #commandSets.saveActuator(self, serialHandler, simpleFARHandler, comboIndex, mainWidget.ui.comboBoxActuatorPreset.currentText(),
+        #                         str(self.ui.doubleSpinBoxBowRestPosition.value()), str(self.ui.doubleSpinBoxBowMinPressure.value()),
+        #                         str(self.ui.doubleSpinBoxBowMaxPressure.value()))
+        listID = inputBox("New actuator name", "Actuator name")
+        if listID is None:
             return
-        commandSets.saveActuator(self, serialHandler, simpleFARHandler, comboIndex, mainWidget.ui.comboBoxActuatorPreset.currentText(),
-                                 str(self.ui.doubleSpinBoxBowRestPosition.value()), str(self.ui.doubleSpinBoxBowMinPressure.value()),
-                                 str(self.ui.doubleSpinBoxBowMaxPressure.value()))
+        newIndex = simpleFARHandler.stringModules[0].getCommandValue(CommandID.actuatorCount)
+        commandSets.addActuator(self, serialHandler, simpleFARHandler, newIndex, listID)
+        mainWidget.ui.comboBoxActuatorPreset.addItem(listID)
+        #mainWidget.ui.comboBoxActuatorPreset.setCurrentIndex(mainWidget.ui.comboBoxActuatorPreset.count() - 1)
 
-    def pushButtonActuatorLoadPressed(self):
+    def comboBoxActuatorIndexChanged(self):
         if (self.updatingFromModule):
             return
         comboIndex = mainWidget.ui.comboBoxActuatorPreset.currentIndex()
@@ -1302,8 +1320,11 @@ class FarConfig(QWidget):
             mainWidget.ui.comboBoxActuatorPreset.setCurrentIndex(0)
             ba = 0
         commandSets.loadActuator(self, serialHandler, simpleFARHandler, comboIndex)
+        #self.ui.doubleSpinBoxBowRestPosition.selectionIndex = [comboIndex]
+        #self.ui.doubleSpinBoxBowMinPressure.selectionIndex = [comboIndex]
+        #self.ui.doubleSpinBoxBowMaxPressure.selectionIndex = [comboIndex]
 
-    def pushButtonAcutatorDeletePreset(self):
+    def pushButtonAcutatorRemovePressed(self):
         comboIndex = mainWidget.ui.comboBoxActuatorPreset.currentIndex() # self.find_item(mainWidget.ui.comboBoxActuatorPreset, mainWidget.ui.comboBoxActuatorPreset.currentText())
         if comboIndex == -1:
             return
@@ -1346,6 +1367,7 @@ class FarConfig(QWidget):
         if (config < 0) or (self.ui.comboBoxConfiguration.count() == 0):
             return
         commandSets.removeMidiConfiguration(self, serialHandler, simpleFARHandler, config)
+        self.ui.comboBoxConfiguration.removeItem(config)
         #serialHandler.write("midiconfigurationremove:" + str(config) + ",rqi:mcfc,rqi:mcf")
 
     def configurationSet(self):
@@ -1670,7 +1692,8 @@ class FarConfig(QWidget):
         qtObject.mouseReleaseFunction = function
 
     def showModalWait(self, issueCommand, resultCommand, progressTime, title, timeOut = False):
-        serialHandler.write(issueCommand)
+        isc = commandSets.getQualifiedShortCommand(issueCommand)[0]
+        serialHandler.write(isc)
         self.modalEvent = resultCommand
         app = QApplication.instance()
         if app is None:
@@ -1956,18 +1979,25 @@ if __name__ == "__main__":
     mainWidget.ui.comboBoxFundamentalFrequency.currentIndexChanged.connect(mainWidget.comboBoxFundamentalFrequencyIndexChanged)
     mainWidget.ui.listWidgetTuningscheme.currentItemChanged.connect(mainWidget.tuningSchemeChanged)
 
-    mainWidget.connectSignalToModalDialog(mainWidget.ui.pushButtonCalibrateAll, "bowcalibrateall", "bca")
+    mainWidget.connectSignalToModalDialog(mainWidget.ui.pushButtonCalibrateAll, CommandID.calibrateAll, CommandID.calibrateAll)
 
     mainWidget.ui.comboBoxHarmonicList.currentIndexChanged.connect(mainWidget.comboBoxHarmonicListCurrentIndexChanged)
     mainWidget.ui.pushButtonAddHarmonic.pressed.connect(mainWidget.pushButtonAddHarmonicPressed)
     mainWidget.ui.pushButtonRemoveHarmonic.pressed.connect(mainWidget.pushButtonRemoveHarmonicPressed)
     mainWidget.ui.pushButtonLoadHarmonicPreset.pressed.connect(mainWidget.pushButtonLoadHarmonicPresetPressed)
-    mainWidget.ui.pushButtonSaveCurrentHarmonicList.pressed.connect(mainWidget.pushButtonSaveCurrentHarmonicListPressed)
-    mainWidget.ui.pushButtonSaveNewHarmonicList.pressed.connect(mainWidget.pushButtonSaveNewHarmonicListPressed)
+    #mainWidget.ui.pushButtonSaveCurrentHarmonicList.pressed.connect(mainWidget.pushButtonSaveCurrentHarmonicListPressed)
+    #mainWidget.ui.pushButtonSaveNewHarmonicList.pressed.connect(mainWidget.pushButtonSaveNewHarmonicListPressed)
+    mainWidget.ui.pushButtonRenameHarmonicList.pressed.connect(mainWidget.pushButtonRenameHarmonicListPressed)
     mainWidget.ui.pushButtonAddHarmonicList.pressed.connect(mainWidget.pushButtonAddHarmonicListPressed)
     mainWidget.ui.pushButtonAddHarmonicListFile.pressed.connect(mainWidget.pushButtonAddHarmonicListFilePressed)
     mainWidget.ui.pushButtonRemoveHarmonicList.pressed.connect(mainWidget.pushButtonRemoveHarmonicListPressed)
-
+    '''
+    mainWidget.ui.pushButtonSaveCurrentHarmonicList.setVisible(False)
+    mainWidget.ui.pushButtonSaveNewHarmonicList.setText("Rename")
+    mainWidget.ui.pushButtonActuatorSave.setText("Add")
+    mainWidget.ui.pushButonActuatorSaveNew.setText("Rename")
+    mainWidget.ui.pushButtonActuatorDelete.setText("Remove")
+    '''
 ## Tab Midi settings
     mainWidget.ui.comboBoxMidiChannel.currentIndexChanged.connect(mainWidget.comboBoxMidiChannelIndexChanged)
 
@@ -2045,14 +2075,14 @@ if __name__ == "__main__":
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMinPressure, CommandID.bowPressurePositionEngage)
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowRestPosition, CommandID.bowPressurePositionRest)
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonRestBow, [CommandID.bowPressurePositionRest, "0", CommandID.bowPressureRest, "1"]) # "bppr:0,bpr:1"
-    mainWidget.connectSignalToModalDialog(mainWidget.ui.pushButtonCalibratePressure, "bcp", "bcp")
+    mainWidget.connectSignalToModalDialog(mainWidget.ui.pushButtonCalibratePressure, CommandID.calibrateBowPressure, CommandID.calibrateBowPressure)
 
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteFullMutePosition, CommandID.muteFullMutePosition)
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteHalfMutePosition, CommandID.muteHalfMutePosition)
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteRestPosition, CommandID.muteRestPosition)
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteBackoff, CommandID.muteBackoff)
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonRestMute, [CommandID.muteRestPosition, "0", CommandID.muteRest, "1"])
-    mainWidget.connectSignalToModalDialog(mainWidget.ui.pushButtonCalibrateMute, "mca", "mca")
+    mainWidget.connectSignalToModalDialog(mainWidget.ui.pushButtonCalibrateMute, CommandID.calibrateMute, CommandID.calibrateMute)
 
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteFullTest, [CommandID.muteFullMute, "1" ])
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteHalfTest, [CommandID.muteHalfMute, "1" ])
@@ -2062,11 +2092,13 @@ if __name__ == "__main__":
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidMinForce, CommandID.solenoidMinForce)
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidEngageDuration, CommandID.solenoidEngageDuration)
 
-    mainWidget.ui.pushButtonActuatorSave.pressed.connect(mainWidget.pushButtonActuatorSavePressed)
-    mainWidget.ui.comboBoxActuatorPreset.currentIndexChanged.connect(mainWidget.pushButtonActuatorLoadPressed)
-    mainWidget.ui.pushButonActuatorSaveNew.pressed.connect(mainWidget.pushButonActuatorSaveNewPressed)
+#    mainWidget.ui.pushButtonActuatorSave.pressed.connect(mainWidget.pushButtonActuatorSavePressed)
+    mainWidget.ui.comboBoxActuatorPreset.currentIndexChanged.connect(mainWidget.comboBoxActuatorIndexChanged)
+#    mainWidget.ui.pushButonActuatorSaveNew.pressed.connect(mainWidget.pushButonActuatorSaveNewPressed)
    # mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
-    mainWidget.ui.pushButtonActuatorDelete.pressed.connect(mainWidget.pushButtonAcutatorDeletePreset)
+    mainWidget.ui.pushButtonActuatorRemove.pressed.connect(mainWidget.pushButtonAcutatorRemovePressed)
+    mainWidget.ui.pushButtonActuatorAdd.pressed.connect(mainWidget.pushButtonActuatorAddPressed)
+    mainWidget.ui.pushButtonActuatorRename.pressed.connect(mainWidget.pushButtonActuatorRenamePressed)
 
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowMaxPressureTest, [CommandID.bowPressureModifier, "0", CommandID.bowPressureBaseline, "65535"])
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowEngagePressureTest, [CommandID.bowPressureModifier, "0", CommandID.bowPressureBaseline, "65535", CommandID.bowPressureEngage, "1"])

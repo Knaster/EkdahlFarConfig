@@ -303,6 +303,9 @@ class CommandSet:
                 #simpleFARHandler.currentHarmonicListSelected = int(commandItem.argument[0])
                 mainWidget.ui.comboBoxHarmonicList.setCurrentIndex(int(commandItem.argument[0]))
 
+            case CommandID.bowHarmonicBaseNote:
+                mainWidget.handleHarmonicBaseNote(int(commandItem.argument[0]))
+
             case CommandID.midiConfigurationName:
                 mainWidget.handleMIDIConfigurationName(commandItem.argument[0])
 
@@ -368,19 +371,19 @@ class CommandSet:
             case CommandID.controlBoxControlData:
                 mainWidget.handleControlBoxControlData(commandItem.argument[0], commandItem.argument[1])
 
+            case CommandID.bowHarmonic | CommandID.bowHarmonicShift | CommandID.bowHarmonicShift5 | CommandID.bowHarmonicBase | CommandID.bowHarmonicAdd:
+                rqTg = self.getQualifiedShortCommand(CommandID.pidTargetFreq)[0]
+                serialHandler.write("rqi:" + rqTg)
+
             case _:
                 return False
         return True
 
-    ### All these functions are to be called FROM THE UI WHEN CHANGES ARE DONE MANUALLY, not when receiving information
-
     def setMidiConfigurationSelect(self, sender, serialHandler, simpleFARHandler, index):
         simpleFARHandler.stringModules[0].setCommandValue(CommandID.midiConfigurationSelect, index)
         if (not sender.updatingFromModule):
-            qualifiedShort = self.getQualifiedShortCommand(CommandID.midiConfigurationSelect, [])[0]
+            qualifiedShort = self.getQualifiedShortCommand(CommandID.midiConfigurationSelect)[0]
             serialHandler.write(qualifiedShort + ":"+ str(index))
-
-    ## Not implemented in the base yet
 
     def setMidiConfigurationName(self, sender, serialHandler, simpleFARHandler, index, name):
         setConfig = self.getQualifiedShortCommand(CommandID.midiConfigurationSelect)[0]
@@ -429,37 +432,42 @@ class CommandSet:
         if (not sender.updatingFromModule):
             qualifiedShort = self.getQualifiedShortCommand(CommandID.harmonicSeriesSelect, [index])[0]
             serialHandler.write(qualifiedShort + ":"+ str(index))
-
+    '''
     def saveHarmonicSeries(self, sender, serialHandler, simpleFARHandler, harmonicSeries, name, setToList):
         qualifiedShort = self.getQualifiedShortCommand(CommandID.harmonicSeriesSave, [harmonicSeries])[0]
         serialHandler.write(qualifiedShort + ":"+ str(harmonicSeries) + ":'" + name + "'")
         serialHandler.write(self.getQualifiedShortCommand(CommandID.harmonicSeriesCount)[0] + ":" + str(harmonicSeries))
         if (setToList): serialHandler.write(self.getQualifiedShortCommand(CommandID.harmonicSeriesSelect)[0] + ":" + str(harmonicSeries))
+    '''
 
     def addHarmonicSeries(self, sender, serialHandler, simpleFARHandler, harmonicSeries, name, setToList):
-        qualifiedShort = self.getQualifiedShortCommand(CommandID.harmonicSeriesAdd, [harmonicSeries])[0]
-        serialHandler.write(qualifiedShort + ":"+ str(harmonicSeries) + ":'" + name + ":"  + "':1'")
-        serialHandler.write(self.getQualifiedShortCommand(CommandID.harmonicSeriesCount)[0] + ":" + str(harmonicSeries))
+        qualifiedShort = self.getQualifiedShortCommand(CommandID.harmonicSeriesAdd)[0]
+        serialHandler.write(qualifiedShort + ":'" + name + "'")
+        #serialHandler.write(self.getQualifiedShortCommand(CommandID.harmonicSeriesCount)[0] + ":" + str(harmonicSeries))
         if (setToList): serialHandler.write(self.getQualifiedShortCommand(CommandID.harmonicSeriesSelect)[0] + ":" + str(harmonicSeries))
 
     def removeHarmonicSeries(self, sender, serialHandler, simpleFARHandler, harmonicSeries):
-        qualifiedShort = self.getQualifiedShortCommand(CommandID.harmonicSeriesRemove, [harmonicSeries])[0]
+        qualifiedShort = self.getQualifiedShortCommand(CommandID.harmonicSeriesRemove)[0]
         serialHandler.write(qualifiedShort + ":"+ str(harmonicSeries))
-        harmonicSeries = harmonicSeries - 1
-        if (harmonicSeries < 0): harmonicSeries = 0
-        serialHandler.write(self.getQualifiedShortCommand(CommandID.harmonicSeriesCount)[0])
-        serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.harmonicSeriesSelect)[0] + ":" + str(harmonicSeries))
+        #harmonicSeries = harmonicSeries - 1
+        #if (harmonicSeries < 0): harmonicSeries = 0
+        #serialHandler.write(self.getQualifiedShortCommand(CommandID.harmonicSeriesCount)[0])
+        #serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.harmonicSeriesSelect)[0] + ":" + str(harmonicSeries))
+
+    def renameHarmonicSeries(self, sender, serialHandler, simpleFARHandler, harmonicSeries, name):
+        setHSData = self.getQualifiedShortCommand(CommandID.harmonicSeriesName, [harmonicSeries])[0]
+        serialHandler.write(setHSData + ":'" + name + "'")
 
     def setHarmonicSeriesData(self, sender, serialHandler, simpleFARHandler, harmonicSeries, name, data):
         setHSData = self.getQualifiedShortCommand(CommandID.harmonicSeriesData, [harmonicSeries])[0]
         comm = setHSData + ":'" + name + "'"
         for d in data: comm += ":" + str(d)
         serialHandler.write(comm)
-
+    '''
     def saveActuator(self, sender, serialHandler, simpleFARHandler, newIndex, name, rest = 0, engage = 2000, stall = 60000):
         bowActuatorSave = self.getQualifiedShortCommand(CommandID.actuatorSave)[0]
         serialHandler.write(bowActuatorSave + ":" + str(newIndex) + ":'" + name + "',ba:" + str(newIndex) + ",bac")
-
+    '''
     def loadActuator(self, sender, serialHandler, simpleFARHandler, index):
         actuatorLoad = self.getQualifiedShortCommand(CommandID.actuatorSelect)[0]
         bowPressureMax = self.getQualifiedShortCommand(CommandID.bowPressurePositionMax)[0]
@@ -467,9 +475,17 @@ class CommandSet:
         bowPressureRest = self.getQualifiedShortCommand(CommandID.bowPressurePositionRest)[0]
         serialHandler.write(actuatorLoad + ":" + str(index) + ",rqi:" + bowPressureMax + ",rqi:" + bowPressureEngage + ",rqi:" + bowPressureRest)
 
+    def addActuator(self, sender, serialHandler, simpleFARHandler, newIndex, name):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.actuatorAdd)[0]
+        serialHandler.write(qualifiedCommand + ":" + name)
+
     def removeActuator(self, sender, serialHandler, simpleFARHandler, index):
         qualifiedCommand = self.getQualifiedShortCommand(CommandID.actuatorRemove)[0]
         serialHandler.write(qualifiedCommand + ":" + str(index))
+
+    def renameActuator(self, sender, serialHandler, simpleFARHandler, index, name):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.actuatorName, [index])[0]
+        serialHandler.write(qualifiedCommand + ":" + name)
 
 class CommandSetOG(CommandSet):
     CommandItem = derivedCommandItem
@@ -928,7 +944,7 @@ class CommandSetModular(CommandSet):
             CommandID.pickupStringFrequency: "pickupstringfrequency",
             CommandID.pickupAudioPeak: "pickupaudiopeak",
             CommandID.pickupAudioRMS: "pickupaudiorms",
-            CommandID.version: "ver"
+            CommandID.version: "version"
         }
 
         requestData = [ CommandID.nickName, CommandID.debugPrint ]
@@ -1011,7 +1027,8 @@ class CommandSetModular(CommandSet):
         }
 
         requestData = [
-            CommandID.bowFundamental, CommandID.bowHarmonicShiftRange, CommandID.harmonicSeriesCount, CommandID.harmonicSeriesSelect
+            CommandID.bowFundamental, CommandID.bowHarmonicShiftRange, CommandID.harmonicSeriesCount, CommandID.harmonicSeriesSelect,
+            CommandID.bowHarmonicBaseNote
         ]
 
         requestContinuousData = []
@@ -1473,10 +1490,20 @@ class CommandSetModular(CommandSet):
             self.children.append(child)
             return self.children[-1]
 
+        def remove(self, index):
+            pass
+
     class GroupHandler(Module):
         def __init__(self, baseCommandSet, commandItem, itemCommandSet):
             super().__init__(baseCommandSet, commandItem, itemCommandSet)
             self.children = []
+
+        def remove(self, item):
+            index = self.children.index(item)
+            self.children.remove(item)
+            for i in range(index, len(self.children)):
+                self.children[i].index -= 1
+            pass
 
         def getGroups(self, name):
             toReturn = []
@@ -1510,9 +1537,12 @@ class CommandSetModular(CommandSet):
                             return group.getGroupParsed(newItem, group.children, addGroups)
             if (addGroups):
                 self.addGroupFromHierarchy(newItem)
-                group = rootGroup[-1]
-                if (newItem.hierarchyIndex < (len(newItem.hierarchy))):
-                    group.getGroupParsed(newItem, group.children, True)
+                if (len(rootGroup) != 0):
+                    group = rootGroup[-1]
+                    if (newItem.hierarchyIndex < (len(newItem.hierarchy))):
+                        group.getGroupParsed(newItem, group.children, True)
+                else:
+                    pass
 
         def getGroup(self, commandItem):
             return self.getGroupParsed(commandItem, self.children)
@@ -1544,6 +1574,8 @@ class CommandSetModular(CommandSet):
                 #self.children.append()
                 self.addGroup(commandItem, commandGroup)
                 commandItem.hierarchyIndex += 1
+            if (len(self.children) == 0):
+                return None
             return  self.children[-1]
 
         def addModule(self, commandItem):
@@ -1696,7 +1728,7 @@ class CommandSetModular(CommandSet):
         #CommandID.controlBoxControlData, CommandID.controlBoxADCSettings
         cbd = self.getQualifiedShortCommand(CommandID.controlBoxControlData)[0]
         cba = self.getQualifiedShortCommand(CommandID.controlBoxADCSettings)[0]
-        for i in range(0,7):
+        for i in range(0,8):
             serialHandler.write("rqi:" + cbd + ":" + str(i) + ",rqi:" + cba + ":" + str(i))
 
     def requestContinuousData(self, serialHandler):
@@ -1717,7 +1749,6 @@ class CommandSetModular(CommandSet):
                         if (isIndex): qualifiedShort += "[]"
                         serialHandler.write("rqi:" + qualifiedShort)
 
-        #CommandID.controlBoxControlData, CommandID.controlBoxADCSettings
         cbd = self.getQualifiedShortCommand(CommandID.controlBoxControlData)[0]
         cba = self.getQualifiedShortCommand(CommandID.controlBoxADCSettings)[0]
         for i in range(0,7):
@@ -1902,6 +1933,25 @@ class CommandSetModular(CommandSet):
                 return super().processMessages(commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler)
         return True
 
+    def addHarmonicSeries(self, sender, serialHandler, simpleFARHandler,  harmonicSeries, name, setToList):
+        super().addHarmonicSeries(sender, serialHandler, simpleFARHandler, harmonicSeries, name, setToList)
+        hh: CommandSetModular.GroupHandler = self.baseModule.getGroups("hsh")[0]
+        newItem = derivedCommandItem("harmonicseries[" + str(harmonicSeries) + "]")
+        hh.addModule(newItem)
+        hsRq = self.getQualifiedShortCommand(CommandID.harmonicSeriesCount)[0]
+        serialHandler.write("rqi:" + hsRq);
+
+    def removeHarmonicSeries(self, sender, serialHandler, simpleFARHandler, harmonicSeries):
+        super().removeHarmonicSeries(sender, serialHandler, simpleFARHandler, harmonicSeries)
+        hh: CommandSetModular.GroupHandler = self.baseModule.getGroups("hsh")[0]
+        newItem = derivedCommandItem("harmonicseries[" + str(harmonicSeries) + "]")
+        module:CommandSetModular.Module =  hh.getGroup(newItem)
+        par:CommandSetModular.GroupHandler =  module.parent
+        par.remove(module)
+        hsRq = self.getQualifiedShortCommand(CommandID.harmonicSeriesCount)[0]
+        serialHandler.write("rqi:" + hsRq);
+
+    '''
     def saveActuator(self, sender, serialHandler, simpleFARHandler, newIndex, name, rest = 0, engage = 2000, stall = 60000):
         count = int(simpleFARHandler.stringModules[0].getCommandValue(CommandID.actuatorCount))
         if (newIndex >= count):
@@ -1915,19 +1965,30 @@ class CommandSetModular(CommandSet):
         else:
             bowActuatorData = self.getQualifiedShortCommand(CommandID.actuatorData, [newIndex])[0]
             serialHandler.write(bowActuatorData + ":" + name + ":" + rest + ":" + engage + ":" + stall)
-
+    '''
     def loadActuator(self, sender, serialHandler, simpleFARHandler, index):
         actuatorLoad = self.getQualifiedShortCommand(CommandID.actuatorSelect, [index])[0]
         serialHandler.write(actuatorLoad + ":" + str(index))  # + ",rqi:" + bowPressureMax + ",rqi:" + bowPressureEngage + ",rqi:" + bowPressureRest)
 
+    def addActuator(self, sender, serialHandler, simpleFARHandler, index, name):
+        super().addActuator(sender, serialHandler, simpleFARHandler, index, name)
+        hh: CommandSetModular.GroupHandler = self.baseModule.getGroups("actuatorhandler")[0]
+        newItem = derivedCommandItem("actuator[" + str(index) + "]")
+        hh.addModule(newItem)
+        acRq = self.getQualifiedShortCommand(CommandID.actuatorCount)[0]
+        serialHandler.write("rqi:" + acRq);
+
     def removeActuator(self, sender, serialHandler, simpleFARHandler, index):
         super().removeActuator(sender, serialHandler, simpleFARHandler, index)
-        newItem = derivedCommandItem("actuatorhandler.actuator[" + str(index) + "]")
-        module:CommandSetModular.Module =  self.baseModule.getGroup(newItem)
+        hh: CommandSetModular.GroupHandler = self.baseModule.getGroups("actuatorhandler")[0]
+        newItem = derivedCommandItem("actuator[" + str(index) + "]")
+        module:CommandSetModular.Module =  hh.getGroup(newItem)
         par:CommandSetModular.GroupHandler =  module.parent
-        par.children.remove(module)
+        par.remove(module)
         rqAC = self.getQualifiedShortCommand(CommandID.actuatorCount)[0]
         serialHandler.write("rqi:" + rqAC)
+        acRq = self.getQualifiedShortCommand(CommandID.actuatorCount)[0]
+        serialHandler.write("rqi:" + acRq);
 
     def setMidiConfigurationSelect(self, sender, serialHandler, simpleFARHandler, index):
         simpleFARHandler.stringModules[0].setCommandValue(CommandID.midiConfigurationSelect, index)
@@ -1944,15 +2005,19 @@ class CommandSetModular(CommandSet):
         rqAC = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
         serialHandler.write("rqi:" + rqAC)
         self.setMidiConfigurationSelect(sender, serialHandler, simpleFARHandler, index)
+        mcRq = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
+        serialHandler.write("rqi:" + mcRq);
 
     def removeMidiConfiguration(self, sender, serialHandler, simpleFARHandler, index):
         super().removeMidiConfiguration(sender, serialHandler, simpleFARHandler, index)
         newItem = derivedCommandItem("midiconfigurationhandler.midiconfiguration[" + str(index) + "]")
         module:CommandSetModular.Module =  self.baseModule.getGroup(newItem)
         par:CommandSetModular.GroupHandler =  module.parent
-        par.children.remove(module)
+        par.remove(module)
         rqAC = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
         serialHandler.write("rqi:" + rqAC)
+        mcRq = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
+        serialHandler.write("rqi:" + mcRq);
 
     def __init__(self):
         super().__init__()
@@ -2026,7 +2091,10 @@ class CommandSets:
         return self.currentCommandSet.removeHarmonicSeriesRatio(sender, serialHandler, simpleFARHandler, harmonicSeries, ratioIndex)
 
     def saveHarmonicSeries(self, sender, serialHandler, simpleFARHandler,  harmonicSeries, name, setToList):
-        return self.currentCommandSet.saveHarmonicSeries(sender, serialHandler, simpleFARHandler, harmonicSeries, name, setToList)
+        ind = simpleFARHandler.stringModules[0].getCommandValue(CommandID.harmonicSeriesCount)
+        self.addHarmonicSeries(sender, serialHandler, simpleFARHandler, ind, "default", False)
+
+        #return self.currentCommandSet.saveHarmonicSeries(sender, serialHandler, simpleFARHandler, harmonicSeries, name, setToList)
 
     def addHarmonicSeries(self, sender, serialHandler, simpleFARHandler,  harmonicSeries, name, setToList):
         return self.currentCommandSet.addHarmonicSeries(sender, serialHandler, simpleFARHandler, harmonicSeries, name, setToList)
@@ -2034,14 +2102,23 @@ class CommandSets:
     def removeHarmonicSeries(self, sender, serialHandler, simpleFARHandler, harmonicSeries):
         return self.currentCommandSet.removeHarmonicSeries(sender, serialHandler, simpleFARHandler, harmonicSeries)
 
+    def renameHarmonicSeries(self, sender, serialHandler, simpleFARHandler, harmonicSeries, name):
+        return self.currentCommandSet.renameHarmonicSeries(sender, serialHandler, simpleFARHandler, harmonicSeries, name)
+
     def setHarmonicSeriesData(self, sender, serialHandler, simpleFARHandler, harmonicSeries, name, data):
         return self.currentCommandSet.setHarmonicSeriesData(sender, serialHandler, simpleFARHandler, harmonicSeries, name, data)
-
+    '''
     def saveActuator(self, sender, serialHandler, simpleFARHandler, newIndex, name, rest = 0, engage = 2000, stall = 60000):
         return self.currentCommandSet.saveActuator(sender, serialHandler, simpleFARHandler, newIndex, name, rest, engage, stall)
-
+    '''
     def loadActuator(self, sender, serialHandler, simpleFARHandler, index):
         return self.currentCommandSet.loadActuator(sender, serialHandler, simpleFARHandler, index)
+    
+    def addActuator(self, sender, serialHandler, simpleFARHandler, index, name):
+        return self.currentCommandSet.addActuator(sender, serialHandler, simpleFARHandler, index, name)
+
+    def renameActuator(self, sender, serialHandler, simpleFARHandler, index, name):
+        return self.currentCommandSet.renameActuator(sender, serialHandler, simpleFARHandler, index, name)
 
     def removeActuator(self, sender, serialHandler, simpleFARHandler, index):
         return self.currentCommandSet.removeActuator(sender, serialHandler, simpleFARHandler, index)

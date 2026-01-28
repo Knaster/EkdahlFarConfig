@@ -875,7 +875,7 @@ QDial {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>7</number>
+    <number>3</number>
    </property>
    <property name="iconSize">
     <size>
@@ -1348,32 +1348,6 @@ QSlider::handle:horizontal {
      <widget class="QPushButton" name="pushButtonAddHarmonicList">
       <property name="geometry">
        <rect>
-        <x>610</x>
-        <y>50</y>
-        <width>124</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add new</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButtonRemoveHarmonicList">
-      <property name="geometry">
-       <rect>
-        <x>750</x>
-        <y>50</y>
-        <width>124</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Remove</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButtonSaveCurrentHarmonicList">
-      <property name="geometry">
-       <rect>
         <x>330</x>
         <y>50</y>
         <width>124</width>
@@ -1381,10 +1355,10 @@ QSlider::handle:horizontal {
        </rect>
       </property>
       <property name="text">
-       <string>Save as current</string>
+       <string>Add</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButtonSaveNewHarmonicList">
+     <widget class="QPushButton" name="pushButtonRemoveHarmonicList">
       <property name="geometry">
        <rect>
         <x>470</x>
@@ -1394,13 +1368,26 @@ QSlider::handle:horizontal {
        </rect>
       </property>
       <property name="text">
-       <string>Save as new</string>
+       <string>Remove</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonRenameHarmonicList">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>50</y>
+        <width>124</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Rename</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButtonAddHarmonicListFile">
       <property name="geometry">
        <rect>
-        <x>890</x>
+        <x>750</x>
         <y>50</y>
         <width>124</width>
         <height>21</height>
@@ -4091,17 +4078,17 @@ QSlider::handle:horizontal {
        <string>Preset</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButtonActuatorSave">
+     <widget class="QPushButton" name="pushButtonActuatorAdd">
       <property name="geometry">
        <rect>
-        <x>750</x>
+        <x>900</x>
         <y>80</y>
-        <width>121</width>
+        <width>71</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
-       <string>Save as current</string>
+       <string>Add</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButtonActuatorLoad">
@@ -4117,17 +4104,17 @@ QSlider::handle:horizontal {
        <string>Load</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButtonActuatorDelete">
+     <widget class="QPushButton" name="pushButtonActuatorRemove">
       <property name="geometry">
        <rect>
-        <x>1030</x>
+        <x>990</x>
         <y>80</y>
-        <width>121</width>
+        <width>71</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
-       <string>Delete</string>
+       <string>Remove</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButtonRestBow">
@@ -4201,17 +4188,17 @@ QSlider::handle:horizontal {
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButonActuatorSaveNew">
+     <widget class="QPushButton" name="pushButtonActuatorRename">
       <property name="geometry">
        <rect>
-        <x>890</x>
+        <x>1080</x>
         <y>80</y>
-        <width>121</width>
+        <width>71</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
-       <string>Save as new</string>
+       <string>Rename</string>
       </property>
      </widget>
     </widget>
