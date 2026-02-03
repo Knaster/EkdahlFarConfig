@@ -19,8 +19,9 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDial,
     QDoubleSpinBox, QFrame, QGridLayout, QGroupBox,
     QHeaderView, QLabel, QLayout, QLineEdit,
     QListWidget, QListWidgetItem, QPlainTextEdit, QProgressBar,
-    QPushButton, QSizePolicy, QSlider, QSpinBox,
-    QTabWidget, QTableView, QVBoxLayout, QWidget)
+    QPushButton, QScrollArea, QSizePolicy, QSlider,
+    QSpinBox, QTabWidget, QTableView, QVBoxLayout,
+    QWidget)
 
 class Ui_Widget(object):
     def setupUi(self, Widget):
@@ -1982,6 +1983,51 @@ class Ui_Widget(object):
         self.nodeContainer.setSizeConstraint(QLayout.SetNoConstraint)
         self.nodeContainer.setContentsMargins(0, 0, 0, 0)
         self.tabWidgetMain.addTab(self.tab_nodeeditor, "")
+        self.tab_plugins = QWidget()
+        self.tab_plugins.setObjectName(u"tab_plugins")
+        self.pushButtonPluginsRemove = QPushButton(self.tab_plugins)
+        self.pushButtonPluginsRemove.setObjectName(u"pushButtonPluginsRemove")
+        self.pushButtonPluginsRemove.setGeometry(QRect(1010, 10, 71, 25))
+        self.pushButtonPluginsAdd = QPushButton(self.tab_plugins)
+        self.pushButtonPluginsAdd.setObjectName(u"pushButtonPluginsAdd")
+        self.pushButtonPluginsAdd.setGeometry(QRect(920, 10, 71, 25))
+        self.comboBoxPlugins = QComboBox(self.tab_plugins)
+        self.comboBoxPlugins.setObjectName(u"comboBoxPlugins")
+        self.comboBoxPlugins.setGeometry(QRect(545, 10, 351, 25))
+        self.label_67 = QLabel(self.tab_plugins)
+        self.label_67.setObjectName(u"label_67")
+        self.label_67.setGeometry(QRect(400, 11, 131, 20))
+        self.line_21 = QFrame(self.tab_plugins)
+        self.line_21.setObjectName(u"line_21")
+        self.line_21.setGeometry(QRect(10, 40, 1161, 16))
+        self.line_21.setFrameShape(QFrame.Shape.HLine)
+        self.line_21.setFrameShadow(QFrame.Shadow.Sunken)
+        self.pushButtonPluginsName = QPushButton(self.tab_plugins)
+        self.pushButtonPluginsName.setObjectName(u"pushButtonPluginsName")
+        self.pushButtonPluginsName.setGeometry(QRect(1100, 10, 71, 25))
+        self.scrollPlugins = QScrollArea(self.tab_plugins)
+        self.scrollPlugins.setObjectName(u"scrollPlugins")
+        self.scrollPlugins.setGeometry(QRect(20, 50, 1151, 571))
+        self.scrollPlugins.setFrameShape(QFrame.NoFrame)
+        self.scrollPlugins.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scrollPlugins.setWidgetResizable(True)
+        self.scrollAreaContentsPlugins = QWidget()
+        self.scrollAreaContentsPlugins.setObjectName(u"scrollAreaContentsPlugins")
+        self.scrollAreaContentsPlugins.setGeometry(QRect(0, 0, 1151, 571))
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.scrollAreaContentsPlugins.sizePolicy().hasHeightForWidth())
+        self.scrollAreaContentsPlugins.setSizePolicy(sizePolicy2)
+        self.scrollAreaContentsPlugins.setMinimumSize(QSize(1146, 0))
+        self.layoutWidget = QWidget(self.scrollAreaContentsPlugins)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(0, -1, 1141, 571))
+        self.verticalLayoutPlugins = QVBoxLayout(self.layoutWidget)
+        self.verticalLayoutPlugins.setObjectName(u"verticalLayoutPlugins")
+        self.verticalLayoutPlugins.setContentsMargins(0, 0, 0, 0)
+        self.scrollPlugins.setWidget(self.scrollAreaContentsPlugins)
+        self.tabWidgetMain.addTab(self.tab_plugins, "")
         self.pushButtonShowConsole = QPushButton(Widget)
         self.pushButtonShowConsole.setObjectName(u"pushButtonShowConsole")
         self.pushButtonShowConsole.setGeometry(QRect(1000, 10, 120, 25))
@@ -2009,7 +2055,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.tabWidgetMain.setCurrentIndex(3)
+        self.tabWidgetMain.setCurrentIndex(8)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -2346,6 +2392,11 @@ class Ui_Widget(object):
         self.label_48.setText(QCoreApplication.translate("Widget", u"T. Freq", None))
         self.tabWidgetMain.setTabText(self.tabWidgetMain.indexOf(self.tab_temporary), QCoreApplication.translate("Widget", u"Temporary", None))
         self.tabWidgetMain.setTabText(self.tabWidgetMain.indexOf(self.tab_nodeeditor), QCoreApplication.translate("Widget", u"Nodes", None))
+        self.pushButtonPluginsRemove.setText(QCoreApplication.translate("Widget", u"Remove", None))
+        self.pushButtonPluginsAdd.setText(QCoreApplication.translate("Widget", u"Add", None))
+        self.label_67.setText(QCoreApplication.translate("Widget", u"Avaliable plugins", None))
+        self.pushButtonPluginsName.setText(QCoreApplication.translate("Widget", u"Name", None))
+        self.tabWidgetMain.setTabText(self.tabWidgetMain.indexOf(self.tab_plugins), QCoreApplication.translate("Widget", u"Pluugins", None))
         self.pushButtonShowConsole.setText(QCoreApplication.translate("Widget", u"Show console", None))
         self.pushButtonShowReference.setText(QCoreApplication.translate("Widget", u"Show reference", None))
         self.pushButtonLoadFromModule.setText(QCoreApplication.translate("Widget", u"Refresh", None))

@@ -7,6 +7,10 @@
         "commandparser.py",
         "timedChart.py",
         "prompt.ui",
-        "reference.ui"
+        "reference.ui",
+        "plugin_ahdsr.ui",
+        "plugin_numbermap.ui",
+        "plugin_lfo.ui",
+        "plugin_mult.ui"
     ]
 }

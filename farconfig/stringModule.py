@@ -49,13 +49,28 @@ class stringModule:
 
     # This function will add any single value instrument data to the commandValues dictionary
     # where the key is the associated command
-    def setCommandValue(self, command, value):
-        self.commandValues[command] = value
-
-    def getCommandValue(self, command):
-        if command in self.commandValues:
-            return self.commandValues[command]
+    def setCommandValue(self, command, value, index = 0):
+        if (command in self.commandValues):
+            try:
+                if len(self.commandValues[command]) <= index:
+                    self.commandValues[command].insert(index, value)
+                else:
+                    self.commandValues[command][index] = value
+            except:
+                pass
         else:
+            if (index == 0):
+                self.commandValues[command] = [value]
+            else:
+                pass
+
+
+    def getCommandValue(self, command, index = 0):
+        #if command in self.commandValues:
+        try:
+            return self.commandValues[command][index]
+        #else:
+        except:
             return -1
 
     def setCVCommand(self, channel, command):

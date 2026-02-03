@@ -159,16 +159,16 @@ class derivedCommandItem(CommandItem):
             self.name: str = inName
             self.selection: list = inSelection
 
-    hierarchy: list = []
-    hierarchyIndex = 0
-    selection: list = []
-
     def __init__(self, inCommandString):
         if (isinstance(inCommandString, str)):
             super().__init__(inCommandString)
         if (isinstance(inCommandString, CommandItem)):
             self.command = inCommandString.command
             self.argument = inCommandString.argument
+
+        self.hierarchy: list = []
+        self.hierarchyIndex = 0
+        self.selection: list = []
         self.buildHierarchy()
 
     def buildHierarchy(self):
@@ -217,3 +217,8 @@ class derivedCommandList(CommandList):
     def __init__(self, commands=""):
         self.commandItem = derivedCommandItem
         super().__init__(commands)
+
+def getCommandIndex(inCommandItem:derivedCommandItem):
+    if (len(inCommandItem.hierarchy) < 2): return 0
+    if (len(inCommandItem.hierarchy[len(inCommandItem.hierarchy) - 2].selection) < 1): return 0
+    return int(inCommandItem.hierarchy[len(inCommandItem.hierarchy) - 2].selection[0])

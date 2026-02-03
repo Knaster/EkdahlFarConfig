@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit, QComboBox, QSlider
 from PySide6.QtCore import QThread, Signal, QTimer, QModelIndex, Qt, QObject, QDir, Slot
-from PySide6.QtGui import QTextBlock, QTextCursor, QTextBlockFormat, QColor
+from PySide6.QtGui import QTextBlock, QTextCursor, QTextBlockFormat, QColor, QKeyEvent
 
 from ui_prompt import Ui_Form
 
@@ -18,7 +18,11 @@ class SerialWidget(QWidget):
         self.logging = inLogging
 
         self.ui.pushButtonSend.pressed.connect(self.lineEditSend)
-        self.ui.lineEditSend.returnPressed.connect(self.lineEditSend)
+        self.ui.xlineEditSend.setVisible(False)
+        #self.ui.lineEditSend.returnPressed.connect(self.lineEditSend)
+        self.originalLineEditKeyPressEvent = self.ui.lineEditSend.keyPressEvent
+        self.ui.lineEditSend.keyPressEvent = self.lineEditKeypressEvent
+
         self.assignFeedbackReportItem(self.ui.checkBoxFilterCommAck, "command")
         self.assignFeedbackReportItem(self.ui.checkBoxFilterDebug, "debug")
         self.assignFeedbackReportItem(self.ui.checkBoxFilterError, "error")
@@ -29,11 +33,37 @@ class SerialWidget(QWidget):
         self.assignFeedbackReportItem(self.ui.checkBoxFilterUSB, "usb")
         self.assignFeedbackReportItem(self.ui.checkBoxFilterUndefined, "undefined")
         self.assignFeedbackReportItem(self.ui.checkBoxFilterOutput, "output")
+        self.assignFeedbackReportItem(self.ui.checkBoxFilterInternal, "internal")
 
         self.ui.checkBoxDebugCursorFollow.toggled.connect(self.checkBoxDebugCursorFollowToggled)
         self.ui.pushButtonClear.pressed.connect(self.debugClear)
         self.ui.checkBoxLimitLines.stateChanged.connect(self.checkBoxLimitLinesStateChanged)
         self.ui.spinBoxLimitLines.valueChanged.connect(self.spinBoxLimitLinesValueChanged)
+
+    def lineEditKeypressEvent(self, event:QKeyEvent):
+        qline = self.ui.lineEditSend
+        match(event.key()):
+            case 16777220:
+                qline.addItem(self.ui.lineEditSend.currentText())
+                self.lineEditSend()
+            case 16777235: #up
+                if (qline.currentIndex() + 1 < qline.count()):
+                    qline.setCurrentIndex(qline.currentIndex() + 1)
+                else:
+                    if (qline.currentText() != ""):
+                        qline.clearEditText()
+                    else:
+                        if (qline.count() != 0): qline.setCurrentIndex(0)
+            case 16777237:
+                if (qline.currentIndex() - 1 > - 1):
+                    qline.setCurrentIndex(qline.currentIndex() - 1)
+                else:
+                    if (qline.currentText() != ""):
+                        qline.clearEditText()
+                    else:
+                        if (qline.count() != 0): qline.setCurrentIndex(qline.count() - 1)
+            case _:
+                self.originalLineEditKeyPressEvent(event)
 
     def addToDebugWindow(self, text):
         dpdir = text[1:3]
@@ -123,7 +153,7 @@ class SerialWidget(QWidget):
                 out = "1"
             else:
                 out = "0"
-            #self.serialHandler.write("debugprint:" + sender.reportType + ":" + out)
+            self.serialHandler.write("debugprint:" + sender.reportType + ":" + out)
 
     def setReportFeedback(self, reportType, state):
         if (state):
@@ -197,9 +227,11 @@ class SerialWidget(QWidget):
     def lineEditSend(self):
 #        if self.serialStream is not None:
         try:
-            tempText = self.ui.lineEditSend.text()
+            #tempText = self.ui.lineEditSend.text()
+            tempText = self.ui.lineEditSend.currentText()
             self.serialHandler.write(tempText)
             print("sending " + str(tempText.encode()))
-            self.ui.lineEditSend.clear()
+            self.ui.lineEditSend.setCurrentText("")
+            #self.ui.lineEditSend.clear()
         except:
             print("ERROR SENDING DATA!")

@@ -875,7 +875,7 @@ QDial {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>8</number>
    </property>
    <property name="iconSize">
     <size>
@@ -6771,6 +6771,138 @@ QProgressBar::chunk
        <enum>QLayout::SetNoConstraint</enum>
       </property>
      </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_plugins">
+    <attribute name="title">
+     <string>Pluugins</string>
+    </attribute>
+    <widget class="QPushButton" name="pushButtonPluginsRemove">
+     <property name="geometry">
+      <rect>
+       <x>1010</x>
+       <y>10</y>
+       <width>71</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Remove</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButtonPluginsAdd">
+     <property name="geometry">
+      <rect>
+       <x>920</x>
+       <y>10</y>
+       <width>71</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Add</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBoxPlugins">
+     <property name="geometry">
+      <rect>
+       <x>545</x>
+       <y>10</y>
+       <width>351</width>
+       <height>25</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_67">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>11</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Avaliable plugins</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_21">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>1161</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButtonPluginsName">
+     <property name="geometry">
+      <rect>
+       <x>1100</x>
+       <y>10</y>
+       <width>71</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </widget>
+    <widget class="QScrollArea" name="scrollPlugins">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>1151</width>
+       <height>571</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaContentsPlugins">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1151</width>
+        <height>571</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>1146</width>
+        <height>0</height>
+       </size>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>-1</y>
+         <width>1141</width>
+         <height>571</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayoutPlugins"/>
+      </widget>
+     </widget>
     </widget>
    </widget>
   </widget>

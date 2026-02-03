@@ -210,13 +210,10 @@ QComboBox QAbstractItemView {
      <property name="title">
       <string>Filter messages</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <item row="0" column="0">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
          <widget class="QCheckBox" name="checkBoxFilterCommAck">
           <property name="enabled">
            <bool>false</bool>
@@ -226,27 +223,7 @@ QComboBox QAbstractItemView {
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QCheckBox" name="checkBoxFilterUndefined">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Undefined messages</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QCheckBox" name="checkBoxFilterInfoRequest">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Info Requests</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
+        <item>
          <widget class="QCheckBox" name="checkBoxFilterUSB">
           <property name="enabled">
            <bool>false</bool>
@@ -259,27 +236,7 @@ QComboBox QAbstractItemView {
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QCheckBox" name="checkBoxFilterPriority">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Priority messages</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QCheckBox" name="checkBoxFilterExpressionParser">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Expression parser</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0" rowspan="2">
+        <item>
          <widget class="QCheckBox" name="checkBoxFilterHardware">
           <property name="enabled">
            <bool>true</bool>
@@ -289,7 +246,31 @@ QComboBox QAbstractItemView {
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QCheckBox" name="checkBoxFilterUndefined">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Undefined messages</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBoxFilterPriority">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Priority messages</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QCheckBox" name="checkBoxFilterError">
           <property name="enabled">
            <bool>true</bool>
@@ -299,17 +280,7 @@ QComboBox QAbstractItemView {
           </property>
          </widget>
         </item>
-        <item row="2" column="2" rowspan="2">
-         <widget class="QCheckBox" name="checkBoxFilterDebug">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Debug messages</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
+        <item>
          <widget class="QCheckBox" name="checkBoxFilterOutput">
           <property name="enabled">
            <bool>false</bool>
@@ -321,15 +292,66 @@ QComboBox QAbstractItemView {
         </item>
        </layout>
       </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QCheckBox" name="checkBoxFilterInfoRequest">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Info Requests</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBoxFilterExpressionParser">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Expression parser</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBoxFilterDebug">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Debug messages</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBoxFilterInternal">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Internal messages</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
      </layout>
     </widget>
    </item>
    <item row="3" column="0">
     <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
-      <widget class="QLineEdit" name="lineEditSend"/>
-     </item>
      <item row="0" column="1">
+      <widget class="QLineEdit" name="xlineEditSend">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
       <widget class="QPushButton" name="pushButtonSend">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -345,6 +367,16 @@ QComboBox QAbstractItemView {
        </property>
        <property name="text">
         <string>Send</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QComboBox" name="lineEditSend">
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+       <property name="insertPolicy">
+        <enum>QComboBox::InsertAtTop</enum>
        </property>
       </widget>
      </item>
