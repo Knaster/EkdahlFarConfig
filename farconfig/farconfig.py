@@ -40,6 +40,8 @@ import enum
 import equationParsingHelpers
 import waitdialog
 import tableTest
+#from farconfig.commandparser import CommandItem
+from commandparser import CommandItem
 from general_helpers import messageBox, inputBox, find_item, remove_item
 from ui_form import Ui_Widget
 import midieventhandling
@@ -60,6 +62,8 @@ commandSets = CommandSets()
 app = None
 
 import pluginhandler
+
+import nodehandler
 
 def addModulesIfNeeded(needed):
     global simpleFARHandler
@@ -101,7 +105,10 @@ def processInformationReturn(inSerialHandler, infoReturn):
         mainWidget.updateStringModuleData()
 
         if (i.command == "ver"):
-            commandSets.chooseCommandSet(i.argument[0])
+            if (len(i.argument) == 4):
+                commandSets.chooseCommandSet(i.argument[3])
+            else:
+                commandSets.chooseCommandSet(i.argument[0])
             mainWidget.debugTimedChart.commandSet = commandSets.currentCommandSet
             simpleFARHandler.connected = True
 
@@ -116,10 +123,6 @@ def processInformationReturn(inSerialHandler, infoReturn):
                 case mainWidget.modalEvent:
                     mainWidget.modalDialog.stop()
                     mainWidget.updateUIData()
-
-        if (localNodehandler):
-            localNodehandler.parseCommand(i)
-            localNodehandler.postBuildUpdate()
 
     mainWidget.updatingFromModule = False
 
@@ -1190,6 +1193,16 @@ def showReference():
     commandReference.activateWindow()
     commandReference.ui.listWidgetCommands.setFocus()
 
+post = False
+def organize():
+    global post
+    if not post:
+        localNodehandler.postBuildUpdate()
+        post = True
+    #localNodehandler.ga.graph.nodeOrganizer.buildHorizontalTree()
+#    localNodehandler.ga.graph.nodeOrganizer.rankVerticalPreference(noInserts=True)
+#    localNodehandler.ga.graph.nodeOrganizer.drawFromRankingList()
+
 if __name__ == "__main__":
 
     app = QApplication(sys.argv)
@@ -1442,9 +1455,11 @@ if __name__ == "__main__":
 
 # pre-start inits
     load_settings()
-    localNodehandler = None
-#    localNodehandler = nodehandler.NodeHandler(mainWidget.ui.nodeContainer)
 
+    localNodehandler = None
+    localNodehandler = nodehandler.NodeHandler(mainWidget.ui.nodeContainer)
+    mainWidget.localNodeHandler = localNodehandler
+    mainWidget.ui.pushButtonOrganize.pressed.connect(organize)
     '''
     commandList = ["mev:noteon:\"m:'map(0, note)',b:'map(0, note)',s:'map(0, note)',bchb:note,bmr:1,bpid:1,bpe:1,se:(velocity*512)*(1-notecount)\"", #,bcsm:0,
                    "mev:noteoff:\"m:'map(0, note)',b:'map(0, note)',s:'map(0, note)',bpr:ibool(notecount)\"",    #,bcsm:0,m:'map(0, note)',b:'map(0, note)',s:'map(0, note)',
@@ -1461,17 +1476,19 @@ if __name__ == "__main__":
     #commandList = ["mev:noteon:\"m:0,b:0,bchb:note,bmr:1,bpid:1,bpe:1,se:(velocity*512)*(1-notecount),bcsm:0\""]
 
     for command in commandList:
-        item = commandparser.CommandItem(command)
+        item = CommandItem(command)
         localNodehandler.parseCommand(item)
     localNodehandler.postBuildUpdate()
     localNodehandler.ga.update()
     #group = localNodehandler.ga.graph.create_node("nodes.group.CustomGroupNode")
     #group.migrate_objects()
-
+    
     mainWidget.ui.tabWidgetMain.setCurrentIndex(7)
     serialWidget.hide()
     commandReference.hide()
     '''
+
+    mainWidget.commandReference = commandReference
 
     mainWidget.destroyed.connect(mainWidget.closeEvent)
     mainWidget.populateFundamentalComboBox()

@@ -1,4 +1,4 @@
-from commanddefinitions import CommandID, CommandType, defaultCommandType
+from commanddefinitions import CommandID, CommandType, defaultCommandType, ModuleCommand, getModuleCommandTypeDesc
 
 from general_helpers import stripLeadingQuotes, messageBox
 
@@ -735,6 +735,8 @@ class CommandSetModular(CommandSet):
             CommandID.nickName : "nick",
             CommandID.dir : "ls",
             CommandID.help: "help",
+            CommandID.freeMemory: "free",
+            CommandID.dumpSaveData : "dump",
             #dir, dump, freeram
 
             CommandID.moduleSelect: "[na]",
@@ -750,7 +752,7 @@ class CommandSetModular(CommandSet):
         }
 
         longCommands = {
-            CommandID.nop: "nop",
+            CommandID.nop: "nooperation",
             CommandID.requestInfo: "requestinfo",
             CommandID.debugPrint: "debugprint",
             CommandID.saveAllParameters: "saveallparameters",
@@ -765,6 +767,8 @@ class CommandSetModular(CommandSet):
             CommandID.nickName: "nick",
             CommandID.dir: "list",
             CommandID.help: "help",
+            CommandID.freeMemory: "freeram",
+            CommandID.dumpSaveData: "dump",
 
             CommandID.moduleSelect: "[na]",
             CommandID.moduleCount: "[na]",
@@ -936,7 +940,7 @@ class CommandSetModular(CommandSet):
         shortCommands = {
             CommandID.actuatorSave : "[na]",
             CommandID.actuatorData : "da",
-            CommandID.actuatorName : "na"
+            CommandID.actuatorName : "na",
         }
 
         longCommands = {
@@ -1058,7 +1062,8 @@ class CommandSetModular(CommandSet):
             CommandID.bowPressureEngageSpeed: "es",
             CommandID.bowPressureModulationSpeed: "ms",
             CommandID.bowPressureHold: "hd",
-            CommandID.bowHome: "hm"
+            CommandID.bowHome: "hm",
+            CommandID.bowPressureTMCInfo: "tmi"
         }
 
         longCommands = {
@@ -1073,6 +1078,7 @@ class CommandSetModular(CommandSet):
             CommandID.bowPressureModulationSpeed: "modulationspeed",
             CommandID.bowPressureHold: "hold",
             CommandID.bowHome: "home",
+            CommandID.bowPressureTMCInfo: "tmcinfo"
         }
 
         requestData = [
@@ -1103,7 +1109,7 @@ class CommandSetModular(CommandSet):
 
         longCommands = {
             CommandID.solenoidEngage: "engage",
-            CommandID.solenoidDisengage: "disengage",
+            CommandID.solenoidDisengage: "rest",
             CommandID.solenoidMaxForce: "maxforce",
             CommandID.solenoidMinForce: "minforce",
             CommandID.solenoidForceMultiplier: "forcemultiplier",
@@ -1229,7 +1235,14 @@ class CommandSetModular(CommandSet):
             CommandID.midiConfigurationAddCC : "ac",
             CommandID.midiConfigurationRemoveCC : "rmc",
             CommandID.midiConfigurationDefaults : "d",
-            CommandID.midiReceiveChannel : "rc"
+            CommandID.midiReceiveChannel : "rc",
+            CommandID.midiConfigurationNoteOn : "non",
+            CommandID.midiConfigurationNoteOff: "nof",
+            CommandID.midiConfigurationPolyAT: "pat",
+            CommandID.midiConfigurationChannelAT: "cat",
+            CommandID.midiConfigurationProgramChange: "pc",
+            CommandID.midiConfigurationPitchbend: "pb",
+            CommandID.midiConfigurationContinuousController: "cc"
         }
 
         longCommands = {
@@ -1239,6 +1252,13 @@ class CommandSetModular(CommandSet):
             CommandID.midiConfigurationRemoveCC : "removecc",
             CommandID.midiConfigurationDefaults : "defaults",
             CommandID.midiReceiveChannel : "receivechannel",
+            CommandID.midiConfigurationNoteOn: "noteon",
+            CommandID.midiConfigurationNoteOff: "noteoff",
+            CommandID.midiConfigurationPolyAT: "polyaftertouch",
+            CommandID.midiConfigurationChannelAT: "channelaftertouch",
+            CommandID.midiConfigurationProgramChange: "programchange",
+            CommandID.midiConfigurationPitchbend: "pitchbend",
+            CommandID.midiConfigurationContinuousController: "continuouscontroller"
         }
 
         requestData = [
@@ -1262,6 +1282,15 @@ class CommandSetModular(CommandSet):
             CommandID.controlBoxDataReturn : "dr",
             CommandID.controlBoxADCSettings : "ads",
 
+            CommandID.controlBoxHarmonic : "har",
+            CommandID.controlBoxHarmonicShift : "has",
+            CommandID.controlBoxFinetune : "fin",
+            CommandID.controlBoxPressure : "pre",
+            CommandID.controlBoxMute : "mut",
+            CommandID.controlBoxHammerScale: "hms",
+            CommandID.controlBoxGate: "gt",
+            CommandID.controlBoxHammerTrig: "hmt",
+
             CommandID.testADCLatency : "tal",
             CommandID.testADCLatencyReturn : "talr",
             CommandID.testADCMinMax : "tix"
@@ -1272,6 +1301,15 @@ class CommandSetModular(CommandSet):
             CommandID.controlBoxControlDefaults : "controldefaults",
             CommandID.controlBoxDataReturn : "datareturn",
             CommandID.controlBoxADCSettings : "adcsettings",
+
+            CommandID.controlBoxHarmonic: "harmonic",
+            CommandID.controlBoxHarmonicShift: "harmonicshift",
+            CommandID.controlBoxFinetune: "finetune",
+            CommandID.controlBoxPressure: "pressure",
+            CommandID.controlBoxMute: "mute",
+            CommandID.controlBoxHammerScale: "hammerscale",
+            CommandID.controlBoxGate: "gate",
+            CommandID.controlBoxHammerTrig: "hammertrig",
 
             CommandID.testADCLatency : "testadclatency",
             CommandID.testADCLatencyReturn : "testadclatencyreturn",
@@ -1446,17 +1484,19 @@ class CommandSetModular(CommandSet):
         requestContinuousData = []
 
     class Module:
-        longName = ""
-        shortName = ""
-        moduleType = ""
-        indexingChild = None
-        commandSet = None
-        index = 0
-        parent = None
-
         def __init__(self, baseCommandSet, commandItem = None, itemCommandSet = None):
+            self.longName = ""
+            self.shortName = ""
+            self.moduleType = ""
+            self.indexingChild = None
+            self.commandSet = None
+            self.index = 0
+            self.parent = None
+            self.commands = {}
+
             self.commandSet = baseCommandSet
             self.index = 0
+
             if (commandItem is not None):
                 if (len(commandItem.hierarchy[commandItem.hierarchyIndex].selection) > 0):
                     self.index = int(commandItem.hierarchy[commandItem.hierarchyIndex].selection[0])
@@ -1558,8 +1598,6 @@ class CommandSetModular(CommandSet):
             return  self.children[-1]
 
         def addGroupFromHierarchy(self, commandItem, isEmpty = False):
-            #if (commandItem.hierarchyIndex >= (len(commandItem.hierarchy) - 1)):
-            #group = self.commandSet.GroupHandler(self.commandSet, commandItem)
             commandGroup = None
             for item in self.commandSet.commands:
                 if (item.longName == commandItem.hierarchy[commandItem.hierarchyIndex].name or
@@ -1567,12 +1605,8 @@ class CommandSetModular(CommandSet):
                     commandGroup = item
                     break
             if (commandGroup == None):
-                #raise("Unknown module!")
                 pass
             else:
-                #child = self.commandSet.GroupHandler(self.commandSet, commandItem, commandGroup)
-                #chil
-                #self.children.append()
                 self.addGroup(commandItem, commandGroup, isEmpty)
                 commandItem.hierarchyIndex += 1
             if (len(self.children) == 0):
@@ -1615,9 +1649,7 @@ class CommandSetModular(CommandSet):
         return None
 
     def getCommandType(self, commandItem):
-        if ("rp" in commandItem.command):
-            pass
-        command, module = self._getCommandModuleAndCommand(commandItem)
+        command, module, index = self.getCommandModuleAndCommand(commandItem)
         id = self.getCommandID(command, module)
         if (id in defaultCommandType):
             return defaultCommandType[id]
@@ -1647,7 +1679,6 @@ class CommandSetModular(CommandSet):
                     elif group.index in selectionIndex:
                         groups.append(group)
                 if (len(groups) == 0):
-                    #raise("another problem")
                     pass
                 for group in groups:
                     qualifiedID = ""
@@ -1671,12 +1702,6 @@ class CommandSetModular(CommandSet):
                     if (not stripIndex): qualifiedID += "[" + str(index) + "]"
                     if (not indexing): qualifiedID += comm
                     qualifiedIDList.append(qualifiedID)
-                    #if (stripIndex):
-                    #    qualifiedIDList.append(qualifiedID + comm)
-                    #elif (indexing):
-                    #    qualifiedIDList.append(qualifiedID + "[" + str(index) + "]")
-                    #else:
-                    #    qualifiedIDList.append(qualifiedID + "[" + str(index) + "]" + comm)
         return qualifiedIDList
 
     def getCommandID(self, commandContainer, module = None):
@@ -1697,14 +1722,15 @@ class CommandSetModular(CommandSet):
                 id = moduleP.getCommandID(moduleP, command)
                 return id
 
-            for commandP in moduleP.longCommands:
-                if (commandP == command):
-                    id = moduleP.getCommandID(moduleP, command)
-                    return id
-            for commandP in moduleP.shortCommands:
-                if (commandP == command):
-                    id = moduleP.getCommandID(moduleP, command)
-                    return id
+            if (module == ""):
+                for commandP in moduleP.longCommands:
+                    if (commandP == command):
+                        id = moduleP.getCommandID(moduleP, command)
+                        return id
+                for commandP in moduleP.shortCommands:
+                    if (commandP == command):
+                        id = moduleP.getCommandID(moduleP, command)
+                        return id
 
             #if (module in group.longName) or (module in group.shortName):
         return None
@@ -1731,10 +1757,18 @@ class CommandSetModular(CommandSet):
                         serialHandler.write("rqi:" + qualifiedShort)
 
         #CommandID.controlBoxControlData, CommandID.controlBoxADCSettings
-        cbd = self.getQualifiedShortCommand(CommandID.controlBoxControlData)[0]
+        #cbd = self.getQualifiedShortCommand(CommandID.controlBoxControlData)[0]
+        serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxHarmonic)[0])
+        serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxHarmonicShift)[0])
+        serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxFinetune)[0])
+        serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxPressure)[0])
+        serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxMute)[0])
+        serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxGate)[0])
+        serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxHammerScale)[0])
+        serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxHammerTrig)[0])
         cba = self.getQualifiedShortCommand(CommandID.controlBoxADCSettings)[0]
         for i in range(0,8):
-            serialHandler.write("rqi:" + cbd + ":" + str(i) + ",rqi:" + cba + ":" + str(i))
+            serialHandler.write("rqi:" + cba + ":" + str(i))
 
     def requestContinuousData(self, serialHandler):
         if (not self.hasHierarchy): return None
@@ -1763,19 +1797,33 @@ class CommandSetModular(CommandSet):
         self.baseModule.addModuleFromDirReturn(commandItem)
         pass
 
-    def _getCommandModuleAndCommand(self, commandItem):
+    def getCommandModuleAndCommand(self, commandItem):
         newCommandItem = derivedCommandItem(commandItem)
         newCommandItem.buildHierarchy()
         if (len(newCommandItem.hierarchy) <= 1):
             module = ""
             command = newCommandItem.hierarchy[0].name
+            index = 0
         else:
             module = newCommandItem.hierarchy[len(newCommandItem.hierarchy) - 2].name
             command = newCommandItem.hierarchy[len(newCommandItem.hierarchy) - 1].name
-        return command, module
+            if len(newCommandItem.hierarchy[len(newCommandItem.hierarchy) - 2].selection) > 0:
+                index = newCommandItem.hierarchy[len(newCommandItem.hierarchy) - 2].selection[0]
+            else:
+                index = 0
+        return command, module, index
+
+    def getModuleHierarchy(self, inModule):
+        hierarchy = []
+        if (inModule.longName != ""):
+            hierarchy.insert(0, [inModule.longName, inModule.index])
+        if (inModule.parent is not None):
+            newHierarchy = self.getModuleHierarchy(inModule.parent)
+            hierarchy = newHierarchy + hierarchy
+        return hierarchy
 
     def processMessages(self, commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler):
-        command, module = self._getCommandModuleAndCommand(commandItem)
+        command, module, index = self.getCommandModuleAndCommand(commandItem)
         if (command == "na"):
             pass
         id = self.getCommandID(command, module)
@@ -1783,6 +1831,8 @@ class CommandSetModular(CommandSet):
         if (id == None and command != "bpr" and command != "bmes" and command != "msi" and command != "msx" and command != "ver" and command != "ls" and
                 command != "dp" and command != "fmp" and command != "hmp"):
             pass
+
+        found = True
 
         match(id):
             case CommandID.version:
@@ -1798,15 +1848,11 @@ class CommandSetModular(CommandSet):
                     mainWidget.completerList.append(commandItem.argument[0].strip())
                     mainWidget.completerList.append(commandItem.argument[1].strip())
 
-
             case CommandID.nop:
                 if (not self.hasHierarchy):
                     self.hasHierarchy = True
                     self.hasCommandList = False
                     serialHandler.write("ls:c:r:i,nop")
-                    self.requestData(serialHandler)
-                    mainWidget.pluginHandler.commandSet = self
-                    mainWidget.pluginHandler.buildPluginList()
                 elif (not self.hasCommandList):
                     self.hasCommandList = True
                     mainWidget.completer = QCompleter(mainWidget.completerList, completionMode=QCompleter.CompletionMode.InlineCompletion,
@@ -1814,7 +1860,13 @@ class CommandSetModular(CommandSet):
                     mainWidget.serialWidget.ui.lineEditSend.setCompleter(mainWidget.completer)
                     serialHandler.write("help, nop")
                 elif (not self.hasHelp):
+                    self.buildHelp(mainWidget.commandReference)
                     self.hasHelp = True
+                    mainWidget.pluginHandler.commandSet = self
+                    mainWidget.pluginHandler.buildPluginList()
+                    self.requestData(serialHandler)
+                    mainWidget.localNodeHandler.commandSet = self
+                    mainWidget.localNodeHandler.addDynamicNodeSet(self.baseModule)
 
             case CommandID.midiConfigurationSelect:
                 index = commandItem.hierarchy[len(commandItem.hierarchy) - 1].selection[0]
@@ -1827,7 +1879,25 @@ class CommandSetModular(CommandSet):
                 qualifiedShort = self.getQualifiedShortCommand(CommandID.midiReceiveChannel, [index])[0]
                 serialHandler.write("rqi:" + qualifiedShort)
 
+
+            case CommandID.midiConfigurationNoteOn:
+                mainWidget.midiEventHandler.setMIDINoteOnCommands(stripLeadingQuotes(commandItem.argument[0]))
+
+            case CommandID.midiConfigurationNoteOff:
+                mainWidget.midiEventHandler.setMIDINoteOffCommands(stripLeadingQuotes(commandItem.argument[0]))
+            case CommandID.midiConfigurationPolyAT:
+                mainWidget.midiEventHandler.setMIDIPATCommands(stripLeadingQuotes(commandItem.argument[0]))
+            case CommandID.midiConfigurationChannelAT:
+                mainWidget.midiEventHandler.setMIDICATCommands(stripLeadingQuotes(commandItem.argument[0]))
+            case CommandID.midiConfigurationPitchbend:
+                mainWidget.midiEventHandler.setMIDIPBCommands(stripLeadingQuotes(commandItem.argument[0]))
+            case CommandID.midiConfigurationProgramChange:
+                mainWidget.midiEventHandler.setMIDIPCCommands(stripLeadingQuotes(commandItem.argument[0]))
+            case CommandID.midiConfigurationContinuousController:
+                mainWidget.midiEventHandler.setMIDICCCommands(stripLeadingQuotes(commandItem.argument[0]), stripLeadingQuotes(commandItem.argument[1]))
+
             case CommandID.midiConfigurationData:
+                '''
                 if len(commandItem.selection) == 0:
                     selection = 0
                 else:
@@ -1857,13 +1927,21 @@ class CommandSetModular(CommandSet):
                             mainWidget.midiEventHandler.setMIDIPBCommands(arg)
                     i += 2
                 mainWidget.midiEventHandler.updateTextForSelectedListItem()
+                '''
 
             case CommandID.midiConfigurationCount:
                 simpleFARHandler.stringModules[0].setCommandValue(CommandID.midiConfigurationCount, commandItem.argument[0])
                 mainWidget.midiEventHandler.handleMIDIConfigurationCount(commandItem.argument[0])
-                qualifiedShorts = self.getQualifiedShortCommand(CommandID.midiConfigurationData)
-                for qualifiedShort in qualifiedShorts:
-                    serialHandler.write("rqi:" + qualifiedShort)
+                #qualifiedShorts = self.getQualifiedShortCommand(CommandID.midiConfigurationData)
+                #for qualifiedShort in qualifiedShorts:
+                #    serialHandler.write("rqi:" + qualifiedShort)
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationNoteOn)[0])
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationNoteOff)[0])
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationPolyAT)[0])
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationChannelAT)[0])
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationPitchbend)[0])
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationProgramChange)[0])
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationContinuousController)[0])
                 qualifiedShorts = self.getQualifiedShortCommand(CommandID.midiConfigurationName)
                 for qualifiedShort in qualifiedShorts:
                     serialHandler.write("rqi:" + qualifiedShort)
@@ -1947,13 +2025,45 @@ class CommandSetModular(CommandSet):
             case CommandID.controlBoxControlData:
                 mainWidget.cvEventHandler.handleControlBoxControlData(commandItem.argument[0], commandItem.argument[1])
 
+            case CommandID.controlBoxHarmonic:
+                mainWidget.cvEventHandler.handleControlBoxControlData(0, commandItem.argument[0])
+
+            case CommandID.controlBoxHarmonicShift:
+                mainWidget.cvEventHandler.handleControlBoxControlData(1, commandItem.argument[0])
+
+            case CommandID.controlBoxFinetune:
+                mainWidget.cvEventHandler.handleControlBoxControlData(2, commandItem.argument[0])
+
+            case CommandID.controlBoxPressure:
+                mainWidget.cvEventHandler.handleControlBoxControlData(3, commandItem.argument[0])
+
+            case CommandID.controlBoxHammerTrig:
+                mainWidget.cvEventHandler.handleControlBoxControlData(4, commandItem.argument[0])
+
+            case CommandID.controlBoxGate:
+                mainWidget.cvEventHandler.handleControlBoxControlData(5, commandItem.argument[0])
+
+            case CommandID.controlBoxHammerScale:
+                mainWidget.cvEventHandler.handleControlBoxControlData(6, commandItem.argument[0])
+
+            case CommandID.controlBoxMute:
+                mainWidget.cvEventHandler.handleControlBoxControlData(7, commandItem.argument[0])
+
             case CommandID.help:
                 #self.processHelpReturn(commandItem, mainWidget.ref)
                 pass
 
+            case CommandID.pluginAHDSRTarget:
+                pass
+
             case _:
-                if (not super().processMessages(commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler)):
-                    return False
+                #if (not super().processMessages(commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler)):
+                #    return False
+                found = super().processMessages(commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler)
+
+        if (self.hasHelp) and (mainWidget.localNodeHandler is not None):
+            found = found & mainWidget.localNodeHandler.parseCommand(commandItem)
+            return found
         return True
 
     def addHarmonicSeries(self, sender, serialHandler, simpleFARHandler,  harmonicSeries, name, setToList):
@@ -2042,28 +2152,100 @@ class CommandSetModular(CommandSet):
         mcRq = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
         serialHandler.write("rqi:" + mcRq);
 
-    def processHelpReturn(self, infoReturn, commandReference):
-        '''
-        commandList = self.CommandList()
-        if not commandList.addCommands(infoReturn):
-            messageBox("ERROR", "Error parsing help return string")
-            return
-        '''
-        #for i in commandList.commands:
+    def buildHelp(self, commandReference):
+        self.processModuleForHelp(self.baseModule, commandReference)
+
+    def processModuleForHelp(self, inModule, commandReference):
         yesno = ["no", "yes"]
 
+        existingMods = {}
+        for commandd in inModule.commands:
+            command:ModuleCommand = inModule.commands[commandd]
+            if (command is None): break
+            lastCmd = str(command.shortCommand).rfind(".")
+            if (lastCmd != -1):
+                shortHand = command.shortCommand[lastCmd + 1:]
+                comstr = command.longCommand[command.longCommand.rfind(".") + 1:]
+            else:
+                shortHand = command.shortCommand[:]
+                comstr = command.longCommand
+            if (command.longCommand == ""):
+                comstr = "[select]"
+                shortHand = "[select]"
+
+            if (command.variables is None):
+                variables = "none"
+            else:
+                variables = ""
+                for var in command.variables:
+                    variables += var + " "
+
+            description = (command.description + "\n\nShorthand: " + shortHand + "\n\n" + getModuleCommandTypeDesc(command.commandType) + "\n\nArguments: " + \
+                           command.arguments + "\n\nAssocated variables: " + variables + "\n\nHidden: " + yesno[int(command.hidden)])
+
+            if (inModule.parent is not None):
+                par = inModule.longName
+            else:
+                par = ""
+            commandReference.addCommandB(comstr, par, shortHand, description)
+
+        for child in inModule.children:
+            if not child.longName in existingMods:
+                existingMods[child.longName] = True
+                child:CommandSetModular.Module = child
+                if (child.longName in self.baseModule.commands):
+                    description = self.baseModule.commands[child.longName].description + "\n\nShorthand: " + child.shortName + "\n\nSelectable" #(child.commands[child.longName])
+                    commandReference.addCommandB(child.longName, "", child.shortName, description)
+                    self.processModuleForHelp(child, commandReference)
+                else:
+                    pass
+
+    def processHelpReturn(self, infoReturn, commandReference):
         if (len(infoReturn.argument) < 3):
             return
+
+        if (infoReturn.argument[0][len(infoReturn.argument[0]) - 1:]) == ".":
+            infoReturn.argument[0] = infoReturn.argument[0][:len(infoReturn.argument[0]) - 1]
+
+        if (infoReturn.argument[1][len(infoReturn.argument[1]) - 1:]) == ".":
+            infoReturn.argument[1] = infoReturn.argument[1][:len(infoReturn.argument[1]) - 1]
+
         longCommand = derivedCommandItem(infoReturn.argument[0])
         shortCommand = derivedCommandItem(infoReturn.argument[1])
 
-        if (len(longCommand.hierarchy) > 1):
+        isModule = False
+        if (len(infoReturn.argument) >= 6):
+            if (len(infoReturn.argument) == 7):
+                variables = stripLeadingQuotes(infoReturn.argument[6]).split(",")
+                if (len(variables) == 1) and (variables[0] == ""): variables.remove(variables[0])
+            else:
+                variables = []
+            mcd = ModuleCommand(infoReturn.argument[0], infoReturn.argument[1], infoReturn.argument[3], infoReturn.argument[5], infoReturn.argument[4],
+                                infoReturn.argument[2], variables)
+            id = self.getCommandID(longCommand)
+            if id is None:
+                pass
+        else:
+            mcd = ModuleCommand(infoReturn.argument[0], infoReturn.argument[1], inDescription = infoReturn.argument[2])
+            id = longCommand.hierarchy[len(longCommand.hierarchy) - 1].name
+            isModule = True
+
+        if ((len(longCommand.hierarchy) > 1) and (not isModule)):
             parent = longCommand.hierarchy[len(longCommand.hierarchy) - 2].name
             command = longCommand.hierarchy[len(longCommand.hierarchy) - 1].name
+            if mcd is not None:
+                groups = self.baseModule.getGroups(parent)
+                for group in groups:
+                    group.commands[id] = mcd
+            else:
+                pass
         else:
             parent = "[base]"
             command = longCommand.command # hierarchy[0].name
-
+            #self.baseModule.commands.append(mcd)
+            if mcd is not None:
+                self.baseModule.commands[id] = mcd
+        '''        
         match len(infoReturn.argument):
             case 3:
                 description = infoReturn.argument[2]
@@ -2080,6 +2262,7 @@ class CommandSetModular(CommandSet):
             command = "[select]"
             shortHand = "[select]"
         commandReference.addCommandB(command, parent, shortHand, description)
+        '''
 
     def __init__(self):
         super().__init__()

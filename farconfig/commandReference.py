@@ -20,14 +20,23 @@ class commandReference(QWidget):
         self.ui.listWidgetCommands.addItem(commandItemHelp)
 
     def addCommandB(self, command, parent, shortHand, description):
+        def addit():
+            cmd.setText(0, command)
+            cmd.setText(1, shortHand)
+            cmd.setData(0, Qt.ItemDataRole.UserRole, description)
+
         if parent == "":
+            if (self.ui.listWidgetCommands.findItems(command, Qt.MatchFlag.MatchExactly)):
+                return
             cmd = QTreeWidgetItem(self.ui.listWidgetCommands)
         else:
             parentItem = self.ui.listWidgetCommands.findItems(parent, Qt.MatchFlag.MatchExactly or Qt.MatchFlag.MatchRecursive)
-            if (len(parentItem) == 1):
-                cmd = QTreeWidgetItem(parentItem[0])
-            elif (len(parentItem) > 1):
-                pass
+            if (len(parentItem) > 0):
+                if (len(parentItem) > 1):
+                    pass
+                for parent in parentItem:
+                    cmd = QTreeWidgetItem(parent)
+                    addit()
             else:
                 if (parent == "[base]"):
                     self.base = QTreeWidgetItem(self.ui.listWidgetCommands)
@@ -35,9 +44,7 @@ class commandReference(QWidget):
                     cmd = QTreeWidgetItem(self.base)
                 else:
                     cmd = QTreeWidgetItem(self.ui.listWidgetCommands)
-        cmd.setText(0, command)
-        cmd.setText(1, shortHand)
-        cmd.setData(0, Qt.ItemDataRole.UserRole, description)
+        addit()
 
     def listWidgetCommandsCurrentItemChanged(self, current, previous):
         self.ui.plainTextEditCMVDescription.clear()

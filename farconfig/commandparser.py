@@ -48,8 +48,14 @@ class CommandItem:
         while foundIndex < len(inCommandString):
             if (inCommandString[foundIndex] == ":") and (startIndex != foundIndex):
 #                print("adding argument " + inCommandString[startIndex:foundIndex])
-                self.argument.append(str(inCommandString[startIndex:foundIndex]))
+                cmd = str(inCommandString[startIndex:foundIndex])
+                if (cmd == ":"):
+                    self.argument.append("")
+                else:
+                    self.argument.append(cmd)
                 startIndex = foundIndex + 1
+            elif (inCommandString[foundIndex] == ":") and (startIndex == foundIndex):
+                self.argument.append("")
             elif (inCommandString[foundIndex] == "\"" or inCommandString[foundIndex] == "'") and ((foundIndex + 1) < len(inCommandString)):
                 startIndex = foundIndex
                 foundIndex = self.startOfQuote(inCommandString, foundIndex + 1, inCommandString[foundIndex])
@@ -177,7 +183,6 @@ class derivedCommandItem(CommandItem):
 
         start = 0
         end = 0
-        portion = ""
         self.command: str = self.command
         while (end < len(self.command)):
             end = self.command.find('.', start)
@@ -189,10 +194,7 @@ class derivedCommandItem(CommandItem):
             j = portion.find(']')
             if ((i != -1) and (j != -1)):
                 i += 1
-                l = 0
-                m = 0
                 k = 0
-                n = 0
                 while (k < j):
                     k = portion.find(',', i + 1)
                     if (k == -1): k = j

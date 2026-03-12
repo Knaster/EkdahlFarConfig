@@ -1,26 +1,25 @@
 import sys
-
 import NodeGraphQt
+from sympy.physics.quantum.qasm import stripquotes
 
-from commandparser import CommandList, CommandItem
-
-sys.path.append('../../GraphNoteQT/')
-import graphassemblies
+#from commandparser import CommandList, CommandItem
+from GraphNode.customnode import CustomBaseNode
+import GraphNode.graphassemblies as graphassemblies
 import commandparser
-import customnode as FARNodes
-import equationParsingHelpers
-from enum import Enum
 import sympy as sp
-
-from NodeGraphQt.base import port
+import dynamicnodes
+from commanddefinitions import CommandID
+from pluginhandler import Plugin_LFO
+from general_helpers import stripLeadingQuotes
 
 class NodeHandler:
-    def __init__(self, container):
+    def __init__(self, container, commandSet = None):
         self.container = container
-
         self.ga = graphassemblies.graphAssemblies(container)
-        self.ga.addBasicControlHandling(-1000, -500)
-        self.ga.addCompleteStringAssembly(1000, -570)
+        self.commandSet = commandSet
+        #self.ga.addBasicControlHandling(-1000, -500)
+        #self.ga.addCompleteStringAssembly(1000, -570)
+        self.ga.addVariablesAssembly(-1000,-1000)
         self.ga.update()
 
         self.xSpread = 100
@@ -30,37 +29,59 @@ class NodeHandler:
 
         self.hideImplicits = True
         self.hideAdvanced = True
+        self.dynamicNodeSet = dynamicnodes.dynamicNodeSet(self.ga)
 
-    def findCommandMatch(self, command:CommandItem):
-        try:
-            for assembly in self.ga.assemblies:
-                for node in assembly.nodes:
-                    if node.command:
-                        cl = CommandItem(node.command)
-                        if (cl.command == command.command):
-                            breakAway = False
-                            if len(command.argument) < len(cl.argument) : breakAway = True
-                            if (not breakAway):
-                                for arg in range(0, len(cl.argument)):
-                                    if cl.argument[arg] != command.argument[arg]: breakAway = True
-                            #self.parseConnectionsMapped(node, command)
-                                if (not breakAway): return node
-                    for port in node.input_ports():
-                        CommandList.addCommands(port.command)
+    def addDynamicNodeSet(self, inModule):
+        self.dynamicNodeSet.commandSet = self.commandSet
+        self.ga.commandSet = self.commandSet
+        self.dynamicNodeSet.buildNodesFromModules(inModule)
+
+    def findCommandMatchAndProcess(self, command):
+        #try:
+        commandID = self.commandSet.getCommandID(command)
+        if commandID == None:
+            return False
+        result = False
+        for assembly in self.ga.assemblies:
+            for node in assembly.nodes:
+                node:CustomBaseNode = node
+                if (commandID in node.command):
+                    allFound = True
+                    if (node.argumentMatch is not None):
+                        for i in range(0, len(node.argumentMatch)):
+                            if command.argument[i] != node.argumentMatch[i]: allFound = False
+                    else:
+                        pass
+
+                    if (allFound):
+#                       cl = self.commandSet.CommandList(stripLeadingQuotes(command.argument[len(node.argumentMatch) - 2:][0]))
+                        if (node.argumentMatch is not None):
+                            cl = self.commandSet.CommandList(stripLeadingQuotes(command.argument[len(node.argumentMatch):][0]))
+                        else:
+                            if (len(command.argument) > 0):
+                                cl = self.commandSet.CommandList(stripLeadingQuotes(command.argument[0]))
+                            else:
+                                cl = self.commandSet.CommandList()
+                                pass
+                        if commandID == CommandID.midiConfigurationData:
+                            pass
+                        for comm in cl.commands:
+                            if (len(comm.argument) == 0):
+                                pass
+                            connectFrom = None
+                            for port in (node.input_ports() + node.output_ports()):
+                                if (port.command == commandID):
+                                    connectFrom = port
+                                    break
+                            result = True
+                            self.process(node, comm.command, comm.argument, self.processOutput(False, connectFrom))
+                            #return True
+                else:
                     pass
-        except Exception as e:
-            pass
+        return result
 
-    def parseCommand(self, command:CommandItem):
-        result = self.findCommandMatch(command)
-        if result is None:
-            print("NodeHandler: Command not found: " + command.command)
-            return
-        if isinstance(result, FARNodes.CustomBaseNode):
-            print (str(result) + " is not an instance of FARNodes.CustomBaseNode")
-
-        self.parseConnectionsMapped(result, command)
-
+    def parseCommand(self, command):
+        return self.findCommandMatchAndProcess(command)
 
     def postBuildUpdate(self):
         self.optimizeObjects()
@@ -69,19 +90,6 @@ class NodeHandler:
                 node.updateNames()
         #self.buildHorizontalTree()
         self.ga.graph.nodeOrganizer.buildHorizontalTree()
-
-    def parseConnectionsMapped(self, node:FARNodes.CustomBaseNode, command:commandparser.CommandItem):
-        cl:CommandList = None
-        if command.command == "mev":
-            cl = CommandList(command.argument[1])
-        elif command.command == "acm":
-            cl = CommandList(command.argument[1])
-        else:
-            return
-        self.deleteAllAssociatedNodes(node)
-        for command in cl.commands:
-            for arg in command.argument:
-                self.process(node, command.command + ":" + command.argument[0])
 
     iterationLevel = 0
     nodesAdded = []
@@ -118,7 +126,7 @@ class NodeHandler:
             pass
 
     def addFunction(self, function, mainNode):
-        match (function):
+        match (str(function).lower()):
             case "ibool":
                 functionNode = self.ga.addModifierBool(self.xOffset - self.iterationLevel * self.xSpread, mainNode.y_pos())
                 functionNode.set_value(True)
@@ -131,9 +139,10 @@ class NodeHandler:
                 functionNode = self.ga.addModifierDeadband(self.xOffset - self.iterationLevel * self.xSpread, mainNode.y_pos())
             case "map":
                 functionNode = self.ga.addModifierMap(self.xOffset - self.iterationLevel * self.xSpread, mainNode.y_pos())
+            case "mod" | "sin" | "cos":
+                functionNode = self.ga.addModifierEquation2(self.xOffset - self.iterationLevel * self.xSpread, mainNode.y_pos())
             case _:
-                raise("Function not recognized!")
-                return
+                return None
         functionNode.command = mainNode.command # mainNode.command
         self.nodesAdded.append(functionNode)
         return functionNode
@@ -176,7 +185,7 @@ class NodeHandler:
         functionNode = self.addFunction(str(function), mainNode)
         functionPortNo = 0
         for argument in arguments:
-            self.process(mainNode, argument, defaultOutput, False, functionNode.get_input(functionPortNo))
+            self.process(mainNode, "", [argument], defaultOutput, False, functionNode.get_input(functionPortNo))
             functionPortNo += 1
 
         inputNumber = startFromInput
@@ -192,20 +201,66 @@ class NodeHandler:
         outPort.connect_to(inPort)
         inputNumber += 1
 
+        trigger = functionNode.get_input("_trigger")
+        if (trigger is not None):
+            if (len(trigger.connected_ports()) == 0):
+                trigger.connect_to(defaultOutput.port)
+                pass
+
         return equation
 
-    def process(self, mainNode:FARNodes.CustomBaseNode, equation:str, inConnectToOutput = None, skipInput = False, inConnectToInput = None):
-        self.iterationLevel += 1
+    def findInputPortFromCommand(self, inCommand, arguments = None):
+        if (arguments is None): arguments = []
+        command, module, index = self.commandSet.getCommandModuleAndCommand(inCommand)
+        command = self.commandSet.getCommandID(command, module)
+        module = module + "[" + str(index) + "]"
+        for assembly in self.ga.assemblies:
+            for node in assembly.nodes:
+                node:CustomBaseNode = node
+                if ((node.NODE_NAME == module) or (node.NODE_NAME_SHORT == module)):
+                    match(node.hierarchy[len(node.hierarchy) - 1][0]):  #[0]
+                        case "multiple":
+                            match(arguments[0]):
+                                case "ratio":
+                                    return node.inputs()["Input ratio"], [arguments[2]]
+                                case "adder":
+                                    return node.inputs()["Input adder"], [arguments[2]]
+                        case _:
+                            for port in node.input_ports():
+                                if (port.command == command):
+                                    return port, arguments
+        return [], []
 
+    def process(self, mainNode:CustomBaseNode, command, argument = None, inConnectToOutput = None, skipInput = False, inConnectToInput = None):
+        self.iterationLevel += 1
+        if (argument is None): argument = []
+#        if (inConnectToOutput is None): inConnectToOutput = []
+        if (inConnectToInput is None): inConnectToInput = []
         connectToOutput = []
         connectToInput = inConnectToInput
 
-        if ((":" in equation) and (not skipInput)):
-            inputCommand = equation[:equation.index(":")]
-            connectToInput = self.ga.findInputPortFromCommand(inputCommand)
-            equation = equation[equation.index(":") + 1:]
-
-        self.getChildren(sp.sympify(equation), False)
+#        if ((":" in equation) and (not skipInput)):
+            #inputCommand = equation[:equation.index(":")]
+        inputCommand = command
+        if (command != ""):
+            try:
+                connectToInput, argument = self.findInputPortFromCommand(inputCommand, argument)
+            except:
+                pass
+        else:
+            pass
+            #connectToInput = self.ga.findInputPortFromCommand(inputCommand)
+            #equation = equation[equation.index(":") + 1:]
+        if (len(argument) > 0):
+            equation = str(argument[0])
+            equation = equation.replace(" ", "")
+            self.getChildren(sp.sympify(equation), False)
+        else:
+            return
+            equation = ""
+            self.localNumbers.clear()
+            self.localSymbols.clear()
+            self.localFunctions.clear()
 
         if (inConnectToOutput is None):
             defaultPort = mainNode.get_output("_trigger")
@@ -222,6 +277,7 @@ class NodeHandler:
                 port = self.ga.findLocalOrVariableOutput(mainNode, symbol)
                 if (port is None):
                     print("Port is none in function process")
+                    return
                 if ((port.model.node is mainNode) and (connectToOutput[0].default)):
                     connectToOutput[0].port = port
                     connectToOutput[0].default = False
@@ -234,21 +290,8 @@ class NodeHandler:
         self.getChildren(sp.sympify(equation), True)
         if (len(self.localNumbers) + len(self.localFunctions) + len(self.localSymbols) > 1):
             createInputs = len(self.localFunctions) + len(self.localSymbols)
-
-            equationNode = None
             noAdd = False
-
-            match (createInputs):
-                case 0:
-                    print("Cannot make an equation with zero inputs, for equation " + equation)
-                case 1:
-                    equationNode = self.ga.addModifierEquation1(self.xOffset - self.iterationLevel * self.xSpread, mainNode.y_pos())
-                case 2:
-                    equationNode = self.ga.addModifierEquation2(self.xOffset - self.iterationLevel * self.xSpread, mainNode.y_pos())
-                case 3:
-                    equationNode = self.ga.addModifierEquation3(self.xOffset - self.iterationLevel * self.xSpread, mainNode.y_pos())
-                case _:
-                    noAdd = True
+            equationNode = self.ga.addModifierEquation(createInputs, self.xOffset - self.iterationLevel * self.xSpread, mainNode.y_pos())
 
             if (not noAdd):
                 equationNode.command = mainNode.command
@@ -257,7 +300,6 @@ class NodeHandler:
                 inputNumber = 0
                 for symbol in self.localSymbols:
                     portName = "in" + str(inputNumber)
-                    #equation = equation.replace(symbol, portName)
                     inPort = equationNode.get_input(portName)
                     outPort = self.ga.findLocalOrVariableOutput(mainNode, str(symbol))
                     outPort.connect_to(inPort)
@@ -287,7 +329,7 @@ class NodeHandler:
                     connectToOutput[0].port.connect_to(connectToInput)
         elif (len(self.localNumbers) == 1):
             isBool = False
-            if ((equation == "1") or (equation == "0") and (connectToInput.valueType == "bool")):
+            if ((equation == "1") or (equation == "0") and (connectToInput.valueType == "bool" or connectToInput.valueType == "_trigger")):
                 staticNode = self.ga.addModifierTriggerBool(self.xOffset - self.iterationLevel * self.xSpread, mainNode.y_pos())
                 isBool = True
             else:
@@ -308,6 +350,8 @@ class NodeHandler:
                 staticTriggerPort = staticNode.get_input("_trigger")
 
             staticOutPort = staticNode.get_output("out")
+            if not hasattr(connectToOutput[0].port, "name"):
+                pass
             if (connectToOutput[0].port.name != "_trigger"):
                 triggerPort = connectToOutput[0].port.model.node.get_output("_trigger")
                 if (triggerPort is not None):
@@ -456,7 +500,7 @@ class NodeHandler:
         for node in modifierList:
             inputConnections = node.get_input("threshold").connected_ports()
             if (len(inputConnections) == 1):
-                if (inputConnections[0].model.node.NODE_NAME == "Static value"):
+                if ("Static value" in inputConnections[0].model.node.NODE_NAME):
                     value = inputConnections[0].model.node.get_value()
                     node.set_value(value)
                     self.ga.graph.remove_node(inputConnections[0].model.node)

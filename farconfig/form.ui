@@ -875,7 +875,7 @@ QDial {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>8</number>
+    <number>7</number>
    </property>
    <property name="iconSize">
     <size>
@@ -6961,6 +6961,19 @@ QProgressBar::chunk
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButtonOrganize">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>10</y>
+     <width>94</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Organize</string>
+   </property>
+  </widget>
   <zorder>line_4</zorder>
   <zorder>comboBoxSerialPorts</zorder>
   <zorder>pushButtonConnectDisconnect</zorder>
@@ -6971,6 +6984,7 @@ QProgressBar::chunk
   <zorder>pushButtonShowReference</zorder>
   <zorder>pushButtonLoadFromModule</zorder>
   <zorder>line_5</zorder>
+  <zorder>pushButtonOrganize</zorder>
  </widget>
  <resources/>
  <connections/>

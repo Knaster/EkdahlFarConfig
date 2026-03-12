@@ -2042,6 +2042,9 @@ class Ui_Widget(object):
         self.line_5.setGeometry(QRect(590, 10, 20, 31))
         self.line_5.setFrameShadow(QFrame.Plain)
         self.line_5.setFrameShape(QFrame.Shape.VLine)
+        self.pushButtonOrganize = QPushButton(Widget)
+        self.pushButtonOrganize.setObjectName(u"pushButtonOrganize")
+        self.pushButtonOrganize.setGeometry(QRect(890, 10, 94, 25))
         self.line_4.raise_()
         self.comboBoxSerialPorts.raise_()
         self.pushButtonConnectDisconnect.raise_()
@@ -2052,10 +2055,11 @@ class Ui_Widget(object):
         self.pushButtonShowReference.raise_()
         self.pushButtonLoadFromModule.raise_()
         self.line_5.raise_()
+        self.pushButtonOrganize.raise_()
 
         self.retranslateUi(Widget)
 
-        self.tabWidgetMain.setCurrentIndex(8)
+        self.tabWidgetMain.setCurrentIndex(7)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -2400,5 +2404,6 @@ class Ui_Widget(object):
         self.pushButtonShowConsole.setText(QCoreApplication.translate("Widget", u"Show console", None))
         self.pushButtonShowReference.setText(QCoreApplication.translate("Widget", u"Show reference", None))
         self.pushButtonLoadFromModule.setText(QCoreApplication.translate("Widget", u"Refresh", None))
+        self.pushButtonOrganize.setText(QCoreApplication.translate("Widget", u"Organize", None))
     # retranslateUi
 

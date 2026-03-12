@@ -19,7 +19,7 @@
 
 import sympy as sp
 import re
-import graphassemblies
+import GraphNode.graphassemblies as graphassemblies
 
 from sympy.core.singleton import Singleton
 
