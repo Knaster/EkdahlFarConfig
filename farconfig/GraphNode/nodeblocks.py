@@ -37,6 +37,9 @@ class NodeBlock:
         return False
 
     def processNode(self, node:CustomBaseNode, parentNode:CustomBaseNode, rank:int, block = None):
+        if (node.NODE_NAME_SHORT == "hsh[0]"):
+            pass
+
         # If node already exists in block, makes sure it is as far back in the ranks as needed by the furthest down node
         if hasattr(node, "block"):
             node.block.parentNode.append(parentNode)
@@ -135,14 +138,22 @@ class BlockGrid():
                 row = self.grid[rown]
                 for i in range(0, block.childNodes[0].rank):
                     row.append(None)
-                coln = 0
-                for child in block.childNodes:
-                    gridItem = BlockGridItem(block, coln)
-                    gridItem.blockNode.node.gridItem = gridItem
-                    row.append(gridItem)
-                    if self.lastColumn < (coln + len(block.childNodes)): self.lastColumn = coln
-                    coln += 1
+
+                def addChildren(children, blockItem):
+                    coln = 0
+                    for child in children:
+                        gridItem = BlockGridItem(blockItem, coln)
+                        gridItem.blockNode.node.gridItem = gridItem
+                        row.append(gridItem)
+                        if self.lastColumn < (coln + len(blockItem.childNodes)): self.lastColumn = coln
+                        coln += 1
+
+                addChildren(block.childNodes, block)
+                for childBlock in block.childBlocks:
+                    addChildren(childBlock.childNodes, childBlock)
+
                 while(len(row) < self.maxRank + 1): row.append(None)
+
                 rown += 1
             self.arrangeFromLast()
 
@@ -191,8 +202,10 @@ class BlockGrid():
         #children = 0
         for input in node.input_ports():
             for connectedTo in input.connected_ports():
+                if not hasattr(connectedTo.model.node, "block"): return -1
                 insertRow = self.arrangeFromNode(connectedTo.model.node.block, connectedTo.model.node, newGrid, insertRow)
                 #check if child exists previously in grid before inserting
+                if (insertRow == -1): return -1
                 success, insertRow = newGrid.putBlockOnGrid(insertRow, connectedTo.model.node.block, connectedTo.model.node)
                 if not success:
                     pass
@@ -229,8 +242,9 @@ class BlockGrid():
                     startRow = insertRow
                     node:CustomBaseNode = row[i].blockNode.node
                     insertRow = self.arrangeFromNode(row[i].block, node, newGrid, insertRow)
-                    if not self.insertWithSpread(row[i].block, node, newGrid, (startRow + insertRow) / 2, 0):
-                        pass
+                    if insertRow != -1:
+                        if not self.insertWithSpread(row[i].block, node, newGrid, (startRow + insertRow) / 2, 0):
+                            pass
 
         self.grid = newGrid.grid
 

@@ -1,0 +1,25 @@
+<map id="farconfig.CommandSets.CommandSetModular.processMessages" name="farconfig.CommandSets.CommandSetModular.processMessages">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,317,255,357"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1commandparser_1_1derivedCommandItem.html#ad42e2121be540ba203f29e7ca8e506d7" title=" " alt="" coords="345,5,587,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,316,154,263,188,192,210,154,236,117,267,84,301,55,331,39,333,44,304,60,270,88,241,121,215,157,193,194,159,265,140,318"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#ab08b3ab663724df4ca71df03cc43a0b0" title=" " alt="" coords="341,69,591,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="139,315,162,273,198,219,245,165,272,140,301,119,328,106,330,111,304,124,275,144,248,168,202,223,167,276,144,318"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#a6b40ef446dc571a57b24d55507e5baed" title=" " alt="" coords="341,133,591,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="146,315,209,249,253,213,301,183,327,172,329,177,304,188,256,217,213,253,150,319"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a5607d1271a32e4507d449fda05d31aa6" title=" " alt="" coords="341,197,591,237"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="162,315,225,280,302,247,330,238,331,243,304,252,228,285,165,320"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#a37eb8ca39d9c7cb08b59f8fee28d621a" title=" " alt="" coords="341,285,591,325"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="255,323,328,316,328,321,255,328"/>
+<area shape="rect" id="Node000007" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#a2584140a5ab179c41dfbdcd7da09a7b9" title=" " alt="" coords="341,349,591,389"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="255,347,328,354,328,359,255,352"/>
+<area shape="rect" id="Node000008" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a1c47ee37c362a020e825fc5b708c12c6" title=" " alt="" coords="341,413,591,453"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="180,355,238,377,303,399,338,408,337,413,302,404,236,383,178,360"/>
+<area shape="rect" id="Node000009" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#aeb3d7e301b1081ea3c3d7b6bb3fb30af" title=" " alt="" coords="341,501,591,541"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="155,356,220,408,261,437,304,463,379,495,377,499,301,468,258,442,216,412,152,360"/>
+<area shape="rect" id="Node000010" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#a4a78cfb83608579e5ba59f09d72c2a75" title=" " alt="" coords="341,565,591,605"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="144,357,167,399,202,452,248,506,275,530,304,551,330,564,328,569,301,556,272,535,245,510,198,455,162,401,139,359"/>
+<area shape="rect" id="Node000011" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#ac8cf8af315a72561886d916eb048ed83" title=" " alt="" coords="303,629,629,669"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="140,357,159,410,193,481,215,518,241,554,270,587,304,615,313,621,310,625,301,619,267,591,236,557,210,521,188,483,154,412,135,358"/>
+<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="404,286,401,276,411,266,432,261,466,259,505,261,526,269,524,274,504,267,466,264,433,266,413,271,406,277,409,284"/>
+<area shape="poly" id="edge10_Node000009_Node000009" title=" " alt="" coords="404,502,401,492,411,482,432,477,466,475,505,477,526,485,524,490,504,483,466,480,433,482,413,487,406,493,409,500"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="addCommands" name="addCommands">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,63,125,88"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1commandparser_1_1CommandList.html#afefe0d806219a82d8cc04b719833316b" title=" " alt="" coords="251,5,303,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,60,173,41,237,24,238,30,174,46,108,65"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1commandparser_1_1CommandItem.html#a2217a87ab0fbd1fd49dbba363f32bfa0" title=" " alt="" coords="173,55,380,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="125,73,160,73,160,78,125,78"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1commandparser_1_1CommandList.html#a2217a87ab0fbd1fd49dbba363f32bfa0" title=" " alt="" coords="223,120,330,145"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="108,86,174,105,211,114,210,120,173,110,107,91"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1commandparser_1_1CommandItem.html#afefe0d806219a82d8cc04b719833316b" title=" " alt="" coords="428,55,620,95"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="380,73,414,73,414,78,380,78"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="478,56,476,46,483,36,499,31,524,29,553,32,568,39,566,44,551,37,524,34,500,36,486,41,481,47,483,54"/>
+</map>

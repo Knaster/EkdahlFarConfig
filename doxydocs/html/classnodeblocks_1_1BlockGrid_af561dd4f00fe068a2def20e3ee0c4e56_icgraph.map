@@ -1,0 +1,6 @@
+<map id="nodeblocks.BlockGrid.arrangeFromNode" name="nodeblocks.BlockGrid.arrangeFromNode">
+<area shape="rect" id="Node000001" title=" " alt="" coords="271,29,488,69"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="424,18,409,11,379,8,354,10,338,15,333,21,335,28,330,30,327,20,335,10,353,5,379,3,410,5,427,13"/>
+<area shape="rect" id="Node000002" href="$classnodeblocks_1_1BlockGrid.html#ac1007fc422783a1254b94f13fe258a52" title=" " alt="" coords="5,29,223,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="257,52,223,52,223,47,257,47"/>
+</map>

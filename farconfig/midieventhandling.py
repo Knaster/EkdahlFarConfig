@@ -1,10 +1,12 @@
 from PySide6.QtWidgets import *
 from commanddefinitions import CommandID
+#from farconfig.farconfig import commandSets
 from general_helpers import find_item, remove_item
 import equationParsingHelpers
 
-class midiEventHandler:
+class midiEventHandler(QWidget):
     def __init__(self, mainClass, serialHandler, commandSet, simpleFARHandler):
+        super().__init__()
         self.mainClass = mainClass
         self.serialHandler = serialHandler
         self.commandSet = commandSet
@@ -20,7 +22,8 @@ class midiEventHandler:
             if isinstance(widget, QComboBox):
                 widget.currentIndexChanged.connect(self.widgetMIDIBinarySendersCallback)
             elif isinstance(widget, QSlider):
-                self.mainClass.assignMouseReleaseEvent(widget, self.widgetMIDIBinarySendersCallback)
+                #self.mainClass.assignMouseReleaseEvent(widget, self.widgetMIDIBinarySendersCallback)
+                widget.sliderReleased.connect(self.widgetMIDIBinarySendersCallback)
             elif isinstance(widget, QCheckBox):
                 widget.stateChanged.connect(self.widgetMIDIBinarySendersCallback)
 
@@ -32,21 +35,22 @@ class midiEventHandler:
 
     def widgetMIDIBinarySendersCallback(self):
         if (self.mainClass.updatingFromModule): return
-        widget = self.sender()
-        cmd = ""
-        itemData = self.mainClass.ui.midiSustainSend.itemData(self.ui.midiSustainSend.currentIndex())
+        itemData = self.mainClass.ui.midiSustainSend.itemData(self.mainClass.ui.midiSustainSend.currentIndex())
         booltype = "bool"
         if self.mainClass.ui.midiSustainInvert.isChecked():
             booltype = "ibool"
-        command = (self.commandSets.getQualifiedShortCommand(CommandID.midiConfigurationData,
-                                                       [self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)])[0] +
-                                                                    ":cc:64:")
+        #command = (self.commandSet.getQualifiedShortCommand(CommandID.midiConfigurationData,
+        #                                               [self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)])[0] +
+        #                                                            ":cc:64:")
+
+        #command = self.commandSet.getQualifiedShortCommand(CommandID.midiConfiguration)
+        command = self.commandSet.getQualifiedShortCommand(CommandID.midiConfigurationAddCC)[0] + ":64:"
         if itemData[1] == "":
             command += "''"
         else:
             command += "'"
             for a in itemData[1]:
-                cmm = self.commandSets.getQualifiedShortCommand(a)
+                cmm = self.commandSet.getQualifiedShortCommand(a)
                 if len(cmm) == 0: break
                 if (command[-1] != "'"):
                     command += ","
@@ -56,42 +60,55 @@ class midiEventHandler:
         self.serialHandler.write(command)
         #self.updateUIData()
 
-    def widgetMIDIEventUpdateSignal(self):
-        self.widgetMIDIEventUpdate(self.sender())
+    def widgetMIDIEventUpdateSignal(self, event):
+        self.widgetMIDIEventUpdate(self.mainClass.sender())
 
-    def widgetMIDIEventUpdate(self, widget):
-        # widget = self.sender()
-        if widget is None:
-            return
+    def widgetMIDIEventUpdate(self):
+        widget = self.sender()
+        if widget is None: return
         match widget.midiEvent:
             case "pb":
                 value = self.mainClass.ui.midiPitchbendRatio.value() / 128
                 itemData = self.mainClass.ui.midiPitchbendSend.itemData(self.mainClass.ui.midiPitchbendSend.currentIndex())
                 variableName = "pitch"
+                setFunc = self.commandSet.setMidiConfigurationPitchBendCommands
                 pass
             case "pat":
                 value = self.mainClass.ui.midiPolyATRatio.value()
                 itemData = self.mainClass.ui.midiPolyATSend.itemData(self.mainClass.ui.midiPolyATSend.currentIndex())
                 variableName = "pressure"
+                setFunc = self.commandSet.setMidiConfigurationPolyAftertouchCommands
                 pass
             case "cat":
                 value = self.mainClass.ui.midiChannelATRatio.value()
                 itemData = self.mainClass.ui.midiChannelATSend.itemData(self.mainClass.ui.midiChannelATSend.currentIndex())
                 variableName = "pressure"
+                setFunc = self.commandSet.setMidiConfigurationChannelAftertouchCommands
                 pass
+            case _:
+                return
 
-        qualifiedMidiAssigns = self.commandSet.getQualifiedShortCommand(CommandID.midiConfigurationData,
-                                                                    [self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)])
         if itemData[1] == "":
-            for qualifiedAssign in qualifiedMidiAssigns:
-                command = qualifiedAssign + ":" + widget.midiEvent + ":''"
-                self.serialHandler.write(command)
+            commandString = "''"
         else:
-            for qualifiedAssign in qualifiedMidiAssigns:
-                qualifiedCommand = self.commandSet.getQualifiedShortCommand(itemData[1])[0]
-                command = (qualifiedAssign + ":" + widget.midiEvent + ":'" + qualifiedCommand + ":(" + variableName + " * " +
-                           str(value) + " * " + str(itemData[3]) + ")'")
-                self.serialHandler.write(command)
+            qualifiedCommand = self.commandSet.getQualifiedShortCommand(itemData[1])[0]
+            commandString = "'" + qualifiedCommand + "(" + variableName + " * " + str(value) + " * " + str(itemData[3]) + ")'"
+
+        setFunc(widget, self.serialHandler, self.simpleFARHandler, self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect),
+                commandString)
+
+#        qualifiedMidiAssigns = self.commandSet.getQualifiedShortCommand(CommandID.midiConfigurationData,
+#                                                                    [self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)])
+#        if itemData[1] == "":
+#            for qualifiedAssign in qualifiedMidiAssigns:
+#                command = qualifiedAssign + ":" + widget.midiEvent + ":''"
+#                self.serialHandler.write(command)
+#        else:
+#            for qualifiedAssign in qualifiedMidiAssigns:
+#                qualifiedCommand = self.commandSet.getQualifiedShortCommand(itemData[1])[0]
+#                command = (qualifiedAssign + ":" + widget.midiEvent + ":'" + qualifiedCommand + ":(" + variableName + " * " +
+#                           str(value) + " * " + str(itemData[3]) + ")'")
+#                self.serialHandler.write(command)
 
 
     def connectWidgetsToMIDIEvent(self, midiEventName, widgets):
@@ -99,11 +116,12 @@ class midiEventHandler:
             widget.midiEvent = midiEventName
             widget.widgets = widgets
             if isinstance(widget, QComboBox):
-                widget.currentIndexChanged.connect(self.widgetMIDIEventUpdateSignal)
+                widget.currentIndexChanged.connect(self.widgetMIDIEventUpdate)  #Signal
             elif isinstance(widget, QSlider):
-                self.mainClass.assignMouseReleaseEvent(widget, self.widgetMIDIEventUpdate)
+                #self.mainClass.assignMouseReleaseEvent(widget, self.widgetMIDIEventUpdate)
+                widget.sliderReleased.connect(self.widgetMIDIEventUpdate)
             elif isinstance(widget, QCheckBox):
-                widget.stateChanged.connect(self.widgetMIDIEventUpdateSignal)
+                widget.stateChanged.connect(self.widgetMIDIEventUpdate)   #Signal
 
 
     def setMIDINoteOnCommands(self, commands):
@@ -149,16 +167,17 @@ class midiEventHandler:
         else:
             self.mainClass.ui.midiNoteOffMotorOff.setChecked(False)
 
-
     def setMIDICCCommands(self, cc, commands):
         self.simpleFARHandler.instrumentMaster.addCC(int(cc), commands)
         if (find_item(self.mainClass.ui.listWidgetMidiEvents, "CC " + str(cc)) == -1):
             self.mainClass.ui.listWidgetMidiEvents.addItem(QListWidgetItem("CC " + str(cc)))
         self.setMIDISustainDestination()
 
-
     def setMIDISustainDestination(self):
-        commands = self.simpleFARHandler.instrumentMaster.getCC(64).command
+        cc = self.simpleFARHandler.instrumentMaster.getCC(64)
+        if (cc is None):
+            return
+        commands = cc.command
         commandList = self.commandSet.currentCommandSet.CommandList(commands)
 
         if ("ibool" in commands):
@@ -179,7 +198,6 @@ class midiEventHandler:
                     return
         self.mainClass.ui.midiSustainSend.setCurrentIndex(0)
 
-
     def setMIDIPATCommands(self, commands):
         self.simpleFARHandler.instrumentMaster.evPolyAftertouch = commands
         if (find_item(self.mainClass.ui.listWidgetMidiEvents, "Poly Aftertouch") == -1):
@@ -190,7 +208,6 @@ class midiEventHandler:
 
         self.selectSendDestinationAndRatio(self.mainClass.ui.midiPolyATSend, self.simpleFARHandler.instrumentMaster.cmdPolyAftertouch,
                                                  self.mainClass.ui.midiPolyATRatio, "pressure")
-
 
     def setMIDIPBCommands(self, commands):
         self.simpleFARHandler.instrumentMaster.evPitchbend = commands
@@ -203,7 +220,6 @@ class midiEventHandler:
         self.selectSendDestinationAndRatio(self.mainClass.ui.midiPitchbendSend, self.simpleFARHandler.instrumentMaster.cmdPitchbend,
                                                  self.mainClass.ui.midiPitchbendRatio, "pitch", 127)
 
-
     def setMIDICATCommands(self, commands):
         self.simpleFARHandler.instrumentMaster.evChannelAftertouch = commands
         if (find_item(self.mainClass.ui.listWidgetMidiEvents, "Channel Aftertouch") == -1):
@@ -215,31 +231,26 @@ class midiEventHandler:
         self.selectSendDestinationAndRatio(self.mainClass.ui.midiChannelATSend, self.simpleFARHandler.instrumentMaster.cmdChannelAftertouch,
                                                  self.mainClass.ui.midiChannelATRatio, "pressure")
 
-
     def setMIDIPCCommands(self, commands):
         self.simpleFARHandler.instrumentMaster.evProgramChange = commands
         if (find_item(self.mainClass.ui.listWidgetMidiEvents, "Program change") == -1):
             self.mainClass.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Program change"))
-
 
     def handleMIDIConfigurationCount(self, count):
         self.mainClass.ui.comboBoxConfiguration.clear()
         while (self.mainClass.ui.comboBoxConfiguration.count() < int(count)):
             self.mainClass.ui.comboBoxConfiguration.insertItem(self.mainClass.ui.comboBoxConfiguration.count() + 1, "placeholder")
 
-
     def handleMIDIConfigurationName(self, index, name, setIndex):
-        self.mainClass.ui.comboBoxConfiguration.setItemText(index, name)
+        self.mainClass.ui.comboBoxConfiguration.setItemText(int(index), name)
         if (setIndex):
             self.mainClass.ui.comboBoxConfiguration.setCurrentIndex(self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect))
-
 
     def handleMIDIConfigurationSelect(self, config):
         self.simpleFARHandler.stringModules[0].setCommandValue(CommandID.midiConfigurationSelect, float(config))
         self.mainClass.updateStringModuleData()
         self.mainClass.ui.listWidgetMidiEvents.clear()
         self.mainClass.ui.comboBoxConfiguration.setCurrentIndex(int(self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)))
-
 
     def handleMIDIReceiveChannel(self, channel):
         self.mainClass.ui.comboBoxMidiChannel.blockSignals(True)
@@ -336,5 +347,10 @@ class midiEventHandler:
                 self.mainClass.ui.plainTextEditEventDescription.insertPlainText(self.eventDescription[6][1])
             case _:
                 if current.text()[:2] == "CC":
-                    self.mainClass.ui.lineEditMidiEventCommand.setText(str(self.simpleFARHandler.instrumentMaster.getCC(int(current.text()[3:])).command))
+                    ccnum = int(current.text()[3:])
+                    cc = self.simpleFARHandler.instrumentMaster.getCC(ccnum)
+                    if (cc is not None):
+                        self.mainClass.ui.lineEditMidiEventCommand.setText(str(cc.command))
+                    else:
+                        self.mainClass.ui.lineEditMidiEventCommand.setText("")
                 self.mainClass.ui.plainTextEditEventDescription.insertPlainText(self.eventDescription[2][1])

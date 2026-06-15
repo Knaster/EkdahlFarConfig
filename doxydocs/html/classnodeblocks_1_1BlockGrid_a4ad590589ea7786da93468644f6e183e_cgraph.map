@@ -1,0 +1,6 @@
+<map id="putBlockOnGrid" name="putBlockOnGrid">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,129,55"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="40,31,34,21,37,11,48,5,67,3,90,6,100,15,96,19,88,11,67,8,50,10,41,15,39,20,44,28"/>
+<area shape="rect" id="Node000002" href="$classnodeblocks_1_1BlockGrid.html#a3e2bc3bc1d0829c85541f9095b20c39d" title=" " alt="" coords="177,29,289,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,39,164,39,164,45,129,45"/>
+</map>

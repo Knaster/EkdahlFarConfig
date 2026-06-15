@@ -1,0 +1,8 @@
+<map id="customnode.Equation2.findRootPort" name="customnode.Equation2.findRootPort">
+<area shape="rect" id="Node000001" title=" " alt="" coords="312,37,511,77"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="458,26,442,19,411,16,385,18,368,23,363,29,366,36,361,38,357,28,366,18,384,13,411,11,443,13,460,21"/>
+<area shape="rect" id="Node000002" href="$classcustomnode_1_1CustomBaseNode.html#a9877c256209bbdbd8e6c40f421a9cda6" title=" " alt="" coords="5,5,264,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="298,47,264,43,264,38,299,42"/>
+<area shape="rect" id="Node000003" href="$classcustomnode_1_1CustomBaseNode.html#a05b9c7f2d01420d5ad8fd7b6a8eb4bed" title=" " alt="" coords="11,69,258,109"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="299,73,259,78,258,72,298,68"/>
+</map>

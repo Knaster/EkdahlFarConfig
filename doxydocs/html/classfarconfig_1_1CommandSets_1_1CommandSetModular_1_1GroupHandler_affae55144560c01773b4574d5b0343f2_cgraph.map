@@ -1,0 +1,9 @@
+<map id="farconfig.CommandSets.CommandSetModular.GroupHandler.getGroup" name="farconfig.CommandSets.CommandSetModular.GroupHandler.getGroup">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,257,53"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html#a9b1ca67778780b5636bd8236e4c00097" title=" " alt="" coords="305,5,557,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="257,30,292,30,292,35,257,35"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html#ac2b0c1dba3104cb7702ffa33ca6d1e48" title=" " alt="" coords="605,5,860,60"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="558,30,591,30,591,35,558,35"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html#abe5151f9312b6f02814535a81d19031b" title=" " alt="" coords="908,13,1163,53"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="860,30,894,30,894,35,860,35"/>
+</map>

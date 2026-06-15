@@ -1,0 +1,9 @@
+<map id="processInformationForChart" name="processInformationForChart">
+<area shape="rect" id="Node000001" title=" " alt="" coords="757,13,960,38"/>
+<area shape="rect" id="Node000002" href="$namespacefarconfig_1_1farconfig.html#a987a98f0b6079a1d3199dfde6adc5fb7" title=" " alt="" coords="519,13,709,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="744,28,710,28,710,23,744,23"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#a9530c2e1be4d164699762f3678e62d9f" title=" " alt="" coords="233,5,471,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="505,28,471,28,471,23,505,23"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1farconfig_1_1serialHandler.html#a670fe67276cb94775a042958fe2c79d4" title=" " alt="" coords="5,5,185,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="220,28,185,28,185,23,220,23"/>
+</map>

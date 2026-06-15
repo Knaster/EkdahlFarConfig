@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1Module.html" title=" " alt="" coords="5,31,220,56"/>
+<area shape="rect" id="Node000001" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1Group.html" title=" " alt="" coords="293,5,499,31"/>
+<area shape="poly" id="edge58_Node000000_Node000001" title=" " alt="" coords="233,30,293,25,293,30,234,35"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html" title=" " alt="" coords="268,55,524,80"/>
+<area shape="poly" id="edge59_Node000000_Node000002" title=" " alt="" coords="234,51,268,54,267,59,233,56"/>
+</map>

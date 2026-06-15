@@ -1,0 +1,9 @@
+<map id="getSeries" name="getSeries">
+<area shape="rect" id="Node000001" title=" " alt="" coords="433,31,516,56"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a4ce84ade79fea183feaa74badf100a0b" title=" " alt="" coords="250,5,327,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="419,39,327,26,328,21,420,33"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a7f96415b4843dbc3c62c8a1e6f9ccb85" title=" " alt="" coords="192,55,385,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="420,53,386,57,385,52,419,48"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a049413dc8b05aa4bbd4931943f0a0cde" title=" " alt="" coords="5,5,144,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="236,21,144,21,144,15,236,15"/>
+</map>

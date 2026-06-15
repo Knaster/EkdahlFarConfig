@@ -1,0 +1,14 @@
+<map id="farconfig.timedChart.timedChart.processCommand" name="farconfig.timedChart.timedChart.processCommand">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,61,204,101"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#a5f9ec6e2eddc9b4348a11f7f79359c36" title=" " alt="" coords="252,11,515,37"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,59,251,47,301,37,302,42,253,52,196,64"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a3a5044c131b735e9cbe6ddfc6963d42f" title=" " alt="" coords="284,61,483,101"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="204,79,270,79,270,84,204,84"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a49a5e4c8b52fac79568a4932f9d210e5" title=" " alt="" coords="284,125,483,165"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="193,99,283,120,282,125,192,104"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a5390b0faea06b1b79761cff20e320e82" title=" " alt="" coords="563,29,761,69"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="482,67,549,60,549,65,483,73"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1timedChart_1_1timedChart.html#ab6f274296e1047024d6156fbedb9acfe" title=" " alt="" coords="563,93,761,133"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="483,90,549,98,549,103,482,95"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="611,30,608,20,616,10,634,5,662,3,694,5,712,13,710,18,693,11,662,8,635,10,619,15,613,21,616,28"/>
+</map>

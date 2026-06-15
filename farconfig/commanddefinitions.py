@@ -152,6 +152,8 @@ class CommandID(Enum):
     midiConfigurationPitchbend = auto()
     midiConfigurationProgramChange = auto()
     midiConfigurationContinuousController = auto()
+    midiConfigurationCCControl = auto()
+    midiConfigurationCCCommands = auto()
 
     controlBoxControlData = auto()
     controlBoxControlDefaults = auto()

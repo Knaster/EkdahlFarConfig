@@ -1,12 +1,20 @@
 var searchData=
 [
-  ['readsmdata_174',['readSMData',['../classwidget_1_1MainWidget.html#ac607c9407fe5eba8918449c035a99fac',1,'widget::MainWidget']]],
-  ['rectangle_175',['rectangle',['../namespacetimedChart.html#a110e4c90bbaf18597d9b9a4ed9c8a703',1,'timedChart']]],
-  ['removefunction_176',['removeFunction',['../namespaceequationParsingHelpers.html#a0bdbbf0b0ecf7f2d0c588f6be75cd2e8',1,'equationParsingHelpers']]],
-  ['requestbasedata_177',['requestBaseData',['../namespacewidget.html#ab4ecab8f3998af482b02bec087893587',1,'widget']]],
-  ['requesthelp_178',['requestHelp',['../namespacewidget.html#abcad9bdbb9885d5f1ead6567e09068b3',1,'widget']]],
-  ['requeststringmoduledata_179',['requestStringModuleData',['../namespacewidget.html#aa70736a343a6d878e208177c3394f403',1,'widget']]],
-  ['resetallsettings_180',['resetAllSettings',['../classwidget_1_1MainWidget.html#a86508451203b59e88ab272d07b7eafc4',1,'widget::MainWidget']]],
-  ['retrievefromhw_181',['retrieveFromHW',['../classstringModule_1_1stringModule.html#ae5e560b36807e24c5066ae821fc1c56a',1,'stringModule::stringModule']]],
-  ['run_182',['run',['../classwidget_1_1serialHandler.html#af2bcc5d337c20d782256ec7010d7a655',1,'widget::serialHandler']]]
+  ['offtext_0',['offText',['../classcustomnodewidgets_1_1ToggleSwitchW.html#aaf97944db61c4ffc988747f48afb058e',1,'customnodewidgets::ToggleSwitchW']]],
+  ['oldrange_1',['oldRange',['../classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a7c50e235b39994e01ed1493d62130674',1,'farconfig::pluginhandler::Plugin_NumberMap']]],
+  ['on_5fbtn_5fgo_5fclicked_2',['on_btn_go_clicked',['../classcustomnodewidgets_1_1NodeSlider.html#aa1d4f36aa020088ca4f12c23031ca099',1,'customnodewidgets.NodeSlider.on_btn_go_clicked()'],['../classcustomnodewidgets_1_1ToggleSwitch.html#aa1d4f36aa020088ca4f12c23031ca099',1,'customnodewidgets.ToggleSwitch.on_btn_go_clicked()']]],
+  ['on_5finput_5fconnected_3',['on_input_connected',['../classcustomnode_1_1CustomBaseNode.html#aa7d4f52b80ef8047f54cdfe31ebc633a',1,'customnode::CustomBaseNode']]],
+  ['on_5finput_5fdisconnected_4',['on_input_disconnected',['../classcustomnode_1_1CustomBaseNode.html#acdb2db34e50fd222ec9e0b9e637a6224',1,'customnode::CustomBaseNode']]],
+  ['ontext_5',['onText',['../classcustomnodewidgets_1_1ToggleSwitchW.html#a8f9c947d03cb9a6af536b34c4a4a813d',1,'customnodewidgets::ToggleSwitchW']]],
+  ['open_5fsession_6',['open_session',['../namespacehotkeys_1_1hotkey__functions.html#a2c3a39f91556cf21c9381de3d8f57943',1,'hotkeys::hotkey_functions']]],
+  ['optimizedeadbands_7',['optimizeDeadbands',['../classfarconfig_1_1nodehandler_1_1NodeHandler.html#a469ec861456be1b26ec48812d878aa01',1,'farconfig::nodehandler::NodeHandler']]],
+  ['optimizemakebools_8',['optimizeMakeBools',['../classfarconfig_1_1nodehandler_1_1NodeHandler.html#a60fa8503dfda663fa3ae1b1f68ec01ba',1,'farconfig::nodehandler::NodeHandler']]],
+  ['optimizemakeboolsiter_9',['optimizeMakeBoolsIter',['../classfarconfig_1_1nodehandler_1_1NodeHandler.html#aa02450b7311a5d2f104a2eed97ce4bca',1,'farconfig::nodehandler::NodeHandler']]],
+  ['optimizeobjects_10',['optimizeObjects',['../classfarconfig_1_1nodehandler_1_1NodeHandler.html#a53761edc7217a98b8daddf16138d3d18',1,'farconfig::nodehandler::NodeHandler']]],
+  ['organize_11',['organize',['../namespacefarconfig_1_1farconfig.html#a288fbb0b736d88331710b31d28d86c1f',1,'farconfig::farconfig']]],
+  ['originallineeditkeypressevent_12',['originalLineEditKeyPressEvent',['../classfarconfig_1_1serialWidget_1_1SerialWidget.html#ad85869025c5b61697b34bfdf17e87561',1,'farconfig::serialWidget::SerialWidget']]],
+  ['output_5fports_13',['output_ports',['../classcustomnode_1_1CustomBaseNode.html#acd02397c9b7326eb88a1e9594c0a2d6f',1,'customnode::CustomBaseNode']]],
+  ['outputassignment_14',['OutputAssignment',['../classfarconfig_1_1commanddefinitions_1_1ModuleCommandType__data.html#a34f9a8e9c25bfd3e022118017e7f8ba1',1,'farconfig::commanddefinitions::ModuleCommandType_data']]],
+  ['overflow_15',['overflow',['../classfarconfig_1_1timedChart_1_1timeStamp.html#a5207974538b01392cb7fc18d69a0fe00',1,'farconfig::timedChart::timeStamp']]],
+  ['overridefunction_16',['overrideFunction',['../classfarconfig_1_1nodehandler_1_1NodeHandler.html#a32d5b9716a3414254c681454ac343e5e',1,'farconfig::nodehandler::NodeHandler']]]
 ];

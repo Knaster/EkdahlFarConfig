@@ -1,0 +1,16 @@
+<map id="customnode.CustomBaseNode.output_ports" name="customnode.CustomBaseNode.output_ports">
+<area shape="rect" id="Node000001" title=" " alt="" coords="905,61,1173,101"/>
+<area shape="poly" id="edge8_Node000001_Node000001" title=" " alt="" coords="1092,50,1073,43,1039,40,1010,42,992,47,985,53,988,60,983,62,980,52,989,42,1009,37,1039,35,1074,37,1093,45"/>
+<area shape="rect" id="Node000002" href="$classcustomnode_1_1CustomBaseNode.html#aba14f1952e14b3f9c29630cb05a5d46b" title=" " alt="" coords="611,61,857,101"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="892,84,857,84,857,79,892,79"/>
+<area shape="poly" id="edge7_Node000002_Node000002" title=" " alt="" coords="785,50,767,43,734,40,705,42,688,47,681,53,684,60,679,62,676,52,685,42,704,37,734,35,768,37,787,45"/>
+<area shape="rect" id="Node000003" href="$classcustomnode_1_1Equation1.html#ab14dcfc889e2cfeaa41c9fd913eb46d6" title=" " alt="" coords="334,29,541,69"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="597,69,541,63,541,58,597,64"/>
+<area shape="rect" id="Node000004" href="$classcustomnode_1_1CustomBaseNode.html#acc611690819ffc602a3ac449257be98e" title=" " alt="" coords="312,93,563,133"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="597,99,563,102,562,97,597,93"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="488,18,470,11,437,8,409,10,391,15,385,21,388,28,383,30,379,20,388,10,408,5,437,3,471,5,490,13"/>
+<area shape="rect" id="Node000005" href="$classcustomnode_1_1CustomBaseNode.html#a9877c256209bbdbd8e6c40f421a9cda6" title=" " alt="" coords="5,61,264,101"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="298,101,264,98,265,92,299,96"/>
+<area shape="rect" id="Node000006" href="$classcustomnode_1_1CustomBaseNode.html#a05b9c7f2d01420d5ad8fd7b6a8eb4bed" title=" " alt="" coords="11,125,258,165"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="299,131,258,135,258,130,298,125"/>
+</map>

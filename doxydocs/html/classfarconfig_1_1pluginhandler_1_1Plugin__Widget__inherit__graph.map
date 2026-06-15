@@ -1,0 +1,13 @@
+<map id="Plugin_Widget" name="Plugin_Widget">
+<area shape="rect" id="Node000001" title=" " alt="" coords="201,79,316,104"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR.html" title=" " alt="" coords="5,152,120,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,111,96,154,94,149,214,106"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1pluginhandler_1_1Plugin__LFO.html" title=" " alt="" coords="145,152,239,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="240,116,205,154,201,150,236,113"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1pluginhandler_1_1Plugin__Multiple.html" title=" " alt="" coords="264,152,387,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="281,113,316,150,313,154,277,116"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html" title=" " alt="" coords="411,152,560,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="309,106,449,149,448,154,307,111"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="219,5,298,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="261,44,261,79,256,79,256,44"/>
+</map>

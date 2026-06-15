@@ -1,0 +1,13 @@
+<map id="nodeorganizer.NodeOrganizer.swapPositions" name="nodeorganizer.NodeOrganizer.swapPositions">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1192,35,1444,75"/>
+<area shape="rect" id="Node000002" href="$classnodeorganizer_1_1NodeOrganizer.html#a48859a383be0c2c76e7e1ac9c111da14" title=" " alt="" coords="889,5,1144,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1178,44,1144,40,1145,35,1179,38"/>
+<area shape="rect" id="Node000003" href="$classnodeorganizer_1_1NodeOrganizer.html#a8d54ee1f8e65d2c1d74b58d6afd83c1f" title=" " alt="" coords="595,35,841,75"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="1178,60,1144,60,889,60,841,59,841,54,889,55,1144,55,1178,54"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="876,42,842,45,841,40,875,37"/>
+<area shape="rect" id="Node000004" href="$classnodeorganizer_1_1NodeOrganizer.html#aba172e1765547c81d448467662e84170" title=" " alt="" coords="300,35,547,75"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="581,57,547,57,547,52,581,52"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="474,23,456,16,423,13,395,15,377,20,371,26,374,33,369,35,366,25,375,16,394,10,423,8,457,11,476,18"/>
+<area shape="rect" id="Node000005" href="$classnodeorganizer_1_1NodeOrganizer.html#a79dd4c6e5b8e5dbb3d9f147a7bfd74bf" title=" " alt="" coords="5,35,252,75"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="286,57,252,57,252,52,286,52"/>
+</map>

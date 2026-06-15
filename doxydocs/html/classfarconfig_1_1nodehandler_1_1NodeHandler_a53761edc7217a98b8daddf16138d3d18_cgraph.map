@@ -1,0 +1,13 @@
+<map id="optimizeObjects" name="optimizeObjects">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,133,80"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a469ec861456be1b26ec48812d878aa01" title=" " alt="" coords="197,5,349,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,52,206,31,207,37,123,57"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a60fa8503dfda663fa3ae1b1f68ec01ba" title=" " alt="" coords="197,55,348,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="134,65,184,65,184,70,134,70"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a20e6c7c2bdd93a75bf7a5f8c8b2f6cc8" title=" " alt="" coords="181,104,364,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="123,77,207,98,206,103,122,83"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#aa02450b7311a5d2f104a2eed97ce4bca" title=" " alt="" coords="429,55,601,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="348,65,415,65,415,70,348,70"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a893210ab4ffc31ff0c67b0f12f04a92d" title=" " alt="" coords="412,104,617,129"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="364,114,398,114,398,119,364,119"/>
+</map>

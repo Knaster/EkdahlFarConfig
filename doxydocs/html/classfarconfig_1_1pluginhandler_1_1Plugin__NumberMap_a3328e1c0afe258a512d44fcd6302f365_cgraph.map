@@ -1,0 +1,13 @@
+<map id="farconfig.pluginhandler.Plugin_NumberMap.processMessages" name="farconfig.pluginhandler.Plugin_NumberMap.processMessages">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,273,109"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#abc7936401ddfdc3d89f4ccc5b75ea935" title=" " alt="" coords="321,69,560,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="273,87,307,87,307,92,273,92"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a285e1ff7a3447361bb4dff6cf14f1ba8" title=" " alt="" coords="624,5,839,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="532,67,626,46,628,51,533,72"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a9828c460ce6d2f02d9a1a122a412bb83" title=" " alt="" coords="608,69,855,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="560,87,595,87,595,92,560,92"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a213848c0984d558c850713d56f25e5c8" title=" " alt="" coords="614,133,849,173"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="533,107,628,128,626,133,532,112"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a9ccbbf5c3bbbd75bce5e358ee1d9042e" title=" " alt="" coords="903,69,1136,109"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="855,87,889,87,889,92,855,92"/>
+</map>

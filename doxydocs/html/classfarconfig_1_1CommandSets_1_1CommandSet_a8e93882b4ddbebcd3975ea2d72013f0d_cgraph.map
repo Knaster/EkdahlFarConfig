@@ -1,0 +1,23 @@
+<map id="addHarmonicSeriesRatio" name="addHarmonicSeriesRatio">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,137,188,163"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="571,5,774,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,135,165,100,199,81,235,66,318,44,402,29,484,20,557,16,558,21,485,25,403,34,319,49,237,71,201,86,168,104,116,139"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="548,55,797,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="124,135,175,114,235,97,312,84,389,76,534,70,534,75,390,81,312,89,237,102,177,119,126,140"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="533,119,812,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="188,148,485,146,520,145,520,150,485,151,188,154"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="548,207,797,247"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="189,160,534,206,534,211,188,165"/>
+<area shape="rect" id="Node000007" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#a5f9dc9c84b3194c248c2beed7abe9bdd" title=" " alt="" coords="271,112,450,137"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="188,139,258,132,258,137,189,144"/>
+<area shape="rect" id="Node000008" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#a5f9dc9c84b3194c248c2beed7abe9bdd" title=" " alt="" coords="236,287,485,327"/>
+<area shape="poly" id="edge12_Node000001_Node000008" title=" " alt="" coords="117,161,170,199,237,242,305,279,303,284,235,247,167,203,113,165"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a4d0e442ce13f4962d044a9b2c5f45764" title=" " alt="" coords="860,119,1172,159"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="812,137,846,137,846,142,812,142"/>
+<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="615,208,612,198,621,188,641,183,673,181,709,183,728,191,726,196,707,189,673,186,642,188,624,193,617,199,620,206"/>
+<area shape="poly" id="edge8_Node000007_Node000002" title=" " alt="" coords="383,110,448,75,532,41,569,31,570,36,534,46,451,80,385,114"/>
+<area shape="poly" id="edge9_Node000007_Node000003" title=" " alt="" coords="441,109,534,95,534,100,442,115"/>
+<area shape="poly" id="edge10_Node000007_Node000004" title=" " alt="" coords="450,126,519,129,519,135,450,132"/>
+<area shape="poly" id="edge11_Node000007_Node000006" title=" " alt="" coords="401,135,599,201,597,206,400,140"/>
+<area shape="poly" id="edge13_Node000008_Node000008" title=" " alt="" coords="312,288,309,278,317,268,334,263,361,261,391,263,408,271,406,276,390,269,361,266,335,268,320,273,314,279,317,286"/>
+</map>

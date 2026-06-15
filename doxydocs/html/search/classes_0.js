@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['cc_242',['CC',['../classstringModule_1_1CC.html',1,'stringModule']]],
-  ['chartmatchdata_243',['chartMatchData',['../classtimedChart_1_1chartMatchData.html',1,'timedChart']]]
+  ['actuator_0',['Actuator',['../classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1Actuator.html',1,'farconfig::CommandSets::CommandSetModular']]],
+  ['averager_1',['Averager',['../classfarconfig_1_1averager_1_1Averager.html',1,'farconfig::averager']]]
 ];

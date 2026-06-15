@@ -1,0 +1,15 @@
+<map id="farconfig.CommandSets.CommandSetModular.GroupHandler.addModuleFromDirReturn" name="farconfig.CommandSets.CommandSetModular.GroupHandler.addModuleFromDirReturn">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,30,269,85"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1Group.html#ada5efc28468151b98735241aab85bd86" title=" " alt="" coords="325,5,574,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="269,41,311,37,312,42,270,46"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html#a60ea853bb4341747255312621094e07b" title=" " alt="" coords="317,69,581,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="270,68,304,72,304,77,269,74"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html#aa901f46480f979bee7eb261ce62973f1" title=" " alt="" coords="629,62,881,117"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="582,87,615,87,615,92,582,92"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html#a9b1ca67778780b5636bd8236e4c00097" title=" " alt="" coords="929,62,1181,117"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="881,87,916,87,916,92,881,92"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html#ac2b0c1dba3104cb7702ffa33ca6d1e48" title=" " alt="" coords="1229,62,1484,117"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1182,87,1215,87,1215,92,1182,92"/>
+<area shape="rect" id="Node000007" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html#abe5151f9312b6f02814535a81d19031b" title=" " alt="" coords="1532,69,1787,109"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1484,87,1518,87,1518,92,1484,92"/>
+</map>

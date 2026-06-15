@@ -1,0 +1,20 @@
+<map id="rankVerticalPreferenceIter" name="rankVerticalPreferenceIter">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,129,197,155"/>
+<area shape="rect" id="Node000002" href="$classnodeorganizer_1_1NodeOrganizer.html#a8877893c64776efc984764bbd800cf54" title=" " alt="" coords="245,5,461,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,127,169,84,206,60,244,40,264,32,266,37,246,44,208,65,172,88,119,131"/>
+<area shape="rect" id="Node000003" href="$classnodeorganizer_1_1NodeOrganizer.html#ac2faef69a8bb5f6f6b08b6df5b64cd5f" title=" " alt="" coords="279,55,428,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="134,127,245,89,276,81,277,86,246,94,136,132"/>
+<area shape="rect" id="Node000006" href="$classnodeorganizer_1_1NodeOrganizer.html#a582535a26d7299f9606256a4460d2881" title=" " alt="" coords="256,104,451,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="197,130,242,125,242,130,198,135"/>
+<area shape="rect" id="Node000007" href="$classnodeorganizer_1_1NodeOrganizer.html#a4b68c49aad6c006aedde3f494ee67493" title=" " alt="" coords="289,153,418,179"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="198,148,276,156,275,161,197,154"/>
+<area shape="rect" id="Node000008" href="$classnodeorganizer_1_1NodeOrganizer.html#ab022fef1d5fe7da857c8568754f1f520" title=" " alt="" coords="250,203,457,228"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="138,152,246,187,282,197,280,202,245,193,137,157"/>
+<area shape="rect" id="Node000009" href="$classnodeorganizer_1_1NodeOrganizer.html#a9e7c8220494c63b877be6c69ce8c824d" title=" " alt="" coords="554,228,669,253"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="117,153,170,198,206,221,246,238,323,254,402,259,476,257,540,250,540,255,477,262,402,265,322,260,245,243,204,226,167,202,114,157"/>
+<area shape="rect" id="Node000004" href="$classnodeorganizer_1_1NodeOrganizer.html#a99000b87d8321dc533e1f3da34352889" title=" " alt="" coords="509,31,713,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="428,58,495,51,496,57,428,63"/>
+<area shape="rect" id="Node000005" href="$classnodeorganizer_1_1NodeOrganizer.html#af8791dd997c8608e08cd64fe8027e8bf" title=" " alt="" coords="522,80,701,105"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="428,72,508,80,508,85,428,77"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="457,223,540,231,540,236,456,228"/>
+</map>

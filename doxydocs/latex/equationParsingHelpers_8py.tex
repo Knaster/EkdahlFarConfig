@@ -1,24 +1,28 @@
-\hypertarget{equationParsingHelpers_8py}{}\doxysection{equation\+Parsing\+Helpers.\+py File Reference}
-\label{equationParsingHelpers_8py}\index{equationParsingHelpers.py@{equationParsingHelpers.py}}
-\doxysubsection*{Namespaces}
+\doxysection{equation\+Parsing\+Helpers.\+py File Reference}
+\hypertarget{equationParsingHelpers_8py}{}\label{equationParsingHelpers_8py}\index{equationParsingHelpers.py@{equationParsingHelpers.py}}
+\doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \mbox{\hyperlink{namespaceequationParsingHelpers}{equation\+Parsing\+Helpers}}
+namespace \mbox{\hyperlink{namespacefarconfig}{farconfig}}
+\item 
+namespace \mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers}{farconfig.\+equation\+Parsing\+Helpers}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \mbox{\hyperlink{namespaceequationParsingHelpers_aa6cd88d5316bf7965cf38220c50020ba}{equation\+Parsing\+Helpers.\+get\+Variable}} (equation\+\_\+str, variable\+\_\+str)
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_a4220c7738733f14ea6be9edf55f1bdc0}{calculate\+Value}} (equation\+\_\+str)
 \item 
-def \mbox{\hyperlink{namespaceequationParsingHelpers_a3501d349a711e7068415fe3471253f76}{equation\+Parsing\+Helpers.\+is\+Variable\+In\+Equation}} (equation\+\_\+str, variable\+\_\+str)
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_afe3ab0cabdd8c635362631d318a70bf7}{get\+Variable}} (equation\+\_\+str, variable\+\_\+str)
 \item 
-def \mbox{\hyperlink{namespaceequationParsingHelpers_a0bdbbf0b0ecf7f2d0c588f6be75cd2e8}{equation\+Parsing\+Helpers.\+remove\+Function}} (equation\+\_\+str, function\+\_\+str)
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_a726818f9809c50cf4f8a57e46cb102c4}{is\+Variable\+In\+Equation}} (equation\+\_\+str, variable\+\_\+str)
 \item 
-def \mbox{\hyperlink{namespaceequationParsingHelpers_aaca201de2c1216932117b8840ec155bf}{equation\+Parsing\+Helpers.\+extract\+Value\+Offset\+And\+Divisor}} (equation\+\_\+str)
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_ad5fe3746eab3cc9d543a7c8c9f8c601a}{remove\+Function}} (equation\+\_\+str, function\+\_\+str)
 \item 
-def \mbox{\hyperlink{namespaceequationParsingHelpers_a145cda97ef2983cb682699aef161dced}{equation\+Parsing\+Helpers.\+extract\+Value\+Offset\+And\+Multiplier}} (equation\+\_\+str)
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_a90031f99151e9b19e5f5e00fe2598afd}{extract\+Value\+Offset\+And\+Divisor}} (equation\+\_\+str)
 \item 
-def \mbox{\hyperlink{namespaceequationParsingHelpers_ae3b84a2fc123cabe6c32268f8494f842}{equation\+Parsing\+Helpers.\+extract\+Zero\+Coefficient\+Offset}} (equation)
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_a98b3507742d0d9ebb7b6b0c0a4f74d2a}{extract\+Value\+Offset\+And\+Multiplier}} (equation\+\_\+str)
 \item 
-def \mbox{\hyperlink{namespaceequationParsingHelpers_aca76e9da04059aace2c2860edc765d91}{equation\+Parsing\+Helpers.\+strip\+Bool\+IBool}} (expression)
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_aee2832ceac861532fb237a2e6032f8e2}{extract\+Zero\+Coefficient\+Offset}} (equation)
+\begin{DoxyCompactList}\small\item\em Parses an equation to extract zero\+Position, coefficient, and offset, ensuring correct differentiation between components and retaining their signs. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_a05e6111ee2faea3f2bb8eeed2265d031}{strip\+Bool\+IBool}} (expression)
+\begin{DoxyCompactList}\small\item\em Extracts the numerical value from an expression like "{}bool(value-\/2000)"{} or "{}ibool(value-\/25000)"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}

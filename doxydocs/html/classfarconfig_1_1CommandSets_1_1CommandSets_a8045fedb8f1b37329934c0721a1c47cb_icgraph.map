@@ -1,0 +1,7 @@
+<map id="farconfig.CommandSets.CommandSets.setMidiConfigurationSelect" name="farconfig.CommandSets.CommandSets.setMidiConfigurationSelect">
+<area shape="rect" id="Node000001" title=" " alt="" coords="303,29,552,69"/>
+<area shape="poly" id="edge3_Node000001_Node000001" title=" " alt="" coords="478,18,460,11,427,8,399,10,381,15,375,21,378,28,373,30,369,20,378,10,398,5,427,3,461,5,480,13"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a15f75f2e457fc02941165b31ba5d82a5" title=" " alt="" coords="5,29,255,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="289,52,255,52,255,47,289,47"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="181,18,163,11,130,8,101,10,84,15,77,21,80,28,75,30,72,20,81,10,100,5,130,3,164,5,183,13"/>
+</map>

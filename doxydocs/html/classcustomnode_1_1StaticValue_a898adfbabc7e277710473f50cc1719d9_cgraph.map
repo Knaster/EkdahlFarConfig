@@ -1,0 +1,21 @@
+<map id="customnode.StaticValue.__init__" name="customnode.StaticValue.__init__">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,205,188,245"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="48,206,45,196,53,186,70,181,97,179,127,181,144,189,142,194,126,187,97,184,71,186,56,191,50,197,53,204"/>
+<area shape="rect" id="Node000002" href="$classcustomnode_1_1CustomBaseNode.html#a764ae65431b516600b4212b5f17c54ac" title=" " alt="" coords="236,29,487,69"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="109,204,160,142,195,108,235,79,247,72,250,77,237,84,198,112,163,145,114,207"/>
+<area shape="rect" id="Node000004" href="$classcustomgroupnode_1_1CustomGroupNodeItem.html#a982c084084dab75aaa0eb12a75b4c325" title=" " alt="" coords="245,117,477,157"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="142,203,235,167,262,159,264,164,237,172,144,208"/>
+<area shape="rect" id="Node000005" href="$classcustomnode_1_1CustomBaseNode.html#a13997da102edef1a097fcd4b2cef54cb" title=" " alt="" coords="236,205,487,245"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="188,223,222,223,222,228,188,228"/>
+<area shape="rect" id="Node000006" href="$classcustomgroupnode_1_1CustomGroupNodeItem.html#a18b14ab00fb8b2fc1169b37b138f8fd3" title=" " alt="" coords="245,293,477,333"/>
+<area shape="poly" id="edge10_Node000001_Node000006" title=" " alt="" coords="159,243,288,286,286,291,157,248"/>
+<area shape="rect" id="Node000007" href="$classcustomnode_1_1CustomBaseNode.html#ade7792464f90c5e126a2bcd0e066a653" title=" " alt="" coords="236,357,487,397"/>
+<area shape="poly" id="edge12_Node000001_Node000007" title=" " alt="" coords="117,244,168,294,201,320,237,343,252,350,250,355,235,348,198,325,165,298,114,247"/>
+<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="312,30,309,20,317,10,335,5,361,3,392,5,409,13,406,18,391,11,361,8,336,10,320,15,315,21,317,28"/>
+<area shape="rect" id="Node000003" href="$classcustomnode_1_1CustomBaseNode.html#a534eb0e7ee6368a170013c45843ac4a3" title=" " alt="" coords="535,117,781,157"/>
+<area shape="poly" id="edge4_Node000002_Node000003" title=" " alt="" coords="444,67,487,79,587,110,585,115,486,84,443,72"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="312,118,309,108,317,98,335,93,361,91,392,93,409,101,406,106,391,99,361,96,336,98,320,103,315,109,317,116"/>
+<area shape="poly" id="edge9_Node000005_Node000003" title=" " alt="" coords="429,203,575,159,577,164,431,208"/>
+<area shape="poly" id="edge8_Node000005_Node000005" title=" " alt="" coords="312,206,309,196,317,186,335,181,361,179,392,181,409,189,406,194,391,187,361,184,336,186,320,191,315,197,317,204"/>
+<area shape="poly" id="edge11_Node000006_Node000006" title=" " alt="" coords="312,294,309,284,317,274,335,269,361,267,392,269,409,277,406,282,391,275,361,272,336,274,320,279,315,285,317,292"/>
+</map>

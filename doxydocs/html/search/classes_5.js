@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verticalicontabbar_252',['VerticalIconTabBar',['../classwidget_1_1VerticalIconTabBar.html',1,'widget']]]
+  ['farconfig_0',['FarConfig',['../classfarconfig_1_1farconfig_1_1FarConfig.html',1,'farconfig::farconfig']]]
 ];

@@ -1,0 +1,19 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,179,68,204"/>
+<area shape="rect" id="Node000001" href="$classfarconfig_1_1form_1_1Ui__Widget.html" title=" " alt="" coords="153,5,242,31"/>
+<area shape="poly" id="edge78_Node000000_Node000001" title=" " alt="" coords="42,164,67,102,88,69,114,40,132,29,152,22,154,27,135,34,118,44,92,72,72,104,47,166"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1ui__form_1_1Ui__Widget.html" title=" " alt="" coords="153,55,242,80"/>
+<area shape="poly" id="edge79_Node000000_Node000002" title=" " alt="" coords="49,165,76,126,94,106,115,89,151,73,153,78,117,94,98,110,80,129,54,168"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1ui__plugin__ahdsr_1_1Ui__Form__AHDSR.html" title=" " alt="" coords="133,104,262,129"/>
+<area shape="poly" id="edge80_Node000000_Node000003" title=" " alt="" coords="64,168,115,138,145,127,147,132,117,143,67,173"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1ui__plugin__lfo_1_1Ui__Form__LFO.html" title=" " alt="" coords="143,153,251,179"/>
+<area shape="poly" id="edge81_Node000000_Node000004" title=" " alt="" coords="81,182,143,172,143,177,82,187"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1ui__plugin__mult_1_1Ui__Form__Mult.html" title=" " alt="" coords="141,203,253,228"/>
+<area shape="poly" id="edge82_Node000000_Node000005" title=" " alt="" coords="82,195,141,204,141,210,81,201"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1ui__plugin__numbermap_1_1Ui__Form__NumberMap.html" title=" " alt="" coords="116,252,279,277"/>
+<area shape="poly" id="edge83_Node000000_Node000006" title=" " alt="" coords="68,209,117,237,150,249,148,254,115,242,66,214"/>
+<area shape="rect" id="Node000007" href="$classfarconfig_1_1ui__prompt_1_1Ui__Form.html" title=" " alt="" coords="159,301,235,327"/>
+<area shape="poly" id="edge84_Node000000_Node000007" title=" " alt="" coords="54,214,81,252,118,286,138,297,160,305,158,310,136,302,114,291,77,255,50,217"/>
+<area shape="rect" id="Node000008" href="$classfarconfig_1_1ui__reference_1_1Ui__Form.html" title=" " alt="" coords="159,351,235,376"/>
+<area shape="poly" id="edge85_Node000000_Node000008" title=" " alt="" coords="47,216,72,276,92,308,118,336,138,348,160,355,158,360,136,353,114,340,88,312,67,279,43,218"/>
+</map>

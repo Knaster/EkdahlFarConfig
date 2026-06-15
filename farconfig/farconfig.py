@@ -1,4 +1,3 @@
-#
 #  This file is part of The Ekdahl FAR firmware.
 #
 #  The Ekdahl FAR firmware is free software: you can redistribute it and/or modify
@@ -22,11 +21,34 @@
 #     pyside6-uic form.ui -o ui_form.py, or
 #     pyside2-uic form.ui -o ui_form.py
 
-import platform
-import random
-import sys
-import time
-import os
+## @package farconfig
+# \mainpage The Ekdahl FAR Configuration software
+#
+# This is the configuration software for the Knas Ekdahl FAR.\n\n
+# The software communicates with the instrument(s) via RS-232 over USB, all communications is based on the concept of \a commands as outlined in the general
+# FAR documentation. The information here within will only cover the communications with the latest version of the Ekdahl FAR firmware as any updates or changes
+# should not be done to any legacy compatibility code for older versions. \n
+# \n
+# The basic concept of communication is that the configuration software will issue various \a information \a request \a commands ('rqi') and populate its
+# various controls and status bars per the responses received. The rule of thumb is that each \a command issued generates a response, this can vary from a
+# simple aknowledgement to returning a full set of data. The software is not to populate the GUI information whilst issuing commands but rather relies soley
+# on responses in this regard. \n
+# \n
+# In the initial phase of communication some information has to be fully received before requesting additional information.
+# Certain \a commands will return an unknown number of responses thus those requests are generally followed by a \a 'nop'-command.
+# When a \a 'nop' aknowledgement is received the software knows that the previous data has been exhausted.
+#
+# The basic workflow for this software works as follows:
+# * Issue a version request command to the FAR in order to know which \ref "CommandSets" "command set" to use
+# * Issue a \a 'list'-command in order to receive the number of \a modules and \a commands contained within the instrument
+# * Build a internal hierarchy from the responses of the \a 'list'-command using \ref CommandSets.CommandSetModular.buildHierarchy
+# * Issue a \a 'help'-command in order to build the help reference
+# * Build the help using \ref CommandSets.CommandSetModular.buildHelp
+# * Build a plugin list from the internal \a module hierarchy using \ref "pluginhandler.PluginHandler.buildPluginList" "PluginHandler.buildPluginList"
+# * Request data for each \a module depending on their \a request \a data
+# * Build a node map from the \a modules and \a command \a responses received. See the \ref "nodehandler.NodeHandler" "NodeHandler" for more information
+
+import platform, random, sys, time, datetime, os
 import serial.tools.list_ports
 from PySide6.QtWidgets import (QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit,
                                QComboBox, QSlider, QTabBar, QTabWidget, QCheckBox, QDial, QPushButton, QListWidget)
@@ -271,6 +293,8 @@ class FarConfig(QWidget):
         self.messageBox = messageBox
         self.addModulesIfNeeded = addModulesIfNeeded
 
+        self.lastSerialEvent = 0
+
     def resizeEvent(self, event, /):
         self.ui.tabWidgetMain.setFixedWidth(event.size().width() - 19)
         self.ui.tabWidgetMain.setFixedHeight(event.size().height() - 59)
@@ -324,7 +348,7 @@ class FarConfig(QWidget):
         simpleFARHandler.stringModules[0].setCommandValue(CommandID.bowPressureEngage, engage)
         simpleFARHandler.stringModules[0].setCommandValue(CommandID.bowPressurePositionMax, stall)
 
-        mainWidget.ui.comboBoxActuatorPreset.setItemText(index, name)
+        mainWidget.ui.comboBoxActuatorPreset.setItemText(int(index), name)
         mainWidget.ui.doubleSpinBoxBowRestPosition.setValue(float(rest))
         mainWidget.ui.doubleSpinBoxBowMinPressure.setValue(float(engage))
         mainWidget.ui.doubleSpinBoxBowMaxPressure.setValue(float(stall))
@@ -362,6 +386,7 @@ class FarConfig(QWidget):
         elif (receivedText[:5] == "[hlp]"):
             commandSets.processHelpReturn(receivedText[5:], commandReference)
         serialWidget.addToDebugWindow("<si< " + receivedText + "\n")
+        self.lastSerialEvent = time.time()
 
     def setUIEnabled(self, state):
         serialWidget.ui.checkBoxFilterCommAck.setEnabled(state)
@@ -401,13 +426,14 @@ class FarConfig(QWidget):
                     mainWidget.ui.comboBoxHarmonicList.clear()
                     mainWidget.ui.comboBoxConfiguration.clear()
                     mainWidget.ui.comboBoxActuatorPreset.clear()
+                    mainWidget.pluginHandler.clearAllPlugins()
+                    mainWidget.localNodeHandler.clearNodes()
+                    commandSets.currentCommandSet.clearData()
                     commandReference.clear()
 
                     self.setUIEnabled(True)
                     self.updateUIData()
                     serialHandler.write("rqi:ver")
-
-#                    self.showModalWait("nop", "nop", 15000, "Connecting")
 
                     serialWidget.checkBoxFilterErrorToggled()
                     serialWidget.checkBoxFilterExpressionParserToggled()
@@ -462,10 +488,18 @@ class FarConfig(QWidget):
                         [u.progressBar_bcha, CommandID.bowHarmonicAdd], [u.progressBar_ar3, CommandID.pidTargetFreq]]
 
         for up in simpleUpdates:
-            up.setValue(float(simpleFARHandler.stringModules[0].getCommandValue(up.command)))
+            value = simpleFARHandler.stringModules[0].getCommandValue(up.command)
+            if (value is not None):
+                up.setValue(float(value))
+            else:
+                pass
 
         for pb in progressBars:
-            pb[0].setValue(int(simpleFARHandler.stringModules[0].getCommandValue(pb[1])))
+            value = simpleFARHandler.stringModules[0].getCommandValue(pb[1])
+            if (value is not None):
+                pb[0].setValue(int(value))
+            else:
+                pass
 
         self.ui.progressBar_ar1.setValue(self.ui.progressBar_bchb.value() - self.ui.progressBar_bchbn.value())
         self.ui.progressBar_ar2.setValue(self.ui.progressBar_bch.value() + self.ui.progressBar_bcha.value())
@@ -568,7 +602,9 @@ class FarConfig(QWidget):
         except Exception as e:
             stripIndex = True
             pass
-        if (selection == None): stripIndex = True
+        if (selection is None):
+            stripIndex = True
+            selection = [0]
         qualifiedShorts = commandSets.getQualifiedShortCommand(commandID, selection, stripIndex)
         out = ""
         if isinstance(value, bool):
@@ -588,8 +624,8 @@ class FarConfig(QWidget):
             if (out != ""): out += ","
             out = qualifiedShort + ":" + str(value)
 #            out = sender.command + ":" + str(value)
-
-        simpleFARHandler.stringModules[0].setCommandValue(sender.command, value)
+        for index in selection:
+            simpleFARHandler.stringModules[0].setCommandValue(sender.command, value, index)
         serialHandler.write(out)
 
     def assignButtonPressCommandIssue(self, qtObject, command, refresh = False):
@@ -648,7 +684,7 @@ class FarConfig(QWidget):
 
     def pushButtonAddHarmonicPressed(self):
         commandSets.addHarmonicSeriesRatio(self, serialHandler, simpleFARHandler, int(simpleFARHandler.stringModules[0].getCommandValue(CommandID.harmonicSeriesSelect)))
-        self.pushButtonSaveCurrentHarmonicListPressed()
+        #self.pushButtonSaveCurrentHarmonicListPressed()
 
     def pushButtonRemoveHarmonicPressed(self):
         selected = int(mainWidget.ui.tableViewScale.currentIndex().column())
@@ -762,41 +798,47 @@ class FarConfig(QWidget):
             return
         commandSelected = mainWidget.ui.listWidgetMidiEvents.currentItem().text()
         commandSequence = mainWidget.ui.lineEditMidiEventCommand.text()
-
+        index = int(simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect))
         match (commandSelected):
             case "Note On":
-                setStr = "noteon"
-                simpleFARHandler.instrumentMaster.evNoteOn = commandSequence
+                #setStr = "noteon"
+                #simpleFARHandler.instrumentMaster.evNoteOn = commandSequence
+                commandSets.setMidiConfigurationNoteOnCommands(mainWidget, serialHandler, simpleFARHandler, index, commandSequence)
             case "Note Off":
-                setStr = "noteoff"
-                simpleFARHandler.instrumentMaster.evNoteOff = commandSequence
+                #setStr = "noteoff"
+                #simpleFARHandler.instrumentMaster.evNoteOff = commandSequence
+                commandSets.setMidiConfigurationNoteOffCommands(mainWidget, serialHandler, simpleFARHandler, index, commandSequence)
             case "Poly Aftertouch":
-                setStr = "pat"
-                simpleFARHandler.instrumentMaster.evPolyAftertouch = commandSequence
+                #setStr = "pat"
+                #simpleFARHandler.instrumentMaster.evPolyAftertouch = commandSequence
+                commandSets.setMidiConfigurationPolyAftertouchCommands(mainWidget, serialHandler, simpleFARHandler, index, commandSequence)
             case "Channel Aftertouch":
-                setStr = "cat"
-                simpleFARHandler.instrumentMaster.evChannelAftertouch = commandSequence
+                #setStr = "cat"
+                #simpleFARHandler.instrumentMaster.evChannelAftertouch = commandSequence
+                commandSets.setMidiConfigurationChannelAftertouchCommands(mainWidget, serialHandler, simpleFARHandler, index, commandSequence)
             case "Program change":
-                setStr = "pc"
-                simpleFARHandler.instrumentMaster.evProgramChange = commandSequence
+                #setStr = "pc"
+                #simpleFARHandler.instrumentMaster.evProgramChange = commandSequence
+                commandSets.setMidiConfigurationProgramChangeCommands(mainWidget, serialHandler, simpleFARHandler, index, commandSequence)
             case "Pitchbend":
-                setStr = "pb"
-                simpleFARHandler.instrumentMaster.evPitchbend = commandSequence
+                #setStr = "pb"
+                #simpleFARHandler.instrumentMaster.evPitchbend = commandSequence
+                commandSets.setMidiConfigurationPitchBendCommands(mainWidget, serialHandler, simpleFARHandler, index, commandSequence)
             case _:
                 if commandSelected[:2] == "CC":
-                    setStr = "cc:" + commandSelected[3:]
+                    #setStr = "cc:" + commandSelected[3:]
                     cc = int(commandSelected[3:])
-                    item = simpleFARHandler.instrumentMaster.getCC(cc)
-                    item.command = commandSequence
-
+                    #item = simpleFARHandler.instrumentMaster.getCC(cc)
+                    #item.command = commandSequence
+                    commandSets.setMidiConfigurationContinuousControllerCommands(mainWidget, serialHandler, simpleFARHandler, index, cc, commandSequence)
                 else:
                     print(commandSelected + " not found")
                     return
 
-        qualifiedCommand = commandSets.getQualifiedShortCommand(CommandID.midiConfigurationData,
-                                                                [simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)])[0]
-        serialString = qualifiedCommand + ":" + setStr + ":\"" + commandSequence + "\""
-        serialHandler.write(serialString)
+        #qualifiedCommand = commandSets.getQualifiedShortCommand(CommandID.midiConfigurationData,
+        #                                                        [simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)])[0]
+        #serialString = qualifiedCommand + ":" + setStr + ":\"" + commandSequence + "\""
+        #serialHandler.write(serialString)
 
     def pushButtonActuatorRenamePressed(self):
         index = mainWidget.ui.comboBoxActuatorPreset.currentIndex()
@@ -1019,9 +1061,9 @@ class FarConfig(QWidget):
         if type(widget) == QSlider:
             QSlider.mouseReleaseEvent(widget, event)
 
-    def assignMouseReleaseEvent(self, qtObject, function):
-        qtObject.mouseReleaseEvent = lambda event: self.mouseReleaseEventIntermediate(event, qtObject)
-        qtObject.mouseReleaseFunction = function
+#    def assignMouseReleaseEvent(self, qtObject, function):
+#        qtObject.mouseReleaseEvent = lambda event: self.mouseReleaseEventIntermediate(event, qtObject)
+#        qtObject.mouseReleaseFunction = function
 
     def showModalWait(self, issueCommand, resultCommand, progressTime, title, timeOut = False):
         isc = commandSets.getQualifiedShortCommand(issueCommand)[0]
@@ -1193,15 +1235,17 @@ def showReference():
     commandReference.activateWindow()
     commandReference.ui.listWidgetCommands.setFocus()
 
-post = False
+#post = False
 def organize():
-    global post
-    if not post:
-        localNodehandler.postBuildUpdate()
-        post = True
-    #localNodehandler.ga.graph.nodeOrganizer.buildHorizontalTree()
-#    localNodehandler.ga.graph.nodeOrganizer.rankVerticalPreference(noInserts=True)
-#    localNodehandler.ga.graph.nodeOrganizer.drawFromRankingList()
+    #global post
+    #if not post:
+    #    localNodehandler.postBuildUpdate()
+    #    post = True
+    #else:
+
+    #localNodehandler.redraw()
+
+    localNodehandler.postBuildUpdate()
 
 if __name__ == "__main__":
 
@@ -1275,7 +1319,8 @@ if __name__ == "__main__":
 
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMidiRestoreDefaults, CommandID.midiConfigurationDefaults, True)
 
-    mainWidget.assignMouseReleaseEvent(mainWidget.ui.midiNoteOnVelToHammer, mainWidget.cmdNoteOnUpdate)
+    #mainWidget.assignMouseReleaseEvent(mainWidget.ui.midiNoteOnVelToHammer, mainWidget.cmdNoteOnUpdate)
+    mainWidget.ui.midiNoteOnVelToHammer.sliderReleased.connect(mainWidget.cmdNoteOnUpdate)
 
     mainWidget.ui.midiNoteOnHammerStaccato.stateChanged.connect(mainWidget.cmdNoteOnUpdate)
     mainWidget.ui.midiNoteOnSendMuteRest.stateChanged.connect(mainWidget.cmdNoteOnUpdate)
@@ -1286,9 +1331,9 @@ if __name__ == "__main__":
     mainWidget.midiEventHandler.populateComboBoxSendByte(mainWidget.ui.midiPitchbendSend)
     mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("pb", { mainWidget.ui.midiPitchbendSend, mainWidget.ui.midiPitchbendRatio })
     mainWidget.midiEventHandler.populateComboBoxSendByte(mainWidget.ui.midiPolyATSend)
-    mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("pat", {mainWidget.ui.midiPolyATSend, mainWidget.ui.midiPolyATRatio})
+    mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("pat", { mainWidget.ui.midiPolyATSend, mainWidget.ui.midiPolyATRatio })
     mainWidget.midiEventHandler.populateComboBoxSendByte(mainWidget.ui.midiChannelATSend)
-    mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("cat", {mainWidget.ui.midiChannelATSend, mainWidget.ui.midiChannelATRatio})
+    mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("cat", { mainWidget.ui.midiChannelATSend, mainWidget.ui.midiChannelATRatio })
 
     mainWidget.midiEventHandler.populateComboBoxSendBinary(mainWidget.ui.midiSustainSend)
     mainWidget.midiEventHandler.connectWidgetsToBinarySenders("sustain", { mainWidget.ui.midiSustainInvert, mainWidget.ui.midiSustainSend })
@@ -1460,33 +1505,6 @@ if __name__ == "__main__":
     localNodehandler = nodehandler.NodeHandler(mainWidget.ui.nodeContainer)
     mainWidget.localNodeHandler = localNodehandler
     mainWidget.ui.pushButtonOrganize.pressed.connect(organize)
-    '''
-    commandList = ["mev:noteon:\"m:'map(0, note)',b:'map(0, note)',s:'map(0, note)',bchb:note,bmr:1,bpid:1,bpe:1,se:(velocity*512)*(1-notecount)\"", #,bcsm:0,
-                   "mev:noteoff:\"m:'map(0, note)',b:'map(0, note)',s:'map(0, note)',bpr:ibool(notecount)\"",    #,bcsm:0,m:'map(0, note)',b:'map(0, note)',s:'map(0, note)',
-                   "mev:cat:\"m:0:1:2:3,bpm:(pressure*512)\"",
-                   "mev:pb:\"m:0:1:2:3,bchsh:pitch*4\"",
-                   "acm:0:'s:0,bcha:value/1327.716667-20'",
-                   "acm:1:'bchs5:\"deadband(value-32236, 20)/2.425\"'",
-                   "acm:2:'bchsh:\"deadband((value-32600)*0.49064, 250)\"'",
-                   "acm:3:'bpb:value'",
-                   "acm:4:'se:value'",
-                   "acm:5:'bmr:bool(value-10000),bpid:1,bcsm:0,bpe:bool(value-10000),bpr:ibool(value-10000),bph:ibool(value-10000)'",
-                   "acm:6:'sfm:\"deadband(1/65535*value,0.002)\"'",
-                   "acm:7:'msp:value'"]
-    #commandList = ["mev:noteon:\"m:0,b:0,bchb:note,bmr:1,bpid:1,bpe:1,se:(velocity*512)*(1-notecount),bcsm:0\""]
-
-    for command in commandList:
-        item = CommandItem(command)
-        localNodehandler.parseCommand(item)
-    localNodehandler.postBuildUpdate()
-    localNodehandler.ga.update()
-    #group = localNodehandler.ga.graph.create_node("nodes.group.CustomGroupNode")
-    #group.migrate_objects()
-    
-    mainWidget.ui.tabWidgetMain.setCurrentIndex(7)
-    serialWidget.hide()
-    commandReference.hide()
-    '''
 
     mainWidget.commandReference = commandReference
 

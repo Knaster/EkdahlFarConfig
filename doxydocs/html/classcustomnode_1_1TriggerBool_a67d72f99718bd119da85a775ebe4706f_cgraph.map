@@ -1,0 +1,9 @@
+<map id="setTrigger" name="setTrigger">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,92,62"/>
+<area shape="rect" id="Node000002" href="$classcustomnode_1_1CustomBaseNode.html#a48828d241bb2ee470a5242d70b373f5b" title=" " alt="" coords="140,29,387,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,47,126,47,126,52,92,52"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="223,30,221,20,227,10,242,5,263,3,288,6,302,13,299,18,287,11,263,8,243,10,231,15,226,21,228,28"/>
+<area shape="rect" id="Node000003" href="$classcustomnode_1_1CustomBaseNode.html#a5255577d084a66ad390da11ce9cb918d" title=" " alt="" coords="435,29,693,69"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="387,47,421,47,421,52,387,52"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="509,30,506,20,515,10,534,5,564,3,598,5,617,13,615,18,597,11,564,8,535,10,517,15,511,21,514,28"/>
+</map>

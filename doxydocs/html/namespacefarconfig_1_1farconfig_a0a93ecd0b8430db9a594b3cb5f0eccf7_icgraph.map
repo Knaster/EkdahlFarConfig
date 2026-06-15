@@ -1,0 +1,11 @@
+<map id="getBaseNoteFromFrequency" name="getBaseNoteFromFrequency">
+<area shape="rect" id="Node000001" title=" " alt="" coords="899,45,1105,70"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#adef5ef4848fa2f08c2f7d8ebebf0c97d" title=" " alt="" coords="597,37,851,77"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="885,60,851,60,851,55,885,55"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#ad8b4c9606d75562b22019e716829dd72" title=" " alt="" coords="304,5,541,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="583,45,541,41,542,35,584,40"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#a711604f1d809c0a34357d3db680c94da" title=" " alt="" coords="296,69,549,109"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="584,75,550,79,549,73,584,70"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#a65080a2066e59ca74fa298ecf4a9efaf" title=" " alt="" coords="5,5,248,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="290,28,248,28,248,23,290,23"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="update" name="update">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,72,62"/>
+<area shape="poly" id="edge6_Node000001_Node000001" title=" " alt="" coords="17,38,13,28,15,19,24,12,39,10,56,13,63,22,59,25,53,18,39,15,26,17,20,22,18,28,22,35"/>
+<area shape="rect" id="Node000002" href="$classcustomnode_1_1TriggerBool.html#a67d72f99718bd119da85a775ebe4706f" title=" " alt="" coords="120,37,207,62"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="72,47,106,47,106,52,72,52"/>
+<area shape="rect" id="Node000003" href="$classcustomnode_1_1CustomBaseNode.html#a48828d241bb2ee470a5242d70b373f5b" title=" " alt="" coords="255,29,501,69"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="207,47,241,47,241,52,207,52"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="338,30,336,20,342,10,356,5,378,3,403,6,417,13,414,18,401,11,378,8,358,10,345,15,341,21,343,28"/>
+<area shape="rect" id="Node000004" href="$classcustomnode_1_1CustomBaseNode.html#a5255577d084a66ad390da11ce9cb918d" title=" " alt="" coords="549,29,808,69"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="501,47,536,47,536,52,501,52"/>
+<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="624,30,620,20,629,10,649,5,679,3,713,5,732,13,730,18,712,11,679,8,650,10,632,15,625,21,629,28"/>
+</map>

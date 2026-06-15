@@ -1,0 +1,9 @@
+<map id="farconfig.farconfig.FarConfig.buttonPressIssueCommand" name="farconfig.farconfig.FarConfig.buttonPressIssueCommand">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,256,77"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#ab3e278d6de6d9db9ad28cfdde6fb1b38" title=" " alt="" coords="304,5,561,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,41,290,38,291,43,257,47"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#a645fc10ff04f85e43e3fa683811d8dc2" title=" " alt="" coords="306,69,559,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="257,68,293,72,292,77,256,73"/>
+<area shape="rect" id="Node000004" href="$namespacefarconfig_1_1farconfig.html#a09993cc2b49f6d895fe30c090d0cc561" title=" " alt="" coords="609,69,803,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="559,87,596,87,596,92,559,92"/>
+</map>

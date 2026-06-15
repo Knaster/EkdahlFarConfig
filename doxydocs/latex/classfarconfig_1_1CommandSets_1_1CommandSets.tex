@@ -1,0 +1,881 @@
+\doxysection{Command\+Sets Class Reference}
+\hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets}{}\label{classfarconfig_1_1CommandSets_1_1CommandSets}\index{CommandSets@{CommandSets}}
+
+
+Collaboration diagram for Command\+Sets\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classfarconfig_1_1CommandSets_1_1CommandSets__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a4ee0ff1f4bfb296459799f47a00b6d8f}{get\+Command\+Type}} (self, command\+Item)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a93ea61b61b2bc79df88e47da7ae13c04}{get\+Command\+ID}} (self, command\+Item, module=None)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a9a519a098a39b2549a7db37af3deb1dd}{initial\+Request}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a96cd759fb578f3738893b813b881776c}{request\+Data}} (self, serial\+Handler)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a1d860f848138281a58a3db4b52772121}{request\+Continuous\+Data}} (self, serial\+Handler)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_abdd362d5f799ad16b5d6700efe590290}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_ad102f44980c4a0b55173d391a59bfce7}{choose\+Command\+Set}} (self, version\+Number)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a873b0d1d7b09fb0d4a5fd1df9abf9402}{build\+Hierarchy}} (self, current\+Command\+Set.\+Command\+Item command\+Item, widget)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_ae15f044c932c0c304b9384ba14092bda}{get\+Qualified\+Short\+Command}} (self, command\+ID, selection\+Index=None, strip\+Index=False)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a0d0ec623eb8f805412609e9e672a81d0}{process\+Messages}} (self, command\+Item, \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_af496896d14b761d42f77432cb9c0359f}{command\+Sets}}, simple\+FARHandler, main\+Widget, serial\+Handler)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a312b84495933475274d3f0edefb78d31}{set\+Midi\+Configuration\+Select}} (self, sender, serial\+Handler, simple\+FARHandler, index)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a360cc8b9104746cd5f49a8410072378c}{set\+Harmonic\+Series\+Select}} (self, sender, serial\+Handler, simple\+FARHandler, index)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a5f9dc9c84b3194c248c2beed7abe9bdd}{set\+Harmonic\+Series\+Ratio}} (self, sender, serial\+Handler, simple\+FARHandler, harmonic\+Series, ratio\+Index, ratio)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a8e93882b4ddbebcd3975ea2d72013f0d}{add\+Harmonic\+Series\+Ratio}} (self, sender, serial\+Handler, simple\+FARHandler, harmonic\+Series)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a75f7ee6c8ff3a1287f6b7c276dc24164}{remove\+Harmonic\+Series\+Ratio}} (self, sender, serial\+Handler, simple\+FARHandler, harmonic\+Series, ratio\+Index)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a294c3d003830d846c0e3ba3d5f0be728}{save\+Harmonic\+Series}} (self, sender, serial\+Handler, simple\+FARHandler, harmonic\+Series, name, set\+To\+List)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_ae2a85d366dcb88b0cff69f19e0dda3c5}{add\+Harmonic\+Series}} (self, sender, serial\+Handler, simple\+FARHandler, harmonic\+Series, name, set\+To\+List)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a66a65cde32196b2e5ed534a9dd49da22}{remove\+Harmonic\+Series}} (self, sender, serial\+Handler, simple\+FARHandler, harmonic\+Series)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a27807b27969d68ebdf783610c14b85e6}{rename\+Harmonic\+Series}} (self, sender, serial\+Handler, simple\+FARHandler, harmonic\+Series, name)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_abbdfade2b135c33090715a23ec5dbaa8}{set\+Harmonic\+Series\+Data}} (self, sender, serial\+Handler, simple\+FARHandler, harmonic\+Series, name, data)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a544c2e2d1a839cddb4e6a0b805691c95}{load\+Actuator}} (self, sender, serial\+Handler, simple\+FARHandler, index)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_ae29ebfc4b4a7b9a191ba0682c567f030}{add\+Actuator}} (self, sender, serial\+Handler, simple\+FARHandler, index, name)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_aa6ee26168bc00afa4f7fa00211990a56}{rename\+Actuator}} (self, sender, serial\+Handler, simple\+FARHandler, index, name)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a5a9bf79cb06eb0d551de32ce52ca3c3d}{remove\+Actuator}} (self, sender, serial\+Handler, simple\+FARHandler, index)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_aee533bf603347048ae695edef63c90c9}{set\+Midi\+Configuration\+Name}} (self, sender, serial\+Handler, simple\+FARHandler, index, name)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a7a30cf02faa6c0714cffd1c9c9801a38}{add\+Midi\+Configuration}} (self, sender, serial\+Handler, simple\+FARHandler, name)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a16333bdbb4c8917999d474a312490d0f}{remove\+Midi\+Configuration}} (self, sender, serial\+Handler, simple\+FARHandler, index)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a79f01359d9bc57f6c4d2e1c2590677fe}{add\+Midi\+Configuration\+CC}} (self, sender, serial\+Handler, simple\+FARHandler, cc)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a56f8b7c7dd16d6bba5e586529969335a}{remove\+Midi\+Configuration\+CC}} (self, sender, serial\+Handler, simple\+FARHandler, cc)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_ae3b6abff5b9436cd2b0a20de6b8e40d1}{set\+Midi\+Configuration\+Note\+On\+Commands}} (self, sender, serial\+Handler, simple\+FAR, index, commands)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_abc63a799e7d327533971084b97f29ae4}{set\+Midi\+Configuration\+Note\+Off\+Commands}} (self, sender, serial\+Handler, simple\+FAR, index, commands)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a0cbff62c19ac176573335b6855eb0cb1}{set\+Midi\+Configuration\+Poly\+Aftertouch\+Commands}} (self, sender, serial\+Handler, simple\+FAR, index, commands)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_aca54c49204b714ebbc2ce75da1d0fa94}{set\+Midi\+Configuration\+Channel\+Aftertouch\+Commands}} (self, sender, serial\+Handler, simple\+FAR, index, commands)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_ade9a080e574c4dd26d328466c2486a06}{set\+Midi\+Configuration\+Program\+Change\+Commands}} (self, sender, serial\+Handler, simple\+FAR, index, commands)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a1d8e8249de8facf4d8c023fb89471290}{set\+Midi\+Configuration\+Pitch\+Bend\+Commands}} (self, sender, serial\+Handler, simple\+FAR, index, commands)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a0e8ecd597f027005622b5da8e362ffcb}{set\+Midi\+Configuration\+Continuous\+Controller\+Commands}} (self, sender, serial\+Handler, simple\+FAR, index, cc, commands)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a40e4d73cbca6bbbaad6a7b01c428c343}{process\+Help\+Return}} (self, info\+Return, command\+Reference)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a39a68343d80ee0e614c0ff533843b523}{clear\+Data}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_ad163bcd16ea4f032860a5408cc1badd7}{current\+Command\+Set}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_af496896d14b761d42f77432cb9c0359f}{command\+Sets}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSet}{Command\+Set}} \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets_a9845db71df47ec7dd86d85f92f86a462}{current\+Command\+Set}} = \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetOG}{Command\+Set\+OG}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_abdd362d5f799ad16b5d6700efe590290}\label{classfarconfig_1_1CommandSets_1_1CommandSets_abdd362d5f799ad16b5d6700efe590290} 
+\index{CommandSets@{CommandSets}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_ae29ebfc4b4a7b9a191ba0682c567f030}\label{classfarconfig_1_1CommandSets_1_1CommandSets_ae29ebfc4b4a7b9a191ba0682c567f030} 
+\index{CommandSets@{CommandSets}!addActuator@{addActuator}}
+\index{addActuator@{addActuator}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{addActuator()}{addActuator()}}
+{\footnotesize\ttfamily add\+Actuator (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{index,  }\item[{}]{name }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=156pt]{classfarconfig_1_1CommandSets_1_1CommandSets_ae29ebfc4b4a7b9a191ba0682c567f030_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=156pt]{classfarconfig_1_1CommandSets_1_1CommandSets_ae29ebfc4b4a7b9a191ba0682c567f030_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_ae2a85d366dcb88b0cff69f19e0dda3c5}\label{classfarconfig_1_1CommandSets_1_1CommandSets_ae2a85d366dcb88b0cff69f19e0dda3c5} 
+\index{CommandSets@{CommandSets}!addHarmonicSeries@{addHarmonicSeries}}
+\index{addHarmonicSeries@{addHarmonicSeries}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{addHarmonicSeries()}{addHarmonicSeries()}}
+{\footnotesize\ttfamily add\+Harmonic\+Series (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{harmonic\+Series,  }\item[{}]{name,  }\item[{}]{set\+To\+List }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{classfarconfig_1_1CommandSets_1_1CommandSets_ae2a85d366dcb88b0cff69f19e0dda3c5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1CommandSets_1_1CommandSets_ae2a85d366dcb88b0cff69f19e0dda3c5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a8e93882b4ddbebcd3975ea2d72013f0d}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a8e93882b4ddbebcd3975ea2d72013f0d} 
+\index{CommandSets@{CommandSets}!addHarmonicSeriesRatio@{addHarmonicSeriesRatio}}
+\index{addHarmonicSeriesRatio@{addHarmonicSeriesRatio}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{addHarmonicSeriesRatio()}{addHarmonicSeriesRatio()}}
+{\footnotesize\ttfamily add\+Harmonic\+Series\+Ratio (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{harmonic\+Series }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a8e93882b4ddbebcd3975ea2d72013f0d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a8e93882b4ddbebcd3975ea2d72013f0d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a7a30cf02faa6c0714cffd1c9c9801a38}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a7a30cf02faa6c0714cffd1c9c9801a38} 
+\index{CommandSets@{CommandSets}!addMidiConfiguration@{addMidiConfiguration}}
+\index{addMidiConfiguration@{addMidiConfiguration}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{addMidiConfiguration()}{addMidiConfiguration()}}
+{\footnotesize\ttfamily add\+Midi\+Configuration (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{name }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a7a30cf02faa6c0714cffd1c9c9801a38_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a7a30cf02faa6c0714cffd1c9c9801a38_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a79f01359d9bc57f6c4d2e1c2590677fe}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a79f01359d9bc57f6c4d2e1c2590677fe} 
+\index{CommandSets@{CommandSets}!addMidiConfigurationCC@{addMidiConfigurationCC}}
+\index{addMidiConfigurationCC@{addMidiConfigurationCC}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{addMidiConfigurationCC()}{addMidiConfigurationCC()}}
+{\footnotesize\ttfamily add\+Midi\+Configuration\+CC (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{cc }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a79f01359d9bc57f6c4d2e1c2590677fe_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a79f01359d9bc57f6c4d2e1c2590677fe_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a873b0d1d7b09fb0d4a5fd1df9abf9402}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a873b0d1d7b09fb0d4a5fd1df9abf9402} 
+\index{CommandSets@{CommandSets}!buildHierarchy@{buildHierarchy}}
+\index{buildHierarchy@{buildHierarchy}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{buildHierarchy()}{buildHierarchy()}}
+{\footnotesize\ttfamily build\+Hierarchy (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{current\+Command\+Set.\+Command\+Item}]{command\+Item,  }\item[{}]{widget }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a873b0d1d7b09fb0d4a5fd1df9abf9402_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a873b0d1d7b09fb0d4a5fd1df9abf9402_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_ad102f44980c4a0b55173d391a59bfce7}\label{classfarconfig_1_1CommandSets_1_1CommandSets_ad102f44980c4a0b55173d391a59bfce7} 
+\index{CommandSets@{CommandSets}!chooseCommandSet@{chooseCommandSet}}
+\index{chooseCommandSet@{chooseCommandSet}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{chooseCommandSet()}{chooseCommandSet()}}
+{\footnotesize\ttfamily choose\+Command\+Set (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{version\+Number }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a39a68343d80ee0e614c0ff533843b523}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a39a68343d80ee0e614c0ff533843b523} 
+\index{CommandSets@{CommandSets}!clearData@{clearData}}
+\index{clearData@{clearData}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{clearData()}{clearData()}}
+{\footnotesize\ttfamily clear\+Data (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=144pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a39a68343d80ee0e614c0ff533843b523_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=144pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a39a68343d80ee0e614c0ff533843b523_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a93ea61b61b2bc79df88e47da7ae13c04}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a93ea61b61b2bc79df88e47da7ae13c04} 
+\index{CommandSets@{CommandSets}!getCommandID@{getCommandID}}
+\index{getCommandID@{getCommandID}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{getCommandID()}{getCommandID()}}
+{\footnotesize\ttfamily get\+Command\+ID (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command\+Item,  }\item[{}]{module = {\ttfamily None} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a93ea61b61b2bc79df88e47da7ae13c04_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a93ea61b61b2bc79df88e47da7ae13c04_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a4ee0ff1f4bfb296459799f47a00b6d8f}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a4ee0ff1f4bfb296459799f47a00b6d8f} 
+\index{CommandSets@{CommandSets}!getCommandType@{getCommandType}}
+\index{getCommandType@{getCommandType}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{getCommandType()}{getCommandType()}}
+{\footnotesize\ttfamily get\+Command\+Type (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command\+Item }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a4ee0ff1f4bfb296459799f47a00b6d8f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a4ee0ff1f4bfb296459799f47a00b6d8f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_ae15f044c932c0c304b9384ba14092bda}\label{classfarconfig_1_1CommandSets_1_1CommandSets_ae15f044c932c0c304b9384ba14092bda} 
+\index{CommandSets@{CommandSets}!getQualifiedShortCommand@{getQualifiedShortCommand}}
+\index{getQualifiedShortCommand@{getQualifiedShortCommand}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{getQualifiedShortCommand()}{getQualifiedShortCommand()}}
+{\footnotesize\ttfamily get\+Qualified\+Short\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command\+ID,  }\item[{}]{selection\+Index = {\ttfamily None},  }\item[{}]{strip\+Index = {\ttfamily False} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classfarconfig_1_1CommandSets_1_1CommandSets_ae15f044c932c0c304b9384ba14092bda_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classfarconfig_1_1CommandSets_1_1CommandSets_ae15f044c932c0c304b9384ba14092bda_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a9a519a098a39b2549a7db37af3deb1dd}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a9a519a098a39b2549a7db37af3deb1dd} 
+\index{CommandSets@{CommandSets}!initialRequest@{initialRequest}}
+\index{initialRequest@{initialRequest}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{initialRequest()}{initialRequest()}}
+{\footnotesize\ttfamily initial\+Request (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a9a519a098a39b2549a7db37af3deb1dd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a9a519a098a39b2549a7db37af3deb1dd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a544c2e2d1a839cddb4e6a0b805691c95}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a544c2e2d1a839cddb4e6a0b805691c95} 
+\index{CommandSets@{CommandSets}!loadActuator@{loadActuator}}
+\index{loadActuator@{loadActuator}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{loadActuator()}{loadActuator()}}
+{\footnotesize\ttfamily load\+Actuator (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{index }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=159pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a544c2e2d1a839cddb4e6a0b805691c95_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=159pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a544c2e2d1a839cddb4e6a0b805691c95_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a40e4d73cbca6bbbaad6a7b01c428c343}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a40e4d73cbca6bbbaad6a7b01c428c343} 
+\index{CommandSets@{CommandSets}!processHelpReturn@{processHelpReturn}}
+\index{processHelpReturn@{processHelpReturn}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{processHelpReturn()}{processHelpReturn()}}
+{\footnotesize\ttfamily process\+Help\+Return (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{info\+Return,  }\item[{}]{command\+Reference }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a40e4d73cbca6bbbaad6a7b01c428c343_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a40e4d73cbca6bbbaad6a7b01c428c343_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a0d0ec623eb8f805412609e9e672a81d0}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a0d0ec623eb8f805412609e9e672a81d0} 
+\index{CommandSets@{CommandSets}!processMessages@{processMessages}}
+\index{processMessages@{processMessages}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{processMessages()}{processMessages()}}
+{\footnotesize\ttfamily process\+Messages (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command\+Item,  }\item[{}]{command\+Sets,  }\item[{}]{simple\+FARHandler,  }\item[{}]{main\+Widget,  }\item[{}]{serial\+Handler }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a0d0ec623eb8f805412609e9e672a81d0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a0d0ec623eb8f805412609e9e672a81d0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a5a9bf79cb06eb0d551de32ce52ca3c3d}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a5a9bf79cb06eb0d551de32ce52ca3c3d} 
+\index{CommandSets@{CommandSets}!removeActuator@{removeActuator}}
+\index{removeActuator@{removeActuator}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{removeActuator()}{removeActuator()}}
+{\footnotesize\ttfamily remove\+Actuator (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{index }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a5a9bf79cb06eb0d551de32ce52ca3c3d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a5a9bf79cb06eb0d551de32ce52ca3c3d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a66a65cde32196b2e5ed534a9dd49da22}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a66a65cde32196b2e5ed534a9dd49da22} 
+\index{CommandSets@{CommandSets}!removeHarmonicSeries@{removeHarmonicSeries}}
+\index{removeHarmonicSeries@{removeHarmonicSeries}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{removeHarmonicSeries()}{removeHarmonicSeries()}}
+{\footnotesize\ttfamily remove\+Harmonic\+Series (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{harmonic\+Series }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a66a65cde32196b2e5ed534a9dd49da22_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a66a65cde32196b2e5ed534a9dd49da22_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a75f7ee6c8ff3a1287f6b7c276dc24164}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a75f7ee6c8ff3a1287f6b7c276dc24164} 
+\index{CommandSets@{CommandSets}!removeHarmonicSeriesRatio@{removeHarmonicSeriesRatio}}
+\index{removeHarmonicSeriesRatio@{removeHarmonicSeriesRatio}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{removeHarmonicSeriesRatio()}{removeHarmonicSeriesRatio()}}
+{\footnotesize\ttfamily remove\+Harmonic\+Series\+Ratio (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{harmonic\+Series,  }\item[{}]{ratio\+Index }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a75f7ee6c8ff3a1287f6b7c276dc24164_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a75f7ee6c8ff3a1287f6b7c276dc24164_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a16333bdbb4c8917999d474a312490d0f}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a16333bdbb4c8917999d474a312490d0f} 
+\index{CommandSets@{CommandSets}!removeMidiConfiguration@{removeMidiConfiguration}}
+\index{removeMidiConfiguration@{removeMidiConfiguration}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{removeMidiConfiguration()}{removeMidiConfiguration()}}
+{\footnotesize\ttfamily remove\+Midi\+Configuration (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{index }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a16333bdbb4c8917999d474a312490d0f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a16333bdbb4c8917999d474a312490d0f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a56f8b7c7dd16d6bba5e586529969335a}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a56f8b7c7dd16d6bba5e586529969335a} 
+\index{CommandSets@{CommandSets}!removeMidiConfigurationCC@{removeMidiConfigurationCC}}
+\index{removeMidiConfigurationCC@{removeMidiConfigurationCC}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{removeMidiConfigurationCC()}{removeMidiConfigurationCC()}}
+{\footnotesize\ttfamily remove\+Midi\+Configuration\+CC (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{cc }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a56f8b7c7dd16d6bba5e586529969335a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a56f8b7c7dd16d6bba5e586529969335a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_aa6ee26168bc00afa4f7fa00211990a56}\label{classfarconfig_1_1CommandSets_1_1CommandSets_aa6ee26168bc00afa4f7fa00211990a56} 
+\index{CommandSets@{CommandSets}!renameActuator@{renameActuator}}
+\index{renameActuator@{renameActuator}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{renameActuator()}{renameActuator()}}
+{\footnotesize\ttfamily rename\+Actuator (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{index,  }\item[{}]{name }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classfarconfig_1_1CommandSets_1_1CommandSets_aa6ee26168bc00afa4f7fa00211990a56_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classfarconfig_1_1CommandSets_1_1CommandSets_aa6ee26168bc00afa4f7fa00211990a56_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a27807b27969d68ebdf783610c14b85e6}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a27807b27969d68ebdf783610c14b85e6} 
+\index{CommandSets@{CommandSets}!renameHarmonicSeries@{renameHarmonicSeries}}
+\index{renameHarmonicSeries@{renameHarmonicSeries}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{renameHarmonicSeries()}{renameHarmonicSeries()}}
+{\footnotesize\ttfamily rename\+Harmonic\+Series (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{harmonic\+Series,  }\item[{}]{name }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a27807b27969d68ebdf783610c14b85e6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a27807b27969d68ebdf783610c14b85e6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a1d860f848138281a58a3db4b52772121}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a1d860f848138281a58a3db4b52772121} 
+\index{CommandSets@{CommandSets}!requestContinuousData@{requestContinuousData}}
+\index{requestContinuousData@{requestContinuousData}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{requestContinuousData()}{requestContinuousData()}}
+{\footnotesize\ttfamily request\+Continuous\+Data (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{serial\+Handler }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a1d860f848138281a58a3db4b52772121_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a1d860f848138281a58a3db4b52772121_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a96cd759fb578f3738893b813b881776c}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a96cd759fb578f3738893b813b881776c} 
+\index{CommandSets@{CommandSets}!requestData@{requestData}}
+\index{requestData@{requestData}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{requestData()}{requestData()}}
+{\footnotesize\ttfamily request\+Data (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{serial\+Handler }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a96cd759fb578f3738893b813b881776c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a96cd759fb578f3738893b813b881776c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a294c3d003830d846c0e3ba3d5f0be728}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a294c3d003830d846c0e3ba3d5f0be728} 
+\index{CommandSets@{CommandSets}!saveHarmonicSeries@{saveHarmonicSeries}}
+\index{saveHarmonicSeries@{saveHarmonicSeries}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{saveHarmonicSeries()}{saveHarmonicSeries()}}
+{\footnotesize\ttfamily save\+Harmonic\+Series (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{harmonic\+Series,  }\item[{}]{name,  }\item[{}]{set\+To\+List }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a294c3d003830d846c0e3ba3d5f0be728_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a294c3d003830d846c0e3ba3d5f0be728_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_abbdfade2b135c33090715a23ec5dbaa8}\label{classfarconfig_1_1CommandSets_1_1CommandSets_abbdfade2b135c33090715a23ec5dbaa8} 
+\index{CommandSets@{CommandSets}!setHarmonicSeriesData@{setHarmonicSeriesData}}
+\index{setHarmonicSeriesData@{setHarmonicSeriesData}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{setHarmonicSeriesData()}{setHarmonicSeriesData()}}
+{\footnotesize\ttfamily set\+Harmonic\+Series\+Data (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{harmonic\+Series,  }\item[{}]{name,  }\item[{}]{data }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{classfarconfig_1_1CommandSets_1_1CommandSets_abbdfade2b135c33090715a23ec5dbaa8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{classfarconfig_1_1CommandSets_1_1CommandSets_abbdfade2b135c33090715a23ec5dbaa8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a5f9dc9c84b3194c248c2beed7abe9bdd}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a5f9dc9c84b3194c248c2beed7abe9bdd} 
+\index{CommandSets@{CommandSets}!setHarmonicSeriesRatio@{setHarmonicSeriesRatio}}
+\index{setHarmonicSeriesRatio@{setHarmonicSeriesRatio}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{setHarmonicSeriesRatio()}{setHarmonicSeriesRatio()}}
+{\footnotesize\ttfamily set\+Harmonic\+Series\+Ratio (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{harmonic\+Series,  }\item[{}]{ratio\+Index,  }\item[{}]{ratio }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a5f9dc9c84b3194c248c2beed7abe9bdd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a5f9dc9c84b3194c248c2beed7abe9bdd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a360cc8b9104746cd5f49a8410072378c}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a360cc8b9104746cd5f49a8410072378c} 
+\index{CommandSets@{CommandSets}!setHarmonicSeriesSelect@{setHarmonicSeriesSelect}}
+\index{setHarmonicSeriesSelect@{setHarmonicSeriesSelect}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{setHarmonicSeriesSelect()}{setHarmonicSeriesSelect()}}
+{\footnotesize\ttfamily set\+Harmonic\+Series\+Select (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{index }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a360cc8b9104746cd5f49a8410072378c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a360cc8b9104746cd5f49a8410072378c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_aca54c49204b714ebbc2ce75da1d0fa94}\label{classfarconfig_1_1CommandSets_1_1CommandSets_aca54c49204b714ebbc2ce75da1d0fa94} 
+\index{CommandSets@{CommandSets}!setMidiConfigurationChannelAftertouchCommands@{setMidiConfigurationChannelAftertouchCommands}}
+\index{setMidiConfigurationChannelAftertouchCommands@{setMidiConfigurationChannelAftertouchCommands}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{setMidiConfigurationChannelAftertouchCommands()}{setMidiConfigurationChannelAftertouchCommands()}}
+{\footnotesize\ttfamily set\+Midi\+Configuration\+Channel\+Aftertouch\+Commands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FAR,  }\item[{}]{index,  }\item[{}]{commands }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classfarconfig_1_1CommandSets_1_1CommandSets_aca54c49204b714ebbc2ce75da1d0fa94_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classfarconfig_1_1CommandSets_1_1CommandSets_aca54c49204b714ebbc2ce75da1d0fa94_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a0e8ecd597f027005622b5da8e362ffcb}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a0e8ecd597f027005622b5da8e362ffcb} 
+\index{CommandSets@{CommandSets}!setMidiConfigurationContinuousControllerCommands@{setMidiConfigurationContinuousControllerCommands}}
+\index{setMidiConfigurationContinuousControllerCommands@{setMidiConfigurationContinuousControllerCommands}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{setMidiConfigurationContinuousControllerCommands()}{setMidiConfigurationContinuousControllerCommands()}}
+{\footnotesize\ttfamily set\+Midi\+Configuration\+Continuous\+Controller\+Commands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FAR,  }\item[{}]{index,  }\item[{}]{cc,  }\item[{}]{commands }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a0e8ecd597f027005622b5da8e362ffcb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a0e8ecd597f027005622b5da8e362ffcb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_aee533bf603347048ae695edef63c90c9}\label{classfarconfig_1_1CommandSets_1_1CommandSets_aee533bf603347048ae695edef63c90c9} 
+\index{CommandSets@{CommandSets}!setMidiConfigurationName@{setMidiConfigurationName}}
+\index{setMidiConfigurationName@{setMidiConfigurationName}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{setMidiConfigurationName()}{setMidiConfigurationName()}}
+{\footnotesize\ttfamily set\+Midi\+Configuration\+Name (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{index,  }\item[{}]{name }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{classfarconfig_1_1CommandSets_1_1CommandSets_aee533bf603347048ae695edef63c90c9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{classfarconfig_1_1CommandSets_1_1CommandSets_aee533bf603347048ae695edef63c90c9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_abc63a799e7d327533971084b97f29ae4}\label{classfarconfig_1_1CommandSets_1_1CommandSets_abc63a799e7d327533971084b97f29ae4} 
+\index{CommandSets@{CommandSets}!setMidiConfigurationNoteOffCommands@{setMidiConfigurationNoteOffCommands}}
+\index{setMidiConfigurationNoteOffCommands@{setMidiConfigurationNoteOffCommands}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{setMidiConfigurationNoteOffCommands()}{setMidiConfigurationNoteOffCommands()}}
+{\footnotesize\ttfamily set\+Midi\+Configuration\+Note\+Off\+Commands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FAR,  }\item[{}]{index,  }\item[{}]{commands }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classfarconfig_1_1CommandSets_1_1CommandSets_abc63a799e7d327533971084b97f29ae4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classfarconfig_1_1CommandSets_1_1CommandSets_abc63a799e7d327533971084b97f29ae4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_ae3b6abff5b9436cd2b0a20de6b8e40d1}\label{classfarconfig_1_1CommandSets_1_1CommandSets_ae3b6abff5b9436cd2b0a20de6b8e40d1} 
+\index{CommandSets@{CommandSets}!setMidiConfigurationNoteOnCommands@{setMidiConfigurationNoteOnCommands}}
+\index{setMidiConfigurationNoteOnCommands@{setMidiConfigurationNoteOnCommands}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{setMidiConfigurationNoteOnCommands()}{setMidiConfigurationNoteOnCommands()}}
+{\footnotesize\ttfamily set\+Midi\+Configuration\+Note\+On\+Commands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FAR,  }\item[{}]{index,  }\item[{}]{commands }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classfarconfig_1_1CommandSets_1_1CommandSets_ae3b6abff5b9436cd2b0a20de6b8e40d1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classfarconfig_1_1CommandSets_1_1CommandSets_ae3b6abff5b9436cd2b0a20de6b8e40d1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a1d8e8249de8facf4d8c023fb89471290}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a1d8e8249de8facf4d8c023fb89471290} 
+\index{CommandSets@{CommandSets}!setMidiConfigurationPitchBendCommands@{setMidiConfigurationPitchBendCommands}}
+\index{setMidiConfigurationPitchBendCommands@{setMidiConfigurationPitchBendCommands}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{setMidiConfigurationPitchBendCommands()}{setMidiConfigurationPitchBendCommands()}}
+{\footnotesize\ttfamily set\+Midi\+Configuration\+Pitch\+Bend\+Commands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FAR,  }\item[{}]{index,  }\item[{}]{commands }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a1d8e8249de8facf4d8c023fb89471290_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a1d8e8249de8facf4d8c023fb89471290_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a0cbff62c19ac176573335b6855eb0cb1}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a0cbff62c19ac176573335b6855eb0cb1} 
+\index{CommandSets@{CommandSets}!setMidiConfigurationPolyAftertouchCommands@{setMidiConfigurationPolyAftertouchCommands}}
+\index{setMidiConfigurationPolyAftertouchCommands@{setMidiConfigurationPolyAftertouchCommands}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{setMidiConfigurationPolyAftertouchCommands()}{setMidiConfigurationPolyAftertouchCommands()}}
+{\footnotesize\ttfamily set\+Midi\+Configuration\+Poly\+Aftertouch\+Commands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FAR,  }\item[{}]{index,  }\item[{}]{commands }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a0cbff62c19ac176573335b6855eb0cb1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a0cbff62c19ac176573335b6855eb0cb1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_ade9a080e574c4dd26d328466c2486a06}\label{classfarconfig_1_1CommandSets_1_1CommandSets_ade9a080e574c4dd26d328466c2486a06} 
+\index{CommandSets@{CommandSets}!setMidiConfigurationProgramChangeCommands@{setMidiConfigurationProgramChangeCommands}}
+\index{setMidiConfigurationProgramChangeCommands@{setMidiConfigurationProgramChangeCommands}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{setMidiConfigurationProgramChangeCommands()}{setMidiConfigurationProgramChangeCommands()}}
+{\footnotesize\ttfamily set\+Midi\+Configuration\+Program\+Change\+Commands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FAR,  }\item[{}]{index,  }\item[{}]{commands }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{classfarconfig_1_1CommandSets_1_1CommandSets_ade9a080e574c4dd26d328466c2486a06_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{classfarconfig_1_1CommandSets_1_1CommandSets_ade9a080e574c4dd26d328466c2486a06_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a312b84495933475274d3f0edefb78d31}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a312b84495933475274d3f0edefb78d31} 
+\index{CommandSets@{CommandSets}!setMidiConfigurationSelect@{setMidiConfigurationSelect}}
+\index{setMidiConfigurationSelect@{setMidiConfigurationSelect}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{setMidiConfigurationSelect()}{setMidiConfigurationSelect()}}
+{\footnotesize\ttfamily set\+Midi\+Configuration\+Select (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sender,  }\item[{}]{serial\+Handler,  }\item[{}]{simple\+FARHandler,  }\item[{}]{index }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a312b84495933475274d3f0edefb78d31_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1CommandSets_1_1CommandSets_a312b84495933475274d3f0edefb78d31_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_af496896d14b761d42f77432cb9c0359f}\label{classfarconfig_1_1CommandSets_1_1CommandSets_af496896d14b761d42f77432cb9c0359f} 
+\index{CommandSets@{CommandSets}!commandSets@{commandSets}}
+\index{commandSets@{commandSets}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{commandSets}{commandSets}}
+{\footnotesize\ttfamily command\+Sets}
+
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_a9845db71df47ec7dd86d85f92f86a462}\label{classfarconfig_1_1CommandSets_1_1CommandSets_a9845db71df47ec7dd86d85f92f86a462} 
+\index{CommandSets@{CommandSets}!currentCommandSet@{currentCommandSet}}
+\index{currentCommandSet@{currentCommandSet}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{currentCommandSet}{currentCommandSet}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSet}{Command\+Set}} current\+Command\+Set = \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetOG}{Command\+Set\+OG}}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSets_ad163bcd16ea4f032860a5408cc1badd7}\label{classfarconfig_1_1CommandSets_1_1CommandSets_ad163bcd16ea4f032860a5408cc1badd7} 
+\index{CommandSets@{CommandSets}!currentCommandSet@{currentCommandSet}}
+\index{currentCommandSet@{currentCommandSet}!CommandSets@{CommandSets}}
+\doxysubsubsection{\texorpdfstring{currentCommandSet}{currentCommandSet}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily current\+Command\+Set}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{CommandSets_8py}{Command\+Sets.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,185 @@
+\doxysection{dynamic\+Node\+Set Class Reference}
+\hypertarget{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet}{}\label{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet}\index{dynamicNodeSet@{dynamicNodeSet}}
+
+
+The dynamic\+Node\+Set class creates a set of {\itshape assemblies} and {\itshape nodes} from the given \doxylink{classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler}{Command\+Set\+Modular.Group\+Handler} Each {\itshape module} will have its own {\itshape assembly}, the {\itshape modules} {\itshape commands} may all be contained in a single {\itshape node} or split into several {\itshape nodes} depending on their attributes.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_aab3fac35210e90dad7987dfa70529a34}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classgraphassemblies_1_1graphAssemblies}{graphassemblies.\+graph\+Assemblies}} \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a811584043b844704c9bb9a6e99dd05d3}{ga}}, \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular}{Command\+Set\+Modular}} \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_adfeca4fdcb50a877e5b481c6f4ef44bf}{command\+Set}}=None)
+\item 
+Custom\+Base\+Node \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a1a2c20b581ff8ef7c011f11e96b033d6}{add\+Node\+Data\+From\+Module\+Command}} (self, Custom\+Base\+Node new\+Node, \mbox{\hyperlink{classfarconfig_1_1commanddefinitions_1_1CommandID}{Command\+ID}} command\+ID, \mbox{\hyperlink{classfarconfig_1_1commanddefinitions_1_1ModuleCommand}{Module\+Command}} command)
+\item 
+Custom\+Base\+Node \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a92e83a8293454c090c2af313168771b1}{treat\+Special\+Module}} (self, in\+Module, new\+Node)
+\item 
+Custom\+Base\+Node \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a20b3b4200266073492392542b699ba6f}{treat\+Special\+Command}} (self, in\+Module, \mbox{\hyperlink{classfarconfig_1_1commanddefinitions_1_1CommandID}{Command\+ID}} in\+Command, Custom\+Base\+Node new\+Node)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a61caab7aa5d945a8aeb03908dc5eaeba}{build\+Nodes\+From\+Modules}} (self, \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler}{Command\+Set\+Modular.\+Group\+Handler}} in\+Module)
+\begin{DoxyCompactList}\small\item\em Processes the \doxylink{classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler}{Command\+Set\+Modular.Group\+Handler} object given and does the following;. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a811584043b844704c9bb9a6e99dd05d3}{ga}}
+\begin{DoxyCompactList}\small\item\em Current \doxylink{classgraphassemblies_1_1graphAssembly}{graphassemblies.\+graph\+Assembly}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_adfeca4fdcb50a877e5b481c6f4ef44bf}{command\+Set}}
+\begin{DoxyCompactList}\small\item\em Associated \doxylink{classfarconfig_1_1CommandSets_1_1CommandSetModular}{Command\+Sets.Command\+Set\+Modular}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a7f721a262dd3d84c38ad13e9af027464}{modules}}
+\begin{DoxyCompactList}\small\item\em Associated modules. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_ad02a9c33e89feb2fc25db0b5283a0201}{pos\+List}}
+\begin{DoxyCompactList}\small\item\em Starting points of sources, modifiers and destination nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_ab7dc3b7c05961e7ab735d0459ee8a962}{addY}}
+\begin{DoxyCompactList}\small\item\em Increase in Y position per added item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The dynamic\+Node\+Set class creates a set of {\itshape assemblies} and {\itshape nodes} from the given \doxylink{classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler}{Command\+Set\+Modular.Group\+Handler} Each {\itshape module} will have its own {\itshape assembly}, the {\itshape modules} {\itshape commands} may all be contained in a single {\itshape node} or split into several {\itshape nodes} depending on their attributes. 
+
+This {\itshape class} does not create any connections in between the different {\itshape nodes} 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_aab3fac35210e90dad7987dfa70529a34}\label{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_aab3fac35210e90dad7987dfa70529a34} 
+\index{dynamicNodeSet@{dynamicNodeSet}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!dynamicNodeSet@{dynamicNodeSet}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classgraphassemblies_1_1graphAssemblies}{graphassemblies.\+graph\+Assemblies}}}]{ga,  }\item[{\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular}{Command\+Set\+Modular}} }]{command\+Set = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a1a2c20b581ff8ef7c011f11e96b033d6}\label{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a1a2c20b581ff8ef7c011f11e96b033d6} 
+\index{dynamicNodeSet@{dynamicNodeSet}!addNodeDataFromModuleCommand@{addNodeDataFromModuleCommand}}
+\index{addNodeDataFromModuleCommand@{addNodeDataFromModuleCommand}!dynamicNodeSet@{dynamicNodeSet}}
+\doxysubsubsection{\texorpdfstring{addNodeDataFromModuleCommand()}{addNodeDataFromModuleCommand()}}
+{\footnotesize\ttfamily  Custom\+Base\+Node add\+Node\+Data\+From\+Module\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Custom\+Base\+Node}]{new\+Node,  }\item[{\mbox{\hyperlink{classfarconfig_1_1commanddefinitions_1_1CommandID}{Command\+ID}}}]{command\+ID,  }\item[{\mbox{\hyperlink{classfarconfig_1_1commanddefinitions_1_1ModuleCommand}{Module\+Command}}}]{command }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a1a2c20b581ff8ef7c011f11e96b033d6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a61caab7aa5d945a8aeb03908dc5eaeba}\label{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a61caab7aa5d945a8aeb03908dc5eaeba} 
+\index{dynamicNodeSet@{dynamicNodeSet}!buildNodesFromModules@{buildNodesFromModules}}
+\index{buildNodesFromModules@{buildNodesFromModules}!dynamicNodeSet@{dynamicNodeSet}}
+\doxysubsubsection{\texorpdfstring{buildNodesFromModules()}{buildNodesFromModules()}}
+{\footnotesize\ttfamily build\+Nodes\+From\+Modules (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler}{Command\+Set\+Modular.\+Group\+Handler}}}]{in\+Module }\end{DoxyParamCaption})}
+
+
+
+Processes the \doxylink{classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler}{Command\+Set\+Modular.Group\+Handler} object given and does the following;. 
+
+
+\begin{DoxyItemize}
+\item Loop through each {\itshape command} of the {\itshape module} and
+\begin{DoxyItemize}
+\item Check if the {\itshape command} has an {\itshape output} {\itshape assignment}, if so set the local {\itshape source} variable to {\itshape true} 
+\item For each {\itshape variable} associated with the {\itshape command}, increase the local {\itshape separate} variable
+\end{DoxyItemize}
+\item Check if the {\itshape modules} parent object name is {\itshape \textquotesingle{}pluginhandler\textquotesingle{}}, if so, set the local variable {\itshape is\+Plugin} to {\itshape true} 
+\item Create a empty \doxylink{classcustomnode_1_1CustomBaseNode}{Custom\+Base\+Node} for the {\itshape module} 
+\item See if the {\itshape node} type requires any special treatment through the use of \doxylink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a92e83a8293454c090c2af313168771b1}{treat\+Special\+Module}
+\item Create a \doxylink{classgraphassemblies_1_1graphAssembly}{graphassemblies.\+graph\+Assembly} for the {\itshape module} 
+\item Loop through each {\itshape command} of the {\itshape module} again and
+\begin{DoxyItemize}
+\item Set the various {\itshape node} data, color is dependent on whether it\textquotesingle{}s a {\itshape source}, {\itshape plugin}, {\itshape modifier} or {\itshape destination} 
+\item process {\itshape command} through add\+Node\+Data\+From\+Module\+Command. ~\newline
+ Depending on the command properties this adds upp two {\itshape inputs} or {\itshape outputs} in any configuration. See function for more information
+\item Checks whether to separate this {\itshape command} into a separate {\itshape node} in the same {\itshape assembly}. ~\newline
+ If the total number of {\itshape inputs} + {\itshape outputs} \texorpdfstring{$>$}{>} 0 AND the {\itshape module} has more than one {\itshape variable} associated with it it should be separated. ~\newline
+ Insert the current {\itshape node} into the {\itshape assembly} and create a new {\itshape node} for the next {\itshape command} 
+\end{DoxyItemize}
+\item Recursively repeat the entire process for all child {\itshape modules} 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a61caab7aa5d945a8aeb03908dc5eaeba_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a61caab7aa5d945a8aeb03908dc5eaeba_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a20b3b4200266073492392542b699ba6f}\label{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a20b3b4200266073492392542b699ba6f} 
+\index{dynamicNodeSet@{dynamicNodeSet}!treatSpecialCommand@{treatSpecialCommand}}
+\index{treatSpecialCommand@{treatSpecialCommand}!dynamicNodeSet@{dynamicNodeSet}}
+\doxysubsubsection{\texorpdfstring{treatSpecialCommand()}{treatSpecialCommand()}}
+{\footnotesize\ttfamily  Custom\+Base\+Node treat\+Special\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{in\+Module,  }\item[{\mbox{\hyperlink{classfarconfig_1_1commanddefinitions_1_1CommandID}{Command\+ID}}}]{in\+Command,  }\item[{Custom\+Base\+Node}]{new\+Node }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a92e83a8293454c090c2af313168771b1}\label{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a92e83a8293454c090c2af313168771b1} 
+\index{dynamicNodeSet@{dynamicNodeSet}!treatSpecialModule@{treatSpecialModule}}
+\index{treatSpecialModule@{treatSpecialModule}!dynamicNodeSet@{dynamicNodeSet}}
+\doxysubsubsection{\texorpdfstring{treatSpecialModule()}{treatSpecialModule()}}
+{\footnotesize\ttfamily  Custom\+Base\+Node treat\+Special\+Module (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{in\+Module,  }\item[{}]{new\+Node }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a92e83a8293454c090c2af313168771b1_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_ab7dc3b7c05961e7ab735d0459ee8a962}\label{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_ab7dc3b7c05961e7ab735d0459ee8a962} 
+\index{dynamicNodeSet@{dynamicNodeSet}!addY@{addY}}
+\index{addY@{addY}!dynamicNodeSet@{dynamicNodeSet}}
+\doxysubsubsection{\texorpdfstring{addY}{addY}}
+{\footnotesize\ttfamily addY}
+
+
+
+Increase in Y position per added item. 
+
+\Hypertarget{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_adfeca4fdcb50a877e5b481c6f4ef44bf}\label{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_adfeca4fdcb50a877e5b481c6f4ef44bf} 
+\index{dynamicNodeSet@{dynamicNodeSet}!commandSet@{commandSet}}
+\index{commandSet@{commandSet}!dynamicNodeSet@{dynamicNodeSet}}
+\doxysubsubsection{\texorpdfstring{commandSet}{commandSet}}
+{\footnotesize\ttfamily command\+Set}
+
+
+
+Associated \doxylink{classfarconfig_1_1CommandSets_1_1CommandSetModular}{Command\+Sets.Command\+Set\+Modular}. 
+
+\Hypertarget{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a811584043b844704c9bb9a6e99dd05d3}\label{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a811584043b844704c9bb9a6e99dd05d3} 
+\index{dynamicNodeSet@{dynamicNodeSet}!ga@{ga}}
+\index{ga@{ga}!dynamicNodeSet@{dynamicNodeSet}}
+\doxysubsubsection{\texorpdfstring{ga}{ga}}
+{\footnotesize\ttfamily ga}
+
+
+
+Current \doxylink{classgraphassemblies_1_1graphAssembly}{graphassemblies.\+graph\+Assembly}. 
+
+\Hypertarget{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a7f721a262dd3d84c38ad13e9af027464}\label{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a7f721a262dd3d84c38ad13e9af027464} 
+\index{dynamicNodeSet@{dynamicNodeSet}!modules@{modules}}
+\index{modules@{modules}!dynamicNodeSet@{dynamicNodeSet}}
+\doxysubsubsection{\texorpdfstring{modules}{modules}}
+{\footnotesize\ttfamily modules}
+
+
+
+Associated modules. 
+
+\Hypertarget{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_ad02a9c33e89feb2fc25db0b5283a0201}\label{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_ad02a9c33e89feb2fc25db0b5283a0201} 
+\index{dynamicNodeSet@{dynamicNodeSet}!posList@{posList}}
+\index{posList@{posList}!dynamicNodeSet@{dynamicNodeSet}}
+\doxysubsubsection{\texorpdfstring{posList}{posList}}
+{\footnotesize\ttfamily pos\+List}
+
+
+
+Starting points of sources, modifiers and destination nodes. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{dynamicnodes_8py}{dynamicnodes.\+py}}\end{DoxyCompactItemize}

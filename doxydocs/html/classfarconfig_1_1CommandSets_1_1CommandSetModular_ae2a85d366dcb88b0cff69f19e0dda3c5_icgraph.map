@@ -1,0 +1,9 @@
+<map id="addHarmonicSeries" name="addHarmonicSeries">
+<area shape="rect" id="Node000001" title=" " alt="" coords="600,29,749,55"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="718,20,716,15,708,12,675,8,648,10,634,15,632,20,639,27,635,31,626,21,631,11,647,5,675,3,709,7,719,11,723,17"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#a294c3d003830d846c0e3ba3d5f0be728" title=" " alt="" coords="303,22,552,62"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="586,45,552,45,552,39,586,39"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#ae2a85d366dcb88b0cff69f19e0dda3c5" title=" " alt="" coords="5,22,255,62"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="289,54,255,54,255,48,289,48"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="268,30,302,30,302,36,268,36"/>
+</map>

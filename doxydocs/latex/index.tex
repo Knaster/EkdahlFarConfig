@@ -1,0 +1,21 @@
+\chapter{The Ekdahl FAR Configuration software}
+\hypertarget{index}{}\label{index}\index{The Ekdahl FAR Configuration software@{The Ekdahl FAR Configuration software}}
+This is the configuration software for the Knas Ekdahl FAR.~\newline
+~\newline
+ The software communicates with the instrument(s) via RS-\/232 over USB, all communications is based on the concept of {\itshape commands} as outlined in the general FAR documentation. The information here within will only cover the communications with the latest version of the Ekdahl FAR firmware as any updates or changes should not be done to any legacy compatibility code for older versions. ~\newline
+ ~\newline
+ The basic concept of communication is that the configuration software will issue various {\itshape information} {\itshape request} {\itshape commands} (\textquotesingle{}rqi\textquotesingle{}) and populate its various controls and status bars per the responses received. The rule of thumb is that each {\itshape command} issued generates a response, this can vary from a simple aknowledgement to returning a full set of data. The software is not to populate the GUI information whilst issuing commands but rather relies soley on responses in this regard. ~\newline
+ ~\newline
+ In the initial phase of communication some information has to be fully received before requesting additional information. Certain {\itshape commands} will return an unknown number of responses thus those requests are generally followed by a {\itshape \textquotesingle{}nop\textquotesingle{}-\/command}. When a {\itshape \textquotesingle{}nop\textquotesingle{}} aknowledgement is received the software knows that the previous data has been exhausted.
+
+The basic workflow for this software works as follows\+:
+\begin{DoxyItemize}
+\item Issue a version request command to the FAR in order to know which \doxylink{namespacefarconfig_1_1CommandSets}{command set} to use
+\item Issue a {\itshape \textquotesingle{}list\textquotesingle{}-\/command} in order to receive the number of {\itshape modules} and {\itshape commands} contained within the instrument
+\item Build a internal hierarchy from the responses of the {\itshape \textquotesingle{}list\textquotesingle{}-\/command} using \doxylink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a69c1c54f7639a8a00965fc04bb00e9cc}{Command\+Sets.\+Command\+Set\+Modular.\+build\+Hierarchy}
+\item Issue a {\itshape \textquotesingle{}help\textquotesingle{}-\/command} in order to build the help reference
+\item Build the help using \doxylink{classfarconfig_1_1CommandSets_1_1CommandSetModular_ac4b7c45acc0bdd6f775d4237e3d803ef}{Command\+Sets.\+Command\+Set\+Modular.\+build\+Help}
+\item Build a plugin list from the internal {\itshape module} hierarchy using \doxylink{classfarconfig_1_1pluginhandler_1_1PluginHandler_aa65b7f54c3f78010f0219b218e0ee941}{Plugin\+Handler.build\+Plugin\+List}
+\item Request data for each {\itshape module} depending on their {\itshape request} {\itshape data} 
+\item Build a node map from the {\itshape modules} and {\itshape command} {\itshape responses} received. See the \doxylink{classfarconfig_1_1nodehandler_1_1NodeHandler}{Node\+Handler} for more information 
+\end{DoxyItemize}

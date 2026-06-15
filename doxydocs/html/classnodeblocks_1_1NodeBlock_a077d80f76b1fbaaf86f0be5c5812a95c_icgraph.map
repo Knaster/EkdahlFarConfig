@@ -1,0 +1,8 @@
+<map id="addBlock" name="addBlock">
+<area shape="rect" id="Node000001" title=" " alt="" coords="463,29,545,55"/>
+<area shape="rect" id="Node000002" href="$classnodeblocks_1_1NodeBlock.html#a263653cb70d8464bb9fd76fec3f2b473" title=" " alt="" coords="308,29,415,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="449,45,415,45,415,39,449,39"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="386,18,378,11,361,8,347,10,339,15,338,20,342,28,337,30,332,21,335,11,345,5,361,3,381,6,389,15"/>
+<area shape="rect" id="Node000003" href="$classnodeblocks_1_1BaseBlock.html#a4dafe2fdc7f6b38211ef9fea5af33d22" title=" " alt="" coords="5,29,260,55"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="294,45,260,45,260,39,294,39"/>
+</map>

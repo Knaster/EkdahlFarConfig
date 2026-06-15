@@ -1,0 +1,23 @@
+<map id="input_ports" name="input_ports">
+<area shape="rect" id="Node000001" title=" " alt="" coords="799,119,893,145"/>
+<area shape="poly" id="edge11_Node000001_Node000001" title=" " alt="" coords="882,110,872,101,846,98,824,100,813,105,811,110,817,118,813,121,806,111,809,101,823,95,846,93,874,96,886,106"/>
+<area shape="rect" id="Node000002" href="$classcustomnode_1_1CustomBaseNode.html#a48828d241bb2ee470a5242d70b373f5b" title=" " alt="" coords="602,94,685,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="785,127,684,114,685,109,785,122"/>
+<area shape="rect" id="Node000009" href="$classcustomnode_1_1CustomBaseNode.html#ab2e997e1e65575ea76aff7212e0ebb6d" title=" " alt="" coords="536,143,751,169"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="785,142,751,146,750,141,785,137"/>
+<area shape="poly" id="edge7_Node000002_Node000002" title=" " alt="" coords="679,84,669,76,643,73,622,75,610,79,608,85,614,92,610,96,603,86,607,76,620,70,643,67,672,71,683,80"/>
+<area shape="rect" id="Node000003" href="$classcustomnode_1_1Equation1.html#a00d3b651d8adcbf7f1c4dba9f0708aa0" title=" " alt="" coords="281,29,488,69"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="588,97,475,72,476,67,589,92"/>
+<area shape="rect" id="Node000004" href="$classcustomnode_1_1CustomBaseNode.html#a18aa02533ff185dfd6642080067bf7da" title=" " alt="" coords="333,94,436,119"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="588,109,436,109,436,104,588,104"/>
+<area shape="rect" id="Node000007" href="$classcustomnode_1_1TriggerBool.html#a67d72f99718bd119da85a775ebe4706f" title=" " alt="" coords="283,152,486,192"/>
+<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="589,122,537,135,460,155,459,149,535,129,588,117"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="429,18,413,11,385,8,360,10,344,15,339,21,342,28,337,30,334,20,342,10,359,5,385,3,415,6,431,13"/>
+<area shape="rect" id="Node000005" href="$classcustomnode_1_1CustomBaseNode.html#a520ab529ecb215943696e6dfb294ea9c" title=" " alt="" coords="56,45,183,70"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="319,97,183,72,184,66,320,92"/>
+<area shape="rect" id="Node000006" href="$classcustomnode_1_1CustomBaseNode.html#aa5c1b437a24117c1a28883f05b45dfaf" title=" " alt="" coords="12,94,227,119"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="320,109,227,109,227,104,320,104"/>
+<area shape="rect" id="Node000008" href="$classcustomnode_1_1TriggerBool.html#a3ed6c48ad94cd8dc1ef028827ce10997" title=" " alt="" coords="5,167,233,193"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="270,178,234,179,234,174,270,173"/>
+<area shape="poly" id="edge10_Node000008_Node000008" title=" " alt="" coords="167,158,164,154,156,150,119,146,91,148,76,153,73,158,81,165,77,169,67,159,72,149,90,143,119,141,157,145,168,150,171,156"/>
+</map>

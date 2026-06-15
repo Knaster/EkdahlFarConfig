@@ -1,0 +1,29 @@
+<map id="saveHarmonicSeries" name="saveHarmonicSeries">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,231,161,257"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#ae2a85d366dcb88b0cff69f19e0dda3c5" title=" " alt="" coords="209,72,459,112"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,230,138,177,171,147,208,122,222,115,224,120,211,126,174,151,142,181,96,233"/>
+<area shape="rect" id="Node000008" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#ae2a85d366dcb88b0cff69f19e0dda3c5" title=" " alt="" coords="209,224,459,264"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="161,250,196,250,196,256,161,255"/>
+<area shape="rect" id="Node000009" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#ae2a85d366dcb88b0cff69f19e0dda3c5" title=" " alt="" coords="209,160,459,200"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="134,229,241,201,242,206,135,234"/>
+<area shape="rect" id="Node000010" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#ae2a85d366dcb88b0cff69f19e0dda3c5" title=" " alt="" coords="259,313,409,338"/>
+<area shape="poly" id="edge16_Node000001_Node000010" title=" " alt="" coords="124,254,281,306,280,311,123,259"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="521,144,771,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="422,109,546,138,545,143,421,115"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="521,208,771,248"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="439,110,460,122,477,140,485,159,492,177,508,194,517,200,515,204,505,198,488,180,480,161,473,143,457,126,436,114"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="507,5,785,45"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="428,69,537,46,538,51,429,75"/>
+<area shape="rect" id="Node000007" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="545,94,747,119"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="459,95,531,99,531,104,459,101"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a4d0e442ce13f4962d044a9b2c5f45764" title=" " alt="" coords="833,5,1145,45"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="785,23,820,23,820,28,785,28"/>
+<area shape="poly" id="edge7_Node000007_Node000007" title=" " alt="" coords="596,96,585,86,591,75,611,69,646,67,692,72,704,77,707,84,702,86,700,81,690,77,646,73,612,75,594,80,590,85,600,92"/>
+<area shape="poly" id="edge9_Node000008_Node000001" title=" " alt="" coords="209,238,175,238,175,233,209,232"/>
+<area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="459,171,508,168,508,174,459,176"/>
+<area shape="poly" id="edge13_Node000009_Node000004" title=" " alt="" coords="459,197,508,204,507,209,459,202"/>
+<area shape="poly" id="edge14_Node000009_Node000005" title=" " alt="" coords="395,157,427,142,457,122,472,105,479,88,488,71,505,55,515,49,518,54,508,59,492,75,484,91,476,108,460,126,430,147,397,162"/>
+<area shape="poly" id="edge15_Node000009_Node000007" title=" " alt="" coords="401,157,506,129,555,119,556,124,507,135,402,162"/>
+<area shape="poly" id="edge11_Node000009_Node000009" title=" " alt="" coords="287,160,285,150,292,141,309,135,334,133,363,136,379,143,377,148,362,141,334,139,310,141,295,145,290,151,292,159"/>
+<area shape="poly" id="edge17_Node000010_Node000010" title=" " alt="" coords="293,314,285,304,289,294,306,288,334,286,369,290,379,295,383,300,379,303,376,299,368,295,334,291,307,293,293,298,290,304,297,311"/>
+</map>

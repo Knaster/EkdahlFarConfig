@@ -1,0 +1,11 @@
+<map id="migrate_objects" name="migrate_objects">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,132,106"/>
+<area shape="rect" id="Node000002" href="$classcustomnode_1_1CustomBaseNode.html#ad47b6b3a73937d223cecf80454f9c476" title=" " alt="" coords="180,29,431,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,79,184,69,185,74,133,84"/>
+<area shape="rect" id="Node000004" href="$classcustomgroupnode_1_1CustomGroupNodeItem.html#a39265ab708500d68339b63e9be99bb18" title=" " alt="" coords="189,117,421,157"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="133,102,185,112,184,117,132,108"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="262,30,259,20,266,10,282,5,305,3,333,6,348,13,345,18,331,11,305,8,283,10,269,15,264,21,267,28"/>
+<area shape="rect" id="Node000003" href="$classcustomnode_1_1CustomBaseNode.html#a94b956c3fd4bf5e3bfa3dabc2d5725a0" title=" " alt="" coords="479,29,725,69"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="431,47,465,47,465,52,431,52"/>
+<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="262,118,259,108,266,98,282,93,305,91,333,94,348,101,345,106,331,99,305,96,283,98,269,103,264,109,267,116"/>
+</map>

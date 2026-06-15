@@ -103,14 +103,6 @@ class graphAssemblies():
 
             FARNodes.Variables,
 
-            #FARNodes.Solenoid,
-            #FARNodes.BowControl,
-            #FARNodes.HarmonicSeriesHandler,
-            #FARNodes.BowMotor,
-            #FARNodes.BowPressure,
-            #FARNodes.BowPID,
-            #FARNodes.Mute,
-
             FARNodes.Equation,
             FARNodes.Equation1,
             FARNodes.Equation2,
@@ -120,8 +112,6 @@ class graphAssemblies():
             FARNodes.StaticValue,
             FARNodes.TriggerVariable,
             FARNodes.TriggerBool,
-
-            #FARNodes.ControlBox,
 
             FARNodes.ControlBoxOutput,
 
@@ -144,7 +134,6 @@ class graphAssemblies():
             self.graph_widget.showMaximized()
         else:
             self.graph_widget = self.graph.widget
-
             container.addWidget(self.graph.widget)
 
         # create a node properties bin widget.

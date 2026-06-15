@@ -1,0 +1,8 @@
+<map id="findRootPort" name="findRootPort">
+<area shape="rect" id="Node000001" title=" " alt="" coords="312,45,415,70"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="404,35,393,27,363,23,339,25,326,30,324,36,330,43,326,46,318,36,323,26,338,20,363,18,395,22,407,31"/>
+<area shape="rect" id="Node000002" href="$classcustomnode_1_1CustomBaseNode.html#a520ab529ecb215943696e6dfb294ea9c" title=" " alt="" coords="5,5,264,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="298,51,264,46,264,41,299,46"/>
+<area shape="rect" id="Node000003" href="$classcustomnode_1_1CustomBaseNode.html#aa5c1b437a24117c1a28883f05b45dfaf" title=" " alt="" coords="11,69,258,109"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="299,69,258,75,258,69,298,64"/>
+</map>

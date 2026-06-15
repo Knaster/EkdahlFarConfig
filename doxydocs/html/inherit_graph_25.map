@@ -1,0 +1,13 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,104,140,129"/>
+<area shape="rect" id="Node000001" href="$classcustomnodewidgets_1_1LineEdit.html" title=" " alt="" coords="206,5,281,31"/>
+<area shape="poly" id="edge69_Node000000_Node000001" title=" " alt="" coords="102,93,187,40,210,28,212,33,189,44,104,98"/>
+<area shape="rect" id="Node000002" href="$classcustomnodewidgets_1_1NodeSlider.html" title=" " alt="" coords="197,55,290,80"/>
+<area shape="poly" id="edge70_Node000000_Node000002" title=" " alt="" coords="130,97,198,78,199,83,131,103"/>
+<area shape="rect" id="Node000003" href="$classcustomnodewidgets_1_1SpinBoxArray.html" title=" " alt="" coords="188,104,299,129"/>
+<area shape="poly" id="edge71_Node000000_Node000003" title=" " alt="" coords="154,114,188,114,188,119,154,119"/>
+<area shape="rect" id="Node000004" href="$classcustomnodewidgets_1_1TableView.html" title=" " alt="" coords="199,153,287,179"/>
+<area shape="poly" id="edge72_Node000000_Node000004" title=" " alt="" coords="131,131,200,151,198,156,129,136"/>
+<area shape="rect" id="Node000005" href="$classcustomnodewidgets_1_1ToggleSwitch.html" title=" " alt="" coords="190,203,297,228"/>
+<area shape="poly" id="edge73_Node000000_Node000005" title=" " alt="" coords="105,135,189,188,214,200,212,205,187,192,102,140"/>
+</map>

@@ -14,10 +14,14 @@ class commandReference(QWidget):
         self.ui.listWidgetCommands.currentItemChanged.connect(self.listWidgetCommandsCurrentItemChanged)
 
     def addCommand(self, command, description):
-        commandItemHelp = QListWidgetItem()
-        commandItemHelp.setText(command)
-        commandItemHelp.description = description
-        self.ui.listWidgetCommands.addItem(commandItemHelp)
+        #commandItemHelp = QListWidgetItem()
+        #commandItemHelp.setText(command)
+        #commandItemHelp.description = description
+        #self.ui.listWidgetCommands.addItem(commandItemHelp)
+        cmd = QTreeWidgetItem(self.ui.listWidgetCommands)
+        cmd.setText(0, command)
+        cmd.setData(0, Qt.ItemDataRole.UserRole, description)
+
 
     def addCommandB(self, command, parent, shortHand, description):
         def addit():

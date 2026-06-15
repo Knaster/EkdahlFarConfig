@@ -1,0 +1,8 @@
+<map id="buildNodesFromModules" name="buildNodesFromModules">
+<area shape="rect" id="Node000001" title="Processes the CommandSetModular.GroupHandler object given and does the following;." alt="" coords="5,31,188,56"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="54,32,44,22,49,12,67,6,97,4,135,8,145,13,149,19,144,22,142,17,133,13,97,9,68,11,53,16,50,22,57,29"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet.html#a1a2c20b581ff8ef7c011f11e96b033d6" title=" " alt="" coords="236,5,495,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,32,222,29,222,34,188,37"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet.html#a92e83a8293454c090c2af313168771b1" title=" " alt="" coords="291,55,439,80"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="188,49,278,57,278,62,188,54"/>
+</map>

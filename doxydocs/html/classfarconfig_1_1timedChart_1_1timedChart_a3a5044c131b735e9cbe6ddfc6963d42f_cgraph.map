@@ -1,0 +1,8 @@
+<map id="farconfig.timedChart.timedChart.addData" name="farconfig.timedChart.timedChart.addData">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,61,204,101"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a5390b0faea06b1b79761cff20e320e82" title=" " alt="" coords="252,29,451,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,66,238,61,239,67,205,71"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1timedChart_1_1timedChart.html#ab6f274296e1047024d6156fbedb9acfe" title=" " alt="" coords="252,93,451,133"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="205,92,239,96,238,101,204,97"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="306,30,303,20,310,10,327,5,351,3,380,6,395,13,393,18,378,11,351,8,328,10,313,15,308,21,311,28"/>
+</map>

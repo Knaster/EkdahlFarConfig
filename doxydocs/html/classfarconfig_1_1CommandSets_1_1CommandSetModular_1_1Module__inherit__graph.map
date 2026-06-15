@@ -1,0 +1,7 @@
+<map id="CommandSetModular.Module" name="CommandSetModular.Module">
+<area shape="rect" id="Node000001" title=" " alt="" coords="127,5,342,31"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1Group.html" title=" " alt="" coords="5,79,211,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,40,130,81,127,76,201,35"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html" title=" " alt="" coords="235,79,491,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="269,35,343,76,340,81,266,40"/>
+</map>

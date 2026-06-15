@@ -1,24 +1,31 @@
+import re
 import sys
 import NodeGraphQt
 from sympy.physics.quantum.qasm import stripquotes
 
-#from commandparser import CommandList, CommandItem
 from GraphNode.customnode import CustomBaseNode
 import GraphNode.graphassemblies as graphassemblies
-import commandparser
+from NodeGraphQt.base import port
 import sympy as sp
 import dynamicnodes
 from commanddefinitions import CommandID
-from pluginhandler import Plugin_LFO
+from commandparser import derivedCommandItem
 from general_helpers import stripLeadingQuotes
+
+## The NodeHandler class creates a \a node diagram of the current set of \a modules by using the
+# \ref "farconfig.nodehandler.NodeHandler.addDynamicNodeSet" "addDynamicNodeSet" function which is merely a caller for the
+# \ref "farconfig.dynamicnodes.dynamicNodeSet" "dynamicNodeSet" class.
+# Connections in between the various \a nodes are created by the \ref "farconfig.nodehandler.NodeHandler.parseCommand" "parseCommand" function by parsing
+# \a command \a responses received, it also adds the \a glue \a logic \a nodes in between \a nodes in order to simplify the visual aspects of equations and
+# functions used.\n\n
+# \a Glue \a logic \a nodes are then optimized & combined through the use of the \ref "farconfig.nodehandler.NodeHandler.postBuildUpdate" "postBuildUpdate" function
+# which also uses the \ref "nodeorganizer.NodeOrganizer" "NodeOrganizer" class to visually organize the \a nodes.
 
 class NodeHandler:
     def __init__(self, container, commandSet = None):
         self.container = container
         self.ga = graphassemblies.graphAssemblies(container)
         self.commandSet = commandSet
-        #self.ga.addBasicControlHandling(-1000, -500)
-        #self.ga.addCompleteStringAssembly(1000, -570)
         self.ga.addVariablesAssembly(-1000,-1000)
         self.ga.update()
 
@@ -31,14 +38,48 @@ class NodeHandler:
         self.hideAdvanced = True
         self.dynamicNodeSet = dynamicnodes.dynamicNodeSet(self.ga)
 
+        self.iterationLevel = 0
+        self.nodesAdded = []
+
+    def clearNodes(self):
+        self.ga.graph.clear_session()
+        for assembly in self.ga.assemblies:
+            assembly.nodes = None
+        self.ga.assemblies.clear()
+        self.iterationLevel = 0
+        self.nodesAdded.clear()
+        self.maxDepth = 0
+        self.ga.graph.nodeOrganizer.clearData()
+        self.ga.addVariablesAssembly(-1000,-1000)
+
+    ## Add a node set dynamically from the given module information using the \ref "farconfig.dynamicnodes.dynamicNodeSet" "dynamicNodeSet" class
     def addDynamicNodeSet(self, inModule):
         self.dynamicNodeSet.commandSet = self.commandSet
         self.ga.commandSet = self.commandSet
         self.dynamicNodeSet.buildNodesFromModules(inModule)
 
+    ## Adds text from a 'name' command to the nodes label
+    def appendNameToNode(self, node : CustomBaseNode, command : derivedCommandItem):
+        bracketIndex = node.NODE_NAME.find("]")
+        name = node.NODE_NAME[:bracketIndex + 1]
+        if (len(command.argument) == 0):
+            return
+        name += " - " + command.argument[0]
+        if (bracketIndex + 1 < len(node.NODE_NAME)):
+            name += " - " + node.NODE_NAME[bracketIndex + 1:]
+        print("Setting node " + node.NODE_NAME + "'s name to " + name)
+        node._view.name = name
+        node.updateNames()
+
     def findCommandMatchAndProcess(self, command):
+        if (self.commandSet is None):
+            return False
         #try:
         commandID = self.commandSet.getCommandID(command)
+        #print("command id: " + str(commandID))
+        #if (commandID == commandID.pluginAHDSRName):
+        #    pass
+        #moduleIndex = self.commandSet.get
         if commandID == None:
             return False
         result = False
@@ -47,11 +88,18 @@ class NodeHandler:
                 node:CustomBaseNode = node
                 if (commandID in node.command):
                     allFound = True
-                    if (node.argumentMatch is not None):
-                        for i in range(0, len(node.argumentMatch)):
-                            if command.argument[i] != node.argumentMatch[i]: allFound = False
-                    else:
-                        pass
+
+                    if (len(command.hierarchy) > 2):
+                        commandParentIndex = command.hierarchy[len(command.hierarchy) - 2].selection[0]
+                        if (commandParentIndex != node.moduleIndex):
+                            allFound = False
+
+                    if (allFound):
+                        if (node.argumentMatch is not None):
+                            for i in range(0, len(node.argumentMatch)):
+                                if command.argument[i] != node.argumentMatch[i]: allFound = False
+                        else:
+                            pass
 
                     if (allFound):
 #                       cl = self.commandSet.CommandList(stripLeadingQuotes(command.argument[len(node.argumentMatch) - 2:][0]))
@@ -76,6 +124,10 @@ class NodeHandler:
                             result = True
                             self.process(node, comm.command, comm.argument, self.processOutput(False, connectFrom))
                             #return True
+                elif commandID == node.nameCommand:
+                    commandParentIndex = command.hierarchy[len(command.hierarchy) - 2].selection[0]
+                    if (commandParentIndex == node.moduleIndex):
+                        self.appendNameToNode(node, command)
                 else:
                     pass
         return result
@@ -88,11 +140,12 @@ class NodeHandler:
         for node in self.ga.graph.all_nodes():
             if ("modifier" in node.type_):
                 node.updateNames()
-        #self.buildHorizontalTree()
         self.ga.graph.nodeOrganizer.buildHorizontalTree()
 
-    iterationLevel = 0
-    nodesAdded = []
+    def redraw(self):
+        for node in self.ga.graph.all_nodes():
+            node.view.draw_node()
+            node.view.update()
 
     localNumbers = []
     localSymbols = []
@@ -183,6 +236,7 @@ class NodeHandler:
         arguments = self.getFunctionArguments(functionString)
 
         functionNode = self.addFunction(str(function), mainNode)
+
         functionPortNo = 0
         for argument in arguments:
             self.process(mainNode, "", [argument], defaultOutput, False, functionNode.get_input(functionPortNo))
@@ -231,6 +285,63 @@ class NodeHandler:
                                     return port, arguments
         return [], []
 
+    def createEquation(self, mainNode, equation, connectToInput, connectToOutput):
+        createInputs = len(self.localFunctions) + len(self.localSymbols)
+        # noAdd = False
+        equationNode = self.ga.addModifierEquation(createInputs, self.xOffset - self.iterationLevel * self.xSpread, mainNode.y_pos())
+
+        # if (not noAdd):
+        equationNode.command = mainNode.command
+        self.nodesAdded.append(equationNode)
+
+        inputNumber = 0
+        for symbol in self.localSymbols:
+            portName = "in" + str(inputNumber)
+            inPort = equationNode.get_input(portName)
+            outPort = self.ga.findLocalOrVariableOutput(mainNode, str(symbol))
+            outPort.connect_to(inPort)
+            inputNumber += 1
+
+        for function in self.localFunctions:
+            equation = self.connectFunctionArguments(function, equation, mainNode, connectToOutput[0], inputNumber, equationNode)
+
+        equationNode.set_value(equation)
+        outPort = equationNode.get_output("out")
+        outPort.connect_to(connectToInput)
+        return equationNode
+
+    class skipFunction:
+        def __init__(self, inName:str, inAlt:str, inUseBrackets:bool):
+            self.name:str = inName
+            self.alt:str = inAlt
+            self.useBrackets:bool = inUseBrackets
+
+    skipFunctions = [skipFunction('mod', '%', True),
+                     skipFunction('sin', '', False),
+                     skipFunction('cos', '', False),
+                     skipFunction('tan', '', False)]
+
+    #Override simple built-in functions
+    def overrideFunction(self, overrideWith:skipFunction, mainNode, equation, connectToInput, connectToOutput):
+        if overrideWith.alt != "":
+            findAndReplace = overrideWith.alt
+        else:
+            findAndReplace = overrideWith.name
+
+        #replace function with '+' in order to trick sympy into thinking it's a straight equation
+        equation = equation.replace(findAndReplace, "+")
+        self.getChildren(sp.sympify(equation), False)
+
+        equationNode = self.createEquation(mainNode, equation, connectToInput, connectToOutput)
+        #restore the original dingdong
+        equation = equation.replace("(", "")
+        if overrideWith.useBrackets:
+            equation = equation.replace("+", findAndReplace + "(")
+        else:
+            equation = equation.replace("+", findAndReplace)
+            equation = equation.replace(")", "")
+        equationNode.set_value(equation)
+
     def process(self, mainNode:CustomBaseNode, command, argument = None, inConnectToOutput = None, skipInput = False, inConnectToInput = None):
         self.iterationLevel += 1
         if (argument is None): argument = []
@@ -257,10 +368,10 @@ class NodeHandler:
             self.getChildren(sp.sympify(equation), False)
         else:
             return
-            equation = ""
-            self.localNumbers.clear()
-            self.localSymbols.clear()
-            self.localFunctions.clear()
+            #equation = ""
+            #self.localNumbers.clear()
+            #self.localSymbols.clear()
+            #self.localFunctions.clear()
 
         if (inConnectToOutput is None):
             defaultPort = mainNode.get_output("_trigger")
@@ -289,28 +400,7 @@ class NodeHandler:
 
         self.getChildren(sp.sympify(equation), True)
         if (len(self.localNumbers) + len(self.localFunctions) + len(self.localSymbols) > 1):
-            createInputs = len(self.localFunctions) + len(self.localSymbols)
-            noAdd = False
-            equationNode = self.ga.addModifierEquation(createInputs, self.xOffset - self.iterationLevel * self.xSpread, mainNode.y_pos())
-
-            if (not noAdd):
-                equationNode.command = mainNode.command
-                self.nodesAdded.append(equationNode)
-
-                inputNumber = 0
-                for symbol in self.localSymbols:
-                    portName = "in" + str(inputNumber)
-                    inPort = equationNode.get_input(portName)
-                    outPort = self.ga.findLocalOrVariableOutput(mainNode, str(symbol))
-                    outPort.connect_to(inPort)
-                    inputNumber += 1
-
-                for function in self.localFunctions:
-                    equation = self.connectFunctionArguments(function, equation, mainNode, connectToOutput[0], inputNumber, equationNode)
-
-                equationNode.set_value(equation)
-                outPort = equationNode.get_output("out")
-                outPort.connect_to(connectToInput)
+            self.createEquation(mainNode, equation, connectToInput, connectToOutput)
 
         elif (len(self.localSymbols) == 1):
             if (skipInput):
@@ -359,7 +449,15 @@ class NodeHandler:
             staticTriggerPort.connect_to(connectToOutput[0].port)
             staticOutPort.connect_to(connectToInput)
         elif (len(self.localFunctions) == 1):
-            self.connectFunctionArguments(str(self.localFunctions[0]), equation, mainNode, connectToOutput[0], 0, None, connectToInput)
+            skip = False
+            for f in self.skipFunctions:
+                if f.name == self.localFunctions[0].lower():
+                    skip = True
+                    break
+            if skip:
+                self.overrideFunction(f, mainNode, equation, connectToInput, connectToOutput)
+            else:
+                self.connectFunctionArguments(str(self.localFunctions[0]), equation, mainNode, connectToOutput[0], 0, None, connectToInput)
         else:
             print("This should never happen")
         self.iterationLevel -= 1
@@ -367,6 +465,7 @@ class NodeHandler:
     def optimizeObjects(self):
         self.removeDuplicateObjects()
         self.optimizeDeadbands()
+        self.optimizeMakeBools()
 
     def deleteAllAssociatedNodes(self, mainNode):
         for node in self.ga.graph.all_nodes():
@@ -478,17 +577,32 @@ class NodeHandler:
                     print("Node has no command attribute")
         return False
 
-    def optimizeBools(self):
-        while (self.optimizeBoolsIter()):
+    def optimizeMakeBools(self):
+        while (self.optimizeMakeBoolsIter()):
             pass
 
-    def optimizeBoolsIter(self):
-        boolList = []
+    def optimizeMakeBoolsIter(self):
         for node in self.ga.graph.all_nodes():
-            if ("Trigger bool" in node.NODE_NAME):
-                boolList.append(node)
+            if ("Make boolean" in node.NODE_NAME):
+                #Remove trigger connection if it connects to the same root object in order to de-clutter
+                inRoots = node.findRootPort("in")
+                trigRoots = node.findRootPort("_trigger")
 
-        if (len(boolList) < 2): return True
+                r = None; t = None; tp = None
+                if (len(inRoots) > 0):
+                    for i in inRoots[0]:
+                        if isinstance(i, CustomBaseNode): r = i; break
+                else:
+                    pass
+                if (len(trigRoots) > 0):
+                    for i in trigRoots[0]:
+                        if isinstance(i, CustomBaseNode): t = i
+                        elif isinstance(i, NodeGraphQt.Port): tp = i
+                else:
+                    pass
+
+                if (r == t):
+                    node.get_input("_trigger").disconnect_from(tp)
         return False
 
     def optimizeDeadbands(self):

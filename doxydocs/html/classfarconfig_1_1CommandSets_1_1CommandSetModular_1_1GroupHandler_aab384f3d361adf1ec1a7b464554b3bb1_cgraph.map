@@ -1,0 +1,11 @@
+<map id="addModule" name="addModule">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,100,31"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html#a3bc95d9f4241585dcdf0d118d388fb6c" title=" " alt="" coords="148,5,323,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,15,134,15,134,21,100,21"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html#a38280bbe8bcdab4f57ca49d6e09be4bd" title=" " alt="" coords="371,5,496,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="323,15,357,15,357,21,323,21"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html#abf9f4e06af54ebce004cb0e0f517d4dd" title=" " alt="" coords="544,5,725,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="496,15,530,15,530,21,496,21"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular_1_1GroupHandler.html#a44095c24929022ece780b2bb56ada9d7" title=" " alt="" coords="773,5,859,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="726,15,760,15,760,21,726,21"/>
+</map>

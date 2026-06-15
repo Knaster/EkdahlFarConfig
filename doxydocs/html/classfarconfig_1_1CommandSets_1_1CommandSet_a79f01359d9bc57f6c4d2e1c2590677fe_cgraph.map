@@ -1,0 +1,14 @@
+<map id="addMidiConfigurationCC" name="addMidiConfigurationCC">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,95,184,120"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="270,5,473,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,92,168,66,231,41,268,31,269,36,233,46,171,71,120,97"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="247,55,496,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="184,94,233,89,234,94,185,100"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="232,119,511,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="185,115,218,119,218,124,184,120"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="247,207,496,247"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="123,118,233,169,307,200,305,205,231,174,121,122"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a4d0e442ce13f4962d044a9b2c5f45764" title=" " alt="" coords="559,119,871,159"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="511,137,545,137,545,142,511,142"/>
+<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="321,208,317,198,326,188,344,183,371,181,403,183,420,191,418,196,402,189,371,186,345,188,328,193,323,199,326,206"/>
+</map>

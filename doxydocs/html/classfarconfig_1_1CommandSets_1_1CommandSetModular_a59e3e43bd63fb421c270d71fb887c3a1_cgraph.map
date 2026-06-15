@@ -1,0 +1,15 @@
+<map id="farconfig.CommandSets.CommandSetModular.removeHarmonicSeries" name="farconfig.CommandSets.CommandSetModular.removeHarmonicSeries">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,101,257,141"/>
+<area shape="poly" id="edge7_Node000001_Node000001" title=" " alt="" coords="74,102,70,92,80,82,100,77,131,75,167,77,187,85,185,90,166,83,131,80,101,82,82,87,76,93,79,100"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#a3c6c04ca1963d1dc927efc69c311e641" title=" " alt="" coords="320,5,569,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,99,305,55,336,46,337,51,306,60,182,104"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#ac21a286b4a3f9932bb5d6f4d6ee9945c" title=" " alt="" coords="320,69,569,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="257,106,306,101,306,106,258,111"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#ab691bbe4d51bfdaea5514d0a6f55c5ae" title=" " alt="" coords="305,133,584,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="258,132,292,135,291,140,257,137"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#aa06d35a7a04de54e950ff1a66bd2ab9d" title=" " alt="" coords="320,221,569,261"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="186,139,380,214,378,219,184,144"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a87ff56a15439fcf7a2b13efe2a4a8502" title=" " alt="" coords="632,133,944,173"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="584,151,618,151,618,156,584,156"/>
+<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="387,222,384,212,393,202,413,197,445,195,481,197,500,205,498,210,479,203,445,200,414,202,396,207,389,213,392,220"/>
+</map>

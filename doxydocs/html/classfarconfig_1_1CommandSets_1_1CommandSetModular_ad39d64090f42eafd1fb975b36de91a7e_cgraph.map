@@ -1,0 +1,14 @@
+<map id="farconfig.CommandSets.CommandSetModular.getCommandType" name="farconfig.CommandSets.CommandSetModular.getCommandType">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,157,255,197"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#a2584140a5ab179c41dfbdcd7da09a7b9" title=" " alt="" coords="341,5,591,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,155,216,104,257,77,302,55,327,45,329,50,304,60,260,82,219,109,155,159"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a1c47ee37c362a020e825fc5b708c12c6" title=" " alt="" coords="341,69,591,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="186,155,302,119,340,110,341,115,303,124,188,160"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#aeb3d7e301b1081ea3c3d7b6bb3fb30af" title=" " alt="" coords="341,157,591,197"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="255,175,328,175,328,180,255,180"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#a4a78cfb83608579e5ba59f09d72c2a75" title=" " alt="" coords="341,221,591,261"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="236,195,348,216,347,221,235,200"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#ac8cf8af315a72561886d916eb048ed83" title=" " alt="" coords="303,285,629,325"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="162,195,225,234,304,271,329,279,328,284,302,276,223,239,159,200"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="404,158,401,148,411,138,432,133,466,131,505,133,526,141,524,146,504,139,466,136,433,138,413,143,406,149,409,156"/>
+</map>

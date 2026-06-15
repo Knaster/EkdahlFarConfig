@@ -1,0 +1,9 @@
+<map id="selectSendDestinationAndRatio" name="selectSendDestinationAndRatio">
+<area shape="rect" id="Node000001" title=" " alt="" coords="224,47,417,87"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1midieventhandling_1_1midiEventHandler.html#a76f05e56e163ff2cb389d0a8d11aa409" title=" " alt="" coords="5,5,176,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,47,150,33,151,28,214,42"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1midieventhandling_1_1midiEventHandler.html#ad363457fd096e7ec61bfdee2f3b67845" title=" " alt="" coords="7,55,175,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="210,70,175,70,175,65,210,65"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1midieventhandling_1_1midiEventHandler.html#a869ee53040e80fbe881e26c64325f684" title=" " alt="" coords="9,104,172,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="214,93,151,107,150,101,213,88"/>
+</map>

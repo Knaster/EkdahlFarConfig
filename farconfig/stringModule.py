@@ -71,7 +71,7 @@ class stringModule:
             return self.commandValues[command][index]
         #else:
         except:
-            return -1
+            return None
 
     def setCVCommand(self, channel, command):
         channel = int(channel)

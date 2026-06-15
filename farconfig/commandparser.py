@@ -21,7 +21,7 @@
 
 class CommandItem:
     def startOfQuote(self, inCommandString, index, quote):
-        print("Start of quote " + inCommandString[index:])
+        #print("Start of quote " + inCommandString[index:])
         while index < len(inCommandString):
             if inCommandString[index] == quote:
                 return index
@@ -201,7 +201,10 @@ class derivedCommandItem(CommandItem):
                     sel = portion[i:k]
                     l = sel.find('-')
                     if (l == -1):
-                        thisSel.append(int(sel))
+                        try:
+                            thisSel.append(int(sel))
+                        except:
+                            pass
                     else:
                         m = int(sel[0:l])
                         n = int(sel[l + 1: len(sel)])

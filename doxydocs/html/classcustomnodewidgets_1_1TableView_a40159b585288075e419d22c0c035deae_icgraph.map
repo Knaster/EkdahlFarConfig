@@ -1,0 +1,9 @@
+<map id="customnodewidgets.TableView.type_" name="customnodewidgets.TableView.type_">
+<area shape="rect" id="Node000001" title=" " alt="" coords="312,77,575,102"/>
+<area shape="rect" id="Node000002" href="$classcustomnode_1_1CustomBaseNode.html#a9877c256209bbdbd8e6c40f421a9cda6" title=" " alt="" coords="5,5,264,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="367,76,231,48,232,43,368,71"/>
+<area shape="rect" id="Node000003" href="$classcustomnode_1_1CustomBaseNode.html#a05b9c7f2d01420d5ad8fd7b6a8eb4bed" title=" " alt="" coords="11,69,258,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="298,92,258,92,258,87,298,87"/>
+<area shape="rect" id="Node000004" href="$classcustomnode_1_1CustomBaseNode.html#a343e5bef656db08898c11bb5943363ea" title=" " alt="" coords="11,133,258,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="368,107,232,136,231,131,367,102"/>
+</map>

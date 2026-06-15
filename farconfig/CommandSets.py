@@ -1,9 +1,12 @@
+import datetime
+import time
+
 from commanddefinitions import CommandID, CommandType, defaultCommandType, ModuleCommand, getModuleCommandTypeDesc
 
 from general_helpers import stripLeadingQuotes, messageBox
 
 from PySide6.QtWidgets import QCompleter
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QTimer
 from commandparser import derivedCommandList, derivedCommandItem
 
 class CommandSet:
@@ -94,10 +97,10 @@ class CommandSet:
                 mainWidget.handleHarmonicBaseNote(int(commandItem.argument[0]))
 
             case CommandID.midiConfigurationName:
-                mainWidget.midiEventHandler.handleMIDIConfigurationName(commandItem.argument[0])
+                mainWidget.midiEventHandler.handleMIDIConfigurationName(commandItem.argument[0], str(commandItem.argument[1]), True)
 
             case CommandID.controlBoxDataReturn:
-                mainWidget.handleControlBoxReturnData(commandItem.argument[0], commandItem.argument[1])
+                mainWidget.cvEventHandler.handleControlBoxReturnData(commandItem.argument[0], commandItem.argument[1])
 
             case CommandID.actuatorCount:
                 mainWidget.ui.comboBoxActuatorPreset.clear()
@@ -108,7 +111,7 @@ class CommandSet:
                 if (len(commandItem.argument) < 5):
                     # break
                     raise ("Something is wrong in BAD command")
-                mainWidget.handleActuatorData(commandItem.argument[4], commandItem.argument[0], commandItem.argument[3], commandItem.argument[1], commandItem.argument[2])
+                mainWidget.handleActuatorData(commandItem.argument[0], commandItem.argument[4], commandItem.argument[3], commandItem.argument[1], commandItem.argument[2])
 
             case CommandID.moduleSelect:
                 mainWidget.addModulesIfNeeded(0)
@@ -135,19 +138,19 @@ class CommandSet:
             case CommandID.midiConfigurationData:
                 match commandItem.argument[0]:
                     case "noteon":
-                        mainWidget.setMIDINoteOnCommands(commandItem.argument[1])
+                        mainWidget.midiEventHandler.setMIDINoteOnCommands(commandItem.argument[1])
                     case "noteoff":
-                        mainWidget.setMIDINoteOffCommands(commandItem.argument[1])
+                        mainWidget.midiEventHandler.setMIDINoteOffCommands(commandItem.argument[1])
                     case "cc":
-                        mainWidget.setMIDICCCommands(commandItem.argument[1],commandItem.argument[2])
+                        mainWidget.midiEventHandler.setMIDICCCommands(commandItem.argument[1],commandItem.argument[2])
                     case "pat":
-                        mainWidget.setMIDIPATCommands(commandItem.argument[1])
+                        mainWidget.midiEventHandler.setMIDIPATCommands(commandItem.argument[1])
                     case "pb":
-                        mainWidget.setMIDIPBCommands(commandItem.argument[1])
+                        mainWidget.midiEventHandler.setMIDIPBCommands(commandItem.argument[1])
                     case "cat":
-                        mainWidget.setMIDICATCommands(commandItem.argument[1])
+                        mainWidget.midiEventHandler.setMIDICATCommands(commandItem.argument[1])
                     case "pc":
-                        mainWidget.setMIDIPBCommands(commandItem.argument[1])
+                        mainWidget.midiEventHandler.setMIDIPCCommands(commandItem.argument[1])
 
             case CommandID.midiConfigurationName:
                 mainWidget.midiEventHandler.handleMIDIConfigurationName(commandItem.argument[0], str(commandItem.argument[1]), True)
@@ -156,7 +159,7 @@ class CommandSet:
                 mainWidget.midiEventHandler.handleMIDIReceiveChannel(commandItem.argument[0])
 
             case CommandID.controlBoxControlData:
-                mainWidget.handleControlBoxControlData(commandItem.argument[0], commandItem.argument[1])
+                mainWidget.cvEventHandler.handleControlBoxControlData(commandItem.argument[0], commandItem.argument[1])
 
             case CommandID.bowHarmonic | CommandID.bowHarmonicShift | CommandID.bowHarmonicShift5 | CommandID.bowHarmonicBase | CommandID.bowHarmonicAdd:
                 rqTg = self.getQualifiedShortCommand(CommandID.pidTargetFreq)
@@ -213,6 +216,7 @@ class CommandSet:
     def removeHarmonicSeriesRatio(self, sender, serialHandler, simpleFARHandler, harmonicSeries, ratioIndex):
         qualifiedShort = self.getQualifiedShortCommand(CommandID.harmonicSeriesRemoveRatio, [harmonicSeries])[0]
         serialHandler.write(qualifiedShort + ":"+ str(ratioIndex))
+        serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.harmonicSeriesData)[0] + ":" + str(harmonicSeries))
 
     def setHarmonicSeriesSelect(self, sender, serialHandler, simpleFARHandler, index):
         if (index == -1): index = 0
@@ -274,6 +278,34 @@ class CommandSet:
     def renameActuator(self, sender, serialHandler, simpleFARHandler, index, name):
         qualifiedCommand = self.getQualifiedShortCommand(CommandID.actuatorName, [index])[0]
         serialHandler.write(qualifiedCommand + ":" + name)
+
+    def setMidiConfigurationNoteOnCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationData, [index])[0]
+        serialHandler.write(qualifiedCommand + ":noteon:'" + commands + "'")
+
+    def setMidiConfigurationNoteOffCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationData, [index])[0]
+        serialHandler.write(qualifiedCommand + ":noteoff:'" + commands + "'")
+
+    def setMidiConfigurationPolyAftertouchCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationData, [index])[0]
+        serialHandler.write(qualifiedCommand + ":pat:'" + commands + "'")
+
+    def setMidiConfigurationChannelAftertouchCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationData, [index])[0]
+        serialHandler.write(qualifiedCommand + ":cat:'" + commands + "'")
+
+    def setMidiConfigurationProgramChangeCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationData, [index])[0]
+        serialHandler.write(qualifiedCommand + ":pc:'" + commands + "'")
+
+    def setMidiConfigurationPitchBendCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationData, [index])[0]
+        serialHandler.write(qualifiedCommand + ":pb:'" + commands + "'")
+
+    def setMidiConfigurationContinuousControllerCommands(self, sender, serialHandler, simpleFAR, index, cc, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationData, [index])[0]
+        serialHandler.write(qualifiedCommand + ":cc:" + str(cc) + ":'" + commands + "'")
 
 class CommandSetOG(CommandSet):
     CommandItem = derivedCommandItem
@@ -668,6 +700,8 @@ class CommandSetOG(CommandSet):
         self.saveHarmonicSeries(sender, serialHandler, simpleFARHandler, simpleFARHandler.stringModules[0].getCommandValue(CommandID.harmonicSeriesCount),
                                 name, setToList)
 
+    def clearData(self):
+        pass
 
     def processHelpReturn(self, infoReturn, commandReference):
         commandList = self.CommandList()
@@ -1231,7 +1265,7 @@ class CommandSetModular(CommandSet):
 
         shortCommands = {
             CommandID.midiConfigurationName : "na",
-            CommandID.midiConfigurationData : "da",
+            #CommandID.midiConfigurationData : "da",
             CommandID.midiConfigurationAddCC : "ac",
             CommandID.midiConfigurationRemoveCC : "rmc",
             CommandID.midiConfigurationDefaults : "d",
@@ -1242,12 +1276,12 @@ class CommandSetModular(CommandSet):
             CommandID.midiConfigurationChannelAT: "cat",
             CommandID.midiConfigurationProgramChange: "pc",
             CommandID.midiConfigurationPitchbend: "pb",
-            CommandID.midiConfigurationContinuousController: "cc"
+            CommandID.midiConfigurationContinuousController: "ccd"
         }
 
         longCommands = {
             CommandID.midiConfigurationName : "name",
-            CommandID.midiConfigurationData : "data",
+            #CommandID.midiConfigurationData : "data",
             CommandID.midiConfigurationAddCC : "addcc",
             CommandID.midiConfigurationRemoveCC : "removecc",
             CommandID.midiConfigurationDefaults : "defaults",
@@ -1258,12 +1292,35 @@ class CommandSetModular(CommandSet):
             CommandID.midiConfigurationChannelAT: "channelaftertouch",
             CommandID.midiConfigurationProgramChange: "programchange",
             CommandID.midiConfigurationPitchbend: "pitchbend",
-            CommandID.midiConfigurationContinuousController: "continuouscontroller"
+            CommandID.midiConfigurationContinuousController: "continuouscontrollerdata"
         }
 
         requestData = [
             #CommandID.midiConfigurationName, CommandID.midiConfigurationData, CommandID.midiReceiveChannel
         ]
+
+        requestContinuousData = []
+
+    class MidiCC(CommandSet):
+        longName = "continuouscontroller"
+        shortName = "cc"
+        index = False
+
+        def __init__(self):
+            super().__init__()
+            self.postInit()
+
+        shortCommands = {
+            CommandID.midiConfigurationCCControl : "cl",
+            CommandID.midiConfigurationCCCommands : "cm",
+        }
+
+        longCommands = {
+            CommandID.midiConfigurationCCControl : "control",
+            CommandID.midiConfigurationCCCommands : "command",
+        }
+
+        requestData = [ CommandID.midiConfigurationCCCommands, CommandID.midiConfigurationCCControl ]
 
         requestContinuousData = []
 
@@ -1316,7 +1373,8 @@ class CommandSetModular(CommandSet):
             CommandID.testADCMinMax : "testadcminmax"
         }
 
-        requestData = []
+        requestData = [ CommandID.controlBoxHarmonic, CommandID.controlBoxHarmonicShift, CommandID.controlBoxFinetune, CommandID.controlBoxPressure,
+                        CommandID.controlBoxMute, CommandID.controlBoxHammerScale, CommandID.controlBoxGate, CommandID.controlBoxHammerTrig]
         requestContinuousData = []
 
     class PluginHandler(CommandSet):
@@ -1758,6 +1816,7 @@ class CommandSetModular(CommandSet):
 
         #CommandID.controlBoxControlData, CommandID.controlBoxADCSettings
         #cbd = self.getQualifiedShortCommand(CommandID.controlBoxControlData)[0]
+        '''
         serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxHarmonic)[0])
         serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxHarmonicShift)[0])
         serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxFinetune)[0])
@@ -1766,6 +1825,7 @@ class CommandSetModular(CommandSet):
         serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxGate)[0])
         serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxHammerScale)[0])
         serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.controlBoxHammerTrig)[0])
+        '''
         cba = self.getQualifiedShortCommand(CommandID.controlBoxADCSettings)[0]
         for i in range(0,8):
             serialHandler.write("rqi:" + cba + ":" + str(i))
@@ -1867,12 +1927,13 @@ class CommandSetModular(CommandSet):
                     self.requestData(serialHandler)
                     mainWidget.localNodeHandler.commandSet = self
                     mainWidget.localNodeHandler.addDynamicNodeSet(self.baseModule)
+                    serialHandler.write("nop")
 
             case CommandID.midiConfigurationSelect:
                 index = commandItem.hierarchy[len(commandItem.hierarchy) - 1].selection[0]
                 mainWidget.midiEventHandler.handleMIDIConfigurationSelect(index)
-                qualifiedShort = self.getQualifiedShortCommand(CommandID.midiConfigurationData, [index])[0]
-                serialHandler.write("rqi:" + qualifiedShort)
+                #qualifiedShort = self.getQualifiedShortCommand(CommandID.midiConfigurationData, [index])[0]
+                #serialHandler.write("rqi:" + qualifiedShort)
                 qualifiedShorts = self.getQualifiedShortCommand(CommandID.midiConfigurationName, [index])
                 for qualifiedShort in qualifiedShorts:
                     serialHandler.write("rqi:" + qualifiedShort)
@@ -1882,7 +1943,6 @@ class CommandSetModular(CommandSet):
 
             case CommandID.midiConfigurationNoteOn:
                 mainWidget.midiEventHandler.setMIDINoteOnCommands(stripLeadingQuotes(commandItem.argument[0]))
-
             case CommandID.midiConfigurationNoteOff:
                 mainWidget.midiEventHandler.setMIDINoteOffCommands(stripLeadingQuotes(commandItem.argument[0]))
             case CommandID.midiConfigurationPolyAT:
@@ -1894,47 +1954,16 @@ class CommandSetModular(CommandSet):
             case CommandID.midiConfigurationProgramChange:
                 mainWidget.midiEventHandler.setMIDIPCCommands(stripLeadingQuotes(commandItem.argument[0]))
             case CommandID.midiConfigurationContinuousController:
-                mainWidget.midiEventHandler.setMIDICCCommands(stripLeadingQuotes(commandItem.argument[0]), stripLeadingQuotes(commandItem.argument[1]))
-
-            case CommandID.midiConfigurationData:
-                '''
-                if len(commandItem.selection) == 0:
-                    selection = 0
+                # Second argument may not exist if the CC hasn't been mapped yet
+                if (len(commandItem.argument) == 2):
+                    ccCommands = stripLeadingQuotes(commandItem.argument[1])
                 else:
-                    pass
-
-                i = 0
-                while(i < (len(commandItem.argument))):
-                    if (i >= (len(commandItem.argument) - 1)): arg = ""
-                    else: arg = stripLeadingQuotes(commandItem.argument[i + 1])
-                    match(commandItem.argument[i]):
-                        case "noteon":
-                            mainWidget.midiEventHandler.setMIDINoteOnCommands(arg)
-                        case "noteoff":
-                            mainWidget.midiEventHandler.setMIDINoteOffCommands(arg)
-                        case "cc":
-                            if ((i + 2) >= (len(commandItem.argument))):
-                                return
-                            mainWidget.midiEventHandler.setMIDICCCommands(commandItem.argument[i + 1], stripLeadingQuotes(commandItem.argument[i + 2]))
-                            i += 1
-                        case "pat":
-                            mainWidget.midiEventHandler.setMIDIPATCommands(arg)
-                        case "pb":
-                            mainWidget.midiEventHandler.setMIDIPBCommands(arg)
-                        case "cat":
-                            mainWidget.midiEventHandler.setMIDICATCommands(arg)
-                        case "pc":
-                            mainWidget.midiEventHandler.setMIDIPBCommands(arg)
-                    i += 2
-                mainWidget.midiEventHandler.updateTextForSelectedListItem()
-                '''
+                    ccCommands = ""
+                mainWidget.midiEventHandler.setMIDICCCommands(stripLeadingQuotes(commandItem.argument[0]), ccCommands)
 
             case CommandID.midiConfigurationCount:
                 simpleFARHandler.stringModules[0].setCommandValue(CommandID.midiConfigurationCount, commandItem.argument[0])
                 mainWidget.midiEventHandler.handleMIDIConfigurationCount(commandItem.argument[0])
-                #qualifiedShorts = self.getQualifiedShortCommand(CommandID.midiConfigurationData)
-                #for qualifiedShort in qualifiedShorts:
-                #    serialHandler.write("rqi:" + qualifiedShort)
                 serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationNoteOn)[0])
                 serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationNoteOff)[0])
                 serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationPolyAT)[0])
@@ -2063,8 +2092,44 @@ class CommandSetModular(CommandSet):
 
         if (self.hasHelp) and (mainWidget.localNodeHandler is not None):
             found = found & mainWidget.localNodeHandler.parseCommand(commandItem)
+            if (not self.hasNodes):
+                self.mainWidget = mainWidget
+                if (not self.updateTimer):
+                    self.updateTimer = QTimer(mainWidget)
+                    self.updateTimer.timeout.connect(self.nodeAutoUpdater)
+                    self.updateTimer.start(1000)
+                    print("Starting timer")
+#            if self.hasNodes and (id == CommandID.nop):
+#                    mainWidget.localNodeHandler.postBuildUpdate()
             return found
         return True
+
+    def clearData(self):
+        self.hasHierarchy = False
+        self.hasCommandList = False
+        self.hasNodes = False
+        self.hasHelp = False
+        self.updateStage = 0
+        self.hasNodes = False
+        self.updateTimer = None
+
+    def nodeAutoUpdater(self):
+        match(self.updateStage):
+            case 0:
+                a = time.time()
+                if (a > (self.mainWidget.lastSerialEvent + 1)): # and (not self.hasNodes):
+                    self.mainWidget.localNodeHandler.postBuildUpdate()
+                    self.hasNodes = True
+                    self.updateStage = 1
+            case 1:
+                if (self.hasNodes):
+                    self.updateTimer.stop()
+                    self.mainWidget.localNodeHandler.redraw()
+                    self.mainWidget.localNodeHandler.ga.graph.select_all()
+                    self.mainWidget.localNodeHandler.ga.graph.fit_to_selection()
+                    self.mainWidget.localNodeHandler.ga.graph.clear_selection()
+
+                    self.updateStage = 2
 
     def addHarmonicSeries(self, sender, serialHandler, simpleFARHandler,  harmonicSeries, name, setToList):
         super().addHarmonicSeries(sender, serialHandler, simpleFARHandler, harmonicSeries, name, setToList)
@@ -2084,21 +2149,6 @@ class CommandSetModular(CommandSet):
         hsRq = self.getQualifiedShortCommand(CommandID.harmonicSeriesCount)[0]
         serialHandler.write("rqi:" + hsRq);
 
-    '''
-    def saveActuator(self, sender, serialHandler, simpleFARHandler, newIndex, name, rest = 0, engage = 2000, stall = 60000):
-        count = int(simpleFARHandler.stringModules[0].getCommandValue(CommandID.actuatorCount))
-        if (newIndex >= count):
-            addAc = self.getQualifiedShortCommand(CommandID.actuatorAdd)[0]
-            serialHandler.write(addAc + ":" + name + ":" + rest + ":" + engage + ":" + stall)
-            mh:CommandSetModular.GroupHandler = self.baseModule.getGroups("ah")[0]
-            newItem = derivedCommandItem("actuatorhandler.actuator[" + str(newIndex) + "]")
-            self.baseModule.addModule(newItem)
-            rqAC = self.getQualifiedShortCommand(CommandID.actuatorCount)[0]
-            serialHandler.write("rqi:" + rqAC)
-        else:
-            bowActuatorData = self.getQualifiedShortCommand(CommandID.actuatorData, [newIndex])[0]
-            serialHandler.write(bowActuatorData + ":" + name + ":" + rest + ":" + engage + ":" + stall)
-    '''
     def loadActuator(self, sender, serialHandler, simpleFARHandler, index):
         actuatorLoad = self.getQualifiedShortCommand(CommandID.actuatorSelect, [index])[0]
         serialHandler.write(actuatorLoad + ":" + str(index))  # + ",rqi:" + bowPressureMax + ",rqi:" + bowPressureEngage + ",rqi:" + bowPressureRest)
@@ -2151,6 +2201,38 @@ class CommandSetModular(CommandSet):
         serialHandler.write("rqi:" + rqAC)
         mcRq = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
         serialHandler.write("rqi:" + mcRq);
+
+    def addMidiConfigurationCC(self, sender, serialHandler, simpleFARHandler, cc):
+        setCC = self.getQualifiedShortCommand(CommandID.midiConfigurationAddCC)[0]
+        serialHandler.write(setCC + ":" + str(cc) + ":''")
+
+    def setMidiConfigurationNoteOnCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationNoteOn, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationNoteOffCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationNoteOff, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationPolyAftertouchCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationPolyAT, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationChannelAftertouchCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationChannelAT, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationProgramChangeCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationProgramChange, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationPitchBendCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationPitchbend, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationContinuousControllerCommands(self, sender, serialHandler, simpleFAR, index, cc, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationContinuousController, [index])[0]
+        serialHandler.write(qualifiedCommand + ":" + str(cc) + ":'" + commands + "'")
 
     def buildHelp(self, commandReference):
         self.processModuleForHelp(self.baseModule, commandReference)
@@ -2245,29 +2327,12 @@ class CommandSetModular(CommandSet):
             #self.baseModule.commands.append(mcd)
             if mcd is not None:
                 self.baseModule.commands[id] = mcd
-        '''        
-        match len(infoReturn.argument):
-            case 3:
-                description = infoReturn.argument[2]
-                if (parent == "[base]"): parent = ""
-                shortHand = shortCommand.hierarchy[len(shortCommand.hierarchy) - 1].name
-            case 6:
-                description = (infoReturn.argument[5] + "\n\nShorthand: " + shortCommand.hierarchy[len(shortCommand.hierarchy) - 1].name + "\nType: " +
-                               str(infoReturn.argument[2]) + "\nArguments: " + infoReturn.argument[3] + "\nHidden: " + yesno[int(infoReturn.argument[4])])
-                shortHand = shortCommand.hierarchy[len(shortCommand.hierarchy) - 1].name
-            case _:
-                description = "error in help"
-                shortHand = "-"
-        if (command == ""):
-            command = "[select]"
-            shortHand = "[select]"
-        commandReference.addCommandB(command, parent, shortHand, description)
-        '''
 
     def __init__(self):
         super().__init__()
         self.hasHierarchy = False
         self.hasHelp = False
+        self.hasNodes = False
         self.baseModule = self.GroupHandler(self, None, None)
         self.CommandItem = derivedCommandItem
         self.CommandList = derivedCommandList
@@ -2276,8 +2341,11 @@ class CommandSetModular(CommandSet):
         self.toVer = 99999999999999
 
         self.commands = [self.Base, self.Mute, self.Solenoid, self.BowingWheel, self.DCMotor, self.PID, self.BowPressure, self.BowActuatorHandler,
-                         self.Actuator, self.HarmonicSeriesHandler, self.HarmonicSeries, self.MidiConfigurationHandler, self.MidiConfiguration, self.ControlBox,
-                         self.PluginHandler, self.PluginMultiple, self.PluginLFO, self.PluginMap, self.PluginAHDSR]
+                         self.Actuator, self.HarmonicSeriesHandler, self.HarmonicSeries, self.MidiConfigurationHandler, self.MidiConfiguration, self.MidiCC,
+                         self.ControlBox, self.PluginHandler, self.PluginMultiple, self.PluginLFO, self.PluginMap, self.PluginAHDSR]
+
+        self.updateTimer = None
+        self.updateStage = 0
 
 class CommandSets:
     currentCommandSet:CommandSet = CommandSetOG
@@ -2320,7 +2388,7 @@ class CommandSets:
         return self.currentCommandSet.getQualifiedShortCommand(commandID, selectionIndex, stripIndex)
 
     def processMessages(self, commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler):
-        return self.currentCommandSet.processMessages(commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler)
+            return self.currentCommandSet.processMessages(commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler)
 
     def setMidiConfigurationSelect(self, sender, serialHandler, simpleFARHandler, index):
         return self.currentCommandSet.setMidiConfigurationSelect(sender, serialHandler, simpleFARHandler, index)
@@ -2384,3 +2452,30 @@ class CommandSets:
 
     def removeMidiConfigurationCC(self, sender, serialHandler, simpleFARHandler, cc):
         self.currentCommandSet.removeMidiConfigurationCC(sender, serialHandler, simpleFARHandler, cc)
+
+    def setMidiConfigurationNoteOnCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        self.currentCommandSet.setMidiConfigurationNoteOnCommands(sender, serialHandler, simpleFAR, index, commands)
+
+    def setMidiConfigurationNoteOffCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        self.currentCommandSet.setMidiConfigurationNoteOffCommands(sender, serialHandler, simpleFAR, index, commands)
+
+    def setMidiConfigurationPolyAftertouchCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        self.currentCommandSet.setMidiConfigurationPolyAftertouchCommands(sender, serialHandler, simpleFAR, index, commands)
+
+    def setMidiConfigurationChannelAftertouchCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        self.currentCommandSet.setMidiConfigurationChannelAftertouchCommands(sender, serialHandler, simpleFAR, index, commands)
+
+    def setMidiConfigurationProgramChangeCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        self.currentCommandSet.setMidiConfigurationProgramChangeCommands(sender, serialHandler, simpleFAR, index, commands)
+
+    def setMidiConfigurationPitchBendCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        self.currentCommandSet.setMidiConfigurationPitchBendCommands(sender, serialHandler, simpleFAR, index, commands)
+
+    def setMidiConfigurationContinuousControllerCommands(self, sender, serialHandler, simpleFAR, index, cc, commands):
+        self.currentCommandSet.setMidiConfigurationContinuousControllerCommands(sender, serialHandler, simpleFAR, index, cc, commands)
+
+    def processHelpReturn(self, infoReturn, commandReference):
+        self.currentCommandSet.processHelpReturn(infoReturn, commandReference)
+
+    def clearData(self):
+        self.currentCommandSet.clearData()

@@ -1,0 +1,6 @@
+<map id="stop" name="stop">
+<area shape="rect" id="Node000001" title=" " alt="" coords="184,29,235,55"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="233,18,226,11,209,8,195,10,188,15,186,20,190,28,186,30,181,21,183,11,193,5,209,3,229,6,237,15"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1waitdialog_1_1ProgressDialog.html#a0c7f1bed7e5eaadc244fae5ba13cd8be" title=" " alt="" coords="5,29,136,55"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="170,45,136,45,136,39,170,39"/>
+</map>

@@ -36,20 +36,26 @@ class Plugin_Widget(QWidget):
 
     def updateValueAndLabel(self, commandID, valueWidget, label = None, log = False, logMax = 65535):
         value = self.pluginHandler.simpleFARHandler.stringModules[0].getCommandValue(commandID, self.index)
+        if (value == None):
+            pass
         if isinstance(valueWidget, QLineEdit):
+            if (value == None): value = "n/a"
             valueWidget.setText(str(value))
         elif isinstance(valueWidget, QCheckBox):
+            if (value == None): value = False
             if (value):
                 valueWidget.setChecked(True)
             else:
                 valueWidget.setChecked(False)
         else:
+            if (value == None): value = 0
             if (log):
                 valueWidget.setValue(self.pluginHandler.mainWidget.logModuleToGUI(value, logMax))
             else:
                 valueWidget.setValue(value)
 
         if (label is not None):
+            if (value == None): value = "n/a"
             label.setText(str(value))
 
     def processMessages(self, commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler):
@@ -78,9 +84,13 @@ class Plugin_NumberMap(Plugin_Widget):
         self.updatingFromModule = True
         self.updateValueAndLabel(CommandID.pluginMapScale, self.ui.sliderScale, None)
         self.ui.sliderRange = self.range
-        name = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginMapName)
-        if (name != -1):
-            self.ui.mainGroupBox.setTitle("Number map [" + str(self.index) + "] - " + name)
+        name = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginMapName, self.index)
+#        if (name != -1):
+#            self.ui.mainGroupBox.setTitle("Number map [" + str(self.index) + "] - " + name)
+        title = "Number map [" + str(self.index) + "]"
+        if (name is not None): title += " - " + name
+        self.ui.mainGroupBox.setTitle(title)
+
         self.updatingFromModule = False
 
     def addMap(self):
@@ -279,9 +289,10 @@ class Plugin_AHDSR(Plugin_Widget):
         self.updateValueAndLabel(CommandID.pluginAHDSRInvert, self.ui.checkBoxInverted, None)
         self.updateValueAndLabel(CommandID.pluginAHDSRTarget, self.ui.textEditTarget, None)
         self.updateValueAndLabel(CommandID.pluginAHDSRReleaseTarget, self.ui.textEditReleaseTarget, None)
-        name = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginAHDSRName)
-        if (name != -1):
-            self.ui.mainGroupBox.setTitle("AHDSR [" + str(self.index) + "] - " + name)
+        name = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginAHDSRName, self.index)
+        title = "AHDSR [" + str(self.index) + "]"
+        if (name is not None): title += " - " + name
+        self.ui.mainGroupBox.setTitle(title)
 
         self.updatingFromModule = False
 
@@ -322,13 +333,18 @@ class Plugin_LFO(Plugin_Widget):
         self.updateValueAndLabel(CommandID.pluginLFOAmpltiude, self.ui.dialAmplitude, self.ui.labelAmplitudeValue, True, 65535)
         self.updateValueAndLabel(CommandID.pluginLFOFrequency, self.ui.dialFrequency, self.ui.labelFrequencyValue, True, 20)
         self.updateValueAndLabel(CommandID.pluginLFOTarget, self.ui.textEditTarget, None)
+        self.updateValueAndLabel(CommandID.pluginLFOEnable, self.ui.checkBoxEnabled, None)
+        self.updateValueAndLabel(CommandID.pluginLFOBipolar, self.ui.checkBoxBipolar, None)
 
         a = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginLFOWaveform, self.index)
-        if (a != -1): self.ui.sliderWaveform.setValue(self.wave[a])
+        if (a is not None): self.ui.sliderWaveform.setValue(self.wave[a])
 
-        name = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginLFOName)
-        if (name != -1):
-            self.ui.mainGroupBox.setTitle("LFO [" + str(self.index) + "] - " + name)
+        name = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginLFOName, self.index)
+#        if (name != -1):
+#            self.ui.mainGroupBox.setTitle("LFO [" + str(self.index) + "] - " + name)
+        title = "LFO [" + str(self.index) + "]"
+        if (name is not None): title += " - " + name
+        self.ui.mainGroupBox.setTitle(title)
 
         self.updatingFromModule = False
 
@@ -354,6 +370,12 @@ class Plugin_Multiple(Plugin_Widget):
     def updateWidget(self, simpleFARHandler):
         self.updatingFromModule = True
         self.updateValueAndLabel(CommandID.pluginMultTarget, self.ui.textEditTarget, None)
+
+        name = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginMultName, self.index)
+        title = "Multiple [" + str(self.index) + "]"
+        if (name is not None): title += " - " + name
+        self.ui.mainGroupBox.setTitle(title)
+
         self.updatingFromModule = False
 
     def removeRatio(self):
@@ -448,15 +470,16 @@ class PluginHandler():
                 self.serialHandler.write("rqi:" + rq)
 
     def buildPluginList(self):
+        self.clearAllPlugins()
         pluginList = self.mainWidget.ui.comboBoxPlugins
-        pluginList.clear()
+#        pluginList.clear()
         ph = self.commandSet.baseModule.getGroups("pluginhandler")[0]
         for pluginGroup in ph.children:
             pluginGroup:CommandSets.CommandSetModular.Group = pluginGroup
             pluginList.addItem(pluginGroup.longName + " - Add new")
 
-        for i in reversed(range(self.mainWidget.ui.scrollAreaContentsPlugins.layout().count())):
-            self.mainWidget.ui.scrollAreaContentsPlugins.layout().itemAt(i).widget().setParent(None)
+#        for i in reversed(range(self.mainWidget.ui.scrollAreaContentsPlugins.layout().count())):
+#            self.mainWidget.ui.scrollAreaContentsPlugins.layout().itemAt(i).widget().setParent(None)
 
         for pluginGroup in ph.children:
             if (not pluginGroup.isEmpty):
@@ -464,6 +487,11 @@ class PluginHandler():
                     self.addPluginInternal(pluginGroup.longName, pluginGroup.index)
                     i += 1
         pass
+
+    def clearAllPlugins(self):
+        self.mainWidget.ui.comboBoxPlugins.clear()
+        for i in reversed(range(self.mainWidget.ui.scrollAreaContentsPlugins.layout().count())):
+            self.mainWidget.ui.scrollAreaContentsPlugins.layout().itemAt(i).widget().setParent(None)
 
     def updateWidgets(self, simpleFARHandler):
         for plugin in self.plugins:

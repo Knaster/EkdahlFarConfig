@@ -1,0 +1,9 @@
+<map id="farconfig.farconfig.FarConfig.timerUpdateControl" name="farconfig.farconfig.FarConfig.timerUpdateControl">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,248,45"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#a615d576b73588553c924d7d7cca4ce0b" title=" " alt="" coords="296,5,533,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,23,282,23,282,28,248,28"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#ab8f459ab011195ba77703e9a3931bf32" title=" " alt="" coords="581,5,835,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="533,23,568,23,568,28,533,28"/>
+<area shape="rect" id="Node000004" href="$namespacefarconfig_1_1farconfig.html#a355016178e4769218c1d295522f24fe9" title=" " alt="" coords="883,5,1080,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="835,23,869,23,869,28,835,28"/>
+</map>

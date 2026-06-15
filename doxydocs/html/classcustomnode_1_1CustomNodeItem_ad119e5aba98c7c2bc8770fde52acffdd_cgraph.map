@@ -1,0 +1,5 @@
+<map id="_align_ports_horizontal" name="_align_ports_horizontal">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,179,31"/>
+<area shape="rect" id="Node000002" href="$classcustomnode_1_1CustomNodeItem.html#a5ee1c69c4d8d0cff9a82eee95848d1e0" title="Rearrange the y&#45;position of the given ports depending on the nodes connected to it in order to avoid ..." alt="" coords="227,5,371,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,15,213,15,213,21,179,21"/>
+</map>

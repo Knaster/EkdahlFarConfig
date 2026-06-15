@@ -6,8 +6,9 @@ import equationParsingHelpers
 import math
 import averager
 
-class CVEventHandler():
+class CVEventHandler(QWidget):
     def __init__(self, mainClass, serialHandler, commandSet, simpleFARHandler):
+        super().__init__()
         self.mainClass = mainClass
         self.serialHandler = serialHandler
         self.commandSet = commandSet
@@ -116,9 +117,9 @@ class CVEventHandler():
 
                         cvZero = result["zeroPosition"]
 
-                        self.mainClass.dialCVHarmonicScale.setValue(cvScale)   # * 1000
-                        self.mainClass.widgetCVHarmonicNoteOffset.setValue(cvOffset)
-                        self.mainClass.widgetCVHarmonicZero.setValue(cvZero)
+                        self.mainClass.ui.dialCVHarmonicScale.setValue(cvScale)   # * 1000
+                        self.mainClass.ui.widgetCVHarmonicNoteOffset.setValue(cvOffset)
+                        self.mainClass.ui.widgetCVHarmonicZero.setValue(cvZero)
                     case 1:
                         cmd = cl.getCommandAttribute(self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicShift5)[0], 0)
                         if cmd == "":
@@ -130,8 +131,8 @@ class CVEventHandler():
                             break
                         cvScale = 2.425 / (1 / result["coefficient"])
                         cvZero = (32767) + result["zeroPosition"]
-                        self.mainClass.dialCVHarmonicShiftScale.setValue(cvScale)  # * 1000
-                        self.mainClass.dialCVHarmonicShiftZero.setValue(cvZero)
+                        self.mainClass.ui.dialCVHarmonicShiftScale.setValue(cvScale)  # * 1000
+                        self.mainClass.ui.dialCVHarmonicShiftZero.setValue(cvZero)
                     case 2:
                         cmd = cl.getCommandAttribute(self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicShift)[0], 0)
                         if cmd == "":
@@ -143,7 +144,7 @@ class CVEventHandler():
                         except:
                             messageBox("Error", "Error in equation parser with string " + cmd)
                             break
-                        self.mainClass.dialCVFineTuneCenter.setValue(32767 + result["zeroPosition"])
+                        self.mainClass.ui.dialCVFineTuneCenter.setValue(32767 + result["zeroPosition"])
                         pass
                     case 5:
                         # bmr:1,bpid:1,bcsm:0,bpe:bool(value-2000),bpr:ibool(value-2000),bph:ibool(value-2000)
@@ -184,22 +185,22 @@ class CVEventHandler():
         match widget.CVcontrol:
             case 0:
                 cmd = cl.buildCommandString({self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicAdd)[0]})
-                cvScale = str(1327.716667 / (self.mainClass.dialCVHarmonicScale.value()))  #  / 1000
-                cvOffset = str(self.mainClass.widgetCVHarmonicNoteOffset.value()) # + self.mainClass.dialCVHarmonicNoteOffset.value() * 1327.716667)
-                cvZero = self.mainClass.widgetCVHarmonicZero.value()
+                cvScale = str(1327.716667 / (self.mainClass.ui.dialCVHarmonicScale.value()))  #  / 1000
+                cvOffset = str(self.mainClass.ui.widgetCVHarmonicNoteOffset.value()) # + self.mainClass.dialCVHarmonicNoteOffset.value() * 1327.716667)
+                cvZero = self.mainClass.ui.widgetCVHarmonicZero.value()
                 cmd += self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicAdd)[0] + ":(value"
                 if int(cvZero) >= 0:
                     cmd += "+"
                 cmd += str(cvZero) + ")/" + str(cvScale) + "+(" + str(cvOffset) + ")"
             case 1:
                 cmd = cl.buildCommandString({self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicShift5)[0]})
-                cvScale = str(2.425 / (self.mainClass.dialCVHarmonicShiftScale.value()))    #  / 1000
-                cvOffset = -(32767 - self.mainClass.dialCVHarmonicShiftZero.value())
+                cvScale = str(2.425 / (self.mainClass.ui.dialCVHarmonicShiftScale.value()))    #  / 1000
+                cvOffset = -(32767 - self.mainClass.ui.dialCVHarmonicShiftZero.value())
                 cmd += self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicShift5)[0] + ":\"deadband(value" + str(cvOffset) + ", 30)/" + str(cvScale) + "\""
             case 2:
                 cmd = cl.buildCommandString({self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicShift)[0]})
                 cmd += (self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicShift)[0]+
-                        ":\"deadband(value-" + str(32767 - self.mainClass.dialCVFineTuneCenter.value()) + ", 400)*0.49064\"")
+                        ":\"deadband(value-" + str(32767 - self.mainClass.ui.dialCVFineTuneCenter.value()) + ", 400)*0.49064\"")
             case 5:
 
                 cmd = cl.buildCommandString({ self.commandSet.getQualifiedShortCommand(CommandID.motorRun)[0],
@@ -264,7 +265,8 @@ class CVEventHandler():
             widget.CVcontrol = CVcontrol
             #widget.valueChanged.connect(self.widgetCVMappingCallback)
             if isinstance(widget, QDial):
-                self.mainClass.assignMouseReleaseEvent(widget, self.widgetCVMappingCallback)
+                #self.mainClass.assignMouseReleaseEvent(widget, self.widgetCVMappingCallback)
+                widget.sliderReleased.connect(self.widgetCVMappingCallback)
             if isinstance(widget, QDoubleSpinBox):
                 widget.valueChanged.connect(self.widgetCVMappingCallback)
             if isinstance(widget, QCheckBox):

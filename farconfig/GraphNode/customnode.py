@@ -145,37 +145,6 @@ class CustomNodeItem(NodeItem):
         height *= 1.05
         return width, height
 
-    def nopecalc_size(self, add_w=0.0, add_h=0.0):
-        """
-        Calculates the minimum node size.
-
-        Args:
-            add_w (float): additional width.
-            add_h (float): additional height.
-
-        Returns:
-            tuple(float, float): width, height.
-        """
-        if self.layout_direction is LayoutDirectionEnum.HORIZONTAL.value:
-            width, height = self._calc_size_horizontal()
-        elif self.layout_direction is LayoutDirectionEnum.VERTICAL.value:
-            width, height = self._calc_size_vertical()
-        else:
-            raise RuntimeError('Node graph layout direction not valid!')
-
-        # additional width, height.
-        width += add_w
-        height += add_h
-        return width, height
-
-    def nope_set_base_size(self, add_w=0.0, add_h=0.0):
-        self._width, self._height = self.calc_size(add_w, add_h)
-        if self._width < NodeEnum.WIDTH.value:
-            self._width = NodeEnum.WIDTH.value
-        if self._height < NodeEnum.HEIGHT.value:
-            self._height = NodeEnum.HEIGHT.value
-        pass
-
     def _align_widgets_horizontal(self, v_offset):
         if not self._widgets:
             return
@@ -194,46 +163,81 @@ class CustomNodeItem(NodeItem):
             widget.setPos(x, y)
             y += widget_rect.height()
 
-    def nope_align_ports_horizontal(self, v_offset):
+    ## Rearrange the y-position of the given ports depending on the nodes connected to it in order to avoid as many connection crossings as possible
+    def sortByConnections(self, ports):
+        sorted = []
+        for port in ports:
+            if (len(port.connected_ports) == 1):
+                py = port.connected_ports[0].node.pos().y() + port.connected_ports[0].pos().y()
+            elif (len(port.connected_ports) > 1):
+                yavg = 0; yiters = 0;
+                for conn in port.connected_ports:
+                    yiters += 1
+                    yavg += conn.node.pos().y() + conn.pos().y()
+                py = int(yavg / yiters)
+                pass
+            else: py = -9999
+            insertPos = 0
+            if (len(sorted) == 0) or (py == -9999): insertPos = 0
+            else:
+                for s in sorted:
+                    if (py < s[0]): break
+                    insertPos += 1
+            sorted.insert(insertPos, [py, port])
+
+        i = 0
+        for port in sorted:
+            ports[i] = port[1]
+            i += 1
+
+        if (len(sorted) > 2):
+            pass
+
+        return ports
+
+    def _align_ports_horizontal(self, v_offset):
+        sortedInputs = self.sortByConnections(self.inputs)
+        sortedOutputs = self.sortByConnections(self.outputs)
+
         width = self._width
         txt_offset = PortEnum.CLICK_FALLOFF.value - 2
         spacing = 1
 
-        inputs = [p for p in self.inputs if p.isVisible()]
+        # adjust input position
+        #inputs = [p for p in self.inputs if p.isVisible()]
+        inputs = [p for p in sortedInputs if p.isVisible()]
         if inputs:
             port_width = inputs[0].boundingRect().width()
+            port_height = inputs[0].boundingRect().height()
             port_x = (port_width / 2) * -1
             port_y = v_offset
+            for port in inputs:
+                port.setPos(port_x, port_y)
+                port_y += port_height + spacing
+        # adjust input text position
+        for port, text in self._input_items.items():
+            if port.isVisible():
+                txt_x = port.boundingRect().width() / 2 - txt_offset
+                text.setPos(txt_x, port.y() - 1.5)
 
-            for port, text in self._input_items.items():
-                if port.isVisible():
-                    textHeight = text.boundingRect().height()
-
-                    txt_x = port.boundingRect().width() / 2 - txt_offset
-                    text.setPos(txt_x, port_y - 1.5)
-
-                    port.setPos(port_x, port_y)
-                    port_y += textHeight + spacing
-
-        outputs = [p for p in self.outputs if p.isVisible()]
-
+        # adjust output position
+        #outputs = [p for p in self.outputs if p.isVisible()]
+        outputs = [p for p in sortedOutputs if p.isVisible()]
         if outputs:
             port_width = outputs[0].boundingRect().width()
+            port_height = outputs[0].boundingRect().height()
             port_x = width - (port_width / 2)
             port_y = v_offset
+            for port in outputs:
+                port.setPos(port_x, port_y)
+                port_y += port_height + spacing
+        # adjust output text position
+        for port, text in self._output_items.items():
+            if port.isVisible():
+                txt_width = text.boundingRect().width() - txt_offset
+                txt_x = port.x() - txt_width
+                text.setPos(txt_x, port.y() - 1.5)
 
-            for port, text in self._output_items.items():
-                if port.isVisible():
-                    textHeight = text.boundingRect().height()
-
-                    txt_width = text.boundingRect().width() - txt_offset
-                    #txt_x = port.x() - txt_width
-                    txt_x = port_x - txt_width
-
-                    text.setPos(txt_x, port_y - 1.5)
-
-                    port.setPos(port_x, port_y)
-                    port_y += textHeight + spacing
 
     def draw_node(self):
         height = self._text_item.boundingRect().height() + 4.0
@@ -261,7 +265,8 @@ class CustomNodeItem(NodeItem):
         # align icon
         self.align_icon(h_offset=2.0, v_offset=1.0)
         # arrange input and output ports.
-        self.align_ports(v_offset=height + self.widgetHeights + 5)
+        #self.align_ports(v_offset=height + self.widgetHeights + 5)
+        self._align_ports_horizontal(v_offset=height + self.widgetHeights + 5)
         # arrange node widgets
         self.align_widgets(v_offset=height - 5)
 
@@ -273,12 +278,32 @@ class CustomNodeItem(NodeItem):
     def show(self):
         self.setVisible(True)
 
+    def mouseReleaseEvent(self, event):
+        super().mouseReleaseEvent(event)
+        for port in self.outputs:
+            for conn in port.connected_ports:
+                conn.node.draw_node()
+        for port in self.inputs:
+            for conn in port.connected_ports:
+                conn.node.draw_node()
+
+        #self.draw_node()
+        #self.viewer().update()
+        #self.update_model()
+        #self._view.draw_node()
+
+        pass
+
 class CustomBaseNode(BaseNode):
     def __init__(self, qgraphics_item=None):
         self.NODE_NAME_SHORT = ""
         super(CustomBaseNode, self).__init__(qgraphics_item or CustomNodeItem)
-        #self.modifiers = 0
+        # Commands associated with node
         self.command = []
+        # Name commands associated with node
+        self.nameCommand = None
+        # Index of associated module
+        self.moduleIndex = 0
         self.widgetStyle = "color: #000000; background-color: #f0f0f0; width:250px; max-width:400px;"
         self.equationWidth = 250
         self.locked = False
@@ -561,8 +586,9 @@ class CustomBaseNode(BaseNode):
         #if (not self.simpleNodeName):
         #    updated = updated or self.buildNodeName()
         #else:
-        #    self.setSimpleNodeName()
-        updated = updated or self.setNodeNamesToRootAndEnd()
+        #updated = updated or self.setSimpleNodeName()
+
+        #updated = updated or self.setNodeNamesToRootAndEnd()
 
         if updated:
             self.update_model()

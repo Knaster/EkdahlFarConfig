@@ -11,6 +11,19 @@ class NodeOrganizer():
         self.hideAdvanced = False
         self.baseBlock = BaseBlock()
         self.blockGrid = None
+        self.maxDepth = 0
+        self.rankingList = []
+
+    def clearData(self):
+        self.rankingList = None
+        self.baseBlock.childBlocks.clear()
+        self.baseBlock.childNodes.clear()
+        self.baseBlock.parentNode.clear()
+        self.baseBlock.maxRank = 0
+        self.blockGrid = None
+        self.maxDepth = 0
+        if (self.rankingList is not None):
+            self.rankingList.clear()
 
     def rankHorizontalDepth(self):
         roots = []

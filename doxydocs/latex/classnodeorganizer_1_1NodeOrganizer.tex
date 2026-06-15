@@ -1,0 +1,421 @@
+\doxysection{Node\+Organizer Class Reference}
+\hypertarget{classnodeorganizer_1_1NodeOrganizer}{}\label{classnodeorganizer_1_1NodeOrganizer}\index{NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_aff87e12167d103e0cbc503d2fc8462ec}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a8ca49c796430e66a10450bfc2d218c81}{graph}})
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a39a68343d80ee0e614c0ff533843b523}{clear\+Data}} (self)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a54264e1a56bc71aed3a95814705e1e8b}{rank\+Horizontal\+Depth}} (self)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a062e4aacc020be04e506eb0696920ec3}{rank\+Horizontal\+Depth\+Iter}} (self, node, depth\+Level, max\+Level, max\+Children, source\+Object)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_aea3fe97889adc78dd3d1c1a340abf07e}{hide\+Objects\+With\+All\+Implicit\+Children}} (self)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_ad2fffd0fd552ce4889f6514b97f2857b}{build\+Horizontal\+Tree}} (self, horizontal\+Spacing=500, vertical\+Spacing=200)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a9325eedecb7844b0ce0825efba7e0d77}{draw\+From\+Blocks}} (self, horizontal\+Spacing=500, vertical\+Spacing=200)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_afc392ba7624c515e020619f77e9a3ac4}{draw\+From\+Ranking\+List}} (self, \mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a2c5f0c5a2d5cc26f00eae831c9bc0bec}{ranking\+List}}=None, horizontal\+Spacing=500, vertical\+Spacing=200)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_ad1d2bb002698cd4e4938d21a0b6d15b4}{rank\+Vertical\+Preference\+Until\+Done}} (self, max\+Iterations=20)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a5cf73a2784bf3b522a32e7bad4a3695b}{rank\+Vertical\+Preference}} (self, \mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a2c5f0c5a2d5cc26f00eae831c9bc0bec}{ranking\+List}}=None, no\+Inserts=True, exploded=False)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a18faa516783640cd5fc7e25df7e42fa0}{explode\+Ranks}} (self, \mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a2c5f0c5a2d5cc26f00eae831c9bc0bec}{ranking\+List}})
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a99000b87d8321dc533e1f3da34352889}{find\+Vertical\+Position\+Of\+Object}} (self, node, \mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a2c5f0c5a2d5cc26f00eae831c9bc0bec}{ranking\+List}})
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_af8791dd997c8608e08cd64fe8027e8bf}{granulate\+By\+Port\+Position}} (self, node, port, direction)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_ac2faef69a8bb5f6f6b08b6df5b64cd5f}{calculate\+PreferredY}} (self, depth, rank, \mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a2c5f0c5a2d5cc26f00eae831c9bc0bec}{ranking\+List}})
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a9e7c8220494c63b877be6c69ce8c824d}{swap\+Positions}} (self, rank, preferredY, pos, destination\+Pos)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a4b68c49aad6c006aedde3f494ee67493}{insert\+Blank\+Rank}} (self, \mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a2c5f0c5a2d5cc26f00eae831c9bc0bec}{ranking\+List}}, preferredY)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_ab022fef1d5fe7da857c8568754f1f520}{insert\+If\+Has\+Opening\+Or\+Is\+Short}} (self, destination\+Pos, current\+Pos, rank, preferredY)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a582535a26d7299f9606256a4460d2881}{find\+Closest\+Empty\+Neighbor}} (self, space, rank)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a8877893c64776efc984764bbd800cf54}{calculate\+Deviation\+From\+Space}} (self, item\+Pos, space, preferredY)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_ad547ecd62dd883f11120932218e0b82a}{rank\+Vertical\+Preference\+Iter}} (self, depth, \mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a2c5f0c5a2d5cc26f00eae831c9bc0bec}{ranking\+List}}, max\+Iterations=20, no\+Inserts=True)
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a96b3196c48660eddd53d11ef8ca5a745}{rank\+Vertical\+By\+Connections}} (self, depth, \mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a2c5f0c5a2d5cc26f00eae831c9bc0bec}{ranking\+List}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a8ca49c796430e66a10450bfc2d218c81}{graph}}
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a2c5f0c5a2d5cc26f00eae831c9bc0bec}{ranking\+List}}
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_adabfb66304f64d1a88fe6dfec0e7c184}{hide\+Implicits}}
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a879cd4abd6ec9f9dc2757dd82abab2b1}{hide\+Advanced}}
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a991d3cc1ab3a6a011e570cc0011d853e}{base\+Block}}
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a704afa05c22531ddb43dec22719740c0}{block\+Grid}}
+\item 
+\mbox{\hyperlink{classnodeorganizer_1_1NodeOrganizer_a7228dabd4235761cf24edaa63c29ac5e}{max\+Depth}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_aff87e12167d103e0cbc503d2fc8462ec}\label{classnodeorganizer_1_1NodeOrganizer_aff87e12167d103e0cbc503d2fc8462ec} 
+\index{NodeOrganizer@{NodeOrganizer}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{graph }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_ad2fffd0fd552ce4889f6514b97f2857b}\label{classnodeorganizer_1_1NodeOrganizer_ad2fffd0fd552ce4889f6514b97f2857b} 
+\index{NodeOrganizer@{NodeOrganizer}!buildHorizontalTree@{buildHorizontalTree}}
+\index{buildHorizontalTree@{buildHorizontalTree}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{buildHorizontalTree()}{buildHorizontalTree()}}
+{\footnotesize\ttfamily build\+Horizontal\+Tree (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{horizontal\+Spacing = {\ttfamily 500},  }\item[{}]{vertical\+Spacing = {\ttfamily 200} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_ad2fffd0fd552ce4889f6514b97f2857b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a8877893c64776efc984764bbd800cf54}\label{classnodeorganizer_1_1NodeOrganizer_a8877893c64776efc984764bbd800cf54} 
+\index{NodeOrganizer@{NodeOrganizer}!calculateDeviationFromSpace@{calculateDeviationFromSpace}}
+\index{calculateDeviationFromSpace@{calculateDeviationFromSpace}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{calculateDeviationFromSpace()}{calculateDeviationFromSpace()}}
+{\footnotesize\ttfamily calculate\+Deviation\+From\+Space (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{item\+Pos,  }\item[{}]{space,  }\item[{}]{preferredY }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_a8877893c64776efc984764bbd800cf54_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_ac2faef69a8bb5f6f6b08b6df5b64cd5f}\label{classnodeorganizer_1_1NodeOrganizer_ac2faef69a8bb5f6f6b08b6df5b64cd5f} 
+\index{NodeOrganizer@{NodeOrganizer}!calculatePreferredY@{calculatePreferredY}}
+\index{calculatePreferredY@{calculatePreferredY}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{calculatePreferredY()}{calculatePreferredY()}}
+{\footnotesize\ttfamily calculate\+PreferredY (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{depth,  }\item[{}]{rank,  }\item[{}]{ranking\+List }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_ac2faef69a8bb5f6f6b08b6df5b64cd5f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_ac2faef69a8bb5f6f6b08b6df5b64cd5f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a39a68343d80ee0e614c0ff533843b523}\label{classnodeorganizer_1_1NodeOrganizer_a39a68343d80ee0e614c0ff533843b523} 
+\index{NodeOrganizer@{NodeOrganizer}!clearData@{clearData}}
+\index{clearData@{clearData}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{clearData()}{clearData()}}
+{\footnotesize\ttfamily clear\+Data (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a9325eedecb7844b0ce0825efba7e0d77}\label{classnodeorganizer_1_1NodeOrganizer_a9325eedecb7844b0ce0825efba7e0d77} 
+\index{NodeOrganizer@{NodeOrganizer}!drawFromBlocks@{drawFromBlocks}}
+\index{drawFromBlocks@{drawFromBlocks}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{drawFromBlocks()}{drawFromBlocks()}}
+{\footnotesize\ttfamily draw\+From\+Blocks (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{horizontal\+Spacing = {\ttfamily 500},  }\item[{}]{vertical\+Spacing = {\ttfamily 200} }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{classnodeorganizer_1_1NodeOrganizer_a9325eedecb7844b0ce0825efba7e0d77_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_afc392ba7624c515e020619f77e9a3ac4}\label{classnodeorganizer_1_1NodeOrganizer_afc392ba7624c515e020619f77e9a3ac4} 
+\index{NodeOrganizer@{NodeOrganizer}!drawFromRankingList@{drawFromRankingList}}
+\index{drawFromRankingList@{drawFromRankingList}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{drawFromRankingList()}{drawFromRankingList()}}
+{\footnotesize\ttfamily draw\+From\+Ranking\+List (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{ranking\+List = {\ttfamily None},  }\item[{}]{horizontal\+Spacing = {\ttfamily 500},  }\item[{}]{vertical\+Spacing = {\ttfamily 200} }\end{DoxyParamCaption})}
+
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a18faa516783640cd5fc7e25df7e42fa0}\label{classnodeorganizer_1_1NodeOrganizer_a18faa516783640cd5fc7e25df7e42fa0} 
+\index{NodeOrganizer@{NodeOrganizer}!explodeRanks@{explodeRanks}}
+\index{explodeRanks@{explodeRanks}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{explodeRanks()}{explodeRanks()}}
+{\footnotesize\ttfamily explode\+Ranks (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{ranking\+List }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_a18faa516783640cd5fc7e25df7e42fa0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a582535a26d7299f9606256a4460d2881}\label{classnodeorganizer_1_1NodeOrganizer_a582535a26d7299f9606256a4460d2881} 
+\index{NodeOrganizer@{NodeOrganizer}!findClosestEmptyNeighbor@{findClosestEmptyNeighbor}}
+\index{findClosestEmptyNeighbor@{findClosestEmptyNeighbor}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{findClosestEmptyNeighbor()}{findClosestEmptyNeighbor()}}
+{\footnotesize\ttfamily find\+Closest\+Empty\+Neighbor (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{space,  }\item[{}]{rank }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_a582535a26d7299f9606256a4460d2881_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a99000b87d8321dc533e1f3da34352889}\label{classnodeorganizer_1_1NodeOrganizer_a99000b87d8321dc533e1f3da34352889} 
+\index{NodeOrganizer@{NodeOrganizer}!findVerticalPositionOfObject@{findVerticalPositionOfObject}}
+\index{findVerticalPositionOfObject@{findVerticalPositionOfObject}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{findVerticalPositionOfObject()}{findVerticalPositionOfObject()}}
+{\footnotesize\ttfamily find\+Vertical\+Position\+Of\+Object (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node,  }\item[{}]{ranking\+List }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_a99000b87d8321dc533e1f3da34352889_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_af8791dd997c8608e08cd64fe8027e8bf}\label{classnodeorganizer_1_1NodeOrganizer_af8791dd997c8608e08cd64fe8027e8bf} 
+\index{NodeOrganizer@{NodeOrganizer}!granulateByPortPosition@{granulateByPortPosition}}
+\index{granulateByPortPosition@{granulateByPortPosition}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{granulateByPortPosition()}{granulateByPortPosition()}}
+{\footnotesize\ttfamily granulate\+By\+Port\+Position (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node,  }\item[{}]{port,  }\item[{}]{direction }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_af8791dd997c8608e08cd64fe8027e8bf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_aea3fe97889adc78dd3d1c1a340abf07e}\label{classnodeorganizer_1_1NodeOrganizer_aea3fe97889adc78dd3d1c1a340abf07e} 
+\index{NodeOrganizer@{NodeOrganizer}!hideObjectsWithAllImplicitChildren@{hideObjectsWithAllImplicitChildren}}
+\index{hideObjectsWithAllImplicitChildren@{hideObjectsWithAllImplicitChildren}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{hideObjectsWithAllImplicitChildren()}{hideObjectsWithAllImplicitChildren()}}
+{\footnotesize\ttfamily hide\+Objects\+With\+All\+Implicit\+Children (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_aea3fe97889adc78dd3d1c1a340abf07e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a4b68c49aad6c006aedde3f494ee67493}\label{classnodeorganizer_1_1NodeOrganizer_a4b68c49aad6c006aedde3f494ee67493} 
+\index{NodeOrganizer@{NodeOrganizer}!insertBlankRank@{insertBlankRank}}
+\index{insertBlankRank@{insertBlankRank}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{insertBlankRank()}{insertBlankRank()}}
+{\footnotesize\ttfamily insert\+Blank\+Rank (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{ranking\+List,  }\item[{}]{preferredY }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_a4b68c49aad6c006aedde3f494ee67493_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_ab022fef1d5fe7da857c8568754f1f520}\label{classnodeorganizer_1_1NodeOrganizer_ab022fef1d5fe7da857c8568754f1f520} 
+\index{NodeOrganizer@{NodeOrganizer}!insertIfHasOpeningOrIsShort@{insertIfHasOpeningOrIsShort}}
+\index{insertIfHasOpeningOrIsShort@{insertIfHasOpeningOrIsShort}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{insertIfHasOpeningOrIsShort()}{insertIfHasOpeningOrIsShort()}}
+{\footnotesize\ttfamily insert\+If\+Has\+Opening\+Or\+Is\+Short (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{destination\+Pos,  }\item[{}]{current\+Pos,  }\item[{}]{rank,  }\item[{}]{preferredY }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_ab022fef1d5fe7da857c8568754f1f520_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_ab022fef1d5fe7da857c8568754f1f520_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a54264e1a56bc71aed3a95814705e1e8b}\label{classnodeorganizer_1_1NodeOrganizer_a54264e1a56bc71aed3a95814705e1e8b} 
+\index{NodeOrganizer@{NodeOrganizer}!rankHorizontalDepth@{rankHorizontalDepth}}
+\index{rankHorizontalDepth@{rankHorizontalDepth}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{rankHorizontalDepth()}{rankHorizontalDepth()}}
+{\footnotesize\ttfamily rank\+Horizontal\+Depth (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_a54264e1a56bc71aed3a95814705e1e8b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classnodeorganizer_1_1NodeOrganizer_a54264e1a56bc71aed3a95814705e1e8b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a062e4aacc020be04e506eb0696920ec3}\label{classnodeorganizer_1_1NodeOrganizer_a062e4aacc020be04e506eb0696920ec3} 
+\index{NodeOrganizer@{NodeOrganizer}!rankHorizontalDepthIter@{rankHorizontalDepthIter}}
+\index{rankHorizontalDepthIter@{rankHorizontalDepthIter}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{rankHorizontalDepthIter()}{rankHorizontalDepthIter()}}
+{\footnotesize\ttfamily rank\+Horizontal\+Depth\+Iter (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node,  }\item[{}]{depth\+Level,  }\item[{}]{max\+Level,  }\item[{}]{max\+Children,  }\item[{}]{source\+Object }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{classnodeorganizer_1_1NodeOrganizer_a062e4aacc020be04e506eb0696920ec3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_a062e4aacc020be04e506eb0696920ec3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a96b3196c48660eddd53d11ef8ca5a745}\label{classnodeorganizer_1_1NodeOrganizer_a96b3196c48660eddd53d11ef8ca5a745} 
+\index{NodeOrganizer@{NodeOrganizer}!rankVerticalByConnections@{rankVerticalByConnections}}
+\index{rankVerticalByConnections@{rankVerticalByConnections}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{rankVerticalByConnections()}{rankVerticalByConnections()}}
+{\footnotesize\ttfamily rank\+Vertical\+By\+Connections (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{depth,  }\item[{}]{ranking\+List }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classnodeorganizer_1_1NodeOrganizer_a96b3196c48660eddd53d11ef8ca5a745_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_a96b3196c48660eddd53d11ef8ca5a745_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a5cf73a2784bf3b522a32e7bad4a3695b}\label{classnodeorganizer_1_1NodeOrganizer_a5cf73a2784bf3b522a32e7bad4a3695b} 
+\index{NodeOrganizer@{NodeOrganizer}!rankVerticalPreference@{rankVerticalPreference}}
+\index{rankVerticalPreference@{rankVerticalPreference}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{rankVerticalPreference()}{rankVerticalPreference()}}
+{\footnotesize\ttfamily rank\+Vertical\+Preference (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{ranking\+List = {\ttfamily None},  }\item[{}]{no\+Inserts = {\ttfamily True},  }\item[{}]{exploded = {\ttfamily False} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_a5cf73a2784bf3b522a32e7bad4a3695b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_a5cf73a2784bf3b522a32e7bad4a3695b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_ad547ecd62dd883f11120932218e0b82a}\label{classnodeorganizer_1_1NodeOrganizer_ad547ecd62dd883f11120932218e0b82a} 
+\index{NodeOrganizer@{NodeOrganizer}!rankVerticalPreferenceIter@{rankVerticalPreferenceIter}}
+\index{rankVerticalPreferenceIter@{rankVerticalPreferenceIter}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{rankVerticalPreferenceIter()}{rankVerticalPreferenceIter()}}
+{\footnotesize\ttfamily rank\+Vertical\+Preference\+Iter (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{depth,  }\item[{}]{ranking\+List,  }\item[{}]{max\+Iterations = {\ttfamily 20},  }\item[{}]{no\+Inserts = {\ttfamily True} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_ad547ecd62dd883f11120932218e0b82a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_ad547ecd62dd883f11120932218e0b82a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_ad1d2bb002698cd4e4938d21a0b6d15b4}\label{classnodeorganizer_1_1NodeOrganizer_ad1d2bb002698cd4e4938d21a0b6d15b4} 
+\index{NodeOrganizer@{NodeOrganizer}!rankVerticalPreferenceUntilDone@{rankVerticalPreferenceUntilDone}}
+\index{rankVerticalPreferenceUntilDone@{rankVerticalPreferenceUntilDone}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{rankVerticalPreferenceUntilDone()}{rankVerticalPreferenceUntilDone()}}
+{\footnotesize\ttfamily rank\+Vertical\+Preference\+Until\+Done (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{max\+Iterations = {\ttfamily 20} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_ad1d2bb002698cd4e4938d21a0b6d15b4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a9e7c8220494c63b877be6c69ce8c824d}\label{classnodeorganizer_1_1NodeOrganizer_a9e7c8220494c63b877be6c69ce8c824d} 
+\index{NodeOrganizer@{NodeOrganizer}!swapPositions@{swapPositions}}
+\index{swapPositions@{swapPositions}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{swapPositions()}{swapPositions()}}
+{\footnotesize\ttfamily swap\+Positions (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{rank,  }\item[{}]{preferredY,  }\item[{}]{pos,  }\item[{}]{destination\+Pos }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnodeorganizer_1_1NodeOrganizer_a9e7c8220494c63b877be6c69ce8c824d_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a991d3cc1ab3a6a011e570cc0011d853e}\label{classnodeorganizer_1_1NodeOrganizer_a991d3cc1ab3a6a011e570cc0011d853e} 
+\index{NodeOrganizer@{NodeOrganizer}!baseBlock@{baseBlock}}
+\index{baseBlock@{baseBlock}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{baseBlock}{baseBlock}}
+{\footnotesize\ttfamily base\+Block}
+
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a704afa05c22531ddb43dec22719740c0}\label{classnodeorganizer_1_1NodeOrganizer_a704afa05c22531ddb43dec22719740c0} 
+\index{NodeOrganizer@{NodeOrganizer}!blockGrid@{blockGrid}}
+\index{blockGrid@{blockGrid}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{blockGrid}{blockGrid}}
+{\footnotesize\ttfamily block\+Grid}
+
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a8ca49c796430e66a10450bfc2d218c81}\label{classnodeorganizer_1_1NodeOrganizer_a8ca49c796430e66a10450bfc2d218c81} 
+\index{NodeOrganizer@{NodeOrganizer}!graph@{graph}}
+\index{graph@{graph}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{graph}{graph}}
+{\footnotesize\ttfamily graph}
+
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a879cd4abd6ec9f9dc2757dd82abab2b1}\label{classnodeorganizer_1_1NodeOrganizer_a879cd4abd6ec9f9dc2757dd82abab2b1} 
+\index{NodeOrganizer@{NodeOrganizer}!hideAdvanced@{hideAdvanced}}
+\index{hideAdvanced@{hideAdvanced}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{hideAdvanced}{hideAdvanced}}
+{\footnotesize\ttfamily hide\+Advanced}
+
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_adabfb66304f64d1a88fe6dfec0e7c184}\label{classnodeorganizer_1_1NodeOrganizer_adabfb66304f64d1a88fe6dfec0e7c184} 
+\index{NodeOrganizer@{NodeOrganizer}!hideImplicits@{hideImplicits}}
+\index{hideImplicits@{hideImplicits}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{hideImplicits}{hideImplicits}}
+{\footnotesize\ttfamily hide\+Implicits}
+
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a7228dabd4235761cf24edaa63c29ac5e}\label{classnodeorganizer_1_1NodeOrganizer_a7228dabd4235761cf24edaa63c29ac5e} 
+\index{NodeOrganizer@{NodeOrganizer}!maxDepth@{maxDepth}}
+\index{maxDepth@{maxDepth}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{maxDepth}{maxDepth}}
+{\footnotesize\ttfamily max\+Depth}
+
+\Hypertarget{classnodeorganizer_1_1NodeOrganizer_a2c5f0c5a2d5cc26f00eae831c9bc0bec}\label{classnodeorganizer_1_1NodeOrganizer_a2c5f0c5a2d5cc26f00eae831c9bc0bec} 
+\index{NodeOrganizer@{NodeOrganizer}!rankingList@{rankingList}}
+\index{rankingList@{rankingList}!NodeOrganizer@{NodeOrganizer}}
+\doxysubsubsection{\texorpdfstring{rankingList}{rankingList}}
+{\footnotesize\ttfamily ranking\+List}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{nodeorganizer_8py}{nodeorganizer.\+py}}\end{DoxyCompactItemize}

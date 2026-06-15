@@ -1,0 +1,5 @@
+<map id="hotkeys.hotkey_functions.save_session" name="hotkeys.hotkey_functions.save_session">
+<area shape="rect" id="Node000001" title="Prompts a file save dialog to serialize a session if required." alt="" coords="5,5,228,45"/>
+<area shape="rect" id="Node000002" href="$namespacehotkeys_1_1hotkey__functions.html#abc70ddaf34ad566272868c557678733f" title="Prompts a file save dialog to serialize a session." alt="" coords="276,5,499,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,23,262,23,262,28,228,28"/>
+</map>

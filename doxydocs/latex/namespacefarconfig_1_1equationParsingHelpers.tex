@@ -1,0 +1,87 @@
+\doxysection{farconfig.\+equation\+Parsing\+Helpers Namespace Reference}
+\hypertarget{namespacefarconfig_1_1equationParsingHelpers}{}\label{namespacefarconfig_1_1equationParsingHelpers}\index{farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_a4220c7738733f14ea6be9edf55f1bdc0}{calculate\+Value}} (equation\+\_\+str)
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_afe3ab0cabdd8c635362631d318a70bf7}{get\+Variable}} (equation\+\_\+str, variable\+\_\+str)
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_a726818f9809c50cf4f8a57e46cb102c4}{is\+Variable\+In\+Equation}} (equation\+\_\+str, variable\+\_\+str)
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_ad5fe3746eab3cc9d543a7c8c9f8c601a}{remove\+Function}} (equation\+\_\+str, function\+\_\+str)
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_a90031f99151e9b19e5f5e00fe2598afd}{extract\+Value\+Offset\+And\+Divisor}} (equation\+\_\+str)
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_a98b3507742d0d9ebb7b6b0c0a4f74d2a}{extract\+Value\+Offset\+And\+Multiplier}} (equation\+\_\+str)
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_aee2832ceac861532fb237a2e6032f8e2}{extract\+Zero\+Coefficient\+Offset}} (equation)
+\begin{DoxyCompactList}\small\item\em Parses an equation to extract zero\+Position, coefficient, and offset, ensuring correct differentiation between components and retaining their signs. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefarconfig_1_1equationParsingHelpers_a05e6111ee2faea3f2bb8eeed2265d031}{strip\+Bool\+IBool}} (expression)
+\begin{DoxyCompactList}\small\item\em Extracts the numerical value from an expression like "{}bool(value-\/2000)"{} or "{}ibool(value-\/25000)"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacefarconfig_1_1equationParsingHelpers_a4220c7738733f14ea6be9edf55f1bdc0}\label{namespacefarconfig_1_1equationParsingHelpers_a4220c7738733f14ea6be9edf55f1bdc0} 
+\index{farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}!calculateValue@{calculateValue}}
+\index{calculateValue@{calculateValue}!farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}}
+\doxysubsubsection{\texorpdfstring{calculateValue()}{calculateValue()}}
+{\footnotesize\ttfamily calculate\+Value (\begin{DoxyParamCaption}\item[{}]{equation\+\_\+str }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacefarconfig_1_1equationParsingHelpers_a90031f99151e9b19e5f5e00fe2598afd}\label{namespacefarconfig_1_1equationParsingHelpers_a90031f99151e9b19e5f5e00fe2598afd} 
+\index{farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}!extractValueOffsetAndDivisor@{extractValueOffsetAndDivisor}}
+\index{extractValueOffsetAndDivisor@{extractValueOffsetAndDivisor}!farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}}
+\doxysubsubsection{\texorpdfstring{extractValueOffsetAndDivisor()}{extractValueOffsetAndDivisor()}}
+{\footnotesize\ttfamily extract\+Value\+Offset\+And\+Divisor (\begin{DoxyParamCaption}\item[{}]{equation\+\_\+str }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacefarconfig_1_1equationParsingHelpers_a98b3507742d0d9ebb7b6b0c0a4f74d2a}\label{namespacefarconfig_1_1equationParsingHelpers_a98b3507742d0d9ebb7b6b0c0a4f74d2a} 
+\index{farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}!extractValueOffsetAndMultiplier@{extractValueOffsetAndMultiplier}}
+\index{extractValueOffsetAndMultiplier@{extractValueOffsetAndMultiplier}!farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}}
+\doxysubsubsection{\texorpdfstring{extractValueOffsetAndMultiplier()}{extractValueOffsetAndMultiplier()}}
+{\footnotesize\ttfamily extract\+Value\+Offset\+And\+Multiplier (\begin{DoxyParamCaption}\item[{}]{equation\+\_\+str }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacefarconfig_1_1equationParsingHelpers_aee2832ceac861532fb237a2e6032f8e2}\label{namespacefarconfig_1_1equationParsingHelpers_aee2832ceac861532fb237a2e6032f8e2} 
+\index{farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}!extractZeroCoefficientOffset@{extractZeroCoefficientOffset}}
+\index{extractZeroCoefficientOffset@{extractZeroCoefficientOffset}!farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}}
+\doxysubsubsection{\texorpdfstring{extractZeroCoefficientOffset()}{extractZeroCoefficientOffset()}}
+{\footnotesize\ttfamily extract\+Zero\+Coefficient\+Offset (\begin{DoxyParamCaption}\item[{}]{equation }\end{DoxyParamCaption})}
+
+
+
+Parses an equation to extract zero\+Position, coefficient, and offset, ensuring correct differentiation between components and retaining their signs. 
+
+Args\+: equation (str)\+: The equation as a string.
+
+Returns\+: dict\+: A dictionary with keys \textquotesingle{}zero\+Position\textquotesingle{}, \textquotesingle{}coefficient\textquotesingle{}, and \textquotesingle{}offset\textquotesingle{}. Missing zero\+Position and offset default to 0, coefficient defaults to 1. \Hypertarget{namespacefarconfig_1_1equationParsingHelpers_afe3ab0cabdd8c635362631d318a70bf7}\label{namespacefarconfig_1_1equationParsingHelpers_afe3ab0cabdd8c635362631d318a70bf7} 
+\index{farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}!getVariable@{getVariable}}
+\index{getVariable@{getVariable}!farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}}
+\doxysubsubsection{\texorpdfstring{getVariable()}{getVariable()}}
+{\footnotesize\ttfamily get\+Variable (\begin{DoxyParamCaption}\item[{}]{equation\+\_\+str,  }\item[{}]{variable\+\_\+str }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacefarconfig_1_1equationParsingHelpers_a726818f9809c50cf4f8a57e46cb102c4}\label{namespacefarconfig_1_1equationParsingHelpers_a726818f9809c50cf4f8a57e46cb102c4} 
+\index{farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}!isVariableInEquation@{isVariableInEquation}}
+\index{isVariableInEquation@{isVariableInEquation}!farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}}
+\doxysubsubsection{\texorpdfstring{isVariableInEquation()}{isVariableInEquation()}}
+{\footnotesize\ttfamily is\+Variable\+In\+Equation (\begin{DoxyParamCaption}\item[{}]{equation\+\_\+str,  }\item[{}]{variable\+\_\+str }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacefarconfig_1_1equationParsingHelpers_ad5fe3746eab3cc9d543a7c8c9f8c601a}\label{namespacefarconfig_1_1equationParsingHelpers_ad5fe3746eab3cc9d543a7c8c9f8c601a} 
+\index{farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}!removeFunction@{removeFunction}}
+\index{removeFunction@{removeFunction}!farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}}
+\doxysubsubsection{\texorpdfstring{removeFunction()}{removeFunction()}}
+{\footnotesize\ttfamily remove\+Function (\begin{DoxyParamCaption}\item[{}]{equation\+\_\+str,  }\item[{}]{function\+\_\+str }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacefarconfig_1_1equationParsingHelpers_a05e6111ee2faea3f2bb8eeed2265d031}\label{namespacefarconfig_1_1equationParsingHelpers_a05e6111ee2faea3f2bb8eeed2265d031} 
+\index{farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}!stripBoolIBool@{stripBoolIBool}}
+\index{stripBoolIBool@{stripBoolIBool}!farconfig.equationParsingHelpers@{farconfig.equationParsingHelpers}}
+\doxysubsubsection{\texorpdfstring{stripBoolIBool()}{stripBoolIBool()}}
+{\footnotesize\ttfamily strip\+Bool\+IBool (\begin{DoxyParamCaption}\item[{}]{expression }\end{DoxyParamCaption})}
+
+
+
+Extracts the numerical value from an expression like "{}bool(value-\/2000)"{} or "{}ibool(value-\/25000)"{}. 
+
+Strips everything except the numerical value inside the parentheses.
+
+Args\+: expression (str)\+: The expression to extract the number from.
+
+Returns\+: float\+: The numerical value inside the parentheses. 

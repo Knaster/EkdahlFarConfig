@@ -1,0 +1,29 @@
+<map id="farconfig.CommandSets.CommandSets.saveHarmonicSeries" name="farconfig.CommandSets.CommandSets.saveHarmonicSeries">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,233,255,273"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#a3b13c8a7be79799801c55eb2e1a7d26c" title=" " alt="" coords="303,81,552,121"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,231,217,181,258,154,302,131,320,123,322,128,304,136,261,159,220,185,156,235"/>
+<area shape="rect" id="Node000008" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#a097bd6bd66f659f5d81c7b2913eb26b4" title=" " alt="" coords="303,233,552,273"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="255,260,289,260,289,265,255,265"/>
+<area shape="rect" id="Node000009" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a0a7a8042ae42e2826a907d3665b1da57" title=" " alt="" coords="303,169,552,209"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="223,231,320,210,321,215,224,236"/>
+<area shape="rect" id="Node000010" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#a658b3bf86a167b6f87d1a8b84451bbe1" title=" " alt="" coords="303,321,552,361"/>
+<area shape="poly" id="edge16_Node000001_Node000010" title=" " alt="" coords="199,271,346,315,344,320,198,276"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#a3c6c04ca1963d1dc927efc69c311e641" title=" " alt="" coords="615,157,864,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="507,119,601,143,638,152,637,157,599,148,505,124"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#ac21a286b4a3f9932bb5d6f4d6ee9945c" title=" " alt="" coords="615,221,864,261"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="533,119,554,131,571,151,578,171,586,190,602,207,610,213,607,217,598,211,581,192,573,172,566,153,550,135,530,124"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#ab691bbe4d51bfdaea5514d0a6f55c5ae" title=" " alt="" coords="600,5,879,45"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="505,79,599,55,637,46,638,51,601,60,506,84"/>
+<area shape="rect" id="Node000007" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#aa06d35a7a04de54e950ff1a66bd2ab9d" title=" " alt="" coords="615,93,864,133"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="552,103,601,105,601,111,552,109"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a87ff56a15439fcf7a2b13efe2a4a8502" title=" " alt="" coords="927,5,1239,45"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="879,23,913,23,913,28,879,28"/>
+<area shape="poly" id="edge7_Node000007_Node000007" title=" " alt="" coords="682,94,678,84,688,74,708,69,739,67,775,69,795,77,793,82,774,75,739,72,709,74,690,79,684,85,687,92"/>
+<area shape="poly" id="edge9_Node000008_Node000001" title=" " alt="" coords="303,247,268,247,268,242,303,242"/>
+<area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="552,182,601,180,601,185,552,187"/>
+<area shape="poly" id="edge13_Node000009_Node000004" title=" " alt="" coords="548,207,606,216,605,222,547,212"/>
+<area shape="poly" id="edge14_Node000009_Node000005" title=" " alt="" coords="490,167,521,151,550,131,565,112,573,93,581,74,598,55,607,49,610,54,602,59,585,77,578,95,570,115,554,135,524,156,492,172"/>
+<area shape="poly" id="edge15_Node000009_Node000007" title=" " alt="" coords="505,167,599,143,637,134,638,139,601,148,506,172"/>
+<area shape="poly" id="edge11_Node000009_Node000009" title=" " alt="" coords="373,170,369,160,378,150,398,145,427,143,461,145,480,153,478,158,460,151,427,148,399,150,381,155,375,161,378,168"/>
+<area shape="poly" id="edge17_Node000010_Node000010" title=" " alt="" coords="373,322,369,312,378,302,398,297,427,295,461,297,480,305,478,310,460,303,427,300,399,302,381,307,375,313,378,320"/>
+</map>

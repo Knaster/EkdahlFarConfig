@@ -1,0 +1,15 @@
+<map id="removeActuator" name="removeActuator">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,106,132,131"/>
+<area shape="poly" id="edge7_Node000001_Node000001" title=" " alt="" coords="31,108,22,98,27,88,42,82,69,79,102,83,114,93,111,97,100,88,69,85,44,87,30,92,27,97,34,104"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="180,5,429,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,103,129,79,179,55,201,47,203,52,181,60,132,84,91,108"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="180,69,429,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="132,108,166,104,167,109,133,113"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="203,134,406,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="133,124,190,130,189,136,132,129"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="180,208,429,248"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="98,129,181,168,248,200,246,204,179,173,96,134"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a4d0e442ce13f4962d044a9b2c5f45764" title=" " alt="" coords="477,134,712,159"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="406,144,463,144,463,149,406,149"/>
+<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="261,208,258,198,265,189,281,183,305,181,332,184,347,191,345,196,331,189,305,187,282,189,268,193,263,199,266,207"/>
+</map>

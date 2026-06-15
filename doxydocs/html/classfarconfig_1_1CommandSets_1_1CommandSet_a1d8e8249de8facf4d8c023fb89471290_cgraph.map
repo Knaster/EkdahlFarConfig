@@ -1,0 +1,14 @@
+<map id="setMidiConfigurationPitchBendCommands" name="setMidiConfigurationPitchBendCommands">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,87,195,127"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="281,5,483,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,85,187,62,242,41,279,31,281,36,243,46,189,67,140,89"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="257,55,507,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="194,94,243,88,244,94,195,99"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="243,119,521,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="195,115,230,119,229,125,194,121"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#ae15f044c932c0c304b9384ba14092bda" title=" " alt="" coords="257,207,507,247"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="146,125,244,169,318,200,316,205,242,174,143,130"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a4d0e442ce13f4962d044a9b2c5f45764" title=" " alt="" coords="569,119,881,159"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="521,137,556,137,556,142,521,142"/>
+<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="330,208,327,198,335,188,354,183,382,181,414,183,432,191,430,196,413,189,382,186,355,188,338,193,332,199,335,206"/>
+</map>

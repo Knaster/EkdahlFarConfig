@@ -1,0 +1,15 @@
+<map id="farconfig.CommandSets.CommandSetModular.removeMidiConfiguration" name="farconfig.CommandSets.CommandSetModular.removeMidiConfiguration">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,101,269,141"/>
+<area shape="poly" id="edge7_Node000001_Node000001" title=" " alt="" coords="79,102,75,92,85,82,106,77,137,75,174,77,194,85,192,90,173,83,137,80,106,82,87,87,81,93,84,100"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSet.html#a3c6c04ca1963d1dc927efc69c311e641" title=" " alt="" coords="332,5,581,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,99,317,55,348,46,350,51,318,60,191,104"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetOG.html#ac21a286b4a3f9932bb5d6f4d6ee9945c" title=" " alt="" coords="332,69,581,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="269,105,318,101,319,106,270,111"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#ab691bbe4d51bfdaea5514d0a6f55c5ae" title=" " alt="" coords="317,133,596,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="270,132,304,135,304,141,269,137"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1CommandSets_1_1CommandSets.html#aa06d35a7a04de54e950ff1a66bd2ab9d" title=" " alt="" coords="332,221,581,261"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="193,139,391,214,389,219,191,144"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a87ff56a15439fcf7a2b13efe2a4a8502" title=" " alt="" coords="644,133,956,173"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="596,151,630,151,630,156,596,156"/>
+<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="398,222,395,212,404,202,425,197,457,195,493,197,513,205,511,210,492,203,457,200,426,202,407,207,400,213,403,220"/>
+</map>

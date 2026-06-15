@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['widget_2epy_264',['widget.py',['../widget_8py.html',1,'']]]
+  ['dynamicnodes_2epy_0',['dynamicnodes.py',['../dynamicnodes_8py.html',1,'']]]
 ];

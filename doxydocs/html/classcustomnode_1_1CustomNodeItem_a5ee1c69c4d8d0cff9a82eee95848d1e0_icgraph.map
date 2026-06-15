@@ -1,0 +1,5 @@
+<map id="sortByConnections" name="sortByConnections">
+<area shape="rect" id="Node000001" title="Rearrange the y&#45;position of the given ports depending on the nodes connected to it in order to avoid ..." alt="" coords="227,5,371,31"/>
+<area shape="rect" id="Node000002" href="$classcustomnode_1_1CustomNodeItem.html#ad119e5aba98c7c2bc8770fde52acffdd" title=" " alt="" coords="5,5,179,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,21,179,21,179,15,213,15"/>
+</map>

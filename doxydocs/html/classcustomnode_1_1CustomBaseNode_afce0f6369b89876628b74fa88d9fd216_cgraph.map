@@ -1,0 +1,7 @@
+<map id="customnode.CustomBaseNode.get_input" name="customnode.CustomBaseNode.get_input">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,252,69"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="74,30,70,20,79,10,99,5,129,3,163,5,182,13,180,18,162,11,129,8,100,10,82,15,75,21,79,28"/>
+<area shape="rect" id="Node000002" href="$classcustomnode_1_1CustomBaseNode.html#af7f4b2362e9cc01da7168ad221b5ad16" title=" " alt="" coords="300,29,559,69"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="252,47,286,47,286,52,252,52"/>
+<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="374,30,371,20,380,10,399,5,429,3,464,5,483,13,481,18,463,11,429,8,400,10,383,15,376,21,379,28"/>
+</map>
