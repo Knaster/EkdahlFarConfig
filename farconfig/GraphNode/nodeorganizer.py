@@ -1,7 +1,7 @@
-from nodeblocks import BaseBlock, BlockGrid
+from GraphNode.nodeblocks import BaseBlock, BlockGrid
 from NodeGraphQt.nodes.port_node import PortInputNode, PortOutputNode
 from NodeGraphQt import Port
-from customnode import CustomBaseNode
+from GraphNode.customnode import CustomBaseNode
 
 class NodeOrganizer():
     def __init__(self, graph):

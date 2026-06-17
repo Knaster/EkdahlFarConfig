@@ -10,12 +10,12 @@ if %errorlevel% neq 0 (
 	exit /b
 )
 
-pip3 install pyside6 pyserial mido sympy pyqt6-charts
+pip3 install pyserial pyqt6-charts pyside6 setuptools sympy mido pyinstaller nodegraphqt qt-pyqt-pyside-custom-widgets pycairo cairocffi
 
 mkdir "C:\Program Files\Ekdahl FAR Configuration Utility"
 cd "%~dp0"
 cd farconfig
-xcopy . "C:\Program Files\Ekdahl FAR Configuration Utility" /E /Y /O
+xcopy "%~dp0\farconfig" "C:\Program Files\Ekdahl FAR Configuration Utility" /E /Y /O
 
 powershell -Command "dir 'C:\Program Files\Ekdahl FAR Configuration Utility\' -s | Unblock-File"
 
@@ -33,6 +33,12 @@ powershell -Command "$s = (New-Object -COM WScript.Shell).CreateShortcut([System
 
 echo Shortcut created in Start Menu.
 
+echo downloading and starting GTK+ installer
+mkdir "c:\temp"
+powershell -Command "curl https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2022-01-04/gtk3-runtime-3.24.31-2022-01-04-ts-win64.exe -Outfile C:\temp\gtkinst.exe"
+powershell -Command "C:\temp\gtkinst.exe"
+rm "C:\temp\gtkinst.exe"
+rmdir "C:\temp"
 
 pause
 exit /b

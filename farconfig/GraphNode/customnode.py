@@ -9,8 +9,8 @@ from NodeGraphQt.constants import (ICON_NODE_BASE, ITEM_CACHE_MODE, Z_VAL_NODE,
                                    PortTypeEnum, NodePropWidgetEnum)
 from NodeGraphQt.widgets.node_widgets import NodeLineEdit
 
-from customnodewidgets import NodeSlider, ToggleSwitch, LineEdit, SpinBoxArray, TableView
-from nodetemplates.custom_ports_node import draw_triangle_port
+from GraphNode.customnodewidgets import NodeSlider, ToggleSwitch, LineEdit, SpinBoxArray, TableView
+from GraphNode.nodetemplates.custom_ports_node import draw_triangle_port
 
 from commanddefinitions import CommandID
 

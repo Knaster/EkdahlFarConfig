@@ -1,4 +1,4 @@
-from customnode import CustomBaseNode
+from GraphNode.customnode import CustomBaseNode
 
 class NodeBlockChild:
     def __init__(self, node, rank, parentNode):

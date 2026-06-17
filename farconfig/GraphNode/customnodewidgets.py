@@ -1,6 +1,7 @@
 from Qt import QtCore, QtWidgets
 from PySide6.QtCore import Qt
-from Qt import QtCore, QtWidgets
+#from Qt import QtCore, QtWidgets
+from PySide6 import QtCore, QtWidgets
 
 from NodeGraphQt.widgets.node_widgets import NodeBaseWidget
 from NodeGraphQt.widgets.viewer_nav import NodeNavigationWidget
