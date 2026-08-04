@@ -94,6 +94,9 @@ else
 	brew install python
 fi
 
+echo "Installing Cairo"
+brew install https://raw.githubusercontent.com/gmerlino/homebrew-cairo/master/<formula>.rb
+
 #broken in macos =>14
 #python_path=$(brew --prefix python)/libexec/bin/python
 #pip_path=$(brew --prefix python)/libexec/bin/pip

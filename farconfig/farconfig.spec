@@ -7,7 +7,8 @@ a = Analysis(
     ['farconfig.py'],
     pathex=[project_dir, project_dir + "/GraphNode"],
     binaries=[],
-    datas=[('resources', 'resources')],
+    datas=[('resources', 'resources'),('../.venv/lib/python3.12/site-packages/PySide6/Qt', 'PySide6/Qt'), (project_dir + "/GraphNode/hotkeys", "GraphNode/hotkeys"), 
+		(project_dir + "/GraphNode/nodetemplates", "GraphNode/nodetemplates")],
     hiddenimports=[
         'pyserial',
         'equationParsingHelpers',

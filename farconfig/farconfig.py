@@ -429,7 +429,7 @@ class FarConfig(QWidget):
                     mainWidget.pluginHandler.clearAllPlugins()
                     mainWidget.localNodeHandler.clearNodes()
                     commandSets.currentCommandSet.clearData()
-                    commandReference.clear()
+                    #commandReference.clear()
 
                     self.setUIEnabled(True)
                     self.updateUIData()

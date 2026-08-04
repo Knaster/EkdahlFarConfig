@@ -2104,15 +2104,6 @@ class CommandSetModular(CommandSet):
             return found
         return True
 
-    def clearData(self):
-        self.hasHierarchy = False
-        self.hasCommandList = False
-        self.hasNodes = False
-        self.hasHelp = False
-        self.updateStage = 0
-        self.hasNodes = False
-        self.updateTimer = None
-
     def nodeAutoUpdater(self):
         match(self.updateStage):
             case 0:
@@ -2327,6 +2318,18 @@ class CommandSetModular(CommandSet):
             #self.baseModule.commands.append(mcd)
             if mcd is not None:
                 self.baseModule.commands[id] = mcd
+
+    def clearData(self):
+        '''
+            self.hasHierarchy = False
+            self.hasHelp = False
+            self.hasNodes = False
+            self.hasCommandList = False
+            self.updateStage = 0
+            self.hasNodes = False
+            self.updateTimer = None
+        '''
+        self.__init__()
 
     def __init__(self):
         super().__init__()
