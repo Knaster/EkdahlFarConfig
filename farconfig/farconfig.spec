@@ -3,11 +3,18 @@
 import os
 project_dir = os.path.abspath(os.path.dirname(SPEC))
 
+import PySide6
+import os
+pysidedir = os.path.dirname(PySide6.__file__)
+
 a = Analysis(
     ['farconfig.py'],
     pathex=[project_dir, project_dir + "/GraphNode"],
     binaries=[],
-    datas=[('resources', 'resources'),('../.venv/lib/python3.12/site-packages/PySide6/Qt', 'PySide6/Qt'), (project_dir + "/GraphNode/hotkeys", "GraphNode/hotkeys"), 
+    
+    #'../.venv/lib/python3.12/site-packages/PySide6/Qt', 'PySide6/Qt'
+    
+    datas=[('resources', 'resources'),(pysidedir, 'PySide6'), (project_dir + "/GraphNode/hotkeys", "GraphNode/hotkeys"), 
 		(project_dir + "/GraphNode/nodetemplates", "GraphNode/nodetemplates")],
     hiddenimports=[
         'pyserial',
