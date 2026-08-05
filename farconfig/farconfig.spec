@@ -94,5 +94,5 @@ exe = EXE(
 app = BUNDLE(#coll,
          exe,
          name='Ekdahl FAR Configuration utility.app',
-         icon='_internal/resources/far_icon.icns',
+         icon='resources/far_icon.icns',
          bundle_identifier=None)

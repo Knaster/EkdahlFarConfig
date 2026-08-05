@@ -1,0 +1,9 @@
+pyserial
+pyside6==6.11.1
+setuptools
+sympy
+pyinstaller
+nodegraphqt==0.6.44
+qt-pyqt-pyside-custom-widgets==2.2.1
+pycairo
+cairocffi

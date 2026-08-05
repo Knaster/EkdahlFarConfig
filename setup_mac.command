@@ -95,7 +95,8 @@ else
 fi
 
 echo "Installing Cairo"
-brew install https://raw.githubusercontent.com/gmerlino/homebrew-cairo/master/<formula>.rb
+#brew install https://raw.githubusercontent.com/gmerlino/homebrew-cairo/master/<formula>.rb
+brew install cairo pkg-config
 
 #broken in macos =>14
 #python_path=$(brew --prefix python)/libexec/bin/python
@@ -122,11 +123,8 @@ echo $(dirname "$0")
 	echo "Creating python virtual environment"
 	$python_path -m venv "$MACOS_DIR/venv"
 #fi
-
 source "$MACOS_DIR/venv/bin/activate"
-
 echo "Installing python packages"
-
 ./venv/bin/pip install pyserial pyqt6-charts pyside6 setuptools sympy mido pyinstaller nodegraphqt qt-pyqt-pyside-custom-widgets pycairo cairocffi
 
 read -p "All done! Press Enter to quit"
