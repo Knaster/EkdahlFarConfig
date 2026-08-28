@@ -11,6 +11,7 @@
         "plugin_ahdsr.ui",
         "plugin_numbermap.ui",
         "plugin_lfo.ui",
-        "plugin_mult.ui"
+        "plugin_mult.ui",
+        "preferences.ui"
     ]
 }

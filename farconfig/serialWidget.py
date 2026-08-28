@@ -1,12 +1,14 @@
-from PySide6.QtWidgets import QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit, QComboBox, QSlider
+from PySide6.QtWidgets import QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit, QComboBox, QSlider, QCheckBox
 from PySide6.QtCore import QThread, Signal, QTimer, QModelIndex, Qt, QObject, QDir, Slot
-from PySide6.QtGui import QTextBlock, QTextCursor, QTextBlockFormat, QColor, QKeyEvent
+from PySide6.QtGui import QTextBlock, QTextCursor, QTextBlockFormat, QColor, QKeyEvent, QTextCharFormat
 
 from ui_prompt import Ui_Form
 
 import re
 
 class SerialWidget(QWidget):
+    backgroundColor = QColor(63,63,63)
+
     def __init__(self, inSerialHandler, inTimeStamper, inLogging, parent=None):
         super().__init__(parent)
         self.ui = Ui_Form()
@@ -18,11 +20,12 @@ class SerialWidget(QWidget):
         self.logging = inLogging
 
         self.ui.pushButtonSend.pressed.connect(self.lineEditSend)
-        self.ui.xlineEditSend.setVisible(False)
+        #self.ui.xlineEditSend.setVisible(False)
         #self.ui.lineEditSend.returnPressed.connect(self.lineEditSend)
         self.originalLineEditKeyPressEvent = self.ui.lineEditSend.keyPressEvent
         self.ui.lineEditSend.keyPressEvent = self.lineEditKeypressEvent
 
+        '''
         self.assignFeedbackReportItem(self.ui.checkBoxFilterCommAck, "command")
         self.assignFeedbackReportItem(self.ui.checkBoxFilterDebug, "debug")
         self.assignFeedbackReportItem(self.ui.checkBoxFilterError, "error")
@@ -36,9 +39,16 @@ class SerialWidget(QWidget):
         self.assignFeedbackReportItem(self.ui.checkBoxFilterInternal, "internal")
 
         self.ui.checkBoxDebugCursorFollow.toggled.connect(self.checkBoxDebugCursorFollowToggled)
-        self.ui.pushButtonClear.pressed.connect(self.debugClear)
         self.ui.checkBoxLimitLines.stateChanged.connect(self.checkBoxLimitLinesStateChanged)
         self.ui.spinBoxLimitLines.valueChanged.connect(self.spinBoxLimitLinesValueChanged)
+        '''
+        self.ui.pushButtonClear.pressed.connect(self.debugClear)
+
+        self.ui.plainTextEditSerialOutput.setStyleSheet("QPlainTextEdit { background-color: " + self.backgroundColor.name() + "; }")
+
+        self.lineLimit = 2500
+        self.lineLimitOn = True
+        self.cursorFollow = True
 
     def lineEditKeypressEvent(self, event:QKeyEvent):
         qline = self.ui.lineEditSend
@@ -82,7 +92,7 @@ class SerialWidget(QWidget):
                     qcolor = QColor(255,255,115)
                 case "err":
                     color = "rgb(255,0,0)"
-                    qcolor = QColor(255,0,0)
+                    qcolor = QColor(255,80,80)
                 case "pri":
                     color = "rgb(255,100,100)"
                     qcolor = QColor(255,100,100)
@@ -115,10 +125,14 @@ class SerialWidget(QWidget):
         tc = QTextCursor(self.ui.plainTextEditSerialOutput.document())
         tc.movePosition(QTextCursor.MoveOperation.End)
 
-        tbf = QTextBlockFormat()
-        tbf.setBackground(qcolor)
+        #tbf = QTextBlockFormat()
+        #tbf.setBackground(qcolor)
+        #tc.setBlockFormat(tbf)
 
-        tc.setBlockFormat(tbf)
+        tcf = QTextCharFormat()
+        tcf.setForeground(qcolor)
+        tc.setCharFormat(tcf)
+
         if not ignoreMessage:
             tc.insertText(text)
 #        tb = QTextBlock()
@@ -135,9 +149,14 @@ class SerialWidget(QWidget):
     def assignFeedbackReportItem(self, qtObject, reportType):
         qtObject.reportType = reportType
         qtObject.toggled.connect(self.feedbackReportToggled)
+        #qtObject = QCheckBox()
+        #qtObject.checkStateChanged.connect(self.feedbackReportToggled)
 
     def feedbackReportToggled(self):
         sender = self.sender()
+        self.outputDebugSetting(sender)
+
+    def outputDebugSetting(self, sender):
         if (sender.reportType == "inforequest"):
             if (sender.isChecked()):
                 self.filterHideInfoRequest = False
@@ -199,7 +218,8 @@ class SerialWidget(QWidget):
             self.filterHideOutput = True
 
     def checkBoxDebugCursorFollowToggled(self):
-        if (self.ui.checkBoxDebugCursorFollow.isChecked()):
+        value = self.sender().checkState()
+        if (value == Qt.CheckState.Checked):
             self.debugCursorFollow = True
         else:
             self.debugCursorFollow = False
@@ -212,17 +232,22 @@ class SerialWidget(QWidget):
         #self.serialHandler.write("debugprint:" + reportType + ":" + out)
 
     def updateLineLimit(self):
-        if (self.ui.checkBoxLimitLines.checkState() == Qt.CheckState.Checked):
-            self.ui.plainTextEditSerialOutput.setMaximumBlockCount(self.ui.spinBoxLimitLines.value())
+        if (self.lineLimitOn):
+            self.ui.plainTextEditSerialOutput.setMaximumBlockCount(self.lineLimit)
         else:
             self.ui.plainTextEditSerialOutput.setMaximumBlockCount(0)
 
     def checkBoxLimitLinesStateChanged(self):
+        value = self.sender().checkState()
+        if (value == Qt.CheckState.Checked):
+            self.lineLimitOn = True
+        else:
+            self.lineLimitOn = False
         self.updateLineLimit()
 
     def spinBoxLimitLinesValueChanged(self, value):
+        self.lineLimit = value
         self.updateLineLimit()
-
 
     def lineEditSend(self):
 #        if self.serialStream is not None:

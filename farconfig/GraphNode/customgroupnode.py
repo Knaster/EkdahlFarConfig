@@ -284,6 +284,8 @@ class CustomNodeGraph(NodeGraph):
     def __init__(self):
         super().__init__()
         self.nodeOrganizer = NodeOrganizer(self)
+        #overrides any other styles set, may not be great
+        self.widget.setStyleSheet("border: none")
 
     def expand_group_node(self, node):
         if not isinstance(node, CustomGroupNode):return
@@ -315,7 +317,6 @@ class CustomNodeGraph(NodeGraph):
         self._sub_graphs[node.id] = sub_graph
 
         # open new tab at root level.
-
         self._widget.setStyleSheet("QTabBar::tab { background:rgb(255,255,255); border:0px solid black; color:rgb(200,200,200); height: 30px;  width:200px;} "
                                    "QTabBar::tab:selected { color:rgb(0,0,0); background:rgb(200,200,200); border-top:1px solid rgb(100,100,100); } "
                                    "QTabBar::tab:hover { color:rgb(128,128,128); border-top:1px solid rgb(100,100,100); } "

@@ -15,17 +15,21 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QGridLayout,
-    QGroupBox, QHBoxLayout, QLabel, QLineEdit,
-    QPlainTextEdit, QPushButton, QSizePolicy, QSpinBox,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QGridLayout, QHBoxLayout,
+    QPlainTextEdit, QPushButton, QSizePolicy, QSpacerItem,
+    QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(821, 336)
-        Form.setMinimumSize(QSize(529, 336))
+        Form.resize(220, 336)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Form.sizePolicy().hasHeightForWidth())
+        Form.setSizePolicy(sizePolicy)
+        Form.setMinimumSize(QSize(0, 336))
         Form.setStyleSheet(u"QWidget {\n"
 "	background-color: white;\n"
 "	font-family: cantarell;\n"
@@ -87,6 +91,26 @@ class Ui_Form(object):
 "")
         self.gridLayout_4 = QGridLayout(Form)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.gridLayout = QGridLayout()
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.pushButtonClear = QPushButton(Form)
+        self.pushButtonClear.setObjectName(u"pushButtonClear")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.pushButtonClear.sizePolicy().hasHeightForWidth())
+        self.pushButtonClear.setSizePolicy(sizePolicy1)
+        self.pushButtonClear.setMinimumSize(QSize(94, 0))
+
+        self.gridLayout.addWidget(self.pushButtonClear, 0, 1, 1, 1)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer, 0, 0, 1, 1)
+
+
+        self.gridLayout_4.addLayout(self.gridLayout, 1, 0, 1, 1)
+
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.plainTextEditSerialOutput = QPlainTextEdit(Form)
@@ -100,176 +124,31 @@ class Ui_Form(object):
 
         self.gridLayout_4.addLayout(self.horizontalLayout, 0, 0, 1, 1)
 
-        self.gridLayout = QGridLayout()
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.spinBoxLimitLines = QSpinBox(Form)
-        self.spinBoxLimitLines.setObjectName(u"spinBoxLimitLines")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.spinBoxLimitLines.sizePolicy().hasHeightForWidth())
-        self.spinBoxLimitLines.setSizePolicy(sizePolicy)
-        self.spinBoxLimitLines.setMaximum(10000)
-        self.spinBoxLimitLines.setValue(5000)
-
-        self.gridLayout.addWidget(self.spinBoxLimitLines, 1, 1, 1, 1)
-
-        self.label_6 = QLabel(Form)
-        self.label_6.setObjectName(u"label_6")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
-        self.label_6.setSizePolicy(sizePolicy1)
-
-        self.gridLayout.addWidget(self.label_6, 1, 2, 1, 1)
-
-        self.checkBoxDebugCursorFollow = QCheckBox(Form)
-        self.checkBoxDebugCursorFollow.setObjectName(u"checkBoxDebugCursorFollow")
-        self.checkBoxDebugCursorFollow.setEnabled(True)
-        sizePolicy1.setHeightForWidth(self.checkBoxDebugCursorFollow.sizePolicy().hasHeightForWidth())
-        self.checkBoxDebugCursorFollow.setSizePolicy(sizePolicy1)
-        self.checkBoxDebugCursorFollow.setChecked(True)
-
-        self.gridLayout.addWidget(self.checkBoxDebugCursorFollow, 1, 3, 1, 1)
-
-        self.pushButtonClear = QPushButton(Form)
-        self.pushButtonClear.setObjectName(u"pushButtonClear")
-        sizePolicy1.setHeightForWidth(self.pushButtonClear.sizePolicy().hasHeightForWidth())
-        self.pushButtonClear.setSizePolicy(sizePolicy1)
-        self.pushButtonClear.setMinimumSize(QSize(94, 0))
-
-        self.gridLayout.addWidget(self.pushButtonClear, 1, 4, 1, 1)
-
-        self.checkBoxLimitLines = QCheckBox(Form)
-        self.checkBoxLimitLines.setObjectName(u"checkBoxLimitLines")
-        sizePolicy1.setHeightForWidth(self.checkBoxLimitLines.sizePolicy().hasHeightForWidth())
-        self.checkBoxLimitLines.setSizePolicy(sizePolicy1)
-
-        self.gridLayout.addWidget(self.checkBoxLimitLines, 0, 0, 2, 1)
-
-
-        self.gridLayout_4.addLayout(self.gridLayout, 1, 0, 1, 1)
-
-        self.groupBox_16 = QGroupBox(Form)
-        self.groupBox_16.setObjectName(u"groupBox_16")
-        sizePolicy.setHeightForWidth(self.groupBox_16.sizePolicy().hasHeightForWidth())
-        self.groupBox_16.setSizePolicy(sizePolicy)
-        self.groupBox_16.setMinimumSize(QSize(0, 140))
-        self.groupBox_16.setMaximumSize(QSize(16777215, 140))
-        self.horizontalLayout_2 = QHBoxLayout(self.groupBox_16)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.verticalLayout = QVBoxLayout()
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.checkBoxFilterCommAck = QCheckBox(self.groupBox_16)
-        self.checkBoxFilterCommAck.setObjectName(u"checkBoxFilterCommAck")
-        self.checkBoxFilterCommAck.setEnabled(False)
-
-        self.verticalLayout.addWidget(self.checkBoxFilterCommAck)
-
-        self.checkBoxFilterUSB = QCheckBox(self.groupBox_16)
-        self.checkBoxFilterUSB.setObjectName(u"checkBoxFilterUSB")
-        self.checkBoxFilterUSB.setEnabled(False)
-        self.checkBoxFilterUSB.setCheckable(True)
-
-        self.verticalLayout.addWidget(self.checkBoxFilterUSB)
-
-        self.checkBoxFilterHardware = QCheckBox(self.groupBox_16)
-        self.checkBoxFilterHardware.setObjectName(u"checkBoxFilterHardware")
-        self.checkBoxFilterHardware.setEnabled(True)
-
-        self.verticalLayout.addWidget(self.checkBoxFilterHardware)
-
-
-        self.horizontalLayout_2.addLayout(self.verticalLayout)
-
-        self.verticalLayout_2 = QVBoxLayout()
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.checkBoxFilterUndefined = QCheckBox(self.groupBox_16)
-        self.checkBoxFilterUndefined.setObjectName(u"checkBoxFilterUndefined")
-        self.checkBoxFilterUndefined.setEnabled(True)
-
-        self.verticalLayout_2.addWidget(self.checkBoxFilterUndefined)
-
-        self.checkBoxFilterPriority = QCheckBox(self.groupBox_16)
-        self.checkBoxFilterPriority.setObjectName(u"checkBoxFilterPriority")
-        self.checkBoxFilterPriority.setEnabled(True)
-
-        self.verticalLayout_2.addWidget(self.checkBoxFilterPriority)
-
-        self.checkBoxFilterError = QCheckBox(self.groupBox_16)
-        self.checkBoxFilterError.setObjectName(u"checkBoxFilterError")
-        self.checkBoxFilterError.setEnabled(True)
-
-        self.verticalLayout_2.addWidget(self.checkBoxFilterError)
-
-        self.checkBoxFilterOutput = QCheckBox(self.groupBox_16)
-        self.checkBoxFilterOutput.setObjectName(u"checkBoxFilterOutput")
-        self.checkBoxFilterOutput.setEnabled(False)
-
-        self.verticalLayout_2.addWidget(self.checkBoxFilterOutput)
-
-
-        self.horizontalLayout_2.addLayout(self.verticalLayout_2)
-
-        self.verticalLayout_3 = QVBoxLayout()
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.checkBoxFilterInfoRequest = QCheckBox(self.groupBox_16)
-        self.checkBoxFilterInfoRequest.setObjectName(u"checkBoxFilterInfoRequest")
-        self.checkBoxFilterInfoRequest.setEnabled(True)
-
-        self.verticalLayout_3.addWidget(self.checkBoxFilterInfoRequest)
-
-        self.checkBoxFilterExpressionParser = QCheckBox(self.groupBox_16)
-        self.checkBoxFilterExpressionParser.setObjectName(u"checkBoxFilterExpressionParser")
-        self.checkBoxFilterExpressionParser.setEnabled(True)
-
-        self.verticalLayout_3.addWidget(self.checkBoxFilterExpressionParser)
-
-        self.checkBoxFilterDebug = QCheckBox(self.groupBox_16)
-        self.checkBoxFilterDebug.setObjectName(u"checkBoxFilterDebug")
-        self.checkBoxFilterDebug.setEnabled(True)
-
-        self.verticalLayout_3.addWidget(self.checkBoxFilterDebug)
-
-        self.checkBoxFilterInternal = QCheckBox(self.groupBox_16)
-        self.checkBoxFilterInternal.setObjectName(u"checkBoxFilterInternal")
-        self.checkBoxFilterInternal.setEnabled(True)
-
-        self.verticalLayout_3.addWidget(self.checkBoxFilterInternal)
-
-
-        self.horizontalLayout_2.addLayout(self.verticalLayout_3)
-
-
-        self.gridLayout_4.addWidget(self.groupBox_16, 2, 0, 1, 1)
-
         self.gridLayout_2 = QGridLayout()
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.xlineEditSend = QLineEdit(Form)
-        self.xlineEditSend.setObjectName(u"xlineEditSend")
-        sizePolicy.setHeightForWidth(self.xlineEditSend.sizePolicy().hasHeightForWidth())
-        self.xlineEditSend.setSizePolicy(sizePolicy)
-
-        self.gridLayout_2.addWidget(self.xlineEditSend, 0, 1, 1, 1)
-
         self.pushButtonSend = QPushButton(Form)
         self.pushButtonSend.setObjectName(u"pushButtonSend")
         sizePolicy1.setHeightForWidth(self.pushButtonSend.sizePolicy().hasHeightForWidth())
         self.pushButtonSend.setSizePolicy(sizePolicy1)
         self.pushButtonSend.setMinimumSize(QSize(94, 0))
 
-        self.gridLayout_2.addWidget(self.pushButtonSend, 0, 3, 1, 1)
+        self.gridLayout_2.addWidget(self.pushButtonSend, 0, 2, 1, 1)
 
         self.lineEditSend = QComboBox(Form)
         self.lineEditSend.setObjectName(u"lineEditSend")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.lineEditSend.sizePolicy().hasHeightForWidth())
+        self.lineEditSend.setSizePolicy(sizePolicy2)
+        self.lineEditSend.setMinimumSize(QSize(100, 0))
         self.lineEditSend.setEditable(True)
         self.lineEditSend.setInsertPolicy(QComboBox.InsertAtTop)
 
-        self.gridLayout_2.addWidget(self.lineEditSend, 0, 2, 1, 1)
+        self.gridLayout_2.addWidget(self.lineEditSend, 0, 1, 1, 1)
 
 
-        self.gridLayout_4.addLayout(self.gridLayout_2, 3, 0, 1, 1)
+        self.gridLayout_4.addLayout(self.gridLayout_2, 2, 0, 1, 1)
 
 
         self.retranslateUi(Form)
@@ -279,23 +158,8 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Console", None))
-        self.plainTextEditSerialOutput.setPlaceholderText("")
-        self.label_6.setText(QCoreApplication.translate("Form", u"Lines", None))
-        self.checkBoxDebugCursorFollow.setText(QCoreApplication.translate("Form", u"Cursor follow", None))
         self.pushButtonClear.setText(QCoreApplication.translate("Form", u"Clear", None))
-        self.checkBoxLimitLines.setText(QCoreApplication.translate("Form", u"Keep maximum of", None))
-        self.groupBox_16.setTitle(QCoreApplication.translate("Form", u"Filter messages", None))
-        self.checkBoxFilterCommAck.setText(QCoreApplication.translate("Form", u"Command aknowledge", None))
-        self.checkBoxFilterUSB.setText(QCoreApplication.translate("Form", u"USB Commands", None))
-        self.checkBoxFilterHardware.setText(QCoreApplication.translate("Form", u"Hardware messages", None))
-        self.checkBoxFilterUndefined.setText(QCoreApplication.translate("Form", u"Undefined messages", None))
-        self.checkBoxFilterPriority.setText(QCoreApplication.translate("Form", u"Priority messages", None))
-        self.checkBoxFilterError.setText(QCoreApplication.translate("Form", u"Error messages", None))
-        self.checkBoxFilterOutput.setText(QCoreApplication.translate("Form", u"Output messages", None))
-        self.checkBoxFilterInfoRequest.setText(QCoreApplication.translate("Form", u"Info Requests", None))
-        self.checkBoxFilterExpressionParser.setText(QCoreApplication.translate("Form", u"Expression parser", None))
-        self.checkBoxFilterDebug.setText(QCoreApplication.translate("Form", u"Debug messages", None))
-        self.checkBoxFilterInternal.setText(QCoreApplication.translate("Form", u"Internal messages", None))
+        self.plainTextEditSerialOutput.setPlaceholderText("")
         self.pushButtonSend.setText(QCoreApplication.translate("Form", u"Send", None))
     # retranslateUi
 

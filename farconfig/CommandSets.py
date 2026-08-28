@@ -28,6 +28,8 @@ class CommandSet:
         self.shortID: dict = {}
         self.longID: dict = {}
 
+        self.commands = []
+
     def postInit(self):
         self.shortID = {v: k for k, v in self.shortCommands.items()}
         self.longID = {v: k for k, v in self.longCommands.items()}
@@ -1356,7 +1358,7 @@ class CommandSetModular(CommandSet):
         longCommands = {
             CommandID.controlBoxControlData : "controldata",
             CommandID.controlBoxControlDefaults : "controldefaults",
-            CommandID.controlBoxDataReturn : "datareturn",
+                CommandID.controlBoxDataReturn : "datareturn",
             CommandID.controlBoxADCSettings : "adcsettings",
 
             CommandID.controlBoxHarmonic: "harmonic",
@@ -1920,7 +1922,7 @@ class CommandSetModular(CommandSet):
                     mainWidget.serialWidget.ui.lineEditSend.setCompleter(mainWidget.completer)
                     serialHandler.write("help, nop")
                 elif (not self.hasHelp):
-                    self.buildHelp(mainWidget.commandReference)
+                    self.buildHelp(mainWidget.commandReference, mainWidget.preferences)
                     self.hasHelp = True
                     mainWidget.pluginHandler.commandSet = self
                     mainWidget.pluginHandler.buildPluginList()
@@ -2049,34 +2051,44 @@ class CommandSetModular(CommandSet):
                 mainWidget.handleHarmonicSeriesData(currentItem, commandItem.argument[0], ratios)
 
             case CommandID.controlBoxDataReturn:
-                mainWidget.cvEventHandler.handleControlBoxReturnData(commandItem.argument[0], commandItem.argument[1])
+                if len(commandItem.argument) >= 2:
+                    mainWidget.cvEventHandler.handleControlBoxReturnData(commandItem.argument[0], commandItem.argument[1])
 
             case CommandID.controlBoxControlData:
-                mainWidget.cvEventHandler.handleControlBoxControlData(commandItem.argument[0], commandItem.argument[1])
+                if len(commandItem.argument) >= 2:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(commandItem.argument[0], commandItem.argument[1])
 
             case CommandID.controlBoxHarmonic:
-                mainWidget.cvEventHandler.handleControlBoxControlData(0, commandItem.argument[0])
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(0, commandItem.argument[0])
 
             case CommandID.controlBoxHarmonicShift:
-                mainWidget.cvEventHandler.handleControlBoxControlData(1, commandItem.argument[0])
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(1, commandItem.argument[0])
 
             case CommandID.controlBoxFinetune:
-                mainWidget.cvEventHandler.handleControlBoxControlData(2, commandItem.argument[0])
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(2, commandItem.argument[0])
 
             case CommandID.controlBoxPressure:
-                mainWidget.cvEventHandler.handleControlBoxControlData(3, commandItem.argument[0])
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(3, commandItem.argument[0])
 
             case CommandID.controlBoxHammerTrig:
-                mainWidget.cvEventHandler.handleControlBoxControlData(4, commandItem.argument[0])
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(4, commandItem.argument[0])
 
             case CommandID.controlBoxGate:
-                mainWidget.cvEventHandler.handleControlBoxControlData(5, commandItem.argument[0])
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(5, commandItem.argument[0])
 
             case CommandID.controlBoxHammerScale:
-                mainWidget.cvEventHandler.handleControlBoxControlData(6, commandItem.argument[0])
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(6, commandItem.argument[0])
 
             case CommandID.controlBoxMute:
-                mainWidget.cvEventHandler.handleControlBoxControlData(7, commandItem.argument[0])
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(7, commandItem.argument[0])
 
             case CommandID.help:
                 #self.processHelpReturn(commandItem, mainWidget.ref)
@@ -2225,10 +2237,10 @@ class CommandSetModular(CommandSet):
         qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationContinuousController, [index])[0]
         serialHandler.write(qualifiedCommand + ":" + str(cc) + ":'" + commands + "'")
 
-    def buildHelp(self, commandReference):
-        self.processModuleForHelp(self.baseModule, commandReference)
+    def buildHelp(self, commandReference, preferences):
+        self.processModuleForHelp(self.baseModule, commandReference, preferences)
 
-    def processModuleForHelp(self, inModule, commandReference):
+    def processModuleForHelp(self, inModule, commandReference, preferences):
         yesno = ["no", "yes"]
 
         existingMods = {}
@@ -2260,7 +2272,11 @@ class CommandSetModular(CommandSet):
                 par = inModule.longName
             else:
                 par = ""
+
             commandReference.addCommandB(comstr, par, shortHand, description)
+
+            if (command.commandType != 0):
+                preferences.addCommandToCommandsComboBox(command.longCommand, command.shortCommand, commandd)
 
         for child in inModule.children:
             if not child.longName in existingMods:
@@ -2269,7 +2285,8 @@ class CommandSetModular(CommandSet):
                 if (child.longName in self.baseModule.commands):
                     description = self.baseModule.commands[child.longName].description + "\n\nShorthand: " + child.shortName + "\n\nSelectable" #(child.commands[child.longName])
                     commandReference.addCommandB(child.longName, "", child.shortName, description)
-                    self.processModuleForHelp(child, commandReference)
+
+                    self.processModuleForHelp(child, commandReference, preferences)
                 else:
                     pass
 

@@ -458,7 +458,14 @@ class PluginHandler():
 
         if (plugin is not None):
             self.plugins.append(plugin)
-            self.mainWidget.ui.scrollAreaContentsPlugins.layout().addWidget(plugin)
+            #self.mainWidget.ui.scrollAreaContentsPlugins.layout().addWidget(plugin)
+            #self.mainWidget.ui.verticalLayoutPlugins.addWidget(plugin)
+
+            #Keep the spacer at the bottom to push widgets up
+            position = self.mainWidget.ui.verticalLayoutPlugins.count()
+            if (position > 0): position -= 1
+            self.mainWidget.ui.verticalLayoutPlugins.insertWidget(position, plugin)
+
             for request in plugin.requestData:
                 if (plugin.index != 0):
                     pass
@@ -490,8 +497,12 @@ class PluginHandler():
 
     def clearAllPlugins(self):
         self.mainWidget.ui.comboBoxPlugins.clear()
-        for i in reversed(range(self.mainWidget.ui.scrollAreaContentsPlugins.layout().count())):
-            self.mainWidget.ui.scrollAreaContentsPlugins.layout().itemAt(i).widget().setParent(None)
+        #for i in reversed(range(self.mainWidget.ui.scrollAreaContentsPlugins.layout().count())):
+        #    self.mainWidget.ui.scrollAreaContentsPlugins.layout().itemAt(i).widget().setParent(None)
+
+        #Do not remove the spacer!
+        for i in reversed(range(self.mainWidget.ui.verticalLayoutPlugins.count() - 1)):
+            self.mainWidget.ui.verticalLayoutPlugins.itemAt(i).widget().setParent(None)
 
     def updateWidgets(self, simpleFARHandler):
         for plugin in self.plugins:

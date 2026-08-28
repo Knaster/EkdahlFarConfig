@@ -42,6 +42,11 @@ class Ui_Form(object):
 
         self.label_31 = QLabel(Form)
         self.label_31.setObjectName(u"label_31")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_31.sizePolicy().hasHeightForWidth())
+        self.label_31.setSizePolicy(sizePolicy)
 
         self.gridLayout.addWidget(self.label_31, 0, 3, 1, 1)
 
@@ -55,6 +60,8 @@ class Ui_Form(object):
 
         self.label_6 = QLabel(Form)
         self.label_6.setObjectName(u"label_6")
+        sizePolicy.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
+        self.label_6.setSizePolicy(sizePolicy)
 
         self.gridLayout.addWidget(self.label_6, 0, 0, 1, 1)
 

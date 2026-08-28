@@ -51,7 +51,8 @@
 import platform, random, sys, time, datetime, os
 import serial.tools.list_ports
 from PySide6.QtWidgets import (QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit,
-                               QComboBox, QSlider, QTabBar, QTabWidget, QCheckBox, QDial, QPushButton, QListWidget)
+                               QComboBox, QSlider, QTabBar, QTabWidget, QCheckBox, QDial, QPushButton, QListWidget, QDockWidget, QSizePolicy, QTextEdit,
+                               QVBoxLayout, QStackedWidget, QMainWindow, QAbstractButton, QHBoxLayout, QLabel, QGraphicsScene, QGraphicsView, QFrame)
 from PySide6.QtCore import QThread, Signal, QTimer, Qt, Slot, QSettings, QSize
 from PySide6.QtGui import QIcon, QPainter
 import logging
@@ -72,6 +73,7 @@ from cveventhandling import CVEventHandler
 from midieventhandling import midiEventHandler as midiEventHandler
 from serialWidget import SerialWidget as SerialWidget
 from commandReference import commandReference as CommandReference
+from preferences import preferences as preferences
 import timedChart
 from stringModule import stringModule, SimpleFARHandler
 
@@ -192,7 +194,7 @@ class serialHandler(QThread):
     def writeI(self, str):
         str = str  + "\n\r"
         serialStream.write(str.encode('ascii'))
-
+'''
 class VerticalIconTabBar(QTabBar):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -216,6 +218,7 @@ class VerticalIconTabBar(QTabBar):
             center_y = rect.y() + (rect.height() - icon_size) // 2
             painter.drawPixmap(center_x, center_y, pixmap)
             painter.restore()
+'''
 
 class FarConfig(QWidget):
     midiDataAvaliableSignal = Signal(str, str)
@@ -281,7 +284,27 @@ class FarConfig(QWidget):
         self.populateHarmonicPresets()
 
         self.debugTimedChart = timedChart.timedChart()
-        self.ui.gridLayoutChart.addWidget(self.debugTimedChart._chart_view)
+        self.ui.layoutChart.addWidget(self.debugTimedChart._chart_view)
+        self.legendScene = QGraphicsScene()
+        self.legendScene.addItem(self.debugTimedChart.legend)
+        #rect = self.debugTimedChart.legend.boundingRect()
+        #self.legendScene.setSceneRect(rect.adjusted(2,0,-2,0))
+        #self.debugTimedChart.legend.rect().setRect(0,0,150,400)
+
+        self.legendView = QGraphicsView(self.legendScene)
+        #self.legendView.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignRight)
+        self.legendView.setMinimumWidth(200)
+        self.legendView.setMaximumWidth(200)
+        self.legendView.setViewportMargins(0,0,0,0)
+        self.legendView.setContentsMargins(0,0,0,0)
+        #self.legendView.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        self.legendView.setFrameShape(QFrame.Shape.NoFrame)
+
+        self.debugTimedChart.legend.adjustSize()
+        #self.ui.tab_debugging.layout().addWidget(self.legendView)
+        self.ui.layoutChart.addWidget(self.legendView)
+        self.ui.layoutChart.setContentsMargins(0,0,0,0)
+
         self.serialThread.chartDataSignal.connect(self.addData)
         self.serialThread.chartCommandSignal.connect(self.chartCommand)
 
@@ -296,15 +319,17 @@ class FarConfig(QWidget):
         self.lastSerialEvent = 0
 
     def resizeEvent(self, event, /):
-        self.ui.tabWidgetMain.setFixedWidth(event.size().width() - 19)
+        '''
         self.ui.tabWidgetMain.setFixedHeight(event.size().height() - 59)
         self.ui.tab_nodeeditor.setFixedWidth(event.size().width() - 100)
         self.ui.tab_nodeeditor.setFixedHeight(event.size().height() - 59)
+        '''
         pass
 
+    '''
     def drawTabBar(self):
         self.ui.tabWidgetMain.setTabIcon(0, QIcon("resources/tuning_fork.png"))
-
+        
         tabs = []
         for i in range(self.ui.tabWidgetMain.count()):
             widget = self.ui.tabWidgetMain.widget(i)
@@ -323,6 +348,7 @@ class FarConfig(QWidget):
             self.ui.tabWidgetMain.addTab(new_widget, icon, text)
 
         self.ui.tabWidgetMain.setCurrentIndex(0)
+    '''
 
     def closeEvent(self, event):
         self.serialThread.stop()
@@ -380,25 +406,29 @@ class FarConfig(QWidget):
         serialWidget.addToDebugWindow("<mi<" + str(msg) + "\n")
 
     def dataAvaliable(self, inSerialHandler, v):
-        receivedText = v
-        if (receivedText[:5] == "[irq]"):
-            processInformationReturn(inSerialHandler, receivedText[5:])
-        elif (receivedText[:5] == "[hlp]"):
-            commandSets.processHelpReturn(receivedText[5:], commandReference)
-        serialWidget.addToDebugWindow("<si< " + receivedText + "\n")
-        self.lastSerialEvent = time.time()
+        try:
+            receivedText = v
+            if len(receivedText) > 5:
+                if (receivedText[:5] == "[irq]"):
+                    processInformationReturn(inSerialHandler, receivedText[5:])
+                elif (receivedText[:5] == "[hlp]"):
+                    commandSets.processHelpReturn(receivedText[5:], commandReference)
+            serialWidget.addToDebugWindow("<si< " + receivedText + "\n")
+            self.lastSerialEvent = time.time()
+        except Exception as e:
+            pass
 
     def setUIEnabled(self, state):
-        serialWidget.ui.checkBoxFilterCommAck.setEnabled(state)
-        serialWidget.ui.checkBoxFilterUSB.setEnabled(state)
-        serialWidget.ui.checkBoxFilterHardware.setEnabled(state)
-        serialWidget.ui.checkBoxFilterUndefined.setEnabled(state)
-        serialWidget.ui.checkBoxFilterPriority.setEnabled(state)
-        serialWidget.ui.checkBoxFilterError.setEnabled(state)
-        serialWidget.ui.checkBoxFilterInfoRequest.setEnabled(state)
-        serialWidget.ui.checkBoxFilterExpressionParser.setEnabled(state)
-        serialWidget.ui.checkBoxFilterDebug.setEnabled(state)
-        serialWidget.ui.checkBoxFilterOutput.setEnabled(state)
+        preferences.ui.checkBoxFilterCommAck.setEnabled(state)
+        preferences.ui.checkBoxFilterUSB.setEnabled(state)
+        preferences.ui.checkBoxFilterHardware.setEnabled(state)
+        preferences.ui.checkBoxFilterUndefined.setEnabled(state)
+        preferences.ui.checkBoxFilterPriority.setEnabled(state)
+        preferences.ui.checkBoxFilterError.setEnabled(state)
+        preferences.ui.checkBoxFilterInfoRequest.setEnabled(state)
+        preferences.ui.checkBoxFilterExpressionParser.setEnabled(state)
+        preferences.ui.checkBoxFilterDebug.setEnabled(state)
+        preferences.ui.checkBoxFilterOutput.setEnabled(state)
         self.ui.tabWidgetMain.setEnabled(state)
 
     def updateUIData(self):
@@ -429,21 +459,21 @@ class FarConfig(QWidget):
                     mainWidget.pluginHandler.clearAllPlugins()
                     mainWidget.localNodeHandler.clearNodes()
                     commandSets.currentCommandSet.clearData()
-                    #commandReference.clear()
+                    commandReference.clear()
 
                     self.setUIEnabled(True)
                     self.updateUIData()
                     serialHandler.write("rqi:ver")
 
-                    serialWidget.checkBoxFilterErrorToggled()
-                    serialWidget.checkBoxFilterExpressionParserToggled()
-                    serialWidget.checkBoxFilterDebugToggled()
-                    serialWidget.checkBoxFilterHardwareToggled()
-                    serialWidget.checkBoxFilterPriorityToggled()
-                    serialWidget.checkBoxFilterUndefinedToggled()
-                    serialWidget.checkBoxFilterUSBToggled()
-                    serialWidget.checkBoxFilterCommAckToggled()
-#                    serialHandler.write("debugprint:inforequest:1")
+                    serialWidget.outputDebugSetting(preferences.ui.checkBoxFilterCommAck)
+                    serialWidget.outputDebugSetting(preferences.ui.checkBoxFilterExpressionParser)
+                    serialWidget.outputDebugSetting(preferences.ui.checkBoxFilterDebug)
+                    serialWidget.outputDebugSetting(preferences.ui.checkBoxFilterHardware)
+                    serialWidget.outputDebugSetting(preferences.ui.checkBoxFilterPriority)
+                    serialWidget.outputDebugSetting(preferences.ui.checkBoxFilterUndefined)
+                    serialWidget.outputDebugSetting(preferences.ui.checkBoxFilterUSB)
+                    serialWidget.outputDebugSetting(preferences.ui.checkBoxFilterCommAck)
+                    serialHandler.write("debugprint:inforequest:1")
 
                 except (OSError, serial.SerialException):
                     print("Connection issue")
@@ -523,12 +553,12 @@ class FarConfig(QWidget):
 
                 self.ui.labelAnalyzeNote.setText(ret[3] + str(ret[0]))
                 self.ui.labelAnalyzeCents.setText(str(round(ret[2])))
-                self.ui.horizontalSliderStringFrequency.setValue(round(ret[2]))
+                #self.ui.horizontalSliderStringFrequency.setValue(round(ret[2]))
                 self.ui.labelAnalyzeFreq.setText(str(round(freq,1)))
 
         freq = simpleFARHandler.stringModules[0].getCommandValue(CommandID.motorFrequency)
         if not freq is None:
-            mainWidget.ui.horizontalSliderBowFrequency.setValue(int(freq))
+            #mainWidget.ui.horizontalSliderBowFrequency.setValue(int(freq))
             if (freq > 0):
                 if (self.ui.listWidgetTuningscheme.currentItem() != None):
                     if ((self.ui.listWidgetTuningscheme.currentItem().text()) == "Equal temperament"):
@@ -542,7 +572,7 @@ class FarConfig(QWidget):
 
         current = simpleFARHandler.stringModules[0].getCommandValue(CommandID.motorCurrent)
         if not current is None:
-            mainWidget.ui.horizontalSliderBowCurrent.setValue(int(current * 10))
+            #mainWidget.ui.horizontalSliderBowCurrent.setValue(int(current * 10))
             mainWidget.ui.labelBowCurrent.setText(str(current) + " A")
 
         freq = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pidTargetFreq)
@@ -1166,19 +1196,27 @@ class settingsType(enum.Enum):
     Geometry = enum.auto()
     Visibility = enum.auto()
     checkState = enum.auto()
+    windowState = enum.auto()
+    value = enum.auto()
 
 def settingsDeclaration():
     su = serialWidget.ui
     mu = mainWidget.ui
-    return  [["mainGeometry", mainWidget, settingsType.Geometry],["consoleGeometry", serialWidget, settingsType.Geometry],
-           ["consoleWindowVisible", serialWidget, settingsType.Visibility],["filterHardware", su.checkBoxFilterHardware, settingsType.checkState],
-           ["filterUSB", su.checkBoxFilterUSB, settingsType.checkState],["filterDebug", su.checkBoxFilterDebug, settingsType.checkState],
-           ["filterDebug", su.checkBoxFilterDebug, settingsType.checkState],["filterError", su.checkBoxFilterError, settingsType.checkState],
-           ["filterOutput", su.checkBoxFilterOutput, settingsType.checkState],["filterPriority", su.checkBoxFilterPriority, settingsType.checkState],
-           ["filterUndefined", su.checkBoxFilterUndefined, settingsType.checkState],["filterCommAck", su.checkBoxFilterCommAck, settingsType.checkState],
-           ["filterExpressionParser", su.checkBoxFilterExpressionParser, settingsType.checkState],["filterInfoRequest", su.checkBoxFilterInfoRequest, settingsType.checkState],
-           ["filterInternal", su.checkBoxFilterInternal, settingsType.checkState],["consoleLineLimit", su.checkBoxLimitLines, settingsType.checkState],
-           ["consoleCursorFollow", su.checkBoxDebugCursorFollow, settingsType.checkState],["chartA0", mu.checkBoxChartA0, settingsType.checkState],
+    pu = preferences.ui
+    return  [["mainGeometry", mainWindow, settingsType.Geometry],['mainState', mainWindow, settingsType.windowState],
+             ["consoleGeometry", serialWidget, settingsType.Geometry], ["consoleWindowVisible", serialWidget, settingsType.Visibility],
+
+             ["filterHardware", pu.checkBoxFilterHardware, settingsType.checkState], ["filterUSB", pu.checkBoxFilterUSB, settingsType.checkState],
+             ["filterDebug", pu.checkBoxFilterDebug, settingsType.checkState], ["filterDebug", pu.checkBoxFilterDebug, settingsType.checkState],
+             ["filterError", pu.checkBoxFilterError, settingsType.checkState], ["filterOutput", pu.checkBoxFilterOutput, settingsType.checkState],
+             ["filterPriority", pu.checkBoxFilterPriority, settingsType.checkState], ["filterUndefined", pu.checkBoxFilterUndefined, settingsType.checkState],
+             ["filterCommAck", pu.checkBoxFilterCommAck, settingsType.checkState], ["filterExpressionParser", pu.checkBoxFilterExpressionParser, settingsType.checkState],
+             ["filterInfoRequest", pu.checkBoxFilterInfoRequest, settingsType.checkState], ["filterInternal", pu.checkBoxFilterInternal, settingsType.checkState],
+             ["consoleLineLimit", pu.checkBoxLimitLines, settingsType.checkState], ["consoleCursorFollow", pu.checkBoxDebugCursorFollow, settingsType.checkState],
+             ["consoleLineLimitLines", pu.spinBoxLimitLines, settingsType.value],
+             ["referenceGeometry", commandReference, settingsType.Geometry], ["referenceWindowVisible", commandReference, settingsType.Visibility]]
+    '''
+           ["chartA0", mu.checkBoxChartA0, settingsType.checkState],
            ["chartA1", mu.checkBoxChartA1, settingsType.checkState],["chartA2", mu.checkBoxChartA2, settingsType.checkState],
            ["chartA3", mu.checkBoxChartA3, settingsType.checkState],["chartA4", mu.checkBoxChartA4, settingsType.checkState],
            ["chartA5", mu.checkBoxChartA5, settingsType.checkState],["chartA6", mu.checkBoxChartA6, settingsType.checkState],
@@ -1186,8 +1224,7 @@ def settingsDeclaration():
            ["chartMotFreq", mu.checkBoxChartMotFreq, settingsType.checkState],["chartPeakErr", mu.checkBoxChartPeakErr, settingsType.checkState],
            ["chartMotCurr", mu.checkBoxChartMotCurr, settingsType.checkState],["chartReadFreq", mu.checkBoxChartReadFreq, settingsType.checkState],
            ["chartAudFFT", mu.checkBoxChartAudFFT, settingsType.checkState],["chartAudRMS", mu.checkBoxChartAudRMS, settingsType.checkState],
-           ["referenceGeometry", commandReference, settingsType.Geometry],["referenceWindowVisible", commandReference, settingsType.Visibility]]
-
+    '''
 def save_settings():
     # Save window geometry using QSettings
     settings = QSettings("Knas", "Ekdahl FAR Config")
@@ -1199,6 +1236,10 @@ def save_settings():
                 settings.setValue(set[0], set[1].isVisible())
             case settingsType.Geometry:
                 settings.setValue(set[0], set[1].saveGeometry())
+            case settingsType.windowState:
+                settings.setValue(set[0], set[1].saveState())
+            case settingsType.value:
+                settings.setValue(set[0], set[1].value())
 
 def loadCheckState(settings, name, checkBox):
     state = settings.value(name)
@@ -1215,13 +1256,22 @@ def load_settings():
             match(set[2]):
                 case settingsType.checkState:
                     loadCheckState(settings, set[0], set[1])
+                    #preferences.ui.checkBoxDebugCursorFollow.setCheckState()
+                    set[1].stateChanged.emit(set[1])
                 case settingsType.Visibility:
                     set[1].setVisible(bool(settings.value(set[0])))
                 case settingsType.Geometry:
                     geometry = settings.value(set[0])
                     if geometry: set[1].restoreGeometry(geometry)
-        except:
+                case settingsType.windowState:
+                    state = settings.value(set[0])
+                    if state: set[1].restoreState(state)
+                case settingsType.value:
+                    set[1].setValue(int(settings.value(set[0])))
+                    set[1].valueChanged.emit(set[1])
+        except Exception as e:
             pass
+    mainWindow.updateGeometry()
 
 def showConsole():
     serialWidget.show()
@@ -1247,33 +1297,8 @@ def organize():
 
     localNodehandler.postBuildUpdate()
 
-if __name__ == "__main__":
-
-    app = QApplication(sys.argv)
-
-    mainWidget = FarConfig()
-
-    serialWidget = SerialWidget(serialHandler, mainWidget.timeStamper, logging)
-
-    commandReference = CommandReference()
-
-    mainWidget.setObjectName("main")
-    serialWidget.setObjectName("console")
-    serialWidget.setObjectName("reference")
-
-    mainWidget.show()
-
-## Hiding old
-    mainWidget.ui.horizontalSliderBowCurrent.setVisible(False)
-    mainWidget.ui.horizontalSliderBowFrequency.setVisible(False)
-    mainWidget.ui.pushButtonActuatorLoad.setVisible(False)
-## Hiding until implemented
-    mainWidget.ui.pushButtonAddHarmonicListFile.setVisible(False)
-    mainWidget.ui.pushButtonCCAddLearn.setVisible(False)
-    mainWidget.ui.pushButtonDetectFundamental.setVisible(False)
-    mainWidget.ui.pushButtonCalibrateHammer.setVisible(False)
-
-## Global commands
+def setMainEventHandlers():
+    ## Global commands
     mainWidget.ui.pushButtonConnectDisconnect.pressed.connect(mainWidget.connectDisconnect)
     mainWidget.ui.pushButtonSaveToModule.pressed.connect(mainWidget.pushButtonSaveToModulePressed)
     mainWidget.ui.pushButtonLoadFromModule.pressed.connect(mainWidget.pushButtonLoadFromModulePressed)
@@ -1281,7 +1306,7 @@ if __name__ == "__main__":
     mainWidget.ui.pushButtonShowConsole.pressed.connect(showConsole)
     mainWidget.ui.pushButtonShowReference.pressed.connect(showReference)
 
-## Tab Basic settings
+    ## Tab Basic settings
     mainWidget.ui.pushButtonPickupAnalyse.pressed.connect(mainWidget.pickupAnalyse)
 
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxFundamentalFrequency, CommandID.bowFundamental)
@@ -1295,8 +1320,8 @@ if __name__ == "__main__":
     mainWidget.ui.pushButtonAddHarmonic.pressed.connect(mainWidget.pushButtonAddHarmonicPressed)
     mainWidget.ui.pushButtonRemoveHarmonic.pressed.connect(mainWidget.pushButtonRemoveHarmonicPressed)
     mainWidget.ui.pushButtonLoadHarmonicPreset.pressed.connect(mainWidget.pushButtonLoadHarmonicPresetPressed)
-    #mainWidget.ui.pushButtonSaveCurrentHarmonicList.pressed.connect(mainWidget.pushButtonSaveCurrentHarmonicListPressed)
-    #mainWidget.ui.pushButtonSaveNewHarmonicList.pressed.connect(mainWidget.pushButtonSaveNewHarmonicListPressed)
+    # mainWidget.ui.pushButtonSaveCurrentHarmonicList.pressed.connect(mainWidget.pushButtonSaveCurrentHarmonicListPressed)
+    # mainWidget.ui.pushButtonSaveNewHarmonicList.pressed.connect(mainWidget.pushButtonSaveNewHarmonicListPressed)
     mainWidget.ui.pushButtonRenameHarmonicList.pressed.connect(mainWidget.pushButtonRenameHarmonicListPressed)
     mainWidget.ui.pushButtonAddHarmonicList.pressed.connect(mainWidget.pushButtonAddHarmonicListPressed)
     mainWidget.ui.pushButtonAddHarmonicListFile.pressed.connect(mainWidget.pushButtonAddHarmonicListFilePressed)
@@ -1308,18 +1333,18 @@ if __name__ == "__main__":
     mainWidget.ui.pushButonActuatorSaveNew.setText("Rename")
     mainWidget.ui.pushButtonActuatorDelete.setText("Remove")
     '''
-## Tab Midi settings
+    ## Tab Midi settings
     mainWidget.ui.comboBoxMidiChannel.currentIndexChanged.connect(mainWidget.comboBoxMidiChannelIndexChanged)
 
     mainWidget.ui.comboBoxConfiguration.currentIndexChanged.connect(mainWidget.configurationSet)
-    #mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonConfigurationAdd, "mcfa", True)
+    # mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonConfigurationAdd, "mcfa", True)
     mainWidget.ui.pushButtonConfigurationAdd.pressed.connect(mainWidget.configurationAdd)
     mainWidget.ui.pushButtonConfigurationRemove.pressed.connect(mainWidget.configurationRemove)
     mainWidget.ui.pushButtonConfigurationName.pressed.connect(mainWidget.configurationSetName)
 
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMidiRestoreDefaults, CommandID.midiConfigurationDefaults, True)
 
-    #mainWidget.assignMouseReleaseEvent(mainWidget.ui.midiNoteOnVelToHammer, mainWidget.cmdNoteOnUpdate)
+    # mainWidget.assignMouseReleaseEvent(mainWidget.ui.midiNoteOnVelToHammer, mainWidget.cmdNoteOnUpdate)
     mainWidget.ui.midiNoteOnVelToHammer.sliderReleased.connect(mainWidget.cmdNoteOnUpdate)
 
     mainWidget.ui.midiNoteOnHammerStaccato.stateChanged.connect(mainWidget.cmdNoteOnUpdate)
@@ -1329,45 +1354,45 @@ if __name__ == "__main__":
     mainWidget.ui.midiNoteOffMotorOff.stateChanged.connect(mainWidget.cmdNoteOffUpdate)
 
     mainWidget.midiEventHandler.populateComboBoxSendByte(mainWidget.ui.midiPitchbendSend)
-    mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("pb", { mainWidget.ui.midiPitchbendSend, mainWidget.ui.midiPitchbendRatio })
+    mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("pb", {mainWidget.ui.midiPitchbendSend, mainWidget.ui.midiPitchbendRatio})
     mainWidget.midiEventHandler.populateComboBoxSendByte(mainWidget.ui.midiPolyATSend)
-    mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("pat", { mainWidget.ui.midiPolyATSend, mainWidget.ui.midiPolyATRatio })
+    mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("pat", {mainWidget.ui.midiPolyATSend, mainWidget.ui.midiPolyATRatio})
     mainWidget.midiEventHandler.populateComboBoxSendByte(mainWidget.ui.midiChannelATSend)
-    mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("cat", { mainWidget.ui.midiChannelATSend, mainWidget.ui.midiChannelATRatio })
+    mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("cat", {mainWidget.ui.midiChannelATSend, mainWidget.ui.midiChannelATRatio})
 
     mainWidget.midiEventHandler.populateComboBoxSendBinary(mainWidget.ui.midiSustainSend)
-    mainWidget.midiEventHandler.connectWidgetsToBinarySenders("sustain", { mainWidget.ui.midiSustainInvert, mainWidget.ui.midiSustainSend })
+    mainWidget.midiEventHandler.connectWidgetsToBinarySenders("sustain", {mainWidget.ui.midiSustainInvert, mainWidget.ui.midiSustainSend})
 
     mainWidget.ui.listWidgetMidiEvents.currentItemChanged.connect(mainWidget.midiEventHandler.listWidgetMidiEventscurrentItemChanged)
     mainWidget.ui.lineEditMidiEventCommand.editingFinished.connect(mainWidget.lineEditMidiEventCommandFinished)
     mainWidget.ui.pushButtonCCAdd.pressed.connect(mainWidget.ccAdd)
     mainWidget.ui.pushButtonCCRemove.pressed.connect(mainWidget.ccRemove)
 
-## Tab CV Mapping
-    mainWidget.cvEventHandler.connectCVMappingModifiers(0, { mainWidget.ui.dialCVHarmonicScale, mainWidget.ui.widgetCVHarmonicNoteOffset,
-                                              mainWidget.ui.widgetCVHarmonicZero})
+    ## Tab CV Mapping
+    mainWidget.cvEventHandler.connectCVMappingModifiers(0, {mainWidget.ui.dialCVHarmonicScale, mainWidget.ui.widgetCVHarmonicNoteOffset,
+                                                            mainWidget.ui.widgetCVHarmonicZero})
     mainWidget.cvEventHandler.connectCVTextWidgets(0, mainWidget.ui.plainTextEditCVHarmonicCommands)
 
-    mainWidget.cvEventHandler.connectCVMappingModifiers(1, { mainWidget.ui.dialCVHarmonicShiftScale, mainWidget.ui.dialCVHarmonicShiftZero })
+    mainWidget.cvEventHandler.connectCVMappingModifiers(1, {mainWidget.ui.dialCVHarmonicShiftScale, mainWidget.ui.dialCVHarmonicShiftZero})
     mainWidget.cvEventHandler.connectCVTextWidgets(1, mainWidget.ui.plainTextEditCVHarmonicShiftCommands)
     mainWidget.ui.pushButtonCVHarmonicShiftZeroCalibrate.pressed.connect(mainWidget.cvEventHandler.CVHarmonicShiftZeroCalibrate)
 
-    mainWidget.cvEventHandler.connectCVMappingModifiers(2, { mainWidget.ui.dialCVFineTuneCenter })
+    mainWidget.cvEventHandler.connectCVMappingModifiers(2, {mainWidget.ui.dialCVFineTuneCenter})
     mainWidget.cvEventHandler.connectCVTextWidgets(2, mainWidget.ui.plainTextEditCVFineTuneCommands)
     mainWidget.ui.pushButtonCVFinetuneCalibrate.pressed.connect(mainWidget.cvEventHandler.CVFinetuneCalibrate)
 
     mainWidget.cvEventHandler.connectCVTextWidgets(3, mainWidget.ui.plainTextEditCVPressureCommands)
     mainWidget.cvEventHandler.connectCVTextWidgets(4, mainWidget.ui.plainTextEditCVHammerTriggerCommands)
 
-    mainWidget.cvEventHandler.connectCVMappingModifiers(5, { mainWidget.ui.checkBoxCVGateHold, mainWidget.ui.checkBoxCVGateEngage,
-                                              mainWidget.ui.checkBoxCVGatePowerMotor, mainWidget.ui.widgetCVGateThreshold})
+    mainWidget.cvEventHandler.connectCVMappingModifiers(5, {mainWidget.ui.checkBoxCVGateHold, mainWidget.ui.checkBoxCVGateEngage,
+                                                            mainWidget.ui.checkBoxCVGatePowerMotor, mainWidget.ui.widgetCVGateThreshold})
     mainWidget.cvEventHandler.connectCVTextWidgets(5, mainWidget.ui.plainTextEditCVGateCommands)
 
     mainWidget.cvEventHandler.connectCVTextWidgets(6, mainWidget.ui.plainTextEditCVHammerScaleCommands)
     mainWidget.cvEventHandler.connectCVTextWidgets(7, mainWidget.ui.plainTextEditCVMuteCommands)
 
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonResetADCSettings, CommandID.controlBoxControlDefaults, True)
-## Tab Adanced
+    ## Tab Adanced
 
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorMaxSpeed, CommandID.pidSpeedMax)
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorMinSpeed, CommandID.pidSpeedMin)
@@ -1385,7 +1410,8 @@ if __name__ == "__main__":
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMaxPressure, CommandID.bowPressurePositionMax)
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMinPressure, CommandID.bowPressurePositionEngage)
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowRestPosition, CommandID.bowPressurePositionRest)
-    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonRestBow, [CommandID.bowPressurePositionRest, "0", CommandID.bowPressureRest, "1"]) # "bppr:0,bpr:1"
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonRestBow,
+                                             [CommandID.bowPressurePositionRest, "0", CommandID.bowPressureRest, "1"])  # "bppr:0,bpr:1"
     mainWidget.connectSignalToModalDialog(mainWidget.ui.pushButtonCalibratePressure, CommandID.calibrateBowPressure, CommandID.calibrateBowPressure)
 
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteFullMutePosition, CommandID.muteFullMutePosition)
@@ -1395,29 +1421,35 @@ if __name__ == "__main__":
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonRestMute, [CommandID.muteRestPosition, "0", CommandID.muteRest, "1"])
     mainWidget.connectSignalToModalDialog(mainWidget.ui.pushButtonCalibrateMute, CommandID.calibrateMute, CommandID.calibrateMute)
 
-    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteFullTest, [CommandID.muteFullMute, "1" ])
-    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteHalfTest, [CommandID.muteHalfMute, "1" ])
-    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteRestTest, [CommandID.muteRest, "1" ])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteFullTest, [CommandID.muteFullMute, "1"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteHalfTest, [CommandID.muteHalfMute, "1"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteRestTest, [CommandID.muteRest, "1"])
 
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidMaxForce, CommandID.solenoidMaxForce)
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidMinForce, CommandID.solenoidMinForce)
     mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidEngageDuration, CommandID.solenoidEngageDuration)
 
-#    mainWidget.ui.pushButtonActuatorSave.pressed.connect(mainWidget.pushButtonActuatorSavePressed)
+    #    mainWidget.ui.pushButtonActuatorSave.pressed.connect(mainWidget.pushButtonActuatorSavePressed)
     mainWidget.ui.comboBoxActuatorPreset.currentIndexChanged.connect(mainWidget.comboBoxActuatorIndexChanged)
-#    mainWidget.ui.pushButonActuatorSaveNew.pressed.connect(mainWidget.pushButonActuatorSaveNewPressed)
-   # mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
+    #    mainWidget.ui.pushButonActuatorSaveNew.pressed.connect(mainWidget.pushButonActuatorSaveNewPressed)
+    # mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
     mainWidget.ui.pushButtonActuatorRemove.pressed.connect(mainWidget.pushButtonAcutatorRemovePressed)
     mainWidget.ui.pushButtonActuatorAdd.pressed.connect(mainWidget.pushButtonActuatorAddPressed)
     mainWidget.ui.pushButtonActuatorRename.pressed.connect(mainWidget.pushButtonActuatorRenamePressed)
 
-    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowMaxPressureTest, [CommandID.bowPressureModifier, "0", CommandID.bowPressureBaseline, "65535"])
-    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowEngagePressureTest, [CommandID.bowPressureModifier, "0", CommandID.bowPressureBaseline, "65535", CommandID.bowPressureEngage, "1"])
-    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowRestPressureTest, [CommandID.bowPressureModifier, "0", CommandID.bowPressureBaseline, "65535", CommandID.bowPressureRest, "1"])
-    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonSolenoidMaxForceTest, [CommandID.solenoidForceMultiplier, "1", CommandID.solenoidEngage, "65535"])
-    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonSolenoidMinForceTest, [CommandID.solenoidForceMultiplier, "1", CommandID.solenoidEngage, "1"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowMaxPressureTest,
+                                             [CommandID.bowPressureModifier, "0", CommandID.bowPressureBaseline, "65535"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowEngagePressureTest,
+                                             [CommandID.bowPressureModifier, "0", CommandID.bowPressureBaseline, "65535", CommandID.bowPressureEngage, "1"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowRestPressureTest,
+                                             [CommandID.bowPressureModifier, "0", CommandID.bowPressureBaseline, "65535", CommandID.bowPressureRest, "1"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonSolenoidMaxForceTest,
+                                             [CommandID.solenoidForceMultiplier, "1", CommandID.solenoidEngage, "65535"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonSolenoidMinForceTest,
+                                             [CommandID.solenoidForceMultiplier, "1", CommandID.solenoidEngage, "1"])
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonEngageHammer, [CommandID.solenoidEngage, "65535"])
-    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonHammerDurationTest, [CommandID.solenoidForceMultiplier, "1", CommandID.solenoidEngage, "65535"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonHammerDurationTest,
+                                             [CommandID.solenoidForceMultiplier, "1", CommandID.solenoidEngage, "65535"])
 
     mainWidget.assignValueChanged(mainWidget.ui.spinBoxHarmonicShiftRange, CommandID.bowHarmonicShiftRange)
     mainWidget.ui.comboBoxCurrentlySelectedModule.currentIndexChanged.connect(mainWidget.comboBoxCurrentSelectedModuleIndexChanged)
@@ -1425,7 +1457,7 @@ if __name__ == "__main__":
     mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonHomeMute, CommandID.muteHome, True)
     mainWidget.ui.pushButtonResetAllSettings.pressed.connect(mainWidget.resetAllSettings)
 
-## Tab Debugging
+    ## Tab Debugging
     mainWidget.ui.tableViewScale = tableTest.customTableView(mainWidget.ui.groupBox_3)
     mainWidget.ui.tableViewScale.horizontalHeader().setDefaultSectionSize(70)
     mainWidget.ui.tableViewScale.horizontalHeader().setMinimumSectionSize(18)
@@ -1438,36 +1470,132 @@ if __name__ == "__main__":
     mainWidget.ui.tableViewScale.setItemDelegateForRow(0, delegate)
     mainWidget.ui.tableViewScale.model().dataChanged.connect(mainWidget.tableViewScaleDataChanged)
 
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA0, CommandID.controlBoxDataReturn, 0, timedChart.seriesType.integer)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA1, CommandID.controlBoxDataReturn, 1, timedChart.seriesType.integer)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA2, CommandID.controlBoxDataReturn, 2, timedChart.seriesType.integer)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA3, CommandID.controlBoxDataReturn, 3, timedChart.seriesType.integer)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA4, CommandID.controlBoxDataReturn, 4, timedChart.seriesType.integer)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA5, CommandID.controlBoxDataReturn, 5, timedChart.seriesType.integer)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA6, CommandID.controlBoxDataReturn, 6, timedChart.seriesType.integer)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA7, CommandID.controlBoxDataReturn, 7, timedChart.seriesType.integer)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartAudPk, CommandID.pickupAudioPeak, -1, timedChart.seriesType.integer)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartAudRMS, CommandID.pickupAudioRMS, -1, timedChart.seriesType.integer)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartAudFFT, CommandID.pickupStringFrequency, -1, timedChart.seriesType.frequency)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartMotFreq, CommandID.motorFrequency, -1, timedChart.seriesType.frequency)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartReadFreq, CommandID.pidTargetFreq, -1, timedChart.seriesType.frequency)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartPeakErr, CommandID.pidPeakError, -1, timedChart.seriesType.frequency)
-    mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartMotCurr, CommandID.motorCurrent, -1, timedChart.seriesType.integer)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA0, CommandID.controlBoxDataReturn, 0, timedChart.seriesType.integer)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA1, CommandID.controlBoxDataReturn, 1, timedChart.seriesType.integer)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA2, CommandID.controlBoxDataReturn, 2, timedChart.seriesType.integer)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA3, CommandID.controlBoxDataReturn, 3, timedChart.seriesType.integer)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA4, CommandID.controlBoxDataReturn, 4, timedChart.seriesType.integer)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA5, CommandID.controlBoxDataReturn, 5, timedChart.seriesType.integer)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA6, CommandID.controlBoxDataReturn, 6, timedChart.seriesType.integer)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartA7, CommandID.controlBoxDataReturn, 7, timedChart.seriesType.integer)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartAudPk, CommandID.pickupAudioPeak, -1, timedChart.seriesType.integer)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartAudRMS, CommandID.pickupAudioRMS, -1, timedChart.seriesType.integer)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartAudFFT, CommandID.pickupStringFrequency, -1, timedChart.seriesType.frequency)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartMotFreq, CommandID.motorFrequency, -1, timedChart.seriesType.frequency)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartReadFreq, CommandID.pidTargetFreq, -1, timedChart.seriesType.frequency)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartPeakErr, CommandID.pidPeakError, -1, timedChart.seriesType.frequency)
+    #mainWidget.checkBoxChartAssign(mainWidget.ui.checkBoxChartMotCurr, CommandID.motorCurrent, -1, timedChart.seriesType.integer)
 
     mainWidget.ui.pushButtonClearAverages.pressed.connect(mainWidget.cvEventHandler.averagesClear)
     mainWidget.ui.pushButtonTestAverages.pressed.connect(mainWidget.cvEventHandler.averagesTest)
 
-    #mainWidget.completerList = [ "banana", "apple", "orange" ]
+    mainWidget.ui.pushButtonPreferences.pressed.connect(showPreferences)
+
+def showPreferences():
+    #preferences.setWindowModality(Qt.WindowModality.WindowModal)
+    preferences.show()
+
+class DockTitleBar(QWidget):
+    def __init__(self, title, parent_dock):
+        super().__init__(parent_dock)
+        layout = QHBoxLayout(self)
+        layout.setContentsMargins(5, 2, 5, 2)
+        # Add Title
+        label = QLabel(title)
+        label.setStyleSheet("font-weight: bold; color: white;")
+        layout.addWidget(label)
+
+        layout.addStretch()
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setCentralWidget(mainWidget)
+        self.setDockNestingEnabled(False)
+
+        #Dock widget is our docking area
+        self.dockWidgetSerial = QDockWidget("Serial console", self)
+        self.dockWidgetSerial.setObjectName("SerialDock")
+        self.dockWidgetSerial.setWidget(serialWidget)
+        #self.dockWidgetSerial.setFeatures(self.dockWidgetSerial.features() & ~QDockWidget.DockWidgetClosable)
+        #dockWidgetSerial.setFloating(False)
+        #for btn in self.dockWidgetSerial.findChildren(QAbstractButton):
+        #    if "close" in btn.objectName().lower(): btn.hide()
+        self.dockWidgetSerial.setTitleBarWidget(DockTitleBar("Serial", self.dockWidgetSerial))
+        self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dockWidgetSerial)
+        self.dockWidgetSerial.setStyleSheet("QDockWidget::close-button { image: none; width: 0px; height: 0px; border: none; }")
+
+        self.dockWidgetReference = QDockWidget("Language reference")
+        self.dockWidgetReference.setObjectName("ReferenceDock")
+        self.dockWidgetReference.setWidget(commandReference)
+        #dockWidgetReference.setFloating(False)
+        #self.dockWidgetReference.setFeatures(self.dockWidgetReference.features() & ~QDockWidget.DockWidgetClosable)
+        #for btn in self.dockWidgetReference.findChildren(QAbstractButton):
+        #    if "close" in btn.objectName().lower(): btn.hide()
+        self.dockWidgetReference.setTitleBarWidget(DockTitleBar("Reference", self.dockWidgetReference))
+        self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dockWidgetReference)
+        self.dockWidgetReference.setStyleSheet("QDockWidget::close-button { image: none; width: 0px; height: 0px; border: none; }")
+
+        self.tabifyDockWidget(self.dockWidgetSerial, self.dockWidgetReference)
+        self.tabBar = QTabBar(self.findChild(QTabBar))
+        self.tabBar.setAutoHide(True)
+        self.setTabPosition(Qt.DockWidgetArea.RightDockWidgetArea, QTabWidget.TabPosition.North)
+        self.tabBar.setContentsMargins(0,10,0,0)
+        #self.destroyed.connect(self.closeEvent)
+
+    def closeEvent(self, event, /):
+        mainWidget.closeEvent(event)
+        super().closeEvent(event)
+        pass
+
+    def toggleSidebar(self):
+        self.dockWidgetReference.toggleViewAction().trigger()
+        self.dockWidgetSerial.toggleViewAction().trigger()
+        #self.dockWidgetSerial.hide()
+        #self.dockWidgetReference.hide()
+
+if __name__ == "__main__":
+
+    app = QApplication(sys.argv)
+
+    mainWidget = FarConfig()
+
+    serialWidget = SerialWidget(serialHandler, mainWidget.timeStamper, logging)
+
+    commandReference = CommandReference()
+    preferences = preferences(mainWidget, serialWidget, mainWidget.debugTimedChart, commandSets)
+
+    mainWidget.setObjectName("main")
+    serialWidget.setObjectName("console")
+    serialWidget.setObjectName("reference")
+
+    #mainWindow is nothing but a container for mainWidget using QMainWindow so i can use more docking features
+    mainWindow = MainWindow()
+    mainWindow.show()
+    mainWidget.ui.pushButtonToggleSidebar.pressed.connect(mainWindow.toggleSidebar)
+
+    ## Hiding old
+    mainWidget.ui.pushButtonActuatorLoad.setVisible(False)
+    mainWidget.ui.pushButtonShowReference.setVisible(False)
+    mainWidget.ui.pushButtonShowConsole.setVisible(False)
+    mainWidget.ui.label_22.setVisible(False)
+    mainWidget.ui.comboBoxCurrentlySelectedModule.setVisible(False)
+## Hiding until implemented
+    mainWidget.ui.pushButtonAddHarmonicListFile.setVisible(False)
+    mainWidget.ui.pushButtonCCAddLearn.setVisible(False)
+    mainWidget.ui.pushButtonDetectFundamental.setVisible(False)
+    mainWidget.ui.pushButtonCalibrateHammer.setVisible(False)
+
+    setMainEventHandlers()
+
+    # mainWidget.completerList = [ "banana", "apple", "orange" ]
     mainWidget.completerList = []
-    #mainWidget.completer = QCompleter(mainWidget.completerList)
+    # mainWidget.completer = QCompleter(mainWidget.completerList)
     mainWidget.serialWidget = serialWidget
-    #serialWidget.ui.lineEditSend.setCompleter(mainWidget.completer)
+    # serialWidget.ui.lineEditSend.setCompleter(mainWidget.completer)
+
 ## Plugin tab
     mainWidget.pluginHandler = pluginhandler.PluginHandler(mainWidget, serialHandler, simpleFARHandler)
-    #self.ui = Ui_Widget()
-    #self.ui.setupUi(self)
-    #self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
-    #self.focusing = False
 
 ## Default settings
     mainWidget.addTuningSchemes()
@@ -1475,21 +1603,23 @@ if __name__ == "__main__":
     mainWidget.ui.tabWidgetMain.setCurrentIndex(0)
 
 ## Console widget
-    serialWidget.ui.spinBoxLimitLines.setValue(2500)
-    serialWidget.ui.checkBoxLimitLines.setCheckState(Qt.CheckState.Checked)
-    serialWidget.ui.checkBoxFilterInfoRequest.setCheckState(Qt.CheckState.Unchecked)
-    serialWidget.ui.checkBoxFilterOutput.setCheckState(Qt.CheckState.Unchecked)
-    serialWidget.checkBoxFilterInfoRequestToggled()
-    serialWidget.checkBoxFilterOutputToggled()
-    serialWidget.ui.checkBoxFilterUSB.setCheckState(Qt.CheckState.Checked)
-    serialWidget.ui.checkBoxFilterHardware.setCheckState(Qt.CheckState.Unchecked)
-    serialWidget.ui.checkBoxFilterExpressionParser.setCheckState(Qt.CheckState.Unchecked)
-    serialWidget.ui.checkBoxFilterCommAck.setCheckState(Qt.CheckState.Checked)
-    serialWidget.ui.checkBoxFilterDebug.setCheckState(Qt.CheckState.Unchecked)
-    serialWidget.ui.checkBoxFilterPriority.setCheckState(Qt.CheckState.Checked)
-    serialWidget.ui.checkBoxFilterError.setCheckState(Qt.CheckState.Checked)
-    serialWidget.ui.checkBoxFilterUndefined.setCheckState(Qt.CheckState.Checked)
-    serialWidget.checkBoxDebugCursorFollowToggled()
+    preferences.ui.spinBoxLimitLines.setValue(2500)
+    preferences.ui.checkBoxLimitLines.setCheckState(Qt.CheckState.Checked)
+    preferences.ui.checkBoxFilterInfoRequest.setCheckState(Qt.CheckState.Unchecked)
+    preferences.ui.checkBoxFilterOutput.setCheckState(Qt.CheckState.Unchecked)
+    preferences.ui.checkBoxFilterUSB.setCheckState(Qt.CheckState.Checked)
+    preferences.ui.checkBoxFilterHardware.setCheckState(Qt.CheckState.Unchecked)
+    preferences.ui.checkBoxFilterExpressionParser.setCheckState(Qt.CheckState.Unchecked)
+    preferences.ui.checkBoxFilterCommAck.setCheckState(Qt.CheckState.Checked)
+    preferences.ui.checkBoxFilterDebug.setCheckState(Qt.CheckState.Unchecked)
+    preferences.ui.checkBoxFilterPriority.setCheckState(Qt.CheckState.Checked)
+    preferences.ui.checkBoxFilterError.setCheckState(Qt.CheckState.Checked)
+    preferences.ui.checkBoxFilterUndefined.setCheckState(Qt.CheckState.Checked)
+
+#    preferences.ui.checkBoxLimitLines.setCheckState(preferences.ui.checkBoxLimitLines.checkState())
+#    preferences.ui.spinBoxLimitLines.setValue(preferences.ui.spinBoxLimitLines.value())
+#    preferences.ui.checkBoxDebugCursorFollow.setCheckState(preferences.ui.checkBoxDebugCursorFollow.checkState())
+    #serialWidget.checkBoxDebugCursorFollowToggled()
 
     serialWidget.ui.plainTextEditSerialOutput.setUndoRedoEnabled(False)
 # Command reference form
@@ -1507,6 +1637,7 @@ if __name__ == "__main__":
     mainWidget.ui.pushButtonOrganize.pressed.connect(organize)
 
     mainWidget.commandReference = commandReference
+    mainWidget.preferences = preferences
 
     mainWidget.destroyed.connect(mainWidget.closeEvent)
     mainWidget.populateFundamentalComboBox()
@@ -1517,4 +1648,5 @@ if __name__ == "__main__":
     serialWidget.addToDebugWindow("Initialized\n")
     sys.exit(app.exec())
     mainWidget.thread1.terminate()
+    mainWindow.close()
 

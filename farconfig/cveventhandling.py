@@ -1,10 +1,11 @@
 from commanddefinitions import CommandID
-from PySide6.QtWidgets import QWidget, QDial, QDoubleSpinBox, QCheckBox
+from PySide6.QtWidgets import QWidget, QDial, QDoubleSpinBox, QCheckBox, QPlainTextEdit
 from PySide6.QtCore import QTimer, Qt
 from general_helpers import messageBox
 import equationParsingHelpers
 import math
 import averager
+from qplaintextsub import QPlainTextSub
 
 class CVEventHandler(QWidget):
     def __init__(self, mainClass, serialHandler, commandSet, simpleFARHandler):
@@ -272,8 +273,9 @@ class CVEventHandler(QWidget):
             if isinstance(widget, QCheckBox):
                 widget.stateChanged.connect(self.widgetCVMappingCallback)
 
-    def widgetCVTextCallback(self):
-        widget = self.sender()
+    def widgetCVTextCallback(self, widget = None):
+        if (widget is None):
+            widget = self.sender()
         cmd = widget.text()
         setCommands = self.commandSet.getQualifiedShortCommand(CommandID.controlBoxControlData)[0]
         cmd = setCommands + ":" + str (widget.CVcontrol) + ":'" + cmd + "'"
@@ -281,7 +283,8 @@ class CVEventHandler(QWidget):
 
     def connectCVTextWidgets(self, CVcontrol, widget):
         widget.CVcontrol = CVcontrol
-        widget.returnPressed.connect(self.widgetCVTextCallback)
+        if (isinstance(widget, QPlainTextSub)):
+            widget.connectReturnPressed(self.widgetCVTextCallback)
 
     def CVFinetuneCalibrate(self):
         messageBox("CV fine tuning center calibration",
