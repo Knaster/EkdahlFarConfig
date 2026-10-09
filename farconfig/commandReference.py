@@ -53,7 +53,7 @@ class commandReference(QWidget):
     def listWidgetCommandsCurrentItemChanged(self, current, previous):
         self.ui.plainTextEditCMVDescription.clear()
         if current is not None:
-            self.ui.plainTextEditCMVDescription.insertPlainText(current.data(0, Qt.ItemDataRole.UserRole))
+            self.ui.plainTextEditCMVDescription.insertPlainText(current.arguments(0, Qt.ItemDataRole.UserRole))
 
     def clear(self):
         self.ui.listWidgetCommands.clear()

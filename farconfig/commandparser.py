@@ -159,7 +159,7 @@ class CommandList:
             self.addCommands(commands)
         pass
 
-class derivedCommandItem(CommandItem):
+class Derivedcommanditem(CommandItem):
     class commandItemPart:
         def __init__(self, inName, inSelection):
             self.name: str = inName
@@ -172,9 +172,9 @@ class derivedCommandItem(CommandItem):
             self.command = inCommandString.command
             self.argument = inCommandString.argument
 
-        self.hierarchy: list = []
+        self.hierarchy: list[Derivedcommanditem.commandItemPart] = []
         self.hierarchyIndex = 0
-        self.selection: list = []
+        #self.selection: list = []
         self.buildHierarchy()
 
     def buildHierarchy(self):
@@ -201,10 +201,7 @@ class derivedCommandItem(CommandItem):
                     sel = portion[i:k]
                     l = sel.find('-')
                     if (l == -1):
-                        try:
-                            thisSel.append(int(sel))
-                        except:
-                            pass
+                        thisSel.append(int(sel))
                     else:
                         m = int(sel[0:l])
                         n = int(sel[l + 1: len(sel)])
@@ -218,12 +215,12 @@ class derivedCommandItem(CommandItem):
             start = end + 1
 
 
-class derivedCommandList(CommandList):
+class Derivedcommandlist(CommandList):
     def __init__(self, commands=""):
-        self.commandItem = derivedCommandItem
+        self.commandItem = Derivedcommanditem
         super().__init__(commands)
 
-def getCommandIndex(inCommandItem:derivedCommandItem):
+def getCommandIndex(inCommandItem:Derivedcommanditem):
     if (len(inCommandItem.hierarchy) < 2): return 0
     if (len(inCommandItem.hierarchy[len(inCommandItem.hierarchy) - 2].selection) < 1): return 0
     return int(inCommandItem.hierarchy[len(inCommandItem.hierarchy) - 2].selection[0])

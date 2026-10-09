@@ -19,8 +19,8 @@
 
 # This Python file uses the following encoding: utf-8
 
-from commandparser import derivedCommandList as CommandList
-from commandparser import derivedCommandItem as CommandItem
+from commandparser import Derivedcommandlist as CommandList
+from commandparser import Derivedcommanditem as CommandItem
 
 class stringModule:
     def __init__(self):
@@ -30,15 +30,16 @@ class stringModule:
 
         self.commandValues = {}
         self.harmonicData = []
+        self.commandValueChanged = {}
 
         self.adcValue = [0,0,0,0,0,0,0,0]
         self.adcCommand = ["","","","","","","",""]
         self.adcCommandLists = [CommandList(),CommandList(),CommandList(),CommandList(),CommandList(),CommandList(),CommandList(),CommandList()]
         pass
 
-    def updateRequest(self):
-        request = "rqi:bowcontrolfundamental"
-        return request
+#    def updateRequest(self):
+#        request = "rqi:bowcontrolfundamental"
+#        return request
 
     def setCVValue(self, ch, value):
         self.adcValue[int(ch)] = int(value);
@@ -51,13 +52,10 @@ class stringModule:
     # where the key is the associated command
     def setCommandValue(self, command, value, index = 0):
         if (command in self.commandValues):
-            try:
-                if len(self.commandValues[command]) <= index:
-                    self.commandValues[command].insert(index, value)
-                else:
-                    self.commandValues[command][index] = value
-            except:
-                pass
+            if len(self.commandValues[command]) <= index:
+                self.commandValues[command].insert(index, value)
+            else:
+                self.commandValues[command][index] = value
         else:
             if (index == 0):
                 self.commandValues[command] = [value]
@@ -66,12 +64,7 @@ class stringModule:
 
 
     def getCommandValue(self, command, index = 0):
-        #if command in self.commandValues:
-        try:
-            return self.commandValues[command][index]
-        #else:
-        except:
-            return None
+        return self.commandValues[command][index]
 
     def setCVCommand(self, channel, command):
         channel = int(channel)

@@ -1,20 +1,22 @@
 var searchData=
 [
-  ['offtext_0',['offText',['../classcustomnodewidgets_1_1ToggleSwitchW.html#aaf97944db61c4ffc988747f48afb058e',1,'customnodewidgets::ToggleSwitchW']]],
+  ['offtext_0',['offText',['../classfarconfig_1_1GraphNode_1_1customnodewidgets_1_1ToggleSwitchW.html#aaf97944db61c4ffc988747f48afb058e',1,'farconfig::GraphNode::customnodewidgets::ToggleSwitchW']]],
   ['oldrange_1',['oldRange',['../classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a7c50e235b39994e01ed1493d62130674',1,'farconfig::pluginhandler::Plugin_NumberMap']]],
-  ['on_5fbtn_5fgo_5fclicked_2',['on_btn_go_clicked',['../classcustomnodewidgets_1_1NodeSlider.html#aa1d4f36aa020088ca4f12c23031ca099',1,'customnodewidgets.NodeSlider.on_btn_go_clicked()'],['../classcustomnodewidgets_1_1ToggleSwitch.html#aa1d4f36aa020088ca4f12c23031ca099',1,'customnodewidgets.ToggleSwitch.on_btn_go_clicked()']]],
-  ['on_5finput_5fconnected_3',['on_input_connected',['../classcustomnode_1_1CustomBaseNode.html#aa7d4f52b80ef8047f54cdfe31ebc633a',1,'customnode::CustomBaseNode']]],
-  ['on_5finput_5fdisconnected_4',['on_input_disconnected',['../classcustomnode_1_1CustomBaseNode.html#acdb2db34e50fd222ec9e0b9e637a6224',1,'customnode::CustomBaseNode']]],
-  ['ontext_5',['onText',['../classcustomnodewidgets_1_1ToggleSwitchW.html#a8f9c947d03cb9a6af536b34c4a4a813d',1,'customnodewidgets::ToggleSwitchW']]],
-  ['open_5fsession_6',['open_session',['../namespacehotkeys_1_1hotkey__functions.html#a2c3a39f91556cf21c9381de3d8f57943',1,'hotkeys::hotkey_functions']]],
+  ['on_5fbtn_5fgo_5fclicked_2',['on_btn_go_clicked',['../classfarconfig_1_1GraphNode_1_1customnodewidgets_1_1NodeSlider.html#aa1d4f36aa020088ca4f12c23031ca099',1,'farconfig.GraphNode.customnodewidgets.NodeSlider.on_btn_go_clicked()'],['../classfarconfig_1_1GraphNode_1_1customnodewidgets_1_1ToggleSwitch.html#aa1d4f36aa020088ca4f12c23031ca099',1,'farconfig.GraphNode.customnodewidgets.ToggleSwitch.on_btn_go_clicked()']]],
+  ['on_5finput_5fconnected_3',['on_input_connected',['../classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#aa7d4f52b80ef8047f54cdfe31ebc633a',1,'farconfig::GraphNode::customnode::CustomBaseNode']]],
+  ['on_5finput_5fdisconnected_4',['on_input_disconnected',['../classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#acdb2db34e50fd222ec9e0b9e637a6224',1,'farconfig::GraphNode::customnode::CustomBaseNode']]],
+  ['ontext_5',['onText',['../classfarconfig_1_1GraphNode_1_1customnodewidgets_1_1ToggleSwitchW.html#a8f9c947d03cb9a6af536b34c4a4a813d',1,'farconfig::GraphNode::customnodewidgets::ToggleSwitchW']]],
+  ['open_5fsession_6',['open_session',['../namespacefarconfig_1_1GraphNode_1_1hotkeys_1_1hotkey__functions.html#a2c3a39f91556cf21c9381de3d8f57943',1,'farconfig::GraphNode::hotkeys::hotkey_functions']]],
   ['optimizedeadbands_7',['optimizeDeadbands',['../classfarconfig_1_1nodehandler_1_1NodeHandler.html#a469ec861456be1b26ec48812d878aa01',1,'farconfig::nodehandler::NodeHandler']]],
   ['optimizemakebools_8',['optimizeMakeBools',['../classfarconfig_1_1nodehandler_1_1NodeHandler.html#a60fa8503dfda663fa3ae1b1f68ec01ba',1,'farconfig::nodehandler::NodeHandler']]],
   ['optimizemakeboolsiter_9',['optimizeMakeBoolsIter',['../classfarconfig_1_1nodehandler_1_1NodeHandler.html#aa02450b7311a5d2f104a2eed97ce4bca',1,'farconfig::nodehandler::NodeHandler']]],
   ['optimizeobjects_10',['optimizeObjects',['../classfarconfig_1_1nodehandler_1_1NodeHandler.html#a53761edc7217a98b8daddf16138d3d18',1,'farconfig::nodehandler::NodeHandler']]],
   ['organize_11',['organize',['../namespacefarconfig_1_1farconfig.html#a288fbb0b736d88331710b31d28d86c1f',1,'farconfig::farconfig']]],
   ['originallineeditkeypressevent_12',['originalLineEditKeyPressEvent',['../classfarconfig_1_1serialWidget_1_1SerialWidget.html#ad85869025c5b61697b34bfdf17e87561',1,'farconfig::serialWidget::SerialWidget']]],
-  ['output_5fports_13',['output_ports',['../classcustomnode_1_1CustomBaseNode.html#acd02397c9b7326eb88a1e9594c0a2d6f',1,'customnode::CustomBaseNode']]],
-  ['outputassignment_14',['OutputAssignment',['../classfarconfig_1_1commanddefinitions_1_1ModuleCommandType__data.html#a34f9a8e9c25bfd3e022118017e7f8ba1',1,'farconfig::commanddefinitions::ModuleCommandType_data']]],
-  ['overflow_15',['overflow',['../classfarconfig_1_1timedChart_1_1timeStamp.html#a5207974538b01392cb7fc18d69a0fe00',1,'farconfig::timedChart::timeStamp']]],
-  ['overridefunction_16',['overrideFunction',['../classfarconfig_1_1nodehandler_1_1NodeHandler.html#a32d5b9716a3414254c681454ac343e5e',1,'farconfig::nodehandler::NodeHandler']]]
+  ['outfile_13',['outFile',['../namespacefarconfig_1_1unittesting.html#a100787fcd922ef8bb51dac9b9a3e4132',1,'farconfig::unittesting']]],
+  ['output_14',['output',['../classfarconfig_1_1serialWidget_1_1ReportTypeEnum.html#ad288825273ed7192429ab0474fb2d4a0',1,'farconfig::serialWidget::ReportTypeEnum']]],
+  ['output_5fports_15',['output_ports',['../classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#acd02397c9b7326eb88a1e9594c0a2d6f',1,'farconfig::GraphNode::customnode::CustomBaseNode']]],
+  ['outputassignment_16',['OutputAssignment',['../classfarconfig_1_1commanddefinitions_1_1ModuleCommandType__data.html#a34f9a8e9c25bfd3e022118017e7f8ba1',1,'farconfig::commanddefinitions::ModuleCommandType_data']]],
+  ['overflow_17',['overflow',['../classfarconfig_1_1timedChart_1_1timeStamp.html#a5207974538b01392cb7fc18d69a0fe00',1,'farconfig::timedChart::timeStamp']]],
+  ['overridefunction_18',['overrideFunction',['../classfarconfig_1_1nodehandler_1_1NodeHandler.html#a32d5b9716a3414254c681454ac343e5e',1,'farconfig::nodehandler::NodeHandler']]]
 ];

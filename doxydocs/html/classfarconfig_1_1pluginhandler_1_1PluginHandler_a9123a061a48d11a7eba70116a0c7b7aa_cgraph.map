@@ -1,0 +1,13 @@
+<map id="addGUICallbacks" name="addGUICallbacks">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,139,56"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a484fd9a3d2f4c12dec83e482dcd9b2a1" title=" " alt="" coords="201,5,375,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,33,187,27,188,32,139,38"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a404e3853858c17e267e0353cc458767b" title=" " alt="" coords="187,55,389,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="139,48,174,52,173,57,139,53"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a365233cecc57b208e49f69638299fe58" title=" " alt="" coords="457,5,593,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="375,15,443,15,443,21,375,21"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a2226c67992951aad5c24c32d30f7f9f4" title=" " alt="" coords="483,55,566,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="390,65,470,65,470,70,390,70"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#afe2701cce8606f3ec405da222e5f5432" title=" " alt="" coords="437,104,612,129"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="350,77,450,98,449,104,349,83"/>
+</map>

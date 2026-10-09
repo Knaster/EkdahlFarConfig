@@ -1,0 +1,8 @@
+<map id="getCommandData" name="getCommandData">
+<area shape="rect" id="Node000001" title=" " alt="" coords="285,35,427,60"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="398,26,387,17,356,13,331,15,317,20,315,26,322,33,318,36,310,26,314,16,330,10,356,8,389,12,402,21"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a0da8cdb36a182a6b664296100dcefdce" title=" " alt="" coords="16,5,227,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="271,39,223,33,223,28,272,34"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1ModuleSystem_1_1ModuleHandler.html#acabbd3d60645d5ffa68b2f7d142e0122" title=" " alt="" coords="5,55,237,95"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="272,60,238,64,237,59,271,55"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="getCommandAndModule" name="getCommandAndModule">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,42,188,67"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1ModuleSystem_1_1GroupHandler.html#a38b352081e17bc7413f10931aafb7d6f" title=" " alt="" coords="236,42,319,67"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,52,222,52,222,57,188,57"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1ModuleSystem_1_1GroupHandler.html#a87481c9f8f4320139ab0223144951b9f" title=" " alt="" coords="367,42,492,67"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="319,52,353,52,353,57,319,57"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1ModuleSystem_1_1GroupHandler.html#ac82a7c62f97f59b743f70f8a149ae147" title=" " alt="" coords="540,42,721,67"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="492,52,526,52,526,57,492,57"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1ModuleSystem_1_1Module.html#a1bc3abe01b30429bb208d30b6b1d4391" title=" " alt="" coords="769,5,1029,45"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="721,42,755,38,756,44,722,47"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1ModuleSystem_1_1GroupHandler.html#a5488afcb381268378180d42f9dcf0a23" title=" " alt="" coords="857,70,942,95"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="722,61,843,74,843,80,721,67"/>
+</map>

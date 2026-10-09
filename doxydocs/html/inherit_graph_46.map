@@ -1,3 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classfarconfig_1_1stringModule_1_1stringModule.html" title=" " alt="" coords="5,5,112,31"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,104,80,129"/>
+<area shape="rect" id="Node000001" href="$classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem.html" title=" " alt="" coords="128,5,279,31"/>
+<area shape="poly" id="edge78_Node000000_Node000001" title=" " alt="" coords="63,92,92,65,127,40,152,28,154,33,129,44,95,69,66,96"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1tabadvanced_1_1TabAdvanced.html" title=" " alt="" coords="149,55,257,80"/>
+<area shape="poly" id="edge79_Node000000_Node000002" title=" " alt="" coords="92,99,160,78,162,83,94,104"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1tabbasic_1_1TabBasic.html" title=" " alt="" coords="164,104,243,129"/>
+<area shape="poly" id="edge80_Node000000_Node000003" title=" " alt="" coords="94,114,164,114,164,119,94,119"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1tabcv_1_1TabCV.html" title=" " alt="" coords="172,153,235,179"/>
+<area shape="poly" id="edge81_Node000000_Node000004" title=" " alt="" coords="94,129,173,154,171,159,92,135"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1tabmidi_1_1TabMIDI.html" title=" " alt="" coords="166,203,241,228"/>
+<area shape="poly" id="edge82_Node000000_Node000005" title=" " alt="" coords="67,138,95,164,129,188,167,204,165,208,127,192,92,168,63,141"/>
 </map>

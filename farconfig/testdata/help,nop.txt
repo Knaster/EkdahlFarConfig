@@ -1,0 +1,209 @@
+help:uservariable:uv:136:'variable(0-9):value':0:'Set user variable 0-9 to value'
+help:expressionparserevaluate:epev:1137:'expression':0:'Evaluates an arithmetric expression and sends back the output'
+help:ifequal:ife:5233:'variable:comparator:truecommandstring:elsecommandstring':0:'Performs [IF [variable] EQUALS [comparator]] and adds [truecommandstring] to the que if TRUE, otherwise adds [elsecommandstring]'
+help:ifgreater:ifg:5233:'variable:comparator:truecommandstring:elsecommandstring':0:'Performs [IF [variable] > [comparator]] and adds [truecommandstring] to the que if TRUE, otherwise adds [elsecommandstring]'
+help:ifless:ifl:5233:'variable:comparator:truecommandstring:elsecommandstring':0:'Performs [IF [variable] < [comparator]] and adds [truecommandstring] to the que if TRUE, otherwise adds [elsecommandstring]'
+help:freeram:free:1064:'-':0:'Shows free RAM memory'
+help:external:ext:1143:'commandlist':0:'Directly sending commands to external units'
+help:test:test:1128:'-':0:'-'
+help:list:ls:3112:'hidden/h:modules/m:commands/c:instances/i:instancecounts/ic:recursive/r':0:'Lists all commands and modules under the current module depending on the parameters given;     'hidden' includes normally hidden commands, 'modules' includes any submodules, 'commands' includes commands, 'instances' shows data for each individual instance of a module,      'instancecounts' includes number of instances of each module, 'recursive' lists and child modules / commands '
+help:help:help:3112:'recursive/r':0:'shows this brief explanation of all commands and modules, shows the help for all submodules as well if 'recursive''
+help:dumpdata:dump:3112:'recursive/r':0:'Dumps all data to be saved for the current module, will list the data of all submodules as well if 'recursive''
+help:version:ver:2081:'-':0:'Gets the current firmware version':
+help:debugprint:dp:2056:'command|usb|hardware|undefined|priority|error|inforequest|expressionparser|debug:1|0':0:'Turns on or off serial feedback for the given item':
+help:requestinfo:rqi:2055:'command':0:'Retrives rather than sets data associated with a command, if applicable':
+help:saveallparameters:sap:3086:'-':0:'Saves all avaliable parameters':
+help:loadallparameters:lap:3086:'-':0:'Loads all avaliable parameters':
+help:resetallparameters:rap:3086:'-':0:'Resets all saved parameters':
+help:reset:rst:3086:'0|1':0:'Resets the Ekdahl FAR, conditional':
+help:nick:nick:2177:'string':0:'Sets the nickname of this unit':
+help:nooperation:nop:2144:'-':0:'Do absolutely, positively, nothing':
+help:calibrateall:ca:1134:'-':0:'Performs all calibration routines on the selected bow, see below for routines performed':
+help:calibratebowspeed:cbs:1134:'-':0:'Finds the minimum and maximum bow speed of the selected bow':
+help:calibratebowpressure:cbp:1134:'-':0:'Finds the minimum and maximum bow pressure of the selected bow':
+help:calibratemute:cmu:1134:'-':0:'Calibrate mute settings':
+help:pickupstringfrequency:psf:171:'-':0:'Returns the fundamental tone calculated from the current audio signal if appliccable':
+help:pickupaudiopeak:pap:166:'-':0:'Returns the peak amplitude of the current audio signal':
+help:pickupaudiorms:par:166:'-':0:'Returns the RMS amplitude of the current audio signal':
+help:solenoid:so:'Solenoid controller v1.0'
+help:solenoid.engage:so.en:1030:'0-65535':0:'Engages the solenoid using the first parameter as the force':
+help:solenoid.rest:so.rs:1038:'0-1':0:'Forces the solenoid to its rest position, conditional':
+help:solenoid.maxforce:so.xf:134:'0-65535':0:'Set solenoid maximum usable force':
+help:solenoid.minforce:so.if:134:'0-65535':0:'Set solenoid minimum usable force':
+help:solenoid.forcemultiplier:so.fm:134:'0-65535':0:'Set solenoid force multiplier':
+help:solenoid.engageduration:so.ed:8330:'uS':0:'Sets the duration of the solenoid hit in uS, if a value of 0 is set the solenoid will not disengage until a rest command has been given. WARNING!! HAVING THE SOLENOID ON FOR A SPAN OF SECONDS COULD DESTROY THE CIRCUITRY!!':
+help:bowingwheel:bw:'Bowing wheel controller v1.0'
+help:bowingwheel.speedmode:bw.sm:130:'0|1':0:'Bow motor speed mode, 0 = Automatic and 1 = Manual':
+help:bowingwheel.motortimeout:bw.mt:137:'ms':0:'Bow motor shutdown timeout after bow having been put into the rest position':
+help:bowingwheel.pidenable:bw.pe:130:'1|0':0:'Sets the bow PID on/off':
+help:bowingwheel.motorfaultcommands:bw.mfc:9116:'commands':0:'Commands to execute when a motor fault is tripped - !WARNING! Can ruin your instrument if changed':
+help:bowingwheel.motoroverpowercommands:bw.moc:9116:'commands':0:'Commands to execute when motor is over the power limit - !WARNING! Can ruin your instrument if changed':
+help:bowingwheel.dcmotor:bw.dcm:'DC Motor controller v1.0'
+help:bowingwheel.dcmotor.run:bw.dcm.ru:1038:'1|0':0:'Set bow motor run on/off':
+help:bowingwheel.dcmotor.pwm:bw.dcm.pw:134:'0-65535':0:'Bow motor direct power in 16-bit PWM values, requires that the PID is turned off':
+help:bowingwheel.dcmotor.voltage:bw.dcm.vo:8323:'float':0:'Bow motor voltage':
+help:bowingwheel.dcmotor.current:bw.dcm.cu:35:'float':0:'Bow motor reported current use':
+help:bowingwheel.dcmotor.currentlimit:bw.dcm.cl:8323:'float':0:'Bow motor current limit (A)- !WARNING! Can ruin your instrument if changed':
+help:bowingwheel.dcmotor.powerlimit:bw.dcm.pl:8323:'float':0:'Bow motor power limit (W) - !WARNING! Can ruin your instrument if changed':
+help:bowingwheel.dcmotor.frequency:bw.dcm.fq:43:'-':0:'Bow motor reported frequency':
+help:bowingwheel.dcmotor.emergencystop:bw.dcm.es:8332:'ms (0-65535)':0:'Immediately stops the bowing motor and does not allow it to start again until the cool down period given in the first argument has lapsed (milliseconds)':
+help:bowingwheel.dcmotor.minpwm:bw.dcm.ip:8326:'-':0:'Bow motor minimum PWM (for calibration)':
+help:bowingwheel.dcmotor.maxpwm:bw.dcm.xp:8326:'-':0:'Bow motor maximum PWM (for calibration)':
+help:bowingwheel.pid:bw.pid:'PID controller v1.0'
+help:bowingwheel.pid.targetfrequency:bw.pid.tf:139:'float':0:'Sets the PID target frequency':
+help:bowingwheel.pid.ki:bw.pid.ki:131:'float':0:'Sets the Ki parameter of the PID':
+help:bowingwheel.pid.kp:bw.pid.kp:131:'float':0:'Sets the Kp parameter of the PID':
+help:bowingwheel.pid.kd:bw.pid.kd:131:'float':0:'Sets the Kd parameter of the PID':
+help:bowingwheel.pid.integratorerror:bw.pid.ie:131:'float':0:'Sets the lower threshold of error values for the PID integrator to ignore':
+help:bowingwheel.pid.reset:bw.pid.re:3086:'-':0:'Resets the PID integrator and derivative':
+help:bowingwheel.pid.maxerror:bw.pid.xe:131:'float':0:'Maximum error to correct in each PID loop, essentially sets acceleration':
+help:bowingwheel.pid.peakerror:bw.pid.pe:163:'float':0:'Get latest PID peak error':
+help:bowingwheel.pid.motorspeedmax:bw.pid.msx:8331:'float':0:'Bow motor maximum speed limit':
+help:bowingwheel.pid.motorspeedmin:bw.pid.msi:8331:'float':0:'Bow motor minimum speed limit':
+help:bowingwheel.pid.measuretimetotarget:bw.pid.mtt:3177:'float':0:'Measure the time it takes to change from the current frequency to the target frequency':
+help:bowingwheel.bowpressure:bw.bp:'Bow pressure controller v1.0'
+help:bowingwheel.bowpressure.baseline:bw.bp.ba:134:'0-65535':0:'Bow pressure baseline, modulation is added to this point upward':
+help:bowingwheel.bowpressure.modifier:bw.bp.mo:134:'0-65535':0:'Bow pressure modulation, added to the baseline':
+help:bowingwheel.bowpressure.rest:bw.bp.rs:1038:'0|1':0:'Puts the bow pressure in the resting position (conditional)':
+help:bowingwheel.bowpressure.engage:bw.bp.en:1038:'0|1':0:'Puts the bow pressure in the engage position (conditional)':
+help:bowingwheel.bowpressure.stallpressure:bw.bp.sp:134:'0-65535':0:'Bow pressure stall/maximum position':
+help:bowingwheel.bowpressure.engagepressure:bw.bp.ep:134:'0-65535':0:'Bow pressure touch/minimum position':
+help:bowingwheel.bowpressure.restpressure:bw.bp.rp:134:'0-65535':0:'Bow pressure rest position':
+help:bowingwheel.bowpressure.engagespeed:bw.bp.es:132:'1 - 100?':0:'Bow pressure movement speed when engaging or disengaging':
+help:bowingwheel.bowpressure.modulationspeed:bw.bp.ms:132:'0.1 - 10':0:'Bow pressure movement speed while engaged':
+help:bowingwheel.bowpressure.hold:bw.bp.hd:1026:'0|1':0:'Sets bow hold on/off':
+help:bowingwheel.bowpressure.home:bw.bp.hm:3182:'-':0:'Homing bow, used at startup and in case of the bow loosing position':
+help:bowingwheel.bowpressure.tmcinfo:bw.bp.tmi:3112:'-':1:'Request statistical information from the TMC2209':
+help:bowingwheel.bowpressure.actuatorhandler:bw.bp.ah:'Bow actuator handler'
+help:bowingwheel.bowpressure.actuatorhandler.add:bw.bp.ah.a:264:'(name):(rest:engage:stall)':0:'Add new actuator with the given name and parameters':
+help:bowingwheel.bowpressure.actuatorhandler.remove:bw.bp.ah.rm:384:'actuator':0:'Remove bow actuator':
+help:bowingwheel.bowpressure.actuatorhandler.count:bw.bp.ah.c:544:'-':0:'Returns the amount of saved bow actuators':
+help:bowingwheel.bowpressure.actuatorhandler.actuator:bw.bp.ah.ac:'Actuator data handler'
+help:bowingwheel.bowpressure.actuatorhandler.actuator.:bw.bp.ah.ac.:768:'int':0:'Sets the current actuator':
+help:bowingwheel.bowpressure.actuatorhandler.actuator.name:bw.bp.ah.ac.na:641:'string':0:'Get / set the name of the current actuator':
+help:bowingwheel.bowpressure.actuatorhandler.actuator.restpressure:bw.bp.ah.ac.rp:134:'0-65535':0:'Set the rest pressure of the current actuator':
+help:bowingwheel.bowpressure.actuatorhandler.actuator.stallpressure:bw.bp.ah.ac.sp:134:'0-65535':0:'Set the stall pressure of the current actuator':
+help:bowingwheel.bowpressure.actuatorhandler.actuator.engagepressure:bw.bp.ah.ac.ep:134:'0-65535':0:'Set the engage pressure of the current actuator':
+help:bowingwheel.harmonicserieshandler:bw.hsh:'Harmonic series handler'
+help:bowingwheel.harmonicserieshandler.fundamental:bw.hsh.fu:139:'float':0:'Bow fundamental frequency, all harmonics are calculated from this number':
+help:bowingwheel.harmonicserieshandler.harmonic:bw.hsh.h:132:'int':0:'Bow motor speed in terms of a harmonic number. A ratio is taken from the given harmonic in the current harmonic list, the ratio is then multiplied by the bow fundamental frequency':
+help:bowingwheel.harmonicserieshandler.harmonicadd:bw.hsh.ha:141:'int':0:'This number is added to the current harmonic':
+help:bowingwheel.harmonicserieshandler.harmonicbase:bw.hsh.hb:141:'int':0:'Same as harmonic but where the harmonic number is based on a MIDI note given by basenote':
+help:bowingwheel.harmonicserieshandler.basenote:bw.hsh.bn:141:'0-127':0:'Sets the MIDI base note of the bowing wheel, used in conjunction with harmonicbase':
+help:bowingwheel.harmonicserieshandler.shift:bw.hsh.sh:133:'-32767-32767':0:'Sets shift from the currently playing harmonic where 32767 equals the entire harmonic shift range shifted up':
+help:bowingwheel.harmonicserieshandler.shiftrange:bw.hsh.sr:141:'0-36':0:'Set the number of harmonic numbers that constitutes the entire harmonic shift':
+help:bowingwheel.harmonicserieshandler.shift5:bw.hsh.sh5:133:'-32767-32767':0:'Setting shift from the currently playing harmonic over 5 octaves where 32767 equals 5 octaves shift up from the fundamental':
+help:bowingwheel.harmonicserieshandler.add:bw.hsh.a:264:'(name):(ratios)':0:'Add a new series with the given name and parameters':
+help:bowingwheel.harmonicserieshandler.remove:bw.hsh.rm:384:'series':0:'Remove the series given and shift any series accordingly. Cannot remove all series':
+help:bowingwheel.harmonicserieshandler.count:bw.hsh.c:544:'-':0:'Returns the number of harmonic series in the list and their IDs':
+help:bowingwheel.harmonicserieshandler.harmonicseries:bw.hsh.hs:'The list of ratios used in the current harmonic series'
+help:bowingwheel.harmonicserieshandler.harmonicseries.:bw.hsh.hs.:768:'int':0:'Sets the current Harmonic Series':
+help:bowingwheel.harmonicserieshandler.harmonicseries.name:bw.hsh.hs.na:640:'name':0:'Sets the name of the harmonic series':
+help:bowingwheel.harmonicserieshandler.harmonicseries.data:bw.hsh.hs.da:136:'name:ratios':0:'Gets / sets all data for the harmonic series in the given slot':
+help:bowingwheel.harmonicserieshandler.harmonicseries.ratio:bw.hsh.hs.r:8:'harmonic:ratio':0:'Sets the ratio of the given harmonic in current harmonic series, will increase the list size if needed to adress the harmonic':
+help:bowingwheel.harmonicserieshandler.harmonicseries.remove:bw.hsh.hs.rm:384:'harmonic':0:'Remove the harmonic ratio given in the current series and shift any ratios accordingly. Cannot remove all ratios':
+help:midiconfigurationhandler:mcf:'MIDI message configuration handler 1.0'
+help:midiconfigurationhandler.allnotesoff:mcf.ano:1038:'1|0':0:'Clears the entire buffer of MIDI notes held':
+help:midiconfigurationhandler.add:mcf.a:264:'name':0:'Adds a new MIDI configuration with the given name':
+help:midiconfigurationhandler.remove:mcf.rm:384:'int':0:'Remove the specified MIDI configuration':
+help:midiconfigurationhandler.count:mcf.c:544:'-':0:'Returns the number of MIDI configurations':
+help:midiconfigurationhandler.midiconfiguration:mcf.mc:'MIDI message configuration 1.0'
+help:midiconfigurationhandler.midiconfiguration.:mcf.mc.:768:'int':0:'Sets the current MIDI configuration':
+help:midiconfigurationhandler.midiconfiguration.name:mcf.mc.na:641:'string':0:'Set the name of the MIDI configuration':
+help:midiconfigurationhandler.midiconfiguration.noteon:mcf.mc.non:924:'outputassignment':0:'Sets the commands to execute at a MIDI Note On event':'channel,note,velocity'
+help:midiconfigurationhandler.midiconfiguration.noteoff:mcf.mc.nof:924:'outputassignment':0:'Sets the commands to execute at a MIDI Note Off event':'channel,note,velocity'
+help:midiconfigurationhandler.midiconfiguration.polyaftertouch:mcf.mc.pat:924:'outputassignment':0:'Sets the commands to execute at a MIDI Polyphonic after touch event':'channel,note,pressure'
+help:midiconfigurationhandler.midiconfiguration.channelaftertouch:mcf.mc.cat:924:'outputassignment':0:'Sets the commands to execute at a MIDI Channel after touch event':'channel,velocity'
+help:midiconfigurationhandler.midiconfiguration.pitchbend:mcf.mc.pb:924:'outputassignment':0:'Sets the commands to execute at a MIDI Pitch bend event':'channel,pitch'
+help:midiconfigurationhandler.midiconfiguration.programchange:mcf.mc.pc:924:'outputassignment':0:'Sets the commands to execute at a MIDI Program change event':'channel,program'
+help:midiconfigurationhandler.midiconfiguration.continuouscontrollerdata:mcf.mc.ccd:152:'number:outputassignment':0:'Sets the commands to execute at a MIDI Continuous controller event with the given [number]':'channel,control,value'
+help:midiconfigurationhandler.midiconfiguration.addcc:mcf.mc.ac:264:'0-127:outputassignment':0:'Add continuous controller and the command string to execute':
+help:midiconfigurationhandler.midiconfiguration.removecc:mcf.mc.rmc:384:'cc number':0:'remove continuous controller from list':
+help:midiconfigurationhandler.midiconfiguration.defaults:mcf.mc.d:1038:'-':0:'Reverts the current configuration to default values and CCs':
+help:midiconfigurationhandler.midiconfiguration.receivechannel:mcf.mc.rc:132:'-':0:'Sets the MIDI receive channel of the current configuration. 1-16 sets specific channel, any other value for OMNI':
+help:midiconfigurationhandler.midiconfiguration.continuouscontroller:mcf.mc.cc:'MIDI Continuous Controller data'
+help:midiconfigurationhandler.midiconfiguration.continuouscontroller.control:mcf.mc.cc.cl:132:'number':0:'Get/Set the controller number':
+help:midiconfigurationhandler.midiconfiguration.continuouscontroller.command:mcf.mc.cc.cm:924:'outputassignment':0:'Get/Set the commands to execute when the given controller is sent':'value'
+help:mute:mu:'Mute controller v1.0'
+help:mute.setposition:mu.sp:134:'0-65535':0:'Set mute position':
+help:mute.fullmute:mu.fm:1038:'1|0':0:'Put mute in full mute position (conditional)':
+help:mute.halfmute:mu.hfm:1038:'1|0':0:'Put mute in half mute position (conditional)':
+help:mute.rest:mu.rs:1038:'1|0':0:'Put mute in rest position (conditional)':
+help:mute.savefull:mu.sf:1038:'1|0':0:'Save current mute position as full mute position (conditional)':
+help:mute.savehalf:mu.sh:1038:'1|0':0:'Save current mute position as half mute position (conditional)':
+help:mute.saverest:mu.sr:1038:'1|0':0:'Save current mute position as mute rest position (conditional)':
+help:mute.fullmuteposition:mu.fmp:134:'0-65535':0:'Mute full mute position':
+help:mute.halfmuteposition:mu.hmp:134:'0-65535':0:'Mute half mute position':
+help:mute.restposition:mu.rp:134:'0-65535':0:'Mute rest position':
+help:mute.sustain:mu.su:1026:'0|1':0:'Setting sustain on (1) or off (0)':
+help:mute.backoff:mu.bo:134:'0-65535':0:'Setting the time that the mute stays in the mutefullmute position before automatically going into rest, set in mS':
+help:mute.home:mu.hm:3086:'-':0:'Home mute':
+help:mute.hardwareposition:mu.hwp:3078:'0-65535':1:'Sets the mute position without min/max scaling':
+help:mute.completetask:mu.cpt:1134:'-':1:'Requests a callback when the current operation is finished':
+help:mute.autocorrect:mu.ac:8322:'1|0':1:'Enables auto correct positioning that uses the homing sensor to correct positioning on the fly':
+help:mute.homingsensed:mu.hms:2082:'-':1:'Requests whether the homing sensor is currently active or not':
+help:mute.movedirection:mu.md:2082:'-':1:'Requests the current direction of movement (0 Forward, 1 Reverse)':
+help:mute.currentstep:mu.cs:2086:'-':1:'Requests the current step':
+help:mute.homingpoint:mu.hmp:2088:'edge,direction':1:'Requests the given homing point':
+help:mute.homingstage:mu.hms:2088:'-':1:'Requests the current homing stage (UNHOMED, HOMED, FIRSTHOMINGRISING, SECONDHOMINGFALLING, SECONDHOMINGRISING, FIRSTHOMINGFALLING, MOVEPASTHOMESWITCH, MOVETOHOMESWITCH, GOTOOFFSET)':
+help:mute.tmcinfo:mu.tmi:2088:'-':1:'Request statistical information from the TMC2209':
+help:controlbox:cb:'Control Box 1.0'
+help:controlbox.controldata:cb.cda:156:'0-7:outputassignment':0:'Sets the command string invoked when the value on ADC channel [channel] changes':'value'
+help:controlbox.harmonic:cb.har:156:'outputassignment':0:'Sets the command string invoked when the harmonic knob or modulation changes':'value'
+help:controlbox.harmonicshift:cb.has:156:'outputassignment':0:'Sets the command string invoked when the harmonic shift modulation changes':'value'
+help:controlbox.finetune:cb.fin:156:'outputassignment':0:'Sets the command string invoked when the fine tune knob changes':'value'
+help:controlbox.pressure:cb.pre:156:'outputassignment':0:'Sets the command string invoked when the pressure knob or modulation changes':'value'
+help:controlbox.mute:cb.mut:156:'outputassignment':0:'Sets the command string invoked when the mute knob or modulation changes':'value'
+help:controlbox.hammerscale:cb.hms:156:'outputassignment':0:'Sets the command string invoked when the hammer scale knob changes':'value'
+help:controlbox.gate:cb.gt:156:'outputassignment':0:'Sets the command string invoked when the gate switch or modulation changes':'value'
+help:controlbox.hammertrig:cb.hmt:156:'outputassignment':0:'Sets the command string invoked when the hammer trigger modulation changes':'value'
+help:controlbox.controldefaults:cb.cde:1134:'-':0:'Reverts all ADC command strings to default values':
+help:controlbox.datareturn:cb.dr:198:'channel:value':0:'Sent when a new value is presented on one of the ADC channels, cannot be invoked. Primarily for monitoring CV signals':
+help:controlbox.adcsettings:cb.ads:2184:'channel:averages:interrupterrorthreshold:continuouserrorthreshold:continuoustimeout':0:'Sets ADC settings for a given channel. Averages are the number of samples to average, interruptthreshold is how much the value must change in order to issue a new value change event. continuousthreshold is how much the value must change when a previous change has already been recorded within the timespan of continuoustimeout':
+help:controlbox.testadclatency:cb.tal:3174:'0-65535':1:'Test ADC Latency':
+help:controlbox.testadclatencyreturn:cb.talr:3142:'-':1:'Return from test':
+help:controlbox.testadcminmax:cb.tix:3078:'channel':1:'Measure min/max value for a given channel and resets the counter':
+help:pluginhandler:ph:'Plugin handler v1.0'
+help:pluginhandler.add:ph.a:257:'plugin':0:'Add plugin with the given name':
+help:pluginhandler.remove:ph.rm:384:'plugin:index':0:'Remove plugin with the given name and index':
+help:pluginhandler.count:ph.c:544:'(plugin)':0:'Return the number of plugins of the given type, if none given returns all':
+help:pluginhandler.ahdsr:ph.ahdsr:'Basic software AHDSR v1.0'
+help:pluginhandler.ahdsr.name:ph.na:640:'name':0:'Sets the AHDSR name':
+help:pluginhandler.ahdsr.enable:ph.en:130:'1|0':0:'Will enable or disable the output of the target commands':
+help:pluginhandler.ahdsr.target:ph.tg:924:'commandlist*':0:'Sets the command string to execute each iteration, the string [ahdsrout] will be replaced with the current value':'ahdsrout'
+help:pluginhandler.ahdsr.updaterate:ph.ur:2185:'mS':0:'Sets the frequency with which the target commands are executed. Limited by the global maximum as set in the plugin handler':
+help:pluginhandler.ahdsr.gate:ph.gt:1026:'0|1':0:'Gate signal, [1] initiates the attack phase and if it reaches its maximum value, holds for the time given. It then continues through the decay down to the sustain point. A [0] initiates the release from whatever point the ADSR is at.':
+help:pluginhandler.ahdsr.attack:ph.at:137:'mS':0:'Attack time in mS':
+help:pluginhandler.ahdsr.hold:ph.hd:137:'mS':0:'Hold time in mS':
+help:pluginhandler.ahdsr.decay:ph.dc:137:'mS':0:'Delay time in mS':
+help:pluginhandler.ahdsr.sustain:ph.su:134:'0-65535':0:'Sustain point':
+help:pluginhandler.ahdsr.release:ph.re:137:'mS':0:'Release time in mS':
+help:pluginhandler.ahdsr.releasetarget:ph.rt:924:'commands':0:'Commands to execute once the release has hit zero':
+help:pluginhandler.ahdsr.amplitude:ph.amp:134:'0-65535':0:'Output amplitude':
+help:pluginhandler.ahdsr.invert:ph.inv:130:'1|0':0:'Inverts the results and gives negative values':
+help:pluginhandler.lfo:ph.lfo:'Basic software LFO v1.0'
+help:pluginhandler.lfo.name:ph.na:640:'name':0:'Sets the LFO name':
+help:pluginhandler.lfo.enable:ph.en:130:'1|0':0:'Will enable or disable the plugin':
+help:pluginhandler.lfo.target:ph.tg:924:'commandlist*':0:'Sets the command string to execute each iteration, the string [lfoout] will be replaced with the current value':'lfoout'
+help:pluginhandler.lfo.updaterate:ph.ur:2185:'mS':0:'Sets the frequency with which the target commands are executed. Limited by the global maximum as set in the plugin handler':
+help:pluginhandler.lfo.outputvalue:ph.ov:38:'-':0:'Returns the last calculated output value of the plugin':
+help:pluginhandler.lfo.waveform:ph.wf:136:'sine|triangle|square|saw':0:'Sets the waveform':
+help:pluginhandler.lfo.frequency:ph.fq:139:'Hz':0:'Sets the frequency of the LFO':
+help:pluginhandler.lfo.amplitude:ph.amp:134:'0-65535':0:'Sets the output amplitude of the LFO':
+help:pluginhandler.lfo.delay:ph.dl:137:'ms':0:'Sets the amplitude ramp up delay, from 1ms to 65s':
+help:pluginhandler.lfo.resetdelay:ph.rd:1038:'-':0:'Resets the delay count to zero and reset the waveform':
+help:pluginhandler.lfo.resetwave:ph.rw:1038:'-':0:'Resets the waveform so it starts over':
+help:pluginhandler.lfo.bipolar:ph.bp:130:'1|0':0:'Sets whether the waveform is bipolar (default) or positive only':
+help:pluginhandler.numbermap:ph.nm:'Number mapper v1.0'
+help:pluginhandler.numbermap.name:ph.na:640:'name':0:'Sets the map name':
+help:pluginhandler.numbermap.target:ph.tg:924:'commandlist*':0:'Sets the command string to execute whenever a connection value changes':'nmout'
+help:pluginhandler.numbermap.data:ph.da:136:'(in:out)*':0:'Set the map data in any number of pairs of [in] returns [out]':
+help:pluginhandler.numbermap.remove:ph.rm:1028:'in':0:'Removes the map with [in] if it exists':
+help:pluginhandler.numbermap.scale:ph.sc:134:'in':0:'Sets the overall scale of the number map':
+help:pluginhandler.numbermap.trigger:ph.tr:133:'number':0:'Triggers the commands set in the target with the given output':
+help:pluginhandler.multiple:ph.mlt:'Multiple input connector v1.0'
+help:pluginhandler.multiple.name:ph.na:640:'name':0:'Sets the map name':
+help:pluginhandler.multiple.target:ph.tg:924:'commandlist*':0:'Sets the command string to execute whenever a connection value changes':'mltout'
+help:pluginhandler.multiple.data:ph.da:136:'(adder|ratio:id:value)':0:'Adds or requests data':
+help:pluginhandler.multiple.remove:ph.rm:1028:'adder|ratio:id':0:'Removes the adder or ratio with the given id':
+nop:

@@ -1,0 +1,1233 @@
+-- CommandSet
+    def loadActuator(self, sender, serialHandler, simpleFARHandler, index):
+        actuatorLoad = self.getQualifiedShortCommand(CommandID.actuatorSelect)[0]
+        bowPressureMax = self.getQualifiedShortCommand(CommandID.bowPressurePositionMax)[0]
+        bowPressureEngage = self.getQualifiedShortCommand(CommandID.bowPressurePositionEngage)[0]
+        bowPressureRest = self.getQualifiedShortCommand(CommandID.bowPressurePositionRest)[0]
+        serialHandler.write(actuatorLoad + ":" + str(index) + ",rqi:" + bowPressureMax + ",rqi:" + bowPressureEngage + ",rqi:" + bowPressureRest)
+
+    def addActuator(self, sender, serialHandler, simpleFARHandler, newIndex, name):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.actuatorAdd)[0]
+        serialHandler.write(qualifiedCommand + ":" + name)
+
+    def removeActuator(self, sender, serialHandler, simpleFARHandler, index):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.actuatorRemove)[0]
+        serialHandler.write(qualifiedCommand + ":" + str(index))
+
+    def renameActuator(self, sender, serialHandler, simpleFARHandler, index, name):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.actuatorName, [index])[0]
+        serialHandler.write(qualifiedCommand + ":" + name)
+
+
+    def setMidiConfigurationSelect(self, sender, serialHandler, simpleFARHandler, index):
+        simpleFARHandler.stringModules[0].setCommandValue(CommandID.midiConfigurationSelect, index)
+        if (not sender.updatingFromModule):
+            qualifiedShort = self.getQualifiedShortCommand(CommandID.midiConfigurationSelect, [index])[0]
+            serialHandler.write(qualifiedShort)
+
+    def addMidiConfiguration(self, sender, serialHandler, simpleFARHandler, name):
+        super().addMidiConfiguration(sender, serialHandler, simpleFARHandler, name)
+        index = int(simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationCount))
+        mc: CommandSetModular.GroupHandler = self.baseModule.getGroups("mc")[0]
+        newItem = derivedCommandItem("midiconfigurationhandler.midiconfiguration[" + str(index) + "]")
+        self.baseModule.addModule(newItem)
+        rqAC = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
+        serialHandler.write("rqi:" + rqAC)
+        self.setMidiConfigurationSelect(sender, serialHandler, simpleFARHandler, index)
+        mcRq = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
+        serialHandler.write("rqi:" + mcRq);
+
+    def removeMidiConfiguration(self, sender, serialHandler, simpleFARHandler, index):
+        super().removeMidiConfiguration(sender, serialHandler, simpleFARHandler, index)
+        newItem = derivedCommandItem("midiconfigurationhandler.midiconfiguration[" + str(index) + "]")
+        module:CommandSetModular.Module =  self.baseModule.getGroup(newItem)
+        par:CommandSetModular.GroupHandler =  module.parent
+        par.remove(module)
+        rqAC = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
+        serialHandler.write("rqi:" + rqAC)
+        mcRq = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
+        serialHandler.write("rqi:" + mcRq);
+
+    def addMidiConfigurationCC(self, sender, serialHandler, simpleFARHandler, cc):
+        setCC = self.getQualifiedShortCommand(CommandID.midiConfigurationAddCC)[0]
+        serialHandler.write(setCC + ":" + str(cc) + ":''")
+
+    def setMidiConfigurationNoteOnCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationNoteOn, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationNoteOffCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationNoteOff, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationPolyAftertouchCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationPolyAT, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationChannelAftertouchCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationChannelAT, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationProgramChangeCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationProgramChange, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationPitchBendCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationPitchbend, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationContinuousControllerCommands(self, sender, serialHandler, simpleFAR, index, cc, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationContinuousController, [index])[0]
+        serialHandler.write(qualifiedCommand + ":" + str(cc) + ":'" + commands + "'")
+    '''
+
+
+-- CommandSetModular
+    def processMessage
+            case CommandID.actuatorSelect:
+                index = commandItem.hierarchy[len(commandItem.hierarchy) - 1].selection[0]
+                simpleFARHandler.stringModules[0].setCommandValue(CommandID.actuatorSelect, index)
+                rqData = self.getQualifiedShortCommand(CommandID.actuatorData, [index])[0]
+                serialHandler.write("rqi:" + rqData)
+
+            case CommandID.actuatorCount:
+                mainWidget.ui.comboBoxActuatorPreset.clear()
+                simpleFARHandler.stringModules[0].setCommandValue(CommandID.actuatorCount, commandItem.argument[0])
+                qualifiedShorts = self.getQualifiedShortCommand(CommandID.actuatorData)
+                for qualifiedShort in qualifiedShorts:
+                    serialHandler.write("rqi:" + qualifiedShort)
+
+            case CommandID.actuatorData:
+                try:
+                    index = commandItem.hierarchy[len(commandItem.hierarchy) - 2].selection[0]
+                except:
+                    index = 0
+                mainWidget.handleActuatorData(index, commandItem.argument[0],commandItem.argument[1], commandItem.argument[2], commandItem.argument[3])
+
+            case CommandID.harmonicSeriesSelect:
+                index = commandItem.hierarchy[len(commandItem.hierarchy) - 1].selection[0]
+                simpleFARHandler.stringModules[0].setCommandValue(CommandID.harmonicSeriesSelect, index)
+                rqData = self.getQualifiedShortCommand(CommandID.harmonicSeriesData, [index])[0]
+                serialHandler.write("rqi:" + rqData)
+
+            case CommandID.harmonicSeriesCount:
+                mainWidget.ui.comboBoxHarmonicList.clear()
+                hl = 0
+                while (hl < int(commandItem.argument[0])):
+                    mainWidget.ui.comboBoxHarmonicList.addItem("--_--" + str(hl))
+                    #serialHandler.write("rqi:bhsd:" + str(hl))
+                    hl += 1
+                index = simpleFARHandler.stringModules[0].getCommandValue(CommandID.harmonicSeriesSelect)
+                if (index is None) or (index == -1): index = 0
+                mainWidget.ui.comboBoxHarmonicList.setCurrentIndex(index)
+                cmds = self.getQualifiedShortCommand(CommandID.harmonicSeriesData)
+                for cmd in cmds:
+                    serialHandler.write("rqi:" + cmd)
+
+            case CommandID.harmonicSeriesData:
+                ratios = []
+                for i in range(1, len(commandItem.argument)):
+                    ratios.append(commandItem.argument[i])
+
+                currentItem = -1
+                if (len(commandItem.hierarchy) > 1):
+                    selection = commandItem.hierarchy[len(commandItem.hierarchy) - 2].selection
+                    if (len(selection) > 0):
+                        currentItem = int(selection[0])
+
+                if (currentItem == -1):
+                    for i in range(0, mainWidget.ui.comboBoxHarmonicList.count()):
+                        data = mainWidget.ui.comboBoxHarmonicList.itemText(i)
+                        if "--_--" in data:
+                            currentItem = i
+                            break
+
+                if (currentItem == -1):
+                    raise("Error in harmonic series data handler / command set modular")
+
+                mainWidget.handleHarmonicSeriesData(currentItem, commandItem.argument[0], ratios)
+
+
+    def addHarmonicSeries(self, sender, serialHandler, simpleFARHandler,  harmonicSeries, name, setToList):
+        super().addHarmonicSeries(sender, serialHandler, simpleFARHandler, harmonicSeries, name, setToList)
+        hh: CommandSetModular.GroupHandler = self.baseModule.getGroups("hsh")[0]
+        newItem = derivedCommandItem("harmonicseries[" + str(harmonicSeries) + "]")
+        hh.addModule(newItem)
+        hsRq = self.getQualifiedShortCommand(CommandID.harmonicSeriesCount)[0]
+        serialHandler.write("rqi:" + hsRq);
+
+    def removeHarmonicSeries(self, sender, serialHandler, simpleFARHandler, harmonicSeries):
+        super().removeHarmonicSeries(sender, serialHandler, simpleFARHandler, harmonicSeries)
+        hh: CommandSetModular.GroupHandler = self.baseModule.getGroups("hsh")[0]
+        newItem = derivedCommandItem("harmonicseries[" + str(harmonicSeries) + "]")
+        module:CommandSetModular.Module =  hh.getGroup(newItem)
+        par:CommandSetModular.GroupHandler =  module.parent
+        par.remove(module)
+        hsRq = self.getQualifiedShortCommand(CommandID.harmonicSeriesCount)[0]
+        serialHandler.write("rqi:" + hsRq);
+
+    def loadActuator(self, sender, serialHandler, simpleFARHandler, index):
+        actuatorLoad = self.getQualifiedShortCommand(CommandID.actuatorSelect, [index])[0]
+        serialHandler.write(actuatorLoad + ":" + str(index))  # + ",rqi:" + bowPressureMax + ",rqi:" + bowPressureEngage + ",rqi:" + bowPressureRest)
+
+    def addActuator(self, sender, serialHandler, simpleFARHandler, index, name):
+        super().addActuator(sender, serialHandler, simpleFARHandler, index, name)
+        hh: CommandSetModular.GroupHandler = self.baseModule.getGroups("actuatorhandler")[0]
+        newItem = derivedCommandItem("actuator[" + str(index) + "]")
+        hh.addModule(newItem)
+        acRq = self.getQualifiedShortCommand(CommandID.actuatorCount)[0]
+        serialHandler.write("rqi:" + acRq);
+
+    def removeActuator(self, sender, serialHandler, simpleFARHandler, index):
+        super().removeActuator(sender, serialHandler, simpleFARHandler, index)
+        hh: CommandSetModular.GroupHandler = self.baseModule.getGroups("actuatorhandler")[0]
+        newItem = derivedCommandItem("actuator[" + str(index) + "]")
+        module:CommandSetModular.Module =  hh.getGroup(newItem)
+        par:CommandSetModular.GroupHandler =  module.parent
+        par.remove(module)
+        rqAC = self.getQualifiedShortCommand(CommandID.actuatorCount)[0]
+        serialHandler.write("rqi:" + rqAC)
+        acRq = self.getQualifiedShortCommand(CommandID.actuatorCount)[0]
+        serialHandler.write("rqi:" + acRq);
+
+    '''
+    def buildHelp(self, commandReference, preferences):
+        self.processModuleForHelp(self.baseModule, commandReference, preferences)
+
+    def processModuleForHelp(self, inModule, commandReference, preferences):
+        yesno = ["no", "yes"]
+
+        existingMods = {}
+        for commandd in inModule.commands:
+            command:ModuleCommand = inModule.commands[commandd]
+            if (command is None): break
+            lastCmd = str(command.shortCommand).rfind(".")
+            if (lastCmd != -1):
+                shortHand = command.shortCommand[lastCmd + 1:]
+                comstr = command.longCommand[command.longCommand.rfind(".") + 1:]
+            else:
+                shortHand = command.shortCommand[:]
+                comstr = command.longCommand
+            if (command.longCommand == ""):
+                comstr = "[select]"
+                shortHand = "[select]"
+
+            if (command.variables is None):
+                variables = "none"
+            else:
+                variables = ""
+                for var in command.variables:
+                    variables += var + " "
+
+            description = (command.description + "\n\nShorthand: " + shortHand + "\n\n" + getModuleCommandTypeDesc(command.commandType) + "\n\nArguments: " + \
+                           command.arguments + "\n\nAssocated variables: " + variables + "\n\nHidden: " + yesno[int(command.hidden)])
+
+            if (inModule.parent is not None):
+                par = inModule.longName
+            else:
+                par = ""
+
+            commandReference.addCommandB(comstr, par, shortHand, description)
+
+        for child in inModule.children:
+            if not child.longName in existingMods:
+                existingMods[child.longName] = True
+                child:CommandSetModular.Module = child
+                if (child.longName in self.baseModule.commands):
+                    description = self.baseModule.commands[child.longName].description + "\n\nShorthand: " + child.shortName + "\n\nSelectable" #(child.commands[child.longName])
+                    commandReference.addCommandB(child.longName, "", child.shortName, description)
+
+                    self.processModuleForHelp(child, commandReference, preferences)
+                else:
+                    pass
+    '''
+    '''
+    def processHelpReturn(self, infoReturn, commandReference):
+        if (len(infoReturn.argument) < 3):
+            return
+
+        if (infoReturn.argument[0][len(infoReturn.argument[0]) - 1:]) == ".":
+            infoReturn.argument[0] = infoReturn.argument[0][:len(infoReturn.argument[0]) - 1]
+
+        if (infoReturn.argument[1][len(infoReturn.argument[1]) - 1:]) == ".":
+            infoReturn.argument[1] = infoReturn.argument[1][:len(infoReturn.argument[1]) - 1]
+
+        longCommand = derivedCommandItem(infoReturn.argument[0])
+        shortCommand = derivedCommandItem(infoReturn.argument[1])
+
+        isModule = False
+        if (len(infoReturn.argument) >= 6):
+            if (len(infoReturn.argument) == 7):
+                variables = stripLeadingQuotes(infoReturn.argument[6]).split(",")
+                if (len(variables) == 1) and (variables[0] == ""): variables.remove(variables[0])
+            else:
+                variables = []
+            mcd = ModuleCommand(infoReturn.argument[0], infoReturn.argument[1], infoReturn.argument[3], infoReturn.argument[5], infoReturn.argument[4],
+                                infoReturn.argument[2], variables)
+            id = self.getCommandID(longCommand)
+            if id is None:
+                pass
+        else:
+            mcd = ModuleCommand(infoReturn.argument[0], infoReturn.argument[1], inDescription = infoReturn.argument[2])
+            id = longCommand.hierarchy[len(longCommand.hierarchy) - 1].name
+            isModule = True
+
+        if ((len(longCommand.hierarchy) > 1) and (not isModule)):
+            parent = longCommand.hierarchy[len(longCommand.hierarchy) - 2].name
+            command = longCommand.hierarchy[len(longCommand.hierarchy) - 1].name
+            if mcd is not None:
+                groups = self.baseModule.getGroups(parent)
+                for group in groups:
+                    group.commands[id] = mcd
+            else:
+                pass
+        else:
+            parent = "[base]"
+            command = longCommand.command # hierarchy[0].name
+            #self.baseModule.commands.append(mcd)
+            if mcd is not None:
+                self.baseModule.commands[id] = mcd
+    '''
+
+-- Commandsets
+
+        '''
+            case CommandID.midiConfigurationSelect:
+                index = commandItem.hierarchy[len(commandItem.hierarchy) - 1].selection[0]
+                mainWidget.midiEventHandler.handleMIDIConfigurationSelect(index)
+                #qualifiedShort = self.getQualifiedShortCommand(CommandID.midiConfigurationData, [index])[0]
+                #serialHandler.write("rqi:" + qualifiedShort)
+                qualifiedShorts = self.getQualifiedShortCommand(CommandID.midiConfigurationName, [index])
+                for qualifiedShort in qualifiedShorts:
+                    serialHandler.write("rqi:" + qualifiedShort)
+                qualifiedShort = self.getQualifiedShortCommand(CommandID.midiReceiveChannel, [index])[0]
+                serialHandler.write("rqi:" + qualifiedShort)
+
+
+            case CommandID.midiConfigurationNoteOn:
+                mainWidget.midiEventHandler.setMIDINoteOnCommands(stripLeadingQuotes(commandItem.argument[0]))
+            case CommandID.midiConfigurationNoteOff:
+                mainWidget.midiEventHandler.setMIDINoteOffCommands(stripLeadingQuotes(commandItem.argument[0]))
+            case CommandID.midiConfigurationPolyAT:
+                mainWidget.midiEventHandler.setMIDIPATCommands(stripLeadingQuotes(commandItem.argument[0]))
+            case CommandID.midiConfigurationChannelAT:
+                mainWidget.midiEventHandler.setMIDICATCommands(stripLeadingQuotes(commandItem.argument[0]))
+            case CommandID.midiConfigurationPitchbend:
+                mainWidget.midiEventHandler.setMIDIPBCommands(stripLeadingQuotes(commandItem.argument[0]))
+            case CommandID.midiConfigurationProgramChange:
+                mainWidget.midiEventHandler.setMIDIPCCommands(stripLeadingQuotes(commandItem.argument[0]))
+            case CommandID.midiConfigurationContinuousController:
+                # Second argument may not exist if the CC hasn't been mapped yet
+                if (len(commandItem.argument) == 2):
+                    ccCommands = stripLeadingQuotes(commandItem.argument[1])
+                else:
+                    ccCommands = ""
+                mainWidget.midiEventHandler.setMIDICCCommands(stripLeadingQuotes(commandItem.argument[0]), ccCommands)
+
+            case CommandID.midiConfigurationCount:
+                simpleFARHandler.stringModules[0].setCommandValue(CommandID.midiConfigurationCount, commandItem.argument[0])
+                mainWidget.midiEventHandler.handleMIDIConfigurationCount(commandItem.argument[0])
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationNoteOn)[0])
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationNoteOff)[0])
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationPolyAT)[0])
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationChannelAT)[0])
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationPitchbend)[0])
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationProgramChange)[0])
+                serialHandler.write("rqi:" + self.getQualifiedShortCommand(CommandID.midiConfigurationContinuousController)[0])
+                qualifiedShorts = self.getQualifiedShortCommand(CommandID.midiConfigurationName)
+                for qualifiedShort in qualifiedShorts:
+                    serialHandler.write("rqi:" + qualifiedShort)
+
+            case CommandID.midiConfigurationName:
+                try:
+                    index = commandItem.hierarchy[len(commandItem.hierarchy) - 2].selection[0]
+                except:
+                    index = 0
+                mainWidget.midiEventHandler.handleMIDIConfigurationName(index, str(commandItem.argument[0]), False)
+
+            case CommandID.midiReceiveChannel:
+                mainWidget.midiEventHandler.handleMIDIReceiveChannel(commandItem.argument[0])
+
+            case CommandID.controlBoxDataReturn:
+                if len(commandItem.argument) >= 2:
+                    mainWidget.cvEventHandler.handleControlBoxReturnData(commandItem.argument[0], commandItem.argument[1])
+
+            case CommandID.controlBoxControlData:
+                if len(commandItem.argument) >= 2:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(commandItem.argument[0], commandItem.argument[1])
+
+            case CommandID.controlBoxHarmonic:
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(0, commandItem.argument[0])
+
+            case CommandID.controlBoxHarmonicShift:
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(1, commandItem.argument[0])
+
+            case CommandID.controlBoxFinetune:
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(2, commandItem.argument[0])
+
+            case CommandID.controlBoxPressure:
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(3, commandItem.argument[0])
+
+            case CommandID.controlBoxHammerTrig:
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(4, commandItem.argument[0])
+
+            case CommandID.controlBoxGate:
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(5, commandItem.argument[0])
+
+            case CommandID.controlBoxHammerScale:
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(6, commandItem.argument[0])
+
+            case CommandID.controlBoxMute:
+                if len(commandItem.argument) >= 1:
+                    mainWidget.cvEventHandler.handleControlBoxControlData(7, commandItem.argument[0])
+
+            case CommandID.pluginAHDSRTarget:
+                pass
+
+            case _:
+                #if (not super().processMessages(commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler)):
+                #    return False
+                found = super().processMessages(commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler)
+        if (self.hasPluginList):
+            self.baseModule.setCommandData(commandItem)
+
+        if (self.hasHelp) and (mainWidget.localNodeHandler is not None):
+            found = found & mainWidget.localNodeHandler.parseCommand(commandItem)
+            if (not self.hasNodes):
+                self.mainWidget = mainWidget
+                if (not self.updateTimer):
+                    self.updateTimer = QTimer(mainWidget)
+                    self.updateTimer.timeout.connect(self.nodeAutoUpdater)
+                    self.updateTimer.start(1000)
+                    print("Starting timer")
+#            if self.hasNodes and (id == CommandID.nop):
+#                    mainWidget.localNodeHandler.postBuildUpdate()
+            return found
+        '''
+
+--- tabmidi.py ---
+
+    '''
+        def lineEditMidiEventCommandFinished(self):
+        if mainWidget.ui.listWidgetMidiEvents.currentItem() == None:
+            return
+        commandSelected = mainWidget.ui.listWidgetMidiEvents.currentItem().text()
+        commandSequence = mainWidget.ui.lineEditMidiEventCommand.text()
+        index = int(simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect))
+        match (commandSelected):
+            case "Note On":
+                #setStr = "noteon"
+                #simpleFARHandler.instrumentMaster.evNoteOn = commandSequence
+                commandSets.setMidiConfigurationNoteOnCommands(mainWidget, serialHandler, simpleFARHandler, index, commandSequence)
+            case "Note Off":
+                #setStr = "noteoff"
+                #simpleFARHandler.instrumentMaster.evNoteOff = commandSequence
+                commandSets.setMidiConfigurationNoteOffCommands(mainWidget, serialHandler, simpleFARHandler, index, commandSequence)
+            case "Poly Aftertouch":
+                #setStr = "pat"
+                #simpleFARHandler.instrumentMaster.evPolyAftertouch = commandSequence
+                commandSets.setMidiConfigurationPolyAftertouchCommands(mainWidget, serialHandler, simpleFARHandler, index, commandSequence)
+            case "Channel Aftertouch":
+                #setStr = "cat"
+                #simpleFARHandler.instrumentMaster.evChannelAftertouch = commandSequence
+                commandSets.setMidiConfigurationChannelAftertouchCommands(mainWidget, serialHandler, simpleFARHandler, index, commandSequence)
+            case "Program change":
+                #setStr = "pc"
+                #simpleFARHandler.instrumentMaster.evProgramChange = commandSequence
+                commandSets.setMidiConfigurationProgramChangeCommands(mainWidget, serialHandler, simpleFARHandler, index, commandSequence)
+            case "Pitchbend":
+                #setStr = "pb"
+                #simpleFARHandler.instrumentMaster.evPitchbend = commandSequence
+                commandSets.setMidiConfigurationPitchBendCommands(mainWidget, serialHandler, simpleFARHandler, index, commandSequence)
+            case _:
+                if commandSelected[:2] == "CC":
+                    #setStr = "cc:" + commandSelected[3:]
+                    cc = int(commandSelected[3:])
+                    #item = simpleFARHandler.instrumentMaster.getCC(cc)
+                    #item.command = commandSequence
+                    commandSets.setMidiConfigurationContinuousControllerCommands(mainWidget, serialHandler, simpleFARHandler, index, cc, commandSequence)
+                else:
+                    print(commandSelected + " not found")
+                    return
+
+        #qualifiedCommand = commandSets.getQualifiedShortCommand(CommandID.midiConfigurationData,
+        #                                                        [simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)])[0]
+        #serialString = qualifiedCommand + ":" + setStr + ":\"" + commandSequence + "\""
+        #serialHandler.write(serialString)
+
+     def configurationSetName(self):
+        defText = mainWidget.ui.comboBoxConfiguration.currentText()
+        text, ok = QInputDialog().getText(self, "Configuration name",
+                                          "Configuration name:", QLineEdit.Normal, defText)
+        conf = mainWidget.ui.comboBoxConfiguration.currentIndex()
+        if ok and text and (conf > -1):
+            commandSets.setMidiConfigurationName(self, serialHandler, simpleFARHandler, conf, text)
+            #serialHandler.write("midiconfiguration:" + str(conf) + ",midiconfigurationname:" + text)
+            mainWidget.ui.comboBoxConfiguration.setItemText(conf, text)
+
+    def configurationAdd(self):
+        defText = mainWidget.ui.comboBoxConfiguration.currentText()
+        text, ok = QInputDialog().getText(self, "Configuration name","Configuration name:", QLineEdit.Normal, defText)
+        if ok and text:
+            if (find_item(mainWidget.ui.comboBoxConfiguration, text) != -1):
+                messageBox("Error", "Name already exists!")
+                return
+            commandSets.addMidiConfiguration(self, serialHandler, simpleFARHandler, text)
+            mainWidget.ui.comboBoxConfiguration.addItem(text)
+
+    def configurationRemove(self):
+        config = int(self.ui.comboBoxConfiguration.currentIndex())
+        if (config < 0) or (self.ui.comboBoxConfiguration.count() == 0):
+            return
+        commandSets.removeMidiConfiguration(self, serialHandler, simpleFARHandler, config)
+        self.ui.comboBoxConfiguration.removeItem(config)
+        #serialHandler.write("midiconfigurationremove:" + str(config) + ",rqi:mcfc,rqi:mcf")
+
+    def configurationSet(self):
+        if (self.updatingFromModule):
+            return
+        config = int(mainWidget.ui.comboBoxConfiguration.currentIndex())
+        if (config < 0) or (mainWidget.ui.comboBoxConfiguration.count() == 0):
+            return
+        commandSets.setMidiConfigurationSelect(self, serialHandler, simpleFARHandler, config)
+
+#    def selectMIDIDevice(self, Index):
+#        if mainWidget.ui.comboBoxMIDILearnDevice.currentIndex() == -1:
+#            return
+
+    def ccAdd(self):
+        cc, ok = QInputDialog.getInt(self, "CC Number", "CC Number")
+        if ok and (cc > -1 and cc < 128):
+            index = mainWidget.ui.listWidgetMidiEvents.findItems("CC " + str(cc), Qt.MatchFlag.MatchExactly)
+            if (len(index) != 0):
+                messageBox("Error", "Event already exists!")
+                return
+            commandSets.addMidiConfigurationCC(self, serialHandler, simpleFARHandler, cc)
+            if (find_item(self.ui.listWidgetMidiEvents, "CC " + str(cc)) == -1):
+                mainWidget.ui.listWidgetMidiEvents.addItem(QListWidgetItem("CC " + str(cc)))
+            #self.updateUIData()
+
+    def ccRemove(self):
+        if (mainWidget.ui.listWidgetMidiEvents.currentIndex() == -1):
+            return
+        if (mainWidget.ui.listWidgetMidiEvents.currentItem().text()[0:2] != "CC"):
+            return
+        text = mainWidget.ui.listWidgetMidiEvents.currentItem().text()
+        commandSets.removeMidiConfigurationCC(self, serialHandler, simpleFARHandler, text[3:len(text)])
+        if (find_item(self.ui.listWidgetMidiEvents, "CC " + str(cc)) != -1):
+            remove_item(self.ui.listWidgetMidiEvents, "CC " + str(cc))
+        #self.updateUIData()
+
+    def cmdNoteOnUpdate(self, widget = None):
+        if self.updatingFromModule:
+            return
+
+        try:
+            solenoidEngage = commandSets.getQualifiedShortCommand(CommandID.solenoidEngage, None, True)[0]
+            muteRest = commandSets.getQualifiedShortCommand(CommandID.muteRest, None, True)[0]
+
+            currentConfig = simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)
+            mapCmd = commandSets.getQualifiedShortCommand(CommandID.midiConfigurationData, [currentConfig])[0]
+
+            cl = commandSets.currentCommandSet.CommandList(simpleFARHandler.instrumentMaster.evNoteOn)
+            cmd = cl.buildCommandString({solenoidEngage, muteRest})
+
+            if self.ui.midiNoteOnVelToHammer.value() > 0:
+                cmd += "," + solenoidEngage + ":(velocity*" + str(self.ui.midiNoteOnVelToHammer.value()) + ")"
+                if self.ui.midiNoteOnHammerStaccato.checkState() == Qt.CheckState.Checked:
+                    cmd += "*(1-notecount)"
+            if self.ui.midiNoteOnSendMuteRest.checkState() == Qt.CheckState.Checked:
+                cmd += "," + muteRest + ":1"
+            serialString = mapCmd + ":noteon:\"" + cmd + "\""
+            serialHandler.write(serialString)
+            #self.updateUIData()
+        except:
+            pass
+
+    def cmdNoteOffUpdate(self):
+        if self.updatingFromModule:
+            return
+
+        muteFull = commandSets.getQualifiedShortCommand(CommandID.muteFullMute, None, True)[0]
+        motorRun = commandSets.getQualifiedShortCommand(CommandID.motorRun, None, True)[0]
+
+        currentConfig = simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)
+        mapCmd = commandSets.getQualifiedShortCommand(CommandID.midiConfigurationData, [currentConfig])[0]
+
+        cl = commandSets.currentCommandSet.CommandList(simpleFARHandler.instrumentMaster.evNoteOff)
+        cmd = cl.buildCommandString({muteFull, motorRun})
+
+        if self.ui.midiNoteOffSendFullMute.checkState() == Qt.CheckState.Checked:
+            cmd += "," + muteFull + ":1"
+        if self.ui.midiNoteOffMotorOff.checkState() == Qt.CheckState.Checked:
+            cmd += "," + motorRun + ":0"
+        serialString = cmd + ":noteoff:\"" + cmd + "\""
+        serialHandler.write(serialString)
+        #self.updateUIData()
+
+    def comboBoxMidiChannelIndexChanged(self):
+        if mainWidget.ui.comboBoxMidiChannel.currentText() == "Omni":
+            ch = 0
+        else:
+            ch = int(mainWidget.ui.comboBoxMidiChannel.currentText())
+
+        currentConfig = simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)
+        mrc = commandSets.getQualifiedShortCommand(CommandID.midiReceiveChannel, [currentConfig])
+        for comm in mrc:
+            serialHandler.write(comm + ":" + str(ch))
+
+    '''
+
+    '''
+        def addMidiConfiguration(self, sender, serialHandler, simpleFARHandler, name):
+        super().addMidiConfiguration(sender, serialHandler, simpleFARHandler, name)
+        index = int(simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationCount))
+        mc: CommandSetModular.GroupHandler = self.baseModule.getGroups("mc")[0]
+        newItem = derivedCommandItem("midiconfigurationhandler.midiconfiguration[" + str(index) + "]")
+        self.baseModule.addModule(newItem)
+        rqAC = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
+        serialHandler.write("rqi:" + rqAC)
+        self.setMidiConfigurationSelect(sender, serialHandler, simpleFARHandler, index)
+        mcRq = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
+        serialHandler.write("rqi:" + mcRq);
+
+    def removeMidiConfiguration(self, sender, serialHandler, simpleFARHandler, index):
+        super().removeMidiConfiguration(sender, serialHandler, simpleFARHandler, index)
+        newItem = derivedCommandItem("midiconfigurationhandler.midiconfiguration[" + str(index) + "]")
+        module:CommandSetModular.Module =  self.baseModule.getGroup(newItem)
+        par:CommandSetModular.GroupHandler =  module.parent
+        par.remove(module)
+        rqAC = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
+        serialHandler.write("rqi:" + rqAC)
+        mcRq = self.getQualifiedShortCommand(CommandID.midiConfigurationCount)[0]
+        serialHandler.write("rqi:" + mcRq);
+
+    def addMidiConfigurationCC(self, sender, serialHandler, simpleFARHandler, cc):
+        setCC = self.getQualifiedShortCommand(CommandID.midiConfigurationAddCC)[0]
+        serialHandler.write(setCC + ":" + str(cc) + ":''")
+
+    def setMidiConfigurationNoteOnCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationNoteOn, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationNoteOffCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationNoteOff, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationPolyAftertouchCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationPolyAT, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationChannelAftertouchCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationChannelAT, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationProgramChangeCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationProgramChange, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationPitchBendCommands(self, sender, serialHandler, simpleFAR, index, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationPitchbend, [index])[0]
+        serialHandler.write(qualifiedCommand + ":'" + commands + "'")
+
+    def setMidiConfigurationContinuousControllerCommands(self, sender, serialHandler, simpleFAR, index, cc, commands):
+        qualifiedCommand = self.getQualifiedShortCommand(CommandID.midiConfigurationContinuousController, [index])[0]
+        serialHandler.write(qualifiedCommand + ":" + str(cc) + ":'" + commands + "'")
+
+    '''
+
+--- mainwidget
+
+
+    def pushButtonActuatorAddPressed(self):
+        #comboIndex = self.find_item(mainWidget.ui.comboBoxActuatorPreset, mainWidget.ui.comboBoxActuatorPreset.currentText())
+        #if comboIndex == -1:
+        #    return
+        #commandSets.saveActuator(self, serialHandler, simpleFARHandler, comboIndex, mainWidget.ui.comboBoxActuatorPreset.currentText(),
+        #                         str(self.ui.doubleSpinBoxBowRestPosition.value()), str(self.ui.doubleSpinBoxBowMinPressure.value()),
+        #                         str(self.ui.doubleSpinBoxBowMaxPressure.value()))
+        listID = inputBox("New actuator name", "Actuator name")
+        if listID is None:
+            return
+        newIndex = simpleFARHandler.stringModules[0].getCommandValue(CommandID.actuatorCount)
+        commandSets.addActuator(self, serialHandler, simpleFARHandler, newIndex, listID)
+        mainWidget.ui.comboBoxActuatorPreset.addItem(listID)
+        #mainWidget.ui.comboBoxActuatorPreset.setCurrentIndex(mainWidget.ui.comboBoxActuatorPreset.count() - 1)
+
+    def comboBoxActuatorIndexChanged(self):
+        if (self.updatingFromModule):
+            return
+        comboIndex = mainWidget.ui.comboBoxActuatorPreset.currentIndex()
+        if comboIndex == -1:
+            if (mainWidget.ui.comboBoxActuatorPreset.count() == 0):
+                return
+            mainWidget.ui.comboBoxActuatorPreset.setCurrentIndex(0)
+            ba = 0
+        commandSets.loadActuator(self, serialHandler, simpleFARHandler, comboIndex)
+        #self.ui.doubleSpinBoxBowRestPosition.selectionIndex = [comboIndex]
+        #self.ui.doubleSpinBoxBowMinPressure.selectionIndex = [comboIndex]
+        #self.ui.doubleSpinBoxBowMaxPressure.selectionIndex = [comboIndex]
+
+    def pushButtonAcutatorRemovePressed(self):
+        comboIndex = mainWidget.ui.comboBoxActuatorPreset.currentIndex() # self.find_item(mainWidget.ui.comboBoxActuatorPreset, mainWidget.ui.comboBoxActuatorPreset.currentText())
+        if comboIndex == -1:
+            return
+        mainWidget.ui.comboBoxActuatorPreset.removeItem(comboIndex)
+        commandSets.removeActuator(self, serialHandler, simpleFARHandler, comboIndex)
+
+    def pushButtonActuatorRenamePressed(self):
+        index = mainWidget.ui.comboBoxActuatorPreset.currentIndex()
+        if (index == -1): return
+        listID = inputBox("New actuator name", "Actuator name")
+        if listID is None:
+            return
+        if (find_item(mainWidget.ui.comboBoxActuatorPreset, listID) != -1):
+            messageBox("Error", "Actuator already exists!")
+            return
+        mainWidget.ui.comboBoxActuatorPreset.setItemText(index, listID)
+        commandSets.renameActuator(self, serialHandler, simpleFARHandler, index, listID)
+
+        #newIndex = mainWidget.ui.comboBoxActuatorPreset.count()
+        #commandSets.saveActuator(self, serialHandler, simpleFARHandler, newIndex, listID, str(self.ui.doubleSpinBoxBowRestPosition.value()),
+        #                         str(self.ui.doubleSpinBoxBowMinPressure.value()), str(self.ui.doubleSpinBoxBowMaxPressure.value()))
+        #self.updatingFromModule = True
+        #mainWidget.ui.comboBoxActuatorPreset.setCurrentIndex(newIndex)
+        #self.updatingFromModule = False
+
+    '''
+    def checkBoxChartToggled(self):
+        checkbox = self.sender()
+        if (checkbox.isChecked()):
+            visible = True
+        else:
+            visible = False
+        mainWidget.debugTimedChart.setSeriesVisibleCommand(checkbox.seriesCommand, checkbox.seriesIndex, visible)
+
+    def checkBoxChartAssign(self, qtobject, seriesCommand, index, seriesType):
+        qtobject.toggled.connect(mainWidget.checkBoxChartToggled)
+        qtobject.seriesCommand = seriesCommand
+        qtobject.seriesIndex = index
+        qtobject.seriesType = seriesType
+    '''
+
+    '''
+    def pushButtonSaveCurrentHarmonicListPressed(self):
+        try:
+            harmonicList = mainWidget.ui.comboBoxHarmonicList.currentIndex()
+            listID = mainWidget.ui.comboBoxHarmonicList.currentText()
+            commandSets.saveHarmonicSeries(self, serialHandler, simpleFARHandler, harmonicList, listID, False)
+        except:
+            messageBox("Error", "Error saving list")
+
+    def pushButtonSaveNewHarmonicListPressed(self):
+        listID = inputBox("List name", "List name")
+        if listID is None:
+            return
+        if (self.find_item(mainWidget.ui.comboBoxHarmonicList, listID) != -1):
+            messageBox("Error", "Harmonic series already exists!")
+            return
+        newIndex = mainWidget.ui.comboBoxHarmonicList.count()
+        commandSets.saveHarmonicSeries(self, serialHandler, simpleFARHandler, newIndex, listID, True)
+    '''
+
+   '''
+    def assignValueChanged(self, qtObject, command, selectionIndex = None, log = False, max = 65535):
+        return
+        qtObject.command = command
+        qtObject.selectionIndex = selectionIndex
+        qtObject.log = log
+        qtObject.logMax = max
+        if (isinstance(qtObject, QLineEdit)):
+            qtObject.editingFinished.connect(self.textChangedSignal)
+        elif (isinstance(qtObject, QCheckBox)):
+            qtObject.checkStateChanged.connect(self.checkChangedSignal)
+        else:
+            qtObject.valueChanged.connect(self.basicChangedSignal)
+
+    def checkChangedSignal(self):
+        self.basicChangedSignal(self.sender().isChecked())
+
+    def textChangedSignal(self):
+        self.basicChangedSignal(self.sender().text())
+
+    def basicChangedSignal(self, value):
+        if (mainWidget.updatingFromModule or (not simpleFARHandler.connected)):
+            return
+        sender = self.sender()
+        commandID = sender.command
+        selection = None
+        stripIndex = False
+        try:
+            selection = sender.selectionIndex
+        except Exception as e:
+            stripIndex = True
+            pass
+        if (selection is None):
+            stripIndex = True
+            selection = [0]
+        qualifiedShorts = commandSets.getQualifiedShortCommand(commandID, selection, stripIndex)
+        out = ""
+        if isinstance(value, bool):
+            if (value == True):
+                value = 1
+            else:
+                value = 0
+        else:
+            try:
+                if (sender.log):
+                    value = self.expGUIToModule(float(value), sender.logMax)
+                else:
+                    value = float(value)
+            except:
+                value = "'" + value + "'"
+        for qualifiedShort in qualifiedShorts:
+            if (out != ""): out += ","
+            out = qualifiedShort + ":" + str(value)
+#            out = sender.command + ":" + str(value)
+        for index in selection:
+            simpleFARHandler.stringModules[0].setCommandValue(sender.command, value, index)
+        serialHandler.write(out)
+    '''
+
+        '''
+        ## Tab Midi settings
+        mainWidget.ui.comboBoxMidiChannel.currentIndexChanged.connect(mainWidget.comboBoxMidiChannelIndexChanged)
+
+        mainWidget.ui.comboBoxConfiguration.currentIndexChanged.connect(mainWidget.configurationSet)
+        # mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonConfigurationAdd, "mcfa", True)
+        mainWidget.ui.pushButtonConfigurationAdd.pressed.connect(mainWidget.configurationAdd)
+        mainWidget.ui.pushButtonConfigurationRemove.pressed.connect(mainWidget.configurationRemove)
+        mainWidget.ui.pushButtonConfigurationName.pressed.connect(mainWidget.configurationSetName)
+
+        mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMidiRestoreDefaults, CommandID.midiConfigurationDefaults, True)
+
+        # mainWidget.assignMouseReleaseEvent(mainWidget.ui.midiNoteOnVelToHammer, mainWidget.cmdNoteOnUpdate)
+        mainWidget.ui.midiNoteOnVelToHammer.sliderReleased.connect(mainWidget.cmdNoteOnUpdate)
+
+        mainWidget.ui.midiNoteOnHammerStaccato.stateChanged.connect(mainWidget.cmdNoteOnUpdate)
+        mainWidget.ui.midiNoteOnSendMuteRest.stateChanged.connect(mainWidget.cmdNoteOnUpdate)
+
+        mainWidget.ui.midiNoteOffSendFullMute.stateChanged.connect(mainWidget.cmdNoteOffUpdate)
+        mainWidget.ui.midiNoteOffMotorOff.stateChanged.connect(mainWidget.cmdNoteOffUpdate)
+
+        mainWidget.midiEventHandler.populateComboBoxSendByte(mainWidget.ui.midiPitchbendSend)
+        mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("pb", {mainWidget.ui.midiPitchbendSend, mainWidget.ui.midiPitchbendRatio})
+        mainWidget.midiEventHandler.populateComboBoxSendByte(mainWidget.ui.midiPolyATSend)
+        mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("pat", {mainWidget.ui.midiPolyATSend, mainWidget.ui.midiPolyATRatio})
+        mainWidget.midiEventHandler.populateComboBoxSendByte(mainWidget.ui.midiChannelATSend)
+        mainWidget.midiEventHandler.connectWidgetsToMIDIEvent("cat", {mainWidget.ui.midiChannelATSend, mainWidget.ui.midiChannelATRatio})
+
+        mainWidget.midiEventHandler.populateComboBoxSendBinary(mainWidget.ui.midiSustainSend)
+        mainWidget.midiEventHandler.connectWidgetsToBinarySenders("sustain", {mainWidget.ui.midiSustainInvert, mainWidget.ui.midiSustainSend})
+
+        mainWidget.ui.listWidgetMidiEvents.currentItemChanged.connect(mainWidget.midiEventHandler.listWidgetMidiEventscurrentItemChanged)
+        mainWidget.ui.lineEditMidiEventCommand.editingFinished.connect(mainWidget.lineEditMidiEventCommandFinished)
+        mainWidget.ui.pushButtonCCAdd.pressed.connect(mainWidget.ccAdd)
+        mainWidget.ui.pushButtonCCRemove.pressed.connect(mainWidget.ccRemove)
+        '''
+
+--- midieventhandling
+
+    '''
+    def handleMIDIConfigurationCount(self, count):
+        self.mainClass.ui.comboBoxConfiguration.clear()
+        while (self.mainClass.ui.comboBoxConfiguration.count() < int(count)):
+            self.mainClass.ui.comboBoxConfiguration.insertItem(self.mainClass.ui.comboBoxConfiguration.count() + 1, "placeholder")
+
+    def handleMIDIConfigurationName(self, index, name, setIndex):
+        self.mainClass.ui.comboBoxConfiguration.setItemText(int(index), name)
+        if (setIndex):
+            self.mainClass.ui.comboBoxConfiguration.setCurrentIndex(self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect))
+
+    def handleMIDIConfigurationSelect(self, config):
+        self.simpleFARHandler.stringModules[0].setCommandValue(CommandID.midiConfigurationSelect, float(config))
+        self.mainClass.updateStringModuleData()
+        self.mainClass.ui.listWidgetMidiEvents.clear()
+        self.mainClass.ui.comboBoxConfiguration.setCurrentIndex(int(self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)))
+
+    def handleMIDIReceiveChannel(self, channel):
+        self.mainClass.ui.comboBoxMidiChannel.blockSignals(True)
+        ch = int(channel)
+        if ((ch < 1) or (ch > 16)):
+            find = "Omni"
+        else:
+            find = str(ch)
+
+        for a in range(0, self.mainClass.ui.comboBoxMidiChannel.count()):
+            if find == self.mainClass.ui.comboBoxMidiChannel.itemText(a):
+                self.mainClass.ui.comboBoxMidiChannel.setCurrentIndex(a)
+                break
+        self.mainClass.ui.comboBoxMidiChannel.blockSignals(False)
+    '''
+
+
+    '''
+    eventDescription = [[ "Note On", "Note on message, sent when a key has been depressed. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n note - note number (0-127) \n velocity - key velocity (0-127)" ],
+        [ "Note Off", "Note off message, sent when a key has been released. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n note - note number (0-127) \n velocity - key velocity (0-127)" ],
+        [ "CC [xx]", "Continous Controller, sent by various control surfaces. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n control - control number (0-127) \n value - controller value (0-127)" ],
+        [ "Poly Aftertouch", "Polyphonic Aftertouch, key pressure per key. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n note - note number (0-127) \n pressure - key pressure (0-127)" ],
+        [ "Channel Aftertouch", "Channel Aftertouch, key pressure per channel. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n pressure - key pressure (0-127)"],
+        [ "Pitchbend", "Pitchbend, frequency change from the current key. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n pitch - bend (-8192 - 8192)"],
+        [ "Program change", "Program change message, mostly used to change sound on various devices. \n\nAdded variables: \n channel - MIDI Channel (0-127) \n program - program number (0-127)"]
+        ]
+    '''
+
+--- mainwidget ---
+        '''
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteFullTest, [CommandID.muteFullMute, "1"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteHalfTest, [CommandID.muteHalfMute, "1"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonMuteRestTest, [CommandID.muteRest, "1"])
+
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowMaxPressureTest,
+                                             [CommandID.bowPressureModifier, "0", CommandID.bowPressureBaseline, "65535"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowEngagePressureTest,
+                                             [CommandID.bowPressureModifier, "0", CommandID.bowPressureBaseline, "65535", CommandID.bowPressureEngage, "1"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonBowRestPressureTest,
+                                             [CommandID.bowPressureModifier, "0", CommandID.bowPressureBaseline, "65535", CommandID.bowPressureRest, "1"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonSolenoidMaxForceTest,
+                                             [CommandID.solenoidForceMultiplier, "1", CommandID.solenoidEngage, "65535"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonSolenoidMinForceTest,
+                                             [CommandID.solenoidForceMultiplier, "1", CommandID.solenoidEngage, "1"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonEngageHammer, [CommandID.solenoidEngage, "65535"])
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonHammerDurationTest,
+                                             [CommandID.solenoidForceMultiplier, "1", CommandID.solenoidEngage, "65535"])
+
+    #mainWidget.assignValueChanged(mainWidget.ui.spinBoxHarmonicShiftRange, CommandID.bowHarmonicShiftRange)
+    mainWidget.ui.comboBoxCurrentlySelectedModule.currentIndexChanged.connect(mainWidget.comboBoxCurrentSelectedModuleIndexChanged)
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonHomeBow, CommandID.bowHome, True)
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonHomeMute, CommandID.muteHome, True)
+    #mainWidget.ui.pushButtonResetAllSettings.pressed.connect(mainWidget.resetAllSettings)
+        '''
+
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorMaxSpeed, CommandID.pidSpeedMax)
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorMinSpeed, CommandID.pidSpeedMin)
+
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorPIDKp, CommandID.pidKp)
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorPIDKi, CommandID.pidKi)
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorPIDKd, CommandID.pidKd)
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorPIDie, CommandID.pidIntegratorError)
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorMaxError, CommandID.pidMaxError)
+
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorVoltage, CommandID.motorVoltage)
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMotorTimeout, CommandID.bowMotorTimeout)
+    #mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonCalibrateMotorSpeed, CommandID.calibrateBowSpeed)
+
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMaxPressure, CommandID.bowPressurePositionMax)
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowMinPressure, CommandID.bowPressurePositionEngage)
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxBowRestPosition, CommandID.bowPressurePositionRest)
+    #mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonRestBow,
+    #                                         [CommandID.bowPressurePositionRest, "0", CommandID.bowPressureRest, "1"])  # "bppr:0,bpr:1"
+    #mainWidget.connectSignalToModalDialog(mainWidget.ui.pushButtonCalibratePressure, CommandID.calibrateBowPressure, CommandID.calibrateBowPressure)
+
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteFullMutePosition, CommandID.muteFullMutePosition)
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteHalfMutePosition, CommandID.muteHalfMutePosition)
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteRestPosition, CommandID.muteRestPosition)
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxMuteBackoff, CommandID.muteBackoff)
+    #mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonRestMute, [CommandID.muteRestPosition, "0", CommandID.muteRest, "1"])
+    #mainWidget.connectSignalToModalDialog(mainWidget.ui.pushButtonCalibrateMute, CommandID.calibrateMute, CommandID.calibrateMute)
+
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidMaxForce, CommandID.solenoidMaxForce)
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidMinForce, CommandID.solenoidMinForce)
+    #mainWidget.assignValueChanged(mainWidget.ui.doubleSpinBoxSolenoidEngageDuration, CommandID.solenoidEngageDuration)
+
+    #    mainWidget.ui.pushButtonActuatorSave.pressed.connect(mainWidget.pushButtonActuatorSavePressed)
+    #mainWidget.ui.comboBoxActuatorPreset.currentIndexChanged.connect(mainWidget.comboBoxActuatorIndexChanged)
+    #    mainWidget.ui.pushButonActuatorSaveNew.pressed.connect(mainWidget.pushButonActuatorSaveNewPressed)
+    # mainWidget.ui.pushButtonActuatorLoad.pressed.connect(mainWidget.pushButtonActuatorLoadPressed)
+    #mainWidget.ui.pushButtonActuatorRemove.pressed.connect(mainWidget.pushButtonAcutatorRemovePressed)
+    #mainWidget.ui.pushButtonActuatorAdd.pressed.connect(mainWidget.pushButtonActuatorAddPressed)
+    #mainWidget.ui.pushButtonActuatorRename.pressed.connect(mainWidget.pushButtonActuatorRenamePressed)
+
+    ## Tab Basic settings
+    '''
+    mainWidget.ui.pushButtonSaveCurrentHarmonicList.setVisible(False)
+    mainWidget.ui.pushButtonSaveNewHarmonicList.setText("Rename")
+    mainWidget.ui.pushButtonActuatorSave.setText("Add")
+    mainWidget.ui.pushButonActuatorSaveNew.setText("Rename")
+    mainWidget.ui.pushButtonActuatorDelete.setText("Remove")
+    '''
+        '''
+    ## Tab CV Mapping
+    mainWidget.cvEventHandler.connectCVMappingModifiers(0, {mainWidget.ui.dialCVHarmonicScale, mainWidget.ui.widgetCVHarmonicNoteOffset,
+                                                            mainWidget.ui.widgetCVHarmonicZero})
+    mainWidget.cvEventHandler.connectCVTextWidgets(0, mainWidget.ui.plainTextEditCVHarmonicCommands)
+
+    mainWidget.cvEventHandler.connectCVMappingModifiers(1, {mainWidget.ui.dialCVHarmonicShiftScale, mainWidget.ui.dialCVHarmonicShiftZero})
+    mainWidget.cvEventHandler.connectCVTextWidgets(1, mainWidget.ui.plainTextEditCVHarmonicShiftCommands)
+    mainWidget.ui.pushButtonCVHarmonicShiftZeroCalibrate.pressed.connect(mainWidget.cvEventHandler.CVHarmonicShiftZeroCalibrate)
+
+    mainWidget.cvEventHandler.connectCVMappingModifiers(2, {mainWidget.ui.dialCVFineTuneCenter})
+    mainWidget.cvEventHandler.connectCVTextWidgets(2, mainWidget.ui.plainTextEditCVFineTuneCommands)
+    mainWidget.ui.pushButtonCVFinetuneCalibrate.pressed.connect(mainWidget.cvEventHandler.CVFinetuneCalibrate)
+
+    mainWidget.cvEventHandler.connectCVTextWidgets(3, mainWidget.ui.plainTextEditCVPressureCommands)
+    mainWidget.cvEventHandler.connectCVTextWidgets(4, mainWidget.ui.plainTextEditCVHammerTriggerCommands)
+
+    mainWidget.cvEventHandler.connectCVMappingModifiers(5, {mainWidget.ui.checkBoxCVGateHold, mainWidget.ui.checkBoxCVGateEngage,
+                                                            mainWidget.ui.checkBoxCVGatePowerMotor, mainWidget.ui.widgetCVGateThreshold})
+    mainWidget.cvEventHandler.connectCVTextWidgets(5, mainWidget.ui.plainTextEditCVGateCommands)
+
+    mainWidget.cvEventHandler.connectCVTextWidgets(6, mainWidget.ui.plainTextEditCVHammerScaleCommands)
+    mainWidget.cvEventHandler.connectCVTextWidgets(7, mainWidget.ui.plainTextEditCVMuteCommands)
+
+    mainWidget.assignButtonPressCommandIssue(mainWidget.ui.pushButtonResetADCSettings, CommandID.controlBoxControlDefaults, True)
+
+    mainWidget.ui.pushButtonClearAverages.pressed.connect(mainWidget.cvEventHandler.averagesClear)
+    mainWidget.ui.pushButtonTestAverages.pressed.connect(mainWidget.cvEventHandler.averagesTest)
+
+        '''
+
+    '''
+    def requestAllGUIData(self):
+        self.tabBasic.requestAllGUIData()
+        for guiCallback in self.guiCallBacks:
+            serialHandler.write("rqi:" + guiCallback.command)
+        pass
+    '''
+    '''
+    def handleHarmonicBaseNote(self, note):
+        for a in range(1, mainWidget.ui.comboBoxBaseNote.count()):
+            if int(mainWidget.ui.comboBoxBaseNote.itemData(a)) == int(note):
+                mainWidget.ui.comboBoxBaseNote.setCurrentIndex(a)
+        simpleFARHandler.stringModules[0].setCommandValue(CommandID.bowHarmonicBaseNote, float(note))
+
+    def handleActuatorData(self, index, name, rest, engage, stall):
+        if (name) == "":
+            name = "noname" + str(random.randrange(0, 9999))
+        while (self.ui.comboBoxActuatorPreset.count() <= int(index)):
+            mainWidget.ui.comboBoxActuatorPreset.insertItem(self.ui.comboBoxActuatorPreset.count() + 1, "placeholder")
+
+        simpleFARHandler.stringModules[0].setCommandValue(CommandID.bowPressureRest, rest)
+        simpleFARHandler.stringModules[0].setCommandValue(CommandID.bowPressureEngage, engage)
+        simpleFARHandler.stringModules[0].setCommandValue(CommandID.bowPressurePositionMax, stall)
+
+        mainWidget.ui.comboBoxActuatorPreset.setItemText(int(index), name)
+        mainWidget.ui.doubleSpinBoxBowRestPosition.setValue(float(rest))
+        mainWidget.ui.doubleSpinBoxBowMinPressure.setValue(float(engage))
+        mainWidget.ui.doubleSpinBoxBowMaxPressure.setValue(float(stall))
+
+
+    def addData(self, seriesID, value, inSeriesType): # min, max):
+        self.debugTimedChart.addData(seriesID, value, inSeriesType) # min, max)
+
+    def chartCommand(self, command):
+        self.debugTimedChart.processCommand(command)
+    '''
+
+    '''
+    def updateStringModuleData(self):
+        global stringModules
+
+        u = self.ui
+        simpleUpdates = [u.doubleSpinBoxBowMotorPIDKp, u.doubleSpinBoxBowMotorPIDKi, u.doubleSpinBoxBowMotorPIDKd, u.doubleSpinBoxBowMotorPIDie,
+                         u.doubleSpinBoxBowMotorMaxError, u.doubleSpinBoxBowMotorVoltage, u.doubleSpinBoxBowMotorTimeout, u.doubleSpinBoxMuteFullMutePosition,
+                         u.doubleSpinBoxMuteHalfMutePosition, u.doubleSpinBoxMuteRestPosition, u.doubleSpinBoxMuteBackoff, u.doubleSpinBoxBowMotorMaxSpeed,
+                         u.doubleSpinBoxBowMotorMinSpeed, u.doubleSpinBoxBowMaxPressure, u.doubleSpinBoxBowMinPressure, u.doubleSpinBoxBowRestPosition,
+                         u.doubleSpinBoxSolenoidMaxForce, u.doubleSpinBoxSolenoidMaxForce, u.doubleSpinBoxSolenoidMinForce,
+                         u.doubleSpinBoxSolenoidEngageDuration, u.spinBoxHarmonicShiftRange, u.doubleSpinBoxFundamentalFrequency]
+
+        progressBars = [[u.progressBar_bch, CommandID.bowHarmonic], [u.progressBar_bchb, CommandID.bowHarmonicBase],
+                        [u.progressBar_bchbn, CommandID.bowHarmonicBaseNote], [u.progressBar_bchshr, CommandID.bowHarmonicShiftRange],
+                        [u.progressBar_bchsh, CommandID.bowHarmonicShift], [u.progressBar_bchs5, CommandID.bowHarmonicShift5],
+                        [u.progressBar_bcha, CommandID.bowHarmonicAdd], [u.progressBar_ar3, CommandID.pidTargetFreq]]
+
+        for up in simpleUpdates:
+            value = simpleFARHandler.stringModules[0].getCommandValue(up.command)
+            if (value is not None):
+                if up.value() != value:
+                    up.setValue(float(value))
+            else:
+                pass
+
+        for pb in progressBars:
+            value = simpleFARHandler.stringModules[0].getCommandValue(pb[1])
+            if (value is not None):
+                if pb[0].value() != value:
+                    pb[0].setValue(int(value))
+            else:
+                pass
+
+        self.ui.progressBar_ar1.setValue(self.ui.progressBar_bchb.value() - self.ui.progressBar_bchbn.value())
+        self.ui.progressBar_ar2.setValue(self.ui.progressBar_bch.value() + self.ui.progressBar_bcha.value())
+
+        self.updateContinuousStringModuleData()
+
+        mainWidget.pluginHandler.updateWidgets(simpleFARHandler)
+    '''
+
+    '''
+    def updateContinuousStringModuleData(self):
+        #if hasattr(commandSets.currentCommandSet, "baseModule"):
+        #    if (commandSets.currentCommandSet.ready):
+        #        freq = commandSets.currentCommandSet.baseModule.getCommandDataS("bw[0].pid[0].tf")
+        #        if freq is not None:
+        #            pass
+
+        freq = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pickupStringFrequency)
+        if not freq is None:
+            #self.ui.horizontalSliderStringFrequency.setValue(int(freq))
+            if (freq > 0):
+                if (preferences.ui.listWidgetTuningscheme.currentItem() != None):
+                    if ((preferences.ui.listWidgetTuningscheme.currentItem().text()) == "Equal temperament"):
+                        ret = getBaseNoteFromFrequency(freq, scaleDataEqual)
+                    else:
+                        ret = getBaseNoteFromFrequency(freq, scaleDataJust)
+                else:
+                    ret = getBaseNoteFromFrequency(freq, scaleDataJust)
+
+                self.ui.labelAnalyzeNote.setText(ret[3] + str(ret[0]))
+                self.ui.labelAnalyzeCents.setText(str(round(ret[2])))
+                #self.ui.horizontalSliderStringFrequency.setValue(round(ret[2]))
+                self.ui.labelAnalyzeFreq.setText(str(round(freq,1)))
+
+        freq = simpleFARHandler.stringModules[0].getCommandValue(CommandID.motorFrequency)
+        if not freq is None:
+            #mainWidget.ui.horizontalSliderBowFrequency.setValue(int(freq))
+            if (freq > 0):
+                if (preferences.ui.listWidgetTuningscheme.currentItem() != None):
+                    if ((preferences.ui.listWidgetTuningscheme.currentItem().text()) == "Equal temperament"):
+                        ret = getBaseNoteFromFrequency(freq, scaleDataEqual)
+                    else:
+                        ret = getBaseNoteFromFrequency(freq, scaleDataJust)
+                else:
+                    ret = getBaseNoteFromFrequency(freq, scaleDataJust)
+
+                mainWidget.ui.labelBowFrequency.setText(ret[3] + str(ret[0]) + ":" + str(round(ret[2])) + " / " + str(round(freq,1)) + "Hz")
+
+        current = simpleFARHandler.stringModules[0].getCommandValue(CommandID.motorCurrent)
+        if not current is None:
+            #mainWidget.ui.horizontalSliderBowCurrent.setValue(int(current * 10))
+            mainWidget.ui.labelBowCurrent.setText(str(current) + " A")
+
+        freq = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pidTargetFreq)
+        if not freq is None:
+            mainWidget.ui.labelSetFrequency.setText(str(freq) + " Hz")
+
+        u = self.ui
+        cvMaps = [[u.dialCVHarmonic, u.labelCVHarmonic], [u.dialCVHarmonicShift ,u.labelCVHarmonicShift], [u.dialCVFineTune ,u.labelCVFineTune],
+                  [u.dialCVPressure ,u.labelCVPressure], [u.dialCVHammerTrigger ,u.labelCVHammerTrigger], [u.dialCVGate ,u.labelCVGate],
+                  [u.dialCVHammerScale ,u.labelCVHammerScale], [u.dialCVMute ,u.labelCVMute]]
+
+        for cv in range(0,8):
+            cvMaps[cv][0].setValue(int(simpleFARHandler.stringModules[0].getCVValue(cv)) )
+            cvMaps[cv][1].setText(str(simpleFARHandler.stringModules[0].getCVValue(cv)) )
+    '''
+    '''
+
+    def assignButtonTest(self, qtObject, command, valuePointer, commandPost):
+        qtObject.command = command
+        qtObject.valuePointer = valuePointer
+        qtObject.commandPost = commandPost
+        qtObject.pressed.connect(self.testSignal)
+    '''
+'''
+def requestStringModuleData():
+    if (not simpleFARHandler.connected): return
+    commandSets.requestData(serialHandler)
+
+def requestHelp():
+    commandReference.ui.listWidgetCommands.clear()
+    serialHandler.write("help")
+'''
+'''
+class VerticalIconTabBar(QTabBar):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setDrawBase(False)
+
+    def tabSizeHint(self, index):
+        # Set a fixed size for each tab to accommodate the icon
+        return QSize(100, 100)
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        for index in range(self.count()):
+            rect = self.tabRect(index)
+            icon = self.tabIcon(index)
+
+            # Draw the icon centered within the tab rectangle
+            painter.save()
+            icon_size = 100
+            pixmap = icon.pixmap(icon_size, icon_size)
+            center_x = rect.x() + (rect.width() - icon_size) // 2
+            center_y = rect.y() + (rect.height() - icon_size) // 2
+            painter.drawPixmap(center_x, center_y, pixmap)
+            painter.restore()
+'''
+    '''
+    def resizeEvent(self, event, /):
+        self.ui.tabWidgetMain.setFixedHeight(event.size().height() - 59)
+        self.ui.tab_nodeeditor.setFixedWidth(event.size().width() - 100)
+        self.ui.tab_nodeeditor.setFixedHeight(event.size().height() - 59)
+        pass
+
+    def drawTabBar(self):
+        self.ui.tabWidgetMain.setTabIcon(0, QIcon("resources/tuning_fork.png"))
+
+        tabs = []
+        for i in range(self.ui.tabWidgetMain.count()):
+            widget = self.ui.tabWidgetMain.widget(i)
+            text = self.ui.tabWidgetMain.tabText(i)
+            icon = QIcon("resources/tuning_fork.png")  # Replace with actual icons
+            tabs.append((widget, text, icon))
+
+        # Set custom tab bar
+        self.ui.tabWidgetMain.setTabPosition(QTabWidget.TabPosition.West)
+        self.ui.tabWidgetMain.setTabBar(VerticalIconTabBar(self))
+
+        # Clear and re-add tabs
+        self.ui.tabWidgetMain.clear()
+        for widget, text, icon in tabs:
+            new_widget = QWidget()  # Optionally replace with existing widgets
+            self.ui.tabWidgetMain.addTab(new_widget, icon, text)
+
+        self.ui.tabWidgetMain.setCurrentIndex(0)
+    '''
+def processInformationForChart(inSerialHandler, command):
+    inSerialHandler.chartCommandSignal.emit(command)
+    return
+
+    def testSignal(self):
+        sender = self.sender()
+        out = sender.commandPost
+        serialHandler.write(out)
+
+    '''
+    def assignButtonPressCommandIssue(self, qtObject, command, refresh = False):
+        qtObject.command = command
+        qtObject.refresh = refresh
+        qtObject.pressed.connect(self.buttonPressIssueCommand)
+
+    def convertWidgetCommandToString(self, sender):
+        command = ""
+        if (isinstance(sender.command, list)):
+            i = 0
+            while(i < len(sender.command)):
+                qualifiedShorts = commandSets.getQualifiedShortCommand(sender.command[i])
+                for qualified in qualifiedShorts:
+                    if (command != ""): command += ","
+                    command += qualified + ":" + sender.command[i + 1]
+                i += 2
+        elif (isinstance(sender.command, CommandID)):
+            qualifiedShorts = commandSets.getQualifiedShortCommand(sender.command)
+            for qualified in qualifiedShorts:
+                if (command != ""): command += ","
+                command += qualified
+        else:
+            command = sender.command
+        return command
+
+    def buttonPressIssueCommand(self):
+        sender = self.sender()
+        command = self.convertWidgetCommandToString(sender)
+        serialHandler.write(command)
+        if sender.refresh:
+            self.updateUIData()
+    '''

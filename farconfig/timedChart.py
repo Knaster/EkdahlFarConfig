@@ -32,9 +32,17 @@ from PySide6.QtCore import Qt, QRectF
 from dataclasses import dataclass
 
 from sympy.logic.boolalg import Boolean
+
+import GUICallbackSystem
+from commandparser import Derivedcommanditem
 from general_helpers import stripLeadingQuotes
 
 from CommandSets import CommandID, CommandSets
+
+from CommandSets import CommandSetModular
+from ModuleSystem import Module, ModuleHandler, ModuleCommand
+
+from GUICallbackSystem import GUICallbackSystem, GUICallback
 
 def rectangle(point_type, image_size):
     image = QImage(image_size, image_size, QImage.Format_RGB32)
@@ -85,16 +93,16 @@ from enum import Enum
 class seriesType(Enum):
     frequency = 1
     integer = 2
-
+'''
 @dataclass
 class chartMatchData:
     seriesType: seriesType
     description: str
     index: int
     commandID:CommandID
-
+'''
 class CommandChart:
-    command : CommandID
+    '''
     name : str
     isRequest : bool
     parameters : str
@@ -108,18 +116,27 @@ class CommandChart:
     color : str
     visible : bool
     supressSerial : bool
+    zeroIsUnavailable : bool
 
     requireArgument : bool
     requiredArgumentIndex : int
     requiredArgumentContents : str
 
-    def __init__(self, parent, command, name, visible, isRequest = False, supressSerial = False, parameters = "", argument = 0, rangeMin = 0, rangeMax = 65535,
-                 logarithmic = False, suffix = "", color = "", requireArgument = False, requiredArgumentIndex = 0, requiredArgumentContents = ""):
+    lineSeries : QLineSeries
+    commandItem : None
+    commandID : None
+    '''
+    def __init__(self, parent, commandString, name, visible, isRequest = False, supressSerial = False, parameters = "",
+                 argument = 0, rangeMin:float = 0, rangeMax:float = 65535, logarithmic = False, suffix = "", color = "",
+                 requireArgument = False, requiredArgumentIndex = 0, requiredArgumentContents = "", zeroIsUnavailable = False):
+
         self.parent = parent
-        self.command = command
+        self.commandString = commandString
         self.name = name
         self.isRequest = isRequest
         self.parameters = parameters
+        self.commandData:ModuleCommand = None
+        self.guiCallback:GUICallback = None
 
         self.argument = argument
         self.rangeMin = rangeMin
@@ -130,6 +147,7 @@ class CommandChart:
         self.color = color
         self.visible = visible
         self.supressSerial = supressSerial
+        self.zeroIsUnavailable = zeroIsUnavailable
 
         self.requireArgument = requireArgument
         self.requiredArgumentIndex = requiredArgumentIndex
@@ -140,16 +158,34 @@ class CommandChart:
         self.lineSeries.setPointLabelsColor(QColor("blue"))
         self.lineSeries.setPointLabelsFormat("@yPoint")
         self.lineSeries.setPointLabelsClipping(True)
+        self.lineSeries.setVisible(visible)
 
         parent.chart.addSeries(self.lineSeries)
 
         self.lineSeries.attachAxis(parent.axisX)
-        if self.logarithmic:
-            self.lineSeries.attachAxis(parent.axisYHz)
-        else:
-            self.lineSeries.attachAxis(parent.axisYInt)
+        #if self.logarithmic:
+        #    self.lineSeries.attachAxis(parent.axisYHz)
+        #else:
+        #    self.lineSeries.attachAxis(parent.axisYInt)
+        #self.lineSeries.attachAxis(parent.chartYAxises[0].valueAxis)
+
+        found = False
+        for yAxis in parent.chartYAxises:
+            if (yAxis.rangeMin == rangeMin and yAxis.rangeMax == rangeMax and yAxis.logarithmic == logarithmic and yAxis.suffix == suffix):
+                self.lineSeries.attachAxis(yAxis.valueAxis)
+                found = True
+                break
+        if not found:
+            yAxis = parent.addYAxis(rangeMin, rangeMax, logarithmic, suffix)
+            self.lineSeries.attachAxis(yAxis.valueAxis)
+            #self.lineSeries.attachAxis(parent.chartYAxises[len(parent.chartYAxises) - 1].valueAxis)
+
+        #self.commandID = None
+        #self.commandItem = None
+
 
 class timedChart(QWidget):
+    '''
     chartMatchArr = [ chartMatchData(seriesType.integer, "Harmonic (A0)", 0, CommandID.controlBoxDataReturn),
                       chartMatchData(seriesType.integer, "Harmonic shift (A1)", 1, CommandID.controlBoxDataReturn),
                       chartMatchData(seriesType.integer, "Fine tuning (A2)", 2, CommandID.controlBoxDataReturn),
@@ -165,15 +201,46 @@ class timedChart(QWidget):
                       chartMatchData(seriesType.integer, "Audio RMS", -1, CommandID.pickupAudioRMS),
                       chartMatchData(seriesType.frequency, "PID Error", -1, CommandID.pidPeakError),
                       chartMatchData(seriesType.integer, "Motor current (x6k)", -1, CommandID.motorCurrent) ]
-
+    '''
+    '''
     def getChart(self, commandID, index):
         for chart in self.chartMatchArr:
             if (chart.commandID == commandID) and ((chart.index == -1) or (chart.index == index)):
                 return chart
         return None
+    '''
 
-    def __init__(self):
+    class ChartYAxis:
+        # suffix : str
+        # rangeMin : float
+        # rangeMax : float
+        # logarithmic : bool
+        # valueAxis : QValueAxis | QLogValueAxis
+
+        def __init__(self, parent, rangeMin: float, rangeMax: float, logarithmic=False, suffix=""):
+            self.parent = parent
+            if (logarithmic):
+                self.valueAxis = QLogValueAxis()
+                self.valueAxis.setBase(2)
+            else:
+                self.valueAxis = QValueAxis()
+            self.valueAxis.setRange(rangeMin, rangeMax)
+
+            self.rangeMin = rangeMin
+            self.rangeMax = rangeMax
+            self.suffix = suffix
+            self.logarithmic = logarithmic
+            if (suffix == ""):
+                self.valueAxis.setTitleVisible(False)
+                self.valueAxis.setLabelsVisible(False)
+                self.valueAxis.setLineVisible(False)
+            else:
+                self.valueAxis.setTitleText(suffix)
+                self.parent.chartYAxisesWVisibleLabels += 1
+
+    def __init__(self, guiCallbackSystem:GUICallbackSystem):
         ## Array of all the series classes in the chart
+        self.guiCallbackSystem = guiCallbackSystem
         self.seriesArr = []
 
         self.chart = QChart()
@@ -191,21 +258,20 @@ class timedChart(QWidget):
         self.axisX.setTitleVisible(True)
         self.chart.addAxis(self.axisX, Qt.AlignBottom)
 
-        self.axisYHz = QLogValueAxis();
-        self.axisYHz.setBase(2)
-        #self.axisYHz.setRange(1, 2048)
-        self.axisYHz.setRange(0, 65535)
-        #self.axisYHz.setTitleText("Frequency (Hz)")
-        #self.axisYHz.setTitleVisible(True)
-        self.chart.addAxis(self.axisYHz, Qt.AlignRight)
+        #self.axisYHz = QLogValueAxis();
+        #self.axisYHz.setBase(2)
+        #self.axisYHz.setRange(0.1, 65535)
+        ##self.axisYHz.setTitleText("Frequency (Hz)")
+        ##self.axisYHz.setTitleVisible(True)
+        #self.chart.addAxis(self.axisYHz, Qt.AlignRight)
 
-        self.axisYInt = QValueAxis();
-        self.axisYInt.setRange(0, 65535)
-        self.axisYInt.setTruncateLabels()
-        #self.axisYInt.setLabelFormat("%i")
-        #self.axisYInt.setTitleText("uint16")
-        #self.axisYInt.setTitleVisible(True)
-        self.chart.addAxis(self.axisYInt, Qt.AlignLeft)
+        #self.axisYInt = QValueAxis();
+        #self.axisYInt.setRange(0, 65535)
+        #self.axisYInt.setTruncateLabels()
+        ##self.axisYInt.setLabelFormat("%i")
+        ##self.axisYInt.setTitleText("uint16")
+        ##self.axisYInt.setTitleVisible(True)
+        #self.chart.addAxis(self.axisYInt, Qt.AlignLeft)
 
         self._chart_view = QChartView(self.chart)
         self._chart_view.setRenderHint(QPainter.Antialiasing)
@@ -213,33 +279,79 @@ class timedChart(QWidget):
         self.timeStamper = timeStamp()
 
         self.commandSet = None
+
+        self.chartYAxises : list[timedChart.ChartYAxis] = []
+        self.chartYAxisesWVisibleLabels = 0
+        #self.chartYAxises.append(ChartYAxis(0, 65535))
+        #self.chart.addAxis(self.chartYAxises[0].valueAxis, Qt.AlignLeft)
+
         self.createDefaultCharts()
 
+    def addYAxis(self, rangeMin, rangeMax, logarithmic=False, suffix="") -> ChartYAxis:
+        newAxis = self.ChartYAxis(self, rangeMin, rangeMax, logarithmic, suffix)
+        self.chartYAxises.append(newAxis)
+        # newAxis = parent.chartYAxises[len(parent.chartYAxises) - 1]
+        align = Qt.AlignmentFlag.AlignLeft
+        if self.chartYAxisesWVisibleLabels % 2 == 1:
+           align = Qt.AlignmentFlag.AlignRight
+        self.chart.addAxis(newAxis.valueAxis, align)
+        return newAxis
+
     def createDefaultCharts(self):
-        self.commandCharts = [CommandChart(self, CommandID.controlBoxDataReturn, "CB Harmonic", True, argument = 1, requireArgument=True,
+        self.commandCharts = [CommandChart(self, "cb.cbc[0].va", "CB Harmonic", True, argument = 1, requireArgument=True,  #CommandID.controlBoxDataReturn
                                            requiredArgumentIndex=0, requiredArgumentContents="0"),
-                              CommandChart(self, CommandID.controlBoxDataReturn, "CB Harm. Shift CV", True, argument = 1, requireArgument=True,
+                              CommandChart(self, "cb.cbc[1].va", "CB Harm. Shift CV", True, argument = 1, requireArgument=True,
                                            requiredArgumentIndex=0, requiredArgumentContents="1"),
-                              CommandChart(self, CommandID.controlBoxDataReturn, "CB Harm. Shift", True, argument = 1, requireArgument=True,
+                              CommandChart(self, "cb.cbc[2].va", "CB Harm. Shift", True, argument = 1, requireArgument=True,
                                            requiredArgumentIndex=0, requiredArgumentContents="2"),
-                              CommandChart(self, CommandID.controlBoxDataReturn, "CB Pressure", True, argument = 1, requireArgument=True,
+                              CommandChart(self, "cb.cbc[3].va", "CB Pressure", True, argument = 1, requireArgument=True,
                                            requiredArgumentIndex=0, requiredArgumentContents="3"),
-                              CommandChart(self, CommandID.controlBoxDataReturn, "CB Hammer trig", True, argument = 1, requireArgument=True,
+                              CommandChart(self, "cb.cbc[4].va", "CB Hammer trig", True, argument = 1, requireArgument=True,
                                            requiredArgumentIndex=0, requiredArgumentContents="4"),
-                              CommandChart(self, CommandID.controlBoxDataReturn, "CB Gate", True, argument = 1, requireArgument=True,
+                              CommandChart(self, "cb.cbc[5].va", "CB Gate", True, argument = 1, requireArgument=True,
                                            requiredArgumentIndex=0, requiredArgumentContents="5"),
-                              CommandChart(self, CommandID.controlBoxDataReturn, "CB Hammer scale", True, argument = 1, requireArgument=True,
+                              CommandChart(self, "cb.cbc[6].va", "CB Hammer scale", True, argument = 1, requireArgument=True,
                                            requiredArgumentIndex=0, requiredArgumentContents="6"),
-                              CommandChart(self, CommandID.controlBoxDataReturn, "CB Mute", True, argument = 1, requireArgument=True,
+                              CommandChart(self, "cb.cbc[7].va", "CB Mute", True, argument = 1, requireArgument=True,
                                            requiredArgumentIndex=0, requiredArgumentContents="7"),
-                              CommandChart(self, CommandID.pickupStringFrequency, "PU Frequency", True, rangeMin=10, rangeMax=400),
-                              CommandChart(self, CommandID.pickupAudioPeak, "PU Peak level", True),
-                              CommandChart(self, CommandID.pickupAudioRMS, "PU RMS level", True),
-                              CommandChart(self, CommandID.motorFrequency, "DCM Frequency", True, logarithmic=True, rangeMin=10, rangeMax=1000)
+                              CommandChart(self, "psf", "PU Frequency", True, rangeMin=10, rangeMax=800, isRequest=True,
+                                           zeroIsUnavailable=True, suffix="String frequency (Hz)", logarithmic=True), #CommandID.pickupStringFrequency
+                              CommandChart(self, "pap", "PU Peak level", True, isRequest=True, rangeMin=0.001, rangeMax=1,
+                                           logarithmic=True), #CommandID.pickupAudioPeak
+                              CommandChart(self, "par", "PU RMS level", False, isRequest=True, rangeMin=0.001, rangeMax=1,
+                                           logarithmic=True), #CommandID.pickupAudioRMS
+                              CommandChart(self, "bw.dcm.fq", "DCM Frequency", True, logarithmic = True, rangeMin=20, rangeMax=700,
+                                           isRequest=True, suffix="Motor frequency (Hz)"), #CommandID.motorFrequency
+                              CommandChart(self, "ph.lfo[0].ov", "LFO 1 Out", True, isRequest=True, rangeMin=-32767, rangeMax=32767),
+                              CommandChart(self, "bw.hsh[0].sh5", "5-Octave shift", True, isRequest=True, rangeMin=-32767, rangeMax=32767)
                               ]
         self.legend.adjustSize()
     lastClean = 0
 
+    def updateChartCommands(self):
+        for commandChart in self.commandCharts:
+            commandItem = Derivedcommanditem(commandChart.commandString)
+            command, module = self.commandSet.baseModule.getCommandAndModule(commandItem)
+            commandChart.commandData = command
+            commandChart.guiCallback = GUICallback(None, commandChart.commandString, self.chartCallback)
+            self.guiCallbackSystem.addGUICallback(commandChart.guiCallback)
+
+    def chartCallback(self, command:ModuleCommand):
+        chart = None
+        for chart in self.commandCharts:
+            if chart.commandData is not None:
+                if chart.commandData.getFullCommand() == command.getFullCommand():
+                    break
+        #chart = self.getChartByCommand(command.fullCommand)
+        if chart is None: return
+        self.addData(chart, command)
+
+    def updateCommandSetAndCallbacks(self, commandSet:CommandSetModular, guiCallbackSystem:GUICallbackSystem):
+        self.commandSet = commandSet
+        self.guiCallbackSystem = guiCallbackSystem
+        self.updateChartCommands()
+
+    '''
     def old_addData(self, seriesID, value, inSeriesType): #min, max,): #
         if ((inSeriesType == seriesType.frequency) and (value <= 0)):
             return
@@ -255,22 +367,30 @@ class timedChart(QWidget):
         s.append(self.timeStamper.getCurrent(), float(value))
 
         self.axisX.setRange(self.timeStamper.getCurrent() - self.timeStamper.overflow, self.timeStamper.getCurrent())
-
+    
 # Only clean up every [overflow] so that this doesn't detract
         if (self.timeStamper.getCurrent() - self.lastClean > self.timeStamper.overflow):
             self.lastClean = self.timeStamper.getCurrent()
             for point in s.pointsVector():
                 if point.x() < (self.timeStamper.getCurrent() - self.timeStamper.overflow):
                     s.remove(point)
+    '''
 
-    def map_range(self, x, in_min, in_max, out_min, out_max):
-        return (x - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
+    #def map_range(self, x, in_min, in_max, out_min, out_max):
+    #    return (x - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
 
-    def addData(self, commandChart, command):  # min, max,): #
-        if (commandChart.argument >= len(command.argument)):
+    def addData(self, commandChart, command:ModuleCommand):  # min, max,): #
+        if (commandChart.argument >= len(command.arguments)):
             return
-        value = float(command.argument[commandChart.argument])
-        value = self.map_range(value, commandChart.rangeMin, commandChart.rangeMax,0, 65535)
+        value = float(command.arguments[commandChart.argument])
+
+        if (value == 0 and commandChart.zeroIsUnavailable) or (value <= 0 and commandChart.logarithmic):
+            return
+
+        #value = self.map_range(value, commandChart.rangeMin, commandChart.rangeMax,0, 65535)
+
+        #if (value == 0 and commandChart.zeroIsUnavailable) or (value <= 0 and commandChart.logarithmic):
+        #    return
 
         commandChart.lineSeries.append(self.timeStamper.getCurrent(), float(value))
 
@@ -283,14 +403,7 @@ class timedChart(QWidget):
                 if point.x() < (self.timeStamper.getCurrent() - self.timeStamper.overflow):
                     commandChart.lineSeries.remove(point)
 
-    def getSeries(self, seriesID):
-#        for s in self.chart.series():
-        for s in self.seriesArr:
-            if (s.name == seriesID):
-                return s
-
-        return None
-
+    '''
     def addSeries(self, seriesID, inSeriesType):
         s = QLineSeries()
         s.name = seriesID
@@ -312,7 +425,9 @@ class timedChart(QWidget):
             print("ERROR")
             return None
         return s
+    '''
 
+    '''
     def setSeriesVisibleCommand(self, command, index, visible):
         try:
             #seriesID = self.chartMatchArr[command].description
@@ -329,11 +444,34 @@ class timedChart(QWidget):
             if s is None:
                 return
         s.setVisible(visible)
+    '''
+    def createChartID(self, chart):
+        if (self.commandSet is None): return
+        chart.commandItem = self.commandSet.CommandItem(chart.commandString)
+        chart.commandID = self.commandSet.getCommandID(chart.commandItem)
+        if (chart.commandID is None): return False
+        return True
 
     def getChartByCommand(self, command) -> CommandChart:
         commandID = self.commandSet.getCommandID(command)
         for chart in self.commandCharts:
-            if chart.command == commandID:
+            if chart.commandID is None: self.createChartID(chart)
+            found = False
+            if chart.commandID == commandID:
+                found = True
+                for i in range(0, len(chart.commandItem.hierarchy) - 1):
+                    if len(chart.commandItem.hierarchy[i].selection) > 0:
+                        found = False
+                        for selection in command.hierarchy[i].selection:
+                            if selection in chart.commandItem.hierarchy[i].selection:
+                                found = True
+                                break
+
+            #if commandID == CommandID.pluginLFOOutputValue:
+            #    pass
+            #
+            #if chart.commandString == command.command:
+            if found:
                 if (chart.requireArgument):
                     if (len(command.argument) > chart.requiredArgumentIndex):
                         if command.argument[chart.requiredArgumentIndex] == chart.requiredArgumentContents:
@@ -342,13 +480,57 @@ class timedChart(QWidget):
                     return chart
         return None
 
+    def getChartByName(self, name):
+        for commandChart in self.commandCharts:
+            if commandChart.name == name:
+                return commandChart
+        return None
+
+    def getSeries(self, name) -> CommandChart:
+        for s in self.seriesArr:
+            if (s.name == name):
+                return s
+        return None
+
+    def setChartZeroIsUnavailable(self, chartName, zeroAvaliable):
+        chart = self.getChartByName(chartName)
+        if (chart is None): return
+        chart.zeroIsUnavailable = zeroAvaliable
+
+    def setChartVisible(self, chartName, visible):
+        chart = self.getChartByName(chartName)
+        if (chart is None): return
+        chart.visible = visible
+        chart.lineSeries.setVisible(visible)
+
+    def setChartName(self, chartName, newName):
+        chart = self.getChartByName(chartName)
+        if (chart is None): return
+        chart.name = newName
+        chart.lineSeries.setName(newName)
+
+    def setChartCommand(self, chartName, commandID):
+        chart = self.getChartByName(chartName)
+        if (chart is None): return
+        #chart.name = newName
+        #chart.lineSeries.setName(newName)
+        chart.command = commandID
+
+    def setChartRequest(self, chartName, request):
+        chart = self.getChartByName(chartName)
+        if (chart is None): return
+        chart.isRequest = request
+
+    '''
     def processCommand(self, command):
+        if (command.command == "ls"): return
         if self.commandSet is None: return
         chart = self.getChartByCommand(command)
         if chart is None: return
 
         self.addData(chart, command)
-
+    '''
+    '''
     def old_processCommand(self, command):
         if self.commandSet is None: return
         cId = self.commandSet.getCommandID(command)
@@ -375,3 +557,4 @@ class timedChart(QWidget):
             return
         if (series is not None):
             self.addData(series.description, value, series.seriesType)
+    '''

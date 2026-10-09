@@ -437,11 +437,14 @@ class Ui_Widget(object):
         self.comboBoxFundamentalFrequency = QComboBox(self.groupBoxBasicTuningParameters)
         self.comboBoxFundamentalFrequency.addItem("")
         self.comboBoxFundamentalFrequency.setObjectName(u"comboBoxFundamentalFrequency")
-        self.comboBoxFundamentalFrequency.setGeometry(QRect(230, 50, 121, 20))
+        self.comboBoxFundamentalFrequency.setGeometry(QRect(279, 50, 111, 20))
         self.comboBoxFundamentalFrequency.setEditable(True)
         self.pushButtonDetectFundamental = QPushButton(self.groupBoxBasicTuningParameters)
         self.pushButtonDetectFundamental.setObjectName(u"pushButtonDetectFundamental")
-        self.pushButtonDetectFundamental.setGeometry(QRect(370, 50, 91, 21))
+        self.pushButtonDetectFundamental.setGeometry(QRect(410, 50, 90, 21))
+        self.label_68 = QLabel(self.groupBoxBasicTuningParameters)
+        self.label_68.setObjectName(u"label_68")
+        self.label_68.setGeometry(QRect(230, 50, 45, 17))
 
         self.horizontalLayout.addWidget(self.groupBoxBasicTuningParameters, 0, Qt.AlignTop)
 
@@ -1812,7 +1815,7 @@ class Ui_Widget(object):
         self.widgetCVGateThreshold.setObjectName(u"widgetCVGateThreshold")
         self.widgetCVGateThreshold.setDecimals(0)
         self.widgetCVGateThreshold.setMinimum(10.000000000000000)
-        self.widgetCVGateThreshold.setMaximum(5000.000000000000000)
+        self.widgetCVGateThreshold.setMaximum(65535.000000000000000)
         self.widgetCVGateThreshold.setSingleStep(100.000000000000000)
         self.widgetCVGateThreshold.setValue(2000.000000000000000)
 
@@ -3441,7 +3444,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.tabWidgetMain.setCurrentIndex(1)
+        self.tabWidgetMain.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -3470,6 +3473,7 @@ class Ui_Widget(object):
         self.comboBoxFundamentalFrequency.setItemText(0, QCoreApplication.translate("Widget", u"A - 440.00Hz", None))
 
         self.pushButtonDetectFundamental.setText(QCoreApplication.translate("Widget", u"Detect", None))
+        self.label_68.setText(QCoreApplication.translate("Widget", u"Set to", None))
         self.groupBox_15.setTitle(QCoreApplication.translate("Widget", u"Auto calibrations", None))
         self.pushButtonCalibrateAll.setText(QCoreApplication.translate("Widget", u"Calibrate all", None))
         self.pushButtonCalibratePressure.setText(QCoreApplication.translate("Widget", u"Cal. Pressure", None))

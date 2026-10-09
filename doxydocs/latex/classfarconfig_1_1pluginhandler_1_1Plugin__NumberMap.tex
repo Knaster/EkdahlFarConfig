@@ -28,15 +28,11 @@ class \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_1_1c
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_ab11efc70f694f92b53dd107bc73b0802}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a6784e1c334dfceb8f017667c0b0f6a3e}{index}}, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a3339cc37bb2d95dc5e310829fc12f9a8}{plugin\+Handler}}=None)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_aefea7514d1c315102aeff6ee2cb1b382}{update\+Widget}} (self, simple\+FARHandler)
-\item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_aa39d192815b803996771ef6e839bb304}{add\+Map}} (self)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a6a89cc389d474e073d68a00067afe7f6}{remove\+Map}} (self)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a8ba27b411a1e5a24c6d10591ca9198c2}{range\+Changed}} (self, value)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a2a24d9b2409c3bfcf09976d770f2c3ec}{slider\+Mouse\+Release}} (self, event)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_aac46a43b6cc78d080a1a4db48c1ec4fb}{slider\+Value\+Changed}} (self, value)
 \item 
@@ -48,12 +44,16 @@ class \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_1_1c
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a37ca14b1f68af1c7e54e021a30a3008d}{render\+Sliders}} (self, slider\+Count\+Changed)
 \item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a68b1e4abf54cf586be4dee64a0a04624}{data\+Changed\+Map}} (self, command)
+\item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a0d0ec623eb8f805412609e9e672a81d0}{process\+Messages}} (self, command\+Item, command\+Sets, simple\+FARHandler, main\+Widget, serial\+Handler)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget}{Plugin\+\_\+\+Widget}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_af43a4554ceac7fa766d24ee251c12395}{update\+Value\+And\+Label}} (self, command\+ID, value\+Widget, label=None, log=False, log\+Max=65535)
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a13483f1ac2150135da2ce6be3d7b6b3c}{update\+Widget}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_acc9978b87168fd840a5f30d27ed2f3eb}{update\+Name}} (self, command)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -68,19 +68,15 @@ class \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_1_1c
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a4d629e97dab1ddb8b4348b94f29fd12d}{steps}}
 \item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a94c02b7c4e7c12b1ce45425e0a9bf511}{plugin\+Title}}
+\item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_aefa3cafbb5d0326502b237311cd1226f}{range\+Changed}}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_ac52f3b0d8bc173455f96d1f3daba863d}{add\+Map}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a809a2f504dcfc9c1288fe6801e327202}{remove\+Map}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a992ac7f0a376756e2052397550d7be3f}{request\+Data}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_aff7ce477b70327a8457810407ffae371}{updating\+From\+Module}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a2e9941b7dc1058eee0038e82837d93b3}{slider\+Value\+Changed}}
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a0c630ae11898b65bcd9d768c2f156832}{gui\+Callbacks}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a6784e1c334dfceb8f017667c0b0f6a3e}{index}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a2e9941b7dc1058eee0038e82837d93b3}{slider\+Value\+Changed}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget}{Plugin\+\_\+\+Widget}}}
 \begin{DoxyCompactItemize}
@@ -92,6 +88,12 @@ class \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_1_1c
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_aff7ce477b70327a8457810407ffae371}{updating\+From\+Module}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a3339cc37bb2d95dc5e310829fc12f9a8}{plugin\+Handler}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a94c02b7c4e7c12b1ce45425e0a9bf511}{plugin\+Title}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a992ac7f0a376756e2052397550d7be3f}{request\+Data}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a0c630ae11898b65bcd9d768c2f156832}{gui\+Callbacks}}
 \end{DoxyCompactItemize}
 
 
@@ -117,7 +119,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=133pt]{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_ab11efc70f694f92b53dd107bc73b0802_icgraph}
+\includegraphics[width=350pt]{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_ab11efc70f694f92b53dd107bc73b0802_icgraph}
 \end{center}
 \end{figure}
 
@@ -140,6 +142,19 @@ Here is the caller graph for this function\+:\nopagebreak
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a7cc6a7f44f223b092fee0a76552b40dd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a68b1e4abf54cf586be4dee64a0a04624}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a68b1e4abf54cf586be4dee64a0a04624} 
+\index{Plugin\_NumberMap@{Plugin\_NumberMap}!dataChangedMap@{dataChangedMap}}
+\index{dataChangedMap@{dataChangedMap}!Plugin\_NumberMap@{Plugin\_NumberMap}}
+\doxysubsubsection{\texorpdfstring{dataChangedMap()}{dataChangedMap()}}
+{\footnotesize\ttfamily data\+Changed\+Map (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a68b1e4abf54cf586be4dee64a0a04624_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a0d0ec623eb8f805412609e9e672a81d0}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a0d0ec623eb8f805412609e9e672a81d0} 
@@ -205,12 +220,6 @@ Here is the caller graph for this function\+:\nopagebreak
 \includegraphics[width=300pt]{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a37ca14b1f68af1c7e54e021a30a3008d_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a2a24d9b2409c3bfcf09976d770f2c3ec}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a2a24d9b2409c3bfcf09976d770f2c3ec} 
-\index{Plugin\_NumberMap@{Plugin\_NumberMap}!sliderMouseRelease@{sliderMouseRelease}}
-\index{sliderMouseRelease@{sliderMouseRelease}!Plugin\_NumberMap@{Plugin\_NumberMap}}
-\doxysubsubsection{\texorpdfstring{sliderMouseRelease()}{sliderMouseRelease()}}
-{\footnotesize\ttfamily slider\+Mouse\+Release (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{event }\end{DoxyParamCaption})}
-
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_aac46a43b6cc78d080a1a4db48c1ec4fb}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_aac46a43b6cc78d080a1a4db48c1ec4fb} 
 \index{Plugin\_NumberMap@{Plugin\_NumberMap}!sliderValueChanged@{sliderValueChanged}}
 \index{sliderValueChanged@{sliderValueChanged}!Plugin\_NumberMap@{Plugin\_NumberMap}}
@@ -250,20 +259,14 @@ Here is the caller graph for this function\+:\nopagebreak
 \includegraphics[width=350pt]{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_aa717d6ccaeeb05e6794aedb914a4cbbf_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_aefea7514d1c315102aeff6ee2cb1b382}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_aefea7514d1c315102aeff6ee2cb1b382} 
-\index{Plugin\_NumberMap@{Plugin\_NumberMap}!updateWidget@{updateWidget}}
-\index{updateWidget@{updateWidget}!Plugin\_NumberMap@{Plugin\_NumberMap}}
-\doxysubsubsection{\texorpdfstring{updateWidget()}{updateWidget()}}
-{\footnotesize\ttfamily update\+Widget (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{simple\+FARHandler }\end{DoxyParamCaption})}
-
 
 
 \doxysubsection{Member Data Documentation}
-\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_ac52f3b0d8bc173455f96d1f3daba863d}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_ac52f3b0d8bc173455f96d1f3daba863d} 
-\index{Plugin\_NumberMap@{Plugin\_NumberMap}!addMap@{addMap}}
-\index{addMap@{addMap}!Plugin\_NumberMap@{Plugin\_NumberMap}}
-\doxysubsubsection{\texorpdfstring{addMap}{addMap}}
-{\footnotesize\ttfamily add\+Map}
+\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a0c630ae11898b65bcd9d768c2f156832}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a0c630ae11898b65bcd9d768c2f156832} 
+\index{Plugin\_NumberMap@{Plugin\_NumberMap}!guiCallbacks@{guiCallbacks}}
+\index{guiCallbacks@{guiCallbacks}!Plugin\_NumberMap@{Plugin\_NumberMap}}
+\doxysubsubsection{\texorpdfstring{guiCallbacks}{guiCallbacks}}
+{\footnotesize\ttfamily gui\+Callbacks}
 
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a6784e1c334dfceb8f017667c0b0f6a3e}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a6784e1c334dfceb8f017667c0b0f6a3e} 
 \index{Plugin\_NumberMap@{Plugin\_NumberMap}!index@{index}}
@@ -283,6 +286,12 @@ Here is the caller graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{oldRange}{oldRange}}
 {\footnotesize\ttfamily old\+Range}
 
+\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a94c02b7c4e7c12b1ce45425e0a9bf511}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a94c02b7c4e7c12b1ce45425e0a9bf511} 
+\index{Plugin\_NumberMap@{Plugin\_NumberMap}!pluginTitle@{pluginTitle}}
+\index{pluginTitle@{pluginTitle}!Plugin\_NumberMap@{Plugin\_NumberMap}}
+\doxysubsubsection{\texorpdfstring{pluginTitle}{pluginTitle}}
+{\footnotesize\ttfamily plugin\+Title}
+
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a5a95c5aa27dc12b07af34405942b7849}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a5a95c5aa27dc12b07af34405942b7849} 
 \index{Plugin\_NumberMap@{Plugin\_NumberMap}!range@{range}}
 \index{range@{range}!Plugin\_NumberMap@{Plugin\_NumberMap}}
@@ -301,18 +310,6 @@ Here is the caller graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{ranges}{ranges}}
 {\footnotesize\ttfamily ranges}
 
-\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a809a2f504dcfc9c1288fe6801e327202}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a809a2f504dcfc9c1288fe6801e327202} 
-\index{Plugin\_NumberMap@{Plugin\_NumberMap}!removeMap@{removeMap}}
-\index{removeMap@{removeMap}!Plugin\_NumberMap@{Plugin\_NumberMap}}
-\doxysubsubsection{\texorpdfstring{removeMap}{removeMap}}
-{\footnotesize\ttfamily remove\+Map}
-
-\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a992ac7f0a376756e2052397550d7be3f}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a992ac7f0a376756e2052397550d7be3f} 
-\index{Plugin\_NumberMap@{Plugin\_NumberMap}!requestData@{requestData}}
-\index{requestData@{requestData}!Plugin\_NumberMap@{Plugin\_NumberMap}}
-\doxysubsubsection{\texorpdfstring{requestData}{requestData}}
-{\footnotesize\ttfamily request\+Data}
-
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a2e9941b7dc1058eee0038e82837d93b3}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a2e9941b7dc1058eee0038e82837d93b3} 
 \index{Plugin\_NumberMap@{Plugin\_NumberMap}!sliderValueChanged@{sliderValueChanged}}
 \index{sliderValueChanged@{sliderValueChanged}!Plugin\_NumberMap@{Plugin\_NumberMap}}
@@ -324,12 +321,6 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{steps@{steps}!Plugin\_NumberMap@{Plugin\_NumberMap}}
 \doxysubsubsection{\texorpdfstring{steps}{steps}}
 {\footnotesize\ttfamily steps}
-
-\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_aff7ce477b70327a8457810407ffae371}\label{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_aff7ce477b70327a8457810407ffae371} 
-\index{Plugin\_NumberMap@{Plugin\_NumberMap}!updatingFromModule@{updatingFromModule}}
-\index{updatingFromModule@{updatingFromModule}!Plugin\_NumberMap@{Plugin\_NumberMap}}
-\doxysubsubsection{\texorpdfstring{updatingFromModule}{updatingFromModule}}
-{\footnotesize\ttfamily updating\+From\+Module}
 
 
 

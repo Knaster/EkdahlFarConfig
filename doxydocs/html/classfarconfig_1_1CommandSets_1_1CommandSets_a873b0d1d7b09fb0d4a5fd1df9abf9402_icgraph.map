@@ -1,6 +1,4 @@
 <map id="buildHierarchy" name="buildHierarchy">
-<area shape="rect" id="Node000001" title=" " alt="" coords="303,29,420,55"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="403,20,392,11,361,8,337,10,324,15,321,20,328,27,324,31,316,21,320,11,336,5,361,3,394,7,406,16"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a0d0ec623eb8f805412609e9e672a81d0" title=" " alt="" coords="5,22,255,62"/>
-<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="289,45,255,45,255,39,289,39"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,123,55"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="83,18,77,11,64,8,52,10,47,14,45,20,49,28,44,30,40,21,42,12,50,5,64,3,80,6,87,14"/>
 </map>

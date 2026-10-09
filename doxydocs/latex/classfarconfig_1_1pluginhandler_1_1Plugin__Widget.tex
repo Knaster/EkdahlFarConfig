@@ -23,7 +23,9 @@ Collaboration diagram for Plugin\+\_\+\+Widget\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a03a93d2c15f3df38de11e0602f2811ef}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, plugin, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a6784e1c334dfceb8f017667c0b0f6a3e}{index}}, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a3339cc37bb2d95dc5e310829fc12f9a8}{plugin\+Handler}}, parent=None)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_af43a4554ceac7fa766d24ee251c12395}{update\+Value\+And\+Label}} (self, command\+ID, value\+Widget, label=None, log=False, log\+Max=65535)
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a13483f1ac2150135da2ce6be3d7b6b3c}{update\+Widget}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_acc9978b87168fd840a5f30d27ed2f3eb}{update\+Name}} (self, command)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a0d0ec623eb8f805412609e9e672a81d0}{process\+Messages}} (self, command\+Item, command\+Sets, simple\+FARHandler, main\+Widget, serial\+Handler)
 \end{DoxyCompactItemize}
@@ -37,6 +39,12 @@ Collaboration diagram for Plugin\+\_\+\+Widget\+:\nopagebreak
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_aff7ce477b70327a8457810407ffae371}{updating\+From\+Module}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a3339cc37bb2d95dc5e310829fc12f9a8}{plugin\+Handler}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a94c02b7c4e7c12b1ce45425e0a9bf511}{plugin\+Title}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a992ac7f0a376756e2052397550d7be3f}{request\+Data}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a0c630ae11898b65bcd9d768c2f156832}{gui\+Callbacks}}
 \end{DoxyCompactItemize}
 
 
@@ -62,7 +70,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=133pt]{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a03a93d2c15f3df38de11e0602f2811ef_icgraph}
+\includegraphics[width=350pt]{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a03a93d2c15f3df38de11e0602f2811ef_icgraph}
 \end{center}
 \end{figure}
 
@@ -78,15 +86,35 @@ Here is the caller graph for this function\+:\nopagebreak
 
 Reimplemented in \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap_a0d0ec623eb8f805412609e9e672a81d0}{Plugin\+\_\+\+Number\+Map}}, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a0d0ec623eb8f805412609e9e672a81d0}{Plugin\+\_\+\+AHDSR}}, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__LFO_a0d0ec623eb8f805412609e9e672a81d0}{Plugin\+\_\+\+LFO}}, and \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Multiple_a0d0ec623eb8f805412609e9e672a81d0}{Plugin\+\_\+\+Multiple}}.
 
-\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_af43a4554ceac7fa766d24ee251c12395}\label{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_af43a4554ceac7fa766d24ee251c12395} 
-\index{Plugin\_Widget@{Plugin\_Widget}!updateValueAndLabel@{updateValueAndLabel}}
-\index{updateValueAndLabel@{updateValueAndLabel}!Plugin\_Widget@{Plugin\_Widget}}
-\doxysubsubsection{\texorpdfstring{updateValueAndLabel()}{updateValueAndLabel()}}
-{\footnotesize\ttfamily update\+Value\+And\+Label (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command\+ID,  }\item[{}]{value\+Widget,  }\item[{}]{label = {\ttfamily None},  }\item[{}]{log = {\ttfamily False},  }\item[{}]{log\+Max = {\ttfamily 65535} }\end{DoxyParamCaption})}
+\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_acc9978b87168fd840a5f30d27ed2f3eb}\label{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_acc9978b87168fd840a5f30d27ed2f3eb} 
+\index{Plugin\_Widget@{Plugin\_Widget}!updateName@{updateName}}
+\index{updateName@{updateName}!Plugin\_Widget@{Plugin\_Widget}}
+\doxysubsubsection{\texorpdfstring{updateName()}{updateName()}}
+{\footnotesize\ttfamily update\+Name (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command }\end{DoxyParamCaption})}
 
+\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a13483f1ac2150135da2ce6be3d7b6b3c}\label{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a13483f1ac2150135da2ce6be3d7b6b3c} 
+\index{Plugin\_Widget@{Plugin\_Widget}!updateWidget@{updateWidget}}
+\index{updateWidget@{updateWidget}!Plugin\_Widget@{Plugin\_Widget}}
+\doxysubsubsection{\texorpdfstring{updateWidget()}{updateWidget()}}
+{\footnotesize\ttfamily update\+Widget (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a13483f1ac2150135da2ce6be3d7b6b3c_icgraph}
+\end{center}
+\end{figure}
 
 
 \doxysubsection{Member Data Documentation}
+\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a0c630ae11898b65bcd9d768c2f156832}\label{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a0c630ae11898b65bcd9d768c2f156832} 
+\index{Plugin\_Widget@{Plugin\_Widget}!guiCallbacks@{guiCallbacks}}
+\index{guiCallbacks@{guiCallbacks}!Plugin\_Widget@{Plugin\_Widget}}
+\doxysubsubsection{\texorpdfstring{guiCallbacks}{guiCallbacks}}
+{\footnotesize\ttfamily gui\+Callbacks}
+
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a6784e1c334dfceb8f017667c0b0f6a3e}\label{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a6784e1c334dfceb8f017667c0b0f6a3e} 
 \index{Plugin\_Widget@{Plugin\_Widget}!index@{index}}
 \index{index@{index}!Plugin\_Widget@{Plugin\_Widget}}
@@ -98,6 +126,18 @@ Reimplemented in \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Num
 \index{pluginHandler@{pluginHandler}!Plugin\_Widget@{Plugin\_Widget}}
 \doxysubsubsection{\texorpdfstring{pluginHandler}{pluginHandler}}
 {\footnotesize\ttfamily plugin\+Handler}
+
+\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a94c02b7c4e7c12b1ce45425e0a9bf511}\label{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a94c02b7c4e7c12b1ce45425e0a9bf511} 
+\index{Plugin\_Widget@{Plugin\_Widget}!pluginTitle@{pluginTitle}}
+\index{pluginTitle@{pluginTitle}!Plugin\_Widget@{Plugin\_Widget}}
+\doxysubsubsection{\texorpdfstring{pluginTitle}{pluginTitle}}
+{\footnotesize\ttfamily plugin\+Title}
+
+\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a992ac7f0a376756e2052397550d7be3f}\label{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a992ac7f0a376756e2052397550d7be3f} 
+\index{Plugin\_Widget@{Plugin\_Widget}!requestData@{requestData}}
+\index{requestData@{requestData}!Plugin\_Widget@{Plugin\_Widget}}
+\doxysubsubsection{\texorpdfstring{requestData}{requestData}}
+{\footnotesize\ttfamily request\+Data}
 
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_ac492f8de2d00b6c4282e766bfadaf2e7}\label{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_ac492f8de2d00b6c4282e766bfadaf2e7} 
 \index{Plugin\_Widget@{Plugin\_Widget}!ui@{ui}}

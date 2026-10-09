@@ -1,0 +1,21 @@
+<map id="dataChangedMIDIRestoreDefaults" name="dataChangedMIDIRestoreDefaults">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,141,248,166"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1Plugin__Widget.html#a13483f1ac2150135da2ce6be3d7b6b3c" title=" " alt="" coords="315,5,525,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,138,210,98,295,55,316,47,318,52,297,60,213,102,148,143"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1tabadvanced_1_1TabAdvanced.html#a13483f1ac2150135da2ce6be3d7b6b3c" title=" " alt="" coords="323,69,517,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,138,314,110,315,115,186,143"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1tabbasic_1_1TabBasic.html#a13483f1ac2150135da2ce6be3d7b6b3c" title=" " alt="" coords="296,133,544,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="248,151,282,151,282,156,248,156"/>
+<area shape="rect" id="Node000007" href="$classfarconfig_1_1tabcv_1_1TabCV.html#a13483f1ac2150135da2ce6be3d7b6b3c" title=" " alt="" coords="315,197,525,237"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="186,163,315,192,314,197,185,169"/>
+<area shape="rect" id="Node000008" href="$classfarconfig_1_1tabmidi_1_1TabMIDI.html#a13483f1ac2150135da2ce6be3d7b6b3c" title=" " alt="" coords="363,262,477,287"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="148,164,212,205,253,228,297,247,351,262,349,267,295,252,251,232,209,210,145,169"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1tabbasic_1_1TabBasic.html#aa41a9a2d8b06a6708ba0016cbd97a2cd" title=" " alt="" coords="592,133,840,173"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="544,151,579,151,579,156,544,156"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1tabbasic_1_1TabBasic.html#ad5be63777151cb65a61c907b32ccd8c6" title=" " alt="" coords="888,133,1111,173"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="840,151,875,151,875,156,840,156"/>
+<area shape="rect" id="Node000009" href="$classfarconfig_1_1tabmidi_1_1TabMIDI.html#a5cc05139bd20b44e9eb7d11720ce4097" title=" " alt="" coords="617,255,815,295"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="477,272,603,272,603,277,477,277"/>
+<area shape="rect" id="Node000010" href="$classfarconfig_1_1tabmidi_1_1TabMIDI.html#a9123a061a48d11a7eba70116a0c7b7aa" title=" " alt="" coords="933,262,1066,287"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="815,272,919,272,919,277,815,277"/>
+</map>

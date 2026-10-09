@@ -3,7 +3,9 @@ from PySide6.QtWidgets import (QWidget, QLineEdit,
 from PySide6.QtCore import Qt
 
 from commandparser import getCommandIndex
-from general_helpers import deleteItemsOfLayout, deleteLayout, inputBox
+from general_helpers import deleteItemsOfLayout, deleteLayout, inputBox, logModuleToGUI, expGUIToModule
+
+from GUICallbackSystem import GUICallbackSystem, GUICallback
 
 from ui_plugin_ahdsr import Ui_Form_AHDSR as plugin_ahdsr
 from ui_plugin_numbermap import Ui_Form_NumberMap as plugin_numbermap
@@ -22,6 +24,11 @@ class Plugin_Widget(QWidget):
         self.index = index
         self.updatingFromModule = False
         self.pluginHandler = pluginHandler
+        self.pluginTitle = ""
+
+        self.requestData = []
+
+        self.guiCallbacks:list[GUICallback] = list()
 
         # Wrap the groupbox in a layout
         if hasattr(self.ui, 'mainLayout'):
@@ -33,7 +40,7 @@ class Plugin_Widget(QWidget):
         layout.setAlignment(Qt.AlignmentFlag.AlignTop)
 
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-
+    '''
     def updateValueAndLabel(self, commandID, valueWidget, label = None, log = False, logMax = 65535):
         value = self.pluginHandler.simpleFARHandler.stringModules[0].getCommandValue(commandID, self.index)
         if (value == None):
@@ -57,10 +64,19 @@ class Plugin_Widget(QWidget):
         if (label is not None):
             if (value == None): value = "n/a"
             label.setText(str(value))
+    '''
+
+    def updateWidget(self):
+        self.pluginHandler.guiCallbackSystem.setGUIObjectValueFromCallbacks(self.guiCallbacks)
+
+    def updateName(self, command):
+        name = command.arguments[0] if len(command.arguments) > 0 else None
+        title = self.pluginTitle + " [" + str(self.index) + "]"
+        if (name is not None): title += " - " + name
+        self.ui.mainGroupBox.setTitle(title)
 
     def processMessages(self, commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler):
-        if (getCommandIndex(commandItem) != self.index): return
-        pass
+        return
 
 class Plugin_NumberMap(Plugin_Widget):
     def __init__(self, index, pluginHandler = None):
@@ -71,46 +87,68 @@ class Plugin_NumberMap(Plugin_Widget):
         self.maps = {}
         self.ranges = [11, 127, 65535]
         self.steps = [1, 10, 1000]
+        self.pluginTitle = "Number map"
+
         self.ui.sliderRange.valueChanged.connect(self.rangeChanged)
-        self.pluginHandler.assignValueChanged(self.ui.sliderScale, CommandID.pluginMapScale, [index])
-        self.pluginHandler.assignValueChanged(self.ui.textEditTarget, CommandID.pluginMapTarget, [index])
+        self.guiCallbacks = [GUICallback(self.ui.sliderScale, "ph.nm[" + str(self.index) + "].sc"),
+                             GUICallback(self.ui.textEditTarget, "ph.nm[" + str(self.index) + "].tg", dataIsCommandString = True),
+                             GUICallback(None, "ph.nm[" + str(self.index) + "].na", dataCallbackFunction = self.updateName),
+                             GUICallback(None, "ph.nm[" + str(self.index) + "].da", dataCallbackFunction = self.dataChangedMap),
+                             GUICallback(self.ui.pushButtonAdd, "", guiCallbackFunction = self.addMap),
+                             GUICallback(self.ui.pushButtonRemove, "", guiCallbackFunction = self.removeMap)]
+
+        self.pluginHandler.guiCallbackSystem.addGUICallbacks(self.guiCallbacks)
+        '''
+        self.pluginHandler.guiCallbackSystem.addGUICallback(self.ui.sliderScale, "ph.nm[" + str(self.index) + "].sc")
+        self.pluginHandler.guiCallbackSystem.addGUICallback(self.ui.textEditTarget, "ph.nm[" + str(self.index) + "].tg")
+        self.pluginHandler.guiCallbackSystem.addGUICallback(None, "ph.nm[" + str(self.index) + "].na", dataCallbackFunction = self.updateName)
+        self.pluginHandler.guiCallbackSystem.addGUICallback(None, "ph.nm[" + str(self.index) + "].da", dataCallbackFunction = self.dataChangedMap)
+
         self.ui.pushButtonAdd.pressed.connect(self.addMap)
         self.ui.pushButtonRemove.pressed.connect(self.removeMap)
+        '''
+#        self.requestData = [CommandID.pluginMapData, CommandID.pluginMapName, CommandID.pluginMapScale,
+#                            CommandID.pluginMapTarget]
 
-        self.requestData = [CommandID.pluginMapData, CommandID.pluginMapName, CommandID.pluginMapScale,
-                            CommandID.pluginMapTarget]
+    '''
+    def updateWidget(self):
+        return
 
-    def updateWidget(self, simpleFARHandler):
         self.updatingFromModule = True
-        self.updateValueAndLabel(CommandID.pluginMapScale, self.ui.sliderScale, None)
-        self.ui.sliderRange = self.range
-        name = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginMapName, self.index)
+        self.pluginHandler.mainWidget.updatingFromModule = True
+
+        #self.updateValueAndLabel(CommandID.pluginMapScale, self.ui.sliderScale, None)
+        #self.ui.sliderRange = self.range
+        #name = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginMapName, self.index)
 #        if (name != -1):
 #            self.ui.mainGroupBox.setTitle("Number map [" + str(self.index) + "] - " + name)
-        title = "Number map [" + str(self.index) + "]"
-        if (name is not None): title += " - " + name
-        self.ui.mainGroupBox.setTitle(title)
+        #title = "Number map [" + str(self.index) + "]"
+        #if (name is not None): title += " - " + name
+        #self.ui.mainGroupBox.setTitle(title)
 
+        self.pluginHandler.mainWidget.updatingFromModule = False
         self.updatingFromModule = False
+    '''
 
     def addMap(self):
         number = str(inputBox("Map number", "Map number", self))
-        mapDa = self.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMapData, [self.index])[0]
-        self.pluginHandler.serialHandler.write(mapDa + ":" + number + ":" + str(self.ranges[self.range]))
+        #mapDa = self.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMapData, [self.index])[0]
+        self.pluginHandler.serialHandler.write("ph.nm[" + str(self.index) + "].da:" + number + ":" + str(self.ranges[self.range]))
 
     def removeMap(self):
         number = str(inputBox("Map number", "Map number", self))
         key = self.maps.pop(int(number), None)
         if (key is None): return
         deleteLayout(self.ui.layoutSliders.parentWidget(), QVBoxLayout, "number" + str(number), self.ui.layoutSliders)
-        mapRm = self.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMapRemove, [self.index])[0]
-        self.pluginHandler.serialHandler.write(mapRm + ":" + number)
-        mapDa = self.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMapData, [self.index])[0]
-        self.pluginHandler.serialHandler.write("rqi:" + mapDa)
+        #mapRm = self.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMapRemove, [self.index])[0]
+        self.pluginHandler.serialHandler.write("ph.nm[" + str(self.index) + "].rm:" + number)
+        #mapDa = self.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMapData, [self.index])[0]
+        #self.pluginHandler.serialHandler.write("rqi:" + mapDa)
 
     def rangeChanged(self, value):
         self.range = value
-        out = self.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMapData, [self.index])[0]
+        #out = self.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMapData, [self.index])[0]
+        out = "ph.nm[" + str(self.index) + "].da"
         update = False
         for k in self.maps.keys():
             slider = self.ui.layoutSliders.parentWidget().findChild(QSlider, name="sliderValue" + str(k),
@@ -145,15 +183,17 @@ class Plugin_NumberMap(Plugin_Widget):
             self.plugin = plugin
 
         def mouseReleaseEvent(self, ev, /):
-            mapDa = self.plugin.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMapData, [self.plugin.index])[0]
+            #mapDa = self.plugin.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMapData, [self.plugin.index])[0]
+            mapDa = "ph.nm[" + str(self.plugin.index) + "].da"
             self.plugin.pluginHandler.serialHandler.write(mapDa + ":" + str(self.number) + ":" + str(self.value()))
             super().mouseReleaseEvent(ev)
-
+    '''
     def sliderMouseRelease(self, event):
-        mapDa = self.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMapData, [self.index])[0]
+        #mapDa = self.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMapData, [self.index])[0]
+        mapDa = "ph.nm[" + str(self.plugin.index) + "].da"
         self.pluginHandler.serialHandler.write(mapDa + ":" + str(self.sender().number) + ":" + str(self.sender().value()))
         self.oldReleaseMouse(event)
-
+    '''
     def sliderValueChanged(self, value):
         self.updateLabel(self.sender().number, str(value))
 
@@ -176,6 +216,8 @@ class Plugin_NumberMap(Plugin_Widget):
         slider.setValue(int(value))
         slider.number = number
         slider.valueChanged.connect(self.sliderValueChanged)
+        #self.pluginHandler.addGUICallback(slider, "ph.nm[" + str(self.index) + "].da", dataCallbackFunction = self.dataChangedMap,
+        #                                  guiCallbackFunction=self.guiChangedMap)
         slider.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Expanding)
         slider.setMaximumWidth(71)
         slider.setMinimumWidth(20)
@@ -206,7 +248,8 @@ class Plugin_NumberMap(Plugin_Widget):
 
     def updateSlider(self, number):
         slider = self.ui.layoutSliders.parentWidget().findChild(QSlider, name="sliderValue" + str(number), options=Qt.FindChildOption.FindChildrenRecursively)
-        if (slider is None): return
+        if (slider is None):
+            return
         slider.setValue(self.maps[number])
 
     def renderSliders(self, sliderCountChanged):
@@ -231,9 +274,30 @@ class Plugin_NumberMap(Plugin_Widget):
         spacer = QSpacerItem(20, 40, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         self.ui.layoutSliders.addItem(spacer)
 
+    def dataChangedMap(self, command):
+        ogCount = len(self.maps)
+        i = 0
+        while (i + 1 < len(command.arguments)):
+            key = int(command.arguments[i].strip('\"').strip('\''))
+            value = int(round(float(command.arguments[i + 1].strip('\"').strip('\'')), 0))
+            self.maps[key] = value
+            i += 2
+        sliderCountChanged = False
+        if (ogCount != len(self.maps)): sliderCountChanged = True
+        self.renderSliders(sliderCountChanged)
+    '''
+    def guiChangedMap(self, command):
+        #sender = self.sender()
+        #self.updateLabel(self.sender().number, str(value))
+        self.renderSliders(False)
+        pass
+    '''
+
     def processMessages(self, commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler):
+        return
+
         if (getCommandIndex(commandItem) != self.index): return
-        id = self.pluginHandler.commandSet.getCommandID(commandItem)
+        id, module = self.pluginHandler.commandSet.getCommandID(commandItem)
         match(id):
             case CommandID.pluginMapData:
                 ogCount = len(self.maps)
@@ -246,59 +310,58 @@ class Plugin_NumberMap(Plugin_Widget):
                 sliderCountChanged = False
                 if (ogCount != len(self.maps)): sliderCountChanged = True
                 self.renderSliders(sliderCountChanged)
-            case CommandID.pluginMapName:
-                if len(commandItem.argument) > 0:
-                 self.ui.mainGroupBox.setTitle("Number map [" + str(self.index) + "] - " + commandItem.argument[0])
-            case CommandID.pluginMapTarget:
-                if (len(commandItem.argument) > 0):
-                    self.ui.textEditTarget.setText(commandItem.argument[0])
+            #case CommandID.pluginMapName:
+            #    if len(commandItem.argument) > 0:
+            #     self.ui.mainGroupBox.setTitle("Number map [" + str(self.index) + "] - " + commandItem.argument[0])
+            #case CommandID.pluginMapTarget:
+            #    if (len(commandItem.argument) > 0):
+            #        self.ui.textEditTarget.setText(commandItem.argument[0])
         pass
 
 class Plugin_AHDSR(Plugin_Widget):
     def __init__(self, index, pluginHandler = None):
         super().__init__(plugin_ahdsr, index, pluginHandler)
         self.ui.mainGroupBox.setTitle("AHDSR [" + str(index) + "]")
+        self.pluginTitle = "AHDSR"
 
-        self.pluginHandler.assignValueChanged(self.ui.dialAmplitude, CommandID.pluginAHDSRAmpltiude, [index])
-        self.pluginHandler.assignValueChanged(self.ui.dialAttack, CommandID.pluginAHDSRAttack, [index], True, 65535)
-        self.pluginHandler.assignValueChanged(self.ui.dialHold, CommandID.pluginAHDSRHold, [index], True, 65535)
-        self.pluginHandler.assignValueChanged(self.ui.dialDecay, CommandID.pluginAHDSRDecay, [index], True, 65535)
-        self.pluginHandler.assignValueChanged(self.ui.dialSustain, CommandID.pluginAHDSRSustain, [index])
-        self.pluginHandler.assignValueChanged(self.ui.dialRelease, CommandID.pluginAHDSRRelease, [index], True, 65535)
-        self.pluginHandler.assignValueChanged(self.ui.checkBoxEnabled, CommandID.pluginAHDSREnable, [index])
-        self.pluginHandler.assignValueChanged(self.ui.checkBoxInverted, CommandID.pluginAHDSRInvert, [index])
-        self.pluginHandler.assignValueChanged(self.ui.textEditTarget, CommandID.pluginAHDSRTarget, [index])
-        self.pluginHandler.assignValueChanged(self.ui.textEditReleaseTarget, CommandID.pluginAHDSRReleaseTarget, [index])
+        self.guiCallbacks = [GUICallback(self.ui.dialAmplitude, "ph.ahdsr[" + str(self.index) + "].amp"),
+                            GUICallback(self.ui.dialAttack, "ph.ahdsr[" + str(self.index) + "].at"),
+                            GUICallback(self.ui.dialHold, "ph.ahdsr[" + str(self.index)  + "].hd"),
+                            GUICallback(self.ui.dialDecay, "ph.ahdsr[" + str(self.index) + "].dc"),
+                            GUICallback(self.ui.dialSustain, "ph.ahdsr[" + str(self.index) + "].su"),
+                            GUICallback(self.ui.dialRelease, "ph.ahdsr[" + str(self.index) + "].re"),
+                            GUICallback(self.ui.checkBoxEnabled, "ph.ahdsr[" + str(self.index) + "].en"),
+                            GUICallback(self.ui.checkBoxInverted, "ph.ahdsr[" + str(self.index) + "].inv"),
+                            GUICallback(self.ui.textEditTarget, "ph.ahdsr[" + str(self.index) + "].tg", dataIsCommandString = True),
+                            GUICallback(self.ui.textEditReleaseTarget, "ph.ahdsr[" + str(self.index) + "].rt", dataIsCommandString = True),
+                            GUICallback(None, "ph.ahdsr[ " + str(self.index) + "].na", self.updateName)]
 
+        self.pluginHandler.guiCallbackSystem.addGUICallbacks(self.guiCallbacks)
+
+        '''
         self.requestData = [CommandID.pluginAHDSRAmpltiude, CommandID.pluginAHDSRAttack,
                             CommandID.pluginAHDSRHold, CommandID.pluginAHDSRDecay,
                             CommandID.pluginAHDSRSustain, CommandID.pluginAHDSRRelease,
                             CommandID.pluginAHDSREnable, CommandID.pluginAHDSRInvert,
                             CommandID.pluginAHDSRTarget, CommandID.pluginAHDSRReleaseTarget]
+        '''
 
-    def updateWidget(self, simpleFARHandler):
         self.updatingFromModule = True
+        self.pluginHandler.mainWidget.updatingFromModule = True#
 
-        self.updateValueAndLabel(CommandID.pluginAHDSRAmpltiude, self.ui.dialAmplitude, None)
-        self.updateValueAndLabel(CommandID.pluginAHDSRAttack, self.ui.dialAttack, None, True, 65535)
-        self.updateValueAndLabel(CommandID.pluginAHDSRHold, self.ui.dialHold, None, True, 65535)
-        self.updateValueAndLabel(CommandID.pluginAHDSRDecay, self.ui.dialDecay, None, True, 65535)
-        self.updateValueAndLabel(CommandID.pluginAHDSRSustain, self.ui.dialSustain, None)
-        self.updateValueAndLabel(CommandID.pluginAHDSRRelease, self.ui.dialRelease, None, True, 65535)
-        self.updateValueAndLabel(CommandID.pluginAHDSREnable, self.ui.checkBoxEnabled, None)
-        self.updateValueAndLabel(CommandID.pluginAHDSRInvert, self.ui.checkBoxInverted, None)
-        self.updateValueAndLabel(CommandID.pluginAHDSRTarget, self.ui.textEditTarget, None)
-        self.updateValueAndLabel(CommandID.pluginAHDSRReleaseTarget, self.ui.textEditReleaseTarget, None)
-        name = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginAHDSRName, self.index)
-        title = "AHDSR [" + str(self.index) + "]"
-        if (name is not None): title += " - " + name
-        self.ui.mainGroupBox.setTitle(title)
+        #name = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginAHDSRName, self.index)
+        #title = "AHDSR [" + str(self.index) + "]"
+        #if (name is not None): title += " - " + name
+        #self.ui.mainGroupBox.setTitle(title)
 
+        self.pluginHandler.mainWidget.updatingFromModule = False
         self.updatingFromModule = False
 
     def processMessages(self, commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler):
+        return
+
         if (getCommandIndex(commandItem) != self.index): return
-        id = self.pluginHandler.commandSet.getCommandID(commandItem)
+        id, module = self.pluginHandler.commandSet.getCommandID(commandItem)
         match(id):
             case CommandID.pluginAHDSRName:
                 if len(commandItem.argument) > 0:
@@ -307,34 +370,58 @@ class Plugin_AHDSR(Plugin_Widget):
 class Plugin_LFO(Plugin_Widget):
     def __init__(self, index, pluginHandler = None):
         super().__init__(plugin_lfo, index, pluginHandler)
+        self.pluginTitle = "LFO"
         self.ui.mainGroupBox.setTitle("LFO [" + str(index) + "]")
         self.wave = { "saw" : 0, "triangle" : 1, "sine" : 2, "square" : 3, "random" : 4, 0 : "saw", 1 : "triangle", 2 : "sine", 3 : "square", 4 : "random"}
 
-        self.pluginHandler.assignValueChanged(self.ui.dialDelay, CommandID.pluginLFODelay, [index], True, 65535)
-        self.pluginHandler.assignValueChanged(self.ui.dialAmplitude, CommandID.pluginLFOAmpltiude, [index], True, 65535)
-        self.pluginHandler.assignValueChanged(self.ui.dialFrequency, CommandID.pluginLFOFrequency, [index], True, 20)
-        self.pluginHandler.assignValueChanged(self.ui.textEditTarget, CommandID.pluginLFOTarget, [index])
-        self.pluginHandler.assignValueChanged(self.ui.checkBoxBipolar, CommandID.pluginLFOBipolar, [index])
-        self.pluginHandler.assignValueChanged(self.ui.checkBoxEnabled, CommandID.pluginLFOEnable, [index])
+        self.guiCallbacks = [GUICallback(self.ui.dialDelay, "ph.lfo[" + str(self.index) + "].dl"),
+                             GUICallback(self.ui.dialAmplitude, "ph.lfo[" + str(self.index) + "].amp"),
+                             GUICallback(self.ui.dialFrequency, "ph.lfo[" + str(self.index) + "].fq", dataCallbackFunction = self.dataChangedLFOFrequency,
+                                         guiCallbackFunction = self.guiChangedLFOFrequency),
+                             GUICallback(self.ui.textEditTarget, "ph.lfo[" + str(self.index) + "].tg", dataIsCommandString = True),
+                             GUICallback(self.ui.checkBoxBipolar, "ph.lfo[" + str(self.index) + "].bp"),
+                             GUICallback(self.ui.checkBoxEnabled, "ph.lfo[" + str(self.index) + "].en"),
+                             GUICallback(self.ui.labelDelayValue, "ph.lfo[" + str(self.index) + "].dl"),
+                             GUICallback(self.ui.labelAmplitudeValue, "ph.lfo[" + str(self.index) + "].amp"),
+                             GUICallback(self.ui.labelFrequencyValue, "ph.lfo[" + str(self.index) + "].fq", dataCallbackFunction = self.dataChangedLFOFrequency),
+                             GUICallback(self.ui.sliderWaveform, "ph.lfo[" + str(self.index) + "].wf", dataCallbackFunction = self.dataChangedWaveformSlider,
+                                         guiCallbackFunction = self.guiChangedWaveformSlider),
+                             GUICallback(None, "ph.lfo[ " + str(self.index) + "].na", self.updateName)]
 
-        self.ui.sliderWaveform.valueChanged.connect(self.waveformSliderChange)
-
+        self.pluginHandler.guiCallbackSystem.addGUICallbacks(self.guiCallbacks)
+        '''
         self.requestData = [CommandID.pluginLFODelay, CommandID.pluginLFOAmpltiude, CommandID.pluginLFOFrequency,
                             CommandID.pluginLFOWaveform, CommandID.pluginLFOTarget]
+        '''
 
-    def waveformSliderChange(self, value):
-        outMsg = self.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginLFOWaveform, [self.index])[0]
-        self.pluginHandler.serialHandler.write(outMsg + ":" + self.wave[value])
+    def dataChangedLFOFrequency(self, command):
+        value = logModuleToGUI(float(command.arguments[0]), 20)
+        self.ui.dialFrequency.setValue(value)
+        self.ui.labelFrequencyValue.setText(command.arguments[0])
 
-    def updateWidget(self, simpleFARHandler):
+    def guiChangedLFOFrequency(self, command):
+        value = expGUIToModule(float(self.ui.dialFrequency.value()), 20)
+        self.pluginHandler.serialHandler.write(command.getFullCommand() + ":" + str(value))
+
+    def dataChangedWaveformSlider(self, command):
+        self.ui.sliderWaveform.setValue(self.wave[command.arguments[0]])
+
+    def guiChangedWaveformSlider(self, command):
+        self.pluginHandler.serialHandler.write(command.getFullCommand() + ":" + self.wave[self.ui.sliderWaveform.value()])
+
+    '''
+    def updateWidget(self):
+        return
+
         self.updatingFromModule = True
+        self.pluginHandler.mainWidget.updatingFromModule = True
 
-        self.updateValueAndLabel(CommandID.pluginLFODelay, self.ui.dialDelay, self.ui.labelDelayValue, True, 65535)
-        self.updateValueAndLabel(CommandID.pluginLFOAmpltiude, self.ui.dialAmplitude, self.ui.labelAmplitudeValue, True, 65535)
-        self.updateValueAndLabel(CommandID.pluginLFOFrequency, self.ui.dialFrequency, self.ui.labelFrequencyValue, True, 20)
-        self.updateValueAndLabel(CommandID.pluginLFOTarget, self.ui.textEditTarget, None)
-        self.updateValueAndLabel(CommandID.pluginLFOEnable, self.ui.checkBoxEnabled, None)
-        self.updateValueAndLabel(CommandID.pluginLFOBipolar, self.ui.checkBoxBipolar, None)
+        #self.updateValueAndLabel(CommandID.pluginLFODelay, self.ui.dialDelay, self.ui.labelDelayValue, True, 65535)
+        #self.updateValueAndLabel(CommandID.pluginLFOAmpltiude, self.ui.dialAmplitude, self.ui.labelAmplitudeValue, True, 65535)
+        #self.updateValueAndLabel(CommandID.pluginLFOFrequency, self.ui.dialFrequency, self.ui.labelFrequencyValue, True, 20)
+        #self.updateValueAndLabel(CommandID.pluginLFOTarget, self.ui.textEditTarget, None)
+        #self.updateValueAndLabel(CommandID.pluginLFOEnable, self.ui.checkBoxEnabled, None)
+        #self.updateValueAndLabel(CommandID.pluginLFOBipolar, self.ui.checkBoxBipolar, None)
 
         a = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginLFOWaveform, self.index)
         if (a is not None): self.ui.sliderWaveform.setValue(self.wave[a])
@@ -346,11 +433,14 @@ class Plugin_LFO(Plugin_Widget):
         if (name is not None): title += " - " + name
         self.ui.mainGroupBox.setTitle(title)
 
+        self.pluginHandler.mainWidget.updatingFromModule = False
         self.updatingFromModule = False
+    '''
 
     def processMessages(self, commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler):
+        return
         if (getCommandIndex(commandItem) != self.index): return
-        id = self.pluginHandler.commandSet.getCommandID(commandItem)
+        id, module = self.pluginHandler.commandSet.getCommandID(commandItem)
         match(id):
             case CommandID.pluginLFOName:
                 if len(commandItem.argument) > 0:
@@ -359,16 +449,34 @@ class Plugin_LFO(Plugin_Widget):
 class Plugin_Multiple(Plugin_Widget):
     def __init__(self, index, pluginHandler = None):
         super().__init__(plugin_mult, index, pluginHandler)
+        self.pluginTitle = "Multiple"
         self.ui.mainGroupBox.setTitle("Multiple input mixer [" + str(index) + "]")
 
-        self.pluginHandler.assignValueChanged(self.ui.textEditTarget, CommandID.pluginMultTarget, [index])
-        self.ui.pushButtonRemoveAdder.pressed.connect(self.removeAdder)
-        self.ui.pushButtonRemoveRatio.pressed.connect(self.removeRatio)
-        self.requestData = [CommandID.pluginMultTarget, CommandID.pluginMultData,
-                            CommandID.pluginMultName]
+        #self.pluginHandler.assignValueChanged(self.ui.textEditTarget, CommandID.pluginMultTarget, [index])
+        #self.pluginHandler.addGUICallback(self.ui.textEditTarget, "ph.mult[" + str(self.index) + "].tg")
+        #self.pluginHandler.addGUICallback(None, "ph.mult[" + str(self.index) + "].da", dataCallbackFunction = self.updateLists)
 
-    def updateWidget(self, simpleFARHandler):
+
+        #self.ui.pushButtonRemoveAdder.pressed.connect(self.removeAdder)
+        #self.ui.pushButtonRemoveRatio.pressed.connect(self.removeRatio)
+
+        self.guiCallbacks = [GUICallback(self.ui.textEditTarget, "ph.mult[" + str(self.index) + "].tg", dataIsCommandString = True),
+                             GUICallback(None, "ph.mult[" + str(self.index) + "].da", dataCallbackFunction = self.updateLists),
+                             GUICallback(self.ui.pushButtonRemoveAdder, None, dataCallbackFunction = self.removeAdder),
+                             GUICallback(self.ui.pushButtonRemoveRatio, None, dataCallbackFunction = self.removeRatio)]
+
+        self.pluginHandler.guiCallbackSystem.addGUICallbacks(self.guiCallbacks)
+
+        #self.requestData = [CommandID.pluginMultTarget, CommandID.pluginMultData,
+        #                    CommandID.pluginMultName]
+
+    '''
+    def updateWidget(self):
+        return
+
         self.updatingFromModule = True
+        self.pluginHandler.mainWidget.updatingFromModule = True
+
         self.updateValueAndLabel(CommandID.pluginMultTarget, self.ui.textEditTarget, None)
 
         name = simpleFARHandler.stringModules[0].getCommandValue(CommandID.pluginMultName, self.index)
@@ -376,7 +484,9 @@ class Plugin_Multiple(Plugin_Widget):
         if (name is not None): title += " - " + name
         self.ui.mainGroupBox.setTitle(title)
 
+        self.pluginHandler.mainWidget.updatingFromModule = False
         self.updatingFromModule = False
+    '''
 
     def removeRatio(self):
         self.removeItem("ratio")
@@ -394,25 +504,27 @@ class Plugin_Multiple(Plugin_Widget):
                 return
         items = qlist.selectedItems()
         if not items: return
-        rmCmd = self.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMultRemove, [self.index])[0]
+        #rmCmd = self.pluginHandler.commandSet.getQualifiedShortCommand(CommandID.pluginMultRemove, [self.index])[0]
         for item in items:
-            self.pluginHandler.serialHandler.write(rmCmd + ":" + type + ":" + item.text())
+            self.pluginHandler.serialHandler.write("rm:" + type + ":" + item.text())
             qlist.takeItem(qlist.row(item))
 
-    def updateLists(self, type, id, value):
-        match(type):
+    def updateLists(self, command): #, type, id, value):
+        match(command.arguments[0]):
             case "adder":
                 qlist = self.ui.listAdders
             case "ratio":
                 qlist = self.ui.listRatios
             case _:
                 return
-        item = qlist.findItems(id, Qt.MatchFlag.MatchExactly)
+        item = qlist.findItems(command.arguments[1], Qt.MatchFlag.MatchExactly)
         if (len(item) == 0): qlist.addItem(id)
 
     def processMessages(self, commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler):
+        return
+
         if (getCommandIndex(commandItem) != self.index): return
-        id = self.pluginHandler.commandSet.getCommandID(commandItem)
+        id, module = self.pluginHandler.commandSet.getCommandID(commandItem)
         match(id):
             case CommandID.pluginMultName:
                 if len(commandItem.argument) > 0:
@@ -425,13 +537,16 @@ class Plugin_Multiple(Plugin_Widget):
                 pass
 
 class PluginHandler():
-    def __init__(self, mainWidget, serialHandler, simpleFARHandler, commandSet = None):
+    def __init__(self, mainWidget, serialHandler, commandSet, guiCallbackSystem ):
         self.mainWidget = mainWidget
         self.commandSet: CommandSets.CommandSetModular = commandSet
-        self.assignValueChanged = self.mainWidget.assignValueChanged
+        #self.assignValueChanged = self.mainWidget.assignValueChanged
+        #self.addGUICallback = self.mainWidget.addGUICallback
         self.serialHandler = serialHandler
-        self.simpleFARHandler = simpleFARHandler
+        #self.simpleFARHandler = simpleFARHandler
         self.plugins = []
+
+        self.guiCallbackSystem:GUICallbackSystem = guiCallbackSystem
 
         mainWidget.ui.pushButtonPluginsAdd.pressed.connect(self.addPlugin)
         mainWidget.ui.pushButtonPluginsRemove.pressed.connect(self.removePlugin)
@@ -439,6 +554,11 @@ class PluginHandler():
 
         mainWidget.ui.scrollPlugins.setWidgetResizable(True)
         mainWidget.ui.scrollAreaContentsPlugins.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+        mainWidget.ui.verticalLayoutPlugins = QVBoxLayout(self.mainWidget.ui.scrollAreaContentsPlugins)
+        mainWidget.ui.verticalLayoutPlugins.setObjectName(u"verticalLayoutPlugins")
+        mainWidget.ui.verticalLayoutPlugins.setContentsMargins(0, 0, 0, 0)
+
         mainWidget.ui.verticalLayoutPlugins.setAlignment(Qt.AlignmentFlag.AlignTop)
         mainWidget.ui.verticalLayoutPlugins.addStretch()
 
@@ -450,6 +570,11 @@ class PluginHandler():
                                    "multiple" : CommandID.pluginMultName, "numbermap" : CommandID.pluginMapName }
 
         self.pluginClasses = { "lfo" : Plugin_LFO, "ahdsr" : Plugin_AHDSR, "multiple" : Plugin_Multiple, "numbermap" : Plugin_NumberMap }
+
+    def addGUICallbacks(self):
+        self.guiCallbacks = [GUICallback(None, "ph.a", dataCallbackFunction = self.dataChangedAddPlugin),
+                             GUICallback(None, "ph.rm", dataCallbackFunction = self.dataChangedRemovePlugin)]
+        self.guiCallbackSystem.addGUICallbacks(self.guiCallbacks)
 
     def addPluginInternal(self, type, index):
         pluginList = self.mainWidget.ui.comboBoxPlugins
@@ -466,6 +591,7 @@ class PluginHandler():
             if (position > 0): position -= 1
             self.mainWidget.ui.verticalLayoutPlugins.insertWidget(position, plugin)
 
+            '''
             for request in plugin.requestData:
                 if (plugin.index != 0):
                     pass
@@ -475,24 +601,25 @@ class PluginHandler():
                 else:
                     pass
                 self.serialHandler.write("rqi:" + rq)
+            '''
+        return plugin
 
     def buildPluginList(self):
         self.clearAllPlugins()
         pluginList = self.mainWidget.ui.comboBoxPlugins
 #        pluginList.clear()
-        ph = self.commandSet.baseModule.getGroups("pluginhandler")[0]
-        for pluginGroup in ph.children:
-            pluginGroup:CommandSets.CommandSetModular.Group = pluginGroup
+        #ph = self.commandSet.baseModule.getGroups("pluginhandler")[0]
+        ph = self.commandSet.baseModule.getModule("pluginhandler")
+        for pluginGroup in ph.groups:
+#            pluginGroup:CommandSets.CommandSetModular.Group = pluginGroup
             pluginList.addItem(pluginGroup.longName + " - Add new")
 
 #        for i in reversed(range(self.mainWidget.ui.scrollAreaContentsPlugins.layout().count())):
 #            self.mainWidget.ui.scrollAreaContentsPlugins.layout().itemAt(i).widget().setParent(None)
 
-        for pluginGroup in ph.children:
-            if (not pluginGroup.isEmpty):
-                for i in range(0, len(pluginGroup.children) + 1):
-                    self.addPluginInternal(pluginGroup.longName, pluginGroup.index)
-                    i += 1
+        for group in ph.groups:
+            for child in group.children:
+                self.addPluginInternal(child.longName, child.getIndex())
         pass
 
     def clearAllPlugins(self):
@@ -504,9 +631,10 @@ class PluginHandler():
         for i in reversed(range(self.mainWidget.ui.verticalLayoutPlugins.count() - 1)):
             self.mainWidget.ui.verticalLayoutPlugins.itemAt(i).widget().setParent(None)
 
-    def updateWidgets(self, simpleFARHandler):
+    def updateWidgets(self):
         for plugin in self.plugins:
-            plugin.updateWidget(simpleFARHandler)
+            plugin.updateWidget() #simpleFARHandler)
+        pass
 
     def processMessages(self, commandItem, commandSets, simpleFARHandler, mainWidget, serialHandler):
         for plugin in self.plugins:
@@ -548,33 +676,47 @@ class PluginHandler():
             if isinstance(plug, self.pluginClasses[type]): count += 1
         return count
 
+    def dataChangedAddPlugin(self, command):
+        if (command.arguments is None) or  (len(command.arguments) == 0): return
+        type = command.arguments[0]
+        index = int(command.arguments[1])
+        #pluginGroup = self.commandSet.baseModule.getGroups("pluginhandler")[0]
+        #pluginGroup.addModule(self.commandSet.CommandItem(type + "[" + str(self.getPluginTypeCount(type)) + "]"))
+        #self.getPluginTypeCount(type)
+        plugin = self.addPluginInternal(type, index)
+        if (plugin is None): return
+        plugin.updateWidget()
+
     def addPlugin(self):
         if (self.isSelectionPluginInstance()): return
         type = self.getPluginType()
-        add = self.commandSet.getQualifiedShortCommand(CommandID.pluginHandlerAdd)[0]
-        self.serialHandler.write(add + ":" + type)
-        pluginGroup = self.commandSet.baseModule.getGroups("pluginhandler")[0]
-        pluginGroup.addModule(self.commandSet.CommandItem(type + "[" + str(self.getPluginTypeCount(type)) + "]"))
-        self.addPluginInternal(type, self.getPluginTypeCount(type))
+        self.serialHandler.write("ph.a:" + type)
+
+    def dataChangedRemovePlugin(self, command):
+        if (command.arguments is None) or (len(command.arguments) < 2): return
+        type, index = self.getPluginTypeAndIndex()
+        #type = command.data[0]
+        #index = command.data[1]
+        #pluginGroup = self.commandSet.baseModule.getGroups("pluginhandler")[0]
+        #if (pluginGroup is None): return
+        #pluginGroup.remove(index)
+        plugin = self.getPlugin(type, index)
+        if (plugin is not None):
+            deleteItemsOfLayout(plugin.layout())
+            plugin.parent().children().remove(plugin)
+            plugin.setParent(None)
+        pluginList = self.mainWidget.ui.comboBoxPlugins
+        pluginList.removeItem(pluginList.currentIndex())
 
     def removePlugin(self):
         if (not self.isSelectionPluginInstance()): return
         type, index = self.getPluginTypeAndIndex()
-        pluginGroup = self.commandSet.baseModule.getGroups("pluginhandler")[0]
-        pluginGroup.remove(index)
-        plugin = self.getPlugin(type, index)
-        deleteItemsOfLayout(plugin.layout())
-        plugin.parent().children().remove(plugin)
-        plugin.setParent(None)
-        pluginList:QComboBox = self.mainWidget.ui.comboBoxPlugins
-        pluginList.removeItem(pluginList.currentIndex())
-        rq = self.commandSet.getQualifiedShortCommand(CommandID.pluginHandlerRemove)[0]
-        self.serialHandler.write(rq + ":" + type + ":" + str(index))
+        self.serialHandler.write("ph.rm:" + type + ":" + str(index))
 
     def renamePlugin(self):
         if (not self.isSelectionPluginInstance()): return
         type, index = self.getPluginTypeAndIndex()
-        command = self.pluginNameCommand[type]
-        rq = self.commandSet.getQualifiedShortCommand(command, [index])[0]
+        #command = self.pluginNameCommand[type]
+        #rq = self.commandSet.getQualifiedShortCommand(command, [index])[0]
         newName = str(inputBox("New name", "New name", self.mainWidget))
-        self.serialHandler.write(rq + ":" + newName)
+        self.serialHandler.write("ph." + type + "[" + str(index) + "].name:" + newName)

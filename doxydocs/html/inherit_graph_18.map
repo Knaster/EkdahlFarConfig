@@ -1,9 +1,15 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,55,64,80"/>
-<area shape="rect" id="Node000001" href="$classfarconfig_1_1commanddefinitions_1_1CommandID.html" title=" " alt="" coords="120,5,223,31"/>
-<area shape="poly" id="edge61_Node000000_Node000001" title=" " alt="" coords="76,50,135,28,136,33,78,55"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1commanddefinitions_1_1CommandType.html" title=" " alt="" coords="112,55,231,80"/>
-<area shape="poly" id="edge62_Node000000_Node000002" title=" " alt="" coords="78,65,112,65,112,70,78,70"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1timedChart_1_1seriesType.html" title=" " alt="" coords="126,104,217,129"/>
-<area shape="poly" id="edge63_Node000000_Node000003" title=" " alt="" coords="78,80,136,101,135,106,76,85"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,129,64,155"/>
+<area shape="rect" id="Node000001" href="$classfarconfig_1_1ModuleSystem_1_1ModuleTypes.html" title=" " alt="" coords="125,5,231,31"/>
+<area shape="poly" id="edge39_Node000000_Node000001" title=" " alt="" coords="47,116,73,77,110,40,131,28,133,33,114,44,77,80,52,119"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1commanddefinitions_1_1CommandID.html" title=" " alt="" coords="127,55,229,80"/>
+<area shape="poly" id="edge40_Node000000_Node000002" title=" " alt="" coords="62,119,111,89,137,78,139,83,113,94,65,124"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1commanddefinitions_1_1CommandType.html" title=" " alt="" coords="119,104,237,129"/>
+<area shape="poly" id="edge41_Node000000_Node000003" title=" " alt="" coords="77,132,118,125,119,130,78,137"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1midieventhandling_1_1e__midiEvents.html" title=" " alt="" coords="123,153,233,179"/>
+<area shape="poly" id="edge42_Node000000_Node000004" title=" " alt="" coords="78,146,123,154,122,159,77,152"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1serialWidget_1_1ReportTypeEnum.html" title=" " alt="" coords="112,203,244,228"/>
+<area shape="poly" id="edge43_Node000000_Node000005" title=" " alt="" coords="67,160,113,188,142,200,139,205,111,192,64,165"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1timedChart_1_1seriesType.html" title=" " alt="" coords="133,252,223,277"/>
+<area shape="poly" id="edge44_Node000000_Node000006" title=" " alt="" coords="52,165,78,202,114,237,136,250,133,254,110,241,74,206,48,168"/>
 </map>

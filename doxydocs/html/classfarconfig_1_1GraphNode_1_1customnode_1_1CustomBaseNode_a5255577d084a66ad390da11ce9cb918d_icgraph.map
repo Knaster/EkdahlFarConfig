@@ -1,0 +1,23 @@
+<map id="input_ports" name="input_ports">
+<area shape="rect" id="Node000001" title=" " alt="" coords="852,119,947,145"/>
+<area shape="poly" id="edge11_Node000001_Node000001" title=" " alt="" coords="935,110,925,101,899,98,878,100,866,105,864,110,870,118,866,121,859,111,863,101,876,95,899,93,928,96,939,106"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#a48828d241bb2ee470a5242d70b373f5b" title=" " alt="" coords="655,94,738,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="838,127,738,114,738,109,839,122"/>
+<area shape="rect" id="Node000009" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#ab2e997e1e65575ea76aff7212e0ebb6d" title=" " alt="" coords="589,143,804,169"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="839,142,804,146,804,141,838,137"/>
+<area shape="poly" id="edge7_Node000002_Node000002" title=" " alt="" coords="733,84,723,76,697,73,675,75,664,79,661,85,668,92,663,96,656,86,660,76,674,70,697,67,725,71,736,80"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1Equation1.html#a00d3b651d8adcbf7f1c4dba9f0708aa0" title=" " alt="" coords="297,29,541,69"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="641,98,516,72,517,67,642,93"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#a18aa02533ff185dfd6642080067bf7da" title=" " alt="" coords="368,94,471,119"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="641,109,471,109,471,104,641,104"/>
+<area shape="rect" id="Node000007" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1TriggerBool.html#a67d72f99718bd119da85a775ebe4706f" title=" " alt="" coords="297,156,541,196"/>
+<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="643,121,590,133,493,159,492,153,589,128,641,116"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="467,18,450,11,419,8,392,10,376,15,370,21,373,28,368,30,365,20,373,10,391,5,419,3,451,5,469,13"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#a520ab529ecb215943696e6dfb294ea9c" title=" " alt="" coords="64,45,191,70"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="354,98,191,71,192,65,355,93"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#aa5c1b437a24117c1a28883f05b45dfaf" title=" " alt="" coords="20,94,235,119"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="354,109,235,109,235,104,354,104"/>
+<area shape="rect" id="Node000008" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1TriggerBool.html#a3ed6c48ad94cd8dc1ef028827ce10997" title=" " alt="" coords="5,168,249,208"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="283,184,250,186,250,180,283,179"/>
+<area shape="poly" id="edge10_Node000008_Node000008" title=" " alt="" coords="177,156,160,149,127,147,99,149,82,154,76,159,79,167,74,169,70,158,79,149,98,143,127,141,161,144,179,151"/>
+</map>

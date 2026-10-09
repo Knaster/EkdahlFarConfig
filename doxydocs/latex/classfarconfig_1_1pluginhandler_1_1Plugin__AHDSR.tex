@@ -23,23 +23,27 @@ Collaboration diagram for Plugin\+\_\+\+AHDSR\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_ab11efc70f694f92b53dd107bc73b0802}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a6784e1c334dfceb8f017667c0b0f6a3e}{index}}, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a3339cc37bb2d95dc5e310829fc12f9a8}{plugin\+Handler}}=None)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_aefea7514d1c315102aeff6ee2cb1b382}{update\+Widget}} (self, simple\+FARHandler)
-\item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a0d0ec623eb8f805412609e9e672a81d0}{process\+Messages}} (self, command\+Item, command\+Sets, simple\+FARHandler, main\+Widget, serial\+Handler)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget}{Plugin\+\_\+\+Widget}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_af43a4554ceac7fa766d24ee251c12395}{update\+Value\+And\+Label}} (self, command\+ID, value\+Widget, label=None, log=False, log\+Max=65535)
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a13483f1ac2150135da2ce6be3d7b6b3c}{update\+Widget}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_acc9978b87168fd840a5f30d27ed2f3eb}{update\+Name}} (self, command)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a992ac7f0a376756e2052397550d7be3f}{request\+Data}}
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a94c02b7c4e7c12b1ce45425e0a9bf511}{plugin\+Title}}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_aff7ce477b70327a8457810407ffae371}{updating\+From\+Module}}
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a0c630ae11898b65bcd9d768c2f156832}{gui\+Callbacks}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a6784e1c334dfceb8f017667c0b0f6a3e}{index}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_aa142258f47966742b3db9747e7853549}{update\+Name}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_aff7ce477b70327a8457810407ffae371}{updating\+From\+Module}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget}{Plugin\+\_\+\+Widget}}}
 \begin{DoxyCompactItemize}
@@ -51,6 +55,12 @@ Collaboration diagram for Plugin\+\_\+\+AHDSR\+:\nopagebreak
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_aff7ce477b70327a8457810407ffae371}{updating\+From\+Module}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a3339cc37bb2d95dc5e310829fc12f9a8}{plugin\+Handler}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a94c02b7c4e7c12b1ce45425e0a9bf511}{plugin\+Title}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a992ac7f0a376756e2052397550d7be3f}{request\+Data}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a0c630ae11898b65bcd9d768c2f156832}{gui\+Callbacks}}
 \end{DoxyCompactItemize}
 
 
@@ -76,7 +86,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=133pt]{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_ab11efc70f694f92b53dd107bc73b0802_icgraph}
+\includegraphics[width=350pt]{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_ab11efc70f694f92b53dd107bc73b0802_icgraph}
 \end{center}
 \end{figure}
 
@@ -92,26 +102,32 @@ Here is the caller graph for this function\+:\nopagebreak
 
 Reimplemented from \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1Plugin__Widget_a0d0ec623eb8f805412609e9e672a81d0}{Plugin\+\_\+\+Widget}}.
 
-\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_aefea7514d1c315102aeff6ee2cb1b382}\label{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_aefea7514d1c315102aeff6ee2cb1b382} 
-\index{Plugin\_AHDSR@{Plugin\_AHDSR}!updateWidget@{updateWidget}}
-\index{updateWidget@{updateWidget}!Plugin\_AHDSR@{Plugin\_AHDSR}}
-\doxysubsubsection{\texorpdfstring{updateWidget()}{updateWidget()}}
-{\footnotesize\ttfamily update\+Widget (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{simple\+FARHandler }\end{DoxyParamCaption})}
-
 
 
 \doxysubsection{Member Data Documentation}
+\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a0c630ae11898b65bcd9d768c2f156832}\label{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a0c630ae11898b65bcd9d768c2f156832} 
+\index{Plugin\_AHDSR@{Plugin\_AHDSR}!guiCallbacks@{guiCallbacks}}
+\index{guiCallbacks@{guiCallbacks}!Plugin\_AHDSR@{Plugin\_AHDSR}}
+\doxysubsubsection{\texorpdfstring{guiCallbacks}{guiCallbacks}}
+{\footnotesize\ttfamily gui\+Callbacks}
+
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a6784e1c334dfceb8f017667c0b0f6a3e}\label{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a6784e1c334dfceb8f017667c0b0f6a3e} 
 \index{Plugin\_AHDSR@{Plugin\_AHDSR}!index@{index}}
 \index{index@{index}!Plugin\_AHDSR@{Plugin\_AHDSR}}
 \doxysubsubsection{\texorpdfstring{index}{index}}
 {\footnotesize\ttfamily index}
 
-\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a992ac7f0a376756e2052397550d7be3f}\label{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a992ac7f0a376756e2052397550d7be3f} 
-\index{Plugin\_AHDSR@{Plugin\_AHDSR}!requestData@{requestData}}
-\index{requestData@{requestData}!Plugin\_AHDSR@{Plugin\_AHDSR}}
-\doxysubsubsection{\texorpdfstring{requestData}{requestData}}
-{\footnotesize\ttfamily request\+Data}
+\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a94c02b7c4e7c12b1ce45425e0a9bf511}\label{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_a94c02b7c4e7c12b1ce45425e0a9bf511} 
+\index{Plugin\_AHDSR@{Plugin\_AHDSR}!pluginTitle@{pluginTitle}}
+\index{pluginTitle@{pluginTitle}!Plugin\_AHDSR@{Plugin\_AHDSR}}
+\doxysubsubsection{\texorpdfstring{pluginTitle}{pluginTitle}}
+{\footnotesize\ttfamily plugin\+Title}
+
+\Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_aa142258f47966742b3db9747e7853549}\label{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_aa142258f47966742b3db9747e7853549} 
+\index{Plugin\_AHDSR@{Plugin\_AHDSR}!updateName@{updateName}}
+\index{updateName@{updateName}!Plugin\_AHDSR@{Plugin\_AHDSR}}
+\doxysubsubsection{\texorpdfstring{updateName}{updateName}}
+{\footnotesize\ttfamily update\+Name}
 
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_aff7ce477b70327a8457810407ffae371}\label{classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR_aff7ce477b70327a8457810407ffae371} 
 \index{Plugin\_AHDSR@{Plugin\_AHDSR}!updatingFromModule@{updatingFromModule}}

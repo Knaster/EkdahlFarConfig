@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
+    <width>692</width>
     <height>568</height>
    </rect>
   </property>
@@ -528,7 +528,7 @@
              <item>
               <widget class="QComboBox" name="comboBoxChartCommand">
                <property name="editable">
-                <bool>true</bool>
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -624,6 +624,9 @@
              </item>
              <item>
               <widget class="QDoubleSpinBox" name="doubleSpinBoxChartRangeMin">
+               <property name="minimum">
+                <double>-32767.000000000000000</double>
+               </property>
                <property name="maximum">
                 <double>65535.000000000000000</double>
                </property>
@@ -679,6 +682,13 @@
             <widget class="QPushButton" name="pushButtonChartSetColor">
              <property name="text">
               <string>Set color</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBoxZeroIsUnavailable">
+             <property name="text">
+              <string>Treat zero as data unavailable</string>
              </property>
             </widget>
            </item>

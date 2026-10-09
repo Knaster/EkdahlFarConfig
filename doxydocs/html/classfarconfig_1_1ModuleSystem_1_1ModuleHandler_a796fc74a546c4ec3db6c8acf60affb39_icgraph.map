@@ -1,0 +1,12 @@
+<map id="getHelpModule" name="getHelpModule">
+<area shape="rect" id="Node000001" title=" " alt="" coords="603,29,724,55"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1ModuleSystem_1_1ModuleHandler.html#ac984a994cc83d2f80c1debf4b46609e7" title=" " alt="" coords="243,5,376,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="589,40,376,25,377,20,589,34"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1ModuleSystem_1_1ModuleHandler.html#a1de4667aee1be7c0534fb79584fc23f0" title=" " alt="" coords="424,55,555,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="590,55,555,61,554,55,589,50"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1ModuleSystem_1_1ModuleHandler.html#a59f2e19890cf54f48bc66b57a242ba55" title=" " alt="" coords="5,5,195,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="229,21,195,21,195,15,229,15"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="428,53,356,33,358,28,430,48"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1ModuleSystem_1_1ModuleHandler.html#aff31494713faeb9b3ebe353d5c14be89" title=" " alt="" coords="262,55,357,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="410,70,357,70,357,65,410,65"/>
+</map>

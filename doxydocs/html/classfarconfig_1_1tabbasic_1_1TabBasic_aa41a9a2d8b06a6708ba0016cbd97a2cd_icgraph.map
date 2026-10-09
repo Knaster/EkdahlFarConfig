@@ -1,0 +1,11 @@
+<map id="updateScaleData" name="updateScaleData">
+<area shape="rect" id="Node000001" title=" " alt="" coords="555,55,688,80"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1tabbasic_1_1TabBasic.html#ab1e365e4ac64a7aad90d3ac9cb41b1f3" title=" " alt="" coords="276,5,507,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="550,54,506,45,453,33,454,28,507,39,551,49"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1tabbasic_1_1TabBasic.html#ac4a253046f52e83613186d1775765c6e" title=" " alt="" coords="304,55,479,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="541,70,479,70,479,65,541,65"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1tabbasic_1_1TabBasic.html#a13483f1ac2150135da2ce6be3d7b6b3c" title=" " alt="" coords="335,104,448,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="549,85,449,107,448,102,548,80"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1tabmidi_1_1TabMIDI.html#a057f64e426637741d6d51970916b59fb" title=" " alt="" coords="5,97,228,137"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="321,119,228,119,228,114,321,114"/>
+</map>

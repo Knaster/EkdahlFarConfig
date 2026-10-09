@@ -14,6 +14,8 @@ from GraphNode.nodetemplates.custom_ports_node import draw_triangle_port
 
 from commanddefinitions import CommandID
 
+from ModuleSystem import ModuleCommand, Module, HelpCommand, HelpModule
+
 colorNodeSelect = QtGui.QColor(180,200,50)
 colorNodeDeselect = QtGui.QColor(255,255,255)
 
@@ -302,6 +304,12 @@ class CustomBaseNode(BaseNode):
         self.command = []
         # Name commands associated with node
         self.nameCommand = None
+        # Name suffix is anything to be added to the end of the node name
+        self.nameSuffix = ""
+        # Module associated with node
+        self.module:Module = None
+#        self.nameCallbackCommand = None
+#        self.connectionCallbacks = []
         # Index of associated module
         self.moduleIndex = 0
         self.widgetStyle = "color: #000000; background-color: #f0f0f0; width:250px; max-width:400px;"
@@ -331,6 +339,20 @@ class CustomBaseNode(BaseNode):
         self.implicit = False
         self.allImplicitChildren = False
         self.source = False
+
+    def updateName(self):
+        self._view.name = self.NODE_NAME_SHORT
+
+    def nameCallback(self, moduleCommand:ModuleCommand = None, data = None):
+        self.NODE_NAME = self.module.longName + "[" + str(self.module.getIndex()) + "]"
+        self.NODE_NAME_SHORT = self.module.shortName + "[" + str(self.module.getIndex()) + "]"
+        if (self.nameCommand is not None) and (self.nameCommand.arguments is not None) and (len(self.nameCommand.arguments) > 0):
+             self.NODE_NAME += " - " + moduleCommand.arguments[0]
+             self.NODE_NAME_SHORT += " - " + moduleCommand.arguments[0]
+        if (self.nameSuffix != ""):
+            self.NODE_NAME += " - " + self.nameSuffix
+            self.NODE_NAME_SHORT += " - " + self.nameSuffix
+        self.updateName()
 
     def hide(self):
         self._view.hide()
@@ -614,6 +636,7 @@ class CustomBaseNode(BaseNode):
         if (plainText is not None):
             plainText.node = self._view
 
+        #port.connectionCallbacks = []
         return port
 
     def add_output(self, name, command=None, valueType="number", variable=None, multi_output=True, display_name=True, color=None, locked=False,
@@ -635,6 +658,7 @@ class CustomBaseNode(BaseNode):
         if (plainText is not None):
             plainText.node = self._view
 
+        #port.connectionCallbacks = []
         return port
 
     def add_text_input(self, name, label='', text='', placeholder_text='',

@@ -192,6 +192,7 @@ class CommandID(Enum):
     pluginLFOResetDelay = auto()
     pluginLFOResetWave = auto()
     pluginLFOBipolar = auto()
+    pluginLFOOutputValue = auto()
 
     pluginAHDSRName = auto()
     pluginAHDSREnable = auto()
@@ -393,16 +394,12 @@ def parseModuleCommandType(inMCT:int):
     return data, options, access, func
 
 def getModuleCommandTypeDesc(inMCT):
-    try:
-        data, options, access, func = parseModuleCommandType(int(inMCT))
+    data, options, access, func = parseModuleCommandType(int(inMCT))
 
-        out = "Command value type: " + ModuleCommandType_data_desc[data] + "\n\nArgument style: " + \
-              ModuleCommandType_dataOptions_desc[options] + "\n\nAccess type: " + \
-              ModuleCommandType_access_desc[access] + "\n\nCommand function style: " + \
-              ModuleCommandType_function_desc[func]
-    except:
-        out = ""
-        pass
+    out = "Command value type: " + ModuleCommandType_data_desc[data] + "\n\nArgument style: " + \
+          ModuleCommandType_dataOptions_desc[options] + "\n\nAccess type: " + \
+          ModuleCommandType_access_desc[access] + "\n\nCommand function style: " + \
+          ModuleCommandType_function_desc[func]
     return out
 
 '''

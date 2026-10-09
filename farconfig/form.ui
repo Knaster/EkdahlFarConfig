@@ -996,7 +996,7 @@ QDial {
         <enum>QTabWidget::Rounded</enum>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <property name="iconSize">
         <size>
@@ -1275,9 +1275,9 @@ QSlider::handle:horizontal {
                <widget class="QComboBox" name="comboBoxFundamentalFrequency">
                 <property name="geometry">
                  <rect>
-                  <x>230</x>
+                  <x>279</x>
                   <y>50</y>
-                  <width>121</width>
+                  <width>111</width>
                   <height>20</height>
                  </rect>
                 </property>
@@ -1293,14 +1293,27 @@ QSlider::handle:horizontal {
                <widget class="QPushButton" name="pushButtonDetectFundamental">
                 <property name="geometry">
                  <rect>
-                  <x>370</x>
+                  <x>410</x>
                   <y>50</y>
-                  <width>91</width>
+                  <width>90</width>
                   <height>21</height>
                  </rect>
                 </property>
                 <property name="text">
                  <string>Detect</string>
+                </property>
+               </widget>
+               <widget class="QLabel" name="label_68">
+                <property name="geometry">
+                 <rect>
+                  <x>230</x>
+                  <y>50</y>
+                  <width>45</width>
+                  <height>17</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Set to</string>
                 </property>
                </widget>
               </widget>
@@ -4357,7 +4370,7 @@ QSlider::handle:horizontal {
                      <double>10.000000000000000</double>
                     </property>
                     <property name="maximum">
-                     <double>5000.000000000000000</double>
+                     <double>65535.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>100.000000000000000</double>

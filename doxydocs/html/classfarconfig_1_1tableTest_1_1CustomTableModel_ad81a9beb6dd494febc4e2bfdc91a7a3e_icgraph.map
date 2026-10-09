@@ -1,5 +1,7 @@
 <map id="load_data" name="load_data">
-<area shape="rect" id="Node000001" title=" " alt="" coords="124,5,211,31"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1tableTest_1_1CustomTableModel.html#a718c525be61787b84574c67e1a5063ca" title=" " alt="" coords="5,5,76,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,21,76,21,76,15,110,15"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="421,13,508,38"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1tableTest_1_1CustomTableModel.html#a718c525be61787b84574c67e1a5063ca" title=" " alt="" coords="303,13,373,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="408,28,374,28,374,23,408,23"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a39a68343d80ee0e614c0ff533843b523" title="self.hasHierarchy = False self.hasHelp = False self.hasNodes = False self.hasCommandList = False self..." alt="" coords="5,5,255,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="289,28,255,28,255,23,289,23"/>
 </map>

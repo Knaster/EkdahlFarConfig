@@ -76,7 +76,8 @@ def isVariableInEquation(equation_str, variable_str):
         return False
 
 def removeFunction(equation_str, function_str):
-    return re.sub(r"^" + function_str + "\((.+?), \d+\)", r"(\1)", equation_str)
+    #return re.sub(r"^" + function_str + "\((.+?), \d+\)", r"(\1)", equation_str)
+    return re.sub(r"^" + function_str + "((.+?), d+)", r"(\1)", equation_str)
 
 def extractValueOffsetAndDivisor(equation_str):
     pattern = r"\(value-(\d+\.?\d*)\)/(\d+\.?\d*)"

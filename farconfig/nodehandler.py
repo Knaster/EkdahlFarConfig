@@ -3,13 +3,14 @@ import sys
 import NodeGraphQt
 from sympy.physics.quantum.qasm import stripquotes
 
+from CommandSet import CommandSet
 from GraphNode.customnode import CustomBaseNode
 import GraphNode.graphassemblies as graphassemblies
 from NodeGraphQt.base import port
 import sympy as sp
 import dynamicnodes
 from commanddefinitions import CommandID
-from commandparser import derivedCommandItem
+from commandparser import Derivedcommanditem
 from general_helpers import stripLeadingQuotes
 
 ## The NodeHandler class creates a \a node diagram of the current set of \a modules by using the
@@ -59,7 +60,7 @@ class NodeHandler:
         self.dynamicNodeSet.buildNodesFromModules(inModule)
 
     ## Adds text from a 'name' command to the nodes label
-    def appendNameToNode(self, node : CustomBaseNode, command : derivedCommandItem):
+    def appendNameToNode(self, node : CustomBaseNode, command : Derivedcommanditem):
         bracketIndex = node.NODE_NAME.find("]")
         name = node.NODE_NAME[:bracketIndex + 1]
         if (len(command.argument) == 0):
@@ -71,65 +72,74 @@ class NodeHandler:
         node._view.name = name
         node.updateNames()
 
-    def findCommandMatchAndProcess(self, command):
+    def findCommandMatchAndProcess(self, command:Derivedcommanditem):
         if (self.commandSet is None):
             return False
-        #try:
-        commandID = self.commandSet.getCommandID(command)
-        #print("command id: " + str(commandID))
-        #if (commandID == commandID.pluginAHDSRName):
-        #    pass
-        #moduleIndex = self.commandSet.get
-        if commandID == None:
+        #commandID, module = self.commandSet.getCommandID(command)
+        moduleCommand, module = self.commandSet.getCommandAndModule(command)
+        #if commandID == None:
+        #    return False
+        if (moduleCommand is None):
             return False
+
         result = False
-        for assembly in self.ga.assemblies:
-            for node in assembly.nodes:
-                node:CustomBaseNode = node
-                if (commandID in node.command):
-                    allFound = True
+#        for assembly in self.ga.assemblies:
+#            for node in assembly.nodes:
+#                node:CustomBaseNode = node
+#                #if (commandID in node.command):
+#                if (moduleCommand in node.command):
+        for node in moduleCommand.parent.nodes:
+            allFound = True
 
-                    if (len(command.hierarchy) > 2):
-                        commandParentIndex = command.hierarchy[len(command.hierarchy) - 2].selection[0]
-                        if (commandParentIndex != node.moduleIndex):
-                            allFound = False
+            if (len(command.hierarchy) > 2):
+                commandParentIndex = command.hierarchy[len(command.hierarchy) - 2].selection[0]
+                if (commandParentIndex != node.moduleIndex):
+                    allFound = False
 
-                    if (allFound):
-                        if (node.argumentMatch is not None):
-                            for i in range(0, len(node.argumentMatch)):
-                                if command.argument[i] != node.argumentMatch[i]: allFound = False
-                        else:
-                            pass
-
-                    if (allFound):
-#                       cl = self.commandSet.CommandList(stripLeadingQuotes(command.argument[len(node.argumentMatch) - 2:][0]))
-                        if (node.argumentMatch is not None):
-                            cl = self.commandSet.CommandList(stripLeadingQuotes(command.argument[len(node.argumentMatch):][0]))
-                        else:
-                            if (len(command.argument) > 0):
-                                cl = self.commandSet.CommandList(stripLeadingQuotes(command.argument[0]))
-                            else:
-                                cl = self.commandSet.CommandList()
-                                pass
-                        if commandID == CommandID.midiConfigurationData:
-                            pass
-                        for comm in cl.commands:
-                            if (len(comm.argument) == 0):
-                                pass
-                            connectFrom = None
-                            for port in (node.input_ports() + node.output_ports()):
-                                if (port.command == commandID):
-                                    connectFrom = port
-                                    break
-                            result = True
-                            self.process(node, comm.command, comm.argument, self.processOutput(False, connectFrom))
-                            #return True
-                elif commandID == node.nameCommand:
-                    commandParentIndex = command.hierarchy[len(command.hierarchy) - 2].selection[0]
-                    if (commandParentIndex == node.moduleIndex):
-                        self.appendNameToNode(node, command)
+            if (allFound):
+                if (node.argumentMatch is not None):
+                    for i in range(0, len(node.argumentMatch)):
+                        if command.argument[i] != node.argumentMatch[i]: allFound = False
                 else:
                     pass
+
+            if (allFound):
+                if (node.argumentMatch is not None):
+                    # WHAT IS THIS
+                    cl = self.commandSet.CommandList(stripLeadingQuotes(command.argument[len(node.argumentMatch):][0]))
+                else:
+                    if (len(command.argument) > 0):
+                        cl = self.commandSet.CommandList(stripLeadingQuotes(command.argument[0]))
+                    else:
+                        cl = self.commandSet.CommandList()
+                        pass
+
+                for comm in cl.commands:
+#                    if (len(comm.argument) == 0):
+#                        pass
+                    connectFrom = None
+#                    for port in (node.input_ports() + node.output_ports()):
+#                        #if (port.command == commandID):
+#                        if (port.command == moduleCommand):
+#                            connectFrom = port
+#                            break
+                    if (moduleCommand.nodePort is not None) and (moduleCommand.nodePort.model.type_ == "out"):
+                        connectFrom = moduleCommand.nodePort
+
+                    moduleCommandTo, moduleTo = self.commandSet.getCommandAndModule(comm.command)
+                    if (moduleCommandTo is not None) and (moduleCommandTo.nodePort is not None):
+                        connectTo = moduleCommandTo.nodePort
+                        result = True
+                        #self.process(node, comm.command, comm.argument, self.processOutput(False, connectFrom))
+                        self.process(node, comm.command, comm.argument, self.processOutput(False, connectFrom), inConnectToInput = connectTo)
+                        #return True
+        #elif commandID == node.nameCommand:
+#        elif moduleCommand == node.nameCommand:
+#            commandParentIndex = command.hierarchy[len(command.hierarchy) - 2].selection[0]
+#            if (commandParentIndex == node.moduleIndex):
+#                self.appendNameToNode(node, command)
+#        else:
+#            pass
         return result
 
     def parseCommand(self, command):
@@ -217,6 +227,8 @@ class NodeHandler:
     def getPreferredConnection(self, inputs, output):
         # we can do this with a rating system later instead
         for input in inputs:
+            #if isinstance(output.port, list):
+            #    pass
             if (input.port.valueType == output.valueType):
                 return input.port, output
         print("None preferred, passing the first")
@@ -265,8 +277,8 @@ class NodeHandler:
 
     def findInputPortFromCommand(self, inCommand, arguments = None):
         if (arguments is None): arguments = []
-        command, module, index = self.commandSet.getCommandModuleAndCommand(inCommand)
-        command = self.commandSet.getCommandID(command, module)
+        command, module, index = self.commandSet.splitStringIntoModuleCommandIndex(inCommand)
+        command, trash = self.commandSet.getCommandID(command, module)
         module = module + "[" + str(index) + "]"
         for assembly in self.ga.assemblies:
             for node in assembly.nodes:
@@ -395,7 +407,7 @@ class NodeHandler:
                 else:
                     connectToOutput.append(self.processOutput(False, port))
 
-        if ((connectToInput is None) and (not skipInput)):
+        if (connectToInput is None) and (not skipInput):
             return
 
         self.getChildren(sp.sympify(equation), True)
@@ -419,6 +431,8 @@ class NodeHandler:
                     connectToOutput[0].port.connect_to(connectToInput)
         elif (len(self.localNumbers) == 1):
             isBool = False
+            if (connectToInput is None) or isinstance(connectToInput, list):
+                pass
             if ((equation == "1") or (equation == "0") and (connectToInput.valueType == "bool" or connectToInput.valueType == "_trigger")):
                 staticNode = self.ga.addModifierTriggerBool(self.xOffset - self.iterationLevel * self.xSpread, mainNode.y_pos())
                 isBool = True

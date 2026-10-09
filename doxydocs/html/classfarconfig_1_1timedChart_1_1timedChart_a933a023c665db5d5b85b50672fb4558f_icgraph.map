@@ -1,0 +1,9 @@
+<map id="map_range" name="map_range">
+<area shape="rect" id="Node000001" title=" " alt="" coords="345,31,440,56"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a0d8c8bb2158c0bbc96f0b655ceabd51a" title=" " alt="" coords="220,31,297,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="332,46,298,46,298,41,332,41"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a80f456049f598235a1556bbbbb5f1bda" title=" " alt="" coords="5,5,172,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="206,38,172,33,173,28,207,33"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a049413dc8b05aa4bbd4931943f0a0cde" title=" " alt="" coords="19,55,158,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="207,53,158,60,158,55,206,48"/>
+</map>

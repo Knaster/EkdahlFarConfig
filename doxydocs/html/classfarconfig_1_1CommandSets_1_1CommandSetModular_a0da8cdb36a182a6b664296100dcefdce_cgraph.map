@@ -1,0 +1,8 @@
+<map id="commandHasStorableDataCI" name="commandHasStorableDataCI">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,43,216,68"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a83b2d1ce96eea963bc66670763d5d60a" title=" " alt="" coords="264,5,483,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,40,270,30,270,35,201,45"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#af69c10016709ad2e9d8891254531d197" title=" " alt="" coords="303,79,444,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="204,65,289,77,289,82,203,71"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="331,80,322,70,327,60,344,54,373,52,411,56,421,61,425,67,420,70,417,65,409,61,373,57,345,59,330,64,327,70,335,77"/>
+</map>

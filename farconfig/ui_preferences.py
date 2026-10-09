@@ -25,7 +25,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(640, 568)
+        Form.resize(692, 568)
         palette = QPalette()
         brush = QBrush(QColor(0, 0, 0, 255))
         brush.setStyle(Qt.SolidPattern)
@@ -269,7 +269,7 @@ class Ui_Form(object):
 
         self.comboBoxChartCommand = QComboBox(self.tabOscilloscope)
         self.comboBoxChartCommand.setObjectName(u"comboBoxChartCommand")
-        self.comboBoxChartCommand.setEditable(True)
+        self.comboBoxChartCommand.setEditable(False)
 
         self.horizontalLayout_5.addWidget(self.comboBoxChartCommand)
 
@@ -357,6 +357,7 @@ class Ui_Form(object):
 
         self.doubleSpinBoxChartRangeMin = QDoubleSpinBox(self.tabOscilloscope)
         self.doubleSpinBoxChartRangeMin.setObjectName(u"doubleSpinBoxChartRangeMin")
+        self.doubleSpinBoxChartRangeMin.setMinimum(-32767.000000000000000)
         self.doubleSpinBoxChartRangeMin.setMaximum(65535.000000000000000)
 
         self.horizontalLayout_7.addWidget(self.doubleSpinBoxChartRangeMin)
@@ -401,6 +402,11 @@ class Ui_Form(object):
         self.pushButtonChartSetColor.setObjectName(u"pushButtonChartSetColor")
 
         self.verticalLayout_8.addWidget(self.pushButtonChartSetColor)
+
+        self.checkBoxZeroIsUnavailable = QCheckBox(self.tabOscilloscope)
+        self.checkBoxZeroIsUnavailable.setObjectName(u"checkBoxZeroIsUnavailable")
+
+        self.verticalLayout_8.addWidget(self.checkBoxZeroIsUnavailable)
 
         self.checkBoxChartVisible = QCheckBox(self.tabOscilloscope)
         self.checkBoxChartVisible.setObjectName(u"checkBoxChartVisible")
@@ -517,6 +523,7 @@ class Ui_Form(object):
         self.checkBoxChartLogarithmic.setText(QCoreApplication.translate("Form", u"Logarithmic", None))
         self.label_9.setText(QCoreApplication.translate("Form", u"Add suffix", None))
         self.pushButtonChartSetColor.setText(QCoreApplication.translate("Form", u"Set color", None))
+        self.checkBoxZeroIsUnavailable.setText(QCoreApplication.translate("Form", u"Treat zero as data unavailable", None))
         self.checkBoxChartVisible.setText(QCoreApplication.translate("Form", u"Visible", None))
         self.checkBoxChartSuppressFromSerial.setText(QCoreApplication.translate("Form", u"Suppress from serial monitor", None))
         self.pushButtonHideAll.setText(QCoreApplication.translate("Form", u"Hide all", None))

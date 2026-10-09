@@ -15,6 +15,8 @@ from Custom_Widgets import QCustomCheckBox
 from NodeGraphQt import NodeGraph, NodesPaletteWidget, NodesTreeWidget, PropertiesBinWidget, BaseNode, BackdropNode, constants
 from commanddefinitions import CommandID
 
+from ModuleSystem import Module, ModuleHandler
+
 #ass_node_color = "#000000"
 #ass_node_background = (210,210,210)
 #wrap_background = (30,30,30)
@@ -37,6 +39,7 @@ class graphAssembly():
         self.name = name
         self.index = index
         self.hierarchy = hierarchy
+        self.module:(Module | ModuleHandler) = None
 
     def insertNode(self, inNode, pos):
         self.graph.add_node(inNode, pos)

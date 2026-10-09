@@ -1,12 +1,42 @@
+import dataclasses
+
 from PySide6.QtWidgets import QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit, QComboBox, QSlider, QCheckBox
 from PySide6.QtCore import QThread, Signal, QTimer, QModelIndex, Qt, QObject, QDir, Slot
 from PySide6.QtGui import QTextBlock, QTextCursor, QTextBlockFormat, QColor, QKeyEvent, QTextCharFormat
 
 from ui_prompt import Ui_Form
+from enum import Enum, auto, IntEnum
+
+from preferences import SettingsClass
 
 import re
 
+class ReportTypeEnum(Enum):
+    command = auto()
+    debug = auto()
+    error = auto()
+    expressionParser = auto()
+    hardware = auto()
+    infoRequest = auto()
+    priority = auto()
+    usb = auto()
+    undefined = auto()
+    output = auto()
+    internal = auto()
+
 class SerialWidget(QWidget):
+    reportTypeData = { 'command' : SettingsClass(True, 'command'),
+                       'debug' : SettingsClass(True, 'debug'),
+                       'error' : SettingsClass(True, 'error'),
+                       'expressionparser' : SettingsClass(True, 'expressionparser'),
+                       'hardware' : SettingsClass(True, 'hardware'),
+                       'inforequest' : SettingsClass(True, 'inforequest'),
+                       'priority' : SettingsClass(True, 'priority'),
+                       'usb' : SettingsClass(True, 'usb'),
+                       'undefined' : SettingsClass(True, 'undefined'),
+                       'output' : SettingsClass(True, 'output'),
+                       'internal' : SettingsClass(True, 'internal')}
+
     backgroundColor = QColor(63,63,63)
 
     def __init__(self, inSerialHandler, inTimeStamper, inLogging, parent=None):
@@ -14,34 +44,16 @@ class SerialWidget(QWidget):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.filterHideOutput = False
+        self.filterHideInfoRequest = False
         self.serialHandler = inSerialHandler
         self.timeStamper = inTimeStamper
-        self.debugCursorFollow = False
+        self.debugCursorFollow = True
         self.logging = inLogging
 
         self.ui.pushButtonSend.pressed.connect(self.lineEditSend)
-        #self.ui.xlineEditSend.setVisible(False)
-        #self.ui.lineEditSend.returnPressed.connect(self.lineEditSend)
         self.originalLineEditKeyPressEvent = self.ui.lineEditSend.keyPressEvent
         self.ui.lineEditSend.keyPressEvent = self.lineEditKeypressEvent
 
-        '''
-        self.assignFeedbackReportItem(self.ui.checkBoxFilterCommAck, "command")
-        self.assignFeedbackReportItem(self.ui.checkBoxFilterDebug, "debug")
-        self.assignFeedbackReportItem(self.ui.checkBoxFilterError, "error")
-        self.assignFeedbackReportItem(self.ui.checkBoxFilterExpressionParser, "expressionparser")
-        self.assignFeedbackReportItem(self.ui.checkBoxFilterHardware, "hardware")
-        self.assignFeedbackReportItem(self.ui.checkBoxFilterInfoRequest, "inforequest")
-        self.assignFeedbackReportItem(self.ui.checkBoxFilterPriority, "priority")
-        self.assignFeedbackReportItem(self.ui.checkBoxFilterUSB, "usb")
-        self.assignFeedbackReportItem(self.ui.checkBoxFilterUndefined, "undefined")
-        self.assignFeedbackReportItem(self.ui.checkBoxFilterOutput, "output")
-        self.assignFeedbackReportItem(self.ui.checkBoxFilterInternal, "internal")
-
-        self.ui.checkBoxDebugCursorFollow.toggled.connect(self.checkBoxDebugCursorFollowToggled)
-        self.ui.checkBoxLimitLines.stateChanged.connect(self.checkBoxLimitLinesStateChanged)
-        self.ui.spinBoxLimitLines.valueChanged.connect(self.spinBoxLimitLinesValueChanged)
-        '''
         self.ui.pushButtonClear.pressed.connect(self.debugClear)
 
         self.ui.plainTextEditSerialOutput.setStyleSheet("QPlainTextEdit { background-color: " + self.backgroundColor.name() + "; }")
@@ -146,76 +158,16 @@ class SerialWidget(QWidget):
     def debugClear(self):
         self.ui.plainTextEditSerialOutput.clear()
 
-    def assignFeedbackReportItem(self, qtObject, reportType):
-        qtObject.reportType = reportType
-        qtObject.toggled.connect(self.feedbackReportToggled)
-        #qtObject = QCheckBox()
-        #qtObject.checkStateChanged.connect(self.feedbackReportToggled)
-
-    def feedbackReportToggled(self):
-        sender = self.sender()
-        self.outputDebugSetting(sender)
-
-    def outputDebugSetting(self, sender):
-        if (sender.reportType == "inforequest"):
-            if (sender.isChecked()):
-                self.filterHideInfoRequest = False
-            else:
-                self.filterHideInfoRequest = True
-        elif (sender.reportType == "output"):
-            if (sender.isChecked()):
-                self.filterHideOutput = False
-            else:
-                self.filterHideOutput = True
-        else:
-            if (sender.isChecked()):
-                out = "1"
-            else:
-                out = "0"
-            self.serialHandler.write("debugprint:" + sender.reportType + ":" + out)
-
-    def setReportFeedback(self, reportType, state):
-        if (state):
-            out = "1"
-        else:
-            out = "0"
-        #self.serialHandler.write("debugprint:" + reportType + ":" + out)
-
-    def checkBoxFilterCommAckToggled(self):
-        self.setReportFeedback("command", self.ui.checkBoxFilterCommAck.isChecked())
-
-    def checkBoxFilterDebugToggled(self):
-        self.setReportFeedback("debug", self.ui.checkBoxFilterDebug.isChecked())
-
-    def checkBoxFilterErrorToggled(self):
-        self.setReportFeedback("error", self.ui.checkBoxFilterError.isChecked())
-
-    def checkBoxFilterExpressionParserToggled(self):
-        self.setReportFeedback("expressionparser", self.ui.checkBoxFilterExpressionParser.isChecked())
-
-    def checkBoxFilterHardwareToggled(self):
-        self.setReportFeedback("hardware", self.ui.checkBoxFilterHardware.isChecked())
-
-    def checkBoxFilterInfoRequestToggled(self):
-        if (self.ui.checkBoxFilterInfoRequest.isChecked()):
-            self.filterHideInfoRequest = False
-        else:
-            self.filterHideInfoRequest = True
-
-    def checkBoxFilterPriorityToggled(self):
-        self.setReportFeedback("priority", self.ui.checkBoxFilterPriority.isChecked())
-
-    def checkBoxFilterUSBToggled(self):
-        self.setReportFeedback("usb", self.ui.checkBoxFilterUSB.isChecked())
-
-    def checkBoxFilterUndefinedToggled(self):
-        self.setReportFeedback("undefined", self.ui.checkBoxFilterUndefined.isChecked())
-
-    def checkBoxFilterOutputToggled(self):
-        if (self.ui.checkBoxFilterOutput.isChecked()):
-            self.filterHideOutput = False
-        else:
-            self.filterHideOutput = True
+    def setSerialVisibility(self, data):
+        match(data.identifier):
+            case "inforequest":
+                self.filterHideInfoRequest = not data.value
+            case "output":
+                self.filterHideOutput = not data.value
+            case _:
+                out = str(int(data.value))
+                self.serialHandler.write("debugprint:" + data.identifier + ":" + out)
+        pass
 
     def checkBoxDebugCursorFollowToggled(self):
         value = self.sender().checkState()
@@ -223,13 +175,6 @@ class SerialWidget(QWidget):
             self.debugCursorFollow = True
         else:
             self.debugCursorFollow = False
-
-    def setReportFeedback(self, reportType, state):
-        if (state):
-            out = "1"
-        else:
-            out = "0"
-        #self.serialHandler.write("debugprint:" + reportType + ":" + out)
 
     def updateLineLimit(self):
         if (self.lineLimitOn):
@@ -245,18 +190,13 @@ class SerialWidget(QWidget):
             self.lineLimitOn = False
         self.updateLineLimit()
 
-    def spinBoxLimitLinesValueChanged(self, value):
+    def spinBoxLimitLinesValueChanged(self):
+        value = self.sender().value()
         self.lineLimit = value
         self.updateLineLimit()
 
     def lineEditSend(self):
-#        if self.serialStream is not None:
-        try:
-            #tempText = self.ui.lineEditSend.text()
-            tempText = self.ui.lineEditSend.currentText()
-            self.serialHandler.write(tempText)
-            print("sending " + str(tempText.encode()))
-            self.ui.lineEditSend.setCurrentText("")
-            #self.ui.lineEditSend.clear()
-        except:
-            print("ERROR SENDING DATA!")
+        tempText = self.ui.lineEditSend.currentText()
+        self.serialHandler.write(tempText)
+        print("sending " + str(tempText.encode()))
+        self.ui.lineEditSend.setCurrentText("")

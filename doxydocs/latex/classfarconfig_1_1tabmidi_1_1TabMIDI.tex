@@ -1,0 +1,602 @@
+\doxysection{Tab\+MIDI Class Reference}
+\hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI}{}\label{classfarconfig_1_1tabmidi_1_1TabMIDI}\index{TabMIDI@{TabMIDI}}
+
+
+Inheritance diagram for Tab\+MIDI\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=136pt]{classfarconfig_1_1tabmidi_1_1TabMIDI__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Tab\+MIDI\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=136pt]{classfarconfig_1_1tabmidi_1_1TabMIDI__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a15171eb67e6980365f25e8e4c64195d6}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_af63dbeef4213f59e69cb824f5c640afe}{main\+Widget}}, \mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a46f0d600ea5891b488f0ba840873e687}{serial\+Handler}}, \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular}{Command\+Set\+Modular}} command\+Set, \mbox{\hyperlink{classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem}{GUICallback\+System}} \mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a7c089c45d957b5874d3ff7aedee0cd55}{gui\+Callback\+System}})
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a9123a061a48d11a7eba70116a0c7b7aa}{add\+GUICallbacks}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a13483f1ac2150135da2ce6be3d7b6b3c}{update\+Widget}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a5cc05139bd20b44e9eb7d11720ce4097}{set\+Event\+Handlers\+To\+Current\+Configuration}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a2b52c71226f786888b53f1bf17c936ee}{data\+Changed\+MIDIConfiguration\+Count}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_afe18cd8fb506a4ddc073deb1e68962c5}{data\+Changed\+MIDIConfiguration}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_adf2c4f5922270674bf5844be85f649b6}{gui\+Changed\+MIDIConfiguration}} (self, index)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_ac31bfde8cd373fdfd3db93321bb6c10b}{gui\+Changed\+Add\+Configuration}} (self, data)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_ab17a3be9d0835d78a36c1837a761e365}{data\+Changed\+Add\+Configuration}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_ab2c5ec0fc915674499ab24961fe328e2}{gui\+Changed\+Remove\+Configuration}} (self, data)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a99e0d9eeb0c03ecca55437d245251e57}{data\+Changed\+Remove\+Configuration}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_aa65e67889110cec650567dc008d25628}{data\+Changed\+Configuration\+Name}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a86d370544a7d83da685d7ad856ee80a9}{gui\+Changed\+Configuration\+Name}} (self, anything)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_ab92b2e44b1b83d307b05d1b9afdb2db8}{gui\+Changed\+Midi\+Restore\+Defaults}} (self, anything)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a057f64e426637741d6d51970916b59fb}{data\+Changed\+MIDIRestore\+Defaults}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a61f87180b788a4b756e6481eba7d1ed2}{gui\+Changed\+Midi\+Event\+Command}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_ad4a201702359d69fe28026b300300374}{add\+CCNumber\+Changed\+Callback}} (self, str index)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a2f921a9faaa9d47e8dddf6fd1cc619b9}{remove\+CCNumber\+Changed\+Callback}} (self, str index)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a08318bd5e7b4126061269a40ba7d1c10}{data\+Changed\+CCCommands}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a3c29f3fa9342001a36385ab8d56eaa80}{data\+Changed\+CCNumber}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a1e18881af67ab15f043d6f953900c905}{gui\+Changed\+Add\+CC}} (self, anything)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a1e94de9b95a034cac83a339c9382e335}{data\+Changed\+Add\+CC}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a90e71f33073dca0765b3a081e29462a3}{gui\+Changed\+Remove\+CC}} (self, anything)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a434636c7b873888d983a8447a6d81cd9}{data\+Changed\+Remove\+CC}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_aac0b0090a10782f6a4014476e137705b}{data\+Changed\+MIDIChannel}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_aca50e6e6dfa5d5a3b4dbc6a4bad3774a}{gui\+Changed\+MIDIChannel}} (self, index)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a82a419f2dc030abfbcb00c1ecec61843}{gui\+Changed\+Note\+On}} (self, widget=None)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a45b21008d627aac1e3bb917f61704894}{gui\+Changed\+Note\+Off}} (self, anything)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a0361405b22c6800c489f0abd09c1f520}{data\+Changed\+Note\+On\+Commands}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a6683450b5325aecee4fcf59c34b7207d}{data\+Changed\+Note\+Off\+Commands}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a46fcab1e1c7aaad9c047f0630d4a40a6}{data\+Changed\+PATCommands}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a83e3d79445a2bb8b9d5de78cd15faa27}{data\+Changed\+PBCommands}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a7d75b4eb17d6ae4bd415ec404760f69d}{data\+Changed\+CATCommands}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_aa1ad32a355291ceb9c0b6a93e3398eff}{data\+Changed\+PCCommands}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a1a9eb7b14b1b154faa70f7a98a858a3e}{select\+Send\+Destination\+And\+Ratio}} (self, combo\+Box, command\+List, ratio, variable, in\+Multiplier=1)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_ad840d9b15858e4814c2bf0a4f9e740ea}{gui\+Changed\+Sustain\+Destination}} (self, anything)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a02c22e061527dcd18580cbbd172f6eb9}{data\+Changed\+Sustain\+Destination}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_af63dbeef4213f59e69cb824f5c640afe}{main\+Widget}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a46f0d600ea5891b488f0ba840873e687}{serial\+Handler}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a7c089c45d957b5874d3ff7aedee0cd55}{gui\+Callback\+System}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_ac492f8de2d00b6c4282e766bfadaf2e7}{ui}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a798d50e529ab74b7283b6f58ccf1d467}{midi\+Event\+Handler}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_ab4faf1de7c2565978e86f16d739cb8ff}{gui\+Callbacks\+Config}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a267344e02c7e87267bc5f76261a761c5}{gui\+Callbacks\+Sustain}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_a0c630ae11898b65bcd9d768c2f156832}{gui\+Callbacks}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_ad68dc3de30a7627e7f879c4c9b7d1074}{data\+Changed\+Configuration\+Name}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1tabmidi_1_1TabMIDI_aaf8531c31912edc409de3360ba56a148}{gui\+Callbacks\+Midi\+Configuration\+Names}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a15171eb67e6980365f25e8e4c64195d6}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a15171eb67e6980365f25e8e4c64195d6} 
+\index{TabMIDI@{TabMIDI}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{main\+Widget,  }\item[{}]{serial\+Handler,  }\item[{\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular}{Command\+Set\+Modular}}}]{command\+Set,  }\item[{\mbox{\hyperlink{classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem}{GUICallback\+System}}}]{gui\+Callback\+System }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=133pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a15171eb67e6980365f25e8e4c64195d6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a15171eb67e6980365f25e8e4c64195d6_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_ad4a201702359d69fe28026b300300374}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_ad4a201702359d69fe28026b300300374} 
+\index{TabMIDI@{TabMIDI}!addCCNumberChangedCallback@{addCCNumberChangedCallback}}
+\index{addCCNumberChangedCallback@{addCCNumberChangedCallback}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{addCCNumberChangedCallback()}{addCCNumberChangedCallback()}}
+{\footnotesize\ttfamily add\+CCNumber\+Changed\+Callback (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{index }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_ad4a201702359d69fe28026b300300374_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_ad4a201702359d69fe28026b300300374_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a9123a061a48d11a7eba70116a0c7b7aa}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a9123a061a48d11a7eba70116a0c7b7aa} 
+\index{TabMIDI@{TabMIDI}!addGUICallbacks@{addGUICallbacks}}
+\index{addGUICallbacks@{addGUICallbacks}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{addGUICallbacks()}{addGUICallbacks()}}
+{\footnotesize\ttfamily add\+GUICallbacks (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a9123a061a48d11a7eba70116a0c7b7aa_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a1e94de9b95a034cac83a339c9382e335}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a1e94de9b95a034cac83a339c9382e335} 
+\index{TabMIDI@{TabMIDI}!dataChangedAddCC@{dataChangedAddCC}}
+\index{dataChangedAddCC@{dataChangedAddCC}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedAddCC()}{dataChangedAddCC()}}
+{\footnotesize\ttfamily data\+Changed\+Add\+CC (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a1e94de9b95a034cac83a339c9382e335_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_ab17a3be9d0835d78a36c1837a761e365}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_ab17a3be9d0835d78a36c1837a761e365} 
+\index{TabMIDI@{TabMIDI}!dataChangedAddConfiguration@{dataChangedAddConfiguration}}
+\index{dataChangedAddConfiguration@{dataChangedAddConfiguration}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedAddConfiguration()}{dataChangedAddConfiguration()}}
+{\footnotesize\ttfamily data\+Changed\+Add\+Configuration (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_ab17a3be9d0835d78a36c1837a761e365_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a7d75b4eb17d6ae4bd415ec404760f69d}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a7d75b4eb17d6ae4bd415ec404760f69d} 
+\index{TabMIDI@{TabMIDI}!dataChangedCATCommands@{dataChangedCATCommands}}
+\index{dataChangedCATCommands@{dataChangedCATCommands}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedCATCommands()}{dataChangedCATCommands()}}
+{\footnotesize\ttfamily data\+Changed\+CATCommands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a7d75b4eb17d6ae4bd415ec404760f69d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a08318bd5e7b4126061269a40ba7d1c10}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a08318bd5e7b4126061269a40ba7d1c10} 
+\index{TabMIDI@{TabMIDI}!dataChangedCCCommands@{dataChangedCCCommands}}
+\index{dataChangedCCCommands@{dataChangedCCCommands}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedCCCommands()}{dataChangedCCCommands()}}
+{\footnotesize\ttfamily data\+Changed\+CCCommands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a08318bd5e7b4126061269a40ba7d1c10_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a3c29f3fa9342001a36385ab8d56eaa80}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a3c29f3fa9342001a36385ab8d56eaa80} 
+\index{TabMIDI@{TabMIDI}!dataChangedCCNumber@{dataChangedCCNumber}}
+\index{dataChangedCCNumber@{dataChangedCCNumber}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedCCNumber()}{dataChangedCCNumber()}}
+{\footnotesize\ttfamily data\+Changed\+CCNumber (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a3c29f3fa9342001a36385ab8d56eaa80_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_aa65e67889110cec650567dc008d25628}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_aa65e67889110cec650567dc008d25628} 
+\index{TabMIDI@{TabMIDI}!dataChangedConfigurationName@{dataChangedConfigurationName}}
+\index{dataChangedConfigurationName@{dataChangedConfigurationName}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedConfigurationName()}{dataChangedConfigurationName()}}
+{\footnotesize\ttfamily data\+Changed\+Configuration\+Name (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_aa65e67889110cec650567dc008d25628_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_aac0b0090a10782f6a4014476e137705b}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_aac0b0090a10782f6a4014476e137705b} 
+\index{TabMIDI@{TabMIDI}!dataChangedMIDIChannel@{dataChangedMIDIChannel}}
+\index{dataChangedMIDIChannel@{dataChangedMIDIChannel}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedMIDIChannel()}{dataChangedMIDIChannel()}}
+{\footnotesize\ttfamily data\+Changed\+MIDIChannel (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_afe18cd8fb506a4ddc073deb1e68962c5}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_afe18cd8fb506a4ddc073deb1e68962c5} 
+\index{TabMIDI@{TabMIDI}!dataChangedMIDIConfiguration@{dataChangedMIDIConfiguration}}
+\index{dataChangedMIDIConfiguration@{dataChangedMIDIConfiguration}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedMIDIConfiguration()}{dataChangedMIDIConfiguration()}}
+{\footnotesize\ttfamily data\+Changed\+MIDIConfiguration (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_afe18cd8fb506a4ddc073deb1e68962c5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a2b52c71226f786888b53f1bf17c936ee}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a2b52c71226f786888b53f1bf17c936ee} 
+\index{TabMIDI@{TabMIDI}!dataChangedMIDIConfigurationCount@{dataChangedMIDIConfigurationCount}}
+\index{dataChangedMIDIConfigurationCount@{dataChangedMIDIConfigurationCount}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedMIDIConfigurationCount()}{dataChangedMIDIConfigurationCount()}}
+{\footnotesize\ttfamily data\+Changed\+MIDIConfiguration\+Count (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a057f64e426637741d6d51970916b59fb}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a057f64e426637741d6d51970916b59fb} 
+\index{TabMIDI@{TabMIDI}!dataChangedMIDIRestoreDefaults@{dataChangedMIDIRestoreDefaults}}
+\index{dataChangedMIDIRestoreDefaults@{dataChangedMIDIRestoreDefaults}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedMIDIRestoreDefaults()}{dataChangedMIDIRestoreDefaults()}}
+{\footnotesize\ttfamily data\+Changed\+MIDIRestore\+Defaults (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a057f64e426637741d6d51970916b59fb_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a6683450b5325aecee4fcf59c34b7207d}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a6683450b5325aecee4fcf59c34b7207d} 
+\index{TabMIDI@{TabMIDI}!dataChangedNoteOffCommands@{dataChangedNoteOffCommands}}
+\index{dataChangedNoteOffCommands@{dataChangedNoteOffCommands}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedNoteOffCommands()}{dataChangedNoteOffCommands()}}
+{\footnotesize\ttfamily data\+Changed\+Note\+Off\+Commands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a0361405b22c6800c489f0abd09c1f520}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a0361405b22c6800c489f0abd09c1f520} 
+\index{TabMIDI@{TabMIDI}!dataChangedNoteOnCommands@{dataChangedNoteOnCommands}}
+\index{dataChangedNoteOnCommands@{dataChangedNoteOnCommands}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedNoteOnCommands()}{dataChangedNoteOnCommands()}}
+{\footnotesize\ttfamily data\+Changed\+Note\+On\+Commands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a46fcab1e1c7aaad9c047f0630d4a40a6}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a46fcab1e1c7aaad9c047f0630d4a40a6} 
+\index{TabMIDI@{TabMIDI}!dataChangedPATCommands@{dataChangedPATCommands}}
+\index{dataChangedPATCommands@{dataChangedPATCommands}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedPATCommands()}{dataChangedPATCommands()}}
+{\footnotesize\ttfamily data\+Changed\+PATCommands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a46fcab1e1c7aaad9c047f0630d4a40a6_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a83e3d79445a2bb8b9d5de78cd15faa27}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a83e3d79445a2bb8b9d5de78cd15faa27} 
+\index{TabMIDI@{TabMIDI}!dataChangedPBCommands@{dataChangedPBCommands}}
+\index{dataChangedPBCommands@{dataChangedPBCommands}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedPBCommands()}{dataChangedPBCommands()}}
+{\footnotesize\ttfamily data\+Changed\+PBCommands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a83e3d79445a2bb8b9d5de78cd15faa27_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_aa1ad32a355291ceb9c0b6a93e3398eff}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_aa1ad32a355291ceb9c0b6a93e3398eff} 
+\index{TabMIDI@{TabMIDI}!dataChangedPCCommands@{dataChangedPCCommands}}
+\index{dataChangedPCCommands@{dataChangedPCCommands}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedPCCommands()}{dataChangedPCCommands()}}
+{\footnotesize\ttfamily data\+Changed\+PCCommands (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a434636c7b873888d983a8447a6d81cd9}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a434636c7b873888d983a8447a6d81cd9} 
+\index{TabMIDI@{TabMIDI}!dataChangedRemoveCC@{dataChangedRemoveCC}}
+\index{dataChangedRemoveCC@{dataChangedRemoveCC}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedRemoveCC()}{dataChangedRemoveCC()}}
+{\footnotesize\ttfamily data\+Changed\+Remove\+CC (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a434636c7b873888d983a8447a6d81cd9_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a99e0d9eeb0c03ecca55437d245251e57}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a99e0d9eeb0c03ecca55437d245251e57} 
+\index{TabMIDI@{TabMIDI}!dataChangedRemoveConfiguration@{dataChangedRemoveConfiguration}}
+\index{dataChangedRemoveConfiguration@{dataChangedRemoveConfiguration}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedRemoveConfiguration()}{dataChangedRemoveConfiguration()}}
+{\footnotesize\ttfamily data\+Changed\+Remove\+Configuration (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a02c22e061527dcd18580cbbd172f6eb9}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a02c22e061527dcd18580cbbd172f6eb9} 
+\index{TabMIDI@{TabMIDI}!dataChangedSustainDestination@{dataChangedSustainDestination}}
+\index{dataChangedSustainDestination@{dataChangedSustainDestination}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedSustainDestination()}{dataChangedSustainDestination()}}
+{\footnotesize\ttfamily data\+Changed\+Sustain\+Destination (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a02c22e061527dcd18580cbbd172f6eb9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a1e18881af67ab15f043d6f953900c905}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a1e18881af67ab15f043d6f953900c905} 
+\index{TabMIDI@{TabMIDI}!guiChangedAddCC@{guiChangedAddCC}}
+\index{guiChangedAddCC@{guiChangedAddCC}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiChangedAddCC()}{guiChangedAddCC()}}
+{\footnotesize\ttfamily gui\+Changed\+Add\+CC (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{anything }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_ac31bfde8cd373fdfd3db93321bb6c10b}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_ac31bfde8cd373fdfd3db93321bb6c10b} 
+\index{TabMIDI@{TabMIDI}!guiChangedAddConfiguration@{guiChangedAddConfiguration}}
+\index{guiChangedAddConfiguration@{guiChangedAddConfiguration}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiChangedAddConfiguration()}{guiChangedAddConfiguration()}}
+{\footnotesize\ttfamily gui\+Changed\+Add\+Configuration (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{data }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a86d370544a7d83da685d7ad856ee80a9}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a86d370544a7d83da685d7ad856ee80a9} 
+\index{TabMIDI@{TabMIDI}!guiChangedConfigurationName@{guiChangedConfigurationName}}
+\index{guiChangedConfigurationName@{guiChangedConfigurationName}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiChangedConfigurationName()}{guiChangedConfigurationName()}}
+{\footnotesize\ttfamily gui\+Changed\+Configuration\+Name (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{anything }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_aca50e6e6dfa5d5a3b4dbc6a4bad3774a}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_aca50e6e6dfa5d5a3b4dbc6a4bad3774a} 
+\index{TabMIDI@{TabMIDI}!guiChangedMIDIChannel@{guiChangedMIDIChannel}}
+\index{guiChangedMIDIChannel@{guiChangedMIDIChannel}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiChangedMIDIChannel()}{guiChangedMIDIChannel()}}
+{\footnotesize\ttfamily gui\+Changed\+MIDIChannel (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{index }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_adf2c4f5922270674bf5844be85f649b6}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_adf2c4f5922270674bf5844be85f649b6} 
+\index{TabMIDI@{TabMIDI}!guiChangedMIDIConfiguration@{guiChangedMIDIConfiguration}}
+\index{guiChangedMIDIConfiguration@{guiChangedMIDIConfiguration}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiChangedMIDIConfiguration()}{guiChangedMIDIConfiguration()}}
+{\footnotesize\ttfamily gui\+Changed\+MIDIConfiguration (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{index }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a61f87180b788a4b756e6481eba7d1ed2}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a61f87180b788a4b756e6481eba7d1ed2} 
+\index{TabMIDI@{TabMIDI}!guiChangedMidiEventCommand@{guiChangedMidiEventCommand}}
+\index{guiChangedMidiEventCommand@{guiChangedMidiEventCommand}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiChangedMidiEventCommand()}{guiChangedMidiEventCommand()}}
+{\footnotesize\ttfamily gui\+Changed\+Midi\+Event\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_ab92b2e44b1b83d307b05d1b9afdb2db8}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_ab92b2e44b1b83d307b05d1b9afdb2db8} 
+\index{TabMIDI@{TabMIDI}!guiChangedMidiRestoreDefaults@{guiChangedMidiRestoreDefaults}}
+\index{guiChangedMidiRestoreDefaults@{guiChangedMidiRestoreDefaults}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiChangedMidiRestoreDefaults()}{guiChangedMidiRestoreDefaults()}}
+{\footnotesize\ttfamily gui\+Changed\+Midi\+Restore\+Defaults (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{anything }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a45b21008d627aac1e3bb917f61704894}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a45b21008d627aac1e3bb917f61704894} 
+\index{TabMIDI@{TabMIDI}!guiChangedNoteOff@{guiChangedNoteOff}}
+\index{guiChangedNoteOff@{guiChangedNoteOff}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiChangedNoteOff()}{guiChangedNoteOff()}}
+{\footnotesize\ttfamily gui\+Changed\+Note\+Off (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{anything }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a82a419f2dc030abfbcb00c1ecec61843}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a82a419f2dc030abfbcb00c1ecec61843} 
+\index{TabMIDI@{TabMIDI}!guiChangedNoteOn@{guiChangedNoteOn}}
+\index{guiChangedNoteOn@{guiChangedNoteOn}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiChangedNoteOn()}{guiChangedNoteOn()}}
+{\footnotesize\ttfamily gui\+Changed\+Note\+On (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{widget = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a90e71f33073dca0765b3a081e29462a3}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a90e71f33073dca0765b3a081e29462a3} 
+\index{TabMIDI@{TabMIDI}!guiChangedRemoveCC@{guiChangedRemoveCC}}
+\index{guiChangedRemoveCC@{guiChangedRemoveCC}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiChangedRemoveCC()}{guiChangedRemoveCC()}}
+{\footnotesize\ttfamily gui\+Changed\+Remove\+CC (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{anything }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_ab2c5ec0fc915674499ab24961fe328e2}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_ab2c5ec0fc915674499ab24961fe328e2} 
+\index{TabMIDI@{TabMIDI}!guiChangedRemoveConfiguration@{guiChangedRemoveConfiguration}}
+\index{guiChangedRemoveConfiguration@{guiChangedRemoveConfiguration}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiChangedRemoveConfiguration()}{guiChangedRemoveConfiguration()}}
+{\footnotesize\ttfamily gui\+Changed\+Remove\+Configuration (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{data }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_ad840d9b15858e4814c2bf0a4f9e740ea}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_ad840d9b15858e4814c2bf0a4f9e740ea} 
+\index{TabMIDI@{TabMIDI}!guiChangedSustainDestination@{guiChangedSustainDestination}}
+\index{guiChangedSustainDestination@{guiChangedSustainDestination}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiChangedSustainDestination()}{guiChangedSustainDestination()}}
+{\footnotesize\ttfamily gui\+Changed\+Sustain\+Destination (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{anything }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a2f921a9faaa9d47e8dddf6fd1cc619b9}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a2f921a9faaa9d47e8dddf6fd1cc619b9} 
+\index{TabMIDI@{TabMIDI}!removeCCNumberChangedCallback@{removeCCNumberChangedCallback}}
+\index{removeCCNumberChangedCallback@{removeCCNumberChangedCallback}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{removeCCNumberChangedCallback()}{removeCCNumberChangedCallback()}}
+{\footnotesize\ttfamily remove\+CCNumber\+Changed\+Callback (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{index }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a2f921a9faaa9d47e8dddf6fd1cc619b9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a1a9eb7b14b1b154faa70f7a98a858a3e}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a1a9eb7b14b1b154faa70f7a98a858a3e} 
+\index{TabMIDI@{TabMIDI}!selectSendDestinationAndRatio@{selectSendDestinationAndRatio}}
+\index{selectSendDestinationAndRatio@{selectSendDestinationAndRatio}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{selectSendDestinationAndRatio()}{selectSendDestinationAndRatio()}}
+{\footnotesize\ttfamily select\+Send\+Destination\+And\+Ratio (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{combo\+Box,  }\item[{}]{command\+List,  }\item[{}]{ratio,  }\item[{}]{variable,  }\item[{}]{in\+Multiplier = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a1a9eb7b14b1b154faa70f7a98a858a3e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a5cc05139bd20b44e9eb7d11720ce4097}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a5cc05139bd20b44e9eb7d11720ce4097} 
+\index{TabMIDI@{TabMIDI}!setEventHandlersToCurrentConfiguration@{setEventHandlersToCurrentConfiguration}}
+\index{setEventHandlersToCurrentConfiguration@{setEventHandlersToCurrentConfiguration}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{setEventHandlersToCurrentConfiguration()}{setEventHandlersToCurrentConfiguration()}}
+{\footnotesize\ttfamily set\+Event\+Handlers\+To\+Current\+Configuration (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a5cc05139bd20b44e9eb7d11720ce4097_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a5cc05139bd20b44e9eb7d11720ce4097_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a13483f1ac2150135da2ce6be3d7b6b3c}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a13483f1ac2150135da2ce6be3d7b6b3c} 
+\index{TabMIDI@{TabMIDI}!updateWidget@{updateWidget}}
+\index{updateWidget@{updateWidget}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{updateWidget()}{updateWidget()}}
+{\footnotesize\ttfamily update\+Widget (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a13483f1ac2150135da2ce6be3d7b6b3c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1tabmidi_1_1TabMIDI_a13483f1ac2150135da2ce6be3d7b6b3c_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_ad68dc3de30a7627e7f879c4c9b7d1074}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_ad68dc3de30a7627e7f879c4c9b7d1074} 
+\index{TabMIDI@{TabMIDI}!dataChangedConfigurationName@{dataChangedConfigurationName}}
+\index{dataChangedConfigurationName@{dataChangedConfigurationName}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{dataChangedConfigurationName}{dataChangedConfigurationName}}
+{\footnotesize\ttfamily data\+Changed\+Configuration\+Name}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a0c630ae11898b65bcd9d768c2f156832}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a0c630ae11898b65bcd9d768c2f156832} 
+\index{TabMIDI@{TabMIDI}!guiCallbacks@{guiCallbacks}}
+\index{guiCallbacks@{guiCallbacks}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiCallbacks}{guiCallbacks}}
+{\footnotesize\ttfamily gui\+Callbacks}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_ab4faf1de7c2565978e86f16d739cb8ff}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_ab4faf1de7c2565978e86f16d739cb8ff} 
+\index{TabMIDI@{TabMIDI}!guiCallbacksConfig@{guiCallbacksConfig}}
+\index{guiCallbacksConfig@{guiCallbacksConfig}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiCallbacksConfig}{guiCallbacksConfig}}
+{\footnotesize\ttfamily gui\+Callbacks\+Config}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_aaf8531c31912edc409de3360ba56a148}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_aaf8531c31912edc409de3360ba56a148} 
+\index{TabMIDI@{TabMIDI}!guiCallbacksMidiConfigurationNames@{guiCallbacksMidiConfigurationNames}}
+\index{guiCallbacksMidiConfigurationNames@{guiCallbacksMidiConfigurationNames}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiCallbacksMidiConfigurationNames}{guiCallbacksMidiConfigurationNames}}
+{\footnotesize\ttfamily gui\+Callbacks\+Midi\+Configuration\+Names}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a267344e02c7e87267bc5f76261a761c5}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a267344e02c7e87267bc5f76261a761c5} 
+\index{TabMIDI@{TabMIDI}!guiCallbacksSustain@{guiCallbacksSustain}}
+\index{guiCallbacksSustain@{guiCallbacksSustain}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiCallbacksSustain}{guiCallbacksSustain}}
+{\footnotesize\ttfamily gui\+Callbacks\+Sustain}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a7c089c45d957b5874d3ff7aedee0cd55}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a7c089c45d957b5874d3ff7aedee0cd55} 
+\index{TabMIDI@{TabMIDI}!guiCallbackSystem@{guiCallbackSystem}}
+\index{guiCallbackSystem@{guiCallbackSystem}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{guiCallbackSystem}{guiCallbackSystem}}
+{\footnotesize\ttfamily gui\+Callback\+System}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_af63dbeef4213f59e69cb824f5c640afe}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_af63dbeef4213f59e69cb824f5c640afe} 
+\index{TabMIDI@{TabMIDI}!mainWidget@{mainWidget}}
+\index{mainWidget@{mainWidget}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{mainWidget}{mainWidget}}
+{\footnotesize\ttfamily main\+Widget}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a798d50e529ab74b7283b6f58ccf1d467}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a798d50e529ab74b7283b6f58ccf1d467} 
+\index{TabMIDI@{TabMIDI}!midiEventHandler@{midiEventHandler}}
+\index{midiEventHandler@{midiEventHandler}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{midiEventHandler}{midiEventHandler}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classfarconfig_1_1midieventhandling_1_1midiEventHandler}{midi\+Event\+Handler}}}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_a46f0d600ea5891b488f0ba840873e687}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_a46f0d600ea5891b488f0ba840873e687} 
+\index{TabMIDI@{TabMIDI}!serialHandler@{serialHandler}}
+\index{serialHandler@{serialHandler}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{serialHandler}{serialHandler}}
+{\footnotesize\ttfamily serial\+Handler}
+
+\Hypertarget{classfarconfig_1_1tabmidi_1_1TabMIDI_ac492f8de2d00b6c4282e766bfadaf2e7}\label{classfarconfig_1_1tabmidi_1_1TabMIDI_ac492f8de2d00b6c4282e766bfadaf2e7} 
+\index{TabMIDI@{TabMIDI}!ui@{ui}}
+\index{ui@{ui}!TabMIDI@{TabMIDI}}
+\doxysubsubsection{\texorpdfstring{ui}{ui}}
+{\footnotesize\ttfamily ui}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tabmidi_8py}{tabmidi.\+py}}\end{DoxyCompactItemize}

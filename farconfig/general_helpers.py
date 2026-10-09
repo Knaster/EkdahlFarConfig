@@ -1,5 +1,6 @@
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QMessageBox, QInputDialog, QLineEdit, QComboBox, QListWidget
+import math
 
 def stripLeadingQuotes(inp:str):
     if (len(inp) < 2): return inp
@@ -52,7 +53,31 @@ def find_item(widget, item_text):
             return index[0]
     return -1
 
+def find_item_with_data(widget, item_data):
+    if (isinstance(widget, QComboBox)):
+        for index in range(widget.count()):
+            if widget.itemData(index) == item_data:
+                return index
+    elif (isinstance(widget, QListWidget)):
+        for index in range(0, widget.count()):
+            item = widget.item(index)
+            if (item.data(Qt.ItemDataRole.UserRole) == item_data):
+                return index
+    return -1
+
 def remove_item(widget, item_text):
     index = widget.findItems(item_text, Qt.MatchFlag.MatchExactly)
     if (len(index) != 0):
         widget.takeItem(widget.row(index[0]))
+
+def expGUIToModule(value, max):
+    divisor = 65535 / math.log10(max)
+    out = math.pow(10, (value / divisor)) - 0.999
+    return out
+
+def logModuleToGUI(value, max):
+    value = float(value)
+    if (value < 0): return 0
+    divisor = 65535 / math.log10(max)
+    return math.log10(value + 0.999) * divisor
+

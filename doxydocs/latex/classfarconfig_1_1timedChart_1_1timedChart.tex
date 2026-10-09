@@ -2,6 +2,11 @@
 \hypertarget{classfarconfig_1_1timedChart_1_1timedChart}{}\label{classfarconfig_1_1timedChart_1_1timedChart}\index{timedChart@{timedChart}}
 
 
+chart\+Match\+Arr = \mbox{[} chart\+Match\+Data(series\+Type.\+integer, "{}\+Harmonic (\+A0)"{}, 0, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Harmonic shift (\+A1)"{}, 1, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Fine tuning (\+A2)"{}, 2, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Pressure (\+A3)"{}, 3, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Hammer trig (\+A4)"{}, 4, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Gate (\+A5)"{}, 5, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Hammer scale (\+A6)"{}, 6, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Mute (\+A7)"{}, 7, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+frequency, "{}\+Set motor frequency"{}, -\/1, Command\+ID.\+pid\+Target\+Freq), chart\+Match\+Data(series\+Type.\+frequency, "{}\+Read motor frequency"{}, -\/1, Command\+ID.\+motor\+Frequency), chart\+Match\+Data(series\+Type.\+frequency, "{}\+Audio frequency"{}, -\/1, Command\+ID.\+pickup\+String\+Frequency), chart\+Match\+Data(series\+Type.\+integer, "{}\+Audio peak"{}, -\/1, Command\+ID.\+pickup\+Audio\+Peak), chart\+Match\+Data(series\+Type.\+integer, "{}\+Audio RMS"{}, -\/1, Command\+ID.\+pickup\+Audio\+RMS), chart\+Match\+Data(series\+Type.\+frequency, "{}\+PID Error"{}, -\/1, Command\+ID.\+pid\+Peak\+Error), chart\+Match\+Data(series\+Type.\+integer, "{}\+Motor current (x6k)"{}, -\/1, Command\+ID.\+motor\+Current) \mbox{]}  
+
+
+
+
 Inheritance diagram for timed\+Chart\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -18,46 +23,71 @@ Collaboration diagram for timed\+Chart\+:\nopagebreak
 \includegraphics[width=151pt]{classfarconfig_1_1timedChart_1_1timedChart__coll__graph}
 \end{center}
 \end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_1_1ChartYAxis}{Chart\+YAxis}}
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a498e3f512a3d7be27fface7ccd09a235}{get\+Chart}} (self, command\+ID, index)
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a8d50174bae896ad89d5d248f30f07358}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem}{GUICallback\+System}} \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a7c089c45d957b5874d3ff7aedee0cd55}{gui\+Callback\+System}})
 \item 
-\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_abdd362d5f799ad16b5d6700efe590290}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_1_1ChartYAxis}{Chart\+YAxis}} \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_ac26901f0ed5e7f20a7769e667fbcb83b}{add\+YAxis}} (self, range\+Min, range\+Max, logarithmic=False, suffix="{}"{})
 \item 
-\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a4ce84ade79fea183feaa74badf100a0b}{add\+Data}} (self, series\+ID, value, in\+Series\+Type)
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a95fc37c2d7cb149aa166307ee06bc1de}{create\+Default\+Charts}} (self)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_adaf2dc18ee39593679fc11f7a3c3137f}{get\+Series}} (self, series\+ID)
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_ac76561bcf5de6886204b56457e856080}{update\+Chart\+Commands}} (self)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a6e965fd407f13300661d65047e81e765}{add\+Series}} (self, series\+ID, in\+Series\+Type)
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a11a9bc94be92c10a1279429ca2a6ad85}{chart\+Callback}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} command)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a7f96415b4843dbc3c62c8a1e6f9ccb85}{set\+Series\+Visible\+Command}} (self, command, index, visible)
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_ab6b3f75fa444ba31abebc0f1019f10ad}{update\+Command\+Set\+And\+Callbacks}} (self, \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular}{Command\+Set\+Modular}} \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_adfeca4fdcb50a877e5b481c6f4ef44bf}{command\+Set}}, \mbox{\hyperlink{classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem}{GUICallback\+System}} \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a7c089c45d957b5874d3ff7aedee0cd55}{gui\+Callback\+System}})
 \item 
-\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a049413dc8b05aa4bbd4931943f0a0cde}{process\+Command}} (self, command)
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_ab8048064e3291687b77c9ee80773a087}{add\+Data}} (self, command\+Chart, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a83ce349fc4702daf30a57ef3bec10246}{create\+Chart\+ID}} (self, \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a7d6a8315d94c77f3ba1f1a2d8640efdb}{chart}})
+\item 
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1CommandChart}{Command\+Chart}} \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a55ee5dcd0202017de2c25ec23a1f7df1}{get\+Chart\+By\+Command}} (self, command)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a282d8434a771372e520e989f50dd43a5}{get\+Chart\+By\+Name}} (self, name)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1CommandChart}{Command\+Chart}} \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a009ded01131bb35527db64bcb851f204}{get\+Series}} (self, name)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_ab7d3609de6a390f4ee06b3367db67ac9}{set\+Chart\+Zero\+Is\+Unavailable}} (self, chart\+Name, zero\+Avaliable)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_ad3e115813b1a7aa66dc14683c4854e9b}{set\+Chart\+Visible}} (self, chart\+Name, visible)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a509b94878f90901fa1708a31e1b1c2a4}{set\+Chart\+Name}} (self, chart\+Name, new\+Name)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a1e5074f97d6534cab3102dafa30889a0}{set\+Chart\+Command}} (self, chart\+Name, command\+ID)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a2be1f8d7ccd05e3380e23c1d9ac71e45}{set\+Chart\+Request}} (self, chart\+Name, request)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a25605f34853812ca43a8127a0090da64}{series\+Arr}}
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a7c089c45d957b5874d3ff7aedee0cd55}{gui\+Callback\+System}}
 \begin{DoxyCompactList}\small\item\em Array of all the series classes in the chart. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a25605f34853812ca43a8127a0090da64}{series\+Arr}}
+\item 
 \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a7d6a8315d94c77f3ba1f1a2d8640efdb}{chart}}
 \item 
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_ac5fa4cdab45a2a40e1c0fdcd5df3675d}{legend}}
+\item 
 \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a95d47eb6f87aa8192db9a3d74146a18b}{axisX}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_ac9d0070e6caa849f7771dbe7167c2b60}{axis\+YHz}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a2ef40b4f63db0d8338eb8bf70dd0c00b}{axis\+YInt}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a43e838a2794bc7c678b688f649208e7f}{time\+Stamper}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_adfeca4fdcb50a877e5b481c6f4ef44bf}{command\+Set}}
 \item 
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a75a4d055e3285426836da17474341e0a}{chart\+YAxises\+WVisible\+Labels}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a6f06826481c333dd231e682afd540983}{command\+Charts}}
+\item 
 \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a5d7dbf3bf906df14a6d8a7e4d03fa76b}{last\+Clean}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
-\item 
-list \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a722994a6cb3f6ef642e2e02124be7bdb}{chart\+Match\+Arr}}
 \item 
 int \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_aaeb4a05f71e106552930fc7c04a69fc0}{last\+Clean}} = 0
 \end{DoxyCompactItemize}
@@ -65,109 +95,221 @@ int \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_aaeb4a05f71e1065
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_a45febfd5273c9f490a5937af8b1f917f}{\+\_\+chart\+\_\+view}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em self.\+axis\+YHz.\+set\+Title\+Text("{}\+Frequency (\+Hz)"{}) self.\+axis\+YHz.\+set\+Title\+Visible(\+True) self.\+chart.\+add\+Axis(self.\+axis\+YHz, Qt.\+Align\+Right) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+chart\+Match\+Arr = \mbox{[} chart\+Match\+Data(series\+Type.\+integer, "{}\+Harmonic (\+A0)"{}, 0, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Harmonic shift (\+A1)"{}, 1, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Fine tuning (\+A2)"{}, 2, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Pressure (\+A3)"{}, 3, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Hammer trig (\+A4)"{}, 4, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Gate (\+A5)"{}, 5, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Hammer scale (\+A6)"{}, 6, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+integer, "{}\+Mute (\+A7)"{}, 7, Command\+ID.\+control\+Box\+Data\+Return), chart\+Match\+Data(series\+Type.\+frequency, "{}\+Set motor frequency"{}, -\/1, Command\+ID.\+pid\+Target\+Freq), chart\+Match\+Data(series\+Type.\+frequency, "{}\+Read motor frequency"{}, -\/1, Command\+ID.\+motor\+Frequency), chart\+Match\+Data(series\+Type.\+frequency, "{}\+Audio frequency"{}, -\/1, Command\+ID.\+pickup\+String\+Frequency), chart\+Match\+Data(series\+Type.\+integer, "{}\+Audio peak"{}, -\/1, Command\+ID.\+pickup\+Audio\+Peak), chart\+Match\+Data(series\+Type.\+integer, "{}\+Audio RMS"{}, -\/1, Command\+ID.\+pickup\+Audio\+RMS), chart\+Match\+Data(series\+Type.\+frequency, "{}\+PID Error"{}, -\/1, Command\+ID.\+pid\+Peak\+Error), chart\+Match\+Data(series\+Type.\+integer, "{}\+Motor current (x6k)"{}, -\/1, Command\+ID.\+motor\+Current) \mbox{]} 
+
+def get\+Chart(self, command\+ID, index)\+: for chart in self.\+chart\+Match\+Arr\+: if (chart.\+command\+ID == command\+ID) and ((chart.\+index == -\/1) or (chart.\+index == index))\+: return chart return None 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_abdd362d5f799ad16b5d6700efe590290}\label{classfarconfig_1_1timedChart_1_1timedChart_abdd362d5f799ad16b5d6700efe590290} 
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a8d50174bae896ad89d5d248f30f07358}\label{classfarconfig_1_1timedChart_1_1timedChart_a8d50174bae896ad89d5d248f30f07358} 
 \index{timedChart@{timedChart}!\_\_init\_\_@{\_\_init\_\_}}
 \index{\_\_init\_\_@{\_\_init\_\_}!timedChart@{timedChart}}
 \doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem}{GUICallback\+System}}}]{gui\+Callback\+System }\end{DoxyParamCaption})}
 
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1timedChart_1_1timedChart_a8d50174bae896ad89d5d248f30f07358_icgraph}
+\end{center}
+\end{figure}
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a4ce84ade79fea183feaa74badf100a0b}\label{classfarconfig_1_1timedChart_1_1timedChart_a4ce84ade79fea183feaa74badf100a0b} 
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_ab8048064e3291687b77c9ee80773a087}\label{classfarconfig_1_1timedChart_1_1timedChart_ab8048064e3291687b77c9ee80773a087} 
 \index{timedChart@{timedChart}!addData@{addData}}
 \index{addData@{addData}!timedChart@{timedChart}}
 \doxysubsubsection{\texorpdfstring{addData()}{addData()}}
-{\footnotesize\ttfamily add\+Data (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{series\+ID,  }\item[{}]{value,  }\item[{}]{in\+Series\+Type }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily add\+Data (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command\+Chart,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{command }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1timedChart_1_1timedChart_ab8048064e3291687b77c9ee80773a087_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_ac26901f0ed5e7f20a7769e667fbcb83b}\label{classfarconfig_1_1timedChart_1_1timedChart_ac26901f0ed5e7f20a7769e667fbcb83b} 
+\index{timedChart@{timedChart}!addYAxis@{addYAxis}}
+\index{addYAxis@{addYAxis}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{addYAxis()}{addYAxis()}}
+{\footnotesize\ttfamily  \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1timedChart_1_1ChartYAxis}{Chart\+YAxis}} add\+YAxis (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{range\+Min,  }\item[{}]{range\+Max,  }\item[{}]{logarithmic = {\ttfamily False},  }\item[{}]{suffix = {\ttfamily "{}"{}} }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a11a9bc94be92c10a1279429ca2a6ad85}\label{classfarconfig_1_1timedChart_1_1timedChart_a11a9bc94be92c10a1279429ca2a6ad85} 
+\index{timedChart@{timedChart}!chartCallback@{chartCallback}}
+\index{chartCallback@{chartCallback}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{chartCallback()}{chartCallback()}}
+{\footnotesize\ttfamily chart\+Callback (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{command }\end{DoxyParamCaption})}
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=239pt]{classfarconfig_1_1timedChart_1_1timedChart_a4ce84ade79fea183feaa74badf100a0b_cgraph}
+\includegraphics[width=257pt]{classfarconfig_1_1timedChart_1_1timedChart_a11a9bc94be92c10a1279429ca2a6ad85_cgraph}
 \end{center}
 \end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1timedChart_1_1timedChart_a11a9bc94be92c10a1279429ca2a6ad85_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a83ce349fc4702daf30a57ef3bec10246}\label{classfarconfig_1_1timedChart_1_1timedChart_a83ce349fc4702daf30a57ef3bec10246} 
+\index{timedChart@{timedChart}!createChartID@{createChartID}}
+\index{createChartID@{createChartID}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{createChartID()}{createChartID()}}
+{\footnotesize\ttfamily create\+Chart\+ID (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{chart }\end{DoxyParamCaption})}
+
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=278pt]{classfarconfig_1_1timedChart_1_1timedChart_a4ce84ade79fea183feaa74badf100a0b_icgraph}
+\includegraphics[width=322pt]{classfarconfig_1_1timedChart_1_1timedChart_a83ce349fc4702daf30a57ef3bec10246_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a6e965fd407f13300661d65047e81e765}\label{classfarconfig_1_1timedChart_1_1timedChart_a6e965fd407f13300661d65047e81e765} 
-\index{timedChart@{timedChart}!addSeries@{addSeries}}
-\index{addSeries@{addSeries}!timedChart@{timedChart}}
-\doxysubsubsection{\texorpdfstring{addSeries()}{addSeries()}}
-{\footnotesize\ttfamily add\+Series (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{series\+ID,  }\item[{}]{in\+Series\+Type }\end{DoxyParamCaption})}
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a95fc37c2d7cb149aa166307ee06bc1de}\label{classfarconfig_1_1timedChart_1_1timedChart_a95fc37c2d7cb149aa166307ee06bc1de} 
+\index{timedChart@{timedChart}!createDefaultCharts@{createDefaultCharts}}
+\index{createDefaultCharts@{createDefaultCharts}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{createDefaultCharts()}{createDefaultCharts()}}
+{\footnotesize\ttfamily create\+Default\+Charts (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a55ee5dcd0202017de2c25ec23a1f7df1}\label{classfarconfig_1_1timedChart_1_1timedChart_a55ee5dcd0202017de2c25ec23a1f7df1} 
+\index{timedChart@{timedChart}!getChartByCommand@{getChartByCommand}}
+\index{getChartByCommand@{getChartByCommand}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{getChartByCommand()}{getChartByCommand()}}
+{\footnotesize\ttfamily  \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1CommandChart}{Command\+Chart}} get\+Chart\+By\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command }\end{DoxyParamCaption})}
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=145pt]{classfarconfig_1_1timedChart_1_1timedChart_a6e965fd407f13300661d65047e81e765_cgraph}
+\includegraphics[width=322pt]{classfarconfig_1_1timedChart_1_1timedChart_a55ee5dcd0202017de2c25ec23a1f7df1_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1timedChart_1_1timedChart_a6e965fd407f13300661d65047e81e765_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a498e3f512a3d7be27fface7ccd09a235}\label{classfarconfig_1_1timedChart_1_1timedChart_a498e3f512a3d7be27fface7ccd09a235} 
-\index{timedChart@{timedChart}!getChart@{getChart}}
-\index{getChart@{getChart}!timedChart@{timedChart}}
-\doxysubsubsection{\texorpdfstring{getChart()}{getChart()}}
-{\footnotesize\ttfamily get\+Chart (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command\+ID,  }\item[{}]{index }\end{DoxyParamCaption})}
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a282d8434a771372e520e989f50dd43a5}\label{classfarconfig_1_1timedChart_1_1timedChart_a282d8434a771372e520e989f50dd43a5} 
+\index{timedChart@{timedChart}!getChartByName@{getChartByName}}
+\index{getChartByName@{getChartByName}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{getChartByName()}{getChartByName()}}
+{\footnotesize\ttfamily get\+Chart\+By\+Name (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{name }\end{DoxyParamCaption})}
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=320pt]{classfarconfig_1_1timedChart_1_1timedChart_a498e3f512a3d7be27fface7ccd09a235_icgraph}
+\includegraphics[width=350pt]{classfarconfig_1_1timedChart_1_1timedChart_a282d8434a771372e520e989f50dd43a5_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_adaf2dc18ee39593679fc11f7a3c3137f}\label{classfarconfig_1_1timedChart_1_1timedChart_adaf2dc18ee39593679fc11f7a3c3137f} 
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a009ded01131bb35527db64bcb851f204}\label{classfarconfig_1_1timedChart_1_1timedChart_a009ded01131bb35527db64bcb851f204} 
 \index{timedChart@{timedChart}!getSeries@{getSeries}}
 \index{getSeries@{getSeries}!timedChart@{timedChart}}
 \doxysubsubsection{\texorpdfstring{getSeries()}{getSeries()}}
-{\footnotesize\ttfamily get\+Series (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{series\+ID }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily  \mbox{\hyperlink{classfarconfig_1_1timedChart_1_1CommandChart}{Command\+Chart}} get\+Series (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{name }\end{DoxyParamCaption})}
 
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a1e5074f97d6534cab3102dafa30889a0}\label{classfarconfig_1_1timedChart_1_1timedChart_a1e5074f97d6534cab3102dafa30889a0} 
+\index{timedChart@{timedChart}!setChartCommand@{setChartCommand}}
+\index{setChartCommand@{setChartCommand}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{setChartCommand()}{setChartCommand()}}
+{\footnotesize\ttfamily set\+Chart\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{chart\+Name,  }\item[{}]{command\+ID }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{classfarconfig_1_1timedChart_1_1timedChart_a1e5074f97d6534cab3102dafa30889a0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a509b94878f90901fa1708a31e1b1c2a4}\label{classfarconfig_1_1timedChart_1_1timedChart_a509b94878f90901fa1708a31e1b1c2a4} 
+\index{timedChart@{timedChart}!setChartName@{setChartName}}
+\index{setChartName@{setChartName}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{setChartName()}{setChartName()}}
+{\footnotesize\ttfamily set\+Chart\+Name (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{chart\+Name,  }\item[{}]{new\+Name }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{classfarconfig_1_1timedChart_1_1timedChart_a509b94878f90901fa1708a31e1b1c2a4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a2be1f8d7ccd05e3380e23c1d9ac71e45}\label{classfarconfig_1_1timedChart_1_1timedChart_a2be1f8d7ccd05e3380e23c1d9ac71e45} 
+\index{timedChart@{timedChart}!setChartRequest@{setChartRequest}}
+\index{setChartRequest@{setChartRequest}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{setChartRequest()}{setChartRequest()}}
+{\footnotesize\ttfamily set\+Chart\+Request (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{chart\+Name,  }\item[{}]{request }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{classfarconfig_1_1timedChart_1_1timedChart_a2be1f8d7ccd05e3380e23c1d9ac71e45_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_ad3e115813b1a7aa66dc14683c4854e9b}\label{classfarconfig_1_1timedChart_1_1timedChart_ad3e115813b1a7aa66dc14683c4854e9b} 
+\index{timedChart@{timedChart}!setChartVisible@{setChartVisible}}
+\index{setChartVisible@{setChartVisible}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{setChartVisible()}{setChartVisible()}}
+{\footnotesize\ttfamily set\+Chart\+Visible (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{chart\+Name,  }\item[{}]{visible }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{classfarconfig_1_1timedChart_1_1timedChart_ad3e115813b1a7aa66dc14683c4854e9b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_ab7d3609de6a390f4ee06b3367db67ac9}\label{classfarconfig_1_1timedChart_1_1timedChart_ab7d3609de6a390f4ee06b3367db67ac9} 
+\index{timedChart@{timedChart}!setChartZeroIsUnavailable@{setChartZeroIsUnavailable}}
+\index{setChartZeroIsUnavailable@{setChartZeroIsUnavailable}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{setChartZeroIsUnavailable()}{setChartZeroIsUnavailable()}}
+{\footnotesize\ttfamily set\+Chart\+Zero\+Is\+Unavailable (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{chart\+Name,  }\item[{}]{zero\+Avaliable }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1timedChart_1_1timedChart_ab7d3609de6a390f4ee06b3367db67ac9_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_ac76561bcf5de6886204b56457e856080}\label{classfarconfig_1_1timedChart_1_1timedChart_ac76561bcf5de6886204b56457e856080} 
+\index{timedChart@{timedChart}!updateChartCommands@{updateChartCommands}}
+\index{updateChartCommands@{updateChartCommands}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{updateChartCommands()}{updateChartCommands()}}
+{\footnotesize\ttfamily update\+Chart\+Commands (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1timedChart_1_1timedChart_ac76561bcf5de6886204b56457e856080_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1timedChart_1_1timedChart_adaf2dc18ee39593679fc11f7a3c3137f_icgraph}
+\includegraphics[width=350pt]{classfarconfig_1_1timedChart_1_1timedChart_ac76561bcf5de6886204b56457e856080_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a049413dc8b05aa4bbd4931943f0a0cde}\label{classfarconfig_1_1timedChart_1_1timedChart_a049413dc8b05aa4bbd4931943f0a0cde} 
-\index{timedChart@{timedChart}!processCommand@{processCommand}}
-\index{processCommand@{processCommand}!timedChart@{timedChart}}
-\doxysubsubsection{\texorpdfstring{processCommand()}{processCommand()}}
-{\footnotesize\ttfamily process\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command }\end{DoxyParamCaption})}
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_ab6b3f75fa444ba31abebc0f1019f10ad}\label{classfarconfig_1_1timedChart_1_1timedChart_ab6b3f75fa444ba31abebc0f1019f10ad} 
+\index{timedChart@{timedChart}!updateCommandSetAndCallbacks@{updateCommandSetAndCallbacks}}
+\index{updateCommandSetAndCallbacks@{updateCommandSetAndCallbacks}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{updateCommandSetAndCallbacks()}{updateCommandSetAndCallbacks()}}
+{\footnotesize\ttfamily update\+Command\+Set\+And\+Callbacks (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular}{Command\+Set\+Modular}}}]{command\+Set,  }\item[{\mbox{\hyperlink{classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem}{GUICallback\+System}}}]{gui\+Callback\+System }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1timedChart_1_1timedChart_a049413dc8b05aa4bbd4931943f0a0cde_cgraph}
-\end{center}
-\end{figure}
-\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a7f96415b4843dbc3c62c8a1e6f9ccb85}\label{classfarconfig_1_1timedChart_1_1timedChart_a7f96415b4843dbc3c62c8a1e6f9ccb85} 
-\index{timedChart@{timedChart}!setSeriesVisibleCommand@{setSeriesVisibleCommand}}
-\index{setSeriesVisibleCommand@{setSeriesVisibleCommand}!timedChart@{timedChart}}
-\doxysubsubsection{\texorpdfstring{setSeriesVisibleCommand()}{setSeriesVisibleCommand()}}
-{\footnotesize\ttfamily set\+Series\+Visible\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command,  }\item[{}]{index,  }\item[{}]{visible }\end{DoxyParamCaption})}
-
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=326pt]{classfarconfig_1_1timedChart_1_1timedChart_a7f96415b4843dbc3c62c8a1e6f9ccb85_cgraph}
+\includegraphics[width=350pt]{classfarconfig_1_1timedChart_1_1timedChart_ab6b3f75fa444ba31abebc0f1019f10ad_cgraph}
 \end{center}
 \end{figure}
 
@@ -179,23 +321,15 @@ Here is the call graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{\_chart\_view}{\_chart\_view}}
 {\footnotesize\ttfamily \+\_\+chart\+\_\+view\hspace{0.3cm}{\ttfamily [protected]}}
 
-\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a95d47eb6f87aa8192db9a3d74146a18b}\label{classfarconfig_1_1timedChart_1_1timedChart_a95d47eb6f87aa8192db9a3d74146a18b} 
+
+
+self.\+axis\+YHz.\+set\+Title\+Text("{}\+Frequency (\+Hz)"{}) self.\+axis\+YHz.\+set\+Title\+Visible(\+True) self.\+chart.\+add\+Axis(self.\+axis\+YHz, Qt.\+Align\+Right) 
+
+self.\+axis\+YInt.\+set\+Label\+Format("{}\%i"{}) self.\+axis\+YInt.\+set\+Title\+Text("{}uint16"{}) self.\+axis\+YInt.\+set\+Title\+Visible(\+True) self.\+chart.\+add\+Axis(self.\+axis\+YInt, Qt.\+Align\+Left) \Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a95d47eb6f87aa8192db9a3d74146a18b}\label{classfarconfig_1_1timedChart_1_1timedChart_a95d47eb6f87aa8192db9a3d74146a18b} 
 \index{timedChart@{timedChart}!axisX@{axisX}}
 \index{axisX@{axisX}!timedChart@{timedChart}}
 \doxysubsubsection{\texorpdfstring{axisX}{axisX}}
 {\footnotesize\ttfamily axisX}
-
-\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_ac9d0070e6caa849f7771dbe7167c2b60}\label{classfarconfig_1_1timedChart_1_1timedChart_ac9d0070e6caa849f7771dbe7167c2b60} 
-\index{timedChart@{timedChart}!axisYHz@{axisYHz}}
-\index{axisYHz@{axisYHz}!timedChart@{timedChart}}
-\doxysubsubsection{\texorpdfstring{axisYHz}{axisYHz}}
-{\footnotesize\ttfamily axis\+YHz}
-
-\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a2ef40b4f63db0d8338eb8bf70dd0c00b}\label{classfarconfig_1_1timedChart_1_1timedChart_a2ef40b4f63db0d8338eb8bf70dd0c00b} 
-\index{timedChart@{timedChart}!axisYInt@{axisYInt}}
-\index{axisYInt@{axisYInt}!timedChart@{timedChart}}
-\doxysubsubsection{\texorpdfstring{axisYInt}{axisYInt}}
-{\footnotesize\ttfamily axis\+YInt}
 
 \Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a7d6a8315d94c77f3ba1f1a2d8640efdb}\label{classfarconfig_1_1timedChart_1_1timedChart_a7d6a8315d94c77f3ba1f1a2d8640efdb} 
 \index{timedChart@{timedChart}!chart@{chart}}
@@ -203,36 +337,33 @@ Here is the call graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{chart}{chart}}
 {\footnotesize\ttfamily chart}
 
-\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a722994a6cb3f6ef642e2e02124be7bdb}\label{classfarconfig_1_1timedChart_1_1timedChart_a722994a6cb3f6ef642e2e02124be7bdb} 
-\index{timedChart@{timedChart}!chartMatchArr@{chartMatchArr}}
-\index{chartMatchArr@{chartMatchArr}!timedChart@{timedChart}}
-\doxysubsubsection{\texorpdfstring{chartMatchArr}{chartMatchArr}}
-{\footnotesize\ttfamily list chart\+Match\+Arr\hspace{0.3cm}{\ttfamily [static]}}
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a75a4d055e3285426836da17474341e0a}\label{classfarconfig_1_1timedChart_1_1timedChart_a75a4d055e3285426836da17474341e0a} 
+\index{timedChart@{timedChart}!chartYAxisesWVisibleLabels@{chartYAxisesWVisibleLabels}}
+\index{chartYAxisesWVisibleLabels@{chartYAxisesWVisibleLabels}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{chartYAxisesWVisibleLabels}{chartYAxisesWVisibleLabels}}
+{\footnotesize\ttfamily chart\+YAxises\+WVisible\+Labels}
 
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{=\ \ [\ chartMatchData(seriesType.integer,\ \textcolor{stringliteral}{"{}Harmonic\ (A0)"{}},\ 0,\ CommandID.controlBoxDataReturn),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.integer,\ \textcolor{stringliteral}{"{}Harmonic\ shift\ (A1)"{}},\ 1,\ CommandID.controlBoxDataReturn),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.integer,\ \textcolor{stringliteral}{"{}Fine\ tuning\ (A2)"{}},\ 2,\ CommandID.controlBoxDataReturn),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.integer,\ \textcolor{stringliteral}{"{}Pressure\ (A3)"{}},\ 3,\ CommandID.controlBoxDataReturn),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.integer,\ \textcolor{stringliteral}{"{}Hammer\ trig\ (A4)"{}},\ 4,\ CommandID.controlBoxDataReturn),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.integer,\ \textcolor{stringliteral}{"{}Gate\ (A5)"{}},\ 5,\ CommandID.controlBoxDataReturn),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.integer,\ \textcolor{stringliteral}{"{}Hammer\ scale\ (A6)"{}},\ 6,\ CommandID.controlBoxDataReturn),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.integer,\ \textcolor{stringliteral}{"{}Mute\ (A7)"{}},\ 7,\ CommandID.controlBoxDataReturn),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.frequency,\ \textcolor{stringliteral}{"{}Set\ motor\ frequency"{}},\ -\/1,\ CommandID.pidTargetFreq),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.frequency,\ \textcolor{stringliteral}{"{}Read\ motor\ frequency"{}},\ -\/1,\ CommandID.motorFrequency),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.frequency,\ \textcolor{stringliteral}{"{}Audio\ frequency"{}},\ -\/1,\ CommandID.pickupStringFrequency),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.integer,\ \textcolor{stringliteral}{"{}Audio\ peak"{}},\ -\/1,\ CommandID.pickupAudioPeak),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.integer,\ \textcolor{stringliteral}{"{}Audio\ RMS"{}},\ -\/1,\ CommandID.pickupAudioRMS),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.frequency,\ \textcolor{stringliteral}{"{}PID\ Error"{}},\ -\/1,\ CommandID.pidPeakError),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chartMatchData(seriesType.integer,\ \textcolor{stringliteral}{"{}Motor\ current\ (x6k)"{}},\ -\/1,\ CommandID.motorCurrent)\ ]}
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a6f06826481c333dd231e682afd540983}\label{classfarconfig_1_1timedChart_1_1timedChart_a6f06826481c333dd231e682afd540983} 
+\index{timedChart@{timedChart}!commandCharts@{commandCharts}}
+\index{commandCharts@{commandCharts}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{commandCharts}{commandCharts}}
+{\footnotesize\ttfamily command\+Charts}
 
-\end{DoxyCode}
 \Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_adfeca4fdcb50a877e5b481c6f4ef44bf}\label{classfarconfig_1_1timedChart_1_1timedChart_adfeca4fdcb50a877e5b481c6f4ef44bf} 
 \index{timedChart@{timedChart}!commandSet@{commandSet}}
 \index{commandSet@{commandSet}!timedChart@{timedChart}}
 \doxysubsubsection{\texorpdfstring{commandSet}{commandSet}}
 {\footnotesize\ttfamily command\+Set}
+
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a7c089c45d957b5874d3ff7aedee0cd55}\label{classfarconfig_1_1timedChart_1_1timedChart_a7c089c45d957b5874d3ff7aedee0cd55} 
+\index{timedChart@{timedChart}!guiCallbackSystem@{guiCallbackSystem}}
+\index{guiCallbackSystem@{guiCallbackSystem}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{guiCallbackSystem}{guiCallbackSystem}}
+{\footnotesize\ttfamily gui\+Callback\+System}
+
+
+
+Array of all the series classes in the chart. 
 
 \Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_aaeb4a05f71e106552930fc7c04a69fc0}\label{classfarconfig_1_1timedChart_1_1timedChart_aaeb4a05f71e106552930fc7c04a69fc0} 
 \index{timedChart@{timedChart}!lastClean@{lastClean}}
@@ -246,15 +377,17 @@ Here is the call graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{lastClean}{lastClean}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily last\+Clean}
 
+\Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_ac5fa4cdab45a2a40e1c0fdcd5df3675d}\label{classfarconfig_1_1timedChart_1_1timedChart_ac5fa4cdab45a2a40e1c0fdcd5df3675d} 
+\index{timedChart@{timedChart}!legend@{legend}}
+\index{legend@{legend}!timedChart@{timedChart}}
+\doxysubsubsection{\texorpdfstring{legend}{legend}}
+{\footnotesize\ttfamily legend}
+
 \Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a25605f34853812ca43a8127a0090da64}\label{classfarconfig_1_1timedChart_1_1timedChart_a25605f34853812ca43a8127a0090da64} 
 \index{timedChart@{timedChart}!seriesArr@{seriesArr}}
 \index{seriesArr@{seriesArr}!timedChart@{timedChart}}
 \doxysubsubsection{\texorpdfstring{seriesArr}{seriesArr}}
 {\footnotesize\ttfamily series\+Arr}
-
-
-
-Array of all the series classes in the chart. 
 
 \Hypertarget{classfarconfig_1_1timedChart_1_1timedChart_a43e838a2794bc7c678b688f649208e7f}\label{classfarconfig_1_1timedChart_1_1timedChart_a43e838a2794bc7c678b688f649208e7f} 
 \index{timedChart@{timedChart}!timeStamper@{timeStamper}}

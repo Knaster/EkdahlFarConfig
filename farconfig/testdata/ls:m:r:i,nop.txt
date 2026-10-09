@@ -1,0 +1,25 @@
+ls:solenoid[0] : so[0] : 1 : Software
+ls:bowingwheel[0] : bw[0] : 1 : Software
+ls:bowingwheel[0].dcmotor[0] : bw[0].dcm[0] : 1 : Software
+ls:bowingwheel[0].pid[0] : bw[0].pid[0] : 1 : Software
+ls:bowingwheel[0].bowpressure[0] : bw[0].bp[0] : 1 : Software
+ls:bowingwheel[0].bowpressure[0].actuatorhandler[0] : bw[0].bp[0].ah[0] : 1 : Software
+ls:bowingwheel[0].bowpressure[0].actuatorhandler[0].actuator[0] : bw[0].bp[0].ah[0].ac[0] : 1 : Software
+ls:bowingwheel[0].bowpressure[0].actuatorhandler[0].actuator[0][selection] : bw[0].bp[0].ah[0].ac[0][selection]
+ls:bowingwheel[0].harmonicserieshandler[0] : bw[0].hsh[0] : 1 : Software
+ls:bowingwheel[0].harmonicserieshandler[0].harmonicseries[0] : bw[0].hsh[0].hs[0] : 2 : Software
+ls:bowingwheel[0].harmonicserieshandler[0].harmonicseries[0][selection] : bw[0].hsh[0].hs[0][selection]
+ls:bowingwheel[0].harmonicserieshandler[0].harmonicseries[1] : bw[0].hsh[0].hs[1] : 2 : Software
+ls:bowingwheel[0].harmonicserieshandler[0].harmonicseries[1][selection] : bw[0].hsh[0].hs[1][selection]
+ls:midiconfigurationhandler[0] : mcf[0] : 1 : Software
+ls:midiconfigurationhandler[0].midiconfiguration[0] : mcf[0].mc[0] : 1 : Software
+ls:midiconfigurationhandler[0].midiconfiguration[0].continuouscontroller[0] : mcf[0].mc[0].cc[0] : 2 : Software
+ls:midiconfigurationhandler[0].midiconfiguration[0].continuouscontroller[1] : mcf[0].mc[0].cc[1] : 2 : Software
+ls:mute[0] : mu[0] : 1 : Software
+ls:controlbox[0] : cb[0] : 1 : Software
+ls:pluginhandler[0] : ph[0] : 1 : Software
+ls:pluginhandler[0].ahdsr[0] : ph[0].ahdsr[0] : 0 : Software
+ls:pluginhandler[0].lfo[0] : ph[0].lfo[0] : 0 : Software
+ls:pluginhandler[0].numbermap[0] : ph[0].nm[0] : 0 : Software
+ls:pluginhandler[0].multiple[0] : ph[0].mlt[0] : 0 : Software
+nop:

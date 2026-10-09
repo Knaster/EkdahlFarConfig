@@ -1,0 +1,7 @@
+<map id="appendNameToNode" name="appendNameToNode">
+<area shape="rect" id="Node000001" title="Adds text from a &#39;name&#39; command to the nodes label." alt="" coords="455,5,612,31"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a0a50e56c7c79f03e911ec8ded66e245e" title=" " alt="" coords="179,5,407,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="440,21,407,21,407,15,440,15"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#adffa7e44c9f75eaabde4448c4c9adbd0" title=" " alt="" coords="5,5,131,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="165,21,131,21,131,15,165,15"/>
+</map>

@@ -29,16 +29,13 @@ class NodeOrganizer():
         roots = []
         for node in self.graph.all_nodes():
             #("nodes.midi" in node.type_) or ("CB" in node.NODE_NAME) or ("Variables" in node.NODE_NAME)
-            try:
-                if not hasattr(node, 'source'):
-                    node.source = True
-                    node.depthLevel = 0
+            if not hasattr(node, 'source'):
+                node.source = True
+                node.depthLevel = 0
 
-                if (node.source) or (isinstance(node, PortInputNode)) or (isinstance(node, PortOutputNode)):
-                    roots.append(node)
-                else:
-                    pass
-            except Exception as e:
+            if (node.source) or (isinstance(node, PortInputNode)) or (isinstance(node, PortOutputNode)):
+                roots.append(node)
+            else:
                 pass
 
         # Calculate max depth level of each item as well as max child nodes per item and overall max depth level

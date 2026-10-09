@@ -30,20 +30,21 @@ class customTableView(QTableView):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setContextMenuPolicy(Qt.ActionsContextMenu)
+        self.callback = None
 
     def keyPressEvent(self, event: QKeyEvent):
         if event.key() == Qt.Key.Key_Up:
             index = self.selectionModel().currentIndex()
-            self.model().setData(index, float(index.data()) + 0.0001)
+            if index.data() is not None: self.model().setData(index, float(index.data()) + 0.0001)
         elif event.key() == Qt.Key.Key_Down:
             index = self.selectionModel().currentIndex()
-            self.model().setData(index, float(index.data()) - 0.0001)
+            if index.data() is not None:self.model().setData(index, float(index.data()) - 0.0001)
         elif event.key() == Qt.Key.Key_PageUp:
             index = self.selectionModel().currentIndex()
-            self.model().setData(index, float(index.data()) + 0.001)
+            if index.data() is not None:self.model().setData(index, float(index.data()) + 0.001)
         elif event.key() == Qt.Key.Key_PageDown:
             index = self.selectionModel().currentIndex()
-            self.model().setData(index, float(index.data()) - 0.001)
+            if index.data() is not None:self.model().setData(index, float(index.data()) - 0.001)
         elif event.modifiers() in [Qt.ControlModifier, Qt.MetaModifier]:
             if event.key() == Qt.Key.Key_C:
                 self.copy()
@@ -97,6 +98,9 @@ class CustomTableModel(QAbstractTableModel):
 
     def __init__(self, data=None):
         QAbstractTableModel.__init__(self)
+        self.dataset = None
+        self.column_count = 0
+        self.row_count = 0
         if data == None:
             return
         self.load_data(data)
@@ -107,16 +111,10 @@ class CustomTableModel(QAbstractTableModel):
         self.row_count = 1 #len(self.dataset)
 
     def rowCount(self, parent=QModelIndex()):
-        try:
-            return self.row_count
-        except:
-            return 0
+        return self.row_count
 
     def columnCount(self, parent=QModelIndex()):
-        try:
-            return self.column_count
-        except:
-            return 0
+        return self.column_count
 
     def headerData(self, section, orientation, role):
         if role != Qt.DisplayRole:

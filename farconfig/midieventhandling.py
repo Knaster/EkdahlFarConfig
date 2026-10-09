@@ -1,31 +1,53 @@
 from PySide6.QtWidgets import *
-from commanddefinitions import CommandID
-#from farconfig.farconfig import commandSets
-from general_helpers import find_item, remove_item
-import equationParsingHelpers
+
+from GUICallbackSystem import GUICallback, GUICallbackSystem
+from ModuleSystem import ModuleCommand
+
+from enum import Enum, auto
+
+class e_midiEvents(Enum):
+    NoteOn = auto()
+    NoteOff = auto()
+    PolyAT = auto()
+    ChannelAT = auto()
+    PC = auto()
+    CC = auto()
+    PB = auto()
+
+class MIDIEventDeclaration():
+    def __init__(self, name, command):
+        self.name = name
+        self.command = command
+
+MIDIEvents = { e_midiEvents.NoteOn : MIDIEventDeclaration("Note On", "mcf.mc.non"),
+               e_midiEvents.NoteOff : MIDIEventDeclaration("Note Off", "mcf.mc.nof"),
+               e_midiEvents.PB : MIDIEventDeclaration("Pitch bend", "mcf.mc.pb"),
+               e_midiEvents.PC : MIDIEventDeclaration("Program change", "mcf.mc.pc"),
+               e_midiEvents.PolyAT : MIDIEventDeclaration("Poly after touch", "mcf.mc.pat"),
+               e_midiEvents.ChannelAT : MIDIEventDeclaration("Channel after touch", "mcf.mc.cat")}
 
 class midiEventHandler(QWidget):
-    def __init__(self, mainClass, serialHandler, commandSet, simpleFARHandler):
+    def __init__(self, mainWidget, serialHandler, commandSet, guiCallbackSystem:GUICallbackSystem):
         super().__init__()
-        self.mainClass = mainClass
+        self.ui = mainWidget.ui
         self.serialHandler = serialHandler
         self.commandSet = commandSet
-        self.simpleFARHandler = simpleFARHandler
+        self.unknownCCCallbacks:list[GUICallback] = []
+        self.guiCallbackSystem = guiCallbackSystem
 
-    MIDIBinarySenders = [["None", []], ["Bow hold & Mute inhibit", [CommandID.bowPressureHold, CommandID.muteSustain]], ["Bow hold", [CommandID.bowPressureHold]],
-                         ["Mute inhibit", [CommandID.muteSustain]]]
+        self.guiCallbackLineEditMidiEventCommand:GUICallback = None
 
-    def connectWidgetsToBinarySenders(self, midiEvent, widgets):
-        for widget in widgets:
-            widget.midiEvent = midiEvent
-            widget.widgets = widgets
-            if isinstance(widget, QComboBox):
-                widget.currentIndexChanged.connect(self.widgetMIDIBinarySendersCallback)
-            elif isinstance(widget, QSlider):
-                #self.mainClass.assignMouseReleaseEvent(widget, self.widgetMIDIBinarySendersCallback)
-                widget.sliderReleased.connect(self.widgetMIDIBinarySendersCallback)
-            elif isinstance(widget, QCheckBox):
-                widget.stateChanged.connect(self.widgetMIDIBinarySendersCallback)
+        self.midiEventModuleDataPointer = {
+            MIDIEvents[e_midiEvents.NoteOn].name :  ["mcf.mc.non", 0, "", None],
+            MIDIEvents[e_midiEvents.NoteOff].name : ["mcf.mc.nof", 1, "", None],
+            MIDIEvents[e_midiEvents.PolyAT].name: ["mcf.mc.pat", 3, "pressure", self.ui.midiPolyATRatio],
+            MIDIEvents[e_midiEvents.ChannelAT].name: ["mcf.mc.cat", 4, "pressure", self.ui.midiChannelATRatio],
+            MIDIEvents[e_midiEvents.PB].name: ["mcf.mc.pb", 5, "pitch", self.ui.midiPitchbendRatio],
+            MIDIEvents[e_midiEvents.PC].name: ["mcf.mc.pc", 6, "program", None]
+        }
+
+    MIDIBinarySenders = [["None", []], ["Bow hold & Mute inhibit", ["bw.bp.hd", "mu.su"]], ["Bow hold", ["bw.bp.hd"]],
+                         ["Mute inhibit", ["mu.su"]]]
 
     def populateComboBoxSendBinary(self, comboBox):
         comboBox.clear()
@@ -33,324 +55,117 @@ class midiEventHandler(QWidget):
             comboBox.addItem(sendData[0], sendData)
         pass
 
-    def widgetMIDIBinarySendersCallback(self):
-        if (self.mainClass.updatingFromModule): return
-        itemData = self.mainClass.ui.midiSustainSend.itemData(self.mainClass.ui.midiSustainSend.currentIndex())
-        booltype = "bool"
-        if self.mainClass.ui.midiSustainInvert.isChecked():
-            booltype = "ibool"
-        #command = (self.commandSet.getQualifiedShortCommand(CommandID.midiConfigurationData,
-        #                                               [self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)])[0] +
-        #                                                            ":cc:64:")
+    # defined as Text description, command, multiplier
+    # Multiplier is to be used with a slider ranging 0-512 because a standard MIDI value is 0-127 and 128*512 = 65535
+    # For PB this is different since it is 14-bit -8191 - 8191
+    MIDIVariableSenders = [["Nothing", "", 0], # 0, 0
+                           ["Harmonic shift", "bw.hsh.sh", 1], # -32767, 1
+                           ["Harmonic shift 5", "bw.hsh.sh5", 0.2],
+                           ["Pressure (modifier)", "bw.bp.mo", 1], # 0, 1
+                           ["Pressure (baseline)", "bw.bp.ba", 1], # 0, 1
+                           ["Mute position", "mu.sp", 1], # 0, 1
+                           ["Solenoid force multiplier", "so.fm", 1]] # 0, 1
 
-        #command = self.commandSet.getQualifiedShortCommand(CommandID.midiConfiguration)
-        command = self.commandSet.getQualifiedShortCommand(CommandID.midiConfigurationAddCC)[0] + ":64:"
-        if itemData[1] == "":
-            command += "''"
-        else:
-            command += "'"
-            for a in itemData[1]:
-                cmm = self.commandSet.getQualifiedShortCommand(a)
-                if len(cmm) == 0: break
-                if (command[-1] != "'"):
-                    command += ","
-                #command += a + ":" + booltype + "(value)"
-                command += cmm[0] + ":" + booltype + "(value)"
-        command += "'"
-        self.serialHandler.write(command)
-        #self.updateUIData()
+    #    MIDIBinarySenders = [["MIDI & Mute sustain", ""]]
+    def populateComboBoxSendByte(self, comboBox):
+        # Fake updating from module just so that GUI elements don't try and update as we clear and repopulate the list
+        self.guiCallbackSystem.updatingFromModule += 1
+        comboBox.clear()
+        for sendData in self.MIDIVariableSenders:
+            comboBox.addItem(sendData[0], sendData)
+        self.guiCallbackSystem.updatingFromModule -= 1
 
-    def widgetMIDIEventUpdateSignal(self, event):
-        self.widgetMIDIEventUpdate(self.mainClass.sender())
-
-    def widgetMIDIEventUpdate(self):
-        widget = self.sender()
-        if widget is None: return
-        match widget.midiEvent:
+    def guiChangedRatioDestination(self, moduleCommand:ModuleCommand):
+        commandPart = moduleCommand.shortCommand
+        match commandPart:
             case "pb":
-                value = self.mainClass.ui.midiPitchbendRatio.value() / 128
-                itemData = self.mainClass.ui.midiPitchbendSend.itemData(self.mainClass.ui.midiPitchbendSend.currentIndex())
+                value = self.ui.midiPitchbendRatio.value() / 128 # 14-bit number, get it in the CC range
+                itemData = self.ui.midiPitchbendSend.itemData(self.ui.midiPitchbendSend.currentIndex())
                 variableName = "pitch"
-                setFunc = self.commandSet.setMidiConfigurationPitchBendCommands
+                setFunc = "mcf.mc.pb"
                 pass
             case "pat":
-                value = self.mainClass.ui.midiPolyATRatio.value()
-                itemData = self.mainClass.ui.midiPolyATSend.itemData(self.mainClass.ui.midiPolyATSend.currentIndex())
+                value = self.ui.midiPolyATRatio.value()
+                itemData = self.ui.midiPolyATSend.itemData(self.ui.midiPolyATSend.currentIndex())
                 variableName = "pressure"
-                setFunc = self.commandSet.setMidiConfigurationPolyAftertouchCommands
+                setFunc = "mcf.mc.pat"
                 pass
             case "cat":
-                value = self.mainClass.ui.midiChannelATRatio.value()
-                itemData = self.mainClass.ui.midiChannelATSend.itemData(self.mainClass.ui.midiChannelATSend.currentIndex())
+                value = self.ui.midiChannelATRatio.value()
+                itemData = self.ui.midiChannelATSend.itemData(self.ui.midiChannelATSend.currentIndex())
                 variableName = "pressure"
-                setFunc = self.commandSet.setMidiConfigurationChannelAftertouchCommands
+                setFunc = "mcf.mc.cat"
                 pass
             case _:
                 return
 
-        if itemData[1] == "":
+        if itemData is None:
+            return
+        elif itemData[1] == "":
             commandString = "''"
         else:
-            qualifiedCommand = self.commandSet.getQualifiedShortCommand(itemData[1])[0]
-            commandString = "'" + qualifiedCommand + "(" + variableName + " * " + str(value) + " * " + str(itemData[3]) + ")'"
+            commandString = "'" + itemData[1] + ":(" + variableName + " * " + str(value * itemData[2]) + ")'"
 
-        setFunc(widget, self.serialHandler, self.simpleFARHandler, self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect),
-                commandString)
+        self.serialHandler.write(setFunc + ":" + commandString)
 
-#        qualifiedMidiAssigns = self.commandSet.getQualifiedShortCommand(CommandID.midiConfigurationData,
-#                                                                    [self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)])
-#        if itemData[1] == "":
-#            for qualifiedAssign in qualifiedMidiAssigns:
-#                command = qualifiedAssign + ":" + widget.midiEvent + ":''"
-#                self.serialHandler.write(command)
-#        else:
-#            for qualifiedAssign in qualifiedMidiAssigns:
-#                qualifiedCommand = self.commandSet.getQualifiedShortCommand(itemData[1])[0]
-#                command = (qualifiedAssign + ":" + widget.midiEvent + ":'" + qualifiedCommand + ":(" + variableName + " * " +
-#                           str(value) + " * " + str(itemData[3]) + ")'")
-#                self.serialHandler.write(command)
+    def updateTextForSelectedListItem(self, possible = None):
+        current = self.ui.listWidgetMidiEvents.currentItem()
+        self.listWidgetMidiEventscurrentItemChanged(current)
 
-
-    def connectWidgetsToMIDIEvent(self, midiEventName, widgets):
-        for widget in widgets:
-            widget.midiEvent = midiEventName
-            widget.widgets = widgets
-            if isinstance(widget, QComboBox):
-                widget.currentIndexChanged.connect(self.widgetMIDIEventUpdate)  #Signal
-            elif isinstance(widget, QSlider):
-                #self.mainClass.assignMouseReleaseEvent(widget, self.widgetMIDIEventUpdate)
-                widget.sliderReleased.connect(self.widgetMIDIEventUpdate)
-            elif isinstance(widget, QCheckBox):
-                widget.stateChanged.connect(self.widgetMIDIEventUpdate)   #Signal
-
-
-    def setMIDINoteOnCommands(self, commands):
-        self.simpleFARHandler.instrumentMaster.evNoteOn = commands
-        if (find_item(self.mainClass.ui.listWidgetMidiEvents, "Note On") == -1):
-            self.mainClass.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note On"))
-
-        self.simpleFARHandler.instrumentMaster.cmdNoteOn.clear()
-        self.simpleFARHandler.instrumentMaster.cmdNoteOn.addCommands(commands)
-        seCmd = self.commandSet.getQualifiedShortCommand(CommandID.solenoidEngage, None, True)[0]
-        offset, multiplier = equationParsingHelpers.getVariable(self.simpleFARHandler.instrumentMaster.cmdNoteOn.getCommandAttribute(seCmd, 0), "velocity")
-        self.mainClass.ui.midiNoteOnVelToHammer.setValue(multiplier)
-
-        if equationParsingHelpers.isVariableInEquation(self.simpleFARHandler.instrumentMaster.cmdNoteOn.getCommandAttribute(seCmd, 0), "notecount"):
-            self.mainClass.ui.midiNoteOnHammerStaccato.setChecked(True)
-        else:
-            self.mainClass.ui.midiNoteOnHammerStaccato.setChecked(False)
-
-        mrCmd = self.commandSet.getQualifiedShortCommand(CommandID.muteRest, None, True)[0]
-        if not self.simpleFARHandler.instrumentMaster.cmdNoteOn.getCommandAttribute(mrCmd, 0) == "":
-            self.mainClass.ui.midiNoteOnSendMuteRest.setChecked(True)
-        else:
-            self.mainClass.ui.midiNoteOnSendMuteRest.setChecked(False)
-
-
-    def setMIDINoteOffCommands(self, commands):
-        self.simpleFARHandler.instrumentMaster.evNoteOff = commands
-        if (find_item(self.mainClass.ui.listWidgetMidiEvents, "Note Off") == -1):
-            self.mainClass.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Note Off"))
-
-        self.simpleFARHandler.instrumentMaster.cmdNoteOff.clear()
-        self.simpleFARHandler.instrumentMaster.cmdNoteOff.addCommands(commands)
-
-        mfmCmd = self.commandSet.getQualifiedShortCommand(CommandID.muteFullMute, None, True)[0]
-        if not self.simpleFARHandler.instrumentMaster.cmdNoteOff.getCommandAttribute(mfmCmd, 0) == "":
-            self.mainClass.ui.midiNoteOffSendFullMute.setChecked(True)
-        else:
-            self.mainClass.ui.midiNoteOffSendFullMute.setChecked(False)
-
-        bmrCmd = self.commandSet.getQualifiedShortCommand(CommandID.motorRun, None, True)[0]
-        if not self.simpleFARHandler.instrumentMaster.cmdNoteOff.getCommandAttribute(bmrCmd, 0) == "":
-            self.mainClass.ui.midiNoteOffMotorOff.setChecked(True)
-        else:
-            self.mainClass.ui.midiNoteOffMotorOff.setChecked(False)
-
-    def setMIDICCCommands(self, cc, commands):
-        self.simpleFARHandler.instrumentMaster.addCC(int(cc), commands)
-        if (find_item(self.mainClass.ui.listWidgetMidiEvents, "CC " + str(cc)) == -1):
-            self.mainClass.ui.listWidgetMidiEvents.addItem(QListWidgetItem("CC " + str(cc)))
-        self.setMIDISustainDestination()
-
-    def setMIDISustainDestination(self):
-        cc = self.simpleFARHandler.instrumentMaster.getCC(64)
-        if (cc is None):
-            return
-        commands = cc.command
-        commandList = self.commandSet.currentCommandSet.CommandList(commands)
-
-        if ("ibool" in commands):
-            self.mainClass.ui.midiSustainInvert.setChecked(True)
-        else:
-            self.mainClass.ui.midiSustainInvert.setChecked(False)
-
-        for b in range(0, self.mainClass.ui.midiSustainSend.count()):
-            if (len(self.mainClass.ui.midiSustainSend.itemData(b)[1]) == len(commandList.commands)):
-                found = True
-                for a in commandList.commands:
-                    cId = self.commandSet.getCommandID(a)
-                    if cId not in self.mainClass.ui.midiSustainSend.itemData(b)[1]:
-                        found = False
-                        break
-                if (len(commandList.commands) > 0) and (found):
-                    self.mainClass.ui.midiSustainSend.setCurrentIndex(b)
-                    return
-        self.mainClass.ui.midiSustainSend.setCurrentIndex(0)
-
-    def setMIDIPATCommands(self, commands):
-        self.simpleFARHandler.instrumentMaster.evPolyAftertouch = commands
-        if (find_item(self.mainClass.ui.listWidgetMidiEvents, "Poly Aftertouch") == -1):
-            self.mainClass.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Poly Aftertouch"))
-
-        self.simpleFARHandler.instrumentMaster.cmdPolyAftertouch.clear()
-        self.simpleFARHandler.instrumentMaster.cmdPolyAftertouch.addCommands(commands)
-
-        self.selectSendDestinationAndRatio(self.mainClass.ui.midiPolyATSend, self.simpleFARHandler.instrumentMaster.cmdPolyAftertouch,
-                                                 self.mainClass.ui.midiPolyATRatio, "pressure")
-
-    def setMIDIPBCommands(self, commands):
-        self.simpleFARHandler.instrumentMaster.evPitchbend = commands
-        if (find_item(self.mainClass.ui.listWidgetMidiEvents, "Pitchbend") == -1):
-            self.mainClass.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Pitchbend"))
-
-        self.simpleFARHandler.instrumentMaster.cmdPitchbend.clear()
-        self.simpleFARHandler.instrumentMaster.cmdPitchbend.addCommands(commands)
-
-        self.selectSendDestinationAndRatio(self.mainClass.ui.midiPitchbendSend, self.simpleFARHandler.instrumentMaster.cmdPitchbend,
-                                                 self.mainClass.ui.midiPitchbendRatio, "pitch", 127)
-
-    def setMIDICATCommands(self, commands):
-        self.simpleFARHandler.instrumentMaster.evChannelAftertouch = commands
-        if (find_item(self.mainClass.ui.listWidgetMidiEvents, "Channel Aftertouch") == -1):
-            self.mainClass.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Channel Aftertouch"))
-
-        self.simpleFARHandler.instrumentMaster.cmdChannelAftertouch.clear()
-        self.simpleFARHandler.instrumentMaster.cmdChannelAftertouch.addCommands(commands)
-
-        self.selectSendDestinationAndRatio(self.mainClass.ui.midiChannelATSend, self.simpleFARHandler.instrumentMaster.cmdChannelAftertouch,
-                                                 self.mainClass.ui.midiChannelATRatio, "pressure")
-
-    def setMIDIPCCommands(self, commands):
-        self.simpleFARHandler.instrumentMaster.evProgramChange = commands
-        if (find_item(self.mainClass.ui.listWidgetMidiEvents, "Program change") == -1):
-            self.mainClass.ui.listWidgetMidiEvents.addItem(QListWidgetItem("Program change"))
-
-    def handleMIDIConfigurationCount(self, count):
-        self.mainClass.ui.comboBoxConfiguration.clear()
-        while (self.mainClass.ui.comboBoxConfiguration.count() < int(count)):
-            self.mainClass.ui.comboBoxConfiguration.insertItem(self.mainClass.ui.comboBoxConfiguration.count() + 1, "placeholder")
-
-    def handleMIDIConfigurationName(self, index, name, setIndex):
-        self.mainClass.ui.comboBoxConfiguration.setItemText(int(index), name)
-        if (setIndex):
-            self.mainClass.ui.comboBoxConfiguration.setCurrentIndex(self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect))
-
-    def handleMIDIConfigurationSelect(self, config):
-        self.simpleFARHandler.stringModules[0].setCommandValue(CommandID.midiConfigurationSelect, float(config))
-        self.mainClass.updateStringModuleData()
-        self.mainClass.ui.listWidgetMidiEvents.clear()
-        self.mainClass.ui.comboBoxConfiguration.setCurrentIndex(int(self.simpleFARHandler.stringModules[0].getCommandValue(CommandID.midiConfigurationSelect)))
-
-    def handleMIDIReceiveChannel(self, channel):
-        self.mainClass.ui.comboBoxMidiChannel.blockSignals(True)
-        ch = int(channel)
-        if ((ch < 1) or (ch > 16)):
-            find = "Omni"
-        else:
-            find = str(ch)
-
-        for a in range(0, self.mainClass.ui.comboBoxMidiChannel.count()):
-            if find == self.mainClass.ui.comboBoxMidiChannel.itemText(a):
-                self.mainClass.ui.comboBoxMidiChannel.setCurrentIndex(a)
-                break
-        self.mainClass.ui.comboBoxMidiChannel.blockSignals(False)
-
-    # Finds the first destination command in commandList and selects it in the Combo Box given in comboBox
-    # Sets the slider given in ratio to the multiplier value used in combination with the string literal variable given in variable
-    def selectSendDestinationAndRatio(self, comboBox, commandList, ratio, variable, inMultiplier = 1):
-        comboBox.blockSignals(True)
-        ratio.blockSignals(True)
-
-        found = False
-        for a in commandList.commands:
-            for b in range(0, comboBox.count()):
-                cId = self.commandSet.getCommandID(a)
-                if comboBox.itemData(b)[1] == cId:
-                    comboBox.setCurrentIndex(b)
-                    found = True
-                    break
-
-        #if find != "Nothing":
-        if found:
-            try:
-                offset, multiplier = equationParsingHelpers.getVariable(a.argument[0], variable)
-                multiplier = multiplier * inMultiplier
-                ratio.setValue(multiplier)
-            except:
-                pass
-        else:
-            comboBox.setCurrentIndex(0)
-            ratio.setValue(0)
-
-        comboBox.blockSignals(False)
-        ratio.blockSignals(False)
-
-    MIDIVariableSenders = [["Nothing", "", 0, 0],
-                           ["Harmonic shift", CommandID.bowHarmonicShift, -32767, 1],
-                           ["Pressure (modifier)", CommandID.bowPressureModifier, 0, 1],
-                           ["Pressure (baseline)", CommandID.bowPressureBaseline, 0, 1],
-                           ["Mute position", CommandID.muteSetPosition, 0, 1],
-                           ["Solenoid force multiplier", CommandID.solenoidForceMultiplier, 0, "1 / 65535"]]
-
-    #    MIDIBinarySenders = [["MIDI & Mute sustain", ""]]
-    def populateComboBoxSendByte(self, comboBox):
-        comboBox.clear()
-        for sendData in self.MIDIVariableSenders:
-            comboBox.addItem(sendData[0], sendData)
-
-    eventDescription = [[ "Note On", "Note on message, sent when a key has been depressed. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n note - note number (0-127) \n velocity - key velocity (0-127)" ],
-        [ "Note Off", "Note off message, sent when a key has been released. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n note - note number (0-127) \n velocity - key velocity (0-127)" ],
-        [ "CC [xx]", "Continous Controller, sent by various control surfaces. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n control - control number (0-127) \n value - controller value (0-127)" ],
-        [ "Poly Aftertouch", "Polyphonic Aftertouch, key pressure per key. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n note - note number (0-127) \n pressure - key pressure (0-127)" ],
-        [ "Channel Aftertouch", "Channel Aftertouch, key pressure per channel. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n pressure - key pressure (0-127)"],
-        [ "Pitchbend", "Pitchbend, frequency change from the current key. \n\nAdded variables: \n channel - MIDI Channel (0-15)\n pitch - bend (-8192 - 8192)"],
-        [ "Program change", "Program change message, mostly used to change sound on various devices. \n\nAdded variables: \n channel - MIDI Channel (0-127) \n program - program number (0-127)"]
-        ]
-
-    def updateTextForSelectedListItem(self):
-        current = self.mainClass.ui.listWidgetMidiEvents.currentItem()
-        self.listWidgetMidiEventscurrentItemChanged(current, current)
-
-    def listWidgetMidiEventscurrentItemChanged(self, current, previous):
-        self.mainClass.ui.plainTextEditEventDescription.clear()
+    def listWidgetMidiEventscurrentItemChanged(self, current):
+        self.ui.plainTextEditEventDescription.clear()
         if current is None:
             return
-        match (current.text()):
-            case "Note On":
-                self.mainClass.ui.lineEditMidiEventCommand.setText(str(self.simpleFARHandler.instrumentMaster.evNoteOn))
-                self.mainClass.ui.plainTextEditEventDescription.insertPlainText(self.eventDescription[0][1])
-            case "Note Off":
-                self.mainClass.ui.lineEditMidiEventCommand.setText(str(self.simpleFARHandler.instrumentMaster.evNoteOff))
-                self.mainClass.ui.plainTextEditEventDescription.insertPlainText(self.eventDescription[1][1])
-            case "Poly Aftertouch":
-                self.mainClass.ui.lineEditMidiEventCommand.setText(str(self.simpleFARHandler.instrumentMaster.evPolyAftertouch))
-                self.mainClass.ui.plainTextEditEventDescription.insertPlainText(self.eventDescription[3][1])
-            case "Channel Aftertouch":
-                self.mainClass.ui.lineEditMidiEventCommand.setText(str(self.simpleFARHandler.instrumentMaster.evChannelAftertouch))
-                self.mainClass.ui.plainTextEditEventDescription.insertPlainText(self.eventDescription[4][1])
-            case "Pitchbend":
-                self.mainClass.ui.lineEditMidiEventCommand.setText(str(self.simpleFARHandler.instrumentMaster.evPitchbend))
-                self.mainClass.ui.plainTextEditEventDescription.insertPlainText(self.eventDescription[5][1])
-            case "Program change":
-                self.mainClass.ui.lineEditMidiEventCommand.setText(str(self.simpleFARHandler.instrumentMaster.evProgramChange))
-                self.mainClass.ui.plainTextEditEventDescription.insertPlainText(self.eventDescription[6][1])
-            case _:
-                if current.text()[:2] == "CC":
-                    ccnum = int(current.text()[3:])
-                    cc = self.simpleFARHandler.instrumentMaster.getCC(ccnum)
-                    if (cc is not None):
-                        self.mainClass.ui.lineEditMidiEventCommand.setText(str(cc.command))
-                    else:
-                        self.mainClass.ui.lineEditMidiEventCommand.setText("")
-                self.mainClass.ui.plainTextEditEventDescription.insertPlainText(self.eventDescription[2][1])
+
+        found = False
+        for midiEvent in MIDIEvents.values():
+            if midiEvent.name == current.text():
+                found = True
+                break
+        if found:
+            commandString = midiEvent.command
+            command, module = self.commandSet.getCommandAndModule(commandString)
+            self.ui.lineEditMidiEventCommand.setText(command.arguments[0])
+            command:ModuleCommand = command
+        elif current.text()[:2] == "CC":
+            ccnum = current.text()[3:]
+            found = False
+            command, modules = self.commandSet.getCommandAndModule("mcf.mc.ccc")
+            count = int(command.arguments[0])
+            commandString = ""
+            for i in range(0, count):
+                command, trashx = self.commandSet.getCommandAndModule("mcf.mc.cc[" + str(i) + "].cl")
+                if (command.arguments[0] == ccnum):
+                    found = True
+                    commandString = "mcf.mc.cc[" + str(i) + "].cm"
+                    break
+            if not found: return
+
+            command, trashx = self.commandSet.getCommandAndModule(commandString)
+
+            commands = ""
+            if (command.arguments is not None and len(command.arguments) > 0):
+                commands = command.arguments[0]
+
+            self.ui.lineEditMidiEventCommand.setText(commands)
+        else:
+            return
+
+        if self.guiCallbackLineEditMidiEventCommand is not None:
+            self.guiCallbackSystem.removeGUICallback(self.guiCallbackLineEditMidiEventCommand, False)
+        self.guiCallbackLineEditMidiEventCommand = GUICallback(None, commandString,
+                                                               dataCallbackFunction = self.dataChangedMidiEventCommand)
+        self.guiCallbackSystem.addGUICallback(self.guiCallbackLineEditMidiEventCommand, False)
+
+        outputText = command.helpCommand.description + "\n\n" + "Sets the following variables:\n"
+        variables = ""
+        for variable in command.helpCommand.variables:
+            if (variables != ""): variables += ", "
+            variables +=  variable
+        self.ui.plainTextEditEventDescription.insertPlainText(outputText + variables)
+
+
+    def dataChangedMidiEventCommand(self, moduleCommand:ModuleCommand):
+        if (moduleCommand.arguments is not None and len(moduleCommand.arguments) > 0):
+            self.ui.lineEditMidiEventCommand.setText(moduleCommand.arguments[0])
+

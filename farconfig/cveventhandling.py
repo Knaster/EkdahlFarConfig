@@ -101,11 +101,9 @@ class CVEventHandler(QWidget):
                         cmd = cl.getCommandAttribute(self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicAdd)[0], 0)
                         if cmd == "":
                             break
-                        try:
-                            result = equationParsingHelpers.extractZeroCoefficientOffset(cmd)
-                        except:
-                            messageBox("Error", "Error in equation parser with string " + cmd)
-                            break
+                        result = equationParsingHelpers.extractZeroCoefficientOffset(cmd)
+                        messageBox("Error", "Error in equation parser with string " + cmd)
+                        break
 
                         cvScale = 1327.716667 * result["coefficient"] # * multiplier
                         offsetDiv = result["offset"] / 1327.716667
@@ -118,33 +116,27 @@ class CVEventHandler(QWidget):
 
                         cvZero = result["zeroPosition"]
 
-                        self.mainClass.ui.dialCVHarmonicScale.setValue(cvScale)   # * 1000
-                        self.mainClass.ui.widgetCVHarmonicNoteOffset.setValue(cvOffset)
-                        self.mainClass.ui.widgetCVHarmonicZero.setValue(cvZero)
+                        self.mainWidget.ui.dialCVHarmonicScale.setValue(cvScale)   # * 1000
+                        self.mainWidget.ui.widgetCVHarmonicNoteOffset.setValue(cvOffset)
+                        self.mainWidget.ui.widgetCVHarmonicZero.setValue(cvZero)
                     case 1:
                         cmd = cl.getCommandAttribute(self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicShift5)[0], 0)
                         if cmd == "":
                             break
-                        try:
-                            result = equationParsingHelpers.extractZeroCoefficientOffset(cmd)
-                        except:
-                            messageBox("Error", "Error in equation parser with string " + cmd)
-                            break
+                        result = equationParsingHelpers.extractZeroCoefficientOffset(cmd)
+                        messageBox("Error", "Error in equation parser with string " + cmd)
+                        break
                         cvScale = 2.425 / (1 / result["coefficient"])
                         cvZero = (32767) + result["zeroPosition"]
-                        self.mainClass.ui.dialCVHarmonicShiftScale.setValue(cvScale)  # * 1000
-                        self.mainClass.ui.dialCVHarmonicShiftZero.setValue(cvZero)
+                        self.mainWidget.ui.dialCVHarmonicShiftScale.setValue(cvScale)  # * 1000
+                        self.mainWidget.ui.dialCVHarmonicShiftZero.setValue(cvZero)
                     case 2:
                         cmd = cl.getCommandAttribute(self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicShift)[0], 0)
                         if cmd == "":
                             break
-                        try:
-                            cmd = equationParsingHelpers.removeFunction(cmd, "deadband")
-                            offset, multiplier = equationParsingHelpers.extractValueOffsetAndMultiplier(cmd)
-                            result = equationParsingHelpers.extractZeroCoefficientOffset(cmd)
-                        except:
-                            messageBox("Error", "Error in equation parser with string " + cmd)
-                            break
+                        cmd = equationParsingHelpers.removeFunction(cmd, "deadband")
+                        offset, multiplier = equationParsingHelpers.extractValueOffsetAndMultiplier(cmd)
+                        result = equationParsingHelpers.extractZeroCoefficientOffset(cmd)
                         self.mainClass.ui.dialCVFineTuneCenter.setValue(32767 + result["zeroPosition"])
                         pass
                     case 5:
