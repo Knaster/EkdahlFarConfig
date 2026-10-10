@@ -1,15 +1,9 @@
-import re
-import sys
 import NodeGraphQt
-from sympy.physics.quantum.qasm import stripquotes
 
-from CommandSet import CommandSet
 from GraphNode.customnode import CustomBaseNode
 import GraphNode.graphassemblies as graphassemblies
-from NodeGraphQt.base import port
 import sympy as sp
 import dynamicnodes
-from commanddefinitions import CommandID
 from commandparser import Derivedcommanditem
 from general_helpers import stripLeadingQuotes
 
@@ -59,6 +53,7 @@ class NodeHandler:
         self.ga.commandSet = self.commandSet
         self.dynamicNodeSet.buildNodesFromModules(inModule)
 
+    '''
     ## Adds text from a 'name' command to the nodes label
     def appendNameToNode(self, node : CustomBaseNode, command : Derivedcommanditem):
         bracketIndex = node.NODE_NAME.find("]")
@@ -71,7 +66,7 @@ class NodeHandler:
         print("Setting node " + node.NODE_NAME + "'s name to " + name)
         node._view.name = name
         node.updateNames()
-
+    '''
     def findCommandMatchAndProcess(self, command:Derivedcommanditem):
         if (self.commandSet is None):
             return False

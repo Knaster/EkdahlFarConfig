@@ -48,11 +48,12 @@
 # * Request data for each \a module depending on their \a request \a data
 # * Build a node map from the \a modules and \a command \a responses received. See the \ref "nodehandler.NodeHandler" "NodeHandler" for more information
 
-import platform, random, sys, time, datetime, os
+import platform, sys, time, os # random, datetime,
 import serial.tools.list_ports
 from PySide6.QtWidgets import (QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit, QSpinBox,
-                               QComboBox, QSlider, QTabBar, QTabWidget, QCheckBox, QDial, QPushButton, QListWidget, QDockWidget, QSizePolicy, QTextEdit,
-                               QVBoxLayout, QStackedWidget, QMainWindow, QAbstractButton, QHBoxLayout, QLabel, QGraphicsScene, QGraphicsView, QFrame)
+                               QComboBox, QSlider, QTabBar, QTabWidget, QCheckBox, QDial, QPushButton, QListWidget, QDockWidget, QSizePolicy,
+                               QVBoxLayout, QMainWindow, QHBoxLayout, QLabel, QGraphicsScene, QGraphicsView, QFrame)
+# QTextEdit, QAbstractButton, QStackedWidget,
 from PySide6.QtCore import QThread, Signal, QTimer, Qt, Slot, QSettings, QSize
 from PySide6.QtGui import QIcon, QPainter
 import logging
@@ -61,22 +62,20 @@ from logging.handlers import RotatingFileHandler
 import enum
 import math
 
-import equationParsingHelpers
+#import equationParsingHelpers
 import waitdialog
-import tableTest
-from commanddefinitions import CommandID
-#from farconfig.commandparser import CommandItem
+#import tableTest
+
 from commandparser import CommandItem, Derivedcommanditem
-from general_helpers import messageBox, inputBox, find_item, remove_item
+from general_helpers import messageBox, inputBox, find_item #, remove_item
 from ui_form import Ui_Widget
 
-from serialWidget import SerialWidget as SerialWidget, ReportTypeEnum
+from serialWidget import SerialWidget as SerialWidget #, ReportTypeEnum
 from commandReference import commandReference as CommandReference
 from preferences import preferences as preferences
 import timedChart
-#from stringModule import stringModule, SimpleFARHandler
 
-from CommandSets import CommandSets, CommandID, CommandType, Derivedcommanditem, Derivedcommandlist, CommandSetModular
+from CommandSets import CommandSets, Derivedcommanditem, Derivedcommandlist, CommandSetModular  # CommandID, CommandType,
 from ModuleSystem import Module, ModuleCommand, HelpCommand, HelpModule
 from GUICallbackSystem import GUICallbackSystem, GUICallback
 
@@ -88,13 +87,11 @@ from tabadvanced import TabAdvanced
 from tabmidi import TabMIDI
 from tabcv import TabCV
 
-#simpleFARHandler = SimpleFARHandler
 global serialStream
 commandSets = CommandSets()
 app = None
 
 def processInformationReturn(inSerialHandler, infoReturn):
-    #global simpleFARHandler
     global commandSets
     commandList = Derivedcommandlist(infoReturn)
 
@@ -115,7 +112,6 @@ def processInformationReturn(inSerialHandler, infoReturn):
                 mainWidget.tabMIDI = TabMIDI(mainWidget, serialHandler, commandSets.currentCommandSet, mainWidget.guiCallbackSystem)
                 mainWidget.tabCV = TabCV(mainWidget, serialHandler, commandSets.currentCommandSet, mainWidget.guiCallbackSystem)
                 mainWidget.completerList.clear()
-                #simpleFARHandler.connected = True
 
         if (commandSets.processMessages(i, commandSets, mainWidget, serialHandler)):
             pass
@@ -124,18 +120,14 @@ def processInformationReturn(inSerialHandler, infoReturn):
             mainWidget.localNodeHandler.commandSet = commandSets.currentCommandSet
             mainWidget.localNodeHandler.addDynamicNodeSet(commandSets.currentCommandSet.baseModule)
 
-        if (commandSets.currentCommandSet.loadingStage == 4):
+        if (commandSets.currentCommandSet.loadingStage == 4) and (mainWidget.updateStage < 2):
             moduleCommand, module = commandSets.currentCommandSet.getCommandAndModule(i)
-            #moduleCommand = ModuleCommand(moduleCommand)
             if (moduleCommand.helpCommand.commandTypeFunction == HelpCommand.CommandType_function.ectAssignment) or \
                 (moduleCommand.helpCommand.commandTypeData == HelpCommand.CommandType_data.ectOutputAssignment):
                 mainWidget.localNodeHandler.parseCommand(i)
 
         if (commandSets.currentCommandSet.ready) and (not mainWidget.callBacksAdded):
-            #if (not mainWidget.updateTimer):
-            mainWidget.updateTimer = QTimer(mainWidget)
-            mainWidget.updateTimer.timeout.connect(mainWidget.nodeAutoUpdater)
-            mainWidget.updateTimer.start(1000)
+            mainWidget.nodeTimer.start(1000)
             print("Starting timer")
 
             preferences.updateCommandset(commandSets.currentCommandSet)
@@ -162,14 +154,14 @@ def processInformationReturn(inSerialHandler, infoReturn):
 class serialHandler(QThread):
     dataAvaliable = Signal(object, str)
     disconnectSignal = Signal()
-    if (commandSets.currentCommandSet is not None):
-        chartCommandSignal = Signal(commandSets.currentCommandSet.CommandItem)
-    else:
-        chartCommandSignal = None
+    #if (commandSets.currentCommandSet is not None):
+    #    chartCommandSignal = Signal(commandSets.currentCommandSet.CommandItem)
+    #else:
+    #    chartCommandSignal = None
 
     def run(self) -> None:
         while self.isRunning:
-            processed = False
+            #processed = False
             global serialStream
             try:
                 if serialStream is not None:
@@ -193,19 +185,19 @@ class serialHandler(QThread):
         if serialStream == None:
             return
         serialStream.write(str.encode('ascii'))
-
+    '''
     def writeI(self, str):
         str = str  + "\n\r"
         serialStream.write(str.encode('ascii'))
-
+    '''
 class FarConfig(QWidget):
-    midiDataAvaliableSignal = Signal(str, str)
+    #midiDataAvaliableSignal = Signal(str, str)
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = Ui_Widget()
         self.ui.setupUi(self)
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
-        self.focusing = False
+        #self.focusing = False
 
         scriptdir = os.path.dirname(os.path.realpath(__file__))
 
@@ -254,8 +246,8 @@ class FarConfig(QWidget):
         self.updateTimer = QTimer(self)
         self.updateTimer.timeout.connect(self.timerUpdateControl)
 
-        #self.populateComboBoxBaseNote()
-        #self.populateHarmonicPresets()
+        self.nodeTimer = QTimer(self)
+        self.nodeTimer.timeout.connect(self.nodeAutoUpdater)
 
         self.debugTimedChart = timedChart.timedChart(None)
         self.ui.layoutChart.addWidget(self.debugTimedChart._chart_view)
@@ -278,9 +270,6 @@ class FarConfig(QWidget):
         self.ui.layoutChart.addWidget(self.legendView)
         self.ui.layoutChart.setContentsMargins(0,0,0,0)
 
-        #if self.serialThread.chartCommandSignal is not None:
-        #    self.serialThread.chartCommandSignal.connect(self.chartCommand)
-
         self.updatingFromModule = False
         self.updatingFromGUI = False
 
@@ -288,20 +277,17 @@ class FarConfig(QWidget):
         self.modalEvent = ""
 
         self.messageBox = messageBox
-        #self.addModulesIfNeeded = addModulesIfNeeded
 
         self.lastSerialEvent = 0
 
         self.pluginHandler:PluginHandler = None
         self.guiCallBackSystem:GUICallbackSystem = None
         self.callBacksAdded = False
-        #mainWidget.tabBasic = TabBasic(mainWidget, serialHandler, commandSets)
         self.tabBasic:TabBasic = None
         self.tabAdvanced:TabAdvanced = None
         self.tabMIDI:TabMIDI = None
         self.tabCV:TabCV = None
 
-        self.updateTimer = QTimer(self)
         self.updateStage = 0
         self.hasNodes = False
 
@@ -314,7 +300,6 @@ class FarConfig(QWidget):
         app.quit()
 
     def addMainGUICallbacks(self):
-        #self.tabBasic.guiCallbackSystem = self.guiCallBackSystem
         self.tabBasic.addGUICallbacks()
         self.tabBasic.updateWidget()
         self.tabAdvanced.addGUICallbacks()
@@ -336,7 +321,7 @@ class FarConfig(QWidget):
                 self.updateStage = 1
             case 1:
                 if (self.hasNodes):
-                    self.updateTimer.stop()
+                    self.nodeTimer.stop()
                     self.localNodeHandler.redraw()
                     self.localNodeHandler.ga.graph.select_all()
                     self.localNodeHandler.ga.graph.fit_to_selection()
@@ -381,13 +366,11 @@ class FarConfig(QWidget):
         self.ui.listWidgetMidiEvents.clear()
         self.ui.comboBoxActuatorPreset.clear()
         self.ui.comboBoxHarmonicList.clear()
-        #requestStringModuleData()
 
     def connectDisconnect(self):
         if mainWidget.ui.pushButtonConnectDisconnect.text() == "Connect":
             selectedPort = mainWidget.ui.comboBoxSerialPorts.currentText()
             if selectedPort != "":
-#                print(selectedPort.split(' ')[0])
                 try:
                     global serialStream
                     serialStream = serial.Serial(selectedPort.split(' ')[0], 115200)
@@ -551,8 +534,8 @@ class settingsType(enum.Enum):
     maximized = enum.auto()
 
 def settingsDeclaration():
-    su = serialWidget.ui
-    mu = mainWidget.ui
+    #su = serialWidget.ui
+    #mu = mainWidget.ui
     pu = preferences.ui
     return  [["mainGeometry", mainWindow, settingsType.Geometry],['mainState', mainWindow, settingsType.windowState],
              ["mainMaximized", mainWindow, settingsType.maximized],
@@ -679,7 +662,7 @@ def setMainEventHandlers():
     mainWidget.ui.pushButtonShowReference.pressed.connect(showReference)
 
     preferences.ui.listWidgetTuningscheme.currentItemChanged.connect(mainWidget.tuningSchemeChanged)
-    ## Tab Adanced
+
     mainWidget.ui.pushButtonPreferences.pressed.connect(showPreferences)
 
 def showPreferences():

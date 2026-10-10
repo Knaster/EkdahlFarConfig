@@ -13,7 +13,7 @@ from .customgroupnode import CustomGroupNode, CustomNodeGraph
 from Custom_Widgets import QCustomCheckBox
 
 from NodeGraphQt import NodeGraph, NodesPaletteWidget, NodesTreeWidget, PropertiesBinWidget, BaseNode, BackdropNode, constants
-from commanddefinitions import CommandID
+#from commanddefinitions import CommandID
 
 from ModuleSystem import Module, ModuleHandler
 
@@ -96,14 +96,13 @@ class graphAssemblies():
         # registered example nodes.
         self.graph.register_nodes([
 
-            FARNodes.NoteOn,
-            FARNodes.NoteOff,
-            FARNodes.Pitchbend,
-            FARNodes.ChannelAftertouch,
-            FARNodes.PolyAftertouch,
-            FARNodes.ProgramChange,
-            FARNodes.ControlChange,
-
+            #FARNodes.NoteOn,
+            #FARNodes.NoteOff,
+            #FARNodes.Pitchbend,
+            #FARNodes.ChannelAftertouch,
+            #FARNodes.PolyAftertouch,
+            #FARNodes.ProgramChange,
+            #FARNodes.ControlChange,
             FARNodes.Variables,
 
             FARNodes.Equation,
@@ -116,7 +115,7 @@ class graphAssemblies():
             FARNodes.TriggerVariable,
             FARNodes.TriggerBool,
 
-            FARNodes.ControlBoxOutput,
+            #FARNodes.ControlBoxOutput,
 
             FARNodes.Bool,
             FARNodes.Deadband,
@@ -236,7 +235,7 @@ class graphAssemblies():
             if (assembly.name == name):
                 return assembly
         return None
-
+    '''
     def addMIDIAssembly(self, posx, posy):
         assembly = self.addAssembly('MIDI events', posx)
 
@@ -267,14 +266,14 @@ class graphAssemblies():
 
         return assembly
         #assembly.wrapAll('Control box')
-
+    '''
     def addVariablesAssembly(self, posx, posy):
         assembly = self.addAssembly('Variables', posx)
         assembly.addNode('nodes.far.Variables', posy)
         return assembly
 
         #assembly.wrapAll('Variables')
-
+    '''
     def addHammerAssembly(self, posx, posy):
         assembly = self.addAssembly('Hammer', posx)
         assembly.addNode('nodes.hardware.Solenoid', posy)
@@ -303,13 +302,13 @@ class graphAssemblies():
         assembly.addNode('nodes.hardware.Mute', posy)
         return assembly
         #assembly.wrapAll('Harmonic Handler')
-
+    '''
     def update(self):
         # fit nodes to the viewer.
         self.graph.clear_selection()
         self.graph.fit_to_selection()
         pass
-
+    '''
     def addCompleteStringAssembly(self, posx, posy):
         hhandlerAss = self.addHarmonicHandlerAssembly(posx, posy)
         bowAss = self.addBowAssembly(posx, posy + 265)
@@ -325,12 +324,12 @@ class graphAssemblies():
         #hhandler.get_output("frequency").set_locked(True)
         #pid.get_output("direct pwm").set_locked(True)
         pass
-
+    
     def addBasicControlHandling(self, posx, posy):
         self.addMIDIAssembly(posx, posy)
         self.addControlboxAssembly(posx, posy+1095)
         self.addVariablesAssembly(posx, posy + 1095 + 855)
-
+    '''
     def addModifierStaticValue(self, posx, posy):
         node = self.graph.create_node('nodes.virtualmodifiers.StaticValue', pos=[posx, posy])
         #node.set_color(ass_node_background[0], ass_node_background[1], ass_node_background[2])
@@ -378,7 +377,7 @@ class graphAssemblies():
     def addModifierMap(self, posx, posy):
         node = self.graph.create_node('nodes.modifiers.Map', pos=[posx, posy])
         return node
-
+    '''
     def addDefaultFARSingle(self):
         self.addBasicControlHandling(-1000, -500)
         self.addCompleteStringAssembly(1000, -570)
@@ -473,7 +472,7 @@ class graphAssemblies():
 
         connectNodes(n_controlbox, 'Pressure', n_bowpressure, 'Baseline')
         connectNodes(n_controlbox, 'Hammer', n_solenoid, 'Engage')
-
+    '''
 
     def createControlboxAssembly(self):
         n_controlbox = self.graph.create_node('nodes.hardware.ControlBox', pos=[-1000, 565])

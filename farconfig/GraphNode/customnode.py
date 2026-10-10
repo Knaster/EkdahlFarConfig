@@ -12,7 +12,7 @@ from NodeGraphQt.widgets.node_widgets import NodeLineEdit
 from GraphNode.customnodewidgets import NodeSlider, ToggleSwitch, LineEdit, SpinBoxArray, TableView
 from GraphNode.nodetemplates.custom_ports_node import draw_triangle_port
 
-from commanddefinitions import CommandID
+#from commanddefinitions import CommandID
 
 from ModuleSystem import ModuleCommand, Module, HelpCommand, HelpModule
 
@@ -734,6 +734,7 @@ acmBackground = QtGui.QColor(83, 166, 98)
 variableBackground = QtGui.QColor(246, 235, 126)
 controlBackground = QtGui.QColor(126, 148, 246)
 
+'''
 # MIDI messages
 class NoteOn(CustomBaseNode):
     __identifier__ = "nodes.midi"
@@ -868,7 +869,7 @@ class ProgramChange(CustomBaseNode):
         self.add_output('Channel', command = self.command, variable = "channel")
         self.add_output('Program', command = self.command, variable = "program")
         self.add_output('_trigger', command = self.command, variable = "_trig", painter_func=draw_triangle_port, valueType="trig")
-
+'''
 # Virtual Modifiers
 
 class Midi7Bit_to_FAR16Bit(CustomBaseNode):
@@ -1370,7 +1371,7 @@ class Mute(CustomBaseNode):
         self.add_input("Half mute", "mhm", "bool")
         self.add_input("Rest", "mr", "bool")
         self.add_input("Sustain", "ms", "bool")
-'''
+
 class ControlBoxOutput(CustomBaseNode):
     __identifier__ = "nodes.hardware"
 
@@ -1387,7 +1388,7 @@ class ControlBoxOutput(CustomBaseNode):
         self.add_output("_trigger", painter_func=draw_triangle_port, valueType="trig")
 
 # Misc
-
+'''
 class Variables(CustomBaseNode):
     __identifier__ = "nodes.far"
 

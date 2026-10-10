@@ -1,17 +1,10 @@
-from PySide6.QtCore import QObject
-
-import qplaintextsub
-from commandparser import Derivedcommanditem
 from ModuleSystem import ModuleCommand, ModuleHandler, Module, commandHasStorableDataCmd
 from CommandSets import CommandSetModular
 
-from PySide6.QtWidgets import (QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit, QSpinBox,
-                               QComboBox, QSlider, QTabBar, QTabWidget, QCheckBox, QDial, QPushButton, QListWidget, QDockWidget, QSizePolicy, QTextEdit,
-                               QVBoxLayout, QStackedWidget, QMainWindow, QAbstractButton, QHBoxLayout, QLabel, QGraphicsScene, QGraphicsView, QFrame,
+from PySide6.QtWidgets import (QWidget, QDoubleSpinBox, QLineEdit, QSpinBox, QComboBox, QSlider, QCheckBox, QDial, QPushButton, QListWidget, QLabel,
                                QPlainTextEdit)
 
 from PySide6.QtCore import QObject
-from qplaintextsub import QPlainTextSub
 
 class GUICallback:
     SKIP_CALLBACK = 1

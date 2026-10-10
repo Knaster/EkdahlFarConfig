@@ -1,11 +1,11 @@
-from GraphNode.customnode import CustomBaseNode, CustomNodeItem
+from GraphNode.customnode import CustomBaseNode
 from CommandSets import CommandSetModular #, ModuleCommand
 #from commanddefinitions import ModuleCommandType_data, ModuleCommandType_access, ModuleCommandType_function, ModuleCommandType_dataOptions, parseModuleCommandType, \
 #    ModuleCommandType_data, ModuleCommandType_access, ModuleCommandType_function, ModuleCommandType_dataOptions
-from commanddefinitions import CommandID
+from deprecated.commanddefinitions import CommandID
 from GraphNode.nodetemplates.custom_ports_node import draw_triangle_port
 
-from ModuleSystem import ModuleHandler, ModuleCommand, HelpModule, HelpCommand, Module
+from ModuleSystem import ModuleHandler, ModuleCommand, HelpCommand, Module
 
 import GraphNode.graphassemblies as graphassemblies
 from PySide6 import QtGui

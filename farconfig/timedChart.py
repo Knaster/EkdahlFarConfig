@@ -37,7 +37,7 @@ import GUICallbackSystem
 from commandparser import Derivedcommanditem
 from general_helpers import stripLeadingQuotes
 
-from CommandSets import CommandID, CommandSets
+#from CommandSets import CommandID, CommandSets
 
 from CommandSets import CommandSetModular
 from ModuleSystem import Module, ModuleHandler, ModuleCommand
@@ -445,6 +445,7 @@ class timedChart(QWidget):
                 return
         s.setVisible(visible)
     '''
+    '''
     def createChartID(self, chart):
         if (self.commandSet is None): return
         chart.commandItem = self.commandSet.CommandItem(chart.commandString)
@@ -479,19 +480,20 @@ class timedChart(QWidget):
                 else:
                     return chart
         return None
-
+    '''
     def getChartByName(self, name):
         for commandChart in self.commandCharts:
             if commandChart.name == name:
                 return commandChart
         return None
 
+    '''
     def getSeries(self, name) -> CommandChart:
         for s in self.seriesArr:
             if (s.name == name):
                 return s
         return None
-
+    '''
     def setChartZeroIsUnavailable(self, chartName, zeroAvaliable):
         chart = self.getChartByName(chartName)
         if (chart is None): return

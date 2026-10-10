@@ -1,5 +1,4 @@
-from PySide6.QtWidgets import (QWidget, QLineEdit,
-                               QComboBox, QSlider, QVBoxLayout, QCheckBox, QSizePolicy, QLabel, QSpacerItem)
+from PySide6.QtWidgets import (QWidget, QComboBox, QSlider, QVBoxLayout, QSizePolicy, QLabel, QSpacerItem)
 from PySide6.QtCore import Qt
 
 from commandparser import getCommandIndex
@@ -12,7 +11,7 @@ from ui_plugin_numbermap import Ui_Form_NumberMap as plugin_numbermap
 from ui_plugin_lfo import Ui_Form_LFO as plugin_lfo
 from ui_plugin_mult import Ui_Form_Mult as plugin_mult
 
-from commanddefinitions import CommandID
+from deprecated.commanddefinitions import CommandID
 import CommandSets
 
 class Plugin_Widget(QWidget):
@@ -26,7 +25,7 @@ class Plugin_Widget(QWidget):
         self.pluginHandler = pluginHandler
         self.pluginTitle = ""
 
-        self.requestData = []
+        #self.requestData = []
 
         self.guiCallbacks:list[GUICallback] = list()
 
@@ -565,9 +564,10 @@ class PluginHandler():
         if mainWidget.ui.scrollAreaContentsPlugins.layout() is None:
             mainWidget.ui.scrollAreaContentsPlugins.setLayout(QVBoxLayout())
             mainWidget.ui.scrollAreaContentsPlugins.layout().setContentsMargins(0, 0, 0, 0)
-
+        '''
         self.pluginNameCommand = { "lfo" : CommandID.pluginLFOName, "ahdsr" : CommandID.pluginAHDSRName,
                                    "multiple" : CommandID.pluginMultName, "numbermap" : CommandID.pluginMapName }
+        '''
 
         self.pluginClasses = { "lfo" : Plugin_LFO, "ahdsr" : Plugin_AHDSR, "multiple" : Plugin_Multiple, "numbermap" : Plugin_NumberMap }
 
@@ -631,6 +631,7 @@ class PluginHandler():
         for i in reversed(range(self.mainWidget.ui.verticalLayoutPlugins.count() - 1)):
             self.mainWidget.ui.verticalLayoutPlugins.itemAt(i).widget().setParent(None)
 
+    #[allow(dead_code)]
     def updateWidgets(self):
         for plugin in self.plugins:
             plugin.updateWidget() #simpleFARHandler)
@@ -670,6 +671,7 @@ class PluginHandler():
         type = type[:dash]
         return type, index
 
+    #[allow(dead_code)]
     def getPluginTypeCount(self, type):
         count = 0
         for plug in self.plugins:

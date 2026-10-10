@@ -1,6 +1,6 @@
 from CommandSet import CommandSet
 from commandparser import Derivedcommanditem, Derivedcommandlist
-from commanddefinitions import CommandID, CommandType
+from deprecated.commanddefinitions import CommandID, CommandType
 
 from general_helpers import messageBox
 
@@ -15,7 +15,7 @@ class CommandSetOG(CommandSet):
         self.toVer = 20260111184309
 
         # self.commandTypes[CommandID.fundamentalFrequency] = CommandSets.CommandType.advanced
-
+        '''
         self.shortCommands = {
             CommandID.calibrateAll: "bca",
             CommandID.calibrateBowSpeed: "bcs",
@@ -278,13 +278,13 @@ class CommandSetOG(CommandSet):
             CommandID.testADCLatencyReturn: "testadclatencyreturn",
             CommandID.testADCMinMax: "testadcminmax"
         }
-
+    '''
         super().postInit()
 
     '''
     def initialRequest(self):
         return ["help"]
-    '''
+    
     def requestData(self, serialHandler):
         serialHandler.write("rqi:bcu")
         serialHandler.write("rqi:bmv")
@@ -351,10 +351,12 @@ class CommandSetOG(CommandSet):
         serialHandler.write("rqi:bowmotorcurrent")
         serialHandler.write("rqi:bowcontrolfrequency")
         serialHandler.write("rqi:bowpidpeakerror")
+    '''
 
     def buildHierarchy(self, commandItem, widget):
         return
 
+    '''
     def getCommandType(self, ci):
         if (ci.command in self.shortID):
             cId = self.shortID[ci.command]
@@ -397,9 +399,15 @@ class CommandSetOG(CommandSet):
     def addHarmonicSeries(self, sender, serialHandler, simpleFARHandler, harmonicSeries, name, setToList):
         self.saveHarmonicSeries(sender, serialHandler, simpleFARHandler, simpleFARHandler.stringModules[0].getCommandValue(CommandID.harmonicSeriesCount),
                                 name, setToList)
+    '''
 
     def clearData(self):
         pass
+
+    def processMessages(self, commandItem, commandSets, mainWidget, serialHandler):
+        return
+
+    '''
 
     def processHelpReturn(self, infoReturn, commandReference):
         commandList = self.CommandList()
@@ -441,3 +449,4 @@ class CommandSetOG(CommandSet):
 
                 commandReference.addCommand(command, help)
 
+'''

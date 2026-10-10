@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import Callable, Any
 
-#from commanddefinitions import ModuleCommand
 from commandparser import Derivedcommanditem
 from enum import Enum, auto, IntEnum
 
@@ -74,6 +73,7 @@ class ModuleCommand:
             if newData or callback.force:
                 callback.callback(self, callback.guiCallback)
 
+    #[allow(dead_code)]
     def getData(self) -> list[str]:
         self.dataChanged = False
         return self.arguments
@@ -145,12 +145,13 @@ class Module:
         elif (self.commands[command] != data):
             self.commands[command].setData(data)
 
+    #[allow(dead_code)]
     def getCommandData(self, command: str, resetDataChange=False):
         if (command in self.commands):
             return self.commands[command]
         else:
             return None
-
+    '''
     def addCommandCallback(self, command:str, callback):
         if (command in self.commands):
             self.commands[command].addCallback(callback)
@@ -162,7 +163,7 @@ class Module:
             self.commands[command].removeCallback(callback)
         else:
             pass
-
+    '''
     def addHelp(self):
         if self.helpModule is None:
             if self.parent is self.commandSet:
@@ -193,7 +194,7 @@ class ModuleGroup(Module):
     def __init__(self, parent:ModuleHandler, commandSet, commandItem:Derivedcommanditem=None, itemCommandSet=None, helpModule = None):
         self.children:list[ModuleHandler] = []
         super().__init__(parent, commandSet, commandItem, itemCommandSet, helpModule)
-        self.empty = False
+        #self.empty = False
         self.dataChanged = True
         if (commandItem is not None) or (itemCommandSet is not None):
             pass
@@ -236,8 +237,8 @@ class ModuleHandler(Module):
         super().__init__(parent, commandSet, commandItem, itemCommandSet, helpModule)
         #self.children = []
         self.groups:list[ModuleGroup] = []
-        self.instances = 0
-        self.isEmpty = False
+        #self.instances = 0
+        #self.isEmpty = False
         self.dataChanged = True
 
         #self.selectedIndex = -1
@@ -369,6 +370,7 @@ class ModuleHandler(Module):
             return False
         '''
 
+    #[allow(dead_code)]
     def addModule(self, commandItem: Derivedcommanditem | str) -> ModuleHandler:
         if isinstance(commandItem, str):
             commandItem = Derivedcommanditem(commandItem)
@@ -600,8 +602,9 @@ class ModuleHandler(Module):
                 return
     '''
 
-
+#[allow(dead_code)]
 class HelpCommand:
+    #[allow(dead_code)]
     def __init__(self, longCommand="", shortCommand="", type=0, arguments="", hidden=False,
                  description="", variables= []):
         if longCommand == "" or shortCommand == "":
@@ -612,7 +615,6 @@ class HelpCommand:
         self.arguments: str = arguments
         self.description: str = description
         self.hidden: bool = bool(int(hidden))
-        # self.save:bool = False
         self.type = int(type)
         self.variables = variables
         self.commandTypeData:HelpCommand.CommandType_data = HelpCommand.CommandType_data(self.type & 0b1111)
@@ -653,7 +655,6 @@ class HelpCommand:
 
     class CommandType_function(IntEnum):
         ectUndefined = 0
-        #ectParameter = 1
         ectCalibration = 1
         ectAddModule = 2
         ectRemoveModule = 3
@@ -661,7 +662,6 @@ class HelpCommand:
         ectName = 5
         ectIndex = 6
         ectAssignment = 7
-        #ectInvokeAction = 8
         ectAdminAction = 8
         ectLiveParameter = 9
         ectLiveAction = 10

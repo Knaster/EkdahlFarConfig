@@ -32,11 +32,11 @@ class midiEventHandler(QWidget):
         self.ui = mainWidget.ui
         self.serialHandler = serialHandler
         self.commandSet = commandSet
-        self.unknownCCCallbacks:list[GUICallback] = []
+        #self.unknownCCCallbacks:list[GUICallback] = []
         self.guiCallbackSystem = guiCallbackSystem
 
         self.guiCallbackLineEditMidiEventCommand:GUICallback = None
-
+        '''
         self.midiEventModuleDataPointer = {
             MIDIEvents[e_midiEvents.NoteOn].name :  ["mcf.mc.non", 0, "", None],
             MIDIEvents[e_midiEvents.NoteOff].name : ["mcf.mc.nof", 1, "", None],
@@ -45,7 +45,7 @@ class midiEventHandler(QWidget):
             MIDIEvents[e_midiEvents.PB].name: ["mcf.mc.pb", 5, "pitch", self.ui.midiPitchbendRatio],
             MIDIEvents[e_midiEvents.PC].name: ["mcf.mc.pc", 6, "program", None]
         }
-
+        '''
     MIDIBinarySenders = [["None", []], ["Bow hold & Mute inhibit", ["bw.bp.hd", "mu.su"]], ["Bow hold", ["bw.bp.hd"]],
                          ["Mute inhibit", ["mu.su"]]]
 

@@ -1,5 +1,5 @@
-from commanddefinitions import CommandID
-from PySide6.QtWidgets import QWidget, QDial, QDoubleSpinBox, QCheckBox, QPlainTextEdit
+from deprecated.commanddefinitions import CommandID
+from PySide6.QtWidgets import QWidget, QDial, QDoubleSpinBox, QCheckBox
 from PySide6.QtCore import QTimer, Qt
 from general_helpers import messageBox
 import equationParsingHelpers
