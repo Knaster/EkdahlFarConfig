@@ -1,7 +1,5 @@
 <map id="addPlugin" name="addPlugin">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,92,56"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#ac41558872a7ca433f8c40619ee824aed" title=" " alt="" coords="177,5,291,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,35,163,25,164,30,93,40"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a33830cc321922daaac5a681cdf326c47" title=" " alt="" coords="140,55,328,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="93,46,127,51,126,56,92,52"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,92,31"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#afe2701cce8606f3ec405da222e5f5432" title=" " alt="" coords="140,5,315,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,15,126,15,126,21,92,21"/>
 </map>

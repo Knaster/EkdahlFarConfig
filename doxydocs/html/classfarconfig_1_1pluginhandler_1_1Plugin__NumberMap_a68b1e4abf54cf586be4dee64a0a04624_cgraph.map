@@ -1,13 +1,16 @@
 <map id="dataChangedMap" name="dataChangedMap">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,141,80"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a37ca14b1f68af1c7e54e021a30a3008d" title=" " alt="" coords="189,55,297,80"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,65,176,65,176,70,142,70"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a7cc6a7f44f223b092fee0a76552b40dd" title=" " alt="" coords="362,5,445,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="284,52,348,32,349,37,286,57"/>
-<area shape="rect" id="Node000004" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a8ba27b411a1e5a24c6d10591ca9198c2" title=" " alt="" coords="345,55,461,80"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="297,65,332,65,332,70,297,70"/>
-<area shape="rect" id="Node000006" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#aa717d6ccaeeb05e6794aedb914a4cbbf" title=" " alt="" coords="351,104,455,129"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="286,77,349,97,347,102,284,83"/>
-<area shape="rect" id="Node000005" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#ab1ae8261fb8a191712fbd863b1edcfd7" title=" " alt="" coords="509,55,612,80"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="461,65,496,65,496,70,461,70"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,141,81"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a37ca14b1f68af1c7e54e021a30a3008d" title=" " alt="" coords="189,56,297,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,66,176,66,176,71,142,71"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a7cc6a7f44f223b092fee0a76552b40dd" title=" " alt="" coords="356,5,439,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="282,53,344,33,346,38,284,58"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a8ba27b411a1e5a24c6d10591ca9198c2" title=" " alt="" coords="515,56,631,81"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="298,66,501,66,501,71,298,71"/>
+<area shape="rect" id="Node000007" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#aa717d6ccaeeb05e6794aedb914a4cbbf" title=" " alt="" coords="345,107,449,132"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="284,79,346,100,344,105,282,84"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#aac46a43b6cc78d080a1a4db48c1ec4fb" title=" " alt="" coords="497,7,648,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="439,16,484,16,483,21,439,21"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#ab1ae8261fb8a191712fbd863b1edcfd7" title=" " alt="" coords="696,32,799,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="649,28,683,33,682,38,648,33"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="630,58,682,51,683,56,631,63"/>
 </map>

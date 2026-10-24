@@ -1,7 +1,7 @@
 from PySide6.QtCore import QObject
 import math
 
-import tableTest
+import customTableModel
 from ModuleSystem import ModuleCommand
 from CommandSets import CommandSetModular
 from commandparser import Derivedcommanditem
@@ -23,9 +23,9 @@ class TabBasic(QObject):
         self.scaleDataChangedCallback = None
         self.currentHarmonicData = []
 
-        self.tableViewScale = tableTest.customTableView
-        self.customTableModel = tableTest.CustomTableModel
-        self.delegate = tableTest.noneDelegate
+        self.tableViewScale = customTableModel.customTableView
+        self.customTableModel = customTableModel.CustomTableModel
+        self.delegate = customTableModel.noneDelegate
 
         self.guiCallbackSystem = guiCallbackSystem
         self.guiCallbacks: list[GUICallback] = list()
@@ -73,16 +73,16 @@ class TabBasic(QObject):
         self.ui.pushButtonAddHarmonicListFile.pressed.connect(self.pushButtonAddHarmonicListFilePressed)
         self.ui.pushButtonRemoveHarmonicList.pressed.connect(self.pushButtonRemoveHarmonicListPressed)
 
-        self.tableViewScale = tableTest.customTableView(self.ui.groupBox_3)
+        self.tableViewScale = customTableModel.customTableView(self.ui.groupBox_3)
         self.tableViewScale.horizontalHeader().setDefaultSectionSize(70)
         self.tableViewScale.horizontalHeader().setMinimumSectionSize(18)
         self.tableViewScale.verticalHeader().setDefaultSectionSize(30)
         self.tableViewScale.verticalHeader().setMinimumSectionSize(22)
         self.ui.layoutHarmonicTable.replaceWidget(self.ui.xtableViewScale, self.tableViewScale)
-        self.customTableModel = tableTest.CustomTableModel()
+        self.customTableModel = customTableModel.CustomTableModel()
         self.tableViewScale.setModel(self.customTableModel)
 
-        self.delegate = tableTest.noneDelegate()
+        self.delegate = customTableModel.noneDelegate()
         self.tableViewScale.setItemDelegateForRow(0, self.delegate)
         self.tableViewScale.model().dataChanged.connect(self.guiChangedScaleData)
 
@@ -138,7 +138,8 @@ class TabBasic(QObject):
                     self.ui.comboBoxHarmonicList.addItem("--_--")
                     self.serialHandler.write("rqi:bw.hsh.hs[" + str(i) + "].na")
             command, module = self.commandSet.getCommandAndModule("bw.hsh.hs")
-            self.ui.comboBoxHarmonicList.setCurrentIndex(int(command.arguments[0]))
+            if (command is not None) and (len(command.arguments) > 0):
+                self.ui.comboBoxHarmonicList.setCurrentIndex(int(command.arguments[0]))
 
     def dataChangedHarmonicListAdded(self, command:ModuleCommand):
         if (command.arguments is not None) and (len(command.arguments) > 1):
@@ -165,7 +166,7 @@ class TabBasic(QObject):
             self.ui.comboBoxHarmonicList.setCurrentIndex(int(command.arguments[0]))
 
     def guiChangedScaleData(self, topLeft, bottomRight, role):
-        self.serialHandler.write("bw.hsh.hs.r:" + str(topLeft.column()) + ":" + str(topLeft.guiCallback())) #+ ", rqi:bw.hsh.hs.da"
+        self.serialHandler.write("bw.hsh.hs.r:" + str(topLeft.column()) + ":" + str(topLeft.data())) #+ ", rqi:bw.hsh.hs.da"
 
     def dataChangedScaleRatio(self, commandData):
         self.serialHandler.write("rqi:bw.hsh.hs.da")
@@ -198,7 +199,7 @@ class TabBasic(QObject):
         for i in range(1, len(command.arguments)):
             self.currentHarmonicData.append(command.arguments[i])
 
-        self.tableViewScale.setModel(tableTest.CustomTableModel(self.currentHarmonicData))
+        self.tableViewScale.setModel(customTableModel.CustomTableModel(self.currentHarmonicData))
         self.tableViewScale.model().dataChanged.connect(self.guiChangedScaleData)
         if cellFocus:
             self.tableViewScale.setCurrentIndex(self.tableViewScale.model().index(row, col))

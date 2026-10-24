@@ -192,7 +192,7 @@ class CVEventHandler(QWidget):
                 cmd += self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicShift5)[0] + ":\"deadband(value" + str(cvOffset) + ", 30)/" + str(cvScale) + "\""
             case 2:
                 cmd = cl.buildCommandString({self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicShift)[0]})
-                cmd += (self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicShift)[0]+
+                cmd += (self.commandSet.getQualifiedShortCommand(CommandID.bowHarmonicShift)[0] +
                         ":\"deadband(value-" + str(32767 - self.mainClass.ui.dialCVFineTuneCenter.value()) + ", 400)*0.49064\"")
             case 5:
 

@@ -1,5 +1,12 @@
 <map id="guiChangedCallback" name="guiChangedCallback">
-<area shape="rect" id="Node000001" title=" " alt="" coords="216,5,371,31"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem.html#a8e49eda2a9724fea4f50168cabc8614d" title=" " alt="" coords="5,5,168,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="202,21,168,21,168,15,202,15"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="575,79,729,104"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem.html#ac3d439beade72159e87f86bfa0c8971c" title=" " alt="" coords="347,29,473,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="575,78,473,57,474,52,576,73"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem.html#a6b85018ddf0bf3a5686d183500b2d7cc" title=" " alt="" coords="293,79,527,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="561,103,527,103,527,98,561,97"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem.html#a77137fa277c1a6321962957dd707d6ac" title=" " alt="" coords="16,5,235,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="333,38,235,30,235,25,333,33"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem.html#a42cec46eb7f227949b86b9134c3d9880" title=" " alt="" coords="5,55,245,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="333,51,246,59,245,54,333,46"/>
+<area shape="poly" id="edge5_Node000005_Node000001" title=" " alt="" coords="540,80,574,80,574,86,540,85"/>
 </map>

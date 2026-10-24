@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['instrumentmaster_0',['InstrumentMaster',['../classfarconfig_1_1stringModule_1_1InstrumentMaster.html',1,'farconfig::stringModule']]]
+  ['lineedit_0',['LineEdit',['../classfarconfig_1_1GraphNode_1_1customnodewidgets_1_1LineEdit.html',1,'farconfig::GraphNode::customnodewidgets']]],
+  ['lineeditw_1',['LineEditW',['../classfarconfig_1_1GraphNode_1_1customnodewidgets_1_1LineEditW.html',1,'farconfig::GraphNode::customnodewidgets']]]
 ];

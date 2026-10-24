@@ -1,29 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,203,84,228"/>
-<area shape="rect" id="Node000001" href="$classfarconfig_1_1commandReference_1_1commandReference.html" title=" " alt="" coords="132,5,285,31"/>
-<area shape="poly" id="edge90_Node000000_Node000001" title=" " alt="" coords="50,188,60,155,76,115,99,75,130,40,149,28,151,33,134,44,104,78,81,117,65,157,55,190"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1cveventhandling_1_1CVEventHandler.html" title=" " alt="" coords="145,55,273,80"/>
-<area shape="poly" id="edge91_Node000000_Node000002" title=" " alt="" coords="55,189,84,138,105,112,130,89,151,78,154,82,134,94,109,116,89,141,60,191"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1farconfig_1_1DockTitleBar.html" title=" " alt="" coords="155,104,262,129"/>
-<area shape="poly" id="edge92_Node000000_Node000003" title=" " alt="" coords="65,191,95,164,131,138,156,127,159,132,133,143,98,168,69,194"/>
-<area shape="rect" id="Node000004" href="$classfarconfig_1_1farconfig_1_1FarConfig.html" title=" " alt="" coords="167,153,250,179"/>
-<area shape="poly" id="edge93_Node000000_Node000004" title=" " alt="" coords="96,197,166,176,168,181,98,202"/>
-<area shape="rect" id="Node000005" href="$classfarconfig_1_1midieventhandling_1_1midiEventHandler.html" title=" " alt="" coords="139,203,278,228"/>
-<area shape="poly" id="edge94_Node000000_Node000005" title=" " alt="" coords="98,213,139,213,139,218,98,218"/>
-<area shape="rect" id="Node000006" href="$classfarconfig_1_1pluginhandler_1_1Plugin__Widget.html" title=" " alt="" coords="151,252,266,277"/>
-<area shape="poly" id="edge95_Node000000_Node000006" title=" " alt="" coords="98,228,166,249,165,254,97,234"/>
-<area shape="rect" id="Node000011" href="$classfarconfig_1_1preferences_1_1preferences.html" title=" " alt="" coords="159,301,258,327"/>
-<area shape="poly" id="edge100_Node000000_Node000011" title=" " alt="" coords="70,236,99,262,133,286,161,299,159,304,131,291,95,266,66,240"/>
-<area shape="rect" id="Node000012" href="$classfarconfig_1_1serialWidget_1_1SerialWidget.html" title=" " alt="" coords="156,351,261,376"/>
-<area shape="poly" id="edge101_Node000000_Node000012" title=" " alt="" coords="60,239,89,288,110,314,134,336,157,349,154,353,130,340,106,317,85,291,55,242"/>
-<area shape="rect" id="Node000013" href="$classfarconfig_1_1timedChart_1_1timedChart.html" title="chartMatchArr = [ chartMatchData(seriesType.integer, &quot;Harmonic (A0)&quot;, 0, CommandID...." alt="" coords="161,400,256,425"/>
-<area shape="poly" id="edge102_Node000000_Node000013" title=" " alt="" coords="55,241,65,274,81,313,104,353,134,387,163,402,160,407,130,391,99,356,76,316,60,276,50,242"/>
-<area shape="rect" id="Node000007" href="$classfarconfig_1_1pluginhandler_1_1Plugin__AHDSR.html" title=" " alt="" coords="351,179,465,204"/>
-<area shape="poly" id="edge96_Node000006_Node000007" title=" " alt="" coords="263,245,284,237,332,213,363,202,365,207,334,218,286,242,265,250"/>
-<area shape="rect" id="Node000008" href="$classfarconfig_1_1pluginhandler_1_1Plugin__LFO.html" title=" " alt="" coords="361,228,455,253"/>
-<area shape="poly" id="edge97_Node000006_Node000008" title=" " alt="" coords="279,254,360,244,361,249,280,259"/>
-<area shape="rect" id="Node000009" href="$classfarconfig_1_1pluginhandler_1_1Plugin__Multiple.html" title=" " alt="" coords="347,277,469,303"/>
-<area shape="poly" id="edge98_Node000006_Node000009" title=" " alt="" coords="280,271,347,280,346,285,279,276"/>
-<area shape="rect" id="Node000010" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html" title=" " alt="" coords="333,327,483,352"/>
-<area shape="poly" id="edge99_Node000006_Node000010" title=" " alt="" coords="268,279,286,286,334,312,367,324,365,329,332,316,284,291,266,284"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,83,31"/>
+<area shape="rect" id="Node000001" href="$classfarconfig_1_1midihandler_1_1MidiHandler.html" title=" " alt="" coords="131,5,232,31"/>
+<area shape="poly" id="edge81_Node000000_Node000001" title=" " alt="" coords="96,15,131,15,131,21,96,21"/>
 </map>

@@ -1,9 +1,7 @@
 <map id="addSlider" name="addSlider">
-<area shape="rect" id="Node000001" title=" " alt="" coords="347,31,429,56"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a37ca14b1f68af1c7e54e021a30a3008d" title=" " alt="" coords="191,31,299,56"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="333,46,299,46,299,41,333,41"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a68b1e4abf54cf586be4dee64a0a04624" title=" " alt="" coords="6,5,142,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="177,36,142,31,142,25,178,31"/>
-<area shape="rect" id="Node000004" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a0d0ec623eb8f805412609e9e672a81d0" title=" " alt="" coords="5,55,143,80"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="177,55,143,60,142,55,177,50"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="345,5,428,31"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a37ca14b1f68af1c7e54e021a30a3008d" title=" " alt="" coords="189,5,297,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="331,21,298,21,298,15,331,15"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a68b1e4abf54cf586be4dee64a0a04624" title=" " alt="" coords="5,5,141,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="176,21,141,21,141,15,176,15"/>
 </map>

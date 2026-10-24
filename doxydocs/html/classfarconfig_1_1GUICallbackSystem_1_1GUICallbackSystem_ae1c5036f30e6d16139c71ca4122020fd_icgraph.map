@@ -1,7 +1,5 @@
 <map id="removeGUICallback" name="removeGUICallback">
-<area shape="rect" id="Node000001" title=" " alt="" coords="247,42,399,67"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem.html#aba263acf7b61f60334c97118e63b91f8" title=" " alt="" coords="5,5,199,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,45,199,41,199,36,233,40"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem.html#a31721055c838d5dc96cfa6191d4634cc" title=" " alt="" coords="23,70,181,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="233,69,182,75,181,70,233,63"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="224,5,376,31"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GUICallbackSystem_1_1GUICallbackSystem.html#aea7d619b780534a40b9aa8dfcd133434" title=" " alt="" coords="5,5,176,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,21,176,21,176,15,210,15"/>
 </map>

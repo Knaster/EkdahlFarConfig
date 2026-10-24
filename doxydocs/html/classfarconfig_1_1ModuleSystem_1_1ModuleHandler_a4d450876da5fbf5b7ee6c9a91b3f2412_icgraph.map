@@ -1,4 +1,5 @@
 <map id="requestAllData" name="requestAllData">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,124,55"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="84,18,78,11,65,8,53,10,47,14,45,20,49,28,44,30,40,21,42,12,51,5,65,3,81,6,88,14"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="243,5,361,31"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1ModuleSystem_1_1ModuleHandler.html#a59f2e19890cf54f48bc66b57a242ba55" title=" " alt="" coords="5,5,195,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,21,195,21,195,15,229,15"/>
 </map>

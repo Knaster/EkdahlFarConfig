@@ -1,0 +1,14 @@
+<map id="parseCommand" name="parseCommand">
+<area shape="rect" id="Node000001" title="Takes a command for assigning target commands and uses those in order to build a basic node tree." alt="" coords="5,63,131,88"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a3480c6f8410acd502ff2f58efa568288" title=" " alt="" coords="179,63,251,88"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,73,165,73,165,78,131,78"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#aa44837e880065699543186c0bb861fd3" title=" " alt="" coords="352,5,557,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="244,60,298,41,343,31,344,36,299,46,245,65"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1GraphNode_1_1graphassemblies_1_1graphAssemblies.html#a3a51c1c2e8b156d88fc850cbe800fa65" title=" " alt="" coords="299,55,611,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="251,73,285,73,285,78,251,78"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a22280aaa8dd7274a4d359d3d626f8b21" title="Uses SymPy to extract numbers, symbols and functions from an equation and build three lists." alt="" coords="406,120,503,145"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="245,86,299,105,393,123,392,128,298,110,244,91"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#aa1803650620d4f123ba3baa39579a8c7" title="Recursive part of getChildren that will apply itself onto each sub&#45;equation." alt="" coords="659,120,777,145"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="504,130,645,130,645,135,504,135"/>
+<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="676,122,667,112,671,102,689,95,718,93,755,97,766,102,769,108,765,111,762,106,754,103,718,99,690,101,675,106,672,111,680,118"/>
+</map>

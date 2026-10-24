@@ -1,6 +1,8 @@
 <map id="__init__" name="__init__">
-<area shape="rect" id="Node000001" title=" " alt="" coords="303,29,373,55"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="375,20,365,11,338,8,316,10,304,15,302,20,308,28,304,31,297,21,300,11,315,5,338,3,367,6,378,15"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a39a68343d80ee0e614c0ff533843b523" title="self.hasHierarchy = False self.hasHelp = False self.hasNodes = False self.hasCommandList = False self..." alt="" coords="5,22,255,62"/>
-<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="289,45,255,45,255,39,289,39"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="303,35,373,60"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="375,25,365,17,338,13,316,15,304,20,302,26,308,33,304,36,297,26,300,16,315,10,338,8,367,12,378,21"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1commandparser_1_1Derivedcommanditem.html#a3322cab461bbe717df603a6f547479ba" title=" " alt="" coords="71,5,189,31"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="288,43,188,29,189,24,289,38"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a39a68343d80ee0e614c0ff533843b523" title=" " alt="" coords="5,55,255,95"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="289,57,255,61,255,56,288,51"/>
 </map>

@@ -6,6 +6,7 @@ import sympy as sp
 import dynamicnodes
 from commandparser import Derivedcommanditem
 from general_helpers import stripLeadingQuotes
+from PySide6.QtGui import QColor
 
 ## The NodeHandler class creates a \a node diagram of the current set of \a modules by using the
 # \ref "farconfig.nodehandler.NodeHandler.addDynamicNodeSet" "addDynamicNodeSet" function which is merely a caller for the
@@ -67,7 +68,9 @@ class NodeHandler:
         node._view.name = name
         node.updateNames()
     '''
-    def findCommandMatchAndProcess(self, command:Derivedcommanditem):
+    #def findCommandMatchAndProcess(self, command:Derivedcommanditem):
+    ##@brief Takes a command for assigning target commands and uses those in order to build a basic node tree
+    def parseCommand(self, command: Derivedcommanditem):
         if (self.commandSet is None):
             return False
         #commandID, module = self.commandSet.getCommandID(command)
@@ -90,24 +93,24 @@ class NodeHandler:
                 commandParentIndex = command.hierarchy[len(command.hierarchy) - 2].selection[0]
                 if (commandParentIndex != node.moduleIndex):
                     allFound = False
-
+            '''
             if (allFound):
                 if (node.argumentMatch is not None):
                     for i in range(0, len(node.argumentMatch)):
                         if command.argument[i] != node.argumentMatch[i]: allFound = False
                 else:
                     pass
-
+            '''
             if (allFound):
-                if (node.argumentMatch is not None):
-                    # WHAT IS THIS
-                    cl = self.commandSet.CommandList(stripLeadingQuotes(command.argument[len(node.argumentMatch):][0]))
+                #if (node.argumentMatch is not None):
+                #    # WHAT IS THIS
+                #    cl = self.commandSet.CommandList(stripLeadingQuotes(command.argument[len(node.argumentMatch):][0]))
+                #else:
+                if (len(command.argument) > 0):
+                    cl = self.commandSet.CommandList(stripLeadingQuotes(command.argument[0]))
                 else:
-                    if (len(command.argument) > 0):
-                        cl = self.commandSet.CommandList(stripLeadingQuotes(command.argument[0]))
-                    else:
-                        cl = self.commandSet.CommandList()
-                        pass
+                    cl = self.commandSet.CommandList()
+                    pass
 
                 for comm in cl.commands:
 #                    if (len(comm.argument) == 0):
@@ -137,16 +140,40 @@ class NodeHandler:
 #            pass
         return result
 
-    def parseCommand(self, command):
-        return self.findCommandMatchAndProcess(command)
+#    def parseCommand(self, command):
+#        return self.findCommandMatchAndProcess(command)
 
+    ##@brief Updates modifier names, sets node colors and uses the NodeOrganizer to build a horizontal node tree
     def postBuildUpdate(self):
         self.optimizeObjects()
         for node in self.ga.graph.all_nodes():
+            #node = customnode.CustomBaseNode(node)
             if ("modifier" in node.type_):
                 node.updateNames()
+
+            if node.plugin:
+                node.view.widgetBackground = QColor(126, 148, 146)
+            elif node.virtual:
+                node.view.widgetBackground = QColor(237, 125, 241)
+            elif node.source and not node.target:
+                node.view.widgetBackground = QColor(125, 146, 241)
+            elif node.target and not node.source:
+                node.view.widgetBackground = QColor(247, 91, 110)
+            elif node.source and node.target:
+                node.view.widgetBackground = QColor(241, 187, 125)
+
         self.ga.graph.nodeOrganizer.buildHorizontalTree()
 
+    def hideAllNodes(self):
+        for node in self.ga.graph.all_nodes():
+            node.view.setVisible(False)
+
+    def hideAllVolatile(self):
+#        for node in self.ga.graph.all_nodes():
+#            if (node.)
+        pass
+
+    ##@brief Redraws the node tree
     def redraw(self):
         for node in self.ga.graph.all_nodes():
             node.view.draw_node()
@@ -156,12 +183,14 @@ class NodeHandler:
     localSymbols = []
     localFunctions = []
 
+    ##@brief Uses SymPy to extract numbers, symbols and functions from an equation and build three lists
     def getChildren(self, equation, rootOnly = True):
         self.localNumbers.clear()
         self.localSymbols.clear()
         self.localFunctions.clear()
         self.getChildrenIter(equation, rootOnly)
 
+    ##@brief Recursive part of getChildren that will apply itself onto each sub-equation
     def getChildrenIter(self, equation, rootOnly):
         if (equation.is_Number): self.localNumbers.append(str(equation))
         elif (equation.is_Symbol): self.localSymbols.append(str(equation))
@@ -329,7 +358,7 @@ class NodeHandler:
                      skipFunction('tan', '', False)]
 
     #Override simple built-in functions
-    def overrideFunction(self, overrideWith:skipFunction, mainNode, equation, connectToInput, connectToOutput):
+    def overrideFunction(self, overrideWith:skipFunction, mainNode:CustomBaseNode, equation, connectToInput, connectToOutput):
         if overrideWith.alt != "":
             findAndReplace = overrideWith.alt
         else:

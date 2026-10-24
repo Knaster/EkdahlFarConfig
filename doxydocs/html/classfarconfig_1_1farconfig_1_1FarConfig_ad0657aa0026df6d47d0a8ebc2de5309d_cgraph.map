@@ -1,7 +1,9 @@
 <map id="connectDisconnect" name="connectDisconnect">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,151,56"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#a7fccc08043083d490dbb17bb9a6d5817" title=" " alt="" coords="201,5,309,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,30,187,25,187,30,151,36"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#af8dbcc35ea2ef3fd740ea709153e6fd1" title=" " alt="" coords="199,55,311,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,51,185,55,185,61,151,56"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,38,151,63"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#ac5fbe9bf99cd8747b41647559f0cbbbc" title=" " alt="" coords="199,13,309,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,38,185,33,185,38,151,43"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#af939528b824a6f47523fd94fbbb0f9ad" title=" " alt="" coords="209,62,299,87"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="151,58,196,64,195,69,150,63"/>
+<area shape="rect" id="Node000003" href="$namespacefarconfig_1_1farconfig.html#a987a98f0b6079a1d3199dfde6adc5fb7" title=" " alt="" coords="357,5,552,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="309,23,344,23,344,28,309,28"/>
 </map>

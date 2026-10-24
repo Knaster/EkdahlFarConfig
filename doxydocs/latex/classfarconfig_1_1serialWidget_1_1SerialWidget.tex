@@ -23,59 +23,61 @@ Collaboration diagram for Serial\+Widget\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_af187712d69d8f6301e586eae9d5330fa}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, in\+Serial\+Handler, in\+Time\+Stamper, in\+Logging, parent=None)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a4b3f6e1857b90083eac92a5717834f19}{line\+Edit\+Keypress\+Event}} (self, QKey\+Event event)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a54654fd21a123d0a346a72502ec57c3a}{add\+To\+Debug\+Window}} (self, text)
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_ad498d28466a14a3c0c79a9f8b07c10b1}{add\+To\+Debug\+Window}} (self, str text)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a0581ff476fdc7eba2337df5e00b238d6}{debug\+Clear}} (self)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_aae64f9dc4d9f11c5078576b1f1f0709a}{set\+Serial\+Visibility}} (self, data)
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_ac9bf1159d6c5c16882b8b15d687b0a64}{gui\+Changed\+Debug\+Cursor\+Follow\+Toggled}} (self)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a5711c195196ee060e6e89b4ca4abb03e}{check\+Box\+Debug\+Cursor\+Follow\+Toggled}} (self)
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a2fb88d5b962f2bc1f544a81316480d5b}{gui\+Changed\+Limit\+Lines\+Enabled}} (self)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_ac98c44e06e762df323c5fd7aee383966}{update\+Line\+Limit}} (self)
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a7417b5ac645561e3e4f530d00d516a31}{gui\+Changed\+Limit\+Lines\+Value}} (self)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a13e07770fa567e6d6d596a27fcd91a38}{check\+Box\+Limit\+Lines\+State\+Changed}} (self)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a77413352c564a48b39bde80dd4daa896}{spin\+Box\+Limit\+Lines\+Value\+Changed}} (self)
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a4b3f6e1857b90083eac92a5717834f19}{line\+Edit\+Keypress\+Event}} (self, QKey\+Event event)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a3a056d0d976b4bba01115b21e064056a}{line\+Edit\+Send}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a09a45b289a6030142d08ec9a8a55c795}{set\+Serial\+Visibility}} (self, \mbox{\hyperlink{classfarconfig_1_1general__helpers_1_1dataVisibilitySettings}{data\+Visibility\+Settings}} data)
+\begin{DoxyCompactList}\small\item\em match(data.\+prefix\+Type)\+: case "{}irq"{}\+: self.\+filter\+Hide\+Info\+Request = not data.\+show case "{}out"{}\+: self.\+filter\+Hide\+Output = not data.\+show case \+\_\+\+: out = str(int(data.\+show)) self.\+serial\+Handler.\+write("{}debugprint\+:"{} + data.\+prefix\+Type\mbox{[}0\mbox{]} + "{}\+:"{} + out) pass \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_ac98c44e06e762df323c5fd7aee383966}{update\+Line\+Limit}} (self)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_ac492f8de2d00b6c4282e766bfadaf2e7}{ui}}
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_adfeca4fdcb50a877e5b481c6f4ef44bf}{command\+Set}}
+\begin{DoxyCompactList}\small\item\em Command\+Set\+Modular. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a6174a600d7809e8b1d9c1833083b534a}{cursor\+Follow}}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a6f2fc4e0527f117438e03fb354ad2dee}{filter\+Hide\+Output}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a2728d8db0a91ee758cb0faa699cac345}{filter\+Hide\+Info\+Request}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a46f0d600ea5891b488f0ba840873e687}{serial\+Handler}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a43e838a2794bc7c678b688f649208e7f}{time\+Stamper}}
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a8c28b1f99224ddf33ded0d6a8e33a38a}{debug\+Clear}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_ad73add6f61723a531131377665d49652}{debug\+Cursor\+Follow}}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_af81cb585046c376613db3a8e6410e918}{logging}}
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a2728d8db0a91ee758cb0faa699cac345}{filter\+Hide\+Info\+Request}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a6f2fc4e0527f117438e03fb354ad2dee}{filter\+Hide\+Output}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_abcebb32bfb0e88498143ae4e780bdc83}{line\+Edit\+Send}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_ad85869025c5b61697b34bfdf17e87561}{original\+Line\+Edit\+Key\+Press\+Event}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a8c28b1f99224ddf33ded0d6a8e33a38a}{debug\+Clear}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a913fc068519e3ec327bb5c0cadd69481}{line\+Limit}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_abdc02eff6e55636307e95a9ec919c2bc}{line\+Limit\+On}}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a6174a600d7809e8b1d9c1833083b534a}{cursor\+Follow}}
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_af81cb585046c376613db3a8e6410e918}{logging}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_ad85869025c5b61697b34bfdf17e87561}{original\+Line\+Edit\+Key\+Press\+Event}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a46f0d600ea5891b488f0ba840873e687}{serial\+Handler}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a43e838a2794bc7c678b688f649208e7f}{time\+Stamper}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_ac492f8de2d00b6c4282e766bfadaf2e7}{ui}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-dict \mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a5b019f6359a63d30307a1c3d9df84f24}{report\+Type\+Data}}
-\item 
 \mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_ae16322db97b8071274bfeb6a612dfcc3}{background\+Color}} = QColor(63,63,63)
+\item 
+dict \mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget_a5b019f6359a63d30307a1c3d9df84f24}{report\+Type\+Data}}
 \end{DoxyCompactItemize}
 
 
@@ -103,37 +105,50 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_a54654fd21a123d0a346a72502ec57c3a}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_a54654fd21a123d0a346a72502ec57c3a} 
+\Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_ad498d28466a14a3c0c79a9f8b07c10b1}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_ad498d28466a14a3c0c79a9f8b07c10b1} 
 \index{SerialWidget@{SerialWidget}!addToDebugWindow@{addToDebugWindow}}
 \index{addToDebugWindow@{addToDebugWindow}!SerialWidget@{SerialWidget}}
 \doxysubsubsection{\texorpdfstring{addToDebugWindow()}{addToDebugWindow()}}
-{\footnotesize\ttfamily add\+To\+Debug\+Window (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{text }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily add\+To\+Debug\+Window (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{text }\end{DoxyParamCaption})}
 
-\Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_a5711c195196ee060e6e89b4ca4abb03e}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_a5711c195196ee060e6e89b4ca4abb03e} 
-\index{SerialWidget@{SerialWidget}!checkBoxDebugCursorFollowToggled@{checkBoxDebugCursorFollowToggled}}
-\index{checkBoxDebugCursorFollowToggled@{checkBoxDebugCursorFollowToggled}!SerialWidget@{SerialWidget}}
-\doxysubsubsection{\texorpdfstring{checkBoxDebugCursorFollowToggled()}{checkBoxDebugCursorFollowToggled()}}
-{\footnotesize\ttfamily check\+Box\+Debug\+Cursor\+Follow\+Toggled (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
-
-\Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_a13e07770fa567e6d6d596a27fcd91a38}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_a13e07770fa567e6d6d596a27fcd91a38} 
-\index{SerialWidget@{SerialWidget}!checkBoxLimitLinesStateChanged@{checkBoxLimitLinesStateChanged}}
-\index{checkBoxLimitLinesStateChanged@{checkBoxLimitLinesStateChanged}!SerialWidget@{SerialWidget}}
-\doxysubsubsection{\texorpdfstring{checkBoxLimitLinesStateChanged()}{checkBoxLimitLinesStateChanged()}}
-{\footnotesize\ttfamily check\+Box\+Limit\+Lines\+State\+Changed (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
-
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1serialWidget_1_1SerialWidget_a13e07770fa567e6d6d596a27fcd91a38_cgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_a0581ff476fdc7eba2337df5e00b238d6}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_a0581ff476fdc7eba2337df5e00b238d6} 
 \index{SerialWidget@{SerialWidget}!debugClear@{debugClear}}
 \index{debugClear@{debugClear}!SerialWidget@{SerialWidget}}
 \doxysubsubsection{\texorpdfstring{debugClear()}{debugClear()}}
 {\footnotesize\ttfamily debug\+Clear (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
+\Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_ac9bf1159d6c5c16882b8b15d687b0a64}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_ac9bf1159d6c5c16882b8b15d687b0a64} 
+\index{SerialWidget@{SerialWidget}!guiChangedDebugCursorFollowToggled@{guiChangedDebugCursorFollowToggled}}
+\index{guiChangedDebugCursorFollowToggled@{guiChangedDebugCursorFollowToggled}!SerialWidget@{SerialWidget}}
+\doxysubsubsection{\texorpdfstring{guiChangedDebugCursorFollowToggled()}{guiChangedDebugCursorFollowToggled()}}
+{\footnotesize\ttfamily gui\+Changed\+Debug\+Cursor\+Follow\+Toggled (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_a2fb88d5b962f2bc1f544a81316480d5b}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_a2fb88d5b962f2bc1f544a81316480d5b} 
+\index{SerialWidget@{SerialWidget}!guiChangedLimitLinesEnabled@{guiChangedLimitLinesEnabled}}
+\index{guiChangedLimitLinesEnabled@{guiChangedLimitLinesEnabled}!SerialWidget@{SerialWidget}}
+\doxysubsubsection{\texorpdfstring{guiChangedLimitLinesEnabled()}{guiChangedLimitLinesEnabled()}}
+{\footnotesize\ttfamily gui\+Changed\+Limit\+Lines\+Enabled (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1serialWidget_1_1SerialWidget_a2fb88d5b962f2bc1f544a81316480d5b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_a7417b5ac645561e3e4f530d00d516a31}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_a7417b5ac645561e3e4f530d00d516a31} 
+\index{SerialWidget@{SerialWidget}!guiChangedLimitLinesValue@{guiChangedLimitLinesValue}}
+\index{guiChangedLimitLinesValue@{guiChangedLimitLinesValue}!SerialWidget@{SerialWidget}}
+\doxysubsubsection{\texorpdfstring{guiChangedLimitLinesValue()}{guiChangedLimitLinesValue()}}
+{\footnotesize\ttfamily gui\+Changed\+Limit\+Lines\+Value (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1serialWidget_1_1SerialWidget_a7417b5ac645561e3e4f530d00d516a31_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_a4b3f6e1857b90083eac92a5717834f19}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_a4b3f6e1857b90083eac92a5717834f19} 
 \index{SerialWidget@{SerialWidget}!lineEditKeypressEvent@{lineEditKeypressEvent}}
 \index{lineEditKeypressEvent@{lineEditKeypressEvent}!SerialWidget@{SerialWidget}}
@@ -160,25 +175,16 @@ Here is the caller graph for this function\+:\nopagebreak
 \includegraphics[width=318pt]{classfarconfig_1_1serialWidget_1_1SerialWidget_a3a056d0d976b4bba01115b21e064056a_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_aae64f9dc4d9f11c5078576b1f1f0709a}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_aae64f9dc4d9f11c5078576b1f1f0709a} 
+\Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_a09a45b289a6030142d08ec9a8a55c795}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_a09a45b289a6030142d08ec9a8a55c795} 
 \index{SerialWidget@{SerialWidget}!setSerialVisibility@{setSerialVisibility}}
 \index{setSerialVisibility@{setSerialVisibility}!SerialWidget@{SerialWidget}}
 \doxysubsubsection{\texorpdfstring{setSerialVisibility()}{setSerialVisibility()}}
-{\footnotesize\ttfamily set\+Serial\+Visibility (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily set\+Serial\+Visibility (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1general__helpers_1_1dataVisibilitySettings}{data\+Visibility\+Settings}}}]{data }\end{DoxyParamCaption})}
 
-\Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_a77413352c564a48b39bde80dd4daa896}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_a77413352c564a48b39bde80dd4daa896} 
-\index{SerialWidget@{SerialWidget}!spinBoxLimitLinesValueChanged@{spinBoxLimitLinesValueChanged}}
-\index{spinBoxLimitLinesValueChanged@{spinBoxLimitLinesValueChanged}!SerialWidget@{SerialWidget}}
-\doxysubsubsection{\texorpdfstring{spinBoxLimitLinesValueChanged()}{spinBoxLimitLinesValueChanged()}}
-{\footnotesize\ttfamily spin\+Box\+Limit\+Lines\+Value\+Changed (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1serialWidget_1_1SerialWidget_a77413352c564a48b39bde80dd4daa896_cgraph}
-\end{center}
-\end{figure}
+
+match(data.\+prefix\+Type)\+: case "{}irq"{}\+: self.\+filter\+Hide\+Info\+Request = not data.\+show case "{}out"{}\+: self.\+filter\+Hide\+Output = not data.\+show case \+\_\+\+: out = str(int(data.\+show)) self.\+serial\+Handler.\+write("{}debugprint\+:"{} + data.\+prefix\+Type\mbox{[}0\mbox{]} + "{}\+:"{} + out) pass 
+
 \Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_ac98c44e06e762df323c5fd7aee383966}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_ac98c44e06e762df323c5fd7aee383966} 
 \index{SerialWidget@{SerialWidget}!updateLineLimit@{updateLineLimit}}
 \index{updateLineLimit@{updateLineLimit}!SerialWidget@{SerialWidget}}
@@ -200,6 +206,16 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{backgroundColor@{backgroundColor}!SerialWidget@{SerialWidget}}
 \doxysubsubsection{\texorpdfstring{backgroundColor}{backgroundColor}}
 {\footnotesize\ttfamily background\+Color = QColor(63,63,63)\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_adfeca4fdcb50a877e5b481c6f4ef44bf}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_adfeca4fdcb50a877e5b481c6f4ef44bf} 
+\index{SerialWidget@{SerialWidget}!commandSet@{commandSet}}
+\index{commandSet@{commandSet}!SerialWidget@{SerialWidget}}
+\doxysubsubsection{\texorpdfstring{commandSet}{commandSet}}
+{\footnotesize\ttfamily command\+Set}
+
+
+
+Command\+Set\+Modular. 
 
 \Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_a6174a600d7809e8b1d9c1833083b534a}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_a6174a600d7809e8b1d9c1833083b534a} 
 \index{SerialWidget@{SerialWidget}!cursorFollow@{cursorFollow}}
@@ -269,17 +285,19 @@ Here is the caller graph for this function\+:\nopagebreak
 
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{=\ \ \{\ \textcolor{stringliteral}{'command'}\ :\ SettingsClass(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'command'}),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'debug'}\ :\ SettingsClass(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'debug'}),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'error'}\ :\ SettingsClass(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'error'}),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'expressionparser'}\ :\ SettingsClass(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'expressionparser'}),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'hardware'}\ :\ SettingsClass(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'hardware'}),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'inforequest'}\ :\ SettingsClass(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'inforequest'}),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'priority'}\ :\ SettingsClass(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'priority'}),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'usb'}\ :\ SettingsClass(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'usb'}),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'undefined'}\ :\ SettingsClass(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'undefined'}),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'output'}\ :\ SettingsClass(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'output'}),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'internal'}\ :\ SettingsClass(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'internal'})\}}
+\DoxyCodeLine{=\ \ \{\ \textcolor{stringliteral}{'cmd'}\ :\ dataVisibilitySettings(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'command'},\ color=QColor(180,255,120)),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'dbg'}\ :\ dataVisibilitySettings(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'debug'},\ color=QColor(255,255,115)),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'err'}\ :\ dataVisibilitySettings(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'error'},\ color=QColor(255,80,80)),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'ep'}\ :\ dataVisibilitySettings(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'expressionparser'}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'hw'}\ :\ dataVisibilitySettings(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'hardware'}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'irq'}\ :\ dataVisibilitySettings(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'inforequest'},\ color=QColor(215,200,255)),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'pri'}\ :\ dataVisibilitySettings(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'priority'},\ color=QColor(255,100,100)),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'usb'}\ :\ dataVisibilitySettings(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'usb'}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'un'}\ :\ dataVisibilitySettings(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'undefined'}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'out'}\ :\ dataVisibilitySettings(\textcolor{keyword}{True},\ \textcolor{stringliteral}{''},\ color=QColor(127,127,127)),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'int'}\ :\ dataVisibilitySettings(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'internal'},\ color=QColor(128,128,128)),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'hlp'}:\ dataVisibilitySettings(\textcolor{keyword}{True},\textcolor{stringliteral}{'help'},\ color=QColor(115,\ 200,\ 255)),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'txi'}\ :\ dataVisibilitySettings(\textcolor{keyword}{True},\ \textcolor{stringliteral}{'text'})\}}
 
 \end{DoxyCode}
 \Hypertarget{classfarconfig_1_1serialWidget_1_1SerialWidget_a46f0d600ea5891b488f0ba840873e687}\label{classfarconfig_1_1serialWidget_1_1SerialWidget_a46f0d600ea5891b488f0ba840873e687} 

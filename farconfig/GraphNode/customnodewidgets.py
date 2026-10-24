@@ -43,7 +43,7 @@ class NodeSlider(NodeBaseWidget):
         print('Clicked on node: "{}"'.format(self.node.name()))
 
     def get_value(self):
-        return self.get_custom_widget().slider.value()
+        return self.get_custom_widget().slider.show()
 
     def set_value(self, value):
         if type(value) is not int:

@@ -1,5 +1,6 @@
 <map id="findIfRootOrEnd" name="findIfRootOrEnd">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,129,31"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#a94b956c3fd4bf5e3bfa3dabc2d5725a0" title=" " alt="" coords="177,5,309,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,15,164,15,164,21,130,21"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,129,55"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="38,31,32,21,35,11,47,5,67,3,92,6,102,15,98,19,89,11,67,8,49,10,39,15,37,20,42,28"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#a94b956c3fd4bf5e3bfa3dabc2d5725a0" title=" " alt="" coords="177,29,309,55"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="130,39,164,39,164,45,130,45"/>
 </map>

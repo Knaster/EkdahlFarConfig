@@ -2,8 +2,7 @@
 \hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet}{}\label{classfarconfig_1_1CommandSet_1_1CommandSet}\index{CommandSet@{CommandSet}}
 
 
-Inheritance diagram for Command\+Set\+:
-\nopagebreak
+Inheritance diagram for Command\+Set\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -16,12 +15,6 @@ Inheritance diagram for Command\+Set\+:
 \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_abdd362d5f799ad16b5d6700efe590290}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a9c9bfca4a4603adf077cff80c146e5f3}{post\+Init}} (self)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a69c1c54f7639a8a00965fc04bb00e9cc}{build\+Hierarchy}} (self, command\+Item, widget)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_ab1a7b5ff1b281815952cd873fe8313f4}{get\+Command\+And\+Module}} (self, in\+Command, module=None)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a2259dcce395577f57e7a522c3e21901c}{process\+Messages}} (self, command\+Item, command\+Sets, main\+Widget, serial\+Handler)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -33,26 +26,24 @@ Inheritance diagram for Command\+Set\+:
 \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a7ea3dbccd2aab692026b8a96a2dfce06}{from\+Ver}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a6d56bb8021b24828df7321341dea508d}{to\+Ver}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a10f8fcd37350a791230c424c5045b43a}{command\+Types}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a033f2c2ba101d1649bd36de7783782f0}{commands}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a1a49ebf29cfa724def21c45eb4a67336}{loading\+Stage}}
 \item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a65bfeeee23c10f963f8c5a54cd7c1662}{long\+Commands}}
+\begin{DoxyCompactList}\small\item\em dict \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_aa587120b99751e0ce1cab614cb006030}{long\+ID}}
+\begin{DoxyCompactList}\small\item\em dict \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_ab0db378e6ced1decdb42263d4cb2789a}{ready}}
 \item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a47eb09e0e0f41508c06f85979f43b42e}{short\+Commands}}
+\item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a48dfbeb0b58591d26fde67a1637c211e}{short\+ID}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_aa587120b99751e0ce1cab614cb006030}{long\+ID}}
-\end{DoxyCompactItemize}
-\doxysubsubsection*{Static Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_abf241efb62705490a21c05c71f969f42}{command\+ID}} = None
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a6f39f5800f89399980924e83f33688ad}{indexing\+Child}} = None
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em dict \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -76,59 +67,15 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_a69c1c54f7639a8a00965fc04bb00e9cc}\label{classfarconfig_1_1CommandSet_1_1CommandSet_a69c1c54f7639a8a00965fc04bb00e9cc} 
-\index{CommandSet@{CommandSet}!buildHierarchy@{buildHierarchy}}
-\index{buildHierarchy@{buildHierarchy}!CommandSet@{CommandSet}}
-\doxysubsubsection{\texorpdfstring{buildHierarchy()}{buildHierarchy()}}
-{\footnotesize\ttfamily build\+Hierarchy (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command\+Item,  }\item[{}]{widget }\end{DoxyParamCaption})}
-
-
-
-Reimplemented in \mbox{\hyperlink{classfarconfig_1_1CommandSetOG_1_1CommandSetOG_a69c1c54f7639a8a00965fc04bb00e9cc}{Command\+Set\+OG}}, and \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a69c1c54f7639a8a00965fc04bb00e9cc}{Command\+Set\+Modular}}.
-
-\Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_ab1a7b5ff1b281815952cd873fe8313f4}\label{classfarconfig_1_1CommandSet_1_1CommandSet_ab1a7b5ff1b281815952cd873fe8313f4} 
-\index{CommandSet@{CommandSet}!getCommandAndModule@{getCommandAndModule}}
-\index{getCommandAndModule@{getCommandAndModule}!CommandSet@{CommandSet}}
-\doxysubsubsection{\texorpdfstring{getCommandAndModule()}{getCommandAndModule()}}
-{\footnotesize\ttfamily get\+Command\+And\+Module (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{in\+Command,  }\item[{}]{module = {\ttfamily None} }\end{DoxyParamCaption})}
-
-
-
-Reimplemented in \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a93dfeb0a19bc63e9cdc50d978a5f7604}{Command\+Set\+Modular}}.
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1CommandSet_1_1CommandSet_ab1a7b5ff1b281815952cd873fe8313f4_icgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_a9c9bfca4a4603adf077cff80c146e5f3}\label{classfarconfig_1_1CommandSet_1_1CommandSet_a9c9bfca4a4603adf077cff80c146e5f3} 
 \index{CommandSet@{CommandSet}!postInit@{postInit}}
 \index{postInit@{postInit}!CommandSet@{CommandSet}}
 \doxysubsubsection{\texorpdfstring{postInit()}{postInit()}}
 {\footnotesize\ttfamily post\+Init (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-\Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_a2259dcce395577f57e7a522c3e21901c}\label{classfarconfig_1_1CommandSet_1_1CommandSet_a2259dcce395577f57e7a522c3e21901c} 
-\index{CommandSet@{CommandSet}!processMessages@{processMessages}}
-\index{processMessages@{processMessages}!CommandSet@{CommandSet}}
-\doxysubsubsection{\texorpdfstring{processMessages()}{processMessages()}}
-{\footnotesize\ttfamily process\+Messages (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command\+Item,  }\item[{}]{command\+Sets,  }\item[{}]{main\+Widget,  }\item[{}]{serial\+Handler }\end{DoxyParamCaption})}
-
-
-
-Reimplemented in \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a2259dcce395577f57e7a522c3e21901c}{Command\+Set\+Modular}}.
-
 
 
 \doxysubsection{Member Data Documentation}
-\Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_abf241efb62705490a21c05c71f969f42}\label{classfarconfig_1_1CommandSet_1_1CommandSet_abf241efb62705490a21c05c71f969f42} 
-\index{CommandSet@{CommandSet}!commandID@{commandID}}
-\index{commandID@{commandID}!CommandSet@{CommandSet}}
-\doxysubsubsection{\texorpdfstring{commandID}{commandID}}
-{\footnotesize\ttfamily command\+ID = None\hspace{0.3cm}{\ttfamily [static]}}
-
 \Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_a8f418bfbf0374b27282ef79769069d32}\label{classfarconfig_1_1CommandSet_1_1CommandSet_a8f418bfbf0374b27282ef79769069d32} 
 \index{CommandSet@{CommandSet}!CommandItem@{CommandItem}}
 \index{CommandItem@{CommandItem}!CommandSet@{CommandSet}}
@@ -145,13 +92,7 @@ Reimplemented in \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetMod
 \index{CommandSet@{CommandSet}!commands@{commands}}
 \index{commands@{commands}!CommandSet@{CommandSet}}
 \doxysubsubsection{\texorpdfstring{commands}{commands}}
-{\footnotesize\ttfamily commands}
-
-\Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_a10f8fcd37350a791230c424c5045b43a}\label{classfarconfig_1_1CommandSet_1_1CommandSet_a10f8fcd37350a791230c424c5045b43a} 
-\index{CommandSet@{CommandSet}!commandTypes@{commandTypes}}
-\index{commandTypes@{commandTypes}!CommandSet@{CommandSet}}
-\doxysubsubsection{\texorpdfstring{commandTypes}{commandTypes}}
-{\footnotesize\ttfamily command\+Types}
+{\footnotesize\ttfamily commands\hspace{0.3cm}{\ttfamily [static]}}
 
 \Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_a7ea3dbccd2aab692026b8a96a2dfce06}\label{classfarconfig_1_1CommandSet_1_1CommandSet_a7ea3dbccd2aab692026b8a96a2dfce06} 
 \index{CommandSet@{CommandSet}!fromVer@{fromVer}}
@@ -159,35 +100,53 @@ Reimplemented in \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetMod
 \doxysubsubsection{\texorpdfstring{fromVer}{fromVer}}
 {\footnotesize\ttfamily from\+Ver}
 
-\Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_a6f39f5800f89399980924e83f33688ad}\label{classfarconfig_1_1CommandSet_1_1CommandSet_a6f39f5800f89399980924e83f33688ad} 
-\index{CommandSet@{CommandSet}!indexingChild@{indexingChild}}
-\index{indexingChild@{indexingChild}!CommandSet@{CommandSet}}
-\doxysubsubsection{\texorpdfstring{indexingChild}{indexingChild}}
-{\footnotesize\ttfamily indexing\+Child = None\hspace{0.3cm}{\ttfamily [static]}}
-
 \Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_a1a49ebf29cfa724def21c45eb4a67336}\label{classfarconfig_1_1CommandSet_1_1CommandSet_a1a49ebf29cfa724def21c45eb4a67336} 
 \index{CommandSet@{CommandSet}!loadingStage@{loadingStage}}
 \index{loadingStage@{loadingStage}!CommandSet@{CommandSet}}
 \doxysubsubsection{\texorpdfstring{loadingStage}{loadingStage}}
-{\footnotesize\ttfamily loading\+Stage}
+{\footnotesize\ttfamily loading\+Stage\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_a65bfeeee23c10f963f8c5a54cd7c1662}\label{classfarconfig_1_1CommandSet_1_1CommandSet_a65bfeeee23c10f963f8c5a54cd7c1662} 
+\index{CommandSet@{CommandSet}!longCommands@{longCommands}}
+\index{longCommands@{longCommands}!CommandSet@{CommandSet}}
+\doxysubsubsection{\texorpdfstring{longCommands}{longCommands}}
+{\footnotesize\ttfamily long\+Commands\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+dict 
 
 \Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_aa587120b99751e0ce1cab614cb006030}\label{classfarconfig_1_1CommandSet_1_1CommandSet_aa587120b99751e0ce1cab614cb006030} 
 \index{CommandSet@{CommandSet}!longID@{longID}}
 \index{longID@{longID}!CommandSet@{CommandSet}}
 \doxysubsubsection{\texorpdfstring{longID}{longID}}
-{\footnotesize\ttfamily long\+ID}
+{\footnotesize\ttfamily long\+ID\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+dict 
 
 \Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_ab0db378e6ced1decdb42263d4cb2789a}\label{classfarconfig_1_1CommandSet_1_1CommandSet_ab0db378e6ced1decdb42263d4cb2789a} 
 \index{CommandSet@{CommandSet}!ready@{ready}}
 \index{ready@{ready}!CommandSet@{CommandSet}}
 \doxysubsubsection{\texorpdfstring{ready}{ready}}
-{\footnotesize\ttfamily ready}
+{\footnotesize\ttfamily ready\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_a47eb09e0e0f41508c06f85979f43b42e}\label{classfarconfig_1_1CommandSet_1_1CommandSet_a47eb09e0e0f41508c06f85979f43b42e} 
+\index{CommandSet@{CommandSet}!shortCommands@{shortCommands}}
+\index{shortCommands@{shortCommands}!CommandSet@{CommandSet}}
+\doxysubsubsection{\texorpdfstring{shortCommands}{shortCommands}}
+{\footnotesize\ttfamily short\+Commands\hspace{0.3cm}{\ttfamily [static]}}
 
 \Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_a48dfbeb0b58591d26fde67a1637c211e}\label{classfarconfig_1_1CommandSet_1_1CommandSet_a48dfbeb0b58591d26fde67a1637c211e} 
 \index{CommandSet@{CommandSet}!shortID@{shortID}}
 \index{shortID@{shortID}!CommandSet@{CommandSet}}
 \doxysubsubsection{\texorpdfstring{shortID}{shortID}}
-{\footnotesize\ttfamily short\+ID}
+{\footnotesize\ttfamily short\+ID\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+dict 
 
 \Hypertarget{classfarconfig_1_1CommandSet_1_1CommandSet_a6d56bb8021b24828df7321341dea508d}\label{classfarconfig_1_1CommandSet_1_1CommandSet_a6d56bb8021b24828df7321341dea508d} 
 \index{CommandSet@{CommandSet}!toVer@{toVer}}

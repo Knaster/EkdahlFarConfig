@@ -1,6 +1,6 @@
 <map id="__init__" name="__init__">
 <area shape="rect" id="Node000001" title=" " alt="" coords="303,29,373,55"/>
 <area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="375,20,365,11,338,8,316,10,304,15,302,20,308,28,304,31,297,21,300,11,315,5,338,3,367,6,378,15"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a39a68343d80ee0e614c0ff533843b523" title="self.hasHierarchy = False self.hasHelp = False self.hasNodes = False self.hasCommandList = False self..." alt="" coords="5,22,255,62"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a39a68343d80ee0e614c0ff533843b523" title=" " alt="" coords="5,22,255,62"/>
 <area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="289,45,255,45,255,39,289,39"/>
 </map>

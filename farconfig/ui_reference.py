@@ -16,14 +16,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QHeaderView,
-    QLabel, QPlainTextEdit, QSizePolicy, QTreeWidget,
-    QTreeWidgetItem, QWidget)
+    QLabel, QLineEdit, QSizePolicy, QTextEdit,
+    QTreeWidget, QTreeWidgetItem, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(1000, 602)
+        Form.resize(583, 588)
         Form.setStyleSheet(u"QWidget {\n"
 "	background-color: white;\n"
 "	font-family: cantarell;\n"
@@ -34,11 +34,15 @@ class Ui_Form(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
-        self.plainTextEditCMVDescription = QPlainTextEdit(Form)
-        self.plainTextEditCMVDescription.setObjectName(u"plainTextEditCMVDescription")
-        self.plainTextEditCMVDescription.setEnabled(True)
+        self.label = QLabel(Form)
+        self.label.setObjectName(u"label")
 
-        self.gridLayout.addWidget(self.plainTextEditCMVDescription, 2, 3, 1, 1)
+        self.gridLayout.addWidget(self.label, 2, 0, 1, 1)
+
+        self.plainTextEditCMVDescription = QTextEdit(Form)
+        self.plainTextEditCMVDescription.setObjectName(u"plainTextEditCMVDescription")
+
+        self.gridLayout.addWidget(self.plainTextEditCMVDescription, 1, 1, 1, 1)
 
         self.label_31 = QLabel(Form)
         self.label_31.setObjectName(u"label_31")
@@ -48,7 +52,7 @@ class Ui_Form(object):
         sizePolicy.setHeightForWidth(self.label_31.sizePolicy().hasHeightForWidth())
         self.label_31.setSizePolicy(sizePolicy)
 
-        self.gridLayout.addWidget(self.label_31, 0, 3, 1, 1)
+        self.gridLayout.addWidget(self.label_31, 0, 1, 1, 1)
 
         self.listWidgetCommands = QTreeWidget(Form)
         self.listWidgetCommands.setObjectName(u"listWidgetCommands")
@@ -56,7 +60,7 @@ class Ui_Form(object):
         self.listWidgetCommands.header().setVisible(True)
         self.listWidgetCommands.header().setDefaultSectionSize(300)
 
-        self.gridLayout.addWidget(self.listWidgetCommands, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.listWidgetCommands, 1, 0, 1, 1)
 
         self.label_6 = QLabel(Form)
         self.label_6.setObjectName(u"label_6")
@@ -64,6 +68,11 @@ class Ui_Form(object):
         self.label_6.setSizePolicy(sizePolicy)
 
         self.gridLayout.addWidget(self.label_6, 0, 0, 1, 1)
+
+        self.lineEditReferenceSearch = QLineEdit(Form)
+        self.lineEditReferenceSearch.setObjectName(u"lineEditReferenceSearch")
+
+        self.gridLayout.addWidget(self.lineEditReferenceSearch, 2, 1, 1, 1)
 
 
         self.horizontalLayout.addLayout(self.gridLayout)
@@ -76,6 +85,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Command reference", None))
+        self.label.setText(QCoreApplication.translate("Form", u"Search", None))
         self.label_31.setText(QCoreApplication.translate("Form", u"Description", None))
         ___qtreewidgetitem = self.listWidgetCommands.headerItem()
         ___qtreewidgetitem.setText(1, QCoreApplication.translate("Form", u"Short command", None));

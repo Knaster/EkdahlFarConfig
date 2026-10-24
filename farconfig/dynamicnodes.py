@@ -164,13 +164,13 @@ class dynamicNodeSet:
 
         if (isSource and not isPlugin):
             poslistI = 0
-            color = QtGui.QColor(126, 148, 246)
+            #color = QtGui.QColor(126, 148, 246)
         elif (isPlugin):
             poslistI = 1
-            color = QtGui.QColor(126, 148, 146)
+            #color = QtGui.QColor(126, 148, 146)
         else:
             poslistI = 2
-            color = QtGui.QColor(226, 148, 146)
+                #color = QtGui.QColor(226, 148, 146)
 
         # Loop through each command of the module
         # if we're to separate the various commands into separate nodes, do that.
@@ -178,7 +178,8 @@ class dynamicNodeSet:
         for command in inModule.commands.values():
             # We set all this data in every loop because of separation
             newNode.source = isSource
-            newNode.view.widgetBackground = color
+            newNode.plugin = isPlugin
+            #newNode.view.widgetBackground = color
             newNode.module = inModule
             newNode.nameCallback()
             newNode.moduleIndex = inModule.getIndex()

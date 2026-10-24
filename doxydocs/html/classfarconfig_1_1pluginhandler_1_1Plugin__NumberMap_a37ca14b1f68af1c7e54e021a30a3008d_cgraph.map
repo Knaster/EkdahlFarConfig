@@ -1,11 +1,14 @@
 <map id="renderSliders" name="renderSliders">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,113,80"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a7cc6a7f44f223b092fee0a76552b40dd" title=" " alt="" coords="178,5,261,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,52,164,32,165,37,102,57"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a8ba27b411a1e5a24c6d10591ca9198c2" title=" " alt="" coords="161,55,277,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="113,65,148,65,148,70,113,70"/>
-<area shape="rect" id="Node000005" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#aa717d6ccaeeb05e6794aedb914a4cbbf" title=" " alt="" coords="167,104,271,129"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="102,77,165,97,163,102,100,83"/>
-<area shape="rect" id="Node000004" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#ab1ae8261fb8a191712fbd863b1edcfd7" title=" " alt="" coords="325,55,428,80"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="277,65,312,65,312,70,277,70"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,113,81"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a7cc6a7f44f223b092fee0a76552b40dd" title=" " alt="" coords="172,5,255,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,53,160,33,162,38,100,58"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#a8ba27b411a1e5a24c6d10591ca9198c2" title=" " alt="" coords="331,56,447,81"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="114,66,317,66,317,71,114,71"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#aa717d6ccaeeb05e6794aedb914a4cbbf" title=" " alt="" coords="161,107,265,132"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="100,79,162,100,160,105,98,84"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#aac46a43b6cc78d080a1a4db48c1ec4fb" title=" " alt="" coords="313,7,464,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="255,16,300,16,299,21,255,21"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1pluginhandler_1_1Plugin__NumberMap.html#ab1ae8261fb8a191712fbd863b1edcfd7" title=" " alt="" coords="512,32,615,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="465,28,499,33,498,38,464,33"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="446,58,498,51,499,56,447,63"/>
 </map>

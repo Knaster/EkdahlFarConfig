@@ -1,5 +1,7 @@
 <map id="dataChangedConfigurationName" name="dataChangedConfigurationName">
-<area shape="rect" id="Node000001" title=" " alt="" coords="273,5,508,31"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1tabmidi_1_1TabMIDI.html#ab17a3be9d0835d78a36c1837a761e365" title=" " alt="" coords="5,5,225,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,21,226,21,226,15,260,15"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="279,35,513,60"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1tabmidi_1_1TabMIDI.html#ab17a3be9d0835d78a36c1837a761e365" title=" " alt="" coords="8,5,228,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="265,36,228,32,229,27,265,31"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1tabmidi_1_1TabMIDI.html#a2b52c71226f786888b53f1bf17c936ee" title=" " alt="" coords="5,55,231,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="265,63,231,67,231,61,265,58"/>
 </map>

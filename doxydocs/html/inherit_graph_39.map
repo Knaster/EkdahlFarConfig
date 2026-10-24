@@ -1,7 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,92,31"/>
-<area shape="rect" id="Node000001" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomNodeItem.html" title=" " alt="" coords="140,5,276,31"/>
-<area shape="poly" id="edge64_Node000000_Node000001" title=" " alt="" coords="106,15,139,15,139,21,106,21"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1customgroupnode_1_1CustomGroupNodeItem.html" title="Group Node item." alt="" coords="324,5,499,31"/>
-<area shape="poly" id="edge65_Node000001_Node000002" title=" " alt="" coords="290,15,324,15,324,21,290,21"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,80,31"/>
+<area shape="rect" id="Node000001" href="$classfarconfig_1_1waitdialog_1_1ProgressDialog.html" title=" " alt="" coords="128,5,248,31"/>
+<area shape="poly" id="edge53_Node000000_Node000001" title=" " alt="" coords="94,15,128,15,128,21,94,21"/>
 </map>

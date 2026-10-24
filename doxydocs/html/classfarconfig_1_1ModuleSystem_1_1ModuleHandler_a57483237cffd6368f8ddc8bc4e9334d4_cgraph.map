@@ -1,4 +1,6 @@
 <map id="getCommandAndModule" name="getCommandAndModule">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,29,188,55"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="67,31,60,21,64,11,76,5,97,3,122,6,132,15,129,19,119,11,97,8,78,10,68,15,65,20,71,28"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="66,31,60,21,63,11,76,5,97,3,122,6,133,15,129,19,120,11,97,8,77,10,67,15,65,20,70,28"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1ModuleSystem_1_1ModuleHandler.html#a1c0426557e9cc2cf9d8e474e6a8c6586" title=" " alt="" coords="236,29,327,55"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="188,39,222,39,222,45,188,45"/>
 </map>

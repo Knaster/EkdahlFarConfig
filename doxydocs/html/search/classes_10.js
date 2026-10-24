@@ -1,16 +1,9 @@
 var searchData=
 [
-  ['tabadvanced_0',['TabAdvanced',['../classfarconfig_1_1tabadvanced_1_1TabAdvanced.html',1,'farconfig::tabadvanced']]],
-  ['tabbasic_1',['TabBasic',['../classfarconfig_1_1tabbasic_1_1TabBasic.html',1,'farconfig::tabbasic']]],
-  ['tabcv_2',['TabCV',['../classfarconfig_1_1tabcv_1_1TabCV.html',1,'farconfig::tabcv']]],
-  ['tableview_3',['TableView',['../classfarconfig_1_1GraphNode_1_1customnodewidgets_1_1TableView.html',1,'farconfig::GraphNode::customnodewidgets']]],
-  ['tablevieww_4',['TableViewW',['../classfarconfig_1_1GraphNode_1_1customnodewidgets_1_1TableViewW.html',1,'farconfig::GraphNode::customnodewidgets']]],
-  ['tabmidi_5',['TabMIDI',['../classfarconfig_1_1tabmidi_1_1TabMIDI.html',1,'farconfig::tabmidi']]],
-  ['textinputnode_6',['TextInputNode',['../classfarconfig_1_1GraphNode_1_1nodetemplates_1_1widget__nodes_1_1TextInputNode.html',1,'farconfig::GraphNode::nodetemplates::widget_nodes']]],
-  ['timedchart_7',['timedChart',['../classfarconfig_1_1timedChart_1_1timedChart.html',1,'farconfig::timedChart']]],
-  ['timestamp_8',['timeStamp',['../classfarconfig_1_1timedChart_1_1timeStamp.html',1,'farconfig::timedChart']]],
-  ['toggleswitch_9',['ToggleSwitch',['../classfarconfig_1_1GraphNode_1_1customnodewidgets_1_1ToggleSwitch.html',1,'farconfig::GraphNode::customnodewidgets']]],
-  ['toggleswitchw_10',['ToggleSwitchW',['../classfarconfig_1_1GraphNode_1_1customnodewidgets_1_1ToggleSwitchW.html',1,'farconfig::GraphNode::customnodewidgets']]],
-  ['triggerbool_11',['TriggerBool',['../classfarconfig_1_1GraphNode_1_1customnode_1_1TriggerBool.html',1,'farconfig::GraphNode::customnode']]],
-  ['triggervariable_12',['TriggerVariable',['../classfarconfig_1_1GraphNode_1_1customnode_1_1TriggerVariable.html',1,'farconfig::GraphNode::customnode']]]
+  ['ui_5fform_0',['ui_form',['../classfarconfig_1_1ui__preferences_1_1Ui__Form.html',1,'Ui_Form'],['../classfarconfig_1_1ui__prompt_1_1Ui__Form.html',1,'Ui_Form'],['../classfarconfig_1_1ui__reference_1_1Ui__Form.html',1,'Ui_Form']]],
+  ['ui_5fform_5fahdsr_1',['Ui_Form_AHDSR',['../classfarconfig_1_1ui__plugin__ahdsr_1_1Ui__Form__AHDSR.html',1,'farconfig::ui_plugin_ahdsr']]],
+  ['ui_5fform_5flfo_2',['Ui_Form_LFO',['../classfarconfig_1_1ui__plugin__lfo_1_1Ui__Form__LFO.html',1,'farconfig::ui_plugin_lfo']]],
+  ['ui_5fform_5fmult_3',['Ui_Form_Mult',['../classfarconfig_1_1ui__plugin__mult_1_1Ui__Form__Mult.html',1,'farconfig::ui_plugin_mult']]],
+  ['ui_5fform_5fnumbermap_4',['Ui_Form_NumberMap',['../classfarconfig_1_1ui__plugin__numbermap_1_1Ui__Form__NumberMap.html',1,'farconfig::ui_plugin_numbermap']]],
+  ['ui_5fwidget_5',['ui_widget',['../classfarconfig_1_1form_1_1Ui__Widget.html',1,'Ui_Widget'],['../classfarconfig_1_1ui__form_1_1Ui__Widget.html',1,'Ui_Widget']]]
 ];

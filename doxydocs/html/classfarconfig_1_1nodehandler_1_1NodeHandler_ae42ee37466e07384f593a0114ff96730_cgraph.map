@@ -10,9 +10,9 @@
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="372,105,469,82,525,72,526,77,470,87,374,110"/>
 <area shape="rect" id="Node000006" href="$classfarconfig_1_1GraphNode_1_1graphassemblies_1_1graphAssemblies.html#a3a51c1c2e8b156d88fc850cbe800fa65" title=" " alt="" coords="469,97,781,137"/>
 <area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="373,114,456,114,456,119,373,119"/>
-<area shape="rect" id="Node000007" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a22280aaa8dd7274a4d359d3d626f8b21" title=" " alt="" coords="577,161,674,187"/>
+<area shape="rect" id="Node000007" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a22280aaa8dd7274a4d359d3d626f8b21" title="Uses SymPy to extract numbers, symbols and functions from an equation and build three lists." alt="" coords="577,161,674,187"/>
 <area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="374,123,470,146,563,162,562,168,469,151,372,129"/>
-<area shape="rect" id="Node000008" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#aa1803650620d4f123ba3baa39579a8c7" title=" " alt="" coords="829,161,948,187"/>
+<area shape="rect" id="Node000008" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#aa1803650620d4f123ba3baa39579a8c7" title="Recursive part of getChildren that will apply itself onto each sub&#45;equation." alt="" coords="829,161,948,187"/>
 <area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="674,171,815,171,815,177,674,177"/>
 <area shape="poly" id="edge8_Node000008_Node000008" title=" " alt="" coords="846,163,837,153,842,143,859,137,889,135,926,139,936,144,940,150,935,152,933,148,925,144,889,140,861,142,846,147,843,152,850,159"/>
 </map>

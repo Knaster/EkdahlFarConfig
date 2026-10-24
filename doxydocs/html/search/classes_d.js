@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['qplaintextsub_0',['QPlainTextSub',['../classfarconfig_1_1qplaintextsub_1_1QPlainTextSub.html',1,'farconfig::qplaintextsub']]]
+  ['reporttypeenum_0',['ReportTypeEnum',['../classfarconfig_1_1serialWidget_1_1ReportTypeEnum.html',1,'farconfig::serialWidget']]]
 ];

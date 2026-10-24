@@ -1,11 +1,15 @@
 <map id="setInputs" name="setInputs">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,88,106"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#ad47b6b3a73937d223cecf80454f9c476" title=" " alt="" coords="155,29,399,69"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,83,158,69,159,75,89,88"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,125,88,150"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#ab546ae06bee3e44801dee3beb573215b" title=" " alt="" coords="155,29,399,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,122,95,100,135,79,156,71,158,76,137,84,98,105,66,127"/>
 <area shape="rect" id="Node000004" href="$classfarconfig_1_1GraphNode_1_1customgroupnode_1_1CustomGroupNodeItem.html#a39265ab708500d68339b63e9be99bb18" title=" " alt="" coords="136,117,417,157"/>
-<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="89,98,159,112,158,117,88,104"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="88,135,122,135,122,140,88,140"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1Equation.html#a067bc98c9b4d9d98ce776f7bfde82983" title=" " alt="" coords="234,182,319,207"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="80,148,137,167,221,184,220,189,135,172,78,153"/>
 <area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="234,30,231,20,238,10,253,5,277,3,303,6,318,13,316,18,302,11,277,8,255,10,241,15,236,21,239,28"/>
 <area shape="rect" id="Node000003" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#a94b956c3fd4bf5e3bfa3dabc2d5725a0" title=" " alt="" coords="465,29,717,69"/>
 <area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="399,47,451,47,451,52,399,52"/>
 <area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="234,118,231,108,238,98,253,93,277,91,303,94,318,101,316,106,302,99,277,96,255,98,241,103,236,109,239,116"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1Equation.html#aabe132f7ac38639bfd0dac75a9c38c9c" title=" " alt="" coords="548,182,635,207"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="319,192,534,192,534,197,319,197"/>
 </map>

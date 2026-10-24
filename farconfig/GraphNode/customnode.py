@@ -12,8 +12,6 @@ from NodeGraphQt.widgets.node_widgets import NodeLineEdit
 from GraphNode.customnodewidgets import NodeSlider, ToggleSwitch, LineEdit, SpinBoxArray, TableView
 from GraphNode.nodetemplates.custom_ports_node import draw_triangle_port
 
-#from commanddefinitions import CommandID
-
 from ModuleSystem import ModuleCommand, Module, HelpCommand, HelpModule
 
 colorNodeSelect = QtGui.QColor(180,200,50)
@@ -40,6 +38,7 @@ class CustomNodeItem(NodeItem):
                              rect.width() - (margin * 2),
                              rect.height() - (margin * 2))
         radius = 4.0
+
         painter.setBrush(self.widgetBackground)
         painter.drawRoundedRect(rect, radius, radius)
 
@@ -300,10 +299,10 @@ class CustomBaseNode(BaseNode):
     def __init__(self, qgraphics_item=None):
         self.NODE_NAME_SHORT = ""
         super(CustomBaseNode, self).__init__(qgraphics_item or CustomNodeItem)
-        # Commands associated with node
-        self.command = []
+        #@param command Commands associated with node
+        self.command:list[ModuleCommand] = []
         # Name commands associated with node
-        self.nameCommand = None
+        self.nameCommand:ModuleCommand = None
         # Name suffix is anything to be added to the end of the node name
         self.nameSuffix = ""
         # Module associated with node
@@ -315,7 +314,7 @@ class CustomBaseNode(BaseNode):
         self.widgetStyle = "color: #000000; background-color: #f0f0f0; width:250px; max-width:400px;"
         self.equationWidth = 250
         self.locked = False
-        self.argumentMatch = None
+        #self.argumentMatch = None
 
         if (qgraphics_item is None):
             #self.customView = CustomNodeItem()
@@ -339,6 +338,9 @@ class CustomBaseNode(BaseNode):
         self.implicit = False
         self.allImplicitChildren = False
         self.source = False
+        self.target = False
+        self.plugin = False
+        self.virtual = False
 
     def updateName(self):
         self._view.name = self.NODE_NAME_SHORT
@@ -393,6 +395,7 @@ class CustomBaseNode(BaseNode):
 
     def on_input_connected(self, in_port, out_port):
         #if self.updateNames():
+        self.target = True
         pass
 
     def on_input_disconnected(self, in_port, out_port):
@@ -618,12 +621,12 @@ class CustomBaseNode(BaseNode):
         return updated
 
     def add_input(self, name, command=None, valueType="number", variable=None, multi_input=True, display_name=True, color=None, locked=False,
-                  painter_func=None, hidden=False, callsign=None, argumentMatch = None):
+                  painter_func=None, hidden=False, callsign=None, ): #argumentMatch = None):
         #name = name.lower()
         name = name
         port = super().add_input(name, multi_input=multi_input, display_name=display_name, color=color, locked=locked, painter_func=painter_func)
         port.command = command
-        port.argumentMatch = argumentMatch
+        #port.argumentMatch = argumentMatch
         port.valueType = valueType
         #port.value = None
         port.variable = variable
@@ -640,12 +643,12 @@ class CustomBaseNode(BaseNode):
         return port
 
     def add_output(self, name, command=None, valueType="number", variable=None, multi_output=True, display_name=True, color=None, locked=False,
-                   painter_func=None, hidden=False, callsign = None, argumentMatch = None):
+                   painter_func=None, hidden=False, callsign = None): #, argumentMatch = None):
         #name = name.lower()
         name= name
         port = super().add_output(name,multi_output=multi_output, display_name=display_name, color=color, locked=locked, painter_func=painter_func)
         port.command = command
-        port.argumentMatch = argumentMatch
+        #port.argumentMatch = argumentMatch
         port.valueType = valueType
         #port.value = None
         port.variable = variable

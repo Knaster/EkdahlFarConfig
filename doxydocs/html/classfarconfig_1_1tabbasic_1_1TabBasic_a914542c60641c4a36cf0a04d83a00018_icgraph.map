@@ -1,5 +1,15 @@
 <map id="dataChangedHarmonicSeriesName" name="dataChangedHarmonicSeriesName">
-<area shape="rect" id="Node000001" title=" " alt="" coords="288,5,539,31"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1tabbasic_1_1TabBasic.html#a0af82d663f3f68c14ce9313c32381fe0" title=" " alt="" coords="5,5,240,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="274,21,240,21,240,15,274,15"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="748,29,999,55"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1tabbasic_1_1TabBasic.html#a9123a061a48d11a7eba70116a0c7b7aa" title=" " alt="" coords="284,29,417,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="788,30,700,19,583,12,466,19,398,32,397,27,465,14,583,7,700,14,789,25"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1tabbasic_1_1TabBasic.html#a0af82d663f3f68c14ce9313c32381fe0" title=" " alt="" coords="465,29,700,55"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="734,45,700,45,700,39,734,39"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1tabbasic_1_1TabBasic.html#ae4b40adfee178f84a23d956ea7952e02" title=" " alt="" coords="477,79,688,119"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="795,60,685,82,684,77,794,55"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="392,20,381,11,351,8,326,10,313,15,310,20,317,27,313,31,305,21,309,11,325,5,351,3,383,7,395,16"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1tabbasic_1_1TabBasic.html#ab1e365e4ac64a7aad90d3ac9cb41b1f3" title=" " alt="" coords="5,29,236,55"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="270,53,236,54,236,48,270,48"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="249,30,284,31,284,36,249,36"/>
+<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="452,45,417,45,417,39,452,39"/>
+<area shape="poly" id="edge8_Node000005_Node000002" title=" " alt="" coords="487,79,402,57,403,52,489,73"/>
 </map>

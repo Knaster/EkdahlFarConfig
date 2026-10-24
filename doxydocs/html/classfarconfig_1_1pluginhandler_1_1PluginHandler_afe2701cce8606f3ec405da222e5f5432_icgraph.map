@@ -1,9 +1,9 @@
 <map id="getPluginTypeAndIndex" name="getPluginTypeAndIndex">
 <area shape="rect" id="Node000001" title=" " alt="" coords="256,55,431,80"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a404e3853858c17e267e0353cc458767b" title=" " alt="" coords="5,5,208,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="268,54,168,33,169,28,269,49"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a07e3a899f4f42bb2dc3e245fec3f0bfe" title=" " alt="" coords="51,55,163,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="242,70,163,70,163,65,242,65"/>
-<area shape="rect" id="Node000004" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a0bb70c78c3df44200acf09057ec607c9" title=" " alt="" coords="51,104,163,129"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a4179c9336d9f6622594c8f2b0a10feae" title=" " alt="" coords="63,5,150,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="268,54,150,30,151,24,269,49"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a404e3853858c17e267e0353cc458767b" title=" " alt="" coords="5,55,208,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="242,70,208,70,208,65,242,65"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a07e3a899f4f42bb2dc3e245fec3f0bfe" title=" " alt="" coords="51,104,163,129"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="269,85,163,108,162,102,268,80"/>
 </map>

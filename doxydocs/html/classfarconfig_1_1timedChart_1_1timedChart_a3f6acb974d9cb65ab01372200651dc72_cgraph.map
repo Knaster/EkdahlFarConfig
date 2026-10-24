@@ -1,0 +1,8 @@
+<map id="addData" name="addData">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,43,83,68"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a11a9bc94be92c10a1279429ca2a6ad85" title=" " alt="" coords="143,5,253,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,44,131,31,132,37,83,49"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a776e235c78a025ab6d8feb8e41c1c73a" title=" " alt="" coords="131,79,265,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="83,62,130,73,129,78,82,67"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="172,80,167,70,170,61,180,54,198,52,219,55,228,64,224,68,217,60,198,57,182,59,174,64,172,70,177,77"/>
+</map>

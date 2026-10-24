@@ -1,7 +1,11 @@
 <map id="updateChartCommands" name="updateChartCommands">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,181,31"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a11a9bc94be92c10a1279429ca2a6ad85" title=" " alt="" coords="229,5,340,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,15,215,15,215,21,182,21"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1timedChart_1_1timedChart.html#ab8048064e3291687b77c9ee80773a087" title=" " alt="" coords="388,5,465,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="340,15,374,15,374,21,340,21"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,43,181,68"/>
+<area shape="poly" id="edge5_Node000001_Node000001" title=" " alt="" coords="64,44,58,34,62,25,74,18,93,16,117,20,127,28,124,32,115,24,93,21,75,23,66,28,64,34,69,41"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a3f6acb974d9cb65ab01372200651dc72" title=" " alt="" coords="229,43,307,68"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,53,216,53,216,58,182,58"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a11a9bc94be92c10a1279429ca2a6ad85" title=" " alt="" coords="367,5,477,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="306,44,355,31,356,37,307,49"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a776e235c78a025ab6d8feb8e41c1c73a" title=" " alt="" coords="355,79,489,104"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="307,62,354,73,353,78,306,67"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="396,80,391,70,394,61,404,54,422,52,443,55,452,64,448,68,441,60,422,57,406,59,398,64,396,70,401,77"/>
 </map>

@@ -1,4 +1,7 @@
 <map id="buildNodeName" name="buildNodeName">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,132,55"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="90,18,83,11,69,8,56,10,49,14,48,20,52,28,47,30,43,21,45,11,54,5,69,3,86,6,94,14"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="421,13,548,38"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1Multiplexer.html#acb2bcea052d5677c635bcbecce14bea7" title=" " alt="" coords="303,13,373,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="408,28,374,28,374,23,408,23"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a39a68343d80ee0e614c0ff533843b523" title=" " alt="" coords="5,5,255,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="289,28,255,28,255,23,289,23"/>
 </map>

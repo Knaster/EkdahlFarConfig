@@ -1,6 +1,7 @@
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QMessageBox, QInputDialog, QLineEdit, QComboBox, QListWidget
 import math
+from PySide6.QtGui import QColor
 
 def stripLeadingQuotes(inp:str):
     if (len(inp) < 2): return inp
@@ -81,3 +82,44 @@ def logModuleToGUI(value, max):
     divisor = 65535 / math.log10(max)
     return math.log10(value + 0.999) * divisor
 
+# Every message contains two parts; the prefix type ("[dbg]" etc) and then the actual message
+# The actual message can be of plain text type (for instance many [err] & [dbg] messages) or they can be
+# command-type ([cmd] and [irq]) which has a command:result structure
+#
+# Messages needs to be able to be filtered entirely by prefix type (like ALL [irq] messages for instance),
+# by command (all 'bw.paf' values for instance) or by a combination of prefix type and command
+# (all [rqi] 'bw.pfa' values)
+
+class dataVisibilitySettings():
+    #show = None
+    #uiReportFunction = Any
+    #dataReportFunction = Any
+    #prefixType = None
+    #uiObject = None
+    #moduleCommand:ModuleCommand = None
+    #commandString:str = ""
+    #color:QColor = QColor(127, 127, 127)
+
+    def __init__(self, show:int, inIdentifier:str, inUIReportFunction = None, inDataReportFunction = None, inUIObject = None,
+                 color:QColor = QColor(100, 100, 255), prefixType = "", moduleCommand = None, commandString:str = ""):
+        self.show = show
+        self.identifier = inIdentifier
+        self.uiReportFunction = inUIReportFunction
+        self.dataReportFunction = inDataReportFunction
+        self.uiObject = inUIObject
+        self.color = color
+        self.prefixType:list[str] = []
+        if isinstance(prefixType, str):
+            self.prefixType += prefixType
+        elif isinstance(prefixType, list):
+            self.prefixType += prefixType
+        self.moduleCommand = moduleCommand
+        self.commandString = commandString
+
+    def setShowUI(self, show):
+        self.show = show
+        if (self.dataReportFunction is not None): self.dataReportFunction(self)
+
+    def setShowData(self, show):
+        self.show = show
+        if (self.uiReportFunction is not None): self.uiReportFunction(self)

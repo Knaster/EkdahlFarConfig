@@ -1,21 +1,10 @@
 var searchData=
 [
-  ['mainwindow_0',['MainWindow',['../classfarconfig_1_1farconfig_1_1MainWindow.html',1,'farconfig::farconfig']]],
-  ['map_1',['Map',['../classfarconfig_1_1GraphNode_1_1customnode_1_1Map.html',1,'farconfig::GraphNode::customnode']]],
-  ['midi14bit_5fto_5ffar16bit_2',['Midi14Bit_to_FAR16Bit',['../classfarconfig_1_1GraphNode_1_1customnode_1_1Midi14Bit__to__FAR16Bit.html',1,'farconfig::GraphNode::customnode']]],
-  ['midi7bit_5fto_5ffar16bit_3',['Midi7Bit_to_FAR16Bit',['../classfarconfig_1_1GraphNode_1_1customnode_1_1Midi7Bit__to__FAR16Bit.html',1,'farconfig::GraphNode::customnode']]],
-  ['midieventdeclaration_4',['MIDIEventDeclaration',['../classfarconfig_1_1midieventhandling_1_1MIDIEventDeclaration.html',1,'farconfig::midieventhandling']]],
-  ['midieventhandler_5',['midiEventHandler',['../classfarconfig_1_1midieventhandling_1_1midiEventHandler.html',1,'farconfig::midieventhandling']]],
-  ['midihandler_6',['MidiHandler',['../classfarconfig_1_1midihandler_1_1MidiHandler.html',1,'farconfig::midihandler']]],
-  ['module_7',['Module',['../classfarconfig_1_1ModuleSystem_1_1Module.html',1,'farconfig::ModuleSystem']]],
-  ['modulecommand_8',['modulecommand',['../classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html',1,'ModuleCommand'],['../classfarconfig_1_1commanddefinitions_1_1ModuleCommand.html',1,'ModuleCommand']]],
-  ['modulecommandtype_5faccess_9',['ModuleCommandType_access',['../classfarconfig_1_1commanddefinitions_1_1ModuleCommandType__access.html',1,'farconfig::commanddefinitions']]],
-  ['modulecommandtype_5fdata_10',['ModuleCommandType_data',['../classfarconfig_1_1commanddefinitions_1_1ModuleCommandType__data.html',1,'farconfig::commanddefinitions']]],
-  ['modulecommandtype_5fdataoptions_11',['ModuleCommandType_dataOptions',['../classfarconfig_1_1commanddefinitions_1_1ModuleCommandType__dataOptions.html',1,'farconfig::commanddefinitions']]],
-  ['modulecommandtype_5ffunction_12',['ModuleCommandType_function',['../classfarconfig_1_1commanddefinitions_1_1ModuleCommandType__function.html',1,'farconfig::commanddefinitions']]],
-  ['modulegroup_13',['ModuleGroup',['../classfarconfig_1_1ModuleSystem_1_1ModuleGroup.html',1,'farconfig::ModuleSystem']]],
-  ['modulehandler_14',['ModuleHandler',['../classfarconfig_1_1ModuleSystem_1_1ModuleHandler.html',1,'farconfig::ModuleSystem']]],
-  ['moduletypes_15',['ModuleTypes',['../classfarconfig_1_1ModuleSystem_1_1ModuleTypes.html',1,'farconfig::ModuleSystem']]],
-  ['multiplexer_16',['Multiplexer',['../classfarconfig_1_1GraphNode_1_1customnode_1_1Multiplexer.html',1,'farconfig::GraphNode::customnode']]],
-  ['mygroupnode_17',['MyGroupNode',['../classfarconfig_1_1GraphNode_1_1nodetemplates_1_1group__node_1_1MyGroupNode.html',1,'farconfig::GraphNode::nodetemplates::group_node']]]
+  ['nodeblock_0',['NodeBlock',['../classfarconfig_1_1GraphNode_1_1nodeblocks_1_1NodeBlock.html',1,'farconfig::GraphNode::nodeblocks']]],
+  ['nodeblockchild_1',['NodeBlockChild',['../classfarconfig_1_1GraphNode_1_1nodeblocks_1_1NodeBlockChild.html',1,'farconfig::GraphNode::nodeblocks']]],
+  ['nodehandler_2',['NodeHandler',['../classfarconfig_1_1nodehandler_1_1NodeHandler.html',1,'farconfig::nodehandler']]],
+  ['nodeorganizer_3',['NodeOrganizer',['../classfarconfig_1_1GraphNode_1_1nodeorganizer_1_1NodeOrganizer.html',1,'farconfig::GraphNode::nodeorganizer']]],
+  ['nodeslider_4',['NodeSlider',['../classfarconfig_1_1GraphNode_1_1customnodewidgets_1_1NodeSlider.html',1,'farconfig::GraphNode::customnodewidgets']]],
+  ['nodesliderw_5',['NodeSliderW',['../classfarconfig_1_1GraphNode_1_1customnodewidgets_1_1NodeSliderW.html',1,'farconfig::GraphNode::customnodewidgets']]],
+  ['nonedelegate_6',['noneDelegate',['../classfarconfig_1_1customTableModel_1_1noneDelegate.html',1,'farconfig::customTableModel']]]
 ];

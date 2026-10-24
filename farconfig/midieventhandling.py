@@ -50,9 +50,11 @@ class midiEventHandler(QWidget):
                          ["Mute inhibit", ["mu.su"]]]
 
     def populateComboBoxSendBinary(self, comboBox):
+        self.guiCallbackSystem.updatingFromModule += 1
         comboBox.clear()
         for sendData in self.MIDIBinarySenders:
             comboBox.addItem(sendData[0], sendData)
+        self.guiCallbackSystem.updatingFromModule -= 1
         pass
 
     # defined as Text description, command, multiplier

@@ -332,41 +332,49 @@ class graphAssemblies():
     '''
     def addModifierStaticValue(self, posx, posy):
         node = self.graph.create_node('nodes.virtualmodifiers.StaticValue', pos=[posx, posy])
+        node.virtual = True
         #node.set_color(ass_node_background[0], ass_node_background[1], ass_node_background[2])
         return node
 
     def addModifierEquation(self, inputs, posx, posy):
         node = self.graph.create_node('nodes.virtualmodifiers.Equation', pos=[posx, posy])
+        node.virtual = True
         node.setInputs(inputs)
         return node
 
     def addModifierEquation1(self, posx, posy):
         node = self.graph.create_node('nodes.virtualmodifiers.Equation1', pos=[posx, posy])
+        node.virtual = True
         #node.set_color(ass_node_background[0], ass_node_background[1], ass_node_background[2])
         return node
 
     def addModifierEquation2(self, posx, posy):
         node = self.graph.create_node('nodes.virtualmodifiers.Equation2', pos=[posx, posy])
+        node.virtual = True
         #node.set_color(ass_node_background[0], ass_node_background[1], ass_node_background[2])
         return node
 
     def addModifierEquation3(self, posx, posy):
         node = self.graph.create_node('nodes.virtualmodifiers.Equation3', pos=[posx, posy])
+        node.virtual = True
         #node.set_color(ass_node_background[0], ass_node_background[1], ass_node_background[2])
         return node
 
     def addModifierBool(self, posx, posy):
         node = self.graph.create_node('nodes.modifiers.Bool', pos=[posx, posy])
+        node.virtual = True
         #node.set_color(ass_node_background[0], ass_node_background[1], ass_node_background[2])
         return node
 
     def addModifierDeadband(self, posx, posy):
         node = self.graph.create_node('nodes.modifiers.Deadband', pos=[posx, posy])
+        node.virtual = True
         #node.set_color(ass_node_background[0], ass_node_background[1], ass_node_background[2])
         return node
 
     def addModifierTriggerBool(self, posx, posy):
         node = self.graph.create_node('nodes.virtualmodifiers.TriggerBool', pos=[posx, posy])
+        node.virtual = True
         switch:QCustomCheckBox.QCustomCheckBox = node.toggleSwitch.customWidget.switch
         #switch.customizeQCustomCheckBox(bgColor = "#c3c3c3", circleColor = "#ffffff", activeColor = "#17a8e3", animationEasingCurve = QEasingCurve.Linear, animationDuration = 0)
         #switch.setTristate(True)
@@ -376,6 +384,7 @@ class graphAssemblies():
 
     def addModifierMap(self, posx, posy):
         node = self.graph.create_node('nodes.modifiers.Map', pos=[posx, posy])
+        node.virtual = True
         return node
     '''
     def addDefaultFARSingle(self):

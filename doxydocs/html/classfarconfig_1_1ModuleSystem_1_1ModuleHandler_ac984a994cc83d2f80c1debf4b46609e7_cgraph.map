@@ -1,8 +1,4 @@
 <map id="addModuleGroup" name="addModuleGroup">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,139,31"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1ModuleSystem_1_1ModuleHandler.html#a796fc74a546c4ec3db6c8acf60affb39" title=" " alt="" coords="365,5,487,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,15,352,15,352,21,139,21"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1ModuleSystem_1_1ModuleHandler.html#a1de4667aee1be7c0534fb79584fc23f0" title=" " alt="" coords="187,31,317,56"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="139,25,174,30,173,35,138,30"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="317,31,351,26,352,31,318,36"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,139,55"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="49,30,44,21,47,11,56,5,72,3,90,6,98,14,95,18,88,11,72,8,58,10,51,14,50,20,54,28"/>
 </map>

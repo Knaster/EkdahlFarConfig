@@ -1,0 +1,12 @@
+<map id="setShowUI" name="setShowUI">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,77,96,102"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomNodeItem.html#aee92d1368e7eba9c024dfc1cb30258f6" title=" " alt="" coords="161,5,405,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,74,143,55,175,46,177,51,145,60,87,79"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#aee92d1368e7eba9c024dfc1cb30258f6" title=" " alt="" coords="161,69,405,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="96,87,148,87,148,92,96,92"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1preferences_1_1preferences.html#a7e95a1a89e48f7f756bcea2a62a14a62" title=" " alt="" coords="144,158,423,183"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="89,100,234,151,232,156,87,105"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#a5255577d084a66ad390da11ce9cb918d" title=" " alt="" coords="471,69,715,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="405,87,457,87,457,92,405,92"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="246,160,237,150,242,140,257,134,283,131,316,135,328,145,325,149,314,140,283,137,258,139,245,144,243,149,250,156"/>
+</map>

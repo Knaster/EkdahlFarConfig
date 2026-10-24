@@ -1,21 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,255,81,281"/>
-<area shape="rect" id="Node000001" href="$classfarconfig_1_1ModuleSystem_1_1HelpCommand_1_1CommandType__access.html" title=" " alt="" coords="147,5,367,45"/>
-<area shape="poly" id="edge46_Node000000_Node000001" title=" " alt="" coords="45,241,53,200,67,150,92,99,108,76,128,55,146,43,149,47,131,59,112,79,96,102,72,152,58,201,50,242"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1ModuleSystem_1_1HelpCommand_1_1CommandType__data.html" title=" " alt="" coords="129,70,385,95"/>
-<area shape="poly" id="edge47_Node000000_Node000002" title=" " alt="" coords="48,241,59,210,75,173,97,136,128,106,150,93,153,98,131,110,102,140,79,175,64,212,53,243"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1ModuleSystem_1_1HelpCommand_1_1CommandType__dataOptions.html" title=" " alt="" coords="147,120,367,160"/>
-<area shape="poly" id="edge48_Node000000_Node000003" title=" " alt="" coords="58,242,87,204,106,186,128,170,152,158,155,162,131,174,110,190,91,208,62,245"/>
-<area shape="rect" id="Node000004" href="$classfarconfig_1_1ModuleSystem_1_1HelpCommand_1_1CommandType__flags.html" title=" " alt="" coords="147,184,367,224"/>
-<area shape="poly" id="edge49_Node000000_Node000004" title=" " alt="" coords="87,248,129,233,170,221,172,227,130,239,89,253"/>
-<area shape="rect" id="Node000005" href="$classfarconfig_1_1ModuleSystem_1_1HelpCommand_1_1CommandType__function.html" title=" " alt="" coords="147,248,367,288"/>
-<area shape="poly" id="edge50_Node000000_Node000005" title=" " alt="" coords="95,265,147,265,147,271,95,271"/>
-<area shape="rect" id="Node000006" href="$classfarconfig_1_1commanddefinitions_1_1ModuleCommandType__access.html" title=" " alt="" coords="148,313,367,338"/>
-<area shape="poly" id="edge51_Node000000_Node000006" title=" " alt="" coords="88,283,130,297,182,310,181,315,129,303,87,288"/>
-<area shape="rect" id="Node000007" href="$classfarconfig_1_1commanddefinitions_1_1ModuleCommandType__data.html" title=" " alt="" coords="156,362,359,387"/>
-<area shape="poly" id="edge52_Node000000_Node000007" title=" " alt="" coords="64,290,93,320,131,347,162,359,160,364,128,352,90,324,61,293"/>
-<area shape="rect" id="Node000008" href="$classfarconfig_1_1commanddefinitions_1_1ModuleCommandType__dataOptions.html" title=" " alt="" coords="131,411,384,437"/>
-<area shape="poly" id="edge53_Node000000_Node000008" title=" " alt="" coords="56,292,84,346,105,374,131,396,155,409,152,413,128,401,101,377,80,349,52,295"/>
-<area shape="rect" id="Node000009" href="$classfarconfig_1_1commanddefinitions_1_1ModuleCommandType__function.html" title=" " alt="" coords="144,461,371,486"/>
-<area shape="poly" id="edge54_Node000000_Node000009" title=" " alt="" coords="52,294,61,329,76,370,99,412,131,446,152,458,149,463,128,450,95,415,71,373,56,330,47,295"/>
+<area shape="rect" id="Node000000" href="$classfarconfig_1_1ModuleSystem_1_1ModuleCommand_1_1Callback.html" title=" " alt="" coords="5,5,203,31"/>
 </map>

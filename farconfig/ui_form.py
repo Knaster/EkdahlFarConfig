@@ -419,17 +419,17 @@ class Ui_Widget(object):
         self.groupBoxBasicTuningParameters.setMaximumSize(QSize(16777215, 150))
         self.comboBoxBaseNote = QComboBox(self.groupBoxBasicTuningParameters)
         self.comboBoxBaseNote.setObjectName(u"comboBoxBaseNote")
-        self.comboBoxBaseNote.setGeometry(QRect(130, 100, 91, 20))
+        self.comboBoxBaseNote.setGeometry(QRect(190, 100, 111, 20))
         self.label_7 = QLabel(self.groupBoxBasicTuningParameters)
         self.label_7.setObjectName(u"label_7")
-        self.label_7.setGeometry(QRect(10, 40, 101, 41))
+        self.label_7.setGeometry(QRect(10, 40, 191, 16))
         self.label_7.setWordWrap(True)
         self.label_8 = QLabel(self.groupBoxBasicTuningParameters)
         self.label_8.setObjectName(u"label_8")
-        self.label_8.setGeometry(QRect(10, 100, 91, 16))
+        self.label_8.setGeometry(QRect(10, 100, 131, 16))
         self.doubleSpinBoxFundamentalFrequency = QDoubleSpinBox(self.groupBoxBasicTuningParameters)
         self.doubleSpinBoxFundamentalFrequency.setObjectName(u"doubleSpinBoxFundamentalFrequency")
-        self.doubleSpinBoxFundamentalFrequency.setGeometry(QRect(130, 50, 91, 21))
+        self.doubleSpinBoxFundamentalFrequency.setGeometry(QRect(210, 40, 91, 20))
         self.doubleSpinBoxFundamentalFrequency.setAccelerated(True)
         self.doubleSpinBoxFundamentalFrequency.setDecimals(3)
         self.doubleSpinBoxFundamentalFrequency.setMaximum(1000.000000000000000)
@@ -437,14 +437,14 @@ class Ui_Widget(object):
         self.comboBoxFundamentalFrequency = QComboBox(self.groupBoxBasicTuningParameters)
         self.comboBoxFundamentalFrequency.addItem("")
         self.comboBoxFundamentalFrequency.setObjectName(u"comboBoxFundamentalFrequency")
-        self.comboBoxFundamentalFrequency.setGeometry(QRect(279, 50, 111, 20))
+        self.comboBoxFundamentalFrequency.setGeometry(QRect(190, 70, 111, 20))
         self.comboBoxFundamentalFrequency.setEditable(True)
         self.pushButtonDetectFundamental = QPushButton(self.groupBoxBasicTuningParameters)
         self.pushButtonDetectFundamental.setObjectName(u"pushButtonDetectFundamental")
-        self.pushButtonDetectFundamental.setGeometry(QRect(410, 50, 90, 21))
+        self.pushButtonDetectFundamental.setGeometry(QRect(320, 40, 90, 21))
         self.label_68 = QLabel(self.groupBoxBasicTuningParameters)
         self.label_68.setObjectName(u"label_68")
-        self.label_68.setGeometry(QRect(230, 50, 45, 17))
+        self.label_68.setGeometry(QRect(11, 70, 51, 17))
 
         self.horizontalLayout.addWidget(self.groupBoxBasicTuningParameters, 0, Qt.AlignTop)
 
@@ -3313,15 +3313,15 @@ class Ui_Widget(object):
 
         self.nodeHeader.addWidget(self.label_38)
 
-        self.comboBox = QComboBox(self.tab_nodeeditor)
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.setObjectName(u"comboBox")
+        self.comboBoxNodesFilterBy = QComboBox(self.tab_nodeeditor)
+        self.comboBoxNodesFilterBy.addItem("")
+        self.comboBoxNodesFilterBy.addItem("")
+        self.comboBoxNodesFilterBy.addItem("")
+        self.comboBoxNodesFilterBy.addItem("")
+        self.comboBoxNodesFilterBy.addItem("")
+        self.comboBoxNodesFilterBy.setObjectName(u"comboBoxNodesFilterBy")
 
-        self.nodeHeader.addWidget(self.comboBox)
+        self.nodeHeader.addWidget(self.comboBoxNodesFilterBy)
 
         self.horizontalSpacer_4 = QSpacerItem(10, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
@@ -3332,13 +3332,31 @@ class Ui_Widget(object):
 
         self.nodeHeader.addWidget(self.label_66)
 
-        self.comboBox_2 = QComboBox(self.tab_nodeeditor)
-        self.comboBox_2.addItem("")
-        self.comboBox_2.setObjectName(u"comboBox_2")
+        self.comboBoxNodesShow = QComboBox(self.tab_nodeeditor)
+        self.comboBoxNodesShow.addItem("")
+        self.comboBoxNodesShow.setObjectName(u"comboBoxNodesShow")
 
-        self.nodeHeader.addWidget(self.comboBox_2)
+        self.nodeHeader.addWidget(self.comboBoxNodesShow)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_30 = QSpacerItem(80, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.nodeHeader.addItem(self.horizontalSpacer_30)
+
+        self.checkBoxNodesSelectedOnly = QCheckBox(self.tab_nodeeditor)
+        self.checkBoxNodesSelectedOnly.setObjectName(u"checkBoxNodesSelectedOnly")
+
+        self.nodeHeader.addWidget(self.checkBoxNodesSelectedOnly)
+
+        self.horizontalSpacer_31 = QSpacerItem(10, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.nodeHeader.addItem(self.horizontalSpacer_31)
+
+        self.checkBoxNodesHideVolatile = QCheckBox(self.tab_nodeeditor)
+        self.checkBoxNodesHideVolatile.setObjectName(u"checkBoxNodesHideVolatile")
+
+        self.nodeHeader.addWidget(self.checkBoxNodesHideVolatile)
+
+        self.horizontalSpacer_3 = QSpacerItem(200, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.nodeHeader.addItem(self.horizontalSpacer_3)
 
@@ -3420,7 +3438,7 @@ class Ui_Widget(object):
         self.scrollPlugins.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
         self.scrollAreaContentsPlugins = QWidget()
         self.scrollAreaContentsPlugins.setObjectName(u"scrollAreaContentsPlugins")
-        self.scrollAreaContentsPlugins.setGeometry(QRect(0, 0, 1146, 30))
+        self.scrollAreaContentsPlugins.setGeometry(QRect(0, 0, 1146, 582))
         sizePolicy10 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
         sizePolicy10.setHorizontalStretch(0)
         sizePolicy10.setVerticalStretch(0)
@@ -3444,7 +3462,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.tabWidgetMain.setCurrentIndex(2)
+        self.tabWidgetMain.setCurrentIndex(7)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -3469,11 +3487,11 @@ class Ui_Widget(object):
         self.pushButtonPickupAnalyse.setText(QCoreApplication.translate("Widget", u"Analyse", None))
         self.groupBoxBasicTuningParameters.setTitle(QCoreApplication.translate("Widget", u"Pitch settings", None))
         self.label_7.setText(QCoreApplication.translate("Widget", u"Fundamental Frequency", None))
-        self.label_8.setText(QCoreApplication.translate("Widget", u"Map to key", None))
+        self.label_8.setText(QCoreApplication.translate("Widget", u"Map to MIDI key", None))
         self.comboBoxFundamentalFrequency.setItemText(0, QCoreApplication.translate("Widget", u"A - 440.00Hz", None))
 
         self.pushButtonDetectFundamental.setText(QCoreApplication.translate("Widget", u"Detect", None))
-        self.label_68.setText(QCoreApplication.translate("Widget", u"Set to", None))
+        self.label_68.setText(QCoreApplication.translate("Widget", u"Preset", None))
         self.groupBox_15.setTitle(QCoreApplication.translate("Widget", u"Auto calibrations", None))
         self.pushButtonCalibrateAll.setText(QCoreApplication.translate("Widget", u"Calibrate all", None))
         self.pushButtonCalibratePressure.setText(QCoreApplication.translate("Widget", u"Cal. Pressure", None))
@@ -3771,15 +3789,17 @@ class Ui_Widget(object):
         self.label_48.setText(QCoreApplication.translate("Widget", u"T. Freq", None))
         self.tabWidgetMain.setTabText(self.tabWidgetMain.indexOf(self.tab_temporary), QCoreApplication.translate("Widget", u"Temporary", None))
         self.label_38.setText(QCoreApplication.translate("Widget", u"Filter by ", None))
-        self.comboBox.setItemText(0, QCoreApplication.translate("Widget", u"None", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Source", None))
-        self.comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Destination", None))
-        self.comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Plugins", None))
-        self.comboBox.setItemText(4, QCoreApplication.translate("Widget", u"Module", None))
+        self.comboBoxNodesFilterBy.setItemText(0, QCoreApplication.translate("Widget", u"None", None))
+        self.comboBoxNodesFilterBy.setItemText(1, QCoreApplication.translate("Widget", u"Source", None))
+        self.comboBoxNodesFilterBy.setItemText(2, QCoreApplication.translate("Widget", u"Destination", None))
+        self.comboBoxNodesFilterBy.setItemText(3, QCoreApplication.translate("Widget", u"Plugins", None))
+        self.comboBoxNodesFilterBy.setItemText(4, QCoreApplication.translate("Widget", u"Module", None))
 
         self.label_66.setText(QCoreApplication.translate("Widget", u"Show ", None))
-        self.comboBox_2.setItemText(0, QCoreApplication.translate("Widget", u"All", None))
+        self.comboBoxNodesShow.setItemText(0, QCoreApplication.translate("Widget", u"All", None))
 
+        self.checkBoxNodesSelectedOnly.setText(QCoreApplication.translate("Widget", u"Show selected only", None))
+        self.checkBoxNodesHideVolatile.setText(QCoreApplication.translate("Widget", u"Hide volatile", None))
         self.pushButtonOrganize.setText(QCoreApplication.translate("Widget", u"Organize", None))
         self.tabWidgetMain.setTabText(self.tabWidgetMain.indexOf(self.tab_nodeeditor), QCoreApplication.translate("Widget", u"Nodes", None))
         self.label_67.setText(QCoreApplication.translate("Widget", u"Avaliable plugins", None))

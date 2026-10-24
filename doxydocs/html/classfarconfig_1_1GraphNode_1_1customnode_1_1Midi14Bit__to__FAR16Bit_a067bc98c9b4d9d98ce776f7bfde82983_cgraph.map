@@ -1,4 +1,5 @@
 <map id="set_value" name="set_value">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,91,55"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="32,29,31,12,37,5,48,3,60,6,66,15,61,18,57,11,48,8,40,10,36,14,38,29"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,91,31"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1Midi14Bit__to__FAR16Bit.html#aabe132f7ac38639bfd0dac75a9c38c9c" title=" " alt="" coords="139,5,225,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,15,125,15,125,21,91,21"/>
 </map>

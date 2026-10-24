@@ -1,7 +1,9 @@
 <map id="getChartItem" name="getChartItem">
-<area shape="rect" id="Node000001" title=" " alt="" coords="209,31,317,56"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1preferences_1_1preferences.html#a2cbd53d709cfbebe4ee511c54636e917" title=" " alt="" coords="13,5,154,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,37,154,31,155,25,196,31"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1preferences_1_1preferences.html#aaca160a326b6b68bf4b4a67f06a9ba9f" title=" " alt="" coords="5,55,161,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,55,162,60,161,54,196,50"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="280,63,388,88"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1preferences_1_1preferences.html#abe9db63a38b9bbec2b669724494aee60" title=" " alt="" coords="25,5,212,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="281,61,231,46,180,33,181,28,233,41,283,56"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1preferences_1_1preferences.html#a14db94ffebebb9ea81e31fbca3eed58d" title=" " alt="" coords="5,55,232,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="266,78,232,78,232,73,266,73"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1preferences_1_1preferences.html#ace4f0abdcef9f407026bd0633b41410f" title=" " alt="" coords="29,120,208,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="283,95,233,110,181,123,180,117,231,105,281,90"/>
 </map>

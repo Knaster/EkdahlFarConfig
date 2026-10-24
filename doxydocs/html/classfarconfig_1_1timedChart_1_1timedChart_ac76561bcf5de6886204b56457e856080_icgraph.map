@@ -1,5 +1,4 @@
 <map id="updateChartCommands" name="updateChartCommands">
-<area shape="rect" id="Node000001" title=" " alt="" coords="296,5,472,31"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1timedChart_1_1timedChart.html#ab6b3f75fa444ba31abebc0f1019f10ad" title=" " alt="" coords="5,5,248,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="282,21,248,21,248,15,282,15"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,181,55"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="124,19,115,11,93,8,75,10,65,15,63,20,68,28,64,31,58,21,61,11,73,5,93,3,118,6,128,15"/>
 </map>

@@ -17,93 +17,93 @@ class \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_1_1skipFunct
 \item 
 \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_aeb9fd6f14418c522f24a9a7b16b2ff19}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a030ecaa2a61b422a8ca7422403ad8c77}{container}}, \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_adfeca4fdcb50a877e5b481c6f4ef44bf}{command\+Set}}=None)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a5382ffd34bae535abca5e4bb9b3839c4}{clear\+Nodes}} (self)
-\item 
 \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_ad25e3f70d1a406fe7b22bb1823f9e83e}{add\+Dynamic\+Node\+Set}} (self, in\+Module)
 \begin{DoxyCompactList}\small\item\em Add a node set dynamically from the given module information using the \doxylink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet}{dynamic\+Node\+Set} class. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a7f75a1ca84f623a3147e6f92ee344fc4}{append\+Name\+To\+Node}} (self, \mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} node, \mbox{\hyperlink{classfarconfig_1_1commandparser_1_1Derivedcommanditem}{Derivedcommanditem}} command)
-\begin{DoxyCompactList}\small\item\em Adds text from a \textquotesingle{}name\textquotesingle{} command to the nodes label. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a45d99bd5aca376e908b1b8422862da7d}{find\+Command\+Match\+And\+Process}} (self, \mbox{\hyperlink{classfarconfig_1_1commandparser_1_1Derivedcommanditem}{Derivedcommanditem}} command)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_adffa7e44c9f75eaabde4448c4c9adbd0}{parse\+Command}} (self, command)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a717409d6bf031065bc426bb0f9d50286}{post\+Build\+Update}} (self)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a346d7a131d0b539e3ecfa1437c1680ac}{redraw}} (self)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a22280aaa8dd7274a4d359d3d626f8b21}{get\+Children}} (self, equation, root\+Only=True)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_aa1803650620d4f123ba3baa39579a8c7}{get\+Children\+Iter}} (self, equation, root\+Only)
-\item 
 \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a845e3ae5c1584cba1c347fad40c2efff}{add\+Function}} (self, function, main\+Node)
 \item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a5382ffd34bae535abca5e4bb9b3839c4}{clear\+Nodes}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_ae42ee37466e07384f593a0114ff96730}{connect\+Function\+Arguments}} (self, function, equation, main\+Node, default\+Output, start\+From\+Input, input\+Node, override\+In\+Port=None)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a999659cadced6b2fc6cf596128318a3e}{create\+Equation}} (self, main\+Node, equation, connect\+To\+Input, connect\+To\+Output)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a01eb69cb10afa7edde2f8f9a8760cb19}{delete\+All\+Associated\+Nodes}} (self, main\+Node)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_aa44837e880065699543186c0bb861fd3}{find\+Input\+Port\+From\+Command}} (self, in\+Command, arguments=None)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a22280aaa8dd7274a4d359d3d626f8b21}{get\+Children}} (self, equation, root\+Only=True)
+\begin{DoxyCompactList}\small\item\em Uses Sym\+Py to extract numbers, symbols and functions from an equation and build three lists. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_aa1803650620d4f123ba3baa39579a8c7}{get\+Children\+Iter}} (self, equation, root\+Only)
+\begin{DoxyCompactList}\small\item\em Recursive part of get\+Children that will apply itself onto each sub-\/equation. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a0f37783d3257624eb0155fa4e99170e4}{get\+Function\+Arguments}} (self, equation)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_acadeb5dc96cf00093ec892867162c874}{get\+Preferred\+Connection}} (self, inputs, output)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_ae42ee37466e07384f593a0114ff96730}{connect\+Function\+Arguments}} (self, function, equation, main\+Node, default\+Output, start\+From\+Input, input\+Node, override\+In\+Port=None)
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a7e38e5b7157487f139629f99a21780e4}{hide\+All\+Nodes}} (self)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_aa44837e880065699543186c0bb861fd3}{find\+Input\+Port\+From\+Command}} (self, in\+Command, arguments=None)
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a9a819cd8cba8f7c46b282d14f5e33e06}{hide\+All\+Volatile}} (self)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a999659cadced6b2fc6cf596128318a3e}{create\+Equation}} (self, main\+Node, equation, connect\+To\+Input, connect\+To\+Output)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a32d5b9716a3414254c681454ac343e5e}{override\+Function}} (self, \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_1_1skipFunction}{skip\+Function}} override\+With, main\+Node, equation, connect\+To\+Input, connect\+To\+Output)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a3480c6f8410acd502ff2f58efa568288}{process}} (self, \mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} main\+Node, command, argument=None, in\+Connect\+To\+Output=None, skip\+Input=False, in\+Connect\+To\+Input=None)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a53761edc7217a98b8daddf16138d3d18}{optimize\+Objects}} (self)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a01eb69cb10afa7edde2f8f9a8760cb19}{delete\+All\+Associated\+Nodes}} (self, main\+Node)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a20e6c7c2bdd93a75bf7a5f8c8b2f6cc8}{remove\+Duplicate\+Objects}} (self)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a893210ab4ffc31ff0c67b0f12f04a92d}{remove\+Duplicate\+Objects\+Iter}} (self)
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a469ec861456be1b26ec48812d878aa01}{optimize\+Deadbands}} (self)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a60fa8503dfda663fa3ae1b1f68ec01ba}{optimize\+Make\+Bools}} (self)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_aa02450b7311a5d2f104a2eed97ce4bca}{optimize\+Make\+Bools\+Iter}} (self)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a469ec861456be1b26ec48812d878aa01}{optimize\+Deadbands}} (self)
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a53761edc7217a98b8daddf16138d3d18}{optimize\+Objects}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a840b671a647bee917deeedc74d91ec8c}{override\+Function}} (self, \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_1_1skipFunction}{skip\+Function}} override\+With, \mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} main\+Node, equation, connect\+To\+Input, connect\+To\+Output)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a42540684aea675386fc34b396e2cb515}{parse\+Command}} (self, \mbox{\hyperlink{classfarconfig_1_1commandparser_1_1Derivedcommanditem}{Derivedcommanditem}} command)
+\begin{DoxyCompactList}\small\item\em Takes a command for assigning target commands and uses those in order to build a basic node tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a717409d6bf031065bc426bb0f9d50286}{post\+Build\+Update}} (self)
+\begin{DoxyCompactList}\small\item\em Updates modifier names, sets node colors and uses the Node\+Organizer to build a horizontal node tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a3480c6f8410acd502ff2f58efa568288}{process}} (self, \mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} main\+Node, command, argument=None, in\+Connect\+To\+Output=None, skip\+Input=False, in\+Connect\+To\+Input=None)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a346d7a131d0b539e3ecfa1437c1680ac}{redraw}} (self)
+\begin{DoxyCompactList}\small\item\em Redraws the node tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a20e6c7c2bdd93a75bf7a5f8c8b2f6cc8}{remove\+Duplicate\+Objects}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a893210ab4ffc31ff0c67b0f12f04a92d}{remove\+Duplicate\+Objects\+Iter}} (self)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a030ecaa2a61b422a8ca7422403ad8c77}{container}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a811584043b844704c9bb9a6e99dd05d3}{ga}}
-\item 
 \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_adfeca4fdcb50a877e5b481c6f4ef44bf}{command\+Set}}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_ab14df450ca46e8b59a1b56f507c3f8f8}{x\+Spread}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a925ec9494597676937f2ec989d693a2b}{x\+Offset}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a7228dabd4235761cf24edaa63c29ac5e}{max\+Depth}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_adabfb66304f64d1a88fe6dfec0e7c184}{hide\+Implicits}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a879cd4abd6ec9f9dc2757dd82abab2b1}{hide\+Advanced}}
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a030ecaa2a61b422a8ca7422403ad8c77}{container}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a4469ccf0b282ffcbdf65fad5cd809631}{dynamic\+Node\+Set}}
 \item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a811584043b844704c9bb9a6e99dd05d3}{ga}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a879cd4abd6ec9f9dc2757dd82abab2b1}{hide\+Advanced}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_adabfb66304f64d1a88fe6dfec0e7c184}{hide\+Implicits}}
+\item 
 \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a2b0d9b7c9ebabdef5a09b5841d43327f}{iteration\+Level}}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a47a382e653e4a7d534d9856e39d20a93}{nodes\+Added}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a385e8f5ed418a70c72d620f46a351a85}{local\+Symbols}}
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a0d83b1716a1c82028200ce58df592951}{local\+Functions}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a2dcf7566170a5198d9942189ebeb2570}{local\+Numbers}}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a0d83b1716a1c82028200ce58df592951}{local\+Functions}}
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a385e8f5ed418a70c72d620f46a351a85}{local\+Symbols}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a7228dabd4235761cf24edaa63c29ac5e}{max\+Depth}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a47a382e653e4a7d534d9856e39d20a93}{nodes\+Added}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a925ec9494597676937f2ec989d693a2b}{x\+Offset}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_ab14df450ca46e8b59a1b56f507c3f8f8}{x\+Spread}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
+list \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a349d22efe77a0e537d4826dffc7e09ac}{local\+Functions}} = \mbox{[}$\,$\mbox{]}
+\item 
 list \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_ab84d7bce9b8dc84c45831d7080117d6c}{local\+Numbers}} = \mbox{[}$\,$\mbox{]}
 \item 
 list \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a397906f0c7e84a86e5506185a30ed3ec}{local\+Symbols}} = \mbox{[}$\,$\mbox{]}
-\item 
-list \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a349d22efe77a0e537d4826dffc7e09ac}{local\+Functions}} = \mbox{[}$\,$\mbox{]}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a0796b1a0fd663c547a810ba1aae833a2}{skip\+Functions}}
 \end{DoxyCompactItemize}
@@ -112,7 +112,7 @@ list \mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_a349d22efe77a
 \doxysubsection{Detailed Description}
 The Node\+Handler class creates a {\itshape node} diagram of the current set of {\itshape modules} by using the \doxylink{classfarconfig_1_1nodehandler_1_1NodeHandler_ad25e3f70d1a406fe7b22bb1823f9e83e}{add\+Dynamic\+Node\+Set} function which is merely a caller for the \doxylink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet}{dynamic\+Node\+Set} class. 
 
-Connections in between the various {\itshape nodes} are created by the \doxylink{classfarconfig_1_1nodehandler_1_1NodeHandler_adffa7e44c9f75eaabde4448c4c9adbd0}{parse\+Command} function by parsing {\itshape command} {\itshape responses} received, it also adds the {\itshape glue} {\itshape logic} {\itshape nodes} in between {\itshape nodes} in order to simplify the visual aspects of equations and functions used.~\newline
+Connections in between the various {\itshape nodes} are created by the \doxylink{classfarconfig_1_1nodehandler_1_1NodeHandler_a42540684aea675386fc34b396e2cb515}{parse\+Command} function by parsing {\itshape command} {\itshape responses} received, it also adds the {\itshape glue} {\itshape logic} {\itshape nodes} in between {\itshape nodes} in order to simplify the visual aspects of equations and functions used.~\newline
 ~\newline
  {\itshape Glue} {\itshape logic} {\itshape nodes} are then optimized \& combined through the use of the \doxylink{classfarconfig_1_1nodehandler_1_1NodeHandler_a717409d6bf031065bc426bb0f9d50286}{post\+Build\+Update} function which also uses the Node\+Organizer class to visually organize the {\itshape nodes}. 
 
@@ -156,16 +156,6 @@ Here is the caller graph for this function\+:\nopagebreak
 \includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a845e3ae5c1584cba1c347fad40c2efff_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_a7f75a1ca84f623a3147e6f92ee344fc4}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_a7f75a1ca84f623a3147e6f92ee344fc4} 
-\index{NodeHandler@{NodeHandler}!appendNameToNode@{appendNameToNode}}
-\index{appendNameToNode@{appendNameToNode}!NodeHandler@{NodeHandler}}
-\doxysubsubsection{\texorpdfstring{appendNameToNode()}{appendNameToNode()}}
-{\footnotesize\ttfamily append\+Name\+To\+Node (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}}}]{node,  }\item[{\mbox{\hyperlink{classfarconfig_1_1commandparser_1_1Derivedcommanditem}{Derivedcommanditem}}}]{command }\end{DoxyParamCaption})}
-
-
-
-Adds text from a \textquotesingle{}name\textquotesingle{} command to the nodes label. 
-
 \Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_a5382ffd34bae535abca5e4bb9b3839c4}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_a5382ffd34bae535abca5e4bb9b3839c4} 
 \index{NodeHandler@{NodeHandler}!clearNodes@{clearNodes}}
 \index{clearNodes@{clearNodes}!NodeHandler@{NodeHandler}}
@@ -218,26 +208,11 @@ Here is the caller graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{deleteAllAssociatedNodes()}{deleteAllAssociatedNodes()}}
 {\footnotesize\ttfamily delete\+All\+Associated\+Nodes (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{main\+Node }\end{DoxyParamCaption})}
 
-\Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_a45d99bd5aca376e908b1b8422862da7d}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_a45d99bd5aca376e908b1b8422862da7d} 
-\index{NodeHandler@{NodeHandler}!findCommandMatchAndProcess@{findCommandMatchAndProcess}}
-\index{findCommandMatchAndProcess@{findCommandMatchAndProcess}!NodeHandler@{NodeHandler}}
-\doxysubsubsection{\texorpdfstring{findCommandMatchAndProcess()}{findCommandMatchAndProcess()}}
-{\footnotesize\ttfamily find\+Command\+Match\+And\+Process (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1commandparser_1_1Derivedcommanditem}{Derivedcommanditem}}}]{command }\end{DoxyParamCaption})}
-
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a45d99bd5aca376e908b1b8422862da7d_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a45d99bd5aca376e908b1b8422862da7d_icgraph}
+\includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a01eb69cb10afa7edde2f8f9a8760cb19_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_aa44837e880065699543186c0bb861fd3}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_aa44837e880065699543186c0bb861fd3} 
@@ -246,8 +221,7 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{findInputPortFromCommand()}{findInputPortFromCommand()}}
 {\footnotesize\ttfamily find\+Input\+Port\+From\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{in\+Command,  }\item[{}]{arguments = {\ttfamily None} }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -260,6 +234,10 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{getChildren()}{getChildren()}}
 {\footnotesize\ttfamily get\+Children (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{equation,  }\item[{}]{root\+Only = {\ttfamily True} }\end{DoxyParamCaption})}
 
+
+
+Uses Sym\+Py to extract numbers, symbols and functions from an equation and build three lists. 
+
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -267,8 +245,7 @@ Here is the call graph for this function\+:\nopagebreak
 \includegraphics[width=278pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a22280aaa8dd7274a4d359d3d626f8b21_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -281,6 +258,10 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{getChildrenIter()}{getChildrenIter()}}
 {\footnotesize\ttfamily get\+Children\+Iter (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{equation,  }\item[{}]{root\+Only }\end{DoxyParamCaption})}
 
+
+
+Recursive part of get\+Children that will apply itself onto each sub-\/equation. 
+
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -288,8 +269,7 @@ Here is the call graph for this function\+:\nopagebreak
 \includegraphics[width=169pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_aa1803650620d4f123ba3baa39579a8c7_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -315,32 +295,30 @@ Here is the caller graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{getPreferredConnection()}{getPreferredConnection()}}
 {\footnotesize\ttfamily get\+Preferred\+Connection (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{inputs,  }\item[{}]{output }\end{DoxyParamCaption})}
 
+\Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_a7e38e5b7157487f139629f99a21780e4}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_a7e38e5b7157487f139629f99a21780e4} 
+\index{NodeHandler@{NodeHandler}!hideAllNodes@{hideAllNodes}}
+\index{hideAllNodes@{hideAllNodes}!NodeHandler@{NodeHandler}}
+\doxysubsubsection{\texorpdfstring{hideAllNodes()}{hideAllNodes()}}
+{\footnotesize\ttfamily hide\+All\+Nodes (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_a9a819cd8cba8f7c46b282d14f5e33e06}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_a9a819cd8cba8f7c46b282d14f5e33e06} 
+\index{NodeHandler@{NodeHandler}!hideAllVolatile@{hideAllVolatile}}
+\index{hideAllVolatile@{hideAllVolatile}!NodeHandler@{NodeHandler}}
+\doxysubsubsection{\texorpdfstring{hideAllVolatile()}{hideAllVolatile()}}
+{\footnotesize\ttfamily hide\+All\+Volatile (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
 \Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_a469ec861456be1b26ec48812d878aa01}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_a469ec861456be1b26ec48812d878aa01} 
 \index{NodeHandler@{NodeHandler}!optimizeDeadbands@{optimizeDeadbands}}
 \index{optimizeDeadbands@{optimizeDeadbands}!NodeHandler@{NodeHandler}}
 \doxysubsubsection{\texorpdfstring{optimizeDeadbands()}{optimizeDeadbands()}}
 {\footnotesize\ttfamily optimize\+Deadbands (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a469ec861456be1b26ec48812d878aa01_icgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_a60fa8503dfda663fa3ae1b1f68ec01ba}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_a60fa8503dfda663fa3ae1b1f68ec01ba} 
 \index{NodeHandler@{NodeHandler}!optimizeMakeBools@{optimizeMakeBools}}
 \index{optimizeMakeBools@{optimizeMakeBools}!NodeHandler@{NodeHandler}}
 \doxysubsubsection{\texorpdfstring{optimizeMakeBools()}{optimizeMakeBools()}}
 {\footnotesize\ttfamily optimize\+Make\+Bools (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a60fa8503dfda663fa3ae1b1f68ec01ba_cgraph}
-\end{center}
-\end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -371,7 +349,7 @@ Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a53761edc7217a98b8daddf16138d3d18_cgraph}
+\includegraphics[width=325pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a53761edc7217a98b8daddf16138d3d18_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function\+:\nopagebreak
@@ -381,31 +359,34 @@ Here is the caller graph for this function\+:\nopagebreak
 \includegraphics[width=310pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a53761edc7217a98b8daddf16138d3d18_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_a32d5b9716a3414254c681454ac343e5e}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_a32d5b9716a3414254c681454ac343e5e} 
+\Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_a840b671a647bee917deeedc74d91ec8c}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_a840b671a647bee917deeedc74d91ec8c} 
 \index{NodeHandler@{NodeHandler}!overrideFunction@{overrideFunction}}
 \index{overrideFunction@{overrideFunction}!NodeHandler@{NodeHandler}}
 \doxysubsubsection{\texorpdfstring{overrideFunction()}{overrideFunction()}}
-{\footnotesize\ttfamily override\+Function (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_1_1skipFunction}{skip\+Function}}}]{override\+With,  }\item[{}]{main\+Node,  }\item[{}]{equation,  }\item[{}]{connect\+To\+Input,  }\item[{}]{connect\+To\+Output }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily override\+Function (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1nodehandler_1_1NodeHandler_1_1skipFunction}{skip\+Function}}}]{override\+With,  }\item[{\mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}}}]{main\+Node,  }\item[{}]{equation,  }\item[{}]{connect\+To\+Input,  }\item[{}]{connect\+To\+Output }\end{DoxyParamCaption})}
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a32d5b9716a3414254c681454ac343e5e_cgraph}
+\includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a840b671a647bee917deeedc74d91ec8c_cgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_adffa7e44c9f75eaabde4448c4c9adbd0}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_adffa7e44c9f75eaabde4448c4c9adbd0} 
+\Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_a42540684aea675386fc34b396e2cb515}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_a42540684aea675386fc34b396e2cb515} 
 \index{NodeHandler@{NodeHandler}!parseCommand@{parseCommand}}
 \index{parseCommand@{parseCommand}!NodeHandler@{NodeHandler}}
 \doxysubsubsection{\texorpdfstring{parseCommand()}{parseCommand()}}
-{\footnotesize\ttfamily parse\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily parse\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1commandparser_1_1Derivedcommanditem}{Derivedcommanditem}}}]{command }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+
+
+Takes a command for assigning target commands and uses those in order to build a basic node tree. 
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_adffa7e44c9f75eaabde4448c4c9adbd0_cgraph}
+\includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a42540684aea675386fc34b396e2cb515_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_a717409d6bf031065bc426bb0f9d50286}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_a717409d6bf031065bc426bb0f9d50286} 
@@ -413,6 +394,10 @@ Here is the call graph for this function\+:
 \index{postBuildUpdate@{postBuildUpdate}!NodeHandler@{NodeHandler}}
 \doxysubsubsection{\texorpdfstring{postBuildUpdate()}{postBuildUpdate()}}
 {\footnotesize\ttfamily post\+Build\+Update (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Updates modifier names, sets node colors and uses the Node\+Organizer to build a horizontal node tree. 
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -434,8 +419,7 @@ Here is the call graph for this function\+:\nopagebreak
 \includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a3480c6f8410acd502ff2f58efa568288_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -448,32 +432,29 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{redraw()}{redraw()}}
 {\footnotesize\ttfamily redraw (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
+
+
+Redraws the node tree. 
+
 \Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_a20e6c7c2bdd93a75bf7a5f8c8b2f6cc8}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_a20e6c7c2bdd93a75bf7a5f8c8b2f6cc8} 
 \index{NodeHandler@{NodeHandler}!removeDuplicateObjects@{removeDuplicateObjects}}
 \index{removeDuplicateObjects@{removeDuplicateObjects}!NodeHandler@{NodeHandler}}
 \doxysubsubsection{\texorpdfstring{removeDuplicateObjects()}{removeDuplicateObjects()}}
 {\footnotesize\ttfamily remove\+Duplicate\+Objects (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a20e6c7c2bdd93a75bf7a5f8c8b2f6cc8_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a20e6c7c2bdd93a75bf7a5f8c8b2f6cc8_icgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classfarconfig_1_1nodehandler_1_1NodeHandler_a893210ab4ffc31ff0c67b0f12f04a92d}\label{classfarconfig_1_1nodehandler_1_1NodeHandler_a893210ab4ffc31ff0c67b0f12f04a92d} 
 \index{NodeHandler@{NodeHandler}!removeDuplicateObjectsIter@{removeDuplicateObjectsIter}}
 \index{removeDuplicateObjectsIter@{removeDuplicateObjectsIter}!NodeHandler@{NodeHandler}}
 \doxysubsubsection{\texorpdfstring{removeDuplicateObjectsIter()}{removeDuplicateObjectsIter()}}
 {\footnotesize\ttfamily remove\+Duplicate\+Objects\+Iter (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfarconfig_1_1nodehandler_1_1NodeHandler_a893210ab4ffc31ff0c67b0f12f04a92d_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}

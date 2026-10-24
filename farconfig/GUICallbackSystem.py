@@ -169,7 +169,10 @@ class GUICallbackSystem(QObject):
 
     def setGUIObjectValueFromCallbacks(self, guiCallbacks:list[GUICallback]):
         for guiCallback in guiCallbacks:
-            self.setGUIObjectValueFromCallback(guiCallback)
+            if (guiCallback is None):
+                print("ERROR!! guiCallback is NONE")
+            else:
+                self.setGUIObjectValueFromCallback(guiCallback)
 
     def addGUICallbacks(self, guiCallbacks: list[GUICallback], regenerateModuleCommand = False):
         for i in range(0, len(guiCallbacks)):
@@ -205,6 +208,7 @@ class GUICallbackSystem(QObject):
             if guiCallback.module is None:
                 return None
             if guiCallback.moduleCommand is None:
+                print ("Could not add GUI Callback for command string '" + guiCallback.commandString + "'")
                 return None
 
         if isinstance(guiCallback.widget, QLineEdit):
@@ -318,7 +322,7 @@ class GUICallbackSystem(QObject):
         #index = moduleCommand.parent.getIndex()
         found = False
         for guiCallback in guiCallbacks:
-            if (guiCallback.module.getIndex() == index):
+            if (guiCallback.module is not None) and (guiCallback.module.getIndex() == index):
                 found = True
                 break
         if not found:

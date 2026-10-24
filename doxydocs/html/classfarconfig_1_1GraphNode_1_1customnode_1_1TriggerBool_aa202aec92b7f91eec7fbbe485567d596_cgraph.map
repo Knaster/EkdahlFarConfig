@@ -1,4 +1,15 @@
 <map id="findRootPort" name="findRootPort">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,108,55"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="39,30,35,21,37,12,44,5,57,3,71,6,77,15,73,18,68,11,57,8,47,10,42,14,40,20,44,28"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,108,62"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1TriggerBool.html#a67d72f99718bd119da85a775ebe4706f" title=" " alt="" coords="156,37,243,62"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,55,142,55,142,61,108,61"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1TriggerBool.html#a3ed6c48ad94cd8dc1ef028827ce10997" title=" " alt="" coords="166,86,233,111"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="95,60,154,80,152,85,93,65"/>
+<area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="156,44,121,43,122,38,156,38"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#a48828d241bb2ee470a5242d70b373f5b" title=" " alt="" coords="291,29,535,69"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="243,47,277,47,277,52,243,52"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="373,30,370,20,377,10,391,5,413,3,438,6,451,13,449,18,436,11,413,8,392,10,380,15,375,21,378,28"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#acd02397c9b7326eb88a1e9594c0a2d6f" title=" " alt="" coords="583,29,827,69"/>
+<area shape="poly" id="edge5_Node000003_Node000004" title=" " alt="" coords="535,47,569,47,569,52,535,52"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#a5255577d084a66ad390da11ce9cb918d" title=" " alt="" coords="875,29,1119,69"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="827,47,861,47,861,52,827,52"/>
 </map>

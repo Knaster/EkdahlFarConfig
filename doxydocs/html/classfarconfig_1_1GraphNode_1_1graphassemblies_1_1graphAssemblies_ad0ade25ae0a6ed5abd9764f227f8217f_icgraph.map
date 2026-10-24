@@ -1,5 +1,6 @@
 <map id="getPortForVariable" name="getPortForVariable">
-<area shape="rect" id="Node000001" title=" " alt="" coords="245,5,388,31"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1graphassemblies_1_1graphAssemblies.html#a854242024b1e55ebcc502dcfbf9155b0" title=" " alt="" coords="5,5,197,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,21,197,21,197,15,232,15"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="245,29,388,55"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="355,20,344,11,317,8,294,10,282,15,279,20,286,28,282,31,274,21,278,11,293,5,317,3,346,6,358,15"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1graphassemblies_1_1graphAssemblies.html#a854242024b1e55ebcc502dcfbf9155b0" title=" " alt="" coords="5,29,197,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,45,197,45,197,39,232,39"/>
 </map>

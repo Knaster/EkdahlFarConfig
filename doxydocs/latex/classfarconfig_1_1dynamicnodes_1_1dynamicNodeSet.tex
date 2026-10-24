@@ -12,25 +12,25 @@ The dynamic\+Node\+Set class creates a set of {\itshape assemblies} and {\itshap
 \item 
 \mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a5cfff125ef6a7a981a67a52986e4ceda}{add\+Node\+Data\+From\+Module\+Command}} (self, \mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} new\+Node, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}} module\+Command)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a858623a9582697eb4f6fcb2c5818314a}{treat\+Special\+Module}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleHandler}{Module\+Handler}}\texorpdfstring{$\vert$}{|}\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1Module}{Module}} in\+Module, new\+Node)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a20b3b4200266073492392542b699ba6f}{treat\+Special\+Command}} (self, in\+Module, \mbox{\hyperlink{classfarconfig_1_1commanddefinitions_1_1CommandID}{Command\+ID}} in\+Command, \mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} new\+Node)
-\item 
 \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a92f1347479751dadd32376e429d38b97}{build\+Nodes\+From\+Modules}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleHandler}{Module\+Handler}} in\+Module)
-\begin{DoxyCompactList}\small\item\em Processes the Command\+Set\+Modular.Group\+Handler object given and does the following;. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Processes the Command\+Set\+Modular.Group\+Handler object given and does the following;. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a20b3b4200266073492392542b699ba6f}{treat\+Special\+Command}} (self, in\+Module, Command\+ID in\+Command, \mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} new\+Node)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a858623a9582697eb4f6fcb2c5818314a}{treat\+Special\+Module}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleHandler}{Module\+Handler}}\texorpdfstring{$\vert$}{|}\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1Module}{Module}} in\+Module, new\+Node)
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a811584043b844704c9bb9a6e99dd05d3}{ga}}
-\begin{DoxyCompactList}\small\item\em Current graphassemblies.\+graph\+Assembly. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_ab7dc3b7c05961e7ab735d0459ee8a962}{addY}}
+\begin{DoxyCompactList}\small\item\em Increase in Y position per added item. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_adfeca4fdcb50a877e5b481c6f4ef44bf}{command\+Set}}
 \begin{DoxyCompactList}\small\item\em Associated \doxylink{classfarconfig_1_1CommandSets_1_1CommandSetModular}{Command\+Sets.Command\+Set\+Modular}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a811584043b844704c9bb9a6e99dd05d3}{ga}}
+\begin{DoxyCompactList}\small\item\em Current graphassemblies.\+graph\+Assembly. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a7f721a262dd3d84c38ad13e9af027464}{modules}}
 \begin{DoxyCompactList}\small\item\em Associated modules. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_ad02a9c33e89feb2fc25db0b5283a0201}{pos\+List}}
-\begin{DoxyCompactList}\small\item\em Starting points of sources, modifiers and destination nodes. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_ab7dc3b7c05961e7ab735d0459ee8a962}{addY}}
-\begin{DoxyCompactList}\small\item\em Increase in Y position per added item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Starting points of sources, modifiers and destination nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -61,8 +61,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{addNodeDataFromModuleCommand()}{addNodeDataFromModuleCommand()}}
 {\footnotesize\ttfamily  \mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} add\+Node\+Data\+From\+Module\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}}}]{new\+Node,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}}]{module\+Command }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -100,8 +99,7 @@ Processes the Command\+Set\+Modular.Group\+Handler object given and does the fol
  Insert the current {\itshape node} into the {\itshape assembly} and create a new {\itshape node} for the next {\itshape command} 
 \end{DoxyItemize}
 \item Recursively repeat the entire process for all child {\itshape modules} 
-\end{DoxyItemize}Here is the call graph for this function\+:
-\nopagebreak
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -119,7 +117,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{dynamicNodeSet@{dynamicNodeSet}!treatSpecialCommand@{treatSpecialCommand}}
 \index{treatSpecialCommand@{treatSpecialCommand}!dynamicNodeSet@{dynamicNodeSet}}
 \doxysubsubsection{\texorpdfstring{treatSpecialCommand()}{treatSpecialCommand()}}
-{\footnotesize\ttfamily  \mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} treat\+Special\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{in\+Module,  }\item[{\mbox{\hyperlink{classfarconfig_1_1commanddefinitions_1_1CommandID}{Command\+ID}}}]{in\+Command,  }\item[{\mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}}}]{new\+Node }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily  \mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} treat\+Special\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{in\+Module,  }\item[{Command\+ID}]{in\+Command,  }\item[{\mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}}}]{new\+Node }\end{DoxyParamCaption})}
 
 \Hypertarget{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a858623a9582697eb4f6fcb2c5818314a}\label{classfarconfig_1_1dynamicnodes_1_1dynamicNodeSet_a858623a9582697eb4f6fcb2c5818314a} 
 \index{dynamicNodeSet@{dynamicNodeSet}!treatSpecialModule@{treatSpecialModule}}
@@ -127,8 +125,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{treatSpecialModule()}{treatSpecialModule()}}
 {\footnotesize\ttfamily  \mbox{\hyperlink{classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode}{Custom\+Base\+Node}} treat\+Special\+Module (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleHandler}{Module\+Handler}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1Module}{Module}}}]{in\+Module,  }\item[{}]{new\+Node }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

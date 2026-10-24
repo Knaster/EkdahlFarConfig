@@ -1,4 +1,7 @@
 <map id="hide" name="hide">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,56,55"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="20,29,19,12,23,5,31,3,39,6,42,15,37,17,35,10,31,8,27,9,25,14,26,29"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,56,31"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#aee92d1368e7eba9c024dfc1cb30258f6" title=" " alt="" coords="104,5,160,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,15,90,15,90,21,56,21"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#a5255577d084a66ad390da11ce9cb918d" title=" " alt="" coords="208,5,303,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="160,15,194,15,194,21,160,21"/>
 </map>

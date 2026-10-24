@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['graphassemblies_0',['graphassemblies',['../namespacegraphassemblies.html',1,'']]]
+  ['stringmodule_0',['stringModule',['../namespacestringModule.html',1,'']]]
 ];

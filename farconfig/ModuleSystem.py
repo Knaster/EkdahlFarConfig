@@ -307,6 +307,8 @@ class ModuleHandler(Module):
             return
         newCommandItem.argument = commandItem.argument
         moduleGroup = self.addModuleGroup(newCommandItem)
+        if (moduleGroup is None):
+            return
         # If this is the last index in the hierarchy and the 'ls'-command indicates zero children, do not add the actual child
         if (int(newCommandItem.argument[2]) == 0) and (newCommandItem.hierarchyIndex >= len(newCommandItem.hierarchy) - 1):
             moduleHandler = None
@@ -401,6 +403,8 @@ class ModuleHandler(Module):
     def getCommandAndModule(self, commandItem:Derivedcommanditem | str) -> (ModuleCommand, Module):
         if isinstance(commandItem, str):
             commandItem = Derivedcommanditem(commandItem)
+        if (commandItem.command == ""):
+            return None
         # If this is the last item in the hierarchy, it's either a command or a index selection
         if commandItem.hierarchyIndex == len(commandItem.hierarchy) - 1:
             # Check if it's a command
@@ -681,7 +685,7 @@ class ModuleTypes(Enum):
     external = auto()
 
 class HelpModule:
-    def __init__(self, commandSet, hierarchyIndex=0, longName="", shortName="", description=""):
+    def __init__(self, commandSet, hierarchyIndex=0, longName="", shortName="", description="", mustHaveSingleSelection = False):
         self.longName: str = longName
         self.shortName: str = shortName
         self.description: str = description
@@ -689,6 +693,7 @@ class HelpModule:
         self.commands:list[HelpCommand] = []
         self.commandSet = commandSet
         self.hierarchyIndex = hierarchyIndex
+        self.mustHaveSingleSelection = mustHaveSingleSelection
 
     def addEntry(self, commandItem: Derivedcommanditem):
         if commandItem.hierarchyIndex < (len(commandItem.hierarchy) - 1):
@@ -699,8 +704,11 @@ class HelpModule:
                     commandItem.hierarchyIndex -= 1
                     return
         else:
+            if (len(commandItem.argument) == 0):
+                return
             shortNameH = Derivedcommanditem(commandItem.argument[0])
             shortName = shortNameH.hierarchy[len(shortNameH.hierarchy) - 1].name
+            # Any help item with at least 5 arguments is a helpCommand item
             if len(commandItem.argument) >= 5:
                 variables = ""
                 if len(commandItem.argument) >= 6:
@@ -709,7 +717,8 @@ class HelpModule:
                 self.commands.append(HelpCommand(commandItem.hierarchy[commandItem.hierarchyIndex].name,
                                                  shortName, commandItem.argument[1],
                                                  commandItem.argument[2], commandItem.argument[3], commandItem.argument[4], variables))
-            if len(commandItem.argument) == 2:
+            # Any help item with less than 5 arguments is a helpModule item
+            if len(commandItem.argument) < 5:
                 self.modules.append(HelpModule(self.commandSet, self.hierarchyIndex + 1,
                                                commandItem.hierarchy[commandItem.hierarchyIndex].name,
-                                               shortName, commandItem.argument[1]))
+                                               shortName, commandItem.argument[1], bool(int(commandItem.argument[2]))))

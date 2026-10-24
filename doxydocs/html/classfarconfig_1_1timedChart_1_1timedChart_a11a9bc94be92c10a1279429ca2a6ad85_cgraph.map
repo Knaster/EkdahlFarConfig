@@ -1,5 +1,7 @@
 <map id="chartCallback" name="chartCallback">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,5,116,31"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1timedChart_1_1timedChart.html#ab8048064e3291687b77c9ee80773a087" title=" " alt="" coords="164,5,241,31"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a3f6acb974d9cb65ab01372200651dc72" title=" " alt="" coords="164,5,241,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,15,150,15,150,21,116,21"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a933a023c665db5d5b85b50672fb4558f" title=" " alt="" coords="289,5,384,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="242,15,276,15,276,21,242,21"/>
 </map>

@@ -1,0 +1,23 @@
+<map id="overrideFunction" name="overrideFunction">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,129,136,155"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a999659cadced6b2fc6cf596128318a3e" title=" " alt="" coords="184,104,304,129"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,130,170,125,171,130,136,135"/>
+<area shape="rect" id="Node000009" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a22280aaa8dd7274a4d359d3d626f8b21" title="Uses SymPy to extract numbers, symbols and functions from an equation and build three lists." alt="" coords="923,157,1021,183"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="136,141,910,165,909,171,136,147"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#ae42ee37466e07384f593a0114ff96730" title=" " alt="" coords="352,80,551,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="304,107,338,103,339,108,305,112"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a845e3ae5c1584cba1c347fad40c2efff" title=" " alt="" coords="633,5,734,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="487,77,598,39,622,32,624,37,599,45,489,82"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a0f37783d3257624eb0155fa4e99170e4" title=" " alt="" coords="599,55,768,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="551,79,585,75,585,81,552,84"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#a3480c6f8410acd502ff2f58efa568288" title=" " alt="" coords="647,104,719,129"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="552,100,634,109,634,114,551,106"/>
+<area shape="rect" id="Node000007" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#aa44837e880065699543186c0bb861fd3" title=" " alt="" coords="869,43,1075,68"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="719,103,815,78,869,68,870,73,817,83,720,109"/>
+<area shape="rect" id="Node000008" href="$classfarconfig_1_1GraphNode_1_1graphassemblies_1_1graphAssemblies.html#a3a51c1c2e8b156d88fc850cbe800fa65" title=" " alt="" coords="816,93,1128,133"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="720,114,802,112,802,118,720,119"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="720,122,816,142,910,158,909,163,816,147,719,127"/>
+<area shape="rect" id="Node000010" href="$classfarconfig_1_1nodehandler_1_1NodeHandler.html#aa1803650620d4f123ba3baa39579a8c7" title="Recursive part of getChildren that will apply itself onto each sub&#45;equation." alt="" coords="1176,157,1295,183"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1021,167,1162,167,1162,173,1021,173"/>
+<area shape="poly" id="edge10_Node000010_Node000010" title=" " alt="" coords="1193,159,1184,149,1189,139,1206,133,1235,131,1273,135,1283,140,1287,146,1282,148,1279,144,1271,140,1235,136,1207,138,1192,143,1189,148,1197,155"/>
+</map>

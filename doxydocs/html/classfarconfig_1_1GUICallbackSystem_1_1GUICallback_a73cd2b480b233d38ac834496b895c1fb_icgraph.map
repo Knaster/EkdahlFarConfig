@@ -1,5 +1,7 @@
 <map id="__init__" name="__init__">
-<area shape="rect" id="Node000001" title=" " alt="" coords="303,13,373,38"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a39a68343d80ee0e614c0ff533843b523" title="self.hasHierarchy = False self.hasHelp = False self.hasNodes = False self.hasCommandList = False self..." alt="" coords="5,5,255,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="289,28,255,28,255,23,289,23"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="303,35,373,60"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GUICallbackSystem_1_1GUICallback.html#a171e6903c0464958dd8a214b15a038cb" title=" " alt="" coords="89,5,171,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="288,43,170,26,171,21,289,38"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a39a68343d80ee0e614c0ff533843b523" title=" " alt="" coords="5,55,255,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="289,57,255,61,255,56,288,51"/>
 </map>

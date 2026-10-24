@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>692</width>
-    <height>568</height>
+    <width>697</width>
+    <height>596</height>
    </rect>
   </property>
   <property name="palette">
@@ -216,7 +216,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabSerial">
       <attribute name="title">
@@ -741,14 +741,14 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButtonAdd">
+            <widget class="QPushButton" name="pushButtonAddChart">
              <property name="text">
               <string>Add</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButtonRemove">
+            <widget class="QPushButton" name="pushButtonRemoveChart">
              <property name="text">
               <string>Remove</string>
              </property>

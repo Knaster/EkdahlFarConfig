@@ -1,0 +1,22 @@
+<map id="setWidgetColors" name="setWidgetColors">
+<area shape="rect" id="Node000001" title=" " alt="" coords="595,173,724,198"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1Equation.html#abdd362d5f799ad16b5d6700efe590290" title=" " alt="" coords="303,5,547,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="641,163,602,110,575,83,545,60,522,48,524,43,548,55,579,79,606,107,646,159"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1Equation1.html#abdd362d5f799ad16b5d6700efe590290" title=" " alt="" coords="303,69,547,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="626,167,589,145,546,124,512,112,513,107,548,119,591,140,629,163"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1Equation2.html#abdd362d5f799ad16b5d6700efe590290" title=" " alt="" coords="303,133,547,173"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="581,177,546,173,547,167,582,172"/>
+<area shape="rect" id="Node000006" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1Equation3.html#abdd362d5f799ad16b5d6700efe590290" title=" " alt="" coords="303,197,547,237"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="582,199,547,203,546,198,581,193"/>
+<area shape="rect" id="Node000007" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1StaticValue.html#abdd362d5f799ad16b5d6700efe590290" title=" " alt="" coords="303,261,547,301"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="629,208,591,231,548,252,513,264,512,259,546,247,589,226,626,203"/>
+<area shape="rect" id="Node000008" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1Bool.html#abdd362d5f799ad16b5d6700efe590290" title=" " alt="" coords="303,325,547,365"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="646,211,606,264,579,292,548,316,524,328,522,323,545,311,575,288,602,261,641,208"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a39a68343d80ee0e614c0ff533843b523" title=" " alt="" coords="5,165,255,205"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="321,52,304,60,260,85,219,113,154,167,151,163,215,109,257,80,301,55,318,48"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="331,116,304,124,182,168,180,163,302,119,329,111"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="289,171,255,174,255,169,289,165"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="289,205,255,202,255,196,289,200"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="329,260,302,252,180,208,182,203,304,247,331,255"/>
+<area shape="poly" id="edge12_Node000008_Node000003" title=" " alt="" coords="318,323,301,316,257,291,215,261,151,208,154,204,219,257,260,286,304,311,321,318"/>
+</map>

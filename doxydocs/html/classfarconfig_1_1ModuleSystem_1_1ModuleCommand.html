@@ -77,6 +77,7 @@ $(function() {
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">ModuleCommand Class Reference</div></div>
 </div><!--header-->
@@ -89,29 +90,51 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac24cf21e0493d209eb9fe8ff7487ccb1" id="r_ac24cf21e0493d209eb9fe8ff7487ccb1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#ac24cf21e0493d209eb9fe8ff7487ccb1">__init__</a> (self, <a class="el" href="classfarconfig_1_1ModuleSystem_1_1HelpCommand.html">HelpCommand</a> helpCommand, list[str] <a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#ade1dab83d3aaf8e9fcea1a57c1d13562">arguments</a>, parent, <a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#a96e7a0b44839b25fcbdfefaa5ea6a0d0">isIndex</a>=False)</td></tr>
+<tr class="memitem:ac24cf21e0493d209eb9fe8ff7487ccb1" id="r_ac24cf21e0493d209eb9fe8ff7487ccb1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#ac24cf21e0493d209eb9fe8ff7487ccb1">__init__</a> (self, <a class="el" href="classfarconfig_1_1ModuleSystem_1_1HelpCommand.html">HelpCommand</a> <a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#aa63c944583e2d59806748c572e063ff2">helpCommand</a>, list[str] <a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#ade1dab83d3aaf8e9fcea1a57c1d13562">arguments</a>, <a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#a457d913bff1ebc8671c1eca1c9d5fc03">parent</a>, <a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#a96e7a0b44839b25fcbdfefaa5ea6a0d0">isIndex</a>=False)</td></tr>
 <tr class="separator:ac24cf21e0493d209eb9fe8ff7487ccb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2eb8e17e2cc708455a5e013ecdd28cc" id="r_af2eb8e17e2cc708455a5e013ecdd28cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#af2eb8e17e2cc708455a5e013ecdd28cc">addCallback</a> (self, Callable[[any], None] callback, guiCallback=None, bool force=False)</td></tr>
 <tr class="separator:af2eb8e17e2cc708455a5e013ecdd28cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64af3d2443ab2df131334ce81d46d1b4" id="r_a64af3d2443ab2df131334ce81d46d1b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#a64af3d2443ab2df131334ce81d46d1b4">removeCallback</a> (self, <a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand_1_1Callback.html">Callback</a> callback)</td></tr>
-<tr class="separator:a64af3d2443ab2df131334ce81d46d1b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4d116c567d11d3e44aa138e4485145a" id="r_aa4d116c567d11d3e44aa138e4485145a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#aa4d116c567d11d3e44aa138e4485145a">setData</a> (self, Any data)</td></tr>
-<tr class="separator:aa4d116c567d11d3e44aa138e4485145a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe98bf301734ed68e25a502a17ca3fec" id="r_abe98bf301734ed68e25a502a17ca3fec"><td class="memItemLeft" align="right" valign="top">list[str]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#abe98bf301734ed68e25a502a17ca3fec">getData</a> (self)</td></tr>
 <tr class="separator:abe98bf301734ed68e25a502a17ca3fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc4d49c3703912ad648b83fa7b480499" id="r_acc4d49c3703912ad648b83fa7b480499"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#acc4d49c3703912ad648b83fa7b480499">getFullCommand</a> (self)</td></tr>
 <tr class="separator:acc4d49c3703912ad648b83fa7b480499"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64af3d2443ab2df131334ce81d46d1b4" id="r_a64af3d2443ab2df131334ce81d46d1b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#a64af3d2443ab2df131334ce81d46d1b4">removeCallback</a> (self, <a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand_1_1Callback.html">Callback</a> callback)</td></tr>
+<tr class="separator:a64af3d2443ab2df131334ce81d46d1b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4d116c567d11d3e44aa138e4485145a" id="r_aa4d116c567d11d3e44aa138e4485145a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#aa4d116c567d11d3e44aa138e4485145a">setData</a> (self, Any data)</td></tr>
+<tr class="separator:aa4d116c567d11d3e44aa138e4485145a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:ade1dab83d3aaf8e9fcea1a57c1d13562" id="r_ade1dab83d3aaf8e9fcea1a57c1d13562"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#ade1dab83d3aaf8e9fcea1a57c1d13562">arguments</a></td></tr>
+<tr class="memdesc:ade1dab83d3aaf8e9fcea1a57c1d13562"><td class="mdescLeft">&#160;</td><td class="mdescRight">list[str]  <br /></td></tr>
+<tr class="separator:ade1dab83d3aaf8e9fcea1a57c1d13562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaabd98e84f70bf2e9848396b3544a7cc" id="r_aaabd98e84f70bf2e9848396b3544a7cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#aaabd98e84f70bf2e9848396b3544a7cc">callbacks</a></td></tr>
+<tr class="memdesc:aaabd98e84f70bf2e9848396b3544a7cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">list[ModuleCommand.Callback]  <br /></td></tr>
+<tr class="separator:aaabd98e84f70bf2e9848396b3544a7cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cf8aad5ebf39f23ad70d8e9435ccc9d" id="r_a4cf8aad5ebf39f23ad70d8e9435ccc9d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#a4cf8aad5ebf39f23ad70d8e9435ccc9d">dataChanged</a></td></tr>
+<tr class="memdesc:a4cf8aad5ebf39f23ad70d8e9435ccc9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">bool  <br /></td></tr>
+<tr class="separator:a4cf8aad5ebf39f23ad70d8e9435ccc9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa63c944583e2d59806748c572e063ff2" id="r_aa63c944583e2d59806748c572e063ff2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#aa63c944583e2d59806748c572e063ff2">helpCommand</a></td></tr>
+<tr class="memdesc:aa63c944583e2d59806748c572e063ff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">HelpCommand.  <br /></td></tr>
+<tr class="separator:aa63c944583e2d59806748c572e063ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96e7a0b44839b25fcbdfefaa5ea6a0d0" id="r_a96e7a0b44839b25fcbdfefaa5ea6a0d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#a96e7a0b44839b25fcbdfefaa5ea6a0d0">isIndex</a></td></tr>
 <tr class="separator:a96e7a0b44839b25fcbdfefaa5ea6a0d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7290bb618d77100a1ed945c45a878d2c" id="r_a7290bb618d77100a1ed945c45a878d2c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#a7290bb618d77100a1ed945c45a878d2c">longCommand</a></td></tr>
+<tr class="memdesc:a7290bb618d77100a1ed945c45a878d2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">str  <br /></td></tr>
+<tr class="separator:a7290bb618d77100a1ed945c45a878d2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e0628fe67d2a51d8b01ea0ccf833dcd" id="r_a6e0628fe67d2a51d8b01ea0ccf833dcd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#a6e0628fe67d2a51d8b01ea0ccf833dcd">nodePort</a></td></tr>
 <tr class="separator:a6e0628fe67d2a51d8b01ea0ccf833dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade1dab83d3aaf8e9fcea1a57c1d13562" id="r_ade1dab83d3aaf8e9fcea1a57c1d13562"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#ade1dab83d3aaf8e9fcea1a57c1d13562">arguments</a></td></tr>
-<tr class="separator:ade1dab83d3aaf8e9fcea1a57c1d13562"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cf8aad5ebf39f23ad70d8e9435ccc9d" id="r_a4cf8aad5ebf39f23ad70d8e9435ccc9d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#a4cf8aad5ebf39f23ad70d8e9435ccc9d">dataChanged</a></td></tr>
-<tr class="separator:a4cf8aad5ebf39f23ad70d8e9435ccc9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a457d913bff1ebc8671c1eca1c9d5fc03" id="r_a457d913bff1ebc8671c1eca1c9d5fc03"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#a457d913bff1ebc8671c1eca1c9d5fc03">parent</a></td></tr>
+<tr class="memdesc:a457d913bff1ebc8671c1eca1c9d5fc03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Module.  <br /></td></tr>
+<tr class="separator:a457d913bff1ebc8671c1eca1c9d5fc03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fd0aa87c4cb938625fc748e7722495b" id="r_a7fd0aa87c4cb938625fc748e7722495b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#a7fd0aa87c4cb938625fc748e7722495b">shortCommand</a></td></tr>
+<tr class="memdesc:a7fd0aa87c4cb938625fc748e7722495b"><td class="mdescLeft">&#160;</td><td class="mdescRight">str  <br /></td></tr>
+<tr class="separator:a7fd0aa87c4cb938625fc748e7722495b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a4f4cd18be0ccef4febdd696e7cff7a9b" id="r_a4f4cd18be0ccef4febdd696e7cff7a9b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#a4f4cd18be0ccef4febdd696e7cff7a9b">fullCommand</a></td></tr>
+<tr class="separator:a4f4cd18be0ccef4febdd696e7cff7a9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac24cf21e0493d209eb9fe8ff7487ccb1" name="ac24cf21e0493d209eb9fe8ff7487ccb1"></a>
@@ -163,7 +186,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classfarconfig_1_1ModuleSystem_1_1ModuleCommand_ac24cf21e0493d209eb9fe8ff7487ccb1_icgraph.png" border="0" usemap="#aclassfarconfig_1_1ModuleSystem_1_1ModuleCommand_ac24cf21e0493d209eb9fe8ff7487ccb1_icgraph" alt=""/></div>
 <map name="aclassfarconfig_1_1ModuleSystem_1_1ModuleCommand_ac24cf21e0493d209eb9fe8ff7487ccb1_icgraph" id="aclassfarconfig_1_1ModuleSystem_1_1ModuleCommand_ac24cf21e0493d209eb9fe8ff7487ccb1_icgraph">
 <area shape="rect" title=" " alt="" coords="303,13,373,38"/>
-<area shape="rect" href="classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a39a68343d80ee0e614c0ff533843b523" title="self.hasHierarchy = False self.hasHelp = False self.hasNodes = False self.hasCommandList = False self..." alt="" coords="5,5,255,45"/>
+<area shape="rect" href="classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a39a68343d80ee0e614c0ff533843b523" title=" " alt="" coords="5,5,255,45"/>
 <area shape="poly" title=" " alt="" coords="289,28,255,28,255,23,289,23"/>
 </map>
 </div>
@@ -245,21 +268,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classfarconfig_1_1ModuleSystem_1_1ModuleCommand_acc4d49c3703912ad648b83fa7b480499_cgraph.png" border="0" usemap="#aclassfarconfig_1_1ModuleSystem_1_1ModuleCommand_acc4d49c3703912ad648b83fa7b480499_cgraph" alt=""/></div>
-<map name="aclassfarconfig_1_1ModuleSystem_1_1ModuleCommand_acc4d49c3703912ad648b83fa7b480499_cgraph" id="aclassfarconfig_1_1ModuleSystem_1_1ModuleCommand_acc4d49c3703912ad648b83fa7b480499_cgraph">
-<area shape="rect" title=" " alt="" coords="5,29,139,55"/>
-<area shape="poly" title=" " alt="" coords="49,30,44,21,47,11,56,5,72,3,90,6,98,14,95,18,88,11,72,8,58,10,51,14,50,20,54,28"/>
-</map>
-</div>
-<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfarconfig_1_1ModuleSystem_1_1ModuleCommand_acc4d49c3703912ad648b83fa7b480499_icgraph.png" border="0" usemap="#aclassfarconfig_1_1ModuleSystem_1_1ModuleCommand_acc4d49c3703912ad648b83fa7b480499_icgraph" alt=""/></div>
 <map name="aclassfarconfig_1_1ModuleSystem_1_1ModuleCommand_acc4d49c3703912ad648b83fa7b480499_icgraph" id="aclassfarconfig_1_1ModuleSystem_1_1ModuleCommand_acc4d49c3703912ad648b83fa7b480499_icgraph">
-<area shape="rect" title=" " alt="" coords="5,29,139,55"/>
-<area shape="poly" title=" " alt="" coords="95,18,88,11,72,8,58,10,51,14,50,20,54,28,49,30,44,21,47,11,56,5,72,3,90,6,98,14"/>
+<area shape="rect" title=" " alt="" coords="127,5,260,31"/>
+<area shape="rect" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#aa4d116c567d11d3e44aa138e4485145a" title=" " alt="" coords="5,5,79,31"/>
+<area shape="poly" title=" " alt="" coords="113,21,79,21,79,15,113,15"/>
 </map>
 </div>
 
@@ -318,6 +333,16 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classfarconfig_1_1ModuleSystem_1_1ModuleCommand_aa4d116c567d11d3e44aa138e4485145a_cgraph.png" border="0" usemap="#aclassfarconfig_1_1ModuleSystem_1_1ModuleCommand_aa4d116c567d11d3e44aa138e4485145a_cgraph" alt=""/></div>
+<map name="aclassfarconfig_1_1ModuleSystem_1_1ModuleCommand_aa4d116c567d11d3e44aa138e4485145a_cgraph" id="aclassfarconfig_1_1ModuleSystem_1_1ModuleCommand_aa4d116c567d11d3e44aa138e4485145a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,79,31"/>
+<area shape="rect" href="classfarconfig_1_1ModuleSystem_1_1ModuleCommand.html#acc4d49c3703912ad648b83fa7b480499" title=" " alt="" coords="127,5,260,31"/>
+<area shape="poly" title=" " alt="" coords="79,15,113,15,113,21,79,21"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -334,6 +359,24 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>list[str] </p>
+
+</div>
+</div>
+<a id="aaabd98e84f70bf2e9848396b3544a7cc" name="aaabd98e84f70bf2e9848396b3544a7cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaabd98e84f70bf2e9848396b3544a7cc">&#9670;&#160;</a></span>callbacks</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">callbacks</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>list[ModuleCommand.Callback] </p>
+
 </div>
 </div>
 <a id="a4cf8aad5ebf39f23ad70d8e9435ccc9d" name="a4cf8aad5ebf39f23ad70d8e9435ccc9d"></a>
@@ -347,6 +390,46 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>bool </p>
+
+</div>
+</div>
+<a id="a4f4cd18be0ccef4febdd696e7cff7a9b" name="a4f4cd18be0ccef4febdd696e7cff7a9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f4cd18be0ccef4febdd696e7cff7a9b">&#9670;&#160;</a></span>fullCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">fullCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa63c944583e2d59806748c572e063ff2" name="aa63c944583e2d59806748c572e063ff2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa63c944583e2d59806748c572e063ff2">&#9670;&#160;</a></span>helpCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">helpCommand</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>HelpCommand. </p>
 
 </div>
 </div>
@@ -364,6 +447,22 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a7290bb618d77100a1ed945c45a878d2c" name="a7290bb618d77100a1ed945c45a878d2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7290bb618d77100a1ed945c45a878d2c">&#9670;&#160;</a></span>longCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">longCommand</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>str </p>
+
+</div>
+</div>
 <a id="a6e0628fe67d2a51d8b01ea0ccf833dcd" name="a6e0628fe67d2a51d8b01ea0ccf833dcd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6e0628fe67d2a51d8b01ea0ccf833dcd">&#9670;&#160;</a></span>nodePort</h2>
 
@@ -375,6 +474,38 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a457d913bff1ebc8671c1eca1c9d5fc03" name="a457d913bff1ebc8671c1eca1c9d5fc03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a457d913bff1ebc8671c1eca1c9d5fc03">&#9670;&#160;</a></span>parent</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">parent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Module. </p>
+
+</div>
+</div>
+<a id="a7fd0aa87c4cb938625fc748e7722495b" name="a7fd0aa87c4cb938625fc748e7722495b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fd0aa87c4cb938625fc748e7722495b">&#9670;&#160;</a></span>shortCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">shortCommand</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>str </p>
 
 </div>
 </div>

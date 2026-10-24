@@ -2,13 +2,7 @@
 \hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular}{}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular}\index{CommandSetModular@{CommandSetModular}}
 
 
-class Base(\+Command\+Set)\+: long\+Name = "{}"{} short\+Name = "{}"{} index = False  
-
-
-
-
-Inheritance diagram for Command\+Set\+Modular\+:
-\nopagebreak
+Inheritance diagram for Command\+Set\+Modular\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -17,8 +11,7 @@ Inheritance diagram for Command\+Set\+Modular\+:
 \end{figure}
 
 
-Collaboration diagram for Command\+Set\+Modular\+:
-\nopagebreak
+Collaboration diagram for Command\+Set\+Modular\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -28,31 +21,21 @@ Collaboration diagram for Command\+Set\+Modular\+:
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a4d0e442ce13f4962d044a9b2c5f45764}{get\+Module\+Type\+From\+Command\+ID}} (self, \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_abf241efb62705490a21c05c71f969f42}{command\+ID}})
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a83df147109baf3971721cf58f8168437}{get\+Modules\+By\+Name}} (self, name)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a1e7062cc101f40ec6636a739cd845824}{get\+Command}} (self, \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_abf241efb62705490a21c05c71f969f42}{command\+ID}}, short=False)
-\item 
-(\mbox{\hyperlink{classfarconfig_1_1commanddefinitions_1_1ModuleCommand}{Module\+Command}}, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1Module}{Module}}\texorpdfstring{$\vert$}{|}\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleHandler}{Module\+Handler}}) \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a93dfeb0a19bc63e9cdc50d978a5f7604}{get\+Command\+And\+Module}} (self, \mbox{\hyperlink{classfarconfig_1_1commandparser_1_1Derivedcommanditem}{Derivedcommanditem}} command\+Container, first\+Iteration=True)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a96cd759fb578f3738893b813b881776c}{request\+Data}} (self, serial\+Handler)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a1d860f848138281a58a3db4b52772121}{request\+Continuous\+Data}} (self, serial\+Handler)
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_abdd362d5f799ad16b5d6700efe590290}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a69c1c54f7639a8a00965fc04bb00e9cc}{build\+Hierarchy}} (self, command\+Item, widget)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_aa59b2d7d1eae50d6ff7953bd2dcd9899}{split\+String\+Into\+Module\+Command\+Index}} (self, str command\+String)
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a39a68343d80ee0e614c0ff533843b523}{clear\+Data}} (self)
+\item 
+(\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1Module}{Module}}\texorpdfstring{$\vert$}{|}\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleHandler}{Module\+Handler}}) \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a93dfeb0a19bc63e9cdc50d978a5f7604}{get\+Command\+And\+Module}} (self, \mbox{\hyperlink{classfarconfig_1_1commandparser_1_1Derivedcommanditem}{Derivedcommanditem}} command\+Container, first\+Iteration=True)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a25526009b62ac5c8571a9f0707c06693}{get\+Module\+Hierarchy}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleHandler}{Module\+Handler}}\texorpdfstring{$\vert$}{|}\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1Module}{Module}} in\+Module)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a7121850e0a12bbcfd9b4a401a24aa80c}{request\+All\+Data}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1Module}{Module}} module, serial\+Handler)
-\item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a2259dcce395577f57e7a522c3e21901c}{process\+Messages}} (self, command\+Item, command\+Sets, main\+Widget, serial\+Handler)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a39a68343d80ee0e614c0ff533843b523}{clear\+Data}} (self)
-\begin{DoxyCompactList}\small\item\em self.\+has\+Hierarchy = False self.\+has\+Help = False self.\+has\+Nodes = False self.\+has\+Command\+List = False self.\+update\+Stage = 0 self.\+has\+Nodes = False self.\+update\+Timer = None \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_abdd362d5f799ad16b5d6700efe590290}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a7121850e0a12bbcfd9b4a401a24aa80c}{request\+All\+Data}} (self, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1Module}{Module}} module, serial\+Handler)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_aa59b2d7d1eae50d6ff7953bd2dcd9899}{split\+String\+Into\+Module\+Command\+Index}} (self, str command\+String)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet}{Command\+Set}}}
 \begin{DoxyCompactItemize}
@@ -62,22 +45,6 @@ Collaboration diagram for Command\+Set\+Modular\+:
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a5abac9f71883ee7d300943fb66946816}{has\+Hierarchy}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a10f8fcd37350a791230c424c5045b43a}{command\+Types}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_ab0db378e6ced1decdb42263d4cb2789a}{ready}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a1a49ebf29cfa724def21c45eb4a67336}{loading\+Stage}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a94b928bf601837dc66acdf725ca8aa07}{has\+Help}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a1fe28a42bb55d56197009c4924917e7d}{has\+Nodes}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a66e8135b382b34a0373f47df576f7f2f}{has\+Plugin\+List}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a86fbb5a0662cdc2e8d3def820d83a4f6}{help\+Module}}
-\item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a6a731237d617dd6bc0040f7c6301c7f0}{base\+Module}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a8f418bfbf0374b27282ef79769069d32}{Command\+Item}}
@@ -85,6 +52,12 @@ Collaboration diagram for Command\+Set\+Modular\+:
 \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_aa7417777f002e57e46147aa2368d6b84}{Command\+List}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a7ea3dbccd2aab692026b8a96a2dfce06}{from\+Ver}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a86fbb5a0662cdc2e8d3def820d83a4f6}{help\+Module}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a1a49ebf29cfa724def21c45eb4a67336}{loading\+Stage}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_ab0db378e6ced1decdb42263d4cb2789a}{ready}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSetModular_a6d56bb8021b24828df7321341dea508d}{to\+Ver}}
 \item 
@@ -100,271 +73,26 @@ Collaboration diagram for Command\+Set\+Modular\+:
 \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a7ea3dbccd2aab692026b8a96a2dfce06}{from\+Ver}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a6d56bb8021b24828df7321341dea508d}{to\+Ver}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a10f8fcd37350a791230c424c5045b43a}{command\+Types}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a033f2c2ba101d1649bd36de7783782f0}{commands}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a1a49ebf29cfa724def21c45eb4a67336}{loading\+Stage}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_ab0db378e6ced1decdb42263d4cb2789a}{ready}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a48dfbeb0b58591d26fde67a1637c211e}{short\+ID}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_aa587120b99751e0ce1cab614cb006030}{long\+ID}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet}{Command\+Set}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_abf241efb62705490a21c05c71f969f42}{command\+ID}} = None
+\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a033f2c2ba101d1649bd36de7783782f0}{commands}}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a6f39f5800f89399980924e83f33688ad}{indexing\+Child}} = None
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a1a49ebf29cfa724def21c45eb4a67336}{loading\+Stage}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a65bfeeee23c10f963f8c5a54cd7c1662}{long\+Commands}}
+\begin{DoxyCompactList}\small\item\em dict \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_aa587120b99751e0ce1cab614cb006030}{long\+ID}}
+\begin{DoxyCompactList}\small\item\em dict \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_ab0db378e6ced1decdb42263d4cb2789a}{ready}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a47eb09e0e0f41508c06f85979f43b42e}{short\+Commands}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a48dfbeb0b58591d26fde67a1637c211e}{short\+ID}}
+\begin{DoxyCompactList}\small\item\em dict \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-
-\doxysubsection{Detailed Description}
-class Base(\+Command\+Set)\+: long\+Name = "{}"{} short\+Name = "{}"{} index = False 
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+nop \+: "{}nop"{}, Command\+ID.\+request\+Info \+: "{}rqi"{}, Command\+ID.\+debug\+Print \+: "{}dp"{}, Command\+ID.\+save\+All\+Parameters \+: "{}sap"{}, Command\+ID.\+load\+All\+Parameters \+: "{}lap"{}, Command\+ID.\+reset\+All\+Parameters \+: "{}rap"{}, Command\+ID.\+user\+Variable \+: "{}uv"{}, Command\+ID.\+expressionparser\+Evaluate \+: "{}evep"{}, Command\+ID.\+if\+Equal \+: "{}ife"{}, Command\+ID.\+if\+Greater \+: "{}ifg"{}, Command\+ID.\+if\+Less \+: "{}ifl"{}, Command\+ID.\+reset \+: "{}rst"{}, Command\+ID.\+nick\+Name \+: "{}nick"{}, Command\+ID.\+dir \+: "{}ls"{}, Command\+ID.\+help\+: "{}help"{}, Command\+ID.\+free\+Memory\+: "{}free"{}, Command\+ID.\+dump\+Save\+Data \+: "{}dump"{}, \#dir, dump, freeram
-
-Command\+ID.\+module\+Select\+: "{}\mbox{[}na\mbox{]}"{}, Command\+ID.\+module\+Count\+: "{}\mbox{[}na\mbox{]}"{}, Command\+ID.\+calibrate\+All \+: "{}ca"{}, Command\+ID.\+calibrate\+Bow\+Speed \+: "{}cbs"{}, Command\+ID.\+calibrate\+Bow\+Pressure\+: "{}cbp"{}, Command\+ID.\+calibrate\+Mute\+: "{}cmu"{}, Command\+ID.\+pickup\+String\+Frequency\+: "{}psf"{}, Command\+ID.\+pickup\+Audio\+Peak\+: "{}pap"{}, Command\+ID.\+pickup\+Audio\+RMS\+: "{}par"{}, Command\+ID.\+version\+: "{}ver"{} \}
-
-long\+Commands = \{ Command\+ID.\+nop\+: "{}nooperation"{}, Command\+ID.\+request\+Info\+: "{}requestinfo"{}, Command\+ID.\+debug\+Print\+: "{}debugprint"{}, Command\+ID.\+save\+All\+Parameters\+: "{}saveallparameters"{}, Command\+ID.\+load\+All\+Parameters\+: "{}loadallparameters"{}, Command\+ID.\+reset\+All\+Parameters\+: "{}resetallparameters"{}, Command\+ID.\+user\+Variable\+: "{}uservariable"{}, Command\+ID.\+expressionparser\+Evaluate\+: "{}expressionparserevaluate"{}, Command\+ID.\+if\+Equal\+: "{}ifequal"{}, Command\+ID.\+if\+Greater\+: "{}ifgreater"{}, Command\+ID.\+if\+Less\+: "{}ifless"{}, Command\+ID.\+reset\+: "{}reset"{}, Command\+ID.\+nick\+Name\+: "{}nick"{}, Command\+ID.\+dir\+: "{}list"{}, Command\+ID.\+help\+: "{}help"{}, Command\+ID.\+free\+Memory\+: "{}freeram"{}, Command\+ID.\+dump\+Save\+Data\+: "{}dump"{},
-
-Command\+ID.\+module\+Select\+: "{}\mbox{[}na\mbox{]}"{}, Command\+ID.\+module\+Count\+: "{}\mbox{[}na\mbox{]}"{}, Command\+ID.\+calibrate\+All\+: "{}calibrateall"{}, Command\+ID.\+calibrate\+Bow\+Speed\+: "{}calibratebowspeed"{}, Command\+ID.\+calibrate\+Bow\+Pressure\+: "{}calibratebowpressure"{}, Command\+ID.\+calibrate\+Mute\+: "{}calibratemute"{}, Command\+ID.\+pickup\+String\+Frequency\+: "{}pickupstringfrequency"{}, Command\+ID.\+pickup\+Audio\+Peak\+: "{}pickupaudiopeak"{}, Command\+ID.\+pickup\+Audio\+RMS\+: "{}pickupaudiorms"{}, Command\+ID.\+version\+: "{}version"{} \}
-
-request\+Data = \mbox{[} Command\+ID.\+nick\+Name, Command\+ID.\+debug\+Print \mbox{]}
-
-request\+Continuous\+Data = \mbox{[} Command\+ID.\+pickup\+String\+Frequency, Command\+ID.\+pickup\+Audio\+Peak, Command\+ID.\+pickup\+Audio\+RMS \mbox{]}
-
-class Bowing\+Wheel(\+Command\+Set)\+: long\+Name = "{}bowingwheel"{} short\+Name = "{}bw"{} index = True command\+ID = Command\+ID.\+bow\+Select
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+bow\+Status\+: "{}\mbox{[}na\mbox{]}"{}, Command\+ID.\+bow\+Speed\+Mode\+: "{}sm"{}, Command\+ID.\+bow\+Motor\+Timeout\+: "{}mt"{}, Command\+ID.\+bow\+PIDEnable\+: "{}pe"{}, Command\+ID.\+motor\+Fault\+Commands\+: "{}mfc"{}, Command\+ID.\+motor\+Over\+Power\+Commands\+: "{}moc"{} \}
-
-long\+Commands = \{ Command\+ID.\+bow\+Status\+: "{}\mbox{[}na\mbox{]}"{}, Command\+ID.\+bow\+Speed\+Mode\+: "{}speedmode"{}, Command\+ID.\+bow\+Motor\+Timeout\+: "{}motortimeout"{}, Command\+ID.\+bow\+PIDEnable\+: "{}pidenable"{}, Command\+ID.\+motor\+Fault\+Commands\+: "{}motorfaultcommands"{}, Command\+ID.\+motor\+Over\+Power\+Commands\+: "{}motoroverpowercommands"{}, \}
-
-request\+Data = \mbox{[} Command\+ID.\+bow\+Motor\+Timeout, Command\+ID.\+motor\+Fault\+Commands, Command\+ID.\+motor\+Over\+Power\+Commands \mbox{]}
-
-request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Harmonic\+Series\+Handler(\+Command\+Set)\+: long\+Name = "{}harmonicserieshandler"{} short\+Name = "{}hsh"{} index = False indexing\+Child = "{}harmonicseries"{}
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+bow\+Fundamental\+: "{}fu"{}, Command\+ID.\+bow\+Harmonic \+: "{}h"{}, Command\+ID.\+bow\+Harmonic\+Add \+: "{}ha"{}, Command\+ID.\+bow\+Harmonic\+Base \+: "{}hb"{}, Command\+ID.\+bow\+Harmonic\+Base\+Note \+: "{}bn"{}, Command\+ID.\+bow\+Harmonic\+Shift \+: "{}sh"{}, Command\+ID.\+bow\+Harmonic\+Shift\+Range \+: "{}sr"{}, Command\+ID.\+bow\+Harmonic\+Shift5 \+: "{}sh5"{}, Command\+ID.\+harmonic\+Series\+Add \+: "{}a"{}, Command\+ID.\+harmonic\+Series\+Remove \+: "{}rm"{}, Command\+ID.\+harmonic\+Series\+Count \+: "{}c"{}, Command\+ID.\+harmonic\+Series\+Select \+: "{}hs"{} \}
-
-long\+Commands = \{ Command\+ID.\+bow\+Fundamental\+: "{}fundamental"{}, Command\+ID.\+bow\+Harmonic \+: "{}harmonic"{}, Command\+ID.\+bow\+Harmonic\+Add \+: "{}harmonicadd"{}, Command\+ID.\+bow\+Harmonic\+Base \+: "{}harmonicbase"{}, Command\+ID.\+bow\+Harmonic\+Base\+Note \+: "{}basenote"{}, Command\+ID.\+bow\+Harmonic\+Shift \+: "{}shift"{}, Command\+ID.\+bow\+Harmonic\+Shift\+Range \+: "{}shiftrange"{}, Command\+ID.\+bow\+Harmonic\+Shift5 \+: "{}shift5"{},
-
-Command\+ID.\+harmonic\+Series\+Add \+: "{}add"{}, Command\+ID.\+harmonic\+Series\+Remove \+: "{}remove"{}, Command\+ID.\+harmonic\+Series\+Count \+: "{}count"{}, Command\+ID.\+harmonic\+Series\+Select \+: "{}harmonicseries"{} \}
-
-request\+Data = \mbox{[} Command\+ID.\+bow\+Fundamental, Command\+ID.\+bow\+Harmonic\+Shift\+Range, Command\+ID.\+harmonic\+Series\+Count, Command\+ID.\+harmonic\+Series\+Select, Command\+ID.\+bow\+Harmonic\+Base\+Note \mbox{]}
-
-request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Harmonic\+Series(\+Command\+Set)\+: long\+Name = "{}harmonicseries"{} short\+Name = "{}hs"{} index = True \#command\+ID = Command\+ID.\+harmonic\+Series\+Select
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+harmonic\+Series\+Save \+: "{}\mbox{[}na\mbox{]}"{}, Command\+ID.\+harmonic\+Series\+Name \+: "{}na"{}, Command\+ID.\+harmonic\+Series\+Data \+: "{}da"{}, Command\+ID.\+harmonic\+Series\+Ratio \+: "{}r"{}, Command\+ID.\+harmonic\+Series\+Remove\+Ratio \+: "{}rm"{} \}
-
-long\+Commands = \{ Command\+ID.\+harmonic\+Series\+Save \+: "{}\mbox{[}na\mbox{]}"{}, Command\+ID.\+harmonic\+Series\+Name \+: "{}name"{}, Command\+ID.\+harmonic\+Series\+Data \+: "{}data"{}, Command\+ID.\+harmonic\+Series\+Ratio \+: "{}ratio"{}, Command\+ID.\+harmonic\+Series\+Remove\+Ratio \+: "{}remove"{}, \}
-
-request\+Data = \mbox{[} \#\+Command\+ID.\+harmonic\+Series\+Name, Command\+ID.\+harmonic\+Series\+Data \mbox{]}
-
-request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Bow\+Actuator\+Handler(\+Command\+Set)\+: long\+Name = "{}actuatorhandler"{} short\+Name = "{}ah"{} index = False indexing\+Child = "{}actuator"{}
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+actuator\+Add \+: "{}a"{}, Command\+ID.\+actuator\+Remove \+: "{}rm"{}, Command\+ID.\+actuator\+Count \+: "{}c"{}, Command\+ID.\+actuator\+Select \+: "{}ac"{} \}
-
-long\+Commands = \{ Command\+ID.\+actuator\+Add \+: "{}add"{}, Command\+ID.\+actuator\+Remove \+: "{}remove"{}, Command\+ID.\+actuator\+Count \+: "{}count"{}, Command\+ID.\+actuator\+Select \+: "{}actuator"{} \}
-
-request\+Data = \mbox{[} Command\+ID.\+actuator\+Count, Command\+ID.\+actuator\+Select \mbox{]} request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Actuator(\+Command\+Set)\+: long\+Name = "{}actuator"{} short\+Name = "{}ac"{} index = True command\+ID = Command\+ID.\+actuator\+Select
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+actuator\+Save \+: "{}\mbox{[}na\mbox{]}"{}, Command\+ID.\+actuator\+Data \+: "{}da"{}, Command\+ID.\+actuator\+Name \+: "{}na"{}, \}
-
-long\+Commands = \{ Command\+ID.\+actuator\+Save \+: "{}\mbox{[}na\mbox{]}"{}, Command\+ID.\+actuator\+Data\+: "{}data"{}, Command\+ID.\+actuator\+Name\+: "{}name"{}, \}
-
-request\+Data = \mbox{[} \#\+Command\+ID.\+actuator\+Name, Command\+ID.\+actuator\+Data \mbox{]}
-
-request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class DCMotor(\+Command\+Set)\+: long\+Name = "{}dcmotor"{} short\+Name = "{}dcm"{} index = True
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+motor\+Run \+: "{}ru"{}, Command\+ID.\+motor\+Direct\+PWM \+: "{}pwm"{}, Command\+ID.\+motor\+Voltage \+: "{}vo"{}, Command\+ID.\+motor\+Current \+: "{}cu"{}, Command\+ID.\+motor\+Current\+Limit \+: "{}cl"{}, Command\+ID.\+motor\+Power\+Limit \+: "{}pl"{}, Command\+ID.\+motor\+Frequency \+: "{}fq"{}, Command\+ID.\+motor\+Emergency\+Stop \+: "{}es"{}, Command\+ID.\+motor\+PWMMax \+: "{}xp"{}, Command\+ID.\+motor\+PWMMin \+: "{}ip"{}, \}
-
-long\+Commands = \{ Command\+ID.\+motor\+Run \+: "{}run"{}, Command\+ID.\+motor\+Direct\+PWM \+: "{}pwm"{}, Command\+ID.\+motor\+Voltage \+: "{}voltage"{}, Command\+ID.\+motor\+Current \+: "{}current"{}, Command\+ID.\+motor\+Current\+Limit \+: "{}currentlimit"{}, Command\+ID.\+motor\+Power\+Limit \+: "{}powerlimit"{}, Command\+ID.\+motor\+Frequency \+: "{}frequency"{}, Command\+ID.\+motor\+Emergency\+Stop \+: "{}emergencystop"{}, Command\+ID.\+motor\+PWMMax \+: "{}maxpwm"{}, Command\+ID.\+motor\+PWMMin \+: "{}minpwm"{}, \}
-
-request\+Data = \mbox{[} Command\+ID.\+motor\+Voltage, Command\+ID.\+motor\+Current\+Limit, Command\+ID.\+motor\+Power\+Limit, Command\+ID.\+motor\+PWMMax, Command\+ID.\+motor\+PWMMin \mbox{]}
-
-request\+Continuous\+Data = \mbox{[} Command\+ID.\+motor\+Current, Command\+ID.\+motor\+Frequency \mbox{]}
-
-class PID(\+Command\+Set)\+: long\+Name = "{}pid"{} short\+Name = "{}pid"{} index = True
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+pid\+Target\+Freq \+: "{}tf"{}, Command\+ID.\+pid\+Ki\+: "{}ki"{}, Command\+ID.\+pid\+Kp\+: "{}kp"{}, Command\+ID.\+pid\+Kd\+: "{}kd"{}, Command\+ID.\+pid\+Integrator\+Error\+: "{}ie"{}, Command\+ID.\+pid\+Reset\+: "{}re"{}, Command\+ID.\+pid\+Max\+Error\+: "{}xe"{}, Command\+ID.\+pid\+Peak\+Error\+: "{}pe"{}, Command\+ID.\+pid\+Speed\+Max \+: "{}msx"{}, Command\+ID.\+pid\+Speed\+Min \+: "{}msi"{}, Command\+ID.\+bow\+Measure\+Time\+To\+Target\+: "{}mtt"{} \}
-
-long\+Commands = \{ Command\+ID.\+pid\+Target\+Freq \+: "{}targetfrequency"{}, Command\+ID.\+pid\+Ki\+: "{}ki"{}, Command\+ID.\+pid\+Kp\+: "{}kp"{}, Command\+ID.\+pid\+Kd\+: "{}kd"{}, Command\+ID.\+pid\+Integrator\+Error\+: "{}integratorerror"{}, Command\+ID.\+pid\+Reset\+: "{}reset"{}, Command\+ID.\+pid\+Max\+Error\+: "{}maxerror"{}, Command\+ID.\+pid\+Peak\+Error\+: "{}peakerror"{}, Command\+ID.\+pid\+Speed\+Max \+: "{}motorspeedmax"{}, Command\+ID.\+pid\+Speed\+Min \+: "{}motorspeedmin"{}, Command\+ID.\+bow\+Measure\+Time\+To\+Target\+: "{}measuretimetotarget"{}, \}
-
-request\+Data = \mbox{[} Command\+ID.\+pid\+Ki, Command\+ID.\+pid\+Kp, Command\+ID.\+pid\+Kd, Command\+ID.\+pid\+Integrator\+Error, Command\+ID.\+pid\+Max\+Error, Command\+ID.\+pid\+Speed\+Max, Command\+ID.\+pid\+Speed\+Min \mbox{]}
-
-request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Bow\+Pressure(\+Command\+Set)\+: long\+Name = "{}bowpressure"{} short\+Name = "{}bp"{} index = False
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+bow\+Pressure\+Baseline\+: "{}ba"{}, Command\+ID.\+bow\+Pressure\+Modifier\+: "{}mo"{}, Command\+ID.\+bow\+Pressure\+Rest\+: "{}rs"{}, Command\+ID.\+bow\+Pressure\+Engage\+: "{}en"{}, Command\+ID.\+bow\+Pressure\+Position\+Max\+: "{}sp"{}, Command\+ID.\+bow\+Pressure\+Position\+Engage\+: "{}ep"{}, Command\+ID.\+bow\+Pressure\+Position\+Rest\+: "{}rp"{}, Command\+ID.\+bow\+Pressure\+Engage\+Speed\+: "{}es"{}, Command\+ID.\+bow\+Pressure\+Modulation\+Speed\+: "{}ms"{}, Command\+ID.\+bow\+Pressure\+Hold\+: "{}hd"{}, Command\+ID.\+bow\+Home\+: "{}hm"{}, Command\+ID.\+bow\+Pressure\+TMCInfo\+: "{}tmi"{} \}
-
-long\+Commands = \{ Command\+ID.\+bow\+Pressure\+Baseline\+: "{}baseline"{}, Command\+ID.\+bow\+Pressure\+Modifier\+: "{}modifier"{}, Command\+ID.\+bow\+Pressure\+Rest\+: "{}rest"{}, Command\+ID.\+bow\+Pressure\+Engage\+: "{}engage"{}, Command\+ID.\+bow\+Pressure\+Position\+Max\+: "{}stallpressure"{}, Command\+ID.\+bow\+Pressure\+Position\+Engage\+: "{}engagepressure"{}, Command\+ID.\+bow\+Pressure\+Position\+Rest\+: "{}restpressure"{}, Command\+ID.\+bow\+Pressure\+Engage\+Speed\+: "{}engagespeed"{}, Command\+ID.\+bow\+Pressure\+Modulation\+Speed\+: "{}modulationspeed"{}, Command\+ID.\+bow\+Pressure\+Hold\+: "{}hold"{}, Command\+ID.\+bow\+Home\+: "{}home"{}, Command\+ID.\+bow\+Pressure\+TMCInfo\+: "{}tmcinfo"{} \}
-
-request\+Data = \mbox{[} Command\+ID.\+bow\+Pressure\+Position\+Rest, Command\+ID.\+bow\+Pressure\+Position\+Engage, Command\+ID.\+bow\+Pressure\+Position\+Max, Command\+ID.\+bow\+Pressure\+Engage\+Speed, Command\+ID.\+bow\+Pressure\+Modulation\+Speed \mbox{]}
-
-request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Solenoid(\+Command\+Set)\+: long\+Name = "{}solenoid"{} short\+Name = "{}so"{} index = True command\+ID = Command\+ID.\+solenoid\+Select
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+solenoid\+Engage\+: "{}en"{}, Command\+ID.\+solenoid\+Disengage\+: "{}rs"{}, Command\+ID.\+solenoid\+Max\+Force\+: "{}xf"{}, Command\+ID.\+solenoid\+Min\+Force\+: "{}if"{}, Command\+ID.\+solenoid\+Force\+Multiplier\+: "{}fm"{}, Command\+ID.\+solenoid\+Engage\+Duration\+: "{}ed"{} \}
-
-long\+Commands = \{ Command\+ID.\+solenoid\+Engage\+: "{}engage"{}, Command\+ID.\+solenoid\+Disengage\+: "{}rest"{}, Command\+ID.\+solenoid\+Max\+Force\+: "{}maxforce"{}, Command\+ID.\+solenoid\+Min\+Force\+: "{}minforce"{}, Command\+ID.\+solenoid\+Force\+Multiplier\+: "{}forcemultiplier"{}, Command\+ID.\+solenoid\+Engage\+Duration\+: "{}engageduration"{} \}
-
-request\+Data = \mbox{[} Command\+ID.\+solenoid\+Min\+Force, Command\+ID.\+solenoid\+Max\+Force, Command\+ID.\+solenoid\+Engage\+Duration \mbox{]}
-
-request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Mute(\+Command\+Set)\+: long\+Name = "{}mute"{} short\+Name = "{}mu"{} index = True command\+ID = Command\+ID.\+mute\+Select
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+mute\+Set\+Position \+: "{}sp"{}, Command\+ID.\+mute\+Full\+Mute \+: "{}fm"{}, Command\+ID.\+mute\+Half\+Mute \+: "{}hm"{}, Command\+ID.\+mute\+Rest \+: "{}rs"{}, Command\+ID.\+mute\+Save\+Full \+: "{}sf"{}, Command\+ID.\+mute\+Save\+Half \+: "{}sh"{}, Command\+ID.\+mute\+Save\+Rest \+: "{}sr"{}, Command\+ID.\+mute\+Full\+Mute\+Position \+: "{}fmp"{}, Command\+ID.\+mute\+Half\+Mute\+Position \+: "{}hmp"{}, Command\+ID.\+mute\+Rest\+Position \+: "{}rp"{}, Command\+ID.\+mute\+Sustain \+: "{}su"{}, Command\+ID.\+mute\+Backoff \+: "{}bo"{}, Command\+ID.\+mute\+Home \+: "{}hm"{},
-
-Command\+ID.\+mute\+Set\+Hardware\+Position \+: "{}hwp"{}, Command\+ID.\+mute\+Complete\+Task \+: "{}cpt"{}, Command\+ID.\+mute\+Auto\+Correct \+: "{}ac"{}, Command\+ID.\+mute\+Homing\+Sensed \+: "{}hms"{}, Command\+ID.\+mute\+Move\+Direction \+: "{}md"{}, Command\+ID.\+mute\+Current\+Step \+: "{}cs"{}, Command\+ID.\+mute\+Homing\+Point \+: "{}hmp"{}, Command\+ID.\+mute\+Homing\+Stage \+: "{}hms"{}, Command\+ID.\+mute\+TMCInfo \+: "{}tmi"{} \}
-
-long\+Commands = \{ Command\+ID.\+mute\+Set\+Position \+: "{}setposition"{}, Command\+ID.\+mute\+Full\+Mute \+: "{}fullmute"{}, Command\+ID.\+mute\+Half\+Mute \+: "{}halfmute"{}, Command\+ID.\+mute\+Rest \+: "{}rest"{}, Command\+ID.\+mute\+Save\+Full \+: "{}savefull"{}, Command\+ID.\+mute\+Save\+Half \+: "{}savehalf"{}, Command\+ID.\+mute\+Save\+Rest \+: "{}saverest"{}, Command\+ID.\+mute\+Full\+Mute\+Position \+: "{}fullmuteposition"{}, Command\+ID.\+mute\+Half\+Mute\+Position \+: "{}halfmuteposition"{}, Command\+ID.\+mute\+Rest\+Position \+: "{}restposition"{}, Command\+ID.\+mute\+Sustain \+: "{}sustain"{}, Command\+ID.\+mute\+Backoff \+: "{}backoff"{}, Command\+ID.\+mute\+Home \+: "{}home"{},
-
-Command\+ID.\+mute\+Set\+Hardware\+Position \+: "{}hardwareposition"{}, Command\+ID.\+mute\+Complete\+Task \+: "{}completetask"{}, Command\+ID.\+mute\+Auto\+Correct \+: "{}autocorrect"{}, Command\+ID.\+mute\+Homing\+Sensed \+: "{}homingsensed"{}, Command\+ID.\+mute\+Move\+Direction \+: "{}movedirection"{}, Command\+ID.\+mute\+Current\+Step \+: "{}currentstep"{}, Command\+ID.\+mute\+Homing\+Point \+: "{}homingpoint"{}, Command\+ID.\+mute\+Homing\+Stage \+: "{}homingstage"{}, Command\+ID.\+mute\+TMCInfo \+: "{}tmcinfo"{}, \}
-
-request\+Data = \mbox{[} Command\+ID.\+mute\+Full\+Mute\+Position, Command\+ID.\+mute\+Half\+Mute\+Position, Command\+ID.\+mute\+Rest\+Position, Command\+ID.\+mute\+Backoff \mbox{]}
-
-request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Midi\+Configuration\+Handler(\+Command\+Set)\+: long\+Name = "{}midiconfigurationhandler"{} short\+Name = "{}mcf"{} index = False indexing\+Child = "{}midiconfiguration"{}
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+midi\+All\+Notes\+Off \+: "{}ano"{}, Command\+ID.\+midi\+Configuration\+Add \+: "{}a"{}, Command\+ID.\+midi\+Configuration\+Remove \+: "{}rm"{}, Command\+ID.\+midi\+Configuration\+Count \+: "{}c"{}, Command\+ID.\+midi\+Configuration\+Select \+: "{}mc"{} \}
-
-long\+Commands = \{ Command\+ID.\+midi\+All\+Notes\+Off \+: "{}allnotesoff"{}, Command\+ID.\+midi\+Configuration\+Add \+: "{}add"{}, Command\+ID.\+midi\+Configuration\+Remove \+: "{}remove"{}, Command\+ID.\+midi\+Configuration\+Count \+: "{}count"{}, Command\+ID.\+midi\+Configuration\+Select\+: "{}midiconfiguration"{} \}
-
-request\+Data = \mbox{[} Command\+ID.\+midi\+Configuration\+Count, Command\+ID.\+midi\+Configuration\+Select \mbox{]} request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Midi\+Configuration(\+Command\+Set)\+: long\+Name = "{}midiconfiguration"{} short\+Name = "{}mc"{} index = True command\+ID = Command\+ID.\+midi\+Configuration\+Select
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+midi\+Configuration\+Name \+: "{}na"{}, \#\+Command\+ID.\+midi\+Configuration\+Data \+: "{}da"{}, Command\+ID.\+midi\+Configuration\+Add\+CC \+: "{}ac"{}, Command\+ID.\+midi\+Configuration\+Remove\+CC \+: "{}rmc"{}, Command\+ID.\+midi\+Configuration\+Defaults \+: "{}d"{}, Command\+ID.\+midi\+Receive\+Channel \+: "{}rc"{}, Command\+ID.\+midi\+Configuration\+Note\+On \+: "{}non"{}, Command\+ID.\+midi\+Configuration\+Note\+Off\+: "{}nof"{}, Command\+ID.\+midi\+Configuration\+Poly\+AT\+: "{}pat"{}, Command\+ID.\+midi\+Configuration\+Channel\+AT\+: "{}cat"{}, Command\+ID.\+midi\+Configuration\+Program\+Change\+: "{}pc"{}, Command\+ID.\+midi\+Configuration\+Pitchbend\+: "{}pb"{}, Command\+ID.\+midi\+Configuration\+Continuous\+Controller\+: "{}ccd"{} \}
-
-long\+Commands = \{ Command\+ID.\+midi\+Configuration\+Name \+: "{}name"{}, \#\+Command\+ID.\+midi\+Configuration\+Data \+: "{}data"{}, Command\+ID.\+midi\+Configuration\+Add\+CC \+: "{}addcc"{}, Command\+ID.\+midi\+Configuration\+Remove\+CC \+: "{}removecc"{}, Command\+ID.\+midi\+Configuration\+Defaults \+: "{}defaults"{}, Command\+ID.\+midi\+Receive\+Channel \+: "{}receivechannel"{}, Command\+ID.\+midi\+Configuration\+Note\+On\+: "{}noteon"{}, Command\+ID.\+midi\+Configuration\+Note\+Off\+: "{}noteoff"{}, Command\+ID.\+midi\+Configuration\+Poly\+AT\+: "{}polyaftertouch"{}, Command\+ID.\+midi\+Configuration\+Channel\+AT\+: "{}channelaftertouch"{}, Command\+ID.\+midi\+Configuration\+Program\+Change\+: "{}programchange"{}, Command\+ID.\+midi\+Configuration\+Pitchbend\+: "{}pitchbend"{}, Command\+ID.\+midi\+Configuration\+Continuous\+Controller\+: "{}continuouscontrollerdata"{} \}
-
-request\+Data = \mbox{[} \#\+Command\+ID.\+midi\+Configuration\+Name, Command\+ID.\+midi\+Configuration\+Data, Command\+ID.\+midi\+Receive\+Channel \mbox{]}
-
-request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Midi\+CC(\+Command\+Set)\+: long\+Name = "{}continuouscontroller"{} short\+Name = "{}cc"{} index = False
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+midi\+Configuration\+CCControl \+: "{}cl"{}, Command\+ID.\+midi\+Configuration\+CCCommands \+: "{}cm"{}, \}
-
-long\+Commands = \{ Command\+ID.\+midi\+Configuration\+CCControl \+: "{}control"{}, Command\+ID.\+midi\+Configuration\+CCCommands \+: "{}command"{}, \}
-
-request\+Data = \mbox{[} Command\+ID.\+midi\+Configuration\+CCCommands, Command\+ID.\+midi\+Configuration\+CCControl \mbox{]}
-
-request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Control\+Box(\+Command\+Set)\+: long\+Name = "{}controlbox"{} short\+Name = "{}cb"{} index = True
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+control\+Box\+Control\+Data \+: "{}cda"{}, Command\+ID.\+control\+Box\+Control\+Defaults \+: "{}cde"{}, Command\+ID.\+control\+Box\+Data\+Return \+: "{}dr"{}, Command\+ID.\+control\+Box\+ADCSettings \+: "{}ads"{},
-
-Command\+ID.\+control\+Box\+Harmonic \+: "{}har"{}, Command\+ID.\+control\+Box\+Harmonic\+Shift \+: "{}has"{}, Command\+ID.\+control\+Box\+Finetune \+: "{}fin"{}, Command\+ID.\+control\+Box\+Pressure \+: "{}pre"{}, Command\+ID.\+control\+Box\+Mute \+: "{}mut"{}, Command\+ID.\+control\+Box\+Hammer\+Scale\+: "{}hms"{}, Command\+ID.\+control\+Box\+Gate\+: "{}gt"{}, Command\+ID.\+control\+Box\+Hammer\+Trig\+: "{}hmt"{},
-
-Command\+ID.\+test\+ADCLatency \+: "{}tal"{}, Command\+ID.\+test\+ADCLatency\+Return \+: "{}talr"{}, Command\+ID.\+test\+ADCMin\+Max \+: "{}tix"{} \}
-
-long\+Commands = \{ Command\+ID.\+control\+Box\+Control\+Data \+: "{}controldata"{}, Command\+ID.\+control\+Box\+Control\+Defaults \+: "{}controldefaults"{}, Command\+ID.\+control\+Box\+Data\+Return \+: "{}datareturn"{}, Command\+ID.\+control\+Box\+ADCSettings \+: "{}adcsettings"{},
-
-Command\+ID.\+control\+Box\+Harmonic\+: "{}harmonic"{}, Command\+ID.\+control\+Box\+Harmonic\+Shift\+: "{}harmonicshift"{}, Command\+ID.\+control\+Box\+Finetune\+: "{}finetune"{}, Command\+ID.\+control\+Box\+Pressure\+: "{}pressure"{}, Command\+ID.\+control\+Box\+Mute\+: "{}mute"{}, Command\+ID.\+control\+Box\+Hammer\+Scale\+: "{}hammerscale"{}, Command\+ID.\+control\+Box\+Gate\+: "{}gate"{}, Command\+ID.\+control\+Box\+Hammer\+Trig\+: "{}hammertrig"{},
-
-Command\+ID.\+test\+ADCLatency \+: "{}testadclatency"{}, Command\+ID.\+test\+ADCLatency\+Return \+: "{}testadclatencyreturn"{}, Command\+ID.\+test\+ADCMin\+Max \+: "{}testadcminmax"{} \}
-
-request\+Data = \mbox{[} Command\+ID.\+control\+Box\+Harmonic, Command\+ID.\+control\+Box\+Harmonic\+Shift, Command\+ID.\+control\+Box\+Finetune, Command\+ID.\+control\+Box\+Pressure, Command\+ID.\+control\+Box\+Mute, Command\+ID.\+control\+Box\+Hammer\+Scale, Command\+ID.\+control\+Box\+Gate, Command\+ID.\+control\+Box\+Hammer\+Trig\mbox{]} request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Plugin\+Handler(\+Command\+Set)\+: long\+Name = "{}pluginhandler"{} short\+Name = "{}ph"{} index = False
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+plugin\+Handler\+Add \+: "{}a"{}, Command\+ID.\+plugin\+Handler\+Remove\+: "{}rm"{}, Command\+ID.\+plugin\+Handler\+Count\+: "{}c"{}, \}
-
-long\+Commands = \{ Command\+ID.\+plugin\+Handler\+Add \+: "{}add"{}, Command\+ID.\+plugin\+Handler\+Remove\+: "{}remove"{}, Command\+ID.\+plugin\+Handler\+Count\+: "{}count"{}, \}
-
-request\+Data = \mbox{[}\mbox{]} request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Plugin\+Multiple(\+Command\+Set)\+: long\+Name = "{}multiple"{} short\+Name = "{}mlt"{} index = True
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+plugin\+Mult\+Name \+: "{}na"{}, Command\+ID.\+plugin\+Mult\+Target \+: "{}tg"{}, Command\+ID.\+plugin\+Mult\+Data \+: "{}da"{}, Command\+ID.\+plugin\+Mult\+Remove \+: "{}rm"{} \}
-
-long\+Commands = \{ Command\+ID.\+plugin\+Mult\+Name\+: "{}name"{}, Command\+ID.\+plugin\+Mult\+Target\+: "{}target"{}, Command\+ID.\+plugin\+Mult\+Data\+: "{}data"{}, Command\+ID.\+plugin\+Mult\+Remove\+: "{}rempve"{} \}
-
-request\+Data = \mbox{[} Command\+ID.\+plugin\+Mult\+Name \mbox{]} request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Plugin\+LFO(\+Command\+Set)\+: long\+Name = "{}lfo"{} short\+Name = "{}lfo"{} index = True
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+plugin\+LFOName \+: "{}na"{}, Command\+ID.\+plugin\+LFOEnable \+: "{}en"{}, Command\+ID.\+plugin\+LFOTarget \+: "{}tg"{}, Command\+ID.\+plugin\+LFOUpdate\+Rate \+: "{}ur"{}, Command\+ID.\+plugin\+LFOWaveform \+: "{}wf"{}, Command\+ID.\+plugin\+LFOFrequency \+: "{}fq"{}, Command\+ID.\+plugin\+LFOAmpltiude \+: "{}amp"{}, Command\+ID.\+plugin\+LFODelay \+: "{}dl"{}, Command\+ID.\+plugin\+LFOReset\+Delay \+: "{}rd"{}, Command\+ID.\+plugin\+LFOReset\+Wave \+: "{}rw"{}, Command\+ID.\+plugin\+LFOBipolar \+: "{}bp"{}, Command\+ID.\+plugin\+LFOOutput\+Value \+: "{}ov"{} \}
-
-long\+Commands = \{ Command\+ID.\+plugin\+LFOName \+: "{}name"{}, Command\+ID.\+plugin\+LFOEnable\+: "{}enable"{}, Command\+ID.\+plugin\+LFOTarget\+: "{}target"{}, Command\+ID.\+plugin\+LFOUpdate\+Rate\+: "{}updaterate"{}, Command\+ID.\+plugin\+LFOWaveform\+: "{}waveform"{}, Command\+ID.\+plugin\+LFOFrequency\+: "{}frequency"{}, Command\+ID.\+plugin\+LFOAmpltiude\+: "{}amplitude"{}, Command\+ID.\+plugin\+LFODelay\+: "{}delay"{}, Command\+ID.\+plugin\+LFOReset\+Delay\+: "{}resetdelay"{}, Command\+ID.\+plugin\+LFOReset\+Wave\+: "{}resetwave"{}, Command\+ID.\+plugin\+LFOBipolar\+: "{}bipolar"{}, Command\+ID.\+plugin\+LFOOutput\+Value\+: "{}outputvalue"{} \}
-
-request\+Data = \mbox{[} Command\+ID.\+plugin\+LFOName \mbox{]} request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Plugin\+AHDSR(\+Command\+Set)\+: long\+Name = "{}ahdsr"{} short\+Name = "{}ahdsr"{} index = True
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+plugin\+AHDSRName \+: "{}na"{}, Command\+ID.\+plugin\+AHDSREnable \+: "{}en"{}, Command\+ID.\+plugin\+AHDSRTarget \+: "{}tg"{}, Command\+ID.\+plugin\+AHDSRUpdate\+Rate \+: "{}ur"{}, Command\+ID.\+plugin\+AHDSRGate \+: "{}gt"{}, Command\+ID.\+plugin\+AHDSRAttack \+: "{}at"{}, Command\+ID.\+plugin\+AHDSRHold \+: "{}hd"{}, Command\+ID.\+plugin\+AHDSRDecay \+: "{}dc"{}, Command\+ID.\+plugin\+AHDSRSustain \+: "{}su"{}, Command\+ID.\+plugin\+AHDSRRelease \+: "{}re"{}, Command\+ID.\+plugin\+AHDSRRelease\+Target \+: "{}rt"{}, Command\+ID.\+plugin\+AHDSRAmpltiude \+: "{}amp"{}, Command\+ID.\+plugin\+AHDSRInvert \+: "{}inv"{} \}
-
-long\+Commands = \{ Command\+ID.\+plugin\+AHDSRName \+: "{}name"{}, Command\+ID.\+plugin\+AHDSREnable\+: "{}enable"{}, Command\+ID.\+plugin\+AHDSRTarget\+: "{}target"{}, Command\+ID.\+plugin\+AHDSRUpdate\+Rate\+: "{}updaterate"{}, Command\+ID.\+plugin\+AHDSRGate\+: "{}gate"{}, Command\+ID.\+plugin\+AHDSRAttack\+: "{}attack"{}, Command\+ID.\+plugin\+AHDSRHold\+: "{}hold"{}, Command\+ID.\+plugin\+AHDSRDecay\+: "{}decay"{}, Command\+ID.\+plugin\+AHDSRSustain\+: "{}sustain"{}, Command\+ID.\+plugin\+AHDSRRelease\+: "{}release"{}, Command\+ID.\+plugin\+AHDSRRelease\+Target\+: "{}releasetarget"{}, Command\+ID.\+plugin\+AHDSRAmpltiude\+: "{}amplitude"{}, Command\+ID.\+plugin\+AHDSRInvert\+: "{}invert"{} \}
-
-request\+Data = \mbox{[} Command\+ID.\+plugin\+AHDSRName \mbox{]} request\+Continuous\+Data = \mbox{[}\mbox{]}
-
-class Plugin\+Map(\+Command\+Set)\+: long\+Name = "{}numbermap"{} short\+Name = "{}nm"{} index = True
-
-def {\bfseries{init}}(self)\+: super().\+\_\+\+\_\+init\+\_\+\+\_\+() self.\+post\+Init()
-
-short\+Commands = \{ Command\+ID.\+plugin\+Map\+Name \+: "{}na"{}, Command\+ID.\+plugin\+Map\+Target \+: "{}tg"{}, Command\+ID.\+plugin\+Map\+Data \+: "{}da"{}, Command\+ID.\+plugin\+Map\+Remove \+: "{}rm"{}, Command\+ID.\+plugin\+Map\+Scale \+: "{}sc"{}, Command\+ID.\+plugin\+Map\+Trigger \+: "{}tr"{} \}
-
-long\+Commands = \{ Command\+ID.\+plugin\+Map\+Name\+: "{}name"{}, Command\+ID.\+plugin\+Map\+Target\+: "{}target"{}, Command\+ID.\+plugin\+Map\+Data\+: "{}data"{}, Command\+ID.\+plugin\+Map\+Remove\+: "{}remove"{}, Command\+ID.\+plugin\+Map\+Scale \+: "{}scale"{}, Command\+ID.\+plugin\+Map\+Trigger\+: "{}trigger"{} \}
-
-request\+Data = \mbox{[} Command\+ID.\+plugin\+Map\+Name, Command\+ID.\+plugin\+Map\+Target \mbox{]} request\+Continuous\+Data = \mbox{[}\mbox{]} 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_abdd362d5f799ad16b5d6700efe590290}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_abdd362d5f799ad16b5d6700efe590290} 
@@ -400,46 +128,26 @@ Here is the caller graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{buildHierarchy()}{buildHierarchy()}}
 {\footnotesize\ttfamily build\+Hierarchy (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command\+Item,  }\item[{}]{widget }\end{DoxyParamCaption})}
 
-
-
-Reimplemented from \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a69c1c54f7639a8a00965fc04bb00e9cc}{Command\+Set}}.
-
 \Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a39a68343d80ee0e614c0ff533843b523}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a39a68343d80ee0e614c0ff533843b523} 
 \index{CommandSetModular@{CommandSetModular}!clearData@{clearData}}
 \index{clearData@{clearData}!CommandSetModular@{CommandSetModular}}
 \doxysubsubsection{\texorpdfstring{clearData()}{clearData()}}
 {\footnotesize\ttfamily clear\+Data (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-
-
-self.\+has\+Hierarchy = False self.\+has\+Help = False self.\+has\+Nodes = False self.\+has\+Command\+List = False self.\+update\+Stage = 0 self.\+has\+Nodes = False self.\+update\+Timer = None 
-
-\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a1e7062cc101f40ec6636a739cd845824}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a1e7062cc101f40ec6636a739cd845824} 
-\index{CommandSetModular@{CommandSetModular}!getCommand@{getCommand}}
-\index{getCommand@{getCommand}!CommandSetModular@{CommandSetModular}}
-\doxysubsubsection{\texorpdfstring{getCommand()}{getCommand()}}
-{\footnotesize\ttfamily get\+Command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command\+ID,  }\item[{}]{short = {\ttfamily False} }\end{DoxyParamCaption})}
-
 \Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a93dfeb0a19bc63e9cdc50d978a5f7604}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a93dfeb0a19bc63e9cdc50d978a5f7604} 
 \index{CommandSetModular@{CommandSetModular}!getCommandAndModule@{getCommandAndModule}}
 \index{getCommandAndModule@{getCommandAndModule}!CommandSetModular@{CommandSetModular}}
 \doxysubsubsection{\texorpdfstring{getCommandAndModule()}{getCommandAndModule()}}
-{\footnotesize\ttfamily  (\mbox{\hyperlink{classfarconfig_1_1commanddefinitions_1_1ModuleCommand}{Module\+Command}}, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1Module}{Module}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleHandler}{Module\+Handler}}) get\+Command\+And\+Module (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1commandparser_1_1Derivedcommanditem}{Derivedcommanditem}}}]{command\+Container,  }\item[{}]{first\+Iteration = {\ttfamily True} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily  (\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleCommand}{Module\+Command}}, \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1Module}{Module}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleHandler}{Module\+Handler}}) get\+Command\+And\+Module (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1commandparser_1_1Derivedcommanditem}{Derivedcommanditem}}}]{command\+Container,  }\item[{}]{first\+Iteration = {\ttfamily True} }\end{DoxyParamCaption})}
 
-
-
-Reimplemented from \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_ab1a7b5ff1b281815952cd873fe8313f4}{Command\+Set}}.
-
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=217pt]{classfarconfig_1_1CommandSets_1_1CommandSetModular_a93dfeb0a19bc63e9cdc50d978a5f7604_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -452,46 +160,27 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{getModuleHierarchy()}{getModuleHierarchy()}}
 {\footnotesize\ttfamily get\+Module\+Hierarchy (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1ModuleHandler}{Module\+Handler}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1Module}{Module}}}]{in\+Module }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=196pt]{classfarconfig_1_1CommandSets_1_1CommandSetModular_a25526009b62ac5c8571a9f0707c06693_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=196pt]{classfarconfig_1_1CommandSets_1_1CommandSetModular_a25526009b62ac5c8571a9f0707c06693_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a83df147109baf3971721cf58f8168437}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a83df147109baf3971721cf58f8168437} 
-\index{CommandSetModular@{CommandSetModular}!getModulesByName@{getModulesByName}}
-\index{getModulesByName@{getModulesByName}!CommandSetModular@{CommandSetModular}}
-\doxysubsubsection{\texorpdfstring{getModulesByName()}{getModulesByName()}}
-{\footnotesize\ttfamily get\+Modules\+By\+Name (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{name }\end{DoxyParamCaption})}
-
-\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a4d0e442ce13f4962d044a9b2c5f45764}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a4d0e442ce13f4962d044a9b2c5f45764} 
-\index{CommandSetModular@{CommandSetModular}!getModuleTypeFromCommandID@{getModuleTypeFromCommandID}}
-\index{getModuleTypeFromCommandID@{getModuleTypeFromCommandID}!CommandSetModular@{CommandSetModular}}
-\doxysubsubsection{\texorpdfstring{getModuleTypeFromCommandID()}{getModuleTypeFromCommandID()}}
-{\footnotesize\ttfamily get\+Module\+Type\+From\+Command\+ID (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command\+ID }\end{DoxyParamCaption})}
-
 \Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a2259dcce395577f57e7a522c3e21901c}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a2259dcce395577f57e7a522c3e21901c} 
 \index{CommandSetModular@{CommandSetModular}!processMessages@{processMessages}}
 \index{processMessages@{processMessages}!CommandSetModular@{CommandSetModular}}
 \doxysubsubsection{\texorpdfstring{processMessages()}{processMessages()}}
 {\footnotesize\ttfamily process\+Messages (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command\+Item,  }\item[{}]{command\+Sets,  }\item[{}]{main\+Widget,  }\item[{}]{serial\+Handler }\end{DoxyParamCaption})}
 
-
-
-Reimplemented from \mbox{\hyperlink{classfarconfig_1_1CommandSet_1_1CommandSet_a2259dcce395577f57e7a522c3e21901c}{Command\+Set}}.
-
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -504,34 +193,13 @@ Here is the call graph for this function\+:
 \doxysubsubsection{\texorpdfstring{requestAllData()}{requestAllData()}}
 {\footnotesize\ttfamily request\+All\+Data (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classfarconfig_1_1ModuleSystem_1_1Module}{Module}}}]{module,  }\item[{}]{serial\+Handler }\end{DoxyParamCaption})}
 
-\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a1d860f848138281a58a3db4b52772121}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a1d860f848138281a58a3db4b52772121} 
-\index{CommandSetModular@{CommandSetModular}!requestContinuousData@{requestContinuousData}}
-\index{requestContinuousData@{requestContinuousData}!CommandSetModular@{CommandSetModular}}
-\doxysubsubsection{\texorpdfstring{requestContinuousData()}{requestContinuousData()}}
-{\footnotesize\ttfamily request\+Continuous\+Data (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{serial\+Handler }\end{DoxyParamCaption})}
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classfarconfig_1_1CommandSets_1_1CommandSetModular_a1d860f848138281a58a3db4b52772121_cgraph}
-\end{center}
-\end{figure}
-\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a96cd759fb578f3738893b813b881776c}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a96cd759fb578f3738893b813b881776c} 
-\index{CommandSetModular@{CommandSetModular}!requestData@{requestData}}
-\index{requestData@{requestData}!CommandSetModular@{CommandSetModular}}
-\doxysubsubsection{\texorpdfstring{requestData()}{requestData()}}
-{\footnotesize\ttfamily request\+Data (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{serial\+Handler }\end{DoxyParamCaption})}
-
 \Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_aa59b2d7d1eae50d6ff7953bd2dcd9899}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_aa59b2d7d1eae50d6ff7953bd2dcd9899} 
 \index{CommandSetModular@{CommandSetModular}!splitStringIntoModuleCommandIndex@{splitStringIntoModuleCommandIndex}}
 \index{splitStringIntoModuleCommandIndex@{splitStringIntoModuleCommandIndex}!CommandSetModular@{CommandSetModular}}
 \doxysubsubsection{\texorpdfstring{splitStringIntoModuleCommandIndex()}{splitStringIntoModuleCommandIndex()}}
 {\footnotesize\ttfamily split\+String\+Into\+Module\+Command\+Index (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{command\+String }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -559,41 +227,11 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{CommandList}{CommandList}}
 {\footnotesize\ttfamily Command\+List}
 
-\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a10f8fcd37350a791230c424c5045b43a}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a10f8fcd37350a791230c424c5045b43a} 
-\index{CommandSetModular@{CommandSetModular}!commandTypes@{commandTypes}}
-\index{commandTypes@{commandTypes}!CommandSetModular@{CommandSetModular}}
-\doxysubsubsection{\texorpdfstring{commandTypes}{commandTypes}}
-{\footnotesize\ttfamily command\+Types}
-
 \Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a7ea3dbccd2aab692026b8a96a2dfce06}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a7ea3dbccd2aab692026b8a96a2dfce06} 
 \index{CommandSetModular@{CommandSetModular}!fromVer@{fromVer}}
 \index{fromVer@{fromVer}!CommandSetModular@{CommandSetModular}}
 \doxysubsubsection{\texorpdfstring{fromVer}{fromVer}}
 {\footnotesize\ttfamily from\+Ver}
-
-\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a94b928bf601837dc66acdf725ca8aa07}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a94b928bf601837dc66acdf725ca8aa07} 
-\index{CommandSetModular@{CommandSetModular}!hasHelp@{hasHelp}}
-\index{hasHelp@{hasHelp}!CommandSetModular@{CommandSetModular}}
-\doxysubsubsection{\texorpdfstring{hasHelp}{hasHelp}}
-{\footnotesize\ttfamily has\+Help}
-
-\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a5abac9f71883ee7d300943fb66946816}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a5abac9f71883ee7d300943fb66946816} 
-\index{CommandSetModular@{CommandSetModular}!hasHierarchy@{hasHierarchy}}
-\index{hasHierarchy@{hasHierarchy}!CommandSetModular@{CommandSetModular}}
-\doxysubsubsection{\texorpdfstring{hasHierarchy}{hasHierarchy}}
-{\footnotesize\ttfamily has\+Hierarchy}
-
-\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a1fe28a42bb55d56197009c4924917e7d}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a1fe28a42bb55d56197009c4924917e7d} 
-\index{CommandSetModular@{CommandSetModular}!hasNodes@{hasNodes}}
-\index{hasNodes@{hasNodes}!CommandSetModular@{CommandSetModular}}
-\doxysubsubsection{\texorpdfstring{hasNodes}{hasNodes}}
-{\footnotesize\ttfamily has\+Nodes}
-
-\Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a66e8135b382b34a0373f47df576f7f2f}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a66e8135b382b34a0373f47df576f7f2f} 
-\index{CommandSetModular@{CommandSetModular}!hasPluginList@{hasPluginList}}
-\index{hasPluginList@{hasPluginList}!CommandSetModular@{CommandSetModular}}
-\doxysubsubsection{\texorpdfstring{hasPluginList}{hasPluginList}}
-{\footnotesize\ttfamily has\+Plugin\+List}
 
 \Hypertarget{classfarconfig_1_1CommandSets_1_1CommandSetModular_a86fbb5a0662cdc2e8d3def820d83a4f6}\label{classfarconfig_1_1CommandSets_1_1CommandSetModular_a86fbb5a0662cdc2e8d3def820d83a4f6} 
 \index{CommandSetModular@{CommandSetModular}!helpModule@{helpModule}}

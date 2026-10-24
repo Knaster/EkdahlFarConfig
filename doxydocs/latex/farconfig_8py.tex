@@ -3,15 +3,15 @@
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \mbox{\hyperlink{classfarconfig_1_1farconfig_1_1serialHandler}{serial\+Handler}}
+class \mbox{\hyperlink{classfarconfig_1_1farconfig_1_1DockTitleBar}{Dock\+Title\+Bar}}
 \item 
 class \mbox{\hyperlink{classfarconfig_1_1farconfig_1_1FarConfig}{Far\+Config}}
 \item 
-class \mbox{\hyperlink{classfarconfig_1_1farconfig_1_1settingsType}{settings\+Type}}
-\item 
-class \mbox{\hyperlink{classfarconfig_1_1farconfig_1_1DockTitleBar}{Dock\+Title\+Bar}}
-\item 
 class \mbox{\hyperlink{classfarconfig_1_1farconfig_1_1MainWindow}{Main\+Window}}
+\item 
+class \mbox{\hyperlink{classfarconfig_1_1farconfig_1_1SerialHandler}{Serial\+Handler}}
+\item 
+class \mbox{\hyperlink{classfarconfig_1_1farconfig_1_1settingsType}{settings\+Type}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
@@ -23,48 +23,54 @@ namespace \mbox{\hyperlink{namespacefarconfig_1_1farconfig}{farconfig.\+farconfi
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a987a98f0b6079a1d3199dfde6adc5fb7}{process\+Information\+Return}} (in\+Serial\+Handler, info\+Return)
-\item 
-\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a3cfd24197afdf7373ec73f0920d17c4e}{settings\+Declaration}} ()
-\item 
-\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a2a6ee4a7b47beefd13b197ebf858301a}{save\+\_\+settings}} ()
-\item 
-\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a58272703487ba4f68b440f5de2a49b8e}{load\+Check\+State}} (settings, name, check\+Box)
+\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a031bf97322ef67bab09db2e8b6ce6847}{clear\+\_\+layout}} (layout)
+\begin{DoxyCompactList}\small\item\em Recursively remove all widgets and layouts from the given layout. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacefarconfig_1_1farconfig_acd18b266e480f21f408371af44e2ca29}{convert\+Settings\+Bool}} (settings\+Bool)
 \item 
 \mbox{\hyperlink{namespacefarconfig_1_1farconfig_abd7551033539b9f461af4375280ebd00}{load\+\_\+settings}} ()
 \item 
-\mbox{\hyperlink{namespacefarconfig_1_1farconfig_acb3dda5d971e950c5895d544b049d032}{show\+Console}} ()
-\item 
-\mbox{\hyperlink{namespacefarconfig_1_1farconfig_abd07822939eb52a8573e8dc494096eea}{show\+Reference}} ()
+\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a58272703487ba4f68b440f5de2a49b8e}{load\+Check\+State}} (settings, name, check\+Box)
 \item 
 \mbox{\hyperlink{namespacefarconfig_1_1farconfig_a288fbb0b736d88331710b31d28d86c1f}{organize}} ()
 \item 
+\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a987a98f0b6079a1d3199dfde6adc5fb7}{process\+Information\+Return}} (in\+Serial\+Handler, info\+Return)
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a2a6ee4a7b47beefd13b197ebf858301a}{save\+\_\+settings}} ()
+\item 
 \mbox{\hyperlink{namespacefarconfig_1_1farconfig_a9bf5a515ec7ca2f238b284dd42b0fa17}{set\+Main\+Event\+Handlers}} ()
 \item 
+\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a3cfd24197afdf7373ec73f0920d17c4e}{settings\+Declaration}} ()
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1farconfig_acb3dda5d971e950c5895d544b049d032}{show\+Console}} ()
+\item 
 \mbox{\hyperlink{namespacefarconfig_1_1farconfig_a63e445f98934925fddc71ea730397598}{show\+Preferences}} ()
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1farconfig_abd07822939eb52a8573e8dc494096eea}{show\+Reference}} ()
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespacefarconfig_1_1farconfig_af496896d14b761d42f77432cb9c0359f}{command\+Sets}} = \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets}{Command\+Sets}}()
-\item 
 \mbox{\hyperlink{namespacefarconfig_1_1farconfig_afe63fea7be31b0200b496d08bc6b517d}{app}} = None
-\item 
-\mbox{\hyperlink{namespacefarconfig_1_1farconfig_af63dbeef4213f59e69cb824f5c640afe}{main\+Widget}} = \mbox{\hyperlink{classfarconfig_1_1farconfig_1_1FarConfig}{Far\+Config}}()
-\item 
-\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a31245ecf3674704cea0656b203805f5e}{serial\+Widget}} = \mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget}{Serial\+Widget}}(\mbox{\hyperlink{classfarconfig_1_1farconfig_1_1serialHandler}{serial\+Handler}}, main\+Widget.\+time\+Stamper, logging)
 \item 
 \mbox{\hyperlink{namespacefarconfig_1_1farconfig_a14307caee805746936eabcf3fcf27536}{command\+Reference}} = Command\+Reference()
 \item 
-\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a28205c34fab1ff226527af2b1ec3c3f9}{preferences}} = \mbox{\hyperlink{classfarconfig_1_1preferences_1_1preferences}{preferences}}(\mbox{\hyperlink{namespacefarconfig_1_1farconfig_af63dbeef4213f59e69cb824f5c640afe}{main\+Widget}}, \mbox{\hyperlink{namespacefarconfig_1_1farconfig_a31245ecf3674704cea0656b203805f5e}{serial\+Widget}}, main\+Widget.\+debug\+Timed\+Chart, \mbox{\hyperlink{namespacefarconfig_1_1farconfig_af496896d14b761d42f77432cb9c0359f}{command\+Sets}})
-\item 
-\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a50241936b8edadfa38869169b38fb29c}{main\+Window}} = \mbox{\hyperlink{classfarconfig_1_1farconfig_1_1MainWindow}{Main\+Window}}()
+\mbox{\hyperlink{namespacefarconfig_1_1farconfig_af496896d14b761d42f77432cb9c0359f}{command\+Sets}} = \mbox{\hyperlink{classfarconfig_1_1CommandSets_1_1CommandSets}{Command\+Sets}}()
 \item 
 \mbox{\hyperlink{namespacefarconfig_1_1farconfig_aeb0ac46d6a8e96ef738dcb1dd3854db4}{completer\+List}}
 \begin{DoxyCompactList}\small\item\em Hiding old. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespacefarconfig_1_1farconfig_a6beebb1d6ca64a2b3745d2fed363601c}{local\+Nodehandler}} = None
 \begin{DoxyCompactList}\small\item\em Default settings. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespacefarconfig_1_1farconfig_a6e4285e1094049d74270eb7aad69b4c9}{local\+Node\+Handler}}
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1farconfig_af63dbeef4213f59e69cb824f5c640afe}{main\+Widget}} = \mbox{\hyperlink{classfarconfig_1_1farconfig_1_1FarConfig}{Far\+Config}}()
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a50241936b8edadfa38869169b38fb29c}{main\+Window}} = \mbox{\hyperlink{classfarconfig_1_1farconfig_1_1MainWindow}{Main\+Window}}()
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a28205c34fab1ff226527af2b1ec3c3f9}{preferences}} = \mbox{\hyperlink{classfarconfig_1_1preferences_1_1preferences}{preferences}}(\mbox{\hyperlink{namespacefarconfig_1_1farconfig_af63dbeef4213f59e69cb824f5c640afe}{main\+Widget}}, \mbox{\hyperlink{namespacefarconfig_1_1farconfig_a31245ecf3674704cea0656b203805f5e}{serial\+Widget}}, main\+Widget.\+timed\+Chart, \mbox{\hyperlink{namespacefarconfig_1_1farconfig_af496896d14b761d42f77432cb9c0359f}{command\+Sets}})
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a46f0d600ea5891b488f0ba840873e687}{serial\+Handler}} = \mbox{\hyperlink{classfarconfig_1_1farconfig_1_1SerialHandler}{Serial\+Handler}}(\mbox{\hyperlink{namespacefarconfig_1_1farconfig_af63dbeef4213f59e69cb824f5c640afe}{main\+Widget}})
+\item 
+\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a31245ecf3674704cea0656b203805f5e}{serial\+Widget}} = \mbox{\hyperlink{classfarconfig_1_1serialWidget_1_1SerialWidget}{Serial\+Widget}}(\mbox{\hyperlink{namespacefarconfig_1_1farconfig_a46f0d600ea5891b488f0ba840873e687}{serial\+Handler}}, main\+Widget.\+time\+Stamper, logging)
 \item 
 \mbox{\hyperlink{namespacefarconfig_1_1farconfig_a05938be01458e0c8e56f5b60d6055176}{USBRefresh\+Timer}}
 \end{DoxyCompactItemize}

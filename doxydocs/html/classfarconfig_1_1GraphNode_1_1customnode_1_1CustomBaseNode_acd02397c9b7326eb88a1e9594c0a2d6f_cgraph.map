@@ -1,4 +1,5 @@
 <map id="output_ports" name="output_ports">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,109,55"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="39,30,35,21,37,12,45,5,57,3,72,6,79,14,74,18,69,11,57,8,47,10,42,14,41,20,44,28"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,109,31"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1GraphNode_1_1customnode_1_1CustomBaseNode.html#a5255577d084a66ad390da11ce9cb918d" title=" " alt="" coords="157,5,252,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,15,144,15,144,21,110,21"/>
 </map>

@@ -1,7 +1,7 @@
 <map id="updateLineLimit" name="updateLineLimit">
-<area shape="rect" id="Node000001" title=" " alt="" coords="296,31,423,56"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1serialWidget_1_1SerialWidget.html#a13e07770fa567e6d6d596a27fcd91a38" title=" " alt="" coords="5,5,248,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="282,38,243,33,243,28,283,32"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1serialWidget_1_1SerialWidget.html#a77413352c564a48b39bde80dd4daa896" title=" " alt="" coords="9,55,244,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="283,54,245,58,244,53,282,49"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="272,31,399,56"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1serialWidget_1_1SerialWidget.html#a2fb88d5b962f2bc1f544a81316480d5b" title=" " alt="" coords="5,5,224,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,37,224,33,224,28,258,32"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1serialWidget_1_1SerialWidget.html#a7417b5ac645561e3e4f530d00d516a31" title=" " alt="" coords="13,55,216,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="258,54,217,59,216,54,258,49"/>
 </map>

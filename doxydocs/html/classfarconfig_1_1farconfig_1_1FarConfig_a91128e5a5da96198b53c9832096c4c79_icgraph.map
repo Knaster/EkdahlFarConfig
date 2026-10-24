@@ -1,5 +1,7 @@
 <map id="setContinuousSMReadings" name="setContinuousSMReadings">
-<area shape="rect" id="Node000001" title=" " alt="" coords="263,13,457,38"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#a3127a9014168826fdbcb36d445368d3b" title=" " alt="" coords="5,5,215,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="249,28,215,28,215,23,249,23"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="340,5,535,31"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#ad8b4c9606d75562b22019e716829dd72" title=" " alt="" coords="189,5,292,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="326,21,292,21,292,15,326,15"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1farconfig_1_1FarConfig.html#ae362caa9e40d9b51867a11aeff8c091c" title=" " alt="" coords="5,5,141,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="175,21,142,21,142,15,175,15"/>
 </map>

@@ -1,9 +1,9 @@
 <map id="isSelectionPluginInstance" name="isSelectionPluginInstance">
-<area shape="rect" id="Node000001" title=" " alt="" coords="165,55,353,80"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a4179c9336d9f6622594c8f2b0a10feae" title=" " alt="" coords="18,5,105,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,54,104,31,106,26,195,49"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a07e3a899f4f42bb2dc3e245fec3f0bfe" title=" " alt="" coords="5,55,117,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,70,118,70,118,65,151,65"/>
-<area shape="rect" id="Node000004" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a0bb70c78c3df44200acf09057ec607c9" title=" " alt="" coords="5,104,117,129"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="195,86,114,107,112,101,194,81"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="256,55,444,80"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a484fd9a3d2f4c12dec83e482dcd9b2a1" title=" " alt="" coords="20,5,193,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="273,55,170,33,171,28,274,49"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a404e3853858c17e267e0353cc458767b" title=" " alt="" coords="5,55,208,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="242,70,208,70,208,65,242,65"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a07e3a899f4f42bb2dc3e245fec3f0bfe" title=" " alt="" coords="51,104,163,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="274,85,163,108,162,103,273,80"/>
 </map>

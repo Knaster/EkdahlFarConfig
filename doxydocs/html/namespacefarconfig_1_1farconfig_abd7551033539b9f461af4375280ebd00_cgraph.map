@@ -1,7 +1,10 @@
 <map id="load_settings" name="load_settings">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,115,56"/>
-<area shape="rect" id="Node000002" href="$namespacefarconfig_1_1farconfig.html#a58272703487ba4f68b440f5de2a49b8e" title=" " alt="" coords="175,5,299,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,33,161,26,162,31,115,38"/>
-<area shape="rect" id="Node000003" href="$namespacefarconfig_1_1farconfig.html#a3cfd24197afdf7373ec73f0920d17c4e" title=" " alt="" coords="163,55,312,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="115,48,150,53,149,58,114,53"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,115,80"/>
+<area shape="rect" id="Node000002" href="$namespacefarconfig_1_1farconfig.html#acd18b266e480f21f408371af44e2ca29" title=" " alt="" coords="163,5,316,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,52,178,32,179,37,108,57"/>
+<area shape="rect" id="Node000003" href="$namespacefarconfig_1_1farconfig.html#a58272703487ba4f68b440f5de2a49b8e" title=" " alt="" coords="177,55,301,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="115,65,164,65,164,70,115,70"/>
+<area shape="rect" id="Node000004" href="$namespacefarconfig_1_1farconfig.html#a3cfd24197afdf7373ec73f0920d17c4e" title=" " alt="" coords="165,128,314,153"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="93,78,196,120,193,125,91,83"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="210,129,203,120,207,110,219,104,239,101,264,105,274,114,271,118,262,110,239,107,220,109,211,113,209,119,214,126"/>
 </map>

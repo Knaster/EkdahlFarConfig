@@ -25,7 +25,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(692, 568)
+        Form.resize(697, 596)
         palette = QPalette()
         brush = QBrush(QColor(0, 0, 0, 255))
         brush.setStyle(Qt.SolidPattern)
@@ -442,15 +442,15 @@ class Ui_Form(object):
 
         self.horizontalLayout_8.addItem(self.horizontalSpacer_2)
 
-        self.pushButtonAdd = QPushButton(self.tabOscilloscope)
-        self.pushButtonAdd.setObjectName(u"pushButtonAdd")
+        self.pushButtonAddChart = QPushButton(self.tabOscilloscope)
+        self.pushButtonAddChart.setObjectName(u"pushButtonAddChart")
 
-        self.horizontalLayout_8.addWidget(self.pushButtonAdd)
+        self.horizontalLayout_8.addWidget(self.pushButtonAddChart)
 
-        self.pushButtonRemove = QPushButton(self.tabOscilloscope)
-        self.pushButtonRemove.setObjectName(u"pushButtonRemove")
+        self.pushButtonRemoveChart = QPushButton(self.tabOscilloscope)
+        self.pushButtonRemoveChart.setObjectName(u"pushButtonRemoveChart")
 
-        self.horizontalLayout_8.addWidget(self.pushButtonRemove)
+        self.horizontalLayout_8.addWidget(self.pushButtonRemoveChart)
 
 
         self.gridLayout.addLayout(self.horizontalLayout_8, 1, 0, 1, 1)
@@ -484,7 +484,7 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
 
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Form)
@@ -528,8 +528,8 @@ class Ui_Form(object):
         self.checkBoxChartSuppressFromSerial.setText(QCoreApplication.translate("Form", u"Suppress from serial monitor", None))
         self.pushButtonHideAll.setText(QCoreApplication.translate("Form", u"Hide all", None))
         self.pushButtonShowAll.setText(QCoreApplication.translate("Form", u"Show all", None))
-        self.pushButtonAdd.setText(QCoreApplication.translate("Form", u"Add", None))
-        self.pushButtonRemove.setText(QCoreApplication.translate("Form", u"Remove", None))
+        self.pushButtonAddChart.setText(QCoreApplication.translate("Form", u"Add", None))
+        self.pushButtonRemoveChart.setText(QCoreApplication.translate("Form", u"Remove", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabOscilloscope), QCoreApplication.translate("Form", u"Osciloscope", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabNodes), QCoreApplication.translate("Form", u"Nodes", None))
         self.pushButtonOk.setText(QCoreApplication.translate("Form", u"Ok", None))

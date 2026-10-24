@@ -1,3 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classfarconfig_1_1GUICallbackSystem_1_1GUICallback.html" title=" " alt="" coords="5,5,108,31"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,127,81,153"/>
+<area shape="rect" id="Node000001" href="$classfarconfig_1_1ModuleSystem_1_1HelpCommand_1_1CommandType__access.html" title=" " alt="" coords="147,5,367,45"/>
+<area shape="poly" id="edge27_Node000000_Node000001" title=" " alt="" coords="61,115,90,84,128,55,154,43,156,48,131,60,94,88,65,118"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1ModuleSystem_1_1HelpCommand_1_1CommandType__data.html" title=" " alt="" coords="129,70,385,95"/>
+<area shape="poly" id="edge28_Node000000_Node000002" title=" " alt="" coords="87,120,129,105,181,93,182,98,130,111,88,125"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1ModuleSystem_1_1HelpCommand_1_1CommandType__dataOptions.html" title=" " alt="" coords="147,120,367,160"/>
+<area shape="poly" id="edge29_Node000000_Node000003" title=" " alt="" coords="95,137,147,137,147,143,95,143"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1ModuleSystem_1_1HelpCommand_1_1CommandType__flags.html" title=" " alt="" coords="147,184,367,224"/>
+<area shape="poly" id="edge30_Node000000_Node000004" title=" " alt="" coords="89,155,130,169,172,181,170,187,129,175,87,160"/>
+<area shape="rect" id="Node000005" href="$classfarconfig_1_1ModuleSystem_1_1HelpCommand_1_1CommandType__function.html" title=" " alt="" coords="147,248,367,288"/>
+<area shape="poly" id="edge31_Node000000_Node000005" title=" " alt="" coords="62,163,91,200,110,218,131,234,155,246,152,250,128,238,106,222,87,204,58,166"/>
 </map>

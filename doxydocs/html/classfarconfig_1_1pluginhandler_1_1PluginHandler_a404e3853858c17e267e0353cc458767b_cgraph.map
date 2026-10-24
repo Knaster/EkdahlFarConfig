@@ -1,7 +1,9 @@
 <map id="dataChangedRemovePlugin" name="dataChangedRemovePlugin">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,208,56"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a2226c67992951aad5c24c32d30f7f9f4" title=" " alt="" coords="302,5,385,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,30,288,21,289,26,209,35"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#afe2701cce8606f3ec405da222e5f5432" title=" " alt="" coords="256,55,431,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="209,51,243,54,242,60,208,56"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,208,80"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a2226c67992951aad5c24c32d30f7f9f4" title=" " alt="" coords="309,5,391,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,52,294,26,295,32,171,57"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#afe2701cce8606f3ec405da222e5f5432" title=" " alt="" coords="263,55,437,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,65,249,65,249,70,208,70"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1pluginhandler_1_1PluginHandler.html#a33830cc321922daaac5a681cdf326c47" title=" " alt="" coords="256,104,444,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="171,77,274,99,273,104,169,83"/>
 </map>

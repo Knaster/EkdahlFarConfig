@@ -1,7 +1,10 @@
 <map id="chartCallback" name="chartCallback">
-<area shape="rect" id="Node000001" title=" " alt="" coords="520,5,631,31"/>
-<area shape="rect" id="Node000002" href="$classfarconfig_1_1timedChart_1_1timedChart.html#ac76561bcf5de6886204b56457e856080" title=" " alt="" coords="296,5,472,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="506,21,472,21,472,15,506,15"/>
-<area shape="rect" id="Node000003" href="$classfarconfig_1_1timedChart_1_1timedChart.html#ab6b3f75fa444ba31abebc0f1019f10ad" title=" " alt="" coords="5,5,248,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="282,21,248,21,248,15,282,15"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="369,55,480,80"/>
+<area shape="rect" id="Node000002" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a3f6acb974d9cb65ab01372200651dc72" title=" " alt="" coords="237,29,314,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="355,58,314,51,315,46,356,53"/>
+<area shape="rect" id="Node000004" href="$classfarconfig_1_1timedChart_1_1timedChart.html#a00ee677543e87d575aa3f5151eaf32c6" title=" " alt="" coords="229,79,321,104"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="356,81,322,87,321,81,355,76"/>
+<area shape="rect" id="Node000003" href="$classfarconfig_1_1timedChart_1_1timedChart.html#ac76561bcf5de6886204b56457e856080" title=" " alt="" coords="5,29,181,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="223,45,181,45,181,39,223,39"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="125,19,116,11,93,8,74,10,64,15,62,20,68,28,63,31,57,21,60,11,73,5,93,3,118,6,129,15"/>
 </map>

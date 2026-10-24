@@ -76,67 +76,96 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classfarconfig_1_1timedChart_1_1CommandChart-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">CommandChart Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>name : str isRequest : bool parameters : str  
- <a href="classfarconfig_1_1timedChart_1_1CommandChart.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a80ac859a17b66f1a9d8b336552f8da7c" id="r_a80ac859a17b66f1a9d8b336552f8da7c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a80ac859a17b66f1a9d8b336552f8da7c">__init__</a> (self, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a457d913bff1ebc8671c1eca1c9d5fc03">parent</a>, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a22718e78e54e62e29267ea4697e64ec7">commandString</a>, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#ab74e6bf80237ddc4109968cedc58c151">name</a>, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a9f4fae384c11ae8810f21d058ad1ab5b">visible</a>, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a4d8e01548e29bf7204f26c337637e01a">isRequest</a>=False, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a8c0292fd6be874bcecd5d400a2a325fe">supressSerial</a>=False, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#ad827090038061f4a04a789ab61df8c1d">parameters</a>=&quot;&quot;, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a4d025356048ef6918e8f92d7fbf131e8">argument</a>=0, float <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a26be66174fbac08e518fb500ea2eb448">rangeMin</a>=0, float <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a315e90fc75963fad09031744f5eb0d3b">rangeMax</a>=65535, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a79107ec3480f7ce4b592ac2e9c45f867">logarithmic</a>=False, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#af57fdbdb7d09e0557b2c4533b3353975">suffix</a>=&quot;&quot;, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a37dbdc30935031c05304482e1be89d8f">color</a>=&quot;&quot;, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a9f591a68f46ba558170c2c58834a91c3">requireArgument</a>=False, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#af6382047ad314ce799759c366acd4805">requiredArgumentIndex</a>=0, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#adabf1c4d95f73eed30d2ed73622f1618">requiredArgumentContents</a>=&quot;&quot;, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a447696802d2b3fd618400157210cbd51">zeroIsUnavailable</a>=False)</td></tr>
-<tr class="separator:a80ac859a17b66f1a9d8b336552f8da7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac67c6583753b9ada7d7e7f40dca9e52a" id="r_ac67c6583753b9ada7d7e7f40dca9e52a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#ac67c6583753b9ada7d7e7f40dca9e52a">__init__</a> (self, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a457d913bff1ebc8671c1eca1c9d5fc03">parent</a>, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a22718e78e54e62e29267ea4697e64ec7">commandString</a>=&quot;&quot;, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#ab74e6bf80237ddc4109968cedc58c151">name</a>=&quot;&quot;, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a9f4fae384c11ae8810f21d058ad1ab5b">visible</a>=True, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a4d8e01548e29bf7204f26c337637e01a">isRequest</a>=False, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a8c0292fd6be874bcecd5d400a2a325fe">supressSerial</a>=False, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#ad827090038061f4a04a789ab61df8c1d">parameters</a>=&quot;&quot;, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a4d025356048ef6918e8f92d7fbf131e8">argument</a>=0, float <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a26be66174fbac08e518fb500ea2eb448">rangeMin</a>=0, float <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a315e90fc75963fad09031744f5eb0d3b">rangeMax</a>=65535, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a79107ec3480f7ce4b592ac2e9c45f867">logarithmic</a>=False, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#af57fdbdb7d09e0557b2c4533b3353975">suffix</a>=&quot;&quot;, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a37dbdc30935031c05304482e1be89d8f">color</a>=&quot;&quot;, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a9f591a68f46ba558170c2c58834a91c3">requireArgument</a>=False, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#af6382047ad314ce799759c366acd4805">requiredArgumentIndex</a>=0, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#adabf1c4d95f73eed30d2ed73622f1618">requiredArgumentContents</a>=&quot;&quot;, <a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a447696802d2b3fd618400157210cbd51">zeroIsUnavailable</a>=False)</td></tr>
+<tr class="separator:ac67c6583753b9ada7d7e7f40dca9e52a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cd9f93a8dfd82f57a65cdffd4f45edc" id="r_a3cd9f93a8dfd82f57a65cdffd4f45edc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a3cd9f93a8dfd82f57a65cdffd4f45edc">attachToYAxis</a> (self)</td></tr>
+<tr class="separator:a3cd9f93a8dfd82f57a65cdffd4f45edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afee59674b70b142b8991531b85b399b0" id="r_afee59674b70b142b8991531b85b399b0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#afee59674b70b142b8991531b85b399b0">loadChart</a> (self, QSettings settings, str prefix)</td></tr>
+<tr class="separator:afee59674b70b142b8991531b85b399b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab239c502f4fdeac66295d4223668057c" id="r_ab239c502f4fdeac66295d4223668057c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#ab239c502f4fdeac66295d4223668057c">saveChart</a> (self, QSettings settings, str prefix)</td></tr>
+<tr class="separator:ab239c502f4fdeac66295d4223668057c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a457d913bff1ebc8671c1eca1c9d5fc03" id="r_a457d913bff1ebc8671c1eca1c9d5fc03"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a457d913bff1ebc8671c1eca1c9d5fc03">parent</a></td></tr>
-<tr class="separator:a457d913bff1ebc8671c1eca1c9d5fc03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22718e78e54e62e29267ea4697e64ec7" id="r_a22718e78e54e62e29267ea4697e64ec7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a22718e78e54e62e29267ea4697e64ec7">commandString</a></td></tr>
-<tr class="separator:a22718e78e54e62e29267ea4697e64ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab74e6bf80237ddc4109968cedc58c151" id="r_ab74e6bf80237ddc4109968cedc58c151"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#ab74e6bf80237ddc4109968cedc58c151">name</a></td></tr>
-<tr class="separator:ab74e6bf80237ddc4109968cedc58c151"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d8e01548e29bf7204f26c337637e01a" id="r_a4d8e01548e29bf7204f26c337637e01a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a4d8e01548e29bf7204f26c337637e01a">isRequest</a></td></tr>
-<tr class="separator:a4d8e01548e29bf7204f26c337637e01a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad827090038061f4a04a789ab61df8c1d" id="r_ad827090038061f4a04a789ab61df8c1d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#ad827090038061f4a04a789ab61df8c1d">parameters</a></td></tr>
-<tr class="separator:ad827090038061f4a04a789ab61df8c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d025356048ef6918e8f92d7fbf131e8" id="r_a4d025356048ef6918e8f92d7fbf131e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a4d025356048ef6918e8f92d7fbf131e8">argument</a></td></tr>
+<tr class="memdesc:a4d025356048ef6918e8f92d7fbf131e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">int  <br /></td></tr>
 <tr class="separator:a4d025356048ef6918e8f92d7fbf131e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26be66174fbac08e518fb500ea2eb448" id="r_a26be66174fbac08e518fb500ea2eb448"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a26be66174fbac08e518fb500ea2eb448">rangeMin</a></td></tr>
-<tr class="separator:a26be66174fbac08e518fb500ea2eb448"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a315e90fc75963fad09031744f5eb0d3b" id="r_a315e90fc75963fad09031744f5eb0d3b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a315e90fc75963fad09031744f5eb0d3b">rangeMax</a></td></tr>
-<tr class="separator:a315e90fc75963fad09031744f5eb0d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79107ec3480f7ce4b592ac2e9c45f867" id="r_a79107ec3480f7ce4b592ac2e9c45f867"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a79107ec3480f7ce4b592ac2e9c45f867">logarithmic</a></td></tr>
-<tr class="separator:a79107ec3480f7ce4b592ac2e9c45f867"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af57fdbdb7d09e0557b2c4533b3353975" id="r_af57fdbdb7d09e0557b2c4533b3353975"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#af57fdbdb7d09e0557b2c4533b3353975">suffix</a></td></tr>
-<tr class="separator:af57fdbdb7d09e0557b2c4533b3353975"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37dbdc30935031c05304482e1be89d8f" id="r_a37dbdc30935031c05304482e1be89d8f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a37dbdc30935031c05304482e1be89d8f">color</a></td></tr>
+<tr class="memdesc:a37dbdc30935031c05304482e1be89d8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">str  <br /></td></tr>
 <tr class="separator:a37dbdc30935031c05304482e1be89d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f4fae384c11ae8810f21d058ad1ab5b" id="r_a9f4fae384c11ae8810f21d058ad1ab5b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a9f4fae384c11ae8810f21d058ad1ab5b">visible</a></td></tr>
-<tr class="separator:a9f4fae384c11ae8810f21d058ad1ab5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c0292fd6be874bcecd5d400a2a325fe" id="r_a8c0292fd6be874bcecd5d400a2a325fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a8c0292fd6be874bcecd5d400a2a325fe">supressSerial</a></td></tr>
-<tr class="separator:a8c0292fd6be874bcecd5d400a2a325fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a447696802d2b3fd618400157210cbd51" id="r_a447696802d2b3fd618400157210cbd51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a447696802d2b3fd618400157210cbd51">zeroIsUnavailable</a></td></tr>
-<tr class="separator:a447696802d2b3fd618400157210cbd51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f591a68f46ba558170c2c58834a91c3" id="r_a9f591a68f46ba558170c2c58834a91c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a9f591a68f46ba558170c2c58834a91c3">requireArgument</a></td></tr>
-<tr class="separator:a9f591a68f46ba558170c2c58834a91c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6382047ad314ce799759c366acd4805" id="r_af6382047ad314ce799759c366acd4805"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#af6382047ad314ce799759c366acd4805">requiredArgumentIndex</a></td></tr>
-<tr class="separator:af6382047ad314ce799759c366acd4805"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adabf1c4d95f73eed30d2ed73622f1618" id="r_adabf1c4d95f73eed30d2ed73622f1618"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#adabf1c4d95f73eed30d2ed73622f1618">requiredArgumentContents</a></td></tr>
-<tr class="separator:adabf1c4d95f73eed30d2ed73622f1618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b791d69e46af6b3d826e4347034a7e" id="r_a76b791d69e46af6b3d826e4347034a7e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a76b791d69e46af6b3d826e4347034a7e">commandData</a></td></tr>
+<tr class="memdesc:a76b791d69e46af6b3d826e4347034a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ModuleCommand.  <br /></td></tr>
+<tr class="separator:a76b791d69e46af6b3d826e4347034a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22718e78e54e62e29267ea4697e64ec7" id="r_a22718e78e54e62e29267ea4697e64ec7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a22718e78e54e62e29267ea4697e64ec7">commandString</a></td></tr>
+<tr class="memdesc:a22718e78e54e62e29267ea4697e64ec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">str  <br /></td></tr>
+<tr class="separator:a22718e78e54e62e29267ea4697e64ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78e175234d473e328821253441a9778e" id="r_a78e175234d473e328821253441a9778e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a78e175234d473e328821253441a9778e">guiCallback</a></td></tr>
+<tr class="memdesc:a78e175234d473e328821253441a9778e"><td class="mdescLeft">&#160;</td><td class="mdescRight">GUICallback.  <br /></td></tr>
+<tr class="separator:a78e175234d473e328821253441a9778e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d8e01548e29bf7204f26c337637e01a" id="r_a4d8e01548e29bf7204f26c337637e01a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a4d8e01548e29bf7204f26c337637e01a">isRequest</a></td></tr>
+<tr class="memdesc:a4d8e01548e29bf7204f26c337637e01a"><td class="mdescLeft">&#160;</td><td class="mdescRight">bool  <br /></td></tr>
+<tr class="separator:a4d8e01548e29bf7204f26c337637e01a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad70c1245192aae6a0cd25bd7251d675c" id="r_ad70c1245192aae6a0cd25bd7251d675c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#ad70c1245192aae6a0cd25bd7251d675c">lastValue</a></td></tr>
+<tr class="separator:ad70c1245192aae6a0cd25bd7251d675c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a579e1b7316bf7652fdab80c163631f81" id="r_a579e1b7316bf7652fdab80c163631f81"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a579e1b7316bf7652fdab80c163631f81">lastValueTime</a></td></tr>
+<tr class="separator:a579e1b7316bf7652fdab80c163631f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71eed212551e64e5b795a229944d7dd8" id="r_a71eed212551e64e5b795a229944d7dd8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a71eed212551e64e5b795a229944d7dd8">lineSeries</a></td></tr>
 <tr class="separator:a71eed212551e64e5b795a229944d7dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79107ec3480f7ce4b592ac2e9c45f867" id="r_a79107ec3480f7ce4b592ac2e9c45f867"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a79107ec3480f7ce4b592ac2e9c45f867">logarithmic</a></td></tr>
+<tr class="memdesc:a79107ec3480f7ce4b592ac2e9c45f867"><td class="mdescLeft">&#160;</td><td class="mdescRight">bool  <br /></td></tr>
+<tr class="separator:a79107ec3480f7ce4b592ac2e9c45f867"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab74e6bf80237ddc4109968cedc58c151" id="r_ab74e6bf80237ddc4109968cedc58c151"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#ab74e6bf80237ddc4109968cedc58c151">name</a></td></tr>
+<tr class="memdesc:ab74e6bf80237ddc4109968cedc58c151"><td class="mdescLeft">&#160;</td><td class="mdescRight">str  <br /></td></tr>
+<tr class="separator:ab74e6bf80237ddc4109968cedc58c151"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad827090038061f4a04a789ab61df8c1d" id="r_ad827090038061f4a04a789ab61df8c1d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#ad827090038061f4a04a789ab61df8c1d">parameters</a></td></tr>
+<tr class="memdesc:ad827090038061f4a04a789ab61df8c1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">str  <br /></td></tr>
+<tr class="separator:ad827090038061f4a04a789ab61df8c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a457d913bff1ebc8671c1eca1c9d5fc03" id="r_a457d913bff1ebc8671c1eca1c9d5fc03"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a457d913bff1ebc8671c1eca1c9d5fc03">parent</a></td></tr>
+<tr class="separator:a457d913bff1ebc8671c1eca1c9d5fc03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a315e90fc75963fad09031744f5eb0d3b" id="r_a315e90fc75963fad09031744f5eb0d3b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a315e90fc75963fad09031744f5eb0d3b">rangeMax</a></td></tr>
+<tr class="memdesc:a315e90fc75963fad09031744f5eb0d3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">int  <br /></td></tr>
+<tr class="separator:a315e90fc75963fad09031744f5eb0d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26be66174fbac08e518fb500ea2eb448" id="r_a26be66174fbac08e518fb500ea2eb448"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a26be66174fbac08e518fb500ea2eb448">rangeMin</a></td></tr>
+<tr class="memdesc:a26be66174fbac08e518fb500ea2eb448"><td class="mdescLeft">&#160;</td><td class="mdescRight">int  <br /></td></tr>
+<tr class="separator:a26be66174fbac08e518fb500ea2eb448"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f591a68f46ba558170c2c58834a91c3" id="r_a9f591a68f46ba558170c2c58834a91c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a9f591a68f46ba558170c2c58834a91c3">requireArgument</a></td></tr>
+<tr class="memdesc:a9f591a68f46ba558170c2c58834a91c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">bool  <br /></td></tr>
+<tr class="separator:a9f591a68f46ba558170c2c58834a91c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adabf1c4d95f73eed30d2ed73622f1618" id="r_adabf1c4d95f73eed30d2ed73622f1618"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#adabf1c4d95f73eed30d2ed73622f1618">requiredArgumentContents</a></td></tr>
+<tr class="memdesc:adabf1c4d95f73eed30d2ed73622f1618"><td class="mdescLeft">&#160;</td><td class="mdescRight">str  <br /></td></tr>
+<tr class="separator:adabf1c4d95f73eed30d2ed73622f1618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6382047ad314ce799759c366acd4805" id="r_af6382047ad314ce799759c366acd4805"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#af6382047ad314ce799759c366acd4805">requiredArgumentIndex</a></td></tr>
+<tr class="memdesc:af6382047ad314ce799759c366acd4805"><td class="mdescLeft">&#160;</td><td class="mdescRight">int  <br /></td></tr>
+<tr class="separator:af6382047ad314ce799759c366acd4805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af57fdbdb7d09e0557b2c4533b3353975" id="r_af57fdbdb7d09e0557b2c4533b3353975"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#af57fdbdb7d09e0557b2c4533b3353975">suffix</a></td></tr>
+<tr class="memdesc:af57fdbdb7d09e0557b2c4533b3353975"><td class="mdescLeft">&#160;</td><td class="mdescRight">str  <br /></td></tr>
+<tr class="separator:af57fdbdb7d09e0557b2c4533b3353975"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c0292fd6be874bcecd5d400a2a325fe" id="r_a8c0292fd6be874bcecd5d400a2a325fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a8c0292fd6be874bcecd5d400a2a325fe">supressSerial</a></td></tr>
+<tr class="memdesc:a8c0292fd6be874bcecd5d400a2a325fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">bool  <br /></td></tr>
+<tr class="separator:a8c0292fd6be874bcecd5d400a2a325fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f4fae384c11ae8810f21d058ad1ab5b" id="r_a9f4fae384c11ae8810f21d058ad1ab5b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a9f4fae384c11ae8810f21d058ad1ab5b">visible</a></td></tr>
+<tr class="memdesc:a9f4fae384c11ae8810f21d058ad1ab5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">bool  <br /></td></tr>
+<tr class="separator:a9f4fae384c11ae8810f21d058ad1ab5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a447696802d2b3fd618400157210cbd51" id="r_a447696802d2b3fd618400157210cbd51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#a447696802d2b3fd618400157210cbd51">zeroIsUnavailable</a></td></tr>
+<tr class="memdesc:a447696802d2b3fd618400157210cbd51"><td class="mdescLeft">&#160;</td><td class="mdescRight">bool  <br /></td></tr>
+<tr class="separator:a447696802d2b3fd618400157210cbd51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:aea331a3401ff40a6baf910c1844b00c9" id="r_aea331a3401ff40a6baf910c1844b00c9"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfarconfig_1_1timedChart_1_1CommandChart.html#aea331a3401ff40a6baf910c1844b00c9">saveLoadVariables</a></td></tr>
+<tr class="separator:aea331a3401ff40a6baf910c1844b00c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>name : str isRequest : bool parameters : str </p>
-<p>argument : int rangeMin : float rangeMax : float</p>
-<p>logarithmic : bool suffix : str color : str visible : bool supressSerial : bool zeroIsUnavailable : bool</p>
-<p>requireArgument : bool requiredArgumentIndex : int requiredArgumentContents : str</p>
-<p>lineSeries : QLineSeries commandItem : None commandID : None </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a80ac859a17b66f1a9d8b336552f8da7c" name="a80ac859a17b66f1a9d8b336552f8da7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80ac859a17b66f1a9d8b336552f8da7c">&#9670;&#160;</a></span>__init__()</h2>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ac67c6583753b9ada7d7e7f40dca9e52a" name="ac67c6583753b9ada7d7e7f40dca9e52a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac67c6583753b9ada7d7e7f40dca9e52a">&#9670;&#160;</a></span>__init__()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -157,19 +186,19 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>commandString</em>, </td>
+          <td class="paramname"><em>commandString</em> = <code>&quot;&quot;</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
+          <td class="paramname"><em>name</em> = <code>&quot;&quot;</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>visible</em>, </td>
+          <td class="paramname"><em>visible</em> = <code>True</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -259,13 +288,100 @@ Public Attributes</h2></td></tr>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classfarconfig_1_1timedChart_1_1CommandChart_a80ac859a17b66f1a9d8b336552f8da7c_icgraph.png" border="0" usemap="#aclassfarconfig_1_1timedChart_1_1CommandChart_a80ac859a17b66f1a9d8b336552f8da7c_icgraph" alt=""/></div>
-<map name="aclassfarconfig_1_1timedChart_1_1CommandChart_a80ac859a17b66f1a9d8b336552f8da7c_icgraph" id="aclassfarconfig_1_1timedChart_1_1CommandChart_a80ac859a17b66f1a9d8b336552f8da7c_icgraph">
+<div class="center"><img src="classfarconfig_1_1timedChart_1_1CommandChart_ac67c6583753b9ada7d7e7f40dca9e52a_icgraph.png" border="0" usemap="#aclassfarconfig_1_1timedChart_1_1CommandChart_ac67c6583753b9ada7d7e7f40dca9e52a_icgraph" alt=""/></div>
+<map name="aclassfarconfig_1_1timedChart_1_1CommandChart_ac67c6583753b9ada7d7e7f40dca9e52a_icgraph" id="aclassfarconfig_1_1timedChart_1_1CommandChart_ac67c6583753b9ada7d7e7f40dca9e52a_icgraph">
 <area shape="rect" title=" " alt="" coords="303,13,373,38"/>
-<area shape="rect" href="classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a39a68343d80ee0e614c0ff533843b523" title="self.hasHierarchy = False self.hasHelp = False self.hasNodes = False self.hasCommandList = False self..." alt="" coords="5,5,255,45"/>
+<area shape="rect" href="classfarconfig_1_1CommandSets_1_1CommandSetModular.html#a39a68343d80ee0e614c0ff533843b523" title=" " alt="" coords="5,5,255,45"/>
 <area shape="poly" title=" " alt="" coords="289,28,255,28,255,23,289,23"/>
 </map>
 </div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3cd9f93a8dfd82f57a65cdffd4f45edc" name="a3cd9f93a8dfd82f57a65cdffd4f45edc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cd9f93a8dfd82f57a65cdffd4f45edc">&#9670;&#160;</a></span>attachToYAxis()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">attachToYAxis </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afee59674b70b142b8991531b85b399b0" name="afee59674b70b142b8991531b85b399b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afee59674b70b142b8991531b85b399b0">&#9670;&#160;</a></span>loadChart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">loadChart </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QSettings&#160;</td>
+          <td class="paramname"><em>settings</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str&#160;</td>
+          <td class="paramname"><em>prefix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab239c502f4fdeac66295d4223668057c" name="ab239c502f4fdeac66295d4223668057c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab239c502f4fdeac66295d4223668057c">&#9670;&#160;</a></span>saveChart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">saveChart </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QSettings&#160;</td>
+          <td class="paramname"><em>settings</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str&#160;</td>
+          <td class="paramname"><em>prefix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -282,6 +398,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>int </p>
+
 </div>
 </div>
 <a id="a37dbdc30935031c05304482e1be89d8f" name="a37dbdc30935031c05304482e1be89d8f"></a>
@@ -295,6 +413,24 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>str </p>
+
+</div>
+</div>
+<a id="a76b791d69e46af6b3d826e4347034a7e" name="a76b791d69e46af6b3d826e4347034a7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76b791d69e46af6b3d826e4347034a7e">&#9670;&#160;</a></span>commandData</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">commandData</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ModuleCommand. </p>
 
 </div>
 </div>
@@ -310,6 +446,24 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>str </p>
+
+</div>
+</div>
+<a id="a78e175234d473e328821253441a9778e" name="a78e175234d473e328821253441a9778e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78e175234d473e328821253441a9778e">&#9670;&#160;</a></span>guiCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">guiCallback</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>GUICallback. </p>
+
 </div>
 </div>
 <a id="a4d8e01548e29bf7204f26c337637e01a" name="a4d8e01548e29bf7204f26c337637e01a"></a>
@@ -320,6 +474,36 @@ Here is the caller graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">isRequest</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>bool </p>
+
+</div>
+</div>
+<a id="ad70c1245192aae6a0cd25bd7251d675c" name="ad70c1245192aae6a0cd25bd7251d675c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad70c1245192aae6a0cd25bd7251d675c">&#9670;&#160;</a></span>lastValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">lastValue</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a579e1b7316bf7652fdab80c163631f81" name="a579e1b7316bf7652fdab80c163631f81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a579e1b7316bf7652fdab80c163631f81">&#9670;&#160;</a></span>lastValueTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">lastValueTime</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -352,6 +536,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>bool </p>
+
 </div>
 </div>
 <a id="ab74e6bf80237ddc4109968cedc58c151" name="ab74e6bf80237ddc4109968cedc58c151"></a>
@@ -366,6 +552,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>str </p>
+
 </div>
 </div>
 <a id="ad827090038061f4a04a789ab61df8c1d" name="ad827090038061f4a04a789ab61df8c1d"></a>
@@ -379,6 +567,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>str </p>
 
 </div>
 </div>
@@ -408,6 +598,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>int </p>
+
 </div>
 </div>
 <a id="a26be66174fbac08e518fb500ea2eb448" name="a26be66174fbac08e518fb500ea2eb448"></a>
@@ -421,6 +613,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>int </p>
 
 </div>
 </div>
@@ -436,6 +630,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>bool </p>
+
 </div>
 </div>
 <a id="adabf1c4d95f73eed30d2ed73622f1618" name="adabf1c4d95f73eed30d2ed73622f1618"></a>
@@ -449,6 +645,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>str </p>
 
 </div>
 </div>
@@ -464,6 +662,32 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>int </p>
+
+</div>
+</div>
+<a id="aea331a3401ff40a6baf910c1844b00c9" name="aea331a3401ff40a6baf910c1844b00c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea331a3401ff40a6baf910c1844b00c9">&#9670;&#160;</a></span>saveLoadVariables</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">list saveLoadVariables</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=  [<span class="stringliteral">&quot;commandString&quot;</span>, <span class="stringliteral">&quot;name&quot;</span>, <span class="stringliteral">&quot;isRequest&quot;</span>, <span class="stringliteral">&quot;parameters&quot;</span>, <span class="stringliteral">&quot;argument&quot;</span>, <span class="stringliteral">&quot;rangeMin&quot;</span>, <span class="stringliteral">&quot;rangeMax&quot;</span>, <span class="stringliteral">&quot;logarithmic&quot;</span>, <span class="stringliteral">&quot;suffix&quot;</span>, <span class="stringliteral">&quot;color&quot;</span>,</div>
+<div class="line">                              <span class="stringliteral">&quot;visible&quot;</span>, <span class="stringliteral">&quot;supressSerial&quot;</span>, <span class="stringliteral">&quot;zeroIsUnavailable&quot;</span>, <span class="stringliteral">&quot;requireArgument&quot;</span>, <span class="stringliteral">&quot;requiredArgumentIndex&quot;</span>, <span class="stringliteral">&quot;requiredArgumentContents&quot;</span>]</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="af57fdbdb7d09e0557b2c4533b3353975" name="af57fdbdb7d09e0557b2c4533b3353975"></a>
@@ -477,6 +701,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>str </p>
 
 </div>
 </div>
@@ -492,6 +718,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>bool </p>
+
 </div>
 </div>
 <a id="a9f4fae384c11ae8810f21d058ad1ab5b" name="a9f4fae384c11ae8810f21d058ad1ab5b"></a>
@@ -506,6 +734,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>bool </p>
+
 </div>
 </div>
 <a id="a447696802d2b3fd618400157210cbd51" name="a447696802d2b3fd618400157210cbd51"></a>
@@ -519,6 +749,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>bool </p>
 
 </div>
 </div>

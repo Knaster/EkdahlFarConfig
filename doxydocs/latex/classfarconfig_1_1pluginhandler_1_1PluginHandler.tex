@@ -3,9 +3,11 @@
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a6de01751ae90e428cc0b35d92bd68e7e}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_af63dbeef4213f59e69cb824f5c640afe}{main\+Widget}}, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a46f0d600ea5891b488f0ba840873e687}{serial\+Handler}}, command\+Set, gui\+Callback\+System)
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a6de01751ae90e428cc0b35d92bd68e7e}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_af63dbeef4213f59e69cb824f5c640afe}{main\+Widget}}, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a46f0d600ea5891b488f0ba840873e687}{serial\+Handler}}, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_adfeca4fdcb50a877e5b481c6f4ef44bf}{command\+Set}}, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a7c089c45d957b5874d3ff7aedee0cd55}{gui\+Callback\+System}})
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a9123a061a48d11a7eba70116a0c7b7aa}{add\+GUICallbacks}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a4179c9336d9f6622594c8f2b0a10feae}{add\+Plugin}} (self)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a365233cecc57b208e49f69638299fe58}{add\+Plugin\+Internal}} (self, type, index)
 \item 
@@ -13,11 +15,9 @@
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a9c4cb714843978e5cc405f61d9c5828e}{clear\+All\+Plugins}} (self)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a65cf1d2cd0b38f137b7b191185579955}{update\+Widgets}} (self)
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a484fd9a3d2f4c12dec83e482dcd9b2a1}{data\+Changed\+Add\+Plugin}} (self, command)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a0d0ec623eb8f805412609e9e672a81d0}{process\+Messages}} (self, command\+Item, command\+Sets, simple\+FARHandler, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_af63dbeef4213f59e69cb824f5c640afe}{main\+Widget}}, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a46f0d600ea5891b488f0ba840873e687}{serial\+Handler}})
-\item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a33830cc321922daaac5a681cdf326c47}{is\+Selection\+Plugin\+Instance}} (self)
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a404e3853858c17e267e0353cc458767b}{data\+Changed\+Remove\+Plugin}} (self, command)
 \item 
 QWidget \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a2226c67992951aad5c24c32d30f7f9f4}{get\+Plugin}} (self, type, index)
 \item 
@@ -27,36 +27,38 @@ QWidget \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a2226c
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a056a0aa607f4c1075b3d79a5bc4c1f8e}{get\+Plugin\+Type\+Count}} (self, type)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a484fd9a3d2f4c12dec83e482dcd9b2a1}{data\+Changed\+Add\+Plugin}} (self, command)
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a33830cc321922daaac5a681cdf326c47}{is\+Selection\+Plugin\+Instance}} (self)
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a4179c9336d9f6622594c8f2b0a10feae}{add\+Plugin}} (self)
-\item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a404e3853858c17e267e0353cc458767b}{data\+Changed\+Remove\+Plugin}} (self, command)
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a0d0ec623eb8f805412609e9e672a81d0}{process\+Messages}} (self, command\+Item, command\+Sets, simple\+FARHandler, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_af63dbeef4213f59e69cb824f5c640afe}{main\+Widget}}, \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a46f0d600ea5891b488f0ba840873e687}{serial\+Handler}})
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a07e3a899f4f42bb2dc3e245fec3f0bfe}{remove\+Plugin}} (self)
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a0bb70c78c3df44200acf09057ec607c9}{rename\+Plugin}} (self)
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a65cf1d2cd0b38f137b7b191185579955}{update\+Widgets}} (self)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a406f029dd3455efad0f50e9cf897e283}{add\+Plugin}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_adfeca4fdcb50a877e5b481c6f4ef44bf}{command\+Set}}
+\begin{DoxyCompactList}\small\item\em Command\+Sets.\+Command\+Set\+Modular. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a0c630ae11898b65bcd9d768c2f156832}{gui\+Callbacks}}
+\item 
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a7c089c45d957b5874d3ff7aedee0cd55}{gui\+Callback\+System}}
+\begin{DoxyCompactList}\small\item\em GUICallback\+System. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_af63dbeef4213f59e69cb824f5c640afe}{main\+Widget}}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a46f0d600ea5891b488f0ba840873e687}{serial\+Handler}}
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a53660c596bd9fcdb518619767a34fe54}{plugin\+Classes}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_ae6e379e49e1a15d0b4208bea4251bfe0}{plugins}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a406f029dd3455efad0f50e9cf897e283}{add\+Plugin}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_acbfee4e5421aaed7a02f1102ebd867e1}{remove\+Plugin}}
 \item 
 \mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_aff8c095b3a94972102714bbb246f5843}{rename\+Plugin}}
 \item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a61e12a2c6a3984cec740671b3cd239ec}{plugin\+Name\+Command}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a53660c596bd9fcdb518619767a34fe54}{plugin\+Classes}}
-\item 
-\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a0c630ae11898b65bcd9d768c2f156832}{gui\+Callbacks}}
+\mbox{\hyperlink{classfarconfig_1_1pluginhandler_1_1PluginHandler_a46f0d600ea5891b488f0ba840873e687}{serial\+Handler}}
 \end{DoxyCompactItemize}
 
 
@@ -83,6 +85,20 @@ Here is the caller graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{addGUICallbacks()}{addGUICallbacks()}}
 {\footnotesize\ttfamily add\+GUICallbacks (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_a9123a061a48d11a7eba70116a0c7b7aa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_a9123a061a48d11a7eba70116a0c7b7aa_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_a4179c9336d9f6622594c8f2b0a10feae}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_a4179c9336d9f6622594c8f2b0a10feae} 
 \index{PluginHandler@{PluginHandler}!addPlugin@{addPlugin}}
 \index{addPlugin@{addPlugin}!PluginHandler@{PluginHandler}}
@@ -93,7 +109,7 @@ Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=322pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_a4179c9336d9f6622594c8f2b0a10feae_cgraph}
+\includegraphics[width=312pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_a4179c9336d9f6622594c8f2b0a10feae_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_a365233cecc57b208e49f69638299fe58}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_a365233cecc57b208e49f69638299fe58} 
@@ -102,8 +118,14 @@ Here is the call graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{addPluginInternal()}{addPluginInternal()}}
 {\footnotesize\ttfamily add\+Plugin\+Internal (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{type,  }\item[{}]{index }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_a365233cecc57b208e49f69638299fe58_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -120,7 +142,7 @@ Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=306pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_aa65b7f54c3f78010f0219b218e0ee941_cgraph}
+\includegraphics[width=350pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_aa65b7f54c3f78010f0219b218e0ee941_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_a9c4cb714843978e5cc405f61d9c5828e}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_a9c4cb714843978e5cc405f61d9c5828e} 
@@ -133,7 +155,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=293pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_a9c4cb714843978e5cc405f61d9c5828e_icgraph}
+\includegraphics[width=350pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_a9c4cb714843978e5cc405f61d9c5828e_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_a484fd9a3d2f4c12dec83e482dcd9b2a1}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_a484fd9a3d2f4c12dec83e482dcd9b2a1} 
@@ -146,7 +168,7 @@ Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=348pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_a484fd9a3d2f4c12dec83e482dcd9b2a1_cgraph}
+\includegraphics[width=350pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_a484fd9a3d2f4c12dec83e482dcd9b2a1_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_a404e3853858c17e267e0353cc458767b}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_a404e3853858c17e267e0353cc458767b} 
@@ -168,8 +190,7 @@ Here is the call graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{getPlugin()}{getPlugin()}}
 {\footnotesize\ttfamily  QWidget get\+Plugin (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{type,  }\item[{}]{index }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -186,7 +207,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=266pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_ac41558872a7ca433f8c40619ee824aed_icgraph}
+\includegraphics[width=331pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_ac41558872a7ca433f8c40619ee824aed_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_afe2701cce8606f3ec405da222e5f5432}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_afe2701cce8606f3ec405da222e5f5432} 
@@ -195,8 +216,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{getPluginTypeAndIndex()}{getPluginTypeAndIndex()}}
 {\footnotesize\ttfamily get\+Plugin\+Type\+And\+Index (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -219,7 +239,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=341pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_a33830cc321922daaac5a681cdf326c47_icgraph}
+\includegraphics[width=350pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_a33830cc321922daaac5a681cdf326c47_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_a0d0ec623eb8f805412609e9e672a81d0}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_a0d0ec623eb8f805412609e9e672a81d0} 
@@ -247,13 +267,6 @@ Here is the call graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{renamePlugin()}{renamePlugin()}}
 {\footnotesize\ttfamily rename\+Plugin (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=341pt]{classfarconfig_1_1pluginhandler_1_1PluginHandler_a0bb70c78c3df44200acf09057ec607c9_cgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_a65cf1d2cd0b38f137b7b191185579955}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_a65cf1d2cd0b38f137b7b191185579955} 
 \index{PluginHandler@{PluginHandler}!updateWidgets@{updateWidgets}}
 \index{updateWidgets@{updateWidgets}!PluginHandler@{PluginHandler}}
@@ -269,11 +282,31 @@ Here is the call graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{addPlugin}{addPlugin}}
 {\footnotesize\ttfamily add\+Plugin}
 
+\Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_adfeca4fdcb50a877e5b481c6f4ef44bf}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_adfeca4fdcb50a877e5b481c6f4ef44bf} 
+\index{PluginHandler@{PluginHandler}!commandSet@{commandSet}}
+\index{commandSet@{commandSet}!PluginHandler@{PluginHandler}}
+\doxysubsubsection{\texorpdfstring{commandSet}{commandSet}}
+{\footnotesize\ttfamily command\+Set}
+
+
+
+Command\+Sets.\+Command\+Set\+Modular. 
+
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_a0c630ae11898b65bcd9d768c2f156832}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_a0c630ae11898b65bcd9d768c2f156832} 
 \index{PluginHandler@{PluginHandler}!guiCallbacks@{guiCallbacks}}
 \index{guiCallbacks@{guiCallbacks}!PluginHandler@{PluginHandler}}
 \doxysubsubsection{\texorpdfstring{guiCallbacks}{guiCallbacks}}
 {\footnotesize\ttfamily gui\+Callbacks}
+
+\Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_a7c089c45d957b5874d3ff7aedee0cd55}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_a7c089c45d957b5874d3ff7aedee0cd55} 
+\index{PluginHandler@{PluginHandler}!guiCallbackSystem@{guiCallbackSystem}}
+\index{guiCallbackSystem@{guiCallbackSystem}!PluginHandler@{PluginHandler}}
+\doxysubsubsection{\texorpdfstring{guiCallbackSystem}{guiCallbackSystem}}
+{\footnotesize\ttfamily gui\+Callback\+System}
+
+
+
+GUICallback\+System. 
 
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_af63dbeef4213f59e69cb824f5c640afe}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_af63dbeef4213f59e69cb824f5c640afe} 
 \index{PluginHandler@{PluginHandler}!mainWidget@{mainWidget}}
@@ -286,12 +319,6 @@ Here is the call graph for this function\+:\nopagebreak
 \index{pluginClasses@{pluginClasses}!PluginHandler@{PluginHandler}}
 \doxysubsubsection{\texorpdfstring{pluginClasses}{pluginClasses}}
 {\footnotesize\ttfamily plugin\+Classes}
-
-\Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_a61e12a2c6a3984cec740671b3cd239ec}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_a61e12a2c6a3984cec740671b3cd239ec} 
-\index{PluginHandler@{PluginHandler}!pluginNameCommand@{pluginNameCommand}}
-\index{pluginNameCommand@{pluginNameCommand}!PluginHandler@{PluginHandler}}
-\doxysubsubsection{\texorpdfstring{pluginNameCommand}{pluginNameCommand}}
-{\footnotesize\ttfamily plugin\+Name\+Command}
 
 \Hypertarget{classfarconfig_1_1pluginhandler_1_1PluginHandler_ae6e379e49e1a15d0b4208bea4251bfe0}\label{classfarconfig_1_1pluginhandler_1_1PluginHandler_ae6e379e49e1a15d0b4208bea4251bfe0} 
 \index{PluginHandler@{PluginHandler}!plugins@{plugins}}

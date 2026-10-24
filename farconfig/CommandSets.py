@@ -73,8 +73,11 @@ class CommandSetModular(CommandSet):
                     # Loading stage 3: Build command lists used for preferences and auto-completer
                     elif (self.loadingStage == 3):
                         if (mainWidget is not None):
-                            mainWidget.completerList.append(commandItem.argument[0].strip())
-                            mainWidget.completerList.append(commandItem.argument[1].strip())
+                            if (len(commandItem.argument) < 2):
+                                pass
+                            else:
+                                mainWidget.completerList.append(commandItem.argument[0].strip())
+                                mainWidget.completerList.append(commandItem.argument[1].strip())
                         pass
 
                 case "nop" | "nooperation": #CommandID.nop:
@@ -122,6 +125,7 @@ class CommandSetModular(CommandSet):
                 match(commandX.helpCommand.commandTypeFunction):
                     case HelpCommand.CommandType_function.ectAddModule:
                         newCommandItem = Derivedcommanditem(commandItem.argument[0] + "[" + str(commandItem.argument[1] + "]"))
+                        moduleX.addModule(newCommandItem)
                         self.requestAllData(moduleX, serialHandler)
                         pass
                     case HelpCommand.CommandType_function.ectRemoveModule:

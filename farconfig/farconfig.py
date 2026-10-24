@@ -52,9 +52,10 @@ import platform, sys, time, os # random, datetime,
 import serial.tools.list_ports
 from PySide6.QtWidgets import (QApplication, QWidget, QDoubleSpinBox, QListWidgetItem, QInputDialog, QMessageBox, QLineEdit, QSpinBox,
                                QComboBox, QSlider, QTabBar, QTabWidget, QCheckBox, QDial, QPushButton, QListWidget, QDockWidget, QSizePolicy,
-                               QVBoxLayout, QMainWindow, QHBoxLayout, QLabel, QGraphicsScene, QGraphicsView, QFrame)
+                               QVBoxLayout, QMainWindow, QHBoxLayout, QLabel, QGraphicsScene, QGraphicsView, QFrame, QProgressDialog)
 # QTextEdit, QAbstractButton, QStackedWidget,
-from PySide6.QtCore import QThread, Signal, QTimer, Qt, Slot, QSettings, QSize
+from PySide6.QtCore import QThread, Signal, QTimer, Qt, Slot, QSettings, QSize, QIODevice, QByteArray, QObject, QCoreApplication
+import PySide6.QtSerialPort as QSerialPort
 from PySide6.QtGui import QIcon, QPainter
 import logging
 from logging.handlers import RotatingFileHandler
@@ -87,7 +88,7 @@ from tabadvanced import TabAdvanced
 from tabmidi import TabMIDI
 from tabcv import TabCV
 
-global serialStream
+#global serialStream
 commandSets = CommandSets()
 app = None
 
@@ -122,43 +123,55 @@ def processInformationReturn(inSerialHandler, infoReturn):
 
         if (commandSets.currentCommandSet.loadingStage == 4) and (mainWidget.updateStage < 2):
             moduleCommand, module = commandSets.currentCommandSet.getCommandAndModule(i)
-            if (moduleCommand.helpCommand.commandTypeFunction == HelpCommand.CommandType_function.ectAssignment) or \
-                (moduleCommand.helpCommand.commandTypeData == HelpCommand.CommandType_data.ectOutputAssignment):
+            if (moduleCommand is not None) and (moduleCommand.helpCommand.commandTypeFunction == HelpCommand.CommandType_function.ectAssignment or \
+                    moduleCommand.helpCommand.commandTypeData == HelpCommand.CommandType_data.ectOutputAssignment):
                 mainWidget.localNodeHandler.parseCommand(i)
 
-        if (commandSets.currentCommandSet.ready) and (not mainWidget.callBacksAdded):
-            mainWidget.nodeTimer.start(1000)
-            print("Starting timer")
+        if (not commandSets.currentCommandSet.ready):
+            mainWidget.progressDialog.setValue(commandSets.currentCommandSet.loadingStage)
 
+        if (commandSets.currentCommandSet.ready) and (not mainWidget.callBacksAdded):
+            mainWidget.progressDialog.setValue(5)
+
+            commandReference.buildReferenceFromHelpSystem(commandSets.currentCommandSet.baseModule)
             preferences.updateCommandset(commandSets.currentCommandSet)
             mainWidget.pluginHandler.buildPluginList()
-            mainWidget.debugTimedChart.updateCommandSetAndCallbacks(commandSets.currentCommandSet, mainWidget.guiCallbackSystem)
+            mainWidget.timedChart.updateCommandSetAndCallbacks(commandSets.currentCommandSet, mainWidget.guiCallbackSystem,
+                                                               mainWidget.serialWidget, mainWidget.preferences)
 
             mainWidget.addMainGUICallbacks()
             mainWidget.callBacksAdded = True
             mainWidget.guiCallbackSystem.refreshAllGUIElements()
-
-            serialWidget.setSerialVisibility(serialWidget.reportTypeData["command"])
-            serialWidget.setSerialVisibility(serialWidget.reportTypeData["expressionparser"])
-            serialWidget.setSerialVisibility(serialWidget.reportTypeData["debug"])
-            serialWidget.setSerialVisibility(serialWidget.reportTypeData["hardware"])
-            serialWidget.setSerialVisibility(serialWidget.reportTypeData["priority"])
-            serialWidget.setSerialVisibility(serialWidget.reportTypeData["undefined"])
+            serialWidget.commandSet = commandSets.currentCommandSet
+            serialWidget.setSerialVisibility(serialWidget.reportTypeData["cmd"])
+            serialWidget.setSerialVisibility(serialWidget.reportTypeData["ep"])
+            serialWidget.setSerialVisibility(serialWidget.reportTypeData["dbg"])
+            serialWidget.setSerialVisibility(serialWidget.reportTypeData["hw"])
+            serialWidget.setSerialVisibility(serialWidget.reportTypeData["pri"])
+            serialWidget.setSerialVisibility(serialWidget.reportTypeData["un"])
             serialWidget.setSerialVisibility(serialWidget.reportTypeData["usb"])
-            serialWidget.setSerialVisibility(serialWidget.reportTypeData["output"])
-            serialWidget.setSerialVisibility(serialWidget.reportTypeData["inforequest"])
-            serialWidget.setSerialVisibility(serialWidget.reportTypeData["internal"])
+            serialWidget.setSerialVisibility(serialWidget.reportTypeData["out"])
+            serialWidget.setSerialVisibility(serialWidget.reportTypeData["irq"])
+            serialWidget.setSerialVisibility(serialWidget.reportTypeData["int"])
+
+            mainWidget.nodeTimer.start(1000)
+            print("Starting timer")
+
+        if (commandSets.currentCommandSet.ready):
+            commandX, moduleX = commandSets.currentCommandSet.getCommandAndModule(i)
+            if (commandX is not None):
+                match(commandX.helpCommand.commandTypeFunction):
+                    case HelpCommand.CommandType_function.ectAddModule:
+                        preferences.updateCommandsComboBox()
+                    case HelpCommand.CommandType_function.ectRemoveModule:
+                        preferences.updateCommandsComboBox()
 
     mainWidget.updatingFromModule = False
-
+'''
 class serialHandler(QThread):
     dataAvaliable = Signal(object, str)
     disconnectSignal = Signal()
-    #if (commandSets.currentCommandSet is not None):
-    #    chartCommandSignal = Signal(commandSets.currentCommandSet.CommandItem)
-    #else:
-    #    chartCommandSignal = None
-
+    
     def run(self) -> None:
         while self.isRunning:
             #processed = False
@@ -180,16 +193,21 @@ class serialHandler(QThread):
         self.isRunning = False
 
     def write(str):
-        serialWidget.addToDebugWindow(">so> " + str + "\n")
+        serialWidget.addToDebugWindow("[out]" + str + "\n")
         str = str  + "\n\r"
         if serialStream == None:
             return
         serialStream.write(str.encode('ascii'))
-    '''
-    def writeI(self, str):
-        str = str  + "\n\r"
-        serialStream.write(str.encode('ascii'))
-    '''
+'''
+
+class SerialHandler(QObject):
+    def __init__(self, mainWidget) -> None:
+        super().__init__()
+        self.mainWidget = mainWidget
+
+    def write(self, str):
+        mainWidget.write(str)
+
 class FarConfig(QWidget):
     #midiDataAvaliableSignal = Signal(str, str)
     def __init__(self, parent=None):
@@ -206,9 +224,10 @@ class FarConfig(QWidget):
         log_handler = RotatingFileHandler(log_file, mode='w', maxBytes=1024 * 1024, backupCount=1, encoding=None, delay=0)
         log_handler.setFormatter(log_formatter)
         log_handler.setLevel(logging.DEBUG)
-        log_app = logging.getLogger('root')
+        log_app = logging.getLogger('farconfig')
         log_app.setLevel(logging.DEBUG)
         log_app.addHandler(log_handler)
+        log_app.propagate = False
 
         icondir = ""
         match(platform.system()):
@@ -234,14 +253,17 @@ class FarConfig(QWidget):
         self.ui.tabWidgetMain.setTabText(4, "")
         self.ui.tabWidgetMain.setTabIcon(5, QIcon(icondir + "software.png"))
         self.ui.tabWidgetMain.setTabText(5, "")
-        self.ui.tabWidgetMain.setTabText(6, "")
+        self.ui.tabWidgetMain.setTabText(7, "")
+        self.ui.tabWidgetMain.setTabIcon(7, QIcon(icondir + "nodes.png"))
+        self.ui.tabWidgetMain.setTabText(8, "")
+        self.ui.tabWidgetMain.setTabIcon(8, QIcon(icondir + "plugins.png"))
 
         self.ui.closeEvent = self.closeEvent
 
-        self.serialThread = serialHandler(parent=self) # self is parent for Qthread so Qthread will be destroyed when it's parent no longer exist
-        self.serialThread.dataAvaliable.connect(self.dataAvaliable)
-        self.serialThread.disconnectSignal.connect(self.serialDisconnect)
-        self.serialThread.start()
+        #self.serialThread = serialHandler(parent=self) # self is parent for Qthread so Qthread will be destroyed when it's parent no longer exist
+        #self.serialThread.dataAvaliable.connect(self.dataAvaliable)
+        #self.serialThread.disconnectSignal.connect(self.serialDisconnect)
+        #self.serialThread.start()
 
         self.updateTimer = QTimer(self)
         self.updateTimer.timeout.connect(self.timerUpdateControl)
@@ -249,10 +271,11 @@ class FarConfig(QWidget):
         self.nodeTimer = QTimer(self)
         self.nodeTimer.timeout.connect(self.nodeAutoUpdater)
 
-        self.debugTimedChart = timedChart.timedChart(None)
-        self.ui.layoutChart.addWidget(self.debugTimedChart._chart_view)
+        self.timedChart = timedChart.timedChart(None, self)
+        '''
+        self.ui.layoutChart.addWidget(self.timedChart._chart_view)
         self.legendScene = QGraphicsScene()
-        self.legendScene.addItem(self.debugTimedChart.legend)
+        self.legendScene.addItem(self.timedChart.legend)
         #rect = self.debugTimedChart.legend.boundingRect()
         #self.legendScene.setSceneRect(rect.adjusted(2,0,-2,0))
         #self.debugTimedChart.legend.rect().setRect(0,0,150,400)
@@ -265,15 +288,14 @@ class FarConfig(QWidget):
         self.legendView.setContentsMargins(0,0,0,0)
         #self.legendView.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.legendView.setFrameShape(QFrame.Shape.NoFrame)
-
-        self.debugTimedChart.legend.adjustSize()
+        self.timedChart.legend.adjustSize()        
         self.ui.layoutChart.addWidget(self.legendView)
         self.ui.layoutChart.setContentsMargins(0,0,0,0)
-
+        '''
         self.updatingFromModule = False
         self.updatingFromGUI = False
 
-        self.timeStamper = self.debugTimedChart.timeStamper #timedChart.timeStamp()
+        self.timeStamper = self.timedChart.timeStamper #timedChart.timeStamp()
         self.modalEvent = ""
 
         self.messageBox = messageBox
@@ -291,10 +313,13 @@ class FarConfig(QWidget):
         self.updateStage = 0
         self.hasNodes = False
 
+        self.serialPort = QSerialPort.QSerialPort(self)
+        self.lastUnterminatedSerialData = ""
+
     def closeEvent(self, event):
-        self.serialThread.stop()
-        self.serialThread.quit()
-        self.serialThread.wait()
+        #self.serialThread.stop()
+        #self.serialThread.quit()
+        #self.serialThread.wait()
         save_settings()
         print("close")
         app.quit()
@@ -319,6 +344,7 @@ class FarConfig(QWidget):
                 self.localNodeHandler.postBuildUpdate()
                 self.hasNodes = True
                 self.updateStage = 1
+                self.progressDialog.setValue(6)
             case 1:
                 if (self.hasNodes):
                     self.nodeTimer.stop()
@@ -326,28 +352,48 @@ class FarConfig(QWidget):
                     self.localNodeHandler.ga.graph.select_all()
                     self.localNodeHandler.ga.graph.fit_to_selection()
                     self.localNodeHandler.ga.graph.clear_selection()
-
                     self.updateStage = 2
+                    self.progressDialog.close()
 
     def timerUpdateControl(self):
         self.readSMData()
         pass
 
-    @Slot(str)
+    #@Slot(str)
     def midiDataAvaliable(self, device, msg):
-        serialWidget.addToDebugWindow("<mi<" + str(msg) + "\n")
+        serialWidget.addToDebugWindow("[mid]" + str(msg) + "\n")
 
-    def dataAvaliable(self, inSerialHandler, v):
-        receivedText = v
-        if len(receivedText) > 5:
-            if (receivedText[:5] == "[irq]"):
-                processInformationReturn(inSerialHandler, receivedText[5:])
+    @Slot()
+#    def dataAvaliable(self, inSerialHandler = None, v = None):
+    def dataAvaliable(self):
+        v = self.serialPort.readAll()
+        receivedText = bytes(v).decode('ascii', errors='ignore')
+        if mainWidget.lastUnterminatedSerialData != "":
+            receivedText = mainWidget.lastUnterminatedSerialData + receivedText
+            mainWidget.lastUnterminatedSerialData = ""
 
-            #this should be deprecated
-            elif (receivedText[:5] == "[hlp]"):
-                commandSets.processHelpReturn(receivedText[5:], commandReference)
-        serialWidget.addToDebugWindow("<si< " + receivedText + "\n")
-        self.lastSerialEvent = time.time()
+        if (receivedText.find("\r\n") != -1) and (receivedText[len(receivedText)-2:] != "\r\n"):
+            mainWidget.lastUnterminatedSerialData = receivedText[receivedText.rfind("\r\n"):len(receivedText)].strip("\r\n")
+            receivedText = receivedText[:receivedText.rfind("\r\n")]
+        receivedText = receivedText.rstrip("\r\n")
+        if receivedText.find("\n") or receivedText.find("\r"):
+            pass
+        textItems = receivedText.split("\r\n")
+        for receivedText in textItems:
+            if len(receivedText) > 5:
+                if (receivedText[:5] == "[irq]"):
+                    #processInformationReturn(inSerialHandler, receivedText[5:])
+                    processInformationReturn(serialHandler, receivedText[5:])
+
+                #this should be deprecated
+                elif (receivedText[:5] == "[hlp]"):
+                    commandSets.processHelpReturn(receivedText[5:], commandReference)
+            serialWidget.addToDebugWindow(receivedText + "\n")
+            self.lastSerialEvent = time.time()
+
+    def serialError(self, err):
+        print("Serial port error " + self.serialPort.errorString())
+        pass
 
     def setUIEnabled(self, state):
         preferences.ui.checkBoxFilterCommAck.setEnabled(state)
@@ -372,12 +418,33 @@ class FarConfig(QWidget):
             selectedPort = mainWidget.ui.comboBoxSerialPorts.currentText()
             if selectedPort != "":
                 try:
-                    global serialStream
-                    serialStream = serial.Serial(selectedPort.split(' ')[0], 115200)
-                    if serialStream is None:
-                        print("serialStream is none!")
+                    #global serialStream
+                    #serialStream = serial.Serial(selectedPort.split(' ')[0], 115200)
+                    #if serialStream is None:
+                    #    print("serialStream is none!")
+                    #    return
+                    self.serialPort.setPortName(selectedPort.split(' ')[0])
+                    self.serialPort.setBaudRate(115200)
+                    self.serialPort.setDataBits(QSerialPort.QSerialPort.DataBits.Data8)
+                    self.serialPort.setParity(QSerialPort.QSerialPort.Parity.NoParity)
+                    self.serialPort.setStopBits(QSerialPort.QSerialPort.StopBits.OneStop)
+                    self.serialPort.setFlowControl(QSerialPort.QSerialPort.FlowControl.SoftwareControl)
+                    self.serialPort.close()
+                    if not self.serialPort.open(QIODevice.OpenModeFlag.ReadWrite):
+                        print("Failed at opening serial port")
                         return
-                    serialWidget.addToDebugWindow("Connected to " + serialStream.portstr + "\n")
+                    else:
+                        print("Open:", self.serialPort.isOpen())
+                        print("Baud:", self.serialPort.baudRate())
+                        print("Is open:", self.serialPort.isOpen())
+                        print("Bytes available:", self.serialPort.bytesAvailable())
+                        self.serialPort.setDataTerminalReady(True)
+                        self.serialPort.setRequestToSend(True)
+                        time.sleep(0.1)
+                        self.serialPort.readyRead.connect(self.dataAvaliable)
+                        self.serialPort.errorOccurred.connect(self.serialError)
+
+                    #serialWidget.addToDebugWindow("Connected to " + serialStream.portstr + "\n")
                     mainWidget.ui.pushButtonConnectDisconnect.setText("Disconnect")
 
                     mainWidget.ui.listWidgetMidiEvents.clear()
@@ -393,8 +460,14 @@ class FarConfig(QWidget):
                     commandReference.clear()
                     mainWidget.callBacksAdded = False
 
+                    self.progressDialog = QProgressDialog("Loading from instrument..", "Cancel", 0, 6)
+                    self.progressDialog.setWindowModality(Qt.WindowModal)
+                    self.progressDialog.show()
+                    self.progressDialog.setValue(0)
+
                     self.setUIEnabled(True)
                     self.updateUIData()
+                    #serialHandler.write("dp:expressionparser:0, dp:internal:0, dp:debug:0, dp:inforequest:1")
                     serialHandler.write("dp:expressionparser:0, dp:internal:0, dp:debug:0, dp:inforequest:1")
                     serialHandler.write("rqi:ver")
 
@@ -402,9 +475,10 @@ class FarConfig(QWidget):
                     print("Connection issue")
                     pass
         else:
-            if serialStream.isOpen:
-                serialStream.close()
-                serialStream = None
+            #if serialStream.isOpen:
+            #    serialStream.close()
+            #    serialStream = None
+            self.serialPort.close()
             serialWidget.addToDebugWindow("Disconnected\n")
             mainWidget.ui.pushButtonConnectDisconnect.setText("Connect")
 
@@ -419,10 +493,38 @@ class FarConfig(QWidget):
     def populateSerialPorts(self):
         itemSelected = mainWidget.ui.comboBoxSerialPorts.currentIndex()
         mainWidget.ui.comboBoxSerialPorts.clear()
-        serialPorts = serial.tools.list_ports.comports()
-        for port, desc, hwid in sorted(serialPorts):
-                mainWidget.ui.comboBoxSerialPorts.addItem(port + " - " + desc)
+
+        for portInfo in QSerialPort.QSerialPortInfo.availablePorts():
+            mainWidget.ui.comboBoxSerialPorts.addItem(portInfo.portName() + " - " + portInfo.description(), portInfo)
+
+        #serialPorts = serial.tools.list_ports.comports()
+        #for port, desc, hwid in sorted(serialPorts):
+        #        mainWidget.ui.comboBoxSerialPorts.addItem(port + " - " + desc)
         mainWidget.ui.comboBoxSerialPorts.setCurrentIndex(itemSelected)
+
+    def write(self, string:str):
+        if not self.serialPort.isOpen():
+            print("Serial port not open")
+            return 0
+
+        serialWidget.addToDebugWindow("[out]" + string + "\n")
+
+        if not string.endswith('\r\n'):
+            string += '\r\n'
+
+        data = string.encode("ascii", "ignore")
+        bytes_written = self.serialPort.write(data)
+        #self.serialPort.flush()
+
+        #print(f"Sent {bytes_written} bytes: {repr(string[:50])}")
+
+        #if self.serialPort.waitForBytesWritten(1):
+        #    print("Data confirmed sent")
+        #else:
+        #    print("Timeout - data may not have been sent")
+        #self.serialPort.setDataTerminalReady(True)
+        #self.serialPort.setRequestToSend(True)
+        #QCoreApplication.processEvents()
 
     def pushButtonLoadFromModulePressed(self):
         self.updateUIData()
@@ -432,14 +534,14 @@ class FarConfig(QWidget):
 
     def setContinuousSMReadings(self, state):
         if state == True:
-            self.updateTimer.start(100)
+            self.updateTimer.start(self.timedChart.updateRate)
         else:
             self.updateTimer.stop()
 
     def readSMData(self):
         #commandSets.requestContinuousData(serialHandler)
-        for chart in self.debugTimedChart.commandCharts:
-            if chart.isRequest:
+        for chart in self.timedChart.commandCharts:
+            if chart.isRequest and chart.visible:
                 serialHandler.write("rqi:" + chart.commandString)
 
         #self.updateContinuousStringModuleData()
@@ -532,32 +634,37 @@ class settingsType(enum.Enum):
     index = enum.auto()
     settingsClass = enum.auto()
     maximized = enum.auto()
+    width = enum.auto()
 
 def settingsDeclaration():
-    #su = serialWidget.ui
+    #su = serialWidget
     #mu = mainWidget.ui
     pu = preferences.ui
     return  [["mainGeometry", mainWindow, settingsType.Geometry],['mainState', mainWindow, settingsType.windowState],
              ["mainMaximized", mainWindow, settingsType.maximized],
 
-             ["consoleLineLimit", pu.checkBoxLimitLines, settingsType.checkState], ["consoleCursorFollow", pu.checkBoxDebugCursorFollow, settingsType.checkState],
+             ["consoleLineLimit", pu.checkBoxLimitLines, settingsType.checkState],
+             ["consoleCursorFollow", pu.checkBoxDebugCursorFollow, settingsType.checkState],
              ["consoleLineLimitLines", pu.spinBoxLimitLines, settingsType.value],
 
-             ["filterHardware", serialWidget.reportTypeData['hardware'], settingsType.settingsClass],
-             ["filterDebug", serialWidget.reportTypeData['debug'], settingsType.settingsClass],
-             ["filterError", serialWidget.reportTypeData['error'], settingsType.settingsClass],
-             ["filterOutput", serialWidget.reportTypeData['output'], settingsType.settingsClass],
+             ["filterHardware", serialWidget.reportTypeData['hw'], settingsType.settingsClass],
+             ["filterDebug", serialWidget.reportTypeData['dbg'], settingsType.settingsClass],
+             ["filterError", serialWidget.reportTypeData['err'], settingsType.settingsClass],
+             ["filterOutput", serialWidget.reportTypeData['out'], settingsType.settingsClass],
              ["filterUSB", serialWidget.reportTypeData['usb'], settingsType.settingsClass],
-             ["filterPriority", serialWidget.reportTypeData['priority'], settingsType.settingsClass],
-             ["filterUndefined", serialWidget.reportTypeData['undefined'], settingsType.settingsClass],
-             ["filterCommAck", serialWidget.reportTypeData['command'], settingsType.settingsClass],
-             ["filterExpressionParser", serialWidget.reportTypeData['expressionparser'], settingsType.settingsClass],
-             ["filterInfoRequest", serialWidget.reportTypeData['inforequest'], settingsType.settingsClass],
-             ["filterInternal", serialWidget.reportTypeData['internal'], settingsType.settingsClass],
+             ["filterPriority", serialWidget.reportTypeData['pri'], settingsType.settingsClass],
+             ["filterUndefined", serialWidget.reportTypeData['un'], settingsType.settingsClass],
+             ["filterCommAck", serialWidget.reportTypeData['cmd'], settingsType.settingsClass],
+             ["filterExpressionParser", serialWidget.reportTypeData['ep'], settingsType.settingsClass],
+             ["filterInfoRequest", serialWidget.reportTypeData['irq'], settingsType.settingsClass],
+             ["filterInternal", serialWidget.reportTypeData['int'], settingsType.settingsClass],
 
              ["tuningScheme", pu.listWidgetTuningscheme, settingsType.index],
 
-             ["referenceGeometry", commandReference, settingsType.Geometry], ["referenceWindowVisible", commandReference, settingsType.Visibility]]
+             ["serialMonitorWidth", mainWindow.dockWidgetSerial, settingsType.width]
+             #["referenceGeometry", commandReference, settingsType.Geometry], ["referenceWindowVisible", commandReference, settingsType.Visibility],
+             #["serialMonitorGeometry", serialWidget, settingsType.Geometry], ["serialMonitorVisible", serialWidget, settingsType.Visibility]
+             ]
 
 def save_settings():
     # Save window geometry using QSettings
@@ -577,7 +684,7 @@ def save_settings():
             case settingsType.index:
                 settings.setValue(set[0], set[1].currentRow())
             case settingsType.settingsClass:
-                value = set[1].value
+                value = set[1].show
                 if (isinstance(value, str)):
                     if (value == "true"):
                         value = 1
@@ -591,6 +698,11 @@ def save_settings():
                 settings.setValue(set[0], value)
             case settingsType.maximized:
                 settings.setValue(set[0], set[1].isMaximized())
+            case settingsType.width:
+                settings.setValue(set[0], set[1].width())
+
+    if mainWidget.timedChart is not None:
+        timedChart.timedChart.saveCharts(mainWidget.timedChart, settings)
 
 def loadCheckState(settings, name, checkBox):
     state = settings.value(name)
@@ -599,11 +711,24 @@ def loadCheckState(settings, name, checkBox):
     else:
         checkBox.setCheckState(Qt.CheckState.Unchecked)
 
+def convertSettingsBool(settingsBool) -> bool:
+    if not isinstance(settingsBool, str): return False
+    if settingsBool == "true":
+        return True
+    if settingsBool == "false":
+        return False
+
+
+#dockResizeData = None
+
 def load_settings():
     # Load window geometry using QSettings
+    isMaximized = False
+#    global dockResizeData
+    dockResizeData = None
     settings = QSettings("Knas", "Ekdahl FAR Config")
     for set in settingsDeclaration():
-        try:
+        if settings.contains(set[0]):
             match(set[2]):
                 case settingsType.checkState:
                     loadCheckState(settings, set[0], set[1])
@@ -612,7 +737,7 @@ def load_settings():
                     #s = QCheckBox()
                     #set[1].setChecked(set[1].isChecked())
                 case settingsType.Visibility:
-                    set[1].setVisible(bool(settings.value(set[0])))
+                    set[1].setVisible(convertSettingsBool(settings.value(set[0])))
                 case settingsType.Geometry:
                     geometry = settings.value(set[0])
                     if geometry: set[1].restoreGeometry(geometry)
@@ -620,7 +745,8 @@ def load_settings():
                     value = settings.value(prefix + "Maximized", type=bool)
                     if value:
                         mainWidget.showMaximized()
-                        mainWidget.setGeometry(QApplication.desktop().availableGeometry(mainWidget))
+                        mainWidget.setGeometry(mainWidget.screen().availableGeometry())
+                    pass
                 case settingsType.windowState:
                     state = settings.value(set[0])
                     if state: set[1].restoreState(state)
@@ -630,10 +756,21 @@ def load_settings():
                 case settingsType.index:
                     set[1].setCurrentRow(int(settings.value(set[0])))
                 case settingsType.settingsClass:
-                    set[1].setValueData(int(settings.value(set[0])))
-        except Exception as e:
+                    set[1].setShowData(int(settings.value(set[0])))
+                case settingsType.maximized:
+                    if convertSettingsBool(settings.value(set[0])):
+                        # Fucking stupid Qt asynchronicity bug hack
+                        QTimer.singleShot(100, mainWindow.showMaximized)
+                case settingsType.width:
+                    # Fucking stupid Qt asynchronicity bug hack
+                    QTimer.singleShot(200, lambda:mainWindow.resizeDocks([mainWindow.dockWidgetSerial], [int(settings.value(set[0]))], Qt.Horizontal))
+        else:
             pass
-    mainWindow.updateGeometry()
+
+    #mainWindow.updateGeometry()
+
+    if (mainWidget.timedChart is not None):
+        timedChart.timedChart.loadCharts(mainWidget.timedChart, settings)
 
 def showConsole():
     serialWidget.show()
@@ -717,6 +854,8 @@ class MainWindow(QMainWindow):
         self.tabBar.setContentsMargins(0,10,0,0)
         #self.destroyed.connect(self.closeEvent)
 
+        self.progressDialog = None
+
     def closeEvent(self, event, /):
         mainWidget.closeEvent(event)
         super().closeEvent(event)
@@ -728,14 +867,31 @@ class MainWindow(QMainWindow):
         #self.dockWidgetSerial.hide()
         #self.dockWidgetReference.hide()
 
+def clear_layout(layout):
+    """Recursively remove all widgets and layouts from the given layout."""
+    if layout is not None:
+        while layout.count():
+            item = layout.takeAt(0)
+            widget = item.widget()
+            if widget is not None:
+                # Schedule widget for deletion
+                widget.deleteLater()
+            else:
+                # If it's a nested layout, recurse into it
+                nested_layout = item.layout()
+                if nested_layout is not None:
+                    clear_layout(nested_layout)
+
 if __name__ == "__main__":
 
     app = QApplication(sys.argv)
 
     mainWidget = FarConfig()
+    serialHandler = SerialHandler(mainWidget)
     serialWidget = SerialWidget(serialHandler, mainWidget.timeStamper, logging)
     commandReference = CommandReference()
-    preferences = preferences(mainWidget, serialWidget, mainWidget.debugTimedChart, commandSets)
+    preferences = preferences(mainWidget, serialWidget, mainWidget.timedChart, commandSets)
+
 
     mainWidget.setObjectName("main")
     serialWidget.setObjectName("console")
@@ -752,6 +908,19 @@ if __name__ == "__main__":
     mainWidget.ui.pushButtonShowConsole.setVisible(False)
     mainWidget.ui.label_22.setVisible(False)
     mainWidget.ui.comboBoxCurrentlySelectedModule.setVisible(False)
+
+    preferences.ui.label_7.setVisible(False)
+    preferences.ui.lineEditChartParameters.setVisible(False)
+    preferences.ui.checkBoxChartRequireArgument.setVisible(False)
+    preferences.ui.spinBoxChartRequiredArgument.setVisible(False)
+    preferences.ui.label_10.setVisible(False)
+    preferences.ui.lineEditChartRequiredEquals.setVisible(False)
+
+    mainWidget.ui.tabWidgetMain.setTabVisible(5, False)
+    mainWidget.ui.tabWidgetMain.setTabVisible(6, False)
+
+    clear_layout(mainWidget.ui.horizontalLayout_55)
+    mainWidget.ui.groupBox_14.deleteLater()
 ## Hiding until implemented
     mainWidget.ui.pushButtonAddHarmonicListFile.setVisible(False)
     mainWidget.ui.pushButtonCCAddLearn.setVisible(False)
@@ -796,4 +965,5 @@ if __name__ == "__main__":
     sys.exit(app.exec())
     mainWidget.thread1.terminate()
     mainWindow.close()
+    mainWidget.serialPort.close()
 

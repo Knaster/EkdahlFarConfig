@@ -996,7 +996,7 @@ QDial {
         <enum>QTabWidget::Rounded</enum>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>7</number>
        </property>
        <property name="iconSize">
         <size>
@@ -1214,9 +1214,9 @@ QSlider::handle:horizontal {
                <widget class="QComboBox" name="comboBoxBaseNote">
                 <property name="geometry">
                  <rect>
-                  <x>130</x>
+                  <x>190</x>
                   <y>100</y>
-                  <width>91</width>
+                  <width>111</width>
                   <height>20</height>
                  </rect>
                 </property>
@@ -1226,8 +1226,8 @@ QSlider::handle:horizontal {
                  <rect>
                   <x>10</x>
                   <y>40</y>
-                  <width>101</width>
-                  <height>41</height>
+                  <width>191</width>
+                  <height>16</height>
                  </rect>
                 </property>
                 <property name="text">
@@ -1242,21 +1242,21 @@ QSlider::handle:horizontal {
                  <rect>
                   <x>10</x>
                   <y>100</y>
-                  <width>91</width>
+                  <width>131</width>
                   <height>16</height>
                  </rect>
                 </property>
                 <property name="text">
-                 <string>Map to key</string>
+                 <string>Map to MIDI key</string>
                 </property>
                </widget>
                <widget class="QDoubleSpinBox" name="doubleSpinBoxFundamentalFrequency">
                 <property name="geometry">
                  <rect>
-                  <x>130</x>
-                  <y>50</y>
+                  <x>210</x>
+                  <y>40</y>
                   <width>91</width>
-                  <height>21</height>
+                  <height>20</height>
                  </rect>
                 </property>
                 <property name="accelerated">
@@ -1275,8 +1275,8 @@ QSlider::handle:horizontal {
                <widget class="QComboBox" name="comboBoxFundamentalFrequency">
                 <property name="geometry">
                  <rect>
-                  <x>279</x>
-                  <y>50</y>
+                  <x>190</x>
+                  <y>70</y>
                   <width>111</width>
                   <height>20</height>
                  </rect>
@@ -1293,8 +1293,8 @@ QSlider::handle:horizontal {
                <widget class="QPushButton" name="pushButtonDetectFundamental">
                 <property name="geometry">
                  <rect>
-                  <x>410</x>
-                  <y>50</y>
+                  <x>320</x>
+                  <y>40</y>
                   <width>90</width>
                   <height>21</height>
                  </rect>
@@ -1306,14 +1306,14 @@ QSlider::handle:horizontal {
                <widget class="QLabel" name="label_68">
                 <property name="geometry">
                  <rect>
-                  <x>230</x>
-                  <y>50</y>
-                  <width>45</width>
+                  <x>11</x>
+                  <y>70</y>
+                  <width>51</width>
                   <height>17</height>
                  </rect>
                 </property>
                 <property name="text">
-                 <string>Set to</string>
+                 <string>Preset</string>
                 </property>
                </widget>
               </widget>
@@ -8142,7 +8142,7 @@ QProgressBar::chunk
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox">
+            <widget class="QComboBox" name="comboBoxNodesFilterBy">
              <item>
               <property name="text">
                <string>None</string>
@@ -8194,12 +8194,58 @@ QProgressBar::chunk
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_2">
+            <widget class="QComboBox" name="comboBoxNodesShow">
              <item>
               <property name="text">
                <string>All</string>
               </property>
              </item>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_30">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>80</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBoxNodesSelectedOnly">
+             <property name="text">
+              <string>Show selected only</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_31">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>10</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBoxNodesHideVolatile">
+             <property name="text">
+              <string>Hide volatile</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -8209,7 +8255,7 @@ QProgressBar::chunk
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>40</width>
+               <width>200</width>
                <height>20</height>
               </size>
              </property>
@@ -8361,7 +8407,7 @@ QProgressBar::chunk
               <x>0</x>
               <y>0</y>
               <width>1146</width>
-              <height>30</height>
+              <height>582</height>
              </rect>
             </property>
             <property name="sizePolicy">

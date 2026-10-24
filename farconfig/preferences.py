@@ -1,7 +1,7 @@
 from typing import Any
 
 from PySide6.QtWidgets import QWidget, QListWidgetItem, QTableView, QHeaderView, QTreeWidget, QTreeWidgetItem, QComboBox
-from PySide6.QtGui import QStandardItemModel, QStandardItem
+from PySide6.QtGui import QStandardItemModel, QStandardItem, QColor
 from PySide6.QtCore import Qt
 from watchdog.watchmedo import command
 
@@ -9,28 +9,7 @@ from ModuleSystem import HelpModule, HelpCommand, ModuleHandler, Module, ModuleC
 from ui_preferences import Ui_Form as preferencesWidget
 import timedChart as TimedChart
 from CommandSets import CommandSetModular
-
-class SettingsClass():
-    value = None
-    uiReportFunction = Any
-    dataReportFunction = Any
-    identifier = None
-    uiObject = None
-
-    def __init__(self, inValue, inIdentifier, inUIReportFunction = None, inDataReportFunction = None, inUIObject = None):
-        self.value = inValue
-        self.identifier = inIdentifier
-        if (self.uiReportFunction is not None): self.uiReportFunction = inUIReportFunction
-        if (self.dataReportFunction is not None): self.dataReportFunction = inDataReportFunction
-        if (self.uiObject is not None): self.uiObject = inUIObject
-
-    def setValueUI(self, inValue):
-        self.value = inValue
-        if (self.dataReportFunction is not None): self.dataReportFunction(self)
-
-    def setValueData(self, inValue):
-        self.value = inValue
-        if (self.uiReportFunction is not None): self.uiReportFunction(self)
+from general_helpers import dataVisibilitySettings, inputBox
 
 class preferences(QWidget):
     def __init__(self, farConfig, serialWidget,
@@ -44,63 +23,140 @@ class preferences(QWidget):
         self.commandSet = commandSet
         self.serialWidget = serialWidget
 
-        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterCommAck, 'command')
-        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterDebug, 'debug')
-        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterError, 'error')
-        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterExpressionParser, 'expressionparser')
-        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterHardware, 'hardware')
-        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterInfoRequest, 'inforequest')
-        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterPriority, 'priority')
-        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterUSB, 'usb')
-        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterUndefined, 'undefined')
-        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterOutput, 'output')
-        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterInternal, 'internal')
+        self.updatingGUI = False
 
-        self.ui.checkBoxDebugCursorFollow.stateChanged.connect(serialWidget.checkBoxDebugCursorFollowToggled)
-        self.ui.checkBoxLimitLines.stateChanged.connect(serialWidget.checkBoxLimitLinesStateChanged)
-        self.ui.spinBoxLimitLines.editingFinished.connect(serialWidget.spinBoxLimitLinesValueChanged)
-
+        #### Global stuff
         self.ui.pushButtonOk.pressed.connect(self.close)
 
-        self.ui.listWidgetCharts.pressed.connect(self.chartItemSelected)
+        #### Serial reporting
+        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterCommAck, 'cmd')
+        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterDebug, 'dbg')
+        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterError, 'err')
+        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterExpressionParser, 'ep')
+        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterHardware, 'hw')
+        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterInfoRequest, 'irq')
+        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterPriority, 'pri')
+        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterUSB, 'usb')
+        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterUndefined, 'un')
+        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterOutput, 'out')
+        self.assignCheckBoxToSettingsClass(self.ui.checkBoxFilterInternal, 'int')
+
+        self.ui.checkBoxDebugCursorFollow.stateChanged.connect(serialWidget.guiChangedDebugCursorFollowToggled)
+        self.ui.checkBoxLimitLines.stateChanged.connect(serialWidget.guiChangedLimitLinesEnabled)
+        self.ui.spinBoxLimitLines.valueChanged.connect(serialWidget.guiChangedLimitLinesValue)
+
+        #### Oscilloscope settings
+        self.ui.listWidgetCharts.pressed.connect(self.guiChangedChartListItem)
         self.comboBoxChartCommandMinWidth = 0
 
-        self.ui.checkBoxChartVisible.stateChanged.connect(self.chartVisibleChanged)
-        self.ui.lineEditChartName.editingFinished.connect(self.chartNameChanged)
-        self.ui.comboBoxChartCommand.currentIndexChanged.connect(self.chartCommandChanged)
-        self.ui.checkBoxChartRequest.stateChanged.connect(self.chartRequestChanged)
-        self.ui.checkBoxZeroIsUnavailable.stateChanged.connect(self.chartZeroIsUnavailableChanged)
-        #self.ui.comboBoxChartCommand.currentTextChanged.connect(self.chartCommandChanged)
+        self.ui.lineEditChartName.editingFinished.connect(self.guiChangedChartName)
+        self.ui.comboBoxChartCommand.currentIndexChanged.connect(self.guiChangedChartCommand)
+        self.ui.checkBoxChartRequest.stateChanged.connect(self.guiChangedChartCommandRequest)
+        #self.ui.lineEditChartParameters.editingFinished.connect(self.chartParametersChanged)
+        self.ui.checkBoxChartRequireArgument.stateChanged.connect(self.guiChangedChartRequireArgument)
+        #self.ui.lineEditChartRequiredEquals.editingFinished.connect(self.chartRequiredEqualsChanged)
+        #self.ui.spinBoxChartValueArgument.editingFinished.connect(self.chartValueChanged)
+        self.ui.spinBoxChartValueArgument.valueChanged.connect(self.guiChangedChartValueArgument)
+        self.ui.doubleSpinBoxChartRangeMin.valueChanged.connect(self.guiChangedChartRangeMin)
+        self.ui.doubleSpinBoxChartRangeMax.valueChanged.connect(self.guiChangedChartRangeMax)
+        self.ui.checkBoxChartLogarithmic.stateChanged.connect(self.guiChangedChartLogarithmic)
+        self.ui.lineEditChartSuffix.editingFinished.connect(self.guiChangedChartSuffix)
+        self.ui.checkBoxZeroIsUnavailable.stateChanged.connect(self.guiChangedChartZeroIsUnavaliable)
+        self.ui.checkBoxChartVisible.stateChanged.connect(self.guiChangedChartVisible)
+        self.ui.checkBoxChartSuppressFromSerial.stateChanged.connect(self.guiChangedChartSuppressFromSerial)
 
-    def chartZeroIsUnavailableChanged(self):
-        name = self.ui.listWidgetCharts.currentItem().text()
-        self.timedChart.setChartZeroIsUnavailable(name, self.ui.checkBoxZeroIsUnavailable.isChecked())
+        self.ui.pushButtonHideAll.pressed.connect(self.guiChangedChartHideAll)
+        self.ui.pushButtonShowAll.pressed.connect(self.guiChangedChartShowAll)
+        self.ui.pushButtonAddChart.pressed.connect(self.guiChangedChartAdd)
+        self.ui.pushButtonRemoveChart.pressed.connect(self.guiChangedChartRemove)
 
-    def chartRequestChanged(self):
-        name = self.ui.listWidgetCharts.currentItem().text()
-        self.timedChart.setChartRequest(name, self.ui.checkBoxChartRequest.isChecked())
+    def guiChangedChartHideAll(self):
+        for chart in self.timedChart.commandCharts:
+            self.timedChart.setChartVisible(chart.name, False)
 
-    def chartCommandChanged(self):
-        if (self.ui.listWidgetCharts.currentItem() is None): return
-        name = self.ui.listWidgetCharts.currentItem().text()
-        commandID = self.ui.comboBoxChartCommand.currentData()
-        if (commandID is None) or (str(commandID) == ""):
-            commandID = self.ui.comboBoxChartCommand.currentText()
-        self.timedChart.setChartCommand(name, commandID)
+    def guiChangedChartShowAll(self):
+        for chart in self.timedChart.commandCharts:
+            self.timedChart.setChartVisible(chart.name, True)
 
-    def chartNameChanged(self):
+    def guiChangedChartAdd(self):
+        name = inputBox("Add chart", "Chart Name:")
+        if name is None: return
+        #self.timedChart.commandCharts.append(TimedChart.CommandChart(self.timedChart, name=name))
+        self.timedChart.addChart(name)
+        self.show()
+
+    def guiChangedChartRemove(self):
+        item = self.ui.listWidgetCharts.currentItem()
+        if item is None or item == -1: return
+        self.timedChart.removeChart(item.text())
+        self.show()
+
+        self.ui.doubleSpinBoxChartRangeMin.editingFinshed.connect(self.guiChangedChartRangeMin)
+        self.ui.doubleSpinBoxChartRangeMax.editingFinshed.connect(self.guiChangedChartRangeMax)
+        self.ui.checkBoxChartLogarithmic.stateChanged.connect(self.guiChangedChartLogarithmic)
+        self.ui.lineEditChartSuffix.editingFinished.connect(self.guiChangedChartSuffix)
+
+    def guiChangedChartName(self):
         newName = self.ui.lineEditChartName.text()
         oldName = self.ui.listWidgetCharts.currentItem().text()
-        #chart = self.getChartItem(oldName)
-        #chart.setChartName(oldName, newName)
         self.timedChart.setChartName(oldName, newName)
         self.ui.listWidgetCharts.currentItem().setText(newName)
 
-    def chartVisibleChanged(self):
+    def guiChangedChartCommand(self):
+        if (self.ui.listWidgetCharts.currentItem() is None): return
+        name = self.ui.listWidgetCharts.currentItem().text()
+        moduleCommand = self.ui.comboBoxChartCommand.currentData()
+        if (moduleCommand is None) or (str(moduleCommand) == ""):
+            moduleCommand = self.ui.comboBoxChartCommand.currentText()
+        self.timedChart.setChartCommand(name, moduleCommand)
+
+    def guiChangedChartRequireArgument(self):
+        name = self.ui.listWidgetCharts.currentItem().text()
+        self.timedChart.setChartRequireArgument(name, self.ui.checkBoxChartRequireArgument.isChecked())
+
+    def guiChangedChartValueArgument(self):
+        name = self.ui.listWidgetCharts.currentItem().text()
+        self.timedChart.setValueArguments(name, self.ui.spinBoxChartValueArgument.value())
+
+    def guiChangedChartCommandRequest(self):
+        name = self.ui.listWidgetCharts.currentItem().text()
+        self.timedChart.setChartRequest(name, self.ui.checkBoxChartRequest.isChecked())
+
+    def guiChangedChartRangeMin(self):
+        name = self.ui.listWidgetCharts.currentItem().text()
+        self.timedChart.setRangeMin (name, self.ui.doubleSpinBoxChartRangeMin.value())
+
+    def guiChangedChartRangeMax(self):
+        name = self.ui.listWidgetCharts.currentItem().text()
+        self.timedChart.setRangeMax (name, self.ui.doubleSpinBoxChartRangeMax.value())
+
+    def guiChangedChartLogarithmic(self):
+        name = self.ui.listWidgetCharts.currentItem().text()
+        self.timedChart.setLogarithmic (name, self.ui.checkBoxChartLogarithmic.isChecked())
+
+    def guiChangedChartSuffix(self):
+        name = self.ui.listWidgetCharts.currentItem().text()
+        self.timedChart.setSuffix (name, self.ui.lineEditChartSuffix.text())
+
+    def guiChangedChartZeroIsUnavaliable(self):
+        name = self.ui.listWidgetCharts.currentItem().text()
+        self.timedChart.setChartZeroIsUnavailable(name, self.ui.checkBoxZeroIsUnavailable.isChecked())
+
+    def guiChangedChartVisible(self):
         chart = self.getChartItem(self.ui.listWidgetCharts.currentItem().text())
         if (chart is None): return
         chart.visible = self.ui.checkBoxChartVisible.isChecked()
         self.timedChart.setChartVisible(chart.name, chart.visible)
+
+    def guiChangedChartSuppressFromSerial(self):
+        if self.updatingGUI: return
+        chart = self.getChartItem(self.ui.listWidgetCharts.currentItem().text())
+        chart.supressSerial = self.ui.checkBoxChartSuppressFromSerial.isChecked()
+        if chart.commandData is not None:
+            if chart.commandData not in self.serialWidget.reportTypeData:
+                self.serialWidget.reportTypeData[chart.commandData] = dataVisibilitySettings(0, chart.commandData.getFullCommand(),
+                                                                                   moduleCommand=chart.commandData)
+            self.serialWidget.reportTypeData[chart.commandData].show = int(not self.ui.checkBoxChartSuppressFromSerial.isChecked())
 
     def assignCheckBoxToSettingsClass(self, objectName, setting):
         self.serialWidget.reportTypeData[setting].uiReportFunction = self.serialWidgetUIReportFunction
@@ -113,39 +169,29 @@ class preferences(QWidget):
     def checkBoxStateChanged(self):
         sender = self.sender()
         if sender.guiUpdate: return
-        sender.reportObject.setValueUI(sender.isChecked())
+        sender.reportObject.setShowUI(sender.isChecked())
         pass
 
     def serialWidgetUIReportFunction(self, setting):
         setting.uiObject.guiUpdate = True
-        value = setting.value
+        value = setting.show
         if (isinstance(value, str)):
             if value == "true": value = True
             else: value = False
         setting.uiObject.setChecked(value)
         setting.uiObject.guiUpdate = False
 
-        pass
-
     def getChartItem(self, name) -> TimedChart.CommandChart:
         for chart in self.timedChart.commandCharts:
             if (chart.name == name): return chart
         return None
 
-    def chartItemSelected(self):
+    def guiChangedChartListItem(self):
+        self.updatingGUI = True
+
         chart = self.getChartItem(self.ui.listWidgetCharts.currentItem().text())
         if (chart is None): return
         self.ui.lineEditChartName.setText(chart.name)
-        #if (self.ui.comboBoxChartCommand.count() > 0):
-        #    for i in range(0, self.ui.comboBoxChartCommand.count() + 1):
-        #        item = self.ui.comboBoxChartCommand.itemData(i)
-        #        if item is not None:
-        #            if item.commandID == chart.commandID:
-        #                self.ui.comboBoxChartCommand.setCurrentIndex(i)
-        #                break
-        #    pass
-        #else:
-        #    pass
 
         if chart.commandData is None:
             self.ui.comboBoxChartCommand.setCurrentText("")
@@ -176,7 +222,8 @@ class preferences(QWidget):
         self.ui.checkBoxChartVisible.setChecked(True) if (chart.visible) else self.ui.checkBoxChartVisible.setChecked(False)
         self.ui.checkBoxChartSuppressFromSerial.setChecked(True) if (chart.supressSerial) else self.ui.checkBoxChartSuppressFromSerial.setChecked(False)
         self.ui.checkBoxZeroIsUnavailable.setChecked(True) if (chart.zeroIsUnavailable) else self.ui.checkBoxZeroIsUnavailable.setChecked(False)
-        pass
+
+        self.updatingGUI = False
 
     def custom_showPopup(self):
         # Calculate the maximum width needed for all items
@@ -204,6 +251,7 @@ class preferences(QWidget):
                 helpCommand.commandTypeAccess != HelpCommand.CommandType_access.ectInvokeOnly and
                 helpCommand.commandTypeFunction != helpCommand.commandTypeFunction.ectRemoveModule and
                 helpCommand.commandTypeFunction != helpCommand.commandTypeFunction.ectAddModule and
+                helpCommand.commandTypeFunction != helpCommand.commandTypeFunction.ectCountModules and
                 helpCommand.commandTypeFunction != helpCommand.commandTypeFunction.ectName and
                 helpCommand.commandTypeFunction != helpCommand.commandTypeFunction.ectAssignment and
                 (not helpCommand.commandTypeLogic) and (not helpCommand.commandTypeSystem)):
@@ -221,15 +269,19 @@ class preferences(QWidget):
         self.commandSet = commandSet
         self.updateCommandsComboBox()
 
+        for chart in self.timedChart.commandCharts:
+            if chart.commandData is not None:
+                if chart.commandData not in self.serialWidget.reportTypeData:
+                    self.serialWidget.reportTypeData[chart.commandData] = dataVisibilitySettings(int(not chart.supressSerial),
+                                                                                                 chart.commandData.getFullCommand(),
+                                                                                                 moduleCommand=chart.commandData)
+
     def updateCommandsComboBox(self):
+        self.ui.comboBoxChartCommand.clear()
         self.addCommandsToCommandComboBoxFromModule(self.commandSet.baseModule)
 
     def addCommandToCommandsComboBox(self, command:ModuleCommand):
         text = command.getFullCommand()
-        #ci = self.commandSet.currentCommandSet.CommandItem(commandItem.argument[0])
-        #commandID, module = self.commandSet.currentCommandSet.getCommandID(ci)
-        #if (commandID is not None):
-            #ci.commandID = commandID
         ci = command
         fm = self.ui.comboBoxChartCommand.fontMetrics()
         wide = fm.width(text)
